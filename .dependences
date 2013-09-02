@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+sudo apt-get update
+
+sudo apt-get install php5
+sudo apt-get install git-all
+sudo apt-get install jenkins
+sudo apt-get install filezilla
+sudo apt-get install alien
+sudo apt-get install evernote-mode
+sudo apt-get install tmux
+sudo apt-get install ninja-ide
+sudo apt-get install irssi
+sudo apt-get install tomcat7
+sudo apt-get install ack
+sudo apt-get install lynx
+sudo apt-get install node
+sudo apt-get install pigz
+sudo apt-get install rhino
+sudo apt-get install tree
+sudo apt-get install exuberant-ctags
+
+
+
+
