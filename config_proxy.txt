@@ -1,0 +1,20 @@
+#configurar el proxy
+export http_proxy="http://172.21.0.12:3128"
+export https_proxy="https://172.21.0.12:3128"
+export ftp_proxy="ftp://172.21.0.12:3128"
+ 
+#configurar variable "HTTP_PROXY_REQUEST_FULLURI"
+ 
+export HTTP_PROXY_REQUEST_FULLURI="false"
+#nota agregar para que no lo agregen constantemente lo pueden agregar al achivo .bashrc de su usuario
+ 
+ 
+#configurar git para que trabaje por proxy
+ 
+git config --global http.proxy $http_proxy
+git config --global https.proxy $https_proxy
+ 
+#hola esta es una prueba de vim  
+ 
+# ejecutar 
+composer.phar diagnose
