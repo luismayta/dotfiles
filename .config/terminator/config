@@ -1,30 +1,58 @@
 [global_config]
   title_transmit_bg_color = "#d30102"
-  focus = system
+  focus = mouse
+  tab_position = right
 [keybindings]
+  search = <Ctrl>F
+  scaled_zoom = <Ctrl><Shift>K
+  split_horiz = <Ctrl><Shift>E
+  full_screen = <Ctrl><Shift>F
+  new_window = <Ctrl>N
+  close_term = <Ctrl><Shift>W
+  split_vert = <Ctrl>E
+  new_tab = <Ctrl>T
+  reset_clear = <Ctrl>R
+  next_tab = <Shift>Right
+  prev_tab = <Shift>Left
 [profiles]
   [[default]]
-    use_system_font = False
-    font = Inconsolata Medium 12
-    background_type = transparent
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    font = Monaco 12
+    cursor_color = "#002b36"
+    foreground_color = "#002b36"
+    scroll_on_output = False
+    show_titlebar = False
+    copy_on_selection = True
+    background_color = "#eee8d5"
+    scrollback_infinite = True
   [[solarized-dark]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    font = Inconsolata Medium 12
     use_system_font = False
     cursor_color = "#eee8d5"
     foreground_color = "#eee8d5"
-    font = Inconsolata Medium 12
+    scroll_on_output = False
+    show_titlebar = False
+    copy_on_selection = True
     background_color = "#002b36"
+    scrollback_infinite = True
   [[solarized-light]]
-    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
-    background_color = "#eee8d5"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#97907c:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    font = Monaco 11
+    use_system_font = False
     cursor_color = "#002b36"
     foreground_color = "#002b36"
+    scroll_on_output = False
+    show_titlebar = False
+    copy_on_selection = True
+    background_color = "#eee8d5"
+    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
       type = Terminal
       parent = window0
-      profile = solarized-dark
+      profile = solarized-light
     [[[window0]]]
       type = Window
       parent = ""
