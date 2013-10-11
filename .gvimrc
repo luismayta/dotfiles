@@ -1,6 +1,6 @@
 " Use the excellent Railscat theme by Jeff Kreeftmeijer (gVim-only)
-colorscheme railscat
+colorscheme Railscat
 " Use 14pt Menlo
-set guifont=Menlo:h14
+set guifont=Inconsolata\ for\ Powerline\ 11
 " Better line-height
-set linespace=8
+"set linespace=8
