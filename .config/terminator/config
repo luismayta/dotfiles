@@ -5,15 +5,15 @@
 [keybindings]
   search = <Ctrl>F
   scaled_zoom = <Ctrl><Shift>K
+  next_tab = <Shift>Right
   split_horiz = <Ctrl><Shift>E
   full_screen = <Ctrl><Shift>F
   new_window = <Ctrl>N
+  prev_tab = <Shift>Left
   close_term = <Ctrl><Shift>W
   split_vert = <Ctrl>E
   new_tab = <Ctrl>T
   reset_clear = <Ctrl>R
-  next_tab = <Shift>Right
-  prev_tab = <Shift>Left
 [profiles]
   [[default]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
@@ -36,6 +36,13 @@
     copy_on_selection = True
     background_color = "#002b36"
     scrollback_infinite = True
+  [[4bit-1381079053991]]
+    palette = "#0d1926:#a07b88:#6ead88:#a0ad88:#6e7bb9:#a07bb9:#6eadb9:#bac7d4:#2b3845:#bcb1bd:#a4c9bd:#bcc9bd:#a4b1d5:#bcb1d5:#a4c9d5:#d9e5f2"
+    use_system_font = False
+    foreground_color = "#d9e6f2"
+    show_titlebar = False
+    font = Inconsolata Medium 12
+    background_color = "#0d1926"
   [[solarized-light]]
     palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#97907c:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     font = Monaco 11
@@ -56,4 +63,5 @@
     [[[window0]]]
       type = Window
       parent = ""
+      profile = solarized-light
 [plugins]
