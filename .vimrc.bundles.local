@@ -1,6 +1,6 @@
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'Raimondi/delimitMate'
-Bundle 'arnaud-lb/vim-php-namespace'
+"Bundle 'arnaud-lb/vim-php-namespace'
 Bundle 'corntrace/bufexplorer'
 Bundle 'docteurklein/vim-phpunit'
 Bundle 'ervandew/supertab'
@@ -30,7 +30,7 @@ Bundle 'Yggdroot/indentLine'
 Bundle 'nginx.vim'
 Bundle 'vim-indent-object'
 Bundle 'unite.vim'
-
+Bundle 'matze/vim-move'
 if has('ruby')
     Bundle 'wincent/Command-T'
 else
