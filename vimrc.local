@@ -87,7 +87,7 @@
     " Disable automtic surrounding with quote or bracket characters.
     "UnBundle 'tpope/vim-surround'
     " Pick one of the checksyntax, jslint, or syntastic
-    UnBundle 'scrooloose/syntastic'
+    "UnBundle 'scrooloose/syntastic'
     "UnBundle 'tpope/vim-fugitive'
     UnBundle 'myusuf3/numbers.vim'
   endif
@@ -269,7 +269,7 @@
   map <leader>y :NERDTreeToggle<CR>
   map <leader>i :TlistToggle<CR>
   map <leader>f :Ack
-  map <leader>te :Phpunit %<CR>
+  "map <leader>te :Phpunit %<CR>
 
   map <leader>to :tabo<CR>
   map <leader>ct :tabc<CR>
@@ -292,7 +292,7 @@
 
 
   " Shows svn blame in visual mode on highlighted lines.
-  vmap <Leader>bl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+  "vmap <Leader>bl :<C-U>!svn blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
   " Ctags generation.
   "
