@@ -87,7 +87,7 @@
     " Disable automtic surrounding with quote or bracket characters.
     "UnBundle 'tpope/vim-surround'
     " Pick one of the checksyntax, jslint, or syntastic
-    UnBundle 'scrooloose/syntastic'
+    "UnBundle 'scrooloose/syntastic'
     "UnBundle 'tpope/vim-fugitive'
     UnBundle 'myusuf3/numbers.vim'
   endif
