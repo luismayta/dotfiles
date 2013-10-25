@@ -1,4 +1,4 @@
-[ -n "$PS1" ] && source ~/.bash_profile
+source ~/.bash_profile
 
 ### gcp how cp
 alias cp=gcp

@@ -14,6 +14,7 @@
   if !has('gui_running')
     if match($TERM, "screen") != -1
       set term=xterm-256color  " while running in GNU screen override TERM
+      set term=screen-256color
     endif
   endif
 
