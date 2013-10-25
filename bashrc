@@ -1,7 +1,7 @@
 [ -n "$PS1" ] && source ~/.bash_profile
 
 ### gcp how cp
-alias cp=gcp
+#alias cp=gcp
 
 #configurar el proxy
 export http_proxy="http://172.21.0.83:3128"
