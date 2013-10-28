@@ -35,6 +35,7 @@ Bundle 'vim-indent-object'
 Bundle 'unite.vim'
 Bundle 'matze/vim-move'
 Bundle 'itchyny/lightline.vim'
+Bundle 'noahfrederick/vim-hemisu'
 if has('ruby')
     Bundle 'wincent/Command-T'
 else
