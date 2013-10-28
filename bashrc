@@ -4,9 +4,9 @@ source ~/.bash_profile
 alias cp=gcp
 
 #configurar el proxy
-export http_proxy="http://172.21.0.83:3128"
-export https_proxy="https://172.21.0.83:3128"
-export ftp_proxy="ftp://172.21.0.83:3128"
+#export http_proxy="http://172.21.0.83:3128"
+#export https_proxy="https://172.21.0.83:3128"
+#export ftp_proxy="ftp://172.21.0.83:3128"
 
 #configurar variable "HTTP_PROXY_REQUEST_FULLURI"
 
