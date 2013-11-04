@@ -31,7 +31,7 @@
       set background=dark  "in Terminal use dark background
     endif
   endif
-
+  set background=light
   set nocompatible
   set nospell  " disable spell checking
   set number
@@ -40,8 +40,8 @@
   set list!  " hide unprintable characters
   set viewoptions=cursor,folds,slash,unix  " suggested view settings
   set clipboard+=unnamed  " use the clipboards of vim and win
-  set paste               " Paste from a windows or from vim
-  set go+=a               " Visual selection automatically copied to the clipboard"
+  "set paste               " Paste from a windows or from vim
+  "set go+=a                Visual selection automatically copied to the clipboard"
   "Disable backup"
   set nobackup
   set nowritebackup
@@ -50,8 +50,8 @@
 
   " GUI Settings {
   set guifont=Inconsolata\ for\ Powerline\ 11
-  colorscheme lucius
-  color lucius
+  colorscheme hemisu
+  color hemisu
   set t_Co=256
   " }
 
