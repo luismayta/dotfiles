@@ -49,9 +49,10 @@
   " }
 
   " GUI Settings {
-  set guifont=Inconsolata\ for\ Powerline\ 11
-  colorscheme hemisu
-  color hemisu
+  set guifont=Inconsolata\ for\ Powerline\ 12
+  colorscheme lucius
+  color lucius
+
   set t_Co=256
   " }
 
@@ -339,7 +340,6 @@
   " clear any message
   " already displayed.
   " }
-
 
   " Airline + Restore View workaround for spf13/spf13-vim#423 issue {
   au VimEnter * AirlineToggle 
