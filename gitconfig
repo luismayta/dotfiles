@@ -1,5 +1,5 @@
 [user]
-    name = "Luis Mayta"
+    name = "@slovacus"
     email = slovacus@gmail.com
 
 [core]
@@ -18,7 +18,7 @@
     status = auto
 [color "branch"]
     current = yellow reverse
-    local = yellow 
+    local = yellow
     remote = green
 
 [color "diff"]
@@ -49,6 +49,6 @@
 
 [difftool]
         prompt = false
-        
+
 [merge]
 	tool = meld
