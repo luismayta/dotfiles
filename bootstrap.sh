@@ -2,7 +2,7 @@
 
 ############################  SETUP PARAMETERS
 app_name='dotfiles'
-git_uri='https://github.com/spf13/spf13-vim.git'
+git_uri='https://github.com/luismayta/dotfiles.git'
 git_branch='1.0'
 debug_mode='0'
 fork_maintainer='0'
