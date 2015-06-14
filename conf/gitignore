@@ -56,7 +56,7 @@ cache*
 
 ################--------------python------------------#############
 #files of ninja-ide
-*.nja 
+*.nja
 
 #partes de descarga
 *.part
