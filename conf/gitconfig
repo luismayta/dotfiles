@@ -36,8 +36,9 @@
     ci = commit
     ck = checkout
     br = branch
-    lg = log --graph -10
-    ll = log --graph --date=relative --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+    lol = log --pretty=oneline --abbrev-commit --graph
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
     in = fetch --dry-run
     out = push --dry-run
     cm = commit
