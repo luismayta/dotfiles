@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH"
+
 # Make vim the default editor
-export EDITOR="vim"
+export EDITOR=/usr/bin/vim
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -11,8 +16,8 @@ export HISTCONTROL=ignoredups
 #export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Prefer US English and use UTF-8
-#export LANG="en_US"
-#export LC_ALL="en_US.UTF-8"
+export LANG=en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
 
 # Highlight section titles in manual pages
 #export LESS_TERMCAP_md="$ORANGE"
