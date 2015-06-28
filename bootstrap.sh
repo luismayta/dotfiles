@@ -7,9 +7,10 @@ git_branch='develop'
 debug_mode='0'
 fork_maintainer='0'
 path_repo="$HOME/$app_name"
+path_backup="$HOME/backup"
 
 # import files
-for file in src/{messages.sh,repo.sh}; do
+for file in "$path_repo/"src/{messages.sh,repo.sh}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
@@ -29,13 +30,15 @@ program_exists() {
 do_backup() {
     local ret='0'
     local msg="Your old dotfiles stuff has a suffix now and looks like"
+    local today=`date +%Y%m%d`
+    local path_today="$path_backup/$today/"
+    `mkdir -p "$path_today"`
+    file_backup="$path_today${file##*/}"
 
     if [ -r "$1" ]; then
-        local today=`date +%Y%m%d_%s`
-        local backupFile="$1.$today"
-        [ ! -L "$1" ] && mv "$1" "$backupFile";
+        [ ! -L "$1" ] && mv "$1" "$file_backup";
         ret="$?"
-        success "$msg $backupFile"
+        success "$msg $file_backup"
         debug
     fi
 }
@@ -46,7 +49,7 @@ mv_file() {
     local msg="Your move file "
 
     if [ -r "$1" ]; then
-        [ ! -L "$1" ] && mv "$1" "$2";
+        [ ! -L "$1" ] && cp "$1" "$2";
         ret="$?"
         success "$msg $1 to $2"
         debug
@@ -86,5 +89,5 @@ echo -n "This may overwrite existing files in your home directory. Are you sure?
 read response
 
 if [[ $response =~ ^[Yy]$ ]]; then
-    doIt
+    do_it
 fi
