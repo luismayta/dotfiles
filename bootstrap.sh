@@ -77,12 +77,14 @@ do_it(){
 clone_repo      "Successfully cloned $app_name"
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` dotfiles"
+msg             "© `date +%Y` $app_name"
 
 # cd "$(dirname "${BASH_SOURCE}")"
 
-read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
+
+read response
+
+if [[ $response =~ ^[Yy]$ ]]; then
     doIt
 fi
