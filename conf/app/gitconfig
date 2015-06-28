@@ -1,11 +1,11 @@
 [user]
-    name = "@slovacus"
-    email = slovacus@gmail.com
+    name = "$GIT_AUTHOR_NAME"
+    email = "$GIT_AUTHOR_EMAIL"
 
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore
-	editor = vim
+	editor = "$EDITOR"
 
 [color]
     ui = true
