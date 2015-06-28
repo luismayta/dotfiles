@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ############################  SETUP PARAMETERS
-app_name='dotfiles'
+app_name='.dotfiles'
 git_uri='https://github.com/luismayta/dotfiles.git'
 git_branch='develop'
 debug_mode='0'
