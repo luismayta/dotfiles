@@ -1,11 +1,11 @@
 [user]
-    name = "$GIT_AUTHOR_NAME"
-    email = "$GIT_AUTHOR_EMAIL"
+    name = "@slovacus"
+    email = "slovacus@gmail.com"
 
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore
-	editor = "$EDITOR"
+	editor = "vim"
 
 [color]
     ui = true
@@ -16,6 +16,7 @@
     branch = auto
     diff = auto
     status = auto
+
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -46,10 +47,10 @@
 	st = status
 
 [diff]
-        tool = meld
+    tool = meld
 
 [difftool]
-        prompt = false
+    prompt = false
 
 [merge]
 	tool = meld
