@@ -1,11 +1,11 @@
 [user]
-    name = "@slovacus"
-    email = slovacus@gmail.com
+    name = "$GIT_AUTHOR_NAME"
+    email = "$GIT_AUTHOR_EMAIL"
 
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore
-	editor = vim
+	editor = "$EDITOR"
 
 [color]
     ui = true
@@ -36,8 +36,9 @@
     ci = commit
     ck = checkout
     br = branch
-    lg = log --graph -10
-    ll = log --graph -30 --pretty=format:'%Cgreen%h %Creset%ad %Cblue%an %Creset%s'
+    lol = log --pretty=oneline --abbrev-commit --graph
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
     in = fetch --dry-run
     out = push --dry-run
     cm = commit
