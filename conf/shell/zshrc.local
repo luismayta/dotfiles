@@ -2,3 +2,5 @@
 ZSH_THEME="avit"
 # Install Plugins
 plugins=(git git-flow ruby python go golang)
+
+source $ZSH/oh-my-zsh.sh
