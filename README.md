@@ -1,19 +1,26 @@
+## Getting Started
 
-## Installation
+### Prerequisites
 
-### Using Git and the bootstrap script
+__Disclaimer:__ _dotfiles works best on Mac OS X and Linux._
 
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/.dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+    * Unix-based operating system (Mac OS X or Linux)
+    * [Zsh](http://www.zsh.org) should be installed (v4.3.9 or more recent). If not pre-installed (`zsh --version` to confirm)
+    * `curl` or `wget` should be installed
+    * `git` should be installed
+    * `tmux` should be installed
 
-```bash
-git clone https://github.com/luismayta/dotfiles.git .dotfiles && cd .dotfiles && source bootstrap.sh
-```
+### Basic Installation
 
-To update, `cd` into your local `.dotfiles` repository and then:
+dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
 
-```bash
-source bootstrap.sh
-```
+#### via curl
+
+`sh -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
+
+#### via wget
+
+`sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
 
 ```bash
     # Git credentials
