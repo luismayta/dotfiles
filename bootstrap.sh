@@ -23,6 +23,7 @@ program_exists() {
     # throw error on non-zero return value
     if [ ! "$ret" -eq '0' ]; then
         error "$2"
+        exit
     fi
 }
 
@@ -75,14 +76,16 @@ do_it(){
         unset file_path
     done
     unset path
+
+    msg "Copying file bashrc adding it to ~/.zshrc"
+
+    echo  "source ~/.bashrc" >> ~/.zshrc
 }
 
 clone_repo      "Successfully cloned $app_name"
 
 msg             "\nThanks for installing $app_name."
 msg             "© `date +%Y` $app_name"
-
-# cd "$(dirname "${BASH_SOURCE}")"
 
 echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
 
