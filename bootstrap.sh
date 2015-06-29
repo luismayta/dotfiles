@@ -3,7 +3,7 @@
 ############################  SETUP PARAMETERS
 app_name='.dotfiles'
 git_uri='https://github.com/luismayta/dotfiles.git'
-git_branch='develop'
+git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
 path_repo="$HOME/$app_name"
