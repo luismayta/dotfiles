@@ -6,7 +6,7 @@ msg() {
 
 success() {
     if [ "$ret" -eq '0' ]; then
-    msg "\e[32m[✔]\e[0m ${1}${2}"
+        msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
 
