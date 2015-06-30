@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
 
-############################  SETUP PARAMETERS
-app_name='.dotfiles'
-git_uri='https://github.com/luismayta/dotfiles.git'
-git_branch='master'
-debug_mode='0'
-fork_maintainer='0'
-path_repo="$HOME/$app_name"
-path_backup="$HOME/backup"
+APP_NAME='.dotfiles'
+PATH_REPO="$HOME/$APP_NAME"
 
-# import files
-for file in "$path_repo/"src/{messages.sh,repo.sh,functions.sh}; do
-	[ -r "$file" ] && source "$file"
-done
-unset file
+[ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
 
 ############################  BASIC SETUP TOOLS
 program_exists() {
@@ -32,7 +22,7 @@ do_backup() {
     local ret='0'
     local msg="Your old dotfiles stuff has a suffix now and looks like"
     local today=`date +%Y%m%d`
-    local path_today="$path_backup/$today/"
+    local path_today="$PATH_BACKUP/$today/"
     `mkdir -p "$path_today"`
     file_backup="$path_today${file##*/}"
 
@@ -67,8 +57,8 @@ do_it(){
 
     for path in conf/{shell,app}; do
         for file_path in "$path/"*; do
-            file="$HOME/.${file_path##*/}"
-            file_path="$path_repo/$file_path"
+            local file="$HOME/.${file_path##*/}"
+            local file_path="$PATH_REPO/$file_path"
             do_backup "$file"
             mv_file "$file_path" "$file"
             unset file
