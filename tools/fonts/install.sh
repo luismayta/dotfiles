@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-PATH_REPO="$HOME/$app_name"
+APP_NAME='.dotfiles'
+PATH_REPO="$HOME/$APP_NAME"
 
 [ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
 
@@ -17,11 +18,9 @@ if [[ ! -e $FONTS_DIR ]]; then
     mkdir $FONTS_DIR || die "Could not make $FONTS_DIR"
 fi
 
-local font
-
 for font in $FILES_FONTS; do
     msg font
-    mv $font $FONTS_DIR || die "Could not install $file"
+    cp $font $FONTS_DIR || die "Could not install $file"
     success "Installed $file successfully"
 done
 
