@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 ############################  SETUP PARAMETERS
-app_name='.dotfiles'
-git_uri='https://github.com/luismayta/dotfiles.git'
-git_branch='master'
-debug_mode='0'
-fork_maintainer='0'
-path_repo="$HOME/$app_name"
+APP_NAME='.dotfiles'
+GIT_URI='https://github.com/luismayta/dotfiles.git'
+GIT_BRANCH='master'
+DEBUG_MODE='0'
+PATH_REPO="$HOME/$APP_NAME"
+PATH_BACKUP="$HOME/backup"
+FILES_FONTS="$PATH_REPO/resources/fonts/*"
 
 msg() {
     printf '%b\n' "$1" >&2
@@ -15,7 +16,7 @@ msg() {
 
 success() {
     if [ "$ret" -eq '0' ]; then
-    msg "\e[32m[✔]\e[0m ${1}${2}"
+        msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
 
@@ -55,17 +56,17 @@ function upgrade_repo() {
 }
 
 clone_repo() {
-    if [ ! -e "$path_repo/.git" ]; then
-        git clone --recursive -b "$git_branch" "$git_uri" "$path_repo"
+    if [ ! -e "$PATH_REPO/.git" ]; then
+        git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
         ret="$?"
         success "$1"
         debug
     else
-        upgrade_repo "$app_name" "Successfully updated $app_name"
+        upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
     fi
 
     if [ "$ret" -eq '0' ]; then
-        "$path_repo/bootstrap.sh"
+        "$PATH_REPO/bootstrap.sh"
     fi
 }
 
