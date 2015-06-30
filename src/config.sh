@@ -5,6 +5,6 @@ APP_NAME='.dotfiles'
 GIT_URI='https://github.com/luismayta/dotfiles.git'
 GIT_BRANCH='master'
 DEBUG_MODE='0'
-PATH_REPO="$HOME/$app_name"
+PATH_REPO="$HOME/$APP_NAME"
 PATH_BACKUP="$HOME/backup"
 FILES_FONTS="$PATH_REPO/resources/fonts/*"
