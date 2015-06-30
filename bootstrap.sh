@@ -10,7 +10,7 @@ path_repo="$HOME/$app_name"
 path_backup="$HOME/backup"
 
 # import files
-for file in "$path_repo/"src/{messages.sh,repo.sh}; do
+for file in "$path_repo/"src/{messages.sh,repo.sh,functions.sh}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
