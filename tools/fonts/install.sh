@@ -19,9 +19,9 @@ if [[ ! -e $FONTS_DIR ]]; then
 fi
 
 for font in $FILES_FONTS; do
-    msg font
+    ret='0'
     cp $font $FONTS_DIR || die "Could not install $file"
-    success "Installed $file successfully"
+    success "Installed $font successfully"
 done
 
 cat <<EOF
