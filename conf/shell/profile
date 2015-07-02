@@ -8,8 +8,10 @@ for file in ~/.{zshrc.local,exports,bash_prompt,aliases,functions,inputrc}; do
 done
 unset file
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ -e "$HOME/.pyenv" ]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
