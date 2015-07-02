@@ -6,7 +6,7 @@ PATH_REPO="$HOME/$APP_NAME"
 [ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
 
 ############################  BASIC SETUP TOOLS
-program_exists() {
+function program_exists() {
     local ret='0'
     type $1 >/dev/null 2>&1 || { local ret='1'; }
 
@@ -18,7 +18,7 @@ program_exists() {
 }
 
 ############################ SETUP FUNCTIONS
-do_backup() {
+function do_backup() {
     local ret='0'
     local msg="Your old dotfiles stuff has a suffix now and looks like"
     local today=`date +%Y%m%d`
@@ -35,7 +35,7 @@ do_backup() {
 }
 
 ############################ MOVE FILE
-mv_file() {
+function mv_file() {
     local ret='0'
     local msg="Your move file "
 
@@ -49,7 +49,7 @@ mv_file() {
 
 ############################ MAIN()
 
-do_it(){
+function do_it(){
     for app in {zsh,git,tmux}; do
         program_exists "$app" "To install $app_name you first need to install $app."
     done
@@ -66,6 +66,10 @@ do_it(){
         unset file_path
     done
     unset path
+
+    msg "Install Fonts"
+
+    "$PATH_REPO/tools/fonts/install.sh"
 
     msg "Copying file bashrc adding it to ~/.zshrc"
 
