@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH"
+[[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"
+
+# Add Pyenv to Path scripting
+[[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
+
+# Add RVM to PATH for scripting
+[[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
 
 # Make vim the default editor
 export EDITOR=/usr/bin/vim
