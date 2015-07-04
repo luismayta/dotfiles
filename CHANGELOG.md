@@ -1,3 +1,8 @@
+### v1.0.0 (DATE)
+
+- fixed boostrap
+- fixed install fonts
+
 ### v0.1.9 (DATE)
 
 - added install fonts
