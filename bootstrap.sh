@@ -55,7 +55,7 @@ function do_it(){
     done
     unset app
 
-    for path in conf/{shell,app}; do
+    for path in "$PATH_REPO/"conf/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
             local file_path="$PATH_REPO/$file_path"
