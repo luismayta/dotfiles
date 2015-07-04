@@ -58,7 +58,6 @@ function do_it(){
     for path in "$PATH_REPO/"conf/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
-            local file_path="$PATH_REPO/$file_path"
             do_backup "$file"
             mv_file "$file_path" "$file"
             unset file
