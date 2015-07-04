@@ -27,7 +27,7 @@ function do_backup() {
     file_backup="$path_today${file##*/}"
 
     if [ -r "$1" ]; then
-        [ ! -L "$1" ] && mv "$1" "$file_backup";
+        mv "$1" "$file_backup";
         ret="$?"
         success "$msg $file_backup"
         debug
@@ -58,7 +58,6 @@ function do_it(){
     for path in "$PATH_REPO/"conf/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
-            local file_path="$PATH_REPO/$file_path"
             do_backup "$file"
             mv_file "$file_path" "$file"
             unset file
