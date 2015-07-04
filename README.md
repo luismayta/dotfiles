@@ -1,4 +1,10 @@
-## Getting Started
+[![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
+
+[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg)](https://github.com/luismayta/dotfiles)
+
+## Overview
+
+#### Supported Architectures
 
 ### Prerequisites
 
