@@ -73,7 +73,7 @@ function do_it(){
 
     msg "Copying file bashrc adding it to ~/.zshrc"
 
-    echo  "source ~/.bashrc" >> ~/.zshrc
+    echo  "[ -r ~/.bashrc ] && source ~/.bashrc" >> ~/.zshrc
 }
 
 clone_repo      "Successfully cloned $app_name"
