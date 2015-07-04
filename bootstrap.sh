@@ -27,7 +27,7 @@ function do_backup() {
     file_backup="$path_today${file##*/}"
 
     if [ -r "$1" ]; then
-        [ ! -L "$1" ] && mv "$1" "$file_backup";
+        mv "$1" "$file_backup";
         ret="$?"
         success "$msg $file_backup"
         debug
