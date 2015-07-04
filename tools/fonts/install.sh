@@ -20,7 +20,7 @@ fi
 
 for font in $FILES_FONTS; do
     ret='0'
-    cp $font $FONTS_DIR || die "Could not install $file"
+    cp $font $FONTS_DIR || die "Could not install $font"
     success "Installed $font successfully"
 done
 
