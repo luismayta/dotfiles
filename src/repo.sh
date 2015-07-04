@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-upgrade_repo() {
+function upgrade_repo() {
       msg "trying to update $1"
 
-      if [ "$1" = "$app_name" ]; then
-          cd "$path_repo" &&
-          git pull origin "$git_branch"
+      if [ "$1" = "$APP_NAME" ]; then
+          cd "$PATH_REPO" &&
+          git pull origin "$GIT_BRANCH"
       fi
 
       ret="$?"
@@ -13,15 +13,13 @@ upgrade_repo() {
       debug
 }
 
-clone_repo() {
-    program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
-
-    if [ ! -e "$path_repo/.git" ]; then
-        git clone --recursive -b "$git_branch" "$git_uri" "$path_repo"
+function clone_repo() {
+    if [ ! -e "$PATH_REPO/.git" ]; then
+        git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
         ret="$?"
         success "$1"
         debug
     else
-        upgrade_repo "$app_name" "Successfully updated $app_name"
+        upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
     fi
 }
