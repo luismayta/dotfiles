@@ -38,3 +38,7 @@ dotfiles is installed by running one of the following commands in your terminal.
     GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
     git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
+
+[![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
+[![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
+[![Analytics](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
