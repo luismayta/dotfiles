@@ -5,11 +5,27 @@ PATH_REPO="$HOME/$APP_NAME"
 
 [ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
 
+function install_pyenv(){
+    "$PATH_REPO/tools/pyenv/install.sh"
+}
+
+function install_gvm(){
+    "$PATH_REPO/tools/gvm/install.sh"
+}
+
+function install_fonts(){
+    "$PATH_REPO/tools/fonts/install.sh"
+}
+
 function do_it(){
     for app in {zsh,git,tmux}; do
         program_exists "$app"
     done
     unset app
+
+    install_gvm
+    install_pyenv
+    install_fonts
 
     for path in "$PATH_REPO/"conf/{shell,app}; do
         for file_path in "$path/"*; do
@@ -21,10 +37,6 @@ function do_it(){
         unset file_path
     done
     unset path
-
-    msg "Install Fonts"
-
-    "$PATH_REPO/tools/fonts/install.sh"
 
     msg "Copying file bashrc adding it to ~/.zshrc"
 
