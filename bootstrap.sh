@@ -9,6 +9,10 @@ function install_pyenv(){
     "$PATH_REPO/tools/pyenv/install.sh"
 }
 
+function install_gvm(){
+    "$PATH_REPO/tools/gvm/install.sh"
+}
+
 function install_fonts(){
     "$PATH_REPO/tools/fonts/install.sh"
 }
@@ -19,6 +23,7 @@ function do_it(){
     done
     unset app
 
+    install_gvm
     install_pyenv
     install_fonts
 
