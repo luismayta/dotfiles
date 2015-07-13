@@ -33,12 +33,15 @@ function debug() {
 
 ############################  BASIC SETUP TOOLS
 function program_exists() {
+    local $app=$1
+    local message="Need to install $app."
     local ret='0'
     type $1 >/dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [ ! "$ret" -eq '0' ]; then
-        error "$2"
+        error "$message"
+        exit
     fi
 }
 
@@ -71,7 +74,7 @@ function clone_repo() {
 }
 
 for app in {zsh,git,tmux}; do
-    program_exists "$app" "To install $app_name you first need to install $app."
+    program_exists "$app"
 done
 unset app
 
