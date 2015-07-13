@@ -4,13 +4,14 @@
 root = true
 
 [*]
+indent_style = space
+indent_size = 4
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
-insert_final_newline = true
+insert_final_newline = false
 
-# Spaces in coffee
-[**.coffee]
+[*.{el,md,coffee,pp}]
 indent_style = space
 indent_size = 2
 
@@ -27,9 +28,12 @@ indent_size = 2
 indent_style = tab
 indent_size = 2
 
-[**.php]
+[*.{js,py,sh}]
 indent_style = space
 indent_size = 4
+
+[Makefile]
+indent_style = tab
 
 [**.html]
 indent_style = tab
