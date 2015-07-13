@@ -13,7 +13,7 @@ function program_exists() {
 
     # throw error on non-zero return value
     if [ ! "$ret" -eq '0' ]; then
-        error "$2"
+        error "$message"
         exit
     fi
 }
