@@ -7,9 +7,9 @@ PATH_REPO="$HOME/$APP_NAME"
 
 cat <<EOF
 
--------------------
- Pyenv Application
--------------------
+-----------------------
+    Pyenv Application
+-----------------------
 
 EOF
 
@@ -20,8 +20,8 @@ fi
 
 cat <<EOF
 
---------------------------
- Fonts installed! Enjoy!
---------------------------
+-----------------------------
+    Install Pyenv Application
+-----------------------------
 
 EOF
