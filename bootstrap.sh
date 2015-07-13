@@ -5,6 +5,10 @@ PATH_REPO="$HOME/$APP_NAME"
 
 [ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
 
+function install_pyenv(){
+    "$PATH_REPO/tools/pyenv/install.sh"
+}
+
 function do_it(){
     for app in {zsh,git,tmux}; do
         program_exists "$app"
