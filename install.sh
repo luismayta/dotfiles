@@ -9,7 +9,7 @@ PATH_REPO="$HOME/$APP_NAME"
 PATH_BACKUP="$HOME/backup"
 FILES_FONTS="$PATH_REPO/resources/fonts/*"
 
-function msg() {
+msg() {
     printf '%b\n' "$1" >&2
 }
 
