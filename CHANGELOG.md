@@ -1,8 +1,12 @@
-### 1.0.2 (16-07-2015)
+### v1.0.3 (19-07-2015)
+
+- validation code source
+
+### v1.0.2 (16-07-2015)
 
 - clean config unnecesary
 
-### 1.0.1 (DATE)
+### v1.0.1 (DATE)
 
 - fixed boostrap
 
