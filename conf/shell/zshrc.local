@@ -1,6 +1,7 @@
 # Config Oh-my-zsh
 
 # Install Plugins
-plugins=(git git-flow ruby python go golang)
-
-source $ZSH/oh-my-zsh.sh
+if [ -e "$ZSH/oh-my-zsh.sh" ]; then
+    plugins=(git git-flow ruby python go golang)
+    source $ZSH/oh-my-zsh.sh
+fi
