@@ -1,4 +1,10 @@
-<span class="badges">[![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles) [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![GitHub forks](https://img.shields.io/github/forks/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles) [![GitHub stars](https://img.shields.io/github/stars/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)</span>
+<span class="badges">
+[![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
+[![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
+[![GitHub forks](https://img.shields.io/github/forks/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)
+[![GitHub stars](https://img.shields.io/github/stars/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
+</span>
 
 ## Overview
 
@@ -37,6 +43,8 @@ dotfiles is installed by running one of the following commands in your terminal.
     git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
 
+<span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
 [![Analytics](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
+</span>

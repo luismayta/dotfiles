@@ -1,21 +1,33 @@
-### v1.0.0 (DATE)
+### v1.0.3 (19-07-2015)
+
+- validation code source
+
+### v1.0.2 (16-07-2015)
+
+- clean config unnecesary
+
+### v1.0.1 (DATE)
+
+- fixed boostrap
+
+### 1.0.0 (DATE)
 
 - fixed boostrap
 - fixed install fonts
 
-### v0.1.9 (DATE)
+### 0.1.9 (DATE)
 
 - added install fonts
 
-### v0.1.8 (DATE)
+### 0.1.8 (DATE)
 
 - Fixed conf shell
 
-### v0.1.7 (DATE)
+### 0.1.7 (DATE)
 
 - Fixed install dotfiles
 
-### v0.1.6 (DATE)
+### 0.1.6 (DATE)
 
 - Install
 
