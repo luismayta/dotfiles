@@ -17,7 +17,11 @@ function install_fonts(){
     "$PATH_REPO/tools/fonts/install.sh"
 }
 
-function do_it(){
+function install_tpm(){
+    "$PATH_REPO/tools/tpm/install.sh"
+}
+
+function initialize(){
     for app in {zsh,git,tmux}; do
         program_exists "$app"
     done
@@ -26,6 +30,7 @@ function do_it(){
     install_gvm
     install_pyenv
     install_fonts
+    install_tpm
 
     for path in "$PATH_REPO/"conf/{shell,app}; do
         for file_path in "$path/"*; do
@@ -53,5 +58,5 @@ echo -n "This may overwrite existing files in your home directory. Are you sure?
 read response
 
 if [[ $response =~ ^[Yy]$ ]]; then
-    do_it
+    initialize
 fi
