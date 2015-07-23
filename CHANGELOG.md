@@ -1,3 +1,7 @@
+### v1.0.4 (23-07-2015)
+
+- #4 Added test unit
+
 ### v1.0.3 (19-07-2015)
 
 - validation code source
