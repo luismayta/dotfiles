@@ -6,7 +6,7 @@ install:
   - sudo apt-get install tmux
 
 script:
-  lsb_release -a && ./script/test
+  lsb_release -a && TEST=true ./script/test
 
 notifications:
   email: false
