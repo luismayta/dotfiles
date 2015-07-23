@@ -38,14 +38,14 @@ program_exists() {
     type $1 >/dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
-    if [ ! "$ret" -eq '0' ]; then
+    if [[ ! "$ret" -eq '0' ]]; then
         error "$message"
         exit
     fi
 }
 
 clone_repo() {
-    if [ ! -e "$PATH_REPO/.git" ]; then
+    if [[ ! -e "$PATH_REPO/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
         ret="$?"
         success "$1"
@@ -54,7 +54,7 @@ clone_repo() {
         upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
     fi
 
-    if [ "$ret" -eq '0' && ! $TRAVIS = 'true' ]; then
+    if [[ "$ret" -eq '0' ]] && [[ ! $TRAVIS = 'true' ]]; then
         "$PATH_REPO/bootstrap.sh"
     fi
 }
