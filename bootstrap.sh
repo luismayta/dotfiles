@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
 
-APP_NAME='.dotfiles'
-PATH_REPO="$HOME/$APP_NAME"
+ROOT="`pwd`"
 
-[ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 function install_pyenv(){
-    "$PATH_REPO/tools/pyenv/install.sh"
+    "$ROOT/tools/pyenv/install.sh"
 }
 
 function install_gvm(){
-    "$PATH_REPO/tools/gvm/install.sh"
+    "$ROOT/tools/gvm/install.sh"
 }
 
 function install_fonts(){
-    "$PATH_REPO/tools/fonts/install.sh"
+    "$ROOT/tools/fonts/install.sh"
 }
 
 function install_tpm(){
-    "$PATH_REPO/tools/tpm/install.sh"
+    "$ROOT/tools/tpm/install.sh"
 }
 
 function replace_files(){
@@ -42,7 +41,7 @@ function initialize(){
     install_fonts
     install_tpm
 
-    for path in "$PATH_REPO/"conf/{shell,app}; do
+    for path in "$ROOT/"conf/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
             do_backup "$file"
@@ -63,7 +62,7 @@ clone_repo      "Successfully cloned $APP_NAME"
 msg             "\nThanks for installing $APP_NAME."
 msg             "© `date +%Y` $APP_NAME,s"
 
-if [[ $TEST = 'true']]; then
+if [[ $TEST = 'true' ]]; then
     initialize
     exit 1
 fi
