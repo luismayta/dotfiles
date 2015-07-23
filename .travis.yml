@@ -1,0 +1,17 @@
+language: python
+
+install:
+  - sudo apt-get install wget
+  - sudo apt-get install zsh
+  - sudo apt-get install tmux
+
+script:
+  lsb_release -a && export TRAVIS=true && export TEST=true && ./script/test
+
+notifications:
+  email: false
+
+# Local Variables:
+# indent-tabs-mode: nil
+# coding: utf-8
+# End:

@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+ROOT="`pwd`"
+HOME=~
+
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+
+cat <<EOF
+
+--------------------------
+    Test Install
+--------------------------
+
+EOF
+
+"$ROOT/install.sh"
+
+ret="0"
+if [ ! -e "$HOME/.dotfiles/.git" ]; then
+    ret="1"
+    error "Error in Install"
+else
+    success "Yeah Install Done"
+fi
+
+cat <<EOF
+
+--------------------------
+    Test Bootstrap
+--------------------------
+
+EOF
+
+"$ROOT/bootstrap.sh"
+
+for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
+    ret="0"
+    if [[ ! -r $path ]]; then
+        ret="1"
+        error $path
+    else
+        success $path
+    fi
+done
+unset path
+
+cat <<EOF
+
+--------------------------
+    Test Executed
+--------------------------
+
+EOF

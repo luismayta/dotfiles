@@ -1,4 +1,5 @@
 <span class="badges">
+[![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
 [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
 [![GitHub forks](https://img.shields.io/github/forks/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)
@@ -6,31 +7,44 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 </span>
 
-## Overview
+# My Dotfiles
 
-#### Supported Architectures
+# Prerequisites
 
-### Prerequisites
+This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
-__Disclaimer:__ _dotfiles works best on Mac OS X and Linux._
+* [Git](http://git-scm.com)
+* [Zsh](http://www.zsh.org)
+* [Curl](https://github.com/bagder/curl)
+* [Wget](http://www.gnu.org/software/wget)
+* [Tmux](https://tmux.github.io)
 
-    * Unix-based operating system (Mac OS X or Linux)
-    * [Zsh](http://www.zsh.org) should be installed (v4.3.9 or more recent). If not pre-installed (`zsh --version` to confirm)
-    * `curl` or `wget` should be installed
-    * `git` should be installed
-    * `tmux` should be installed
+## Help/Support
 
-### Basic Installation
+## Installation
 
 dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
 
-#### via curl
+### via curl
 
 `sh -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
 
-#### via wget
+### via wget
 
 `sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
+
+## Functions
+
+## Applications
+
+### Git
+
+[Git](http://git-scm.com/)
+
+| Configuration  | Descriptin           | Do           |
+| -------------- |:--------------------:| ------------:|
+| gitconfig      | config alias git     | config git   |
+| gitignore      | ignore files globals | ignored files|
 
 ```bash
     # Git credentials
@@ -43,8 +57,35 @@ dotfiles is installed by running one of the following commands in your terminal.
     git config --global user.email "$GIT_AUTHOR_EMAIL"
 ```
 
+### Tmux
+
+[Tmux](https://tmux.github.io) is a terminal multiplexer
+What is a terminal multiplexer? It lets you switch easily between several
+programs in one terminal, detach them (they keep running in the background)
+and reattach them to a different terminal. And do a lot more.
+
+*prefix:* ctrl + a
+
+| Binding        | Call                 | Do                      |
+| -------------- |:--------------------:| -----------------------:|
+| prefix |       | split-window -h      | split window horizontal |
+| prefix -       | split-window -v      | split window vertical   |
+
+### Tpm
+
+[Tpm](https://github.com/tmux-plugins/tpm) Tmux Plugin Manager
+
+*Plugins*
+
+| Plugin                    | Decription              | Do           |
+| ------------------------- |:-----------------------:| ------------:|
+| tmux-plugins/tmux-battery | Show Battery Percentage | Battery      |
+| tmux-plugins/tmux-cpu     | show Cpu Percentage     | Cpu          |
+
+
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
-[![Analytics](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
+[![](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/luismayta/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 </span>
