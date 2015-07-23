@@ -5,6 +5,7 @@ HOME=~
 
 echo $ROOT
 echo $HOME
+echo $TEST
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
