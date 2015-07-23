@@ -21,6 +21,16 @@ function install_tpm(){
     "$PATH_REPO/tools/tpm/install.sh"
 }
 
+function replace_files(){
+    echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
+
+    read response
+
+    if [[ $response =~ ^[Yy]$ ]]; then
+        initialize
+    fi
+}
+
 function initialize(){
     for app in {zsh,git,tmux}; do
         program_exists "$app"
@@ -53,10 +63,10 @@ clone_repo      "Successfully cloned $APP_NAME"
 msg             "\nThanks for installing $APP_NAME."
 msg             "© `date +%Y` $APP_NAME,s"
 
-echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
 
-read response
-
-if [[ $response =~ ^[Yy]$ ]]; then
+if [[ $TEST = 'true']]; then
     initialize
+    exit 1
 fi
+
+replace_files
