@@ -3,7 +3,7 @@
 ROOT="`pwd`"
 HOME=~
 
-if [[ $TRAVIS = 'true']]; then
+if [[ $TRAVIS = 'true' ]]; then
     PATH_REPO=$ROOT
 fi
 
@@ -12,7 +12,7 @@ fi
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
-    if [[ ! -r $path ]];then
+    if [[ ! -r $path ]]; then
         error $path
     fi
 done
