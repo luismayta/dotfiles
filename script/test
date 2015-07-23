@@ -3,6 +3,32 @@
 ROOT="`pwd`"
 HOME=~
 
+cat <<EOF
+
+--------------------------
+    Test Install
+--------------------------
+
+EOF
+
+"$ROOT/install.sh"
+
+ret="0"
+if [ ! -e "$HOME/.dotfiles/.git" ]; then
+    ret="1"
+    error "Error in Install"
+else
+    success "Yeah"
+fi
+
+cat <<EOF
+
+--------------------------
+    Test Bootstrap
+--------------------------
+
+EOF
+
 "$ROOT/bootstrap.sh"
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
