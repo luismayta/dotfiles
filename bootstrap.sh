@@ -63,8 +63,6 @@ clone_repo      "Successfully cloned $APP_NAME"
 msg             "\nThanks for installing $APP_NAME."
 msg             "© `date +%Y` $APP_NAME,s"
 
-echo $TEST
-
 if [[ $TEST = 'true']]; then
     initialize
     exit 1
