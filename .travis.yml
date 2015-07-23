@@ -1,0 +1,19 @@
+language: python
+
+install:
+  - sudo apt-get install wget
+  - sudo apt-get install curl
+  - sudo apt-get install git
+  - sudo apt-get install zsh
+  - sudo apt-get install tmux
+
+script:
+  lsb_release -a && ./script/test
+
+notifications:
+  email: false
+
+# Local Variables:
+# indent-tabs-mode: nil
+# coding: utf-8
+# End:
