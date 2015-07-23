@@ -54,7 +54,7 @@ clone_repo() {
         upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
     fi
 
-    if [ "$ret" -eq '0' ]; then
+    if [ "$ret" -eq '0' && ! $TRAVIS = 'true' ]; then
         "$PATH_REPO/bootstrap.sh"
     fi
 }
