@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+ROOT="`pwd`"
+HOME=~
+
+"$ROOT/install.sh"
+
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+
+for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
+    if [[ ! -r $path ]];then
+        error $path
+    fi
+done
+unset path
+
+cat <<EOF
+
+--------------------------
+    Test Executed
+--------------------------
+
+EOF
