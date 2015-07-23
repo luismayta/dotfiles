@@ -3,6 +3,8 @@
 ROOT="`pwd`"
 HOME=~
 
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+
 cat <<EOF
 
 --------------------------
@@ -18,7 +20,7 @@ if [ ! -e "$HOME/.dotfiles/.git" ]; then
     ret="1"
     error "Error in Install"
 else
-    success "Yeah"
+    success "Yeah Install Done"
 fi
 
 cat <<EOF
@@ -30,8 +32,6 @@ cat <<EOF
 EOF
 
 "$ROOT/bootstrap.sh"
-
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
     ret="0"
