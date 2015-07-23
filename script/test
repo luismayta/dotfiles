@@ -3,17 +3,17 @@
 ROOT="`pwd`"
 HOME=~
 
-if [[ $TRAVIS = 'true' ]]; then
-    PATH_REPO=$ROOT
-fi
-
 "$ROOT/bootstrap.sh"
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
+    $ret=0
     if [[ ! -r $path ]]; then
+        $ret=1
         error $path
+    else
+        success $path
     fi
 done
 unset path
