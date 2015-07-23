@@ -3,8 +3,6 @@
 ROOT="`pwd`"
 HOME=~
 
-"$ROOT/install.sh"
-
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
