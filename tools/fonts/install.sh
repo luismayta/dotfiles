@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
-
 cat <<EOF
 
 --------------------------
@@ -10,6 +8,7 @@ cat <<EOF
 
 EOF
 
+echo $ROOT
 echo $FONTS_DIR
 echo $FILES_FONTS
 
