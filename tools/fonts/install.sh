@@ -10,6 +10,9 @@ cat <<EOF
 
 EOF
 
+echo $FONTS_DIR
+echo $FILES_FONTS
+
 # Create font dir if not exists
 if [[ ! -e $FONTS_DIR ]]; then
     mkdir $FONTS_DIR || die "Could not make $FONTS_DIR"
