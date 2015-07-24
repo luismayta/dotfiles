@@ -2,6 +2,8 @@
 
 ROOT="`pwd`"
 
+export ROOT="`pwd`"
+
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 function install_pyenv(){

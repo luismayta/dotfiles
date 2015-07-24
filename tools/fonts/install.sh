@@ -8,6 +8,8 @@ cat <<EOF
 
 EOF
 
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+
 echo $ROOT
 echo $FONTS_DIR
 echo $FILES_FONTS
