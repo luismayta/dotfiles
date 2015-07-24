@@ -1,3 +1,7 @@
+### v1.0.5 (24-07-2015)
+
+- #27 Fix Install Fonts
+
 ### v1.0.4 (23-07-2015)
 
 - #4 Added test unit
