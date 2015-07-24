@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-APP_NAME='.dotfiles'
-PATH_REPO="$HOME/$APP_NAME"
-
-[ -r "$PATH_REPO/src/load.sh" ] && source "$PATH_REPO/src/load.sh"
-
 cat <<EOF
 
 --------------------------
@@ -12,6 +7,8 @@ cat <<EOF
 --------------------------
 
 EOF
+
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 # Create font dir if not exists
 if [[ ! -e $FONTS_DIR ]]; then
