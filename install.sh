@@ -7,7 +7,6 @@ GIT_BRANCH='master'
 DEBUG_MODE='0'
 PATH_REPO="$HOME/$APP_NAME"
 PATH_BACKUP="$HOME/backup"
-FILES_FONTS="$PATH_REPO/resources/fonts/*"
 
 msg() {
     printf '%b\n' "$1" >&2
