@@ -86,6 +86,10 @@ and reattach them to a different terminal. And do a lot more.
 
 [Nvm](https://github.com/creationix/nvm) Node Version Manager
 
+### Rvm
+
+[Rvm](https://rvm.io) Ruby Version Manager
+
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)

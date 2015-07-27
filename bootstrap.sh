@@ -26,6 +26,10 @@ function install_nvm(){
     "$ROOT/tools/nvm/install.sh"
 }
 
+function install_rvm(){
+    "$ROOT/tools/rvm/install.sh"
+}
+
 function replace_files(){
     echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
 
@@ -43,9 +47,11 @@ function initialize(){
     unset app
 
     install_gvm
+    install_nvm
     install_pyenv
     install_fonts
     install_tpm
+    install_rvm
 
     for path in "$ROOT/"conf/{shell,app}; do
         for file_path in "$path/"*; do
