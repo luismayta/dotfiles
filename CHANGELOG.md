@@ -1,3 +1,7 @@
+### v1.0.6 (27-07-2015)
+
+- #28 Implement Nvm (NodeJS)
+
 ### v1.0.5 (24-07-2015)
 
 - #27 Fix Install Fonts
