@@ -33,7 +33,7 @@ EOF
 
 "$ROOT/bootstrap.sh"
 
-for path in "$HOME/".{pyenv,gvm,tmux,fonts}; do
+for path in "$HOME/".{pyenv,gvm,tmux,fonts,nvm}; do
     ret="0"
     if [[ ! -r $path ]]; then
         ret="1"
