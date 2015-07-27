@@ -23,3 +23,15 @@ git filter-branch --force --commit-filter '
     else
         git commit-tree "$@";
     fi' HEAD
+
+git filter-branch --force --commit-filter '
+    if [ "$GIT_COMMITTER_NAME" = "Luis Alberto Mayta" ];
+    then
+        GIT_COMMITTER_NAME="@slovacus";
+        GIT_AUTHOR_NAME="@slovacus";
+        GIT_COMMITTER_EMAIL="slovacus@gmail.com";
+        GIT_AUTHOR_EMAIL="slovacus@gmail.com";
+        git commit-tree "$@";
+    else
+        git commit-tree "$@";
+    fi' HEAD
