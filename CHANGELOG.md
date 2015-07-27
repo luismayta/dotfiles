@@ -1,3 +1,7 @@
+### v1.0.7 (27-07-2015)
+
+- #15 Implement Rvm (Ruby)
+
 ### v1.0.6 (27-07-2015)
 
 - #28 Implement Nvm (NodeJS)
