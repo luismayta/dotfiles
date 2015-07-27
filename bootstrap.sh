@@ -22,6 +22,10 @@ function install_tpm(){
     "$ROOT/tools/tpm/install.sh"
 }
 
+function install_nvm(){
+    "$ROOT/tools/nvm/install.sh"
+}
+
 function replace_files(){
     echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
 
