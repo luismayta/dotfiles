@@ -2,7 +2,6 @@
 
 git filter-branch --force --commit-filter '
     if [ ! "$GIT_COMMITTER_EMAIL" = "slovacus@gmail.com" ];then
-        echo "encontre"
         GIT_COMMITTER_NAME="@slovacus";
         GIT_AUTHOR_NAME="@slovacus";
         GIT_COMMITTER_EMAIL="slovacus@gmail.com";
