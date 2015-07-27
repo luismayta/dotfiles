@@ -82,6 +82,9 @@ and reattach them to a different terminal. And do a lot more.
 | tmux-plugins/tmux-battery | Show Battery Percentage | Battery      |
 | tmux-plugins/tmux-cpu     | show Cpu Percentage     | Cpu          |
 
+### Nvm
+
+[Nvm](https://github.com/creationix/nvm) Node Version Manager
 
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
