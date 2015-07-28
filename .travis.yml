@@ -1,12 +1,27 @@
-language: python
+language: c
+os:
+  - linux
+  - osx
 
 install:
   - sudo apt-get install wget
   - sudo apt-get install zsh
   - sudo apt-get install tmux
 
+before_script:
+  - echo "build-no: ${TRAVIS_BUILD_NUMBER}\nrepo: ${TRAVIS_REPO_SLUG}\nbranch: ${TRAVIS_BRANCH}\ncommit: ${TRAVIS_COMMIT}\npull-request: ${TRAVIS_PULL_REQUEST}"
+  - tree -h
+
 script:
   lsb_release -a && export TRAVIS=true && export TEST=true && ./script/test
+
+after_script:
+  - cd ~/.pyenv; tree -h
+  - cd ~/.gvm; tree -h
+  - cd ~/.tmux; tree -h
+  - cd ~/.fonts; tree -h
+  - cd ~/.nvm; tree -h
+  - cd ~/.rvm; tree -h
 
 notifications:
   email: false

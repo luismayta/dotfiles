@@ -11,20 +11,20 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = false
 
-[*.{el,md,coffee,pp}]
+[*.{el,md,coffee,pp,yml}]
 indent_style = space
 indent_size = 2
 
-[**.js]
+[*.js]
 indent_style = space
 indent_size = 2
 
 # Tabs in less
-[**.less]
+[*.less]
 indent_style = tab
 indent_size = 2
 
-[**.css]
+[*.css]
 indent_style = tab
 indent_size = 2
 
@@ -35,6 +35,6 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[**.html]
+[*.html]
 indent_style = tab
 indent_size = 2
