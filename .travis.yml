@@ -1,33 +1,25 @@
 language: c
+compiler: gcc
 
 os:
-  - linux
   - osx
-
-env:
-  matrix:
-    - TRAVIS_OS_NAME=linux
-    - TRAVIS_OS_NAME=osx
+  - linux
 
 sudo: true
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      sudo apt-get update -qq &&
-      sudo apt-get install -y tree &&
-      sudo apt-get install -y wget &&
-      sudo apt-get install -y zsh &&
-      sudo apt-get install -y tmux &&
-      sudo apt-get install -y git &&
-      sudo apt-get install -y curl;
+  - if [ -z "${TRAVIS_OS_NAME}" ]; then export TRAVIS_OS_NAME=linux; fi;
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+      travis_retry sudo apt-get update -qq;
+      sudo apt-get install tree wget zsh tmux git curl -y;
     fi
-  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      brew update &&
-      brew install tree &&
-      brew install wget &&
-      brew install zsh &&
-      brew install tmux &&
-      brew install git &&
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+      travis_retry brew update;
+      brew install tree;
+      brew install wget;
+      brew install zsh;
+      brew install tmux;
+      brew install git;
       brew install curl;
     fi
 
