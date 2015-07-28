@@ -30,12 +30,7 @@ script:
   uname -a && export TRAVIS=true && export TEST=true && ./script/test
 
 after_script:
-  - cd ~/.pyenv; tree -h
-  - cd ~/.gvm; tree -h
-  - cd ~/.tmux; tree -h
-  - cd ~/.fonts; tree -h
-  - cd ~/.nvm; tree -h
-  - cd ~/.rvm; tree -h
+  uname -a && export TRAVIS=true && export TEST=true && ./script/validate
 
 notifications:
   email: false
