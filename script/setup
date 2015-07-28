@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+ROOT="`pwd`"
+HOME=~
+
+[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+
+cat <<EOF
+
+--------------------------
+    Install
+--------------------------
+
+EOF
+
+"$ROOT/install.sh"
+
+cat <<EOF
+
+--------------------------
+    Finished Install
+--------------------------
+
+EOF
+
+cat <<EOF
+
+--------------------------
+    Execution Boostrap
+--------------------------
+
+EOF
+
+"$ROOT/bootstrap.sh"
+
+cat <<EOF
+
+--------------------------
+    Finished Bootstrap
+--------------------------
+
+EOF
