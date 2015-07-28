@@ -4,9 +4,14 @@ os:
   - linux
   - osx
 
+env:
+  matrix:
+    - TRAVIS_OS_NAME=linux
+    - TRAVIS_OS_NAME=osx
+
 sudo: true
 
-install:
+before_install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       sudo apt-get update -qq &&
       sudo apt-get install -y tree &&
@@ -26,10 +31,10 @@ install:
       brew install curl;
     fi
 
-script:
+install:
   uname -a && export TRAVIS=true && export TEST=true && ./script/setup
 
-after_script:
+script:
   uname -a && export TRAVIS=true && export TEST=true && ./script/test
 
 notifications:
