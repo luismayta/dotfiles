@@ -3,10 +3,17 @@ os:
   - linux
   - osx
 
-install:
-  - sudo apt-get install wget
-  - sudo apt-get install zsh
-  - sudo apt-get install tmux
+sudo: true
+
+addons:
+  apt:
+    packages:
+    - tree
+    - wget
+    - zsh
+    - tmux
+    - git
+    - curl
 
 before_script:
   - echo "build-no: ${TRAVIS_BUILD_NUMBER}\nrepo: ${TRAVIS_REPO_SLUG}\nbranch: ${TRAVIS_BRANCH}\ncommit: ${TRAVIS_COMMIT}\npull-request: ${TRAVIS_PULL_REQUEST}"
