@@ -27,10 +27,10 @@ install:
     fi
 
 script:
-  uname -a && export TRAVIS=true && export TEST=true && ./script/test
+  uname -a && export TRAVIS=true && export TEST=true && ./script/setup
 
 after_script:
-  uname -a && export TRAVIS=true && export TEST=true && ./script/validate
+  uname -a && export TRAVIS=true && export TEST=true && ./script/test
 
 notifications:
   email: false
