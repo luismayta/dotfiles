@@ -1,4 +1,4 @@
-language: c
+language: cpp
 compiler: gcc
 
 os:
@@ -8,6 +8,17 @@ os:
 env:
   - ARCH="i686"
   - ARCH="x86_64"
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: clang
+    - os: osx
+      compiler: clang
+    - os: osx
+      compiler: llvm-gcc
 
 matrix:
   exclude:
