@@ -1,4 +1,114 @@
+### Files lock ###
 *.lock
-*.log
-.vagrant
+
+### Files local ###
 *.local
+
+### Project ###
+.installed
+
+### WordPress ###
+wp-content/
+web/
+
+### WordPress Dev Plugins ###
+web/wp-content/mu-plugins/dev/
+web/wp-content/mu-plugins/load.php
+
+### Composer ###
+composer.phar
+vendor/
+
+### DotEnv ###
+.env*
+!.env.example
+
+### Vagrant ###
+.vagrant
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+### Sublime ###
+*.sublime-workspace
+*.sublime-project
+
+### CVS ###
+/CVS/*
+*/CVS/*
+.cvsignore
+*/.cvsignore
+
+### SVN ###
+.svn/
+
+### Log/tmp folders ###
+log/
+tmp/
+
+### Log/database files ###
+*.log
+*.sql
+*.sqlite
+
+### Linux ###
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows ###
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
