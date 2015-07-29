@@ -1,4 +1,5 @@
-# Config Oh-my-zsh
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 # Install Plugins
 if [ -e "$ZSH/oh-my-zsh.sh" ]; then

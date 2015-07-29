@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 # Add `~/bin` to the `$PATH`
 [[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"

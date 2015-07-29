@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 ############################  SETUP PARAMETERS
 APP_NAME='.dotfiles'
