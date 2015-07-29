@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
