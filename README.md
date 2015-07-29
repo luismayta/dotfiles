@@ -1,3 +1,5 @@
+# Dotfiles
+
 <span class="badges">
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
@@ -7,9 +9,37 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 </span>
 
-# My Dotfiles
+## Introduction
 
-# Prerequisites
+## Help/Support
+
+## Usage
+
+- [CHANGELOG](CHANGELOG.md)
+- [CONTRIBUTING](CONTRIBUTING.md)
+
+## Change log
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Credits
+
+- [Luis Mayta][link-author]
+- [All Contributors][link-contributors]
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Installation
+
+dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
+
+### Prerequisites
 
 This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
@@ -19,12 +49,6 @@ This is a list of applications that need to be installed previously to enjoy all
 * [Wget](http://www.gnu.org/software/wget)
 * [Tmux](https://tmux.github.io)
 
-## Help/Support
-
-## Installation
-
-dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
-
 ### via curl
 
 `sh -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
@@ -32,10 +56,6 @@ dotfiles is installed by running one of the following commands in your terminal.
 ### via wget
 
 `sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
-
-## Functions
-
-## Applications
 
 ### Git
 
@@ -96,3 +116,6 @@ and reattach them to a different terminal. And do a lot more.
 [![](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/luismayta/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 </span>
+
+[link-author]: https://github.com/luismayta
+[link-contributors]: contributors
