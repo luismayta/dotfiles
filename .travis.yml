@@ -1,35 +1,44 @@
-language: python
+language: cpp
 
 os:
-  - linux
   - osx
+  - linux
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+    - os: linux
+      compiler: clang
+    - os: osx
+      compiler: clang
+      language: objective-c
+    - os: osx
+      compiler: llvm-gcc
+      language: objective-c
 
 sudo: true
 
-addons:
-  apt:
-    packages:
-    - tree
-    - wget
-    - zsh
-    - tmux
-    - git
-    - curl
+before_install:
+  - if [[ "$(uname -s)" == 'Linux' ]]; then
+      travis_retry sudo apt-get update -qq;
+      sudo apt-get install tree wget zsh tmux git curl -y;
+    fi
+  - if [[ "$(uname -s)" == 'Darwin' ]]; then
+      travis_retry brew update;
+      brew install tree;
+      brew install wget;
+      brew install zsh;
+      brew install tmux;
+      brew install git;
+      brew install curl;
+    fi
 
-before_script:
-  - echo "build-no: ${TRAVIS_BUILD_NUMBER}\nrepo: ${TRAVIS_REPO_SLUG}\nbranch: ${TRAVIS_BRANCH}\ncommit: ${TRAVIS_COMMIT}\npull-request: ${TRAVIS_PULL_REQUEST}"
-  - tree -h
+install:
+  uname -a && export TRAVIS=true && export TEST=true && ./script/setup
 
 script:
-  lsb_release -a && export TRAVIS=true && export TEST=true && ./script/test
-
-after_script:
-  - cd ~/.pyenv; tree -h
-  - cd ~/.gvm; tree -h
-  - cd ~/.tmux; tree -h
-  - cd ~/.fonts; tree -h
-  - cd ~/.nvm; tree -h
-  - cd ~/.rvm; tree -h
+  uname -a && export TRAVIS=true && export TEST=true && ./script/test
 
 notifications:
   email: false

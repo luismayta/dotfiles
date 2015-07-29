@@ -13,8 +13,6 @@ cat <<EOF
 
 EOF
 
-"$ROOT/install.sh"
-
 ret="0"
 if [ ! -e "$HOME/.dotfiles/.git" ]; then
     ret="1"
@@ -30,8 +28,6 @@ cat <<EOF
 --------------------------
 
 EOF
-
-"$ROOT/bootstrap.sh"
 
 for path in "$HOME/".{pyenv,gvm,tmux,fonts,nvm,rvm}; do
     ret="0"
