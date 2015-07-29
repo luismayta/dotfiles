@@ -1,3 +1,7 @@
+### v1.0.8 (28-07-2015)
+
+- #30 Implement Env in Travis
+
 ### v1.0.7 (27-07-2015)
 
 - #15 Implement Rvm (Ruby)
