@@ -20,11 +20,11 @@ matrix:
 sudo: true
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+  - if [[ "$(uname -s)" == 'Linux' ]]; then
       travis_retry sudo apt-get update -qq;
       sudo apt-get install tree wget zsh tmux git curl -y;
     fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  - if [[ "$(uname -s)" == 'Darwin' ]]; then
       travis_retry brew update;
       brew install tree;
       brew install wget;
