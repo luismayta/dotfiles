@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 function msg() {
     printf '%b\n' "$1" >&2

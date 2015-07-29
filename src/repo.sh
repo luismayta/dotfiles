@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 function upgrade_repo() {
       msg "trying to update $1"

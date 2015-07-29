@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 git filter-branch --force --commit-filter '
     if [ ! "$GIT_COMMITTER_EMAIL" = "slovacus@gmail.com" ];then
