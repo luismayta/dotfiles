@@ -8,8 +8,10 @@ matrix:
       compiler: clang
     - os: osx
       compiler: clang
+      language: objective-c
     - os: osx
       compiler: llvm-gcc
+      language: objective-c
 
 sudo: true
 
