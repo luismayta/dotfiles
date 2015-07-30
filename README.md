@@ -1,11 +1,9 @@
 # Dotfiles
 
-<span class="badges">
+<span class="badges" align="center">
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
 [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
-[![GitHub forks](https://img.shields.io/github/forks/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)
-[![GitHub stars](https://img.shields.io/github/stars/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 </span>
 
@@ -57,11 +55,26 @@ This is a list of applications that need to be installed previously to enjoy all
 
 `sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
 
+## Resources
+
+### Fonts
+
+[Fonts](resources/fonts/)
+
+* Source code pro
+* Consola Mono
+* Dejavu Sans Mono
+* Liberation Mono
+* Menlo
+* Monaco
+
+## Applications
+
 ### Git
 
 [Git](http://git-scm.com/)
 
-| Configuration  | Descriptin           | Do           |
+| Configuration  | Description          | Do           |
 | -------------- |:--------------------:| ------------:|
 | gitconfig      | config alias git     | config git   |
 | gitignore      | ignore files globals | ignored files|
