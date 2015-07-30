@@ -55,11 +55,26 @@ This is a list of applications that need to be installed previously to enjoy all
 
 `sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
 
+## Resources
+
+### Fonts
+
+[Fonts](resources/fonts/)
+
+* Source code pro
+* Consola Mono
+* Dejavu Sans Mono
+* Liberation Mono
+* Menlo
+* Monaco
+
+## Applications
+
 ### Git
 
 [Git](http://git-scm.com/)
 
-| Configuration  | Descriptin           | Do           |
+| Configuration  | Description          | Do           |
 | -------------- |:--------------------:| ------------:|
 | gitconfig      | config alias git     | config git   |
 | gitignore      | ignore files globals | ignored files|
