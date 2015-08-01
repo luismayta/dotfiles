@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-FONTS_DIR=$HOME/.fonts
+if [[ `uname` == 'Darwin' ]]; then
+    # MacOS
+    FONTS_DIR="$HOME/Library/Fonts"
+else
+    # Linux
+    FONTS_DIR="$HOME/.fonts"
+    mkdir -p $FONTS_DIR
+fi
+
 APP_NAME='.dotfiles'
 GIT_URI='https://github.com/luismayta/dotfiles.git'
 GIT_BRANCH='master'
@@ -15,4 +23,4 @@ PATH_NVM="$HOME/.nvm"
 PATH_TPM="$HOME/.tmux/plugins/tpm"
 PATH_ANTIGEN="$HOME/.antigen"
 FILE_ANTIGEN="$HOME/.antigen/antigen.zsh"
-FILES_FONTS="$PATH_REPO/resources/fonts/*"
+PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
