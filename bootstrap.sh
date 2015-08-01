@@ -31,6 +31,10 @@ function install_rvm(){
     "$ROOT/tools/rvm/install.sh"
 }
 
+function install_antigen(){
+    "$ROOT/tools/antigen/install.sh"
+}
+
 function replace_files(){
     echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
 
@@ -53,6 +57,7 @@ function initialize(){
     install_fonts
     install_tpm
     install_rvm
+    install_antigen
 
     for path in "$ROOT/"conf/{shell,app}; do
         for file_path in "$path/"*; do
@@ -65,9 +70,6 @@ function initialize(){
     done
     unset path
 
-    msg "Copying file bashrc adding it to ~/.zshrc"
-
-    echo  "[ -r ~/.bashrc ] && source ~/.bashrc" >> ~/.zshrc
 }
 
 clone_repo      "Successfully cloned $APP_NAME"
