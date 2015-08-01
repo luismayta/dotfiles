@@ -31,7 +31,7 @@ cat <<EOF
 EOF
 
 for path in ${!PATH_@}; do
-    path="${$path}"
+    path="${!path}"
     echo $path
     ret="0"
     if [[ ! -r $path ]]; then
