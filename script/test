@@ -30,7 +30,8 @@ cat <<EOF
 
 EOF
 
-for path in "$HOME/".{pyenv,gvm,tmux,fonts,nvm,rvm,antigen}; do
+for path in ${!PATH_@}; do
+    path="${!path}"
     ret="0"
     if [[ ! -r $path ]]; then
         ret="1"
