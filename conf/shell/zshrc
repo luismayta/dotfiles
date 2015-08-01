@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+export ZSH=$HOME/.oh-my-zsh
+
+# AUTO-UPDATES
+export UPDATE_ZSH_DAYS=1
+
+# DISABLE AUTOCORRECTION
+DISABLE_CORRECTION="true"
+
+# ANTIGEN — plugin manager
+source ~/.antigen/antigen.zsh
+
+# LOAD LIBRARY
+antigen use oh-my-zsh
+
+# BUNDLES
+antigen bundles <<EOBUNDLES
+    # Guess what to install when running an unknown command
+    command-not-found
+    # Helper for extracting different types of archives
+    extract
+    # Help working with GIT
+    git
+    git-extras
+    # heroku tool helper plugin
+    heroku
+    # bd implementation in zsh
+    Tarrasch/zsh-bd
+    # Syntax highlighting
+    zsh-users/zsh-syntax-highlighting
+EOBUNDLES
+
+# Plugins
+antigen bundle robbyrussell/oh-my-zsh plugins/go
+antigen bundle robbyrussell/oh-my-zsh plugins/golang
+
+antigen bundle robbyrussell/oh-my-zsh plugins/python
+antigen bundle robbyrussell/oh-my-zsh plugins/pip
+antigen bundle robbyrussell/oh-my-zsh plugins/pyenv
+
+antigen bundle robbyrussell/oh-my-zsh plugins/ruby
+antigen bundle robbyrussell/oh-my-zsh plugins/rvm
+antigen bundle robbyrussell/oh-my-zsh plugins/git
+antigen bundle robbyrussell/oh-my-zsh plugins/git-flow
+
+antigen bundle robbyrussell/oh-my-zsh plugins/heroku
+
+antigen bundle command-not-found
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# THEME
+antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
+
+antigen apply
+
+[ -r ~/.bashrc ] && source ~/.bashrc
