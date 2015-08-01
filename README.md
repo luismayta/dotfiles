@@ -129,7 +129,6 @@ and reattach them to a different terminal. And do a lot more.
 easily manage your shell (zsh) plugins, called bundles. The concept is pretty much the same
 as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to vim.
 
-
 #### Plugins
 
 | Plugins                                                       | Decription                             |
@@ -148,7 +147,7 @@ as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to
 | [command-not-found][link-plugin-command-not-found]            |                                        |
 | [zsh-syntax-highlighting][link-plugin-zsh-syntax-highlighting]|                                        |
 
-#### THEME
+#### Theme
 
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
