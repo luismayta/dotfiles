@@ -57,4 +57,26 @@ antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-
 
 antigen apply
 
+# Add `~/bin` to the `$PATH`
+[[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"
+
+# Add Pyenv to Path scripting
+[[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
+
+# Add RVM to PATH for scripting
+[[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add NVM to Path for scripting
+[[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/nvm"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Load Manager Version go Gvm
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+if [ -e "$HOME/.pyenv" ]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 [ -r ~/.bashrc ] && source ~/.bashrc
