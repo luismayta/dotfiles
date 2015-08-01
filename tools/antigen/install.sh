@@ -12,7 +12,7 @@ EOF
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 if [[ ! -e $FILE_ANTIGEN ]]; then
-    echo "$FILE_ANTIGEN"
+    `mkdir -p "$PATH_ANTIGEN"`
     curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > $FILE_ANTIGEN
 fi
 
