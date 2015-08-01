@@ -123,12 +123,62 @@ and reattach them to a different terminal. And do a lot more.
 
 [Rvm](https://rvm.io) Ruby Version Manager
 
+### Antigen
+
+[Antigen](https://github.com/zsh-users/antigen) Antigen is a small set of functions that help you
+easily manage your shell (zsh) plugins, called bundles. The concept is pretty much the same
+as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to vim.
+
+#### Plugins
+
+| Plugins                                                       | Decription                             |
+| ------------------------------------------------------------- |:--------------------------------------:|
+| [go][link-plugin-go]                                          |                                        |
+| [git][link-plugin-git]                                        |                                        |
+| [git-extras][link-plugin-git-extras]                          |                                        |
+| [ruby][link-plugin-ruby]                                      |                                        |
+| [rvm][link-plugin-rvm]                                        |                                        |
+| [golang][link-plugin-golang]                                  |                                        |
+| [python][link-plugin-python]                                  |                                        |
+| [pip][link-plugin-pip]                                        |                                        |
+| [pyenv][link-plugin-pyenv]                                    |                                        |
+| [git-flow][link-plugin-git-flow]                              |                                        |
+| [heroku][link-plugin-heroku]                                  |                                        |
+| [command-not-found][link-plugin-command-not-found]            |                                        |
+| [zsh-syntax-highlighting][link-plugin-zsh-syntax-highlighting]|                                        |
+
+#### Theme
+
+| Plugins                                                       | Decription                             |
+| ------------------------------------------------------------- |:--------------------------------------:|
+| [bullet-train][link-bullet-train]                             |                                        |
+
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
 [![](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/luismayta/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 </span>
+
+<!-- Plugins Antigen -->
+[link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
+[link-plugin-git]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
+[link-plugin-git-extras]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-extras
+[link-plugin-ruby]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/ruby
+[link-plugin-rvm]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/rvm
+[link-plugin-golang]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/golang
+[link-plugin-python]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/python
+[link-plugin-pip]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/pip
+[link-plugin-pyenv]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/pyenv
+[link-plugin-git-flow]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-flow
+[link-plugin-heroku]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/heroku
+[link-plugin-command-not-found]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found
+[link-plugin-zsh-syntax-highlighting]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/zsh-syntax-highlighting
+
+<!-- Theme Antigen -->
+[link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
+
+<!-- Other -->
 
 [link-author]: https://github.com/luismayta
 [link-contributors]: contributors
