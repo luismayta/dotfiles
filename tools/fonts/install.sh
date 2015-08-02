@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 cat <<EOF
 
@@ -10,16 +11,14 @@ EOF
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
-# Create font dir if not exists
-if [[ ! -e $FONTS_DIR ]]; then
-    mkdir $FONTS_DIR || die "Could not make $FONTS_DIR"
-fi
+find_command="find \"$PATH_FONTS_REPO\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
 
-for font in $FILES_FONTS; do
-    ret='0'
-    cp $font $FONTS_DIR || die "Could not install $font"
-    success "Installed $font successfully"
-done
+eval $find_command | xargs -0 -I % cp "%" "$FONTS_DIR/" || die "Could not copy fonts to $FONTS_DIR"
+
+# Reset font cache on Linux
+if [[ -n `which fc-cache` ]]; then
+    fc-cache -f $FONTS_DIR
+fi
 
 cat <<EOF
 

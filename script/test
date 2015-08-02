@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 ROOT="`pwd`"
 HOME=~
@@ -29,7 +30,8 @@ cat <<EOF
 
 EOF
 
-for path in "$HOME/".{pyenv,gvm,tmux,fonts,nvm,rvm}; do
+for path in ${!PATH_@}; do
+    path="${!path}"
     ret="0"
     if [[ ! -r $path ]]; then
         ret="1"
@@ -47,3 +49,13 @@ cat <<EOF
 --------------------------
 
 EOF
+
+cat <<EOF
+
+--------------------------
+    Test Load Source
+--------------------------
+
+EOF
+
+source "$HOME/.zshrc"
