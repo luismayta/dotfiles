@@ -7,32 +7,15 @@ export ROOT="`pwd`"
 
 [ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
-function install_pyenv(){
+function install_apps(){
     "$ROOT/tools/pyenv/install.sh"
-}
-
-function install_gvm(){
     "$ROOT/tools/gvm/install.sh"
-}
-
-function install_fonts(){
     "$ROOT/tools/fonts/install.sh"
-}
-
-function install_tpm(){
     "$ROOT/tools/tpm/install.sh"
-}
-
-function install_nvm(){
     "$ROOT/tools/nvm/install.sh"
-}
-
-function install_rvm(){
     "$ROOT/tools/rvm/install.sh"
-}
-
-function install_antigen(){
     "$ROOT/tools/antigen/install.sh"
+    "$ROOT/tools/tmux-themepack/install.sh"
 }
 
 function replace_files(){
@@ -51,13 +34,7 @@ function initialize(){
     done
     unset app
 
-    install_gvm
-    install_nvm
-    install_pyenv
-    install_fonts
-    install_tpm
-    install_rvm
-    install_antigen
+    install_apps
 
     for path in "$ROOT/"conf/{shell,app}; do
         for file_path in "$path/"*; do
