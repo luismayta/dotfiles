@@ -164,6 +164,14 @@ as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to
 | ------------------------------------------------------------- |:--------------------------------------:|
 | [bullet-train][link-bullet-train]                             |                                        |
 
+### Tmux Themepack
+
+[Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
+
+**Powerline Double Cyan:**
+
+![powerline-double-cyan](https://raw.github.com/jimeh/tmux-themepack-previews/master/powerline/double/cyan-preview.png)
+
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
 [![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
