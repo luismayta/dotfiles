@@ -4,8 +4,12 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased][unreleased]
 
-### Changed
-- [CHANGELOG] usage changelog as keepchangelog
+## [v1.0.9] - 2015-08-01
+
+### Added
+- #34 Implement Antigen
+- #35 Implement fonts for powerline
+- #36 Fixed Source Path
 
 ## [v1.0.8] - 2015-07-28
 
@@ -103,7 +107,8 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 [LICENCE.md]: LICENCE.md
 [README.md]: README.md
 
-[unreleased]: https://github.com/luismayta/dotfiles/compare/v1.0.8...HEAD
+[unreleased]: https://github.com/luismayta/dotfiles/compare/v1.0.9...HEAD
+[v1.0.9]: https://github.com/luismayta/dotfiles/compare/v1.0.8...v1.0.9
 [v1.0.8]: https://github.com/luismayta/dotfiles/compare/v1.0.7...v1.0.8
 [v1.0.7]: https://github.com/luismayta/dotfiles/compare/v1.0.6...v1.0.7
 [v1.0.6]: https://github.com/luismayta/dotfiles/compare/v1.0.5...v1.0.6
