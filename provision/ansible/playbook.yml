@@ -1,0 +1,28 @@
+---
+# Ansible playbook for a dotfiles
+#
+# @author Luis Mayta (2015).
+
+- hosts: dotfiles
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+      sudo: yes
+
+  tasks:
+    - name: Installs Git
+      apt: pkg=git state=installed update_cache=true
+
+    - name: Install ZSH
+      apt: pkg=zsh state=installed update_cache=true
+
+    - name: Install Curl
+      apt: pkg=curl state=installed update_cache=true
+
+    - name: Install Wget
+      apt: pkg=wget state=installed update_cache=true
+
+    - name: Install Tmux
+      apt: pkg=tmux state=installed update_cache=true
