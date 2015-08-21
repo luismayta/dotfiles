@@ -112,3 +112,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Gtags
+GPATH
+GRTAGS
+GTAGS

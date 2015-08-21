@@ -4,3 +4,6 @@
 -/.git
 -*.cache
 -projectile-bookmarks.eld
+-GPATH
+-GRTAGS
+-GTAGS
