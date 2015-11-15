@@ -1,0 +1,58 @@
+-   repo: git@github.com:pre-commit/pre-commit-hooks
+    sha: master
+    hooks:
+    -   id: detect-private-key
+        files: ^(?!\.?git-crypt)
+    -   id: check-merge-conflict
+    -   id: trailing-whitespace
+        files: ^tf|-|\.(py|tfvars|tf|tfenv|env|yml|yaml|pem|key|mock)$
+    -   id: end-of-file-fixer
+        files: ^tf|-|\.(py|tfvars|tf|tfenv|env|yml|yaml|pem|key|mock)$
+    -   id: check-added-large-files
+    -   id: check-case-conflict
+    -   id: check-json
+    -   id: check-xml
+    -   id: check-yaml
+    -   id: check-case-conflict
+    -   id: check-ast
+    -   id: debug-statements
+    -   id: autopep8-wrapper
+        args:
+        - -i
+        - --ignore=E501
+    -   id: double-quote-string-fixer
+    -   id: check-docstring-first
+    -   id: pretty-format-json
+    -   id: debug-statements
+    -   id: requirements-txt-fixer
+    -   id: name-tests-test
+-   repo: git://github.com/pre-commit/mirrors-pylint
+    sha: v1.4.3
+    hooks:
+    -   id: pylint
+        args:
+        - --disable=import-error
+        - --disable=no-init
+        - --rcfile=pylint.cfg
+-   repo: git://github.com/pre-commit/mirrors-scss-lint
+    sha: master
+    hooks:
+    -   id: scss-lint
+        files: \.(scss)$
+-   repo: git://github.com/FalconSocial/pre-commit-mirrors-pep257
+    sha: v0.3.2
+    hooks:
+    -   id: pep257
+        args:
+        - --ignore=migrations
+-   repo: git@github.com:pre-commit/pre-commit
+    sha: 3d90b094fccf0ba5d811a0fdc876e987c2437b1c
+    hooks:
+    -   id: validate_config
+    -   id: validate_manifest
+-   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+    sha: 934072fb29303aaa64bead610be042049e9db488
+    hooks:
+    -   id: python-import-sorter
+        args:
+        - --silent-overwrite

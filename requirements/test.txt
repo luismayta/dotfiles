@@ -1,0 +1,6 @@
+-r ../requirements.txt
+ansible==1.9.4
+locustio==0.7.3
+nose==1.3.7
+selenium==2.48.0
+tox==2.1.1
