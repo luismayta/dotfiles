@@ -81,6 +81,4 @@ if [ -e "$HOME/.pyenv" ]; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-export DISABLE_AUTO_TITLE="true"
-
 [ -r ~/.bashrc ] && source ~/.bashrc
