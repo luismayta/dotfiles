@@ -25,9 +25,9 @@ antigen bundles <<EOBUNDLES
     git
     git-extras
     # heroku tool helper plugin
-    heroku
+    # heroku
     # bd implementation in zsh
-    Tarrasch/zsh-bd
+    # Tarrasch/zsh-bd
     # Syntax highlighting
     # zsh-users/zsh-syntax-highlighting
 EOBUNDLES
@@ -47,17 +47,12 @@ antigen bundle robbyrussell/oh-my-zsh plugins/rvm
 antigen bundle robbyrussell/oh-my-zsh plugins/git
 antigen bundle robbyrussell/oh-my-zsh plugins/git-flow
 
-antigen bundle robbyrussell/oh-my-zsh plugins/heroku
+# antigen bundle robbyrussell/oh-my-zsh plugins/heroku
 
 antigen bundle robbyrussell/oh-my-zsh plugins/vi-mode
 antigen bundle robbyrussell/oh-my-zsh plugins/emacs
 antigen bundle robbyrussell/oh-my-zsh plugins/tmux
 antigen bundle robbyrussell/oh-my-zsh plugins/rsync
-
-antigen bundle command-not-found
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
 
 # THEME
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
