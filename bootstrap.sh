@@ -10,6 +10,7 @@ export ROOT="`pwd`"
 function install_apps(){
     "$ROOT/tools/pyenv/install.sh"
     "$ROOT/tools/gvm/install.sh"
+    "$ROOT/tools/git-extras/install.sh"
     "$ROOT/tools/fonts/install.sh"
     "$ROOT/tools/tpm/install.sh"
     "$ROOT/tools/nvm/install.sh"
