@@ -29,7 +29,7 @@ antigen bundles <<EOBUNDLES
     # bd implementation in zsh
     Tarrasch/zsh-bd
     # Syntax highlighting
-    zsh-users/zsh-syntax-highlighting
+    # zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 
 # Plugins
