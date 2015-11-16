@@ -54,6 +54,9 @@ antigen bundle robbyrussell/oh-my-zsh plugins/emacs
 antigen bundle robbyrussell/oh-my-zsh plugins/tmux
 antigen bundle robbyrussell/oh-my-zsh plugins/rsync
 
+antigen-bundle Tarrasch/zsh-autoenv
+antigen-bundle Tarrasch/zsh-colors
+
 # THEME
 antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
 
