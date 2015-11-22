@@ -15,7 +15,7 @@ function install_apps(){
     "$ROOT/tools/tpm/install.sh"
     "$ROOT/tools/nvm/install.sh"
     "$ROOT/tools/rvm/install.sh"
-    "$ROOT/tools/antigen/install.sh"
+    "$ROOT/tools/antibody/install.sh"
     "$ROOT/tools/tmux-themepack/install.sh"
 }
 
