@@ -16,6 +16,8 @@ PATH_TPM="$HOME/.tmux/plugins/tpm"
 PATH_THEMEPACK="$HOME/.tmux-themepack"
 PATH_ANTIGEN="$HOME/.antigen"
 FILE_ANTIGEN="$HOME/.antigen/antigen.zsh"
+PATH_ANTIBODY="$HOME/.antibody"
+FILE_ANTIBODY="$HOME/.antibody/antibody.zsh"
 PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
 
 FILE_SETTINGS_OSX="$ROOT/src/settings/osx.sh"
