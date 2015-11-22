@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+export PROJECTS=~/projects
+
 export DISABLE_AUTO_TITLE="true"
 
 # Make vim the default editor
