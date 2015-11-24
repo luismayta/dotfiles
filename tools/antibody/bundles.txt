@@ -5,6 +5,12 @@ zsh-users/zsh-completions
 caarlos0/zsh-open-github-pr
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
-
+bobthecow/git-flow-completion
+sindresorhus/pure
 Tarrasch/zsh-autoenv
 Tarrasch/zsh-colors
+bbenne10/goenv
+chrissicool/zsh-256color
+s7anley/zsh-geeknote
+horosgrisa/zsh-gvm
+srijanshetty/zsh-pip-completion
