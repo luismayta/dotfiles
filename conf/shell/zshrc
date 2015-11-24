@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
 export ZSH=$HOME/.dotfiles
@@ -14,6 +14,15 @@ source ~/.antibody/antibody.zsh
 
 # setup antibody
 antibody bundle < "$ZSH/tools/antibody/bundles.txt"
+
+# load everything but the path and completion files
+source "$ZSH/zsh/completion.zsh"
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit -i -d ${ZSH_COMPDUMP}
+
+# source "$ZSH/zsh/completion.zsh"
 
 # Add `~/bin` to the `$PATH`
 [[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"
