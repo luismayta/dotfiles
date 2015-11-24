@@ -10,7 +10,7 @@ export UPDATE_ZSH_DAYS=1
 DISABLE_CORRECTION="true"
 
 # ANTIGEN — plugin manager
-source ~/.antobody/antibody.zsh
+source ~/.antibody/antibody.zsh
 
 # setup antibody
 antibody bundle < "$ZSH/tools/antibody/bundles.txt"
