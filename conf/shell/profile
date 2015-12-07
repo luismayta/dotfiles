@@ -3,7 +3,7 @@
 
 # Load the shell dotfiles, and then some:
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{exports,bash_prompt,aliases,functions,inputrc,local}; do
+for file in ~/.{exports,bash_prompt,aliases,functions,inputrc,customrc}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
