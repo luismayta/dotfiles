@@ -200,4 +200,4 @@ as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to
 <!-- Other -->
 
 [link-author]: https://github.com/luismayta
-[link-contributors]: contributors
+[link-contributors]: AUTHORS.md
