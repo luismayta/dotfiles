@@ -134,35 +134,19 @@ and reattach them to a different terminal. And do a lot more.
 
 [Rvm](https://rvm.io) Ruby Version Manager
 
-### Antigen
+### Antibody
 
-[Antigen](https://github.com/zsh-users/antigen) Antigen is a small set of functions that help you
-easily manage your shell (zsh) plugins, called bundles. The concept is pretty much the same
-as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to vim.
+[Antibody](https://github.com/caarlos0/antibody) A faster and simpler antigen written in Golang.
 
 #### Plugins
 
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
-| [go][link-plugin-go]                                          |                                        |
-| [git][link-plugin-git]                                        |                                        |
-| [git-extras][link-plugin-git-extras]                          |                                        |
-| [ruby][link-plugin-ruby]                                      |                                        |
-| [rvm][link-plugin-rvm]                                        |                                        |
-| [golang][link-plugin-golang]                                  |                                        |
-| [python][link-plugin-python]                                  |                                        |
-| [pip][link-plugin-pip]                                        |                                        |
-| [pyenv][link-plugin-pyenv]                                    |                                        |
-| [git-flow][link-plugin-git-flow]                              |                                        |
-| [heroku][link-plugin-heroku]                                  |                                        |
-| [command-not-found][link-plugin-command-not-found]            |                                        |
-| [zsh-syntax-highlighting][link-plugin-zsh-syntax-highlighting]|                                        |
 
 #### Theme
 
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
-| [bullet-train][link-bullet-train]                             |                                        |
 
 ### Tmux Themepack
 
