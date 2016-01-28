@@ -35,6 +35,7 @@ alias xclip="xclip -selection c"
 
 # list files
 alias ll="ls -l"
+alias ls="ls -a"
 
 # Git
 
