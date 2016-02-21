@@ -23,3 +23,17 @@ export LC_ALL=en_US.UTF-8
 export NVM_DIR="$HOME/.nvm"
 
 export TERM='xterm-256color'
+
+# PATHS APPLICATIONS
+
+# Add `~/bin` to the `$PATH`
+[[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"
+
+# Add Pyenv to Path scripting
+[[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
+
+# Add RVM to PATH for scripting
+[[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add NVM to Path for scripting
+[[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/nvm"
