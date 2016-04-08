@@ -1,0 +1,10 @@
+---
+
+user_remote: luis
+user: vagrant
+
+environment: "local"
+
+common_package_dependencies:
+  - "vim"
+  - "git"
