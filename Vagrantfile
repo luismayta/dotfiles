@@ -1,52 +1,64 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-#
 
+# Specify minimum Vagrant version and Vagrant API version
+Vagrant.require_version ">= 1.6.0"
 VAGRANTFILE_API_VERSION = "2"
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "ubuntu-14.4"
-    config.vm.box_url = "https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.04/ubuntu-14.04-amd64.box"
-    config.ssh.insert_key = false
-    config.ssh.forward_agent = true
+# Require YAML module
+require 'yaml'
+environment = ENV['ENVIRONMENT']
 
-    config.vm.provider :virtualbox do |v|
-        v.name = "dotfiles"
-        v.memory = 256
-        v.cpus = 1
-        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-        v.customize ["modifyvm", :id, "--ioapic", "on"]
-    end
 
-    config.vm.hostname = "dotfiles"
-    config.vm.network :private_network, ip: "192.168.20.60"
-    config.vm.synced_folder "./","/tmp", {:mount_options => ['dmode=777','fmode=777']}
-
-    #HostManager Start
-    config.hostmanager.enabled = true
-    config.hostmanager.manage_host = false
-    config.hostmanager.ignore_private_ip = true
-    config.hostmanager.include_offline = true
-    #HostManager Finish
-
-    # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
-    config.vm.define "dotfiles" do |dotfiles|
-    end
-
-    # Ansible provisioner.
-    config.vm.provision "ansible" do |ansible|
-        ansible.playbook = "provision/ansible/playbook.yml"
-        ansible.inventory_path = "provision/ansible/inventory"
-        ansible.sudo = true
-        ansible.verbose =  'vvvv'
-        # ansible.extra_vars = { ansible_ssh_user: 'vagrant',
-                               # ansible_connection: 'ssh',
-                               # ansible_ssh_args: '-o ForwardAgent=yes'}
-    end
-
-    # hostmanager provisioner.
-    config.vm.provision :hostmanager
+if environment.nil? || environment == ''
+		environment = 'production'
 end
 
-# Load Vagrantfile.local to overwrite or extend default Vagrant configuration
+# Read YAML file with box details
+settings = YAML.load_file("provision/servers/#{environment}.yaml")
+
+# Create boxes
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Iterate through entries in YAML file
+    settings['servers'].each do |servers|
+        config.vm.define servers["name"] do |srv|
+            srv.vm.box = servers["box"]
+            srv.vm.box_url = servers["url"]
+
+            srv.ssh.insert_key = false
+            srv.ssh.forward_agent = true
+            srv.vm.network :private_network, ip: servers["ip"]
+            srv.vm.hostname = servers["hostname"]
+            srv.vm.synced_folder "./","/home/vagrant/fbp", {:mount_options => ['dmode=777','fmode=777']}
+
+            srv.vm.provider :virtualbox do |vb|
+                vb.name = servers["name"]
+                vb.memory = servers["ram"]
+                vb.cpus = 1
+                vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+                vb.customize ["modifyvm", :id, "--ioapic", "on"]
+            end
+
+            srv.vm.provision "ansible" do |ansible|
+                ansible.playbook = "provision/ansible/provision.yaml"
+                ansible.inventory_path = settings["path_inventory"]
+                # ansible.limit = settings["vagrant"]["limit"]
+                ansible.verbose = settings["vagrant"]["verbose"]
+                ansible.sudo = settings["vagrant"]["sudo"]
+            end
+
+            srv.vm.provision "ansible" do |ansible|
+                ansible.playbook = "provision/ansible/deploy.yaml"
+                ansible.inventory_path = settings["path_inventory"]
+                # ansible.limit = settings["vagrant"]["limit"]
+                ansible.verbose = settings["vagrant"]["verbose"]
+                ansible.sudo = settings["vagrant"]["sudo"]
+            end
+
+        end
+
+    end
+
+end
+
 load "Vagrantfile.local" if File.exists?("Vagrantfile.local")
