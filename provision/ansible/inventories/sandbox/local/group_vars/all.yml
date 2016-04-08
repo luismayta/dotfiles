@@ -1,0 +1,30 @@
+
+#-------------------------------------------------------------------------------
+# Connection settings for the first connection (before creating all)
+# first_remote_user: "vagrant"
+# first_ansible_ssh_user: "vagrant"
+# first_ansible_ssh_private_key_file: ~/.vagrant.d/insecure_private_key
+
+#-------------------------------------------------------------------------------
+# System env vars
+# system_env_vars:
+  # SYSTEM_ENV: "sandbox"
+
+#-------------------------------------------------------------------------------
+# Bash stuff
+# motd_warning_color: "\e[1;37m\e[42m"
+# motd_character: "#"
+# motd_length: 80
+# motd_message: KEEP CALM AND DESTROY THE SANDBOX
+# motd_warning_reset: "\e[m"
+
+# Check "roles/authorization/templates/bashrc.j2" for more colors
+# bashrc_promp_color: BGREEN
+
+#-------------------------------------------------------------------------------
+# NTP settings
+# ntp_servers:
+#   - 0.pool.ntp.org
+#   - 1.pool.ntp.org
+#   - 2.pool.ntp.org
+#   - 3.pool.ntp.org

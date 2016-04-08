@@ -1,0 +1,8 @@
+---
+
+- name: Deploy Application
+  hosts: webservers
+  roles:
+    - common
+  tags:
+    - deployment
