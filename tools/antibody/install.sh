@@ -9,13 +9,9 @@ cat <<EOF
 
 EOF
 
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
-if [[ ! -e $FILE_ANTIBODY ]]; then
-    wget -O antibody.tar.gz "http://antibody.elasticbeanstalk.com/latest/$(uname -s)/$(uname -m)"
-    `mkdir -p "$PATH_ANTIBODY"`
-    tar xzvf antibody.tar.gz -C $PATH_ANTIBODY
-fi
+curl -s https://raw.githubusercontent.com/getantibody/installer/master/install | bash -s
 
 cat <<EOF
 
