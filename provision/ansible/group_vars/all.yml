@@ -9,3 +9,4 @@ common_package_dependencies:
   - "vim"
   - "git"
   - "zsh"
+  - "tmux"
