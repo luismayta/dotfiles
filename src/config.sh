@@ -22,8 +22,8 @@ PATH_ANTIBODY="$HOME/.antibody"
 FILE_ANTIBODY="$HOME/.antibody/antibody.zsh"
 PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
 
-FILE_SETTINGS_OSX="$ROOT/src/settings/osx.sh"
-FILE_SETTINGS_LINUX="$ROOT/src/settings/linux.sh"
+FILE_SETTINGS_OSX="$SRC_DIR/settings/osx.sh"
+FILE_SETTINGS_LINUX="$SRC_DIR/settings/linux.sh"
 
 if [[ `uname` == 'Darwin' ]]; then
 	[ -r "$FILE_SETTINGS_OSX" ] && source "$FILE_SETTINGS_OSX"
