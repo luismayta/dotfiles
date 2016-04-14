@@ -3,6 +3,6 @@
 - name: Deploy Application
   hosts: webservers
   roles:
-    - common
+    - contrib/dgnest.common
   tags:
     - deployment
