@@ -5,9 +5,6 @@ export HOME=~
 export PROJECT_NAME=dotfiles
 export APP_DIR="$HOME/.$PROJECT_NAME"
 export SRC_DIR="$APP_DIR/src"
-export CONF_DIR="$APP_DIR/conf"
-export TOOLS_DIR="$APP_DIR/tools"
-export ROOT_DIR="`pwd`"
 
 [ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
