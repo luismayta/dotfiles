@@ -1,23 +1,24 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-ROOT="`pwd`"
+export HOME=~
+export PROJECT_NAME=dotfiles
+export APP_DIR="$HOME/.$PROJECT_NAME"
+export SRC_DIR="$APP_DIR/src"
 
-export ROOT="`pwd`"
-
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
 function install_apps(){
-    "$ROOT/tools/pyenv/install.sh"
-    "$ROOT/tools/gvm/install.sh"
-    "$ROOT/tools/git-extras/install.sh"
-    "$ROOT/tools/fonts/install.sh"
-    "$ROOT/tools/tpm/install.sh"
-    "$ROOT/tools/nvm/install.sh"
-    "$ROOT/tools/rvm/install.sh"
-    "$ROOT/tools/antibody/install.sh"
-    "$ROOT/tools/scm_breeze/install.sh"
-    "$ROOT/tools/tmux-themepack/install.sh"
+    "$TOOLS_DIR/pyenv/install.sh"
+    "$TOOLS_DIR/gvm/install.sh"
+    "$TOOLS_DIR/git-extras/install.sh"
+    "$TOOLS_DIR/fonts/install.sh"
+    "$TOOLS_DIR/tpm/install.sh"
+    "$TOOLS_DIR/nvm/install.sh"
+    "$TOOLS_DIR/rvm/install.sh"
+    "$TOOLS_DIR/antibody/install.sh"
+    "$TOOLS_DIR/scm_breeze/install.sh"
+    "$TOOLS_DIR/tmux-themepack/install.sh"
 }
 
 function replace_files(){
@@ -38,7 +39,7 @@ function initialize(){
 
     install_apps
 
-    for path in "$ROOT/"conf/{shell,app}; do
+    for path in "$CONF_DIR/"/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
             do_backup "$file"
