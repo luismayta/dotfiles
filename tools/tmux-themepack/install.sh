@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
 cat <<EOF
 
