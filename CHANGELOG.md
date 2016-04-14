@@ -4,6 +4,17 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased][unreleased]
 
+## [v1.1.0] - 2016-04-14
+
+- #53
+- #54
+- #55
+- #56
+- #57
+- #58
+- #59
+- #60
+
 ## [v1.0.9] - 2015-08-01
 
 ### Added
