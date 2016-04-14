@@ -11,7 +11,7 @@ environment = ENV['ENVIRONMENT']
 
 
 if environment.nil? || environment == ''
-		environment = 'production'
+		environment = 'local'
 end
 
 # Read YAML file with box details
