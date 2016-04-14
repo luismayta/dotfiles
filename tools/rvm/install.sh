@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+
 cat <<EOF
 
 --------------------
@@ -7,8 +9,6 @@ cat <<EOF
 --------------------
 
 EOF
-
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 if [[ -e $PATH_RVM ]]; then
     msg "Installed RVM"
