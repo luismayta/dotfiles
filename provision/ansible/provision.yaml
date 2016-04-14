@@ -1,0 +1,14 @@
+---
+# Ansible playbook for a dotfiles
+#
+# @author dgnest (2015).
+
+- name: Common stuff for all the server
+  hosts: all
+  sudo: yes
+  gather_facts: no
+  roles:
+    - contrib/dgnest.common
+  tags:
+    - all
+    - common

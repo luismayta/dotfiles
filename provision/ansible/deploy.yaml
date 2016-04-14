@@ -1,0 +1,8 @@
+---
+
+- name: Deploy Application
+  hosts: webservers
+  roles:
+    - contrib/dgnest.common
+  tags:
+    - deployment
