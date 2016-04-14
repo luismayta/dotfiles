@@ -8,7 +8,7 @@
   sudo: yes
   gather_facts: no
   roles:
-    - common
+    - contrib/dgnest.common
   tags:
     - all
     - common
