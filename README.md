@@ -49,11 +49,11 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ### via curl
 
-`sh -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
+`bash -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
 
 ### via wget
 
-`sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
+`bash -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
 
 ## Resources
 
