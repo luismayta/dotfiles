@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.dotfiles
 
 # AUTO-UPDATES
 export UPDATE_ZSH_DAYS=1
@@ -9,70 +9,18 @@ export UPDATE_ZSH_DAYS=1
 # DISABLE AUTOCORRECTION
 DISABLE_CORRECTION="true"
 
-# ANTIGEN — plugin manager
-source ~/.antigen/antigen.zsh
+# ANTIBODY — plugin manager
+source <(antibody init)
 
-# LOAD LIBRARY
-antigen use oh-my-zsh
+# setup antibody
+antibody bundle < "$ZSH/tools/antibody/bundles.txt"
 
-# BUNDLES
-antigen bundles <<EOBUNDLES
-    # Guess what to install when running an unknown command
-    command-not-found
-    # Helper for extracting different types of archives
-    extract
-    # Help working with GIT
-    git
-    git-extras
-    # heroku tool helper plugin
-    heroku
-    # bd implementation in zsh
-    Tarrasch/zsh-bd
-    # Syntax highlighting
-    zsh-users/zsh-syntax-highlighting
-EOBUNDLES
+# load everything but the path and completion files
+source "$ZSH/zsh/completion.zsh"
 
-# Plugins
-antigen bundle robbyrussell/oh-my-zsh plugins/go
-antigen bundle robbyrussell/oh-my-zsh plugins/golang
-
-antigen bundle robbyrussell/oh-my-zsh plugins/python
-antigen bundle robbyrussell/oh-my-zsh plugins/pip
-antigen bundle robbyrussell/oh-my-zsh plugins/pyenv
-
-antigen bundle robbyrussell/oh-my-zsh plugins/ruby
-antigen bundle robbyrussell/oh-my-zsh plugins/rvm
-antigen bundle robbyrussell/oh-my-zsh plugins/git
-antigen bundle robbyrussell/oh-my-zsh plugins/git-flow
-
-antigen bundle robbyrussell/oh-my-zsh plugins/heroku
-
-antigen bundle command-not-found
-
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# THEME
-antigen theme https://github.com/caiogondim/bullet-train-oh-my-zsh-theme bullet-train
-
-antigen apply
-
-# Add `~/bin` to the `$PATH`
-[[ -e "$HOME/bin" ]] && export PATH="$PATH:$HOME/bin"
-
-# Add Pyenv to Path scripting
-[[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
-
-# Add RVM to PATH for scripting
-[[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add NVM to Path for scripting
-[[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/nvm"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# Load Manager Version go Gvm
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit -i -d ${ZSH_COMPDUMP}
 
 if [ -e "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"

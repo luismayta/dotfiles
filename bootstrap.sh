@@ -1,38 +1,24 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-ROOT="`pwd`"
+export HOME=~
+export PROJECT_NAME=dotfiles
+export APP_DIR="$HOME/.$PROJECT_NAME"
+export SRC_DIR="$APP_DIR/src"
 
-export ROOT="`pwd`"
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
-
-function install_pyenv(){
-    "$ROOT/tools/pyenv/install.sh"
-}
-
-function install_gvm(){
-    "$ROOT/tools/gvm/install.sh"
-}
-
-function install_fonts(){
-    "$ROOT/tools/fonts/install.sh"
-}
-
-function install_tpm(){
-    "$ROOT/tools/tpm/install.sh"
-}
-
-function install_nvm(){
-    "$ROOT/tools/nvm/install.sh"
-}
-
-function install_rvm(){
-    "$ROOT/tools/rvm/install.sh"
-}
-
-function install_antigen(){
-    "$ROOT/tools/antigen/install.sh"
+function install_apps(){
+    "$TOOLS_DIR/pyenv/install.sh"
+    "$TOOLS_DIR/gvm/install.sh"
+    "$TOOLS_DIR/git-extras/install.sh"
+    "$TOOLS_DIR/fonts/install.sh"
+    "$TOOLS_DIR/tpm/install.sh"
+    "$TOOLS_DIR/nvm/install.sh"
+    "$TOOLS_DIR/rvm/install.sh"
+    "$TOOLS_DIR/antibody/install.sh"
+    "$TOOLS_DIR/scm_breeze/install.sh"
+    "$TOOLS_DIR/tmux-themepack/install.sh"
 }
 
 function replace_files(){
@@ -51,15 +37,9 @@ function initialize(){
     done
     unset app
 
-    install_gvm
-    install_nvm
-    install_pyenv
-    install_fonts
-    install_tpm
-    install_rvm
-    install_antigen
+    install_apps
 
-    for path in "$ROOT/"conf/{shell,app}; do
+    for path in "$CONF_DIR/"/{shell,app}; do
         for file_path in "$path/"*; do
             local file="$HOME/.${file_path##*/}"
             do_backup "$file"

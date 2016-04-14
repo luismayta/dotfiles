@@ -49,11 +49,11 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ### via curl
 
-`sh -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
+`bash -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"`
 
 ### via wget
 
-`sh -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
+`bash -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"`
 
 ## Resources
 
@@ -134,35 +134,27 @@ and reattach them to a different terminal. And do a lot more.
 
 [Rvm](https://rvm.io) Ruby Version Manager
 
-### Antigen
+### Antibody
 
-[Antigen](https://github.com/zsh-users/antigen) Antigen is a small set of functions that help you
-easily manage your shell (zsh) plugins, called bundles. The concept is pretty much the same
-as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to vim.
+[Antibody](https://github.com/caarlos0/antibody) A faster and simpler antigen written in Golang.
 
 #### Plugins
 
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
-| [go][link-plugin-go]                                          |                                        |
-| [git][link-plugin-git]                                        |                                        |
-| [git-extras][link-plugin-git-extras]                          |                                        |
-| [ruby][link-plugin-ruby]                                      |                                        |
-| [rvm][link-plugin-rvm]                                        |                                        |
-| [golang][link-plugin-golang]                                  |                                        |
-| [python][link-plugin-python]                                  |                                        |
-| [pip][link-plugin-pip]                                        |                                        |
-| [pyenv][link-plugin-pyenv]                                    |                                        |
-| [git-flow][link-plugin-git-flow]                              |                                        |
-| [heroku][link-plugin-heroku]                                  |                                        |
-| [command-not-found][link-plugin-command-not-found]            |                                        |
-| [zsh-syntax-highlighting][link-plugin-zsh-syntax-highlighting]|                                        |
 
 #### Theme
 
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
-| [bullet-train][link-bullet-train]                             |                                        |
+
+### Tmux Themepack
+
+[Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
+
+**Powerline Double Cyan:**
+
+![powerline-double-cyan](https://raw.github.com/jimeh/tmux-themepack-previews/master/powerline/double/cyan-preview.png)
 
 <span class="badges">
 [![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
@@ -192,4 +184,4 @@ as bundles in a typical vim+pathogen setup. Antigen is to zsh, what Vundle is to
 <!-- Other -->
 
 [link-author]: https://github.com/luismayta
-[link-contributors]: contributors
+[link-contributors]: AUTHORS.md

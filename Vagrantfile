@@ -1,48 +1,64 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-#
-Vagrant.configure("2") do |config|
-    config.vm.define :guest do |guest_config|
-        guest_config.vm.box = "ubuntu-14.4"
-        guest_config.vm.box_url = "https://github.com/kraksoft/vagrant-box-ubuntu/releases/download/14.04/ubuntu-14.04-amd64.box"
-        guest_config.ssh.forward_agent = true
-        #HostManager Start
 
-        guest_config.hostmanager.enabled = true
-        guest_config.hostmanager.manage_host = false
-        guest_config.hostmanager.ignore_private_ip = true
-        guest_config.hostmanager.include_offline = true
+# Specify minimum Vagrant version and Vagrant API version
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
 
-        #HostManager Finish
+# Require YAML module
+require 'yaml'
+environment = ENV['ENVIRONMENT']
 
-        # This will give the machine a static IP uncomment to enable
-        guest_config.vm.network :private_network, ip: "192.168.20.60"
-        guest_config.vm.network "public_network"
-        guest_config.vm.network :forwarded_port, guest: 80, host: 8888, auto_correct: true
-        guest_config.vm.network :forwarded_port, guest: 3306, host: 8889, auto_correct: true
-        guest_config.vm.network :forwarded_port, guest: 5432, host: 5433, auto_correct: true
-        guest_config.vm.network :forwarded_port, guest: 27017, host: 8887, auto_correct: true
 
-        guest_config.vm.hostname = "dotfiles"
-
-        guest_config.vm.synced_folder "./","/tmp", {:mount_options => ['dmode=777','fmode=777']}
-
-        guest_config.vm.provider :virtualbox do |v|
-            v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-            v.customize ["modifyvm", :id, "--memory", "512"]
-        end
-
-        guest_config.vm.provision :shell, :path => "provision/shell/main.sh"
-
-        guest_config.vm.provision :puppet do |puppet|
-            puppet.manifests_path = "provision/puppet/manifests"
-            puppet.manifest_file  = "production.pp"
-            puppet.module_path = ["provision/puppet/modules","provision/puppet/modules_contrib"]
-            puppet.options = "--verbose --debug"
-        end
-
-        guest_config.vm.provision :hostmanager
-    end
+if environment.nil? || environment == ''
+		environment = 'local'
 end
-# Load Vagrantfile.local to overwrite or extend default Vagrant configuration
+
+# Read YAML file with box details
+settings = YAML.load_file("provision/servers/#{environment}.yaml")
+
+# Create boxes
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Iterate through entries in YAML file
+    settings['servers'].each do |servers|
+        config.vm.define servers["name"] do |srv|
+            srv.vm.box = servers["box"]
+            srv.vm.box_url = servers["url"]
+
+            srv.ssh.insert_key = false
+            srv.ssh.forward_agent = true
+            srv.vm.network :private_network, ip: servers["ip"]
+            srv.vm.hostname = servers["hostname"]
+            srv.vm.synced_folder "./","/home/vagrant/fbp", {:mount_options => ['dmode=777','fmode=777']}
+
+            srv.vm.provider :virtualbox do |vb|
+                vb.name = servers["name"]
+                vb.memory = servers["ram"]
+                vb.cpus = 1
+                vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+                vb.customize ["modifyvm", :id, "--ioapic", "on"]
+            end
+
+            srv.vm.provision "ansible" do |ansible|
+                ansible.playbook = "provision/ansible/provision.yaml"
+                ansible.inventory_path = settings["path_inventory"]
+                # ansible.limit = settings["vagrant"]["limit"]
+                ansible.verbose = settings["vagrant"]["verbose"]
+                ansible.sudo = settings["vagrant"]["sudo"]
+            end
+
+            srv.vm.provision "ansible" do |ansible|
+                ansible.playbook = "provision/ansible/deploy.yaml"
+                ansible.inventory_path = settings["path_inventory"]
+                # ansible.limit = settings["vagrant"]["limit"]
+                ansible.verbose = settings["vagrant"]["verbose"]
+                ansible.sudo = settings["vagrant"]["sudo"]
+            end
+
+        end
+
+    end
+
+end
+
 load "Vagrantfile.local" if File.exists?("Vagrantfile.local")

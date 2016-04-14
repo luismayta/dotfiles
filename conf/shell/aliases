@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# System
+
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -12,7 +14,7 @@ alias gurl='curl --compressed'
 alias week='date +%V'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-# alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update'
 
 # IP addresses
 # alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -30,3 +32,32 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # selection xclip
 alias xclip="xclip -selection c"
+
+# list files
+alias ll="ls -l"
+alias ls="ls -a"
+
+# Git
+
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff | mate'
+alias gau='git add --update'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcot='git checkout -t'
+alias gcotb='git checkout --track -b'
+alias glog='git log'
+alias glogp='git log --pretty=format:"%h %s" --graph'
+
+# Git Flow
+
+alias gf='git flow'
+alias gff='git flow feature'
+alias gfr='git flow release'
+alias gfh='git flow hotfix'

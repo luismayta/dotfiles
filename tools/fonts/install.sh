@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+
 cat <<EOF
 
 --------------------------
@@ -8,8 +10,6 @@ cat <<EOF
 --------------------------
 
 EOF
-
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
 
 find_command="find \"$PATH_FONTS_REPO\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
 
