@@ -61,3 +61,7 @@ alias gf='git flow'
 alias gff='git flow feature'
 alias gfr='git flow release'
 alias gfh='git flow hotfix'
+
+# download
+
+alias wget='wget --user-agent="Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
