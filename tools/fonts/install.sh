@@ -20,6 +20,8 @@ if [[ -n `which fc-cache` ]]; then
     fc-cache -f $FONTS_DIR
 fi
 
+cd "$FONTS_DIR/" && curl -fLo "Sauce Code Pro Medium Nerd Font Complete Mono.ttf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete%20Mono.ttf
+
 cat <<EOF
 
 --------------------------
