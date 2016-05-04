@@ -33,6 +33,8 @@ export TERM='xterm-256color'
 # Add Pyenv to Path scripting
 [[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
 
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 # Add RVM to PATH for scripting
 [[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
 
