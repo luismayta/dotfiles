@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-export TERM='xterm-256color'
+export TERM=xterm-256color
 export GO_ENV=~/.goenvs
 
 export PROJECTS=~/projects
@@ -22,8 +22,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export NVM_DIR="$HOME/.nvm"
-
-export TERM='xterm-256color'
 
 # PATHS APPLICATIONS
 
