@@ -7,8 +7,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 # Require YAML module
 require 'yaml'
-environment = ENV['ENVIRONMENT']
 
+environment = ENV['ENVIRONMENT']
+load "os.rb" if File.exists?("os.rb")
 
 if environment.nil? || environment == ''
 		environment = 'local'
@@ -29,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             srv.ssh.forward_agent = true
             srv.vm.network :private_network, ip: servers["ip"]
             srv.vm.hostname = servers["hostname"]
-            srv.vm.synced_folder "./","/home/vagrant/fbp", {:mount_options => ['dmode=777','fmode=777']}
+            srv.vm.synced_folder "./","/home/vagrant/dotfiles", {:mount_options => ['dmode=777','fmode=777']}
 
             srv.vm.provider :virtualbox do |vb|
                 vb.name = servers["name"]
