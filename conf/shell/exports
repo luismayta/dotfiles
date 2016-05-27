@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-export TERM='xterm-256color'
+export TERM=xterm-256color
 export GO_ENV=~/.goenvs
 
 export PROJECTS=~/projects
@@ -23,8 +23,6 @@ export LC_ALL=en_US.UTF-8
 
 export NVM_DIR="$HOME/.nvm"
 
-export TERM='xterm-256color'
-
 # PATHS APPLICATIONS
 
 # Add `~/bin` to the `$PATH`
@@ -32,6 +30,8 @@ export TERM='xterm-256color'
 
 # Add Pyenv to Path scripting
 [[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
+
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Add RVM to PATH for scripting
 [[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
