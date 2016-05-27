@@ -44,6 +44,19 @@ program_exists() {
     fi
 }
 
+function upgrade_repo() {
+      msg "trying to update $1"
+
+      if [ "$1" = "$APP_NAME" ]; then
+          cd "$PATH_REPO" &&
+          git pull origin "$GIT_BRANCH"
+      fi
+
+      ret="$?"
+      success "$2"
+      debug
+}
+
 clone_repo() {
     if [[ ! -e "$PATH_REPO/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
