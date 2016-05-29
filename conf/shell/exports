@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 export TERM=xterm-256color
-export GO_ENV=~/.goenvs
+export GO_ENV="$HOME/.goenvs"
 
-export PROJECTS=~/projects
+export PROJECTS="$HOME/projects"
 
 export DISABLE_AUTO_TITLE="true"
 
@@ -12,7 +12,7 @@ export DISABLE_AUTO_TITLE="true"
 export EDITOR=/usr/bin/vim
 
 # Larger bash history (allow 32³ entries; default is 500)
-export HISTFILE=~/.zsh_history
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
 export SAVEHIST=$HISTSIZE
@@ -20,8 +20,6 @@ export SAVEHIST=$HISTSIZE
 # Prefer US English and use UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-export NVM_DIR="$HOME/.nvm"
 
 # PATHS APPLICATIONS
 
@@ -37,4 +35,4 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 [[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add NVM to Path for scripting
-[[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/nvm"
+[[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
