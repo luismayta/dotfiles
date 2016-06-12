@@ -1,6 +1,7 @@
 # Dotfiles
 
 <span class="badges" align="center">
+[![GitHub tag](https://img.shields.io/github/tag/luismayta/dotfiles.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
 [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
@@ -152,16 +153,17 @@ and reattach them to a different terminal. And do a lot more.
 
 [Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
 
-**Powerline Double Cyan:**
 
-![powerline-double-cyan](https://raw.github.com/jimeh/tmux-themepack-previews/master/powerline/double/cyan-preview.png)
+**Wakatime Terminal:**
+
+![bash-wakatime](https://github.com/API-PLUGIN-RESSOURCES/bash-wakatime)
 
 <span class="badges">
-[![](http://api.coderwall.com/luismayta/endorsecount.png)](http://coderwall.com/luismayta)
-[![](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
-[![](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/luismayta/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![linkedin](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
+[![beacon](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
 </span>
+
+Made with ♥️ and ☕️ by hadenlabs and our community.
 
 <!-- Plugins Antigen -->
 [link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
@@ -180,6 +182,9 @@ and reattach them to a different terminal. And do a lot more.
 
 <!-- Theme Antigen -->
 [link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
+
+<!-- Wakatime -->
+[link-wakatime]: https://wakatime.com/
 
 <!-- Other -->
 
