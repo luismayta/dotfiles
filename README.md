@@ -153,9 +153,10 @@ and reattach them to a different terminal. And do a lot more.
 
 [Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
 
-**Powerline Double Cyan:**
 
-![powerline-double-cyan](https://raw.github.com/jimeh/tmux-themepack-previews/master/powerline/double/cyan-preview.png)
+**Wakatime Terminal:**
+
+![bash-wakatime](https://github.com/API-PLUGIN-RESSOURCES/bash-wakatime)
 
 <span class="badges">
 [![linkedin](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
@@ -181,6 +182,9 @@ Made with ♥️ and ☕️ by hadenlabs and our community.
 
 <!-- Theme Antigen -->
 [link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
+
+<!-- Wakatime -->
+[link-wakatime]: https://wakatime.com/
 
 <!-- Other -->
 
