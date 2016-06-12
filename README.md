@@ -1,10 +1,14 @@
 # Dotfiles
 
 <span class="badges" align="center">
+[![GitHub tag](https://img.shields.io/github/tag/strongloop/express.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
 [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
+[![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
+[![GitHub commits](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/3.4.7.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
+
 </span>
 
 ## Introduction
@@ -162,6 +166,8 @@ and reattach them to a different terminal. And do a lot more.
 [![](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/luismayta/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 </span>
+
+Made with ♥️ and ☕️ by hadenlabs and our community.
 
 <!-- Plugins Antigen -->
 [link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
