@@ -11,6 +11,7 @@ export SRC_DIR="$APP_DIR/src"
 function install_apps(){
     "$TOOLS_DIR/pyenv/install.sh"
     "$TOOLS_DIR/gvm/install.sh"
+    "$TOOLS_DIR/wakatime/install.sh"
     "$TOOLS_DIR/git-extras/install.sh"
     "$TOOLS_DIR/fonts/install.sh"
     "$TOOLS_DIR/tpm/install.sh"
