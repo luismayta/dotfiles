@@ -9,7 +9,6 @@ export PATH_REPO="$HOME/$APP_NAME"
 export PATH_BACKUP="$HOME/backup"
 export PATH_PYENV="$HOME/.pyenv"
 export PATH_GVM="$HOME/.gvm"
-export PATH_WAKATIME="$HOME/.wakatime"
 
 export PATH_GIT_EXTRAS="$HOME/.gvm"
 export PATH_RVM="$HOME/.rvm"
@@ -23,10 +22,11 @@ export FILE_SETTINGS_OSX="$SRC_DIR/settings/osx.sh"
 export FILE_SETTINGS_LINUX="$SRC_DIR/settings/linux.sh"
 
 export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
-export NAME_WAKATIME_BASH=".wakatime.sh"
 
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
+    # shellcheck source=src/settings/osx.sh
 	[ -r "$FILE_SETTINGS_OSX" ] && source "$FILE_SETTINGS_OSX"
 else
+    # shellcheck source=src/settings/linux.sh
 	[ -r "$FILE_SETTINGS_LINUX" ] && source "$FILE_SETTINGS_LINUX"
 fi
