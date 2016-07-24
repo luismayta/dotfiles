@@ -127,6 +127,11 @@ and reattach them to a different terminal. And do a lot more.
 | tmux-plugins/tmux-battery | Show Battery Percentage | Battery      |
 | tmux-plugins/tmux-cpu     | show Cpu Percentage     | Cpu          |
 
+### Mac-cli
+
+[Mac-Cli](https://github.com/guarinogabriel/mac-cli) OS X command line tools for developers
+
+
 ### Nvm
 
 [Nvm](https://github.com/creationix/nvm) Node Version Manager
