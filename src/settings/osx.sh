@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 export FONTS_DIR="$HOME/Library/Fonts"
-export APPS=("pyenv" "gvm" "wakatime" "git-extras"
+export APPS=("homebrew" "pyenv" "gvm" "git-extras"
              "fonts" "tpm" "nvm" "rvm" "antibody"
              "scm_breeze" "tmux-themepack" "mac-cli"
             )
