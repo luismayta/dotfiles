@@ -55,6 +55,8 @@ alias gcotb='git checkout --track -b'
 alias glog='git log'
 alias glogp='git log --pretty=format:"%h %s" --graph'
 
+alias transfer=transfer
+
 # Git Flow
 
 alias gf='git flow'
