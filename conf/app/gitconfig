@@ -5,7 +5,9 @@
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore
-	editor = "vim"
+    editor = "vim"
+    preloadindex = true
+    fscache = true
 
 [color]
     ui = true
@@ -44,7 +46,7 @@
     out = push --dry-run
     cm = commit
     rm-orig = find ./ -name \"*.orig\" | xargs rm
-	st = status
+    st = status
 
 [diff]
     tool = meld
@@ -54,3 +56,5 @@
 
 [merge]
 	tool = meld
+[gc]
+	auto = 256
