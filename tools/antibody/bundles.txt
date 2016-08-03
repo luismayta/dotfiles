@@ -6,6 +6,7 @@ caarlos0/zsh-open-github-pr
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 bobthecow/git-flow-completion
+luismayta/zsh-git-aliases
 sindresorhus/pure
 Tarrasch/zsh-autoenv
 Tarrasch/zsh-colors
