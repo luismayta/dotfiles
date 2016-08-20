@@ -4,6 +4,11 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 
 ## [Unreleased][unreleased]
 
+## [v1.1.9] - 2016-08-20
+
+- #90
+- #89
+
 ## [v1.1.8] - 2016-08-02
 
 - #88
@@ -158,7 +163,8 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 [LICENCE.md]: LICENCE.md
 [README.md]: README.md
 
-[unreleased]: https://github.com/luismayta/dotfiles/compare/v1.1.8...HEAD
+[unreleased]: https://github.com/luismayta/dotfiles/compare/v1.1.9...HEAD
+[v1.1.9]: https://github.com/luismayta/dotfiles/compare/v1.1.9...v1.1.9
 [v1.1.8]: https://github.com/luismayta/dotfiles/compare/v1.1.7...v1.1.8
 [v1.1.7]: https://github.com/luismayta/dotfiles/compare/v1.1.6...v1.1.7
 [v1.1.6]: https://github.com/luismayta/dotfiles/compare/v1.1.5...v1.1.6
