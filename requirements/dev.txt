@@ -1,6 +1,6 @@
 -r test.txt
-bumpversion==0.5.3
 
+bumpversion==0.5.3
 grip==3.3.0
 ipdb==0.8.1
 ipython==4.0.0
