@@ -1,11 +1,14 @@
 # Dotfiles
 
 <span class="badges" align="center">
-[![GitHub tag](https://img.shields.io/github/tag/luismayta/dotfiles.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
-[![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
+[![Code Climate](https://codeclimate.com/github/luismayta/dotfiles/badges/gpa.svg)](https://codeclimate.com/github/luismayta/dotfiles)
+[![GitHub tag](https://img.shields.io/github/tag/luismayta/dotfiles.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
 [![GitHub issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
+[![Issue Count](https://codeclimate.com/github/luismayta/dotfiles/badges/issue_count.svg)](https://codeclimate.com/github/luismayta/dotfiles)
+[![Stories in Ready](https://badge.waffle.io/luismayta/dotfiles.svg?label=ready&title=Ready)](http://waffle.io/luismayta/dotfiles)
+[![Test Coverage](https://codeclimate.com/github/luismayta/dotfiles/badges/coverage.svg)](https://codeclimate.com/github/luismayta/dotfiles/coverage)
 </span>
 
 ## Introduction
