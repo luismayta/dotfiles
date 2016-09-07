@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+# shellcheck source=src/load.sh
+[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+
+cat <<EOF
+
+-----------------------------
+  Brew Install Applications
+-----------------------------
+
+EOF
 
 # Install command-line tools using Homebrew.
 brew update
@@ -99,3 +111,11 @@ brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+cat <<EOF
+
+------------------------------------
+ Brew Applications installed! Enjoy!
+------------------------------------
+
+EOF
