@@ -16,3 +16,4 @@ s7anley/zsh-geeknote
 horosgrisa/zsh-gvm
 srijanshetty/zsh-pip-completion
 wbinglee/zsh-wakatime
+sobolevn/git-secret
