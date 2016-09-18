@@ -6,6 +6,13 @@ function die () {
     exit 1
 }
 
+function is_program_exist() {
+    local $app=$1
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+    return $ret
+}
+
 function program_exists() {
     local $app=$1
     local message="Need to install $app."
