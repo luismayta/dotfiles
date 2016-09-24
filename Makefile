@@ -1,5 +1,4 @@
-# Makefile for slide-git-flow-developer development.
-# See INSTALL for details.
+# Makefile for dotfiles.
 
 # Configuration.
 SHELL = /bin/bash
@@ -9,50 +8,24 @@ DATA_DIR = $(ROOT_DIR)/var
 SCRIPT_DIR = $(ROOT_DIR)/script
 
 WGET = wget
-BUILDOUT_CFG = $(ROOT_DIR)/etc/buildout.cfg
-BUILDOUT_DIR = $(ROOT_DIR)/lib/buildout
-BUILDOUT_VERSION = 2.2.1
-BUILDOUT_BOOTSTRAP_URL = https://raw.github.com/buildout/buildout/$(BUILDOUT_VERSION)/bootstrap/bootstrap.py
-BUILDOUT_BOOTSTRAP = $(BUILDOUT_DIR)/bootstrap.py
-BUILDOUT_BOOTSTRAP_ARGS = -c $(ROOT_DIR)/etc/buildout.cfg --version=$(BUILDOUT_VERSION) buildout:directory=$(ROOT_DIR)
-BUILDOUT = $(BIN_DIR)/buildout
-BUILDOUT_ARGS = -N buildout:directory=$(ROOT_DIR)
-VIRTUALENV_DIR = $(ROOT_DIR)/lib/virtualenv
-PIP = $(VIRTUALENV_DIR)/bin/pip
-NOSE = $(BIN_DIR)/nosetests
-PYTHON = $(VIRTUALENV_DIR)/bin/python
 
 # Bin scripts
-
 CLEAN = $(shell) $(SCRIPT_DIR)/clean.sh
-ANSIBLE_PROVISION= $(shell) $(SCRIPT_DIR)/provision.sh
-ANSIBLE_DEPLOY= $(shell) $(SCRIPT_DIR)/deploy.sh
-ROLES_ANSIBLE = $(shell) $(SCRIPT_DIR)/roles_ansible.sh
-
+GVM = $(shell) $(SCRIPT_DIR)/gvm.sh
+PYENV = $(shell) $(SCRIPT_DIR)/pyenv.sh
+SETUP = $(shell) $(SCRIPT_DIR)/setup.sh
+INSTALL = $(shell) $(SCRIPT_DIR)/install.sh
+TEST = $(shell) $(SCRIPT_DIR)/test.sh
+RUNSERVER = $(shell) $(SCRIPT_DIR)/runserver.sh
+SYNC = $(shell) $(SCRIPT_DIR)/sync.sh
+LINGUIST = $(shell) $(SCRIPT_DIR)/linguist.sh
 
 install:
-	echo 'pass install'
-
-
-roles:
-	$(ROLES_ANSIBLE)
-
-
-ansible_provision:
-	$(ANSIBLE_PROVISION)
-
-
-ansible_deploy:
-	$(ANSIBLE_DEPLOY)
+	$(INSTALL)
 
 
 clean:
 	$(CLEAN)
-
-
-deploy:
-	$(ANSIBLE_PROVISION)
-	$(ANSIBLE_DEPLOY)
 
 
 distclean: clean
@@ -61,6 +34,23 @@ distclean: clean
 	rm -rf $(ROOT_DIR)/demo/*.egg-info
 
 
+environment:
+	$(PYENV)
+	$(GVM)
+
+
 maintainer-clean: distclean
 	rm -rf $(BIN_DIR)
 	rm -rf $(ROOT_DIR)/lib/
+
+
+runserver:
+	$(RUNSERVER)
+
+
+sync:
+	$(SYNC)
+
+
+linguist:
+	$(LINGUIST)
