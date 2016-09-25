@@ -76,7 +76,7 @@ for app in {zsh,git,tmux}; do
 done
 unset app
 
-clone_repo      "Successfully cloned $app_name"
+clone_repo      "Successfully cloned ${APP_NAME}"
 
-msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` $app_name"
+msg             "\nThanks for installing ${APP_NAME}."
+msg             "© `date +%Y` ${APP_NAME}"
