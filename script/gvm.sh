@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# shellcheck source=src/load.sh
+# shellcheck source=script/bootstrap.sh
 [ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
 
 gvm pkgset list | grep -q "${GVM_NAME}"
