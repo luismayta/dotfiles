@@ -67,7 +67,8 @@ clone_repo() {
     fi
 
     if [[ "$ret" -eq '0' ]] && [[ ! $TRAVIS = 'true' ]]; then
-        "$PATH_REPO/bootstrap.sh"
+        cd "${PATH_REPO}" || exit
+        make install
     fi
 }
 
