@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-export HOME=~
-export PROJECT_NAME=dotfiles
-export APP_DIR="$HOME/.$PROJECT_NAME"
-export SRC_DIR="$APP_DIR/src"
-
-# shellcheck source=src/load.sh
-[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+# shellcheck source=script/bootstrap.sh
+[ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
 
 function install_apps(){
     for app in $APPS; do

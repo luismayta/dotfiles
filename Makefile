@@ -17,9 +17,14 @@ SETUP = $(shell) $(SCRIPT_DIR)/setup.sh
 TEST = $(shell) $(SCRIPT_DIR)/test.sh
 SYNC = $(shell) $(SCRIPT_DIR)/sync.sh
 LINGUIST = $(shell) $(SCRIPT_DIR)/linguist.sh
+RUN = $(shell) $(SCRIPT_DIR)/run.sh
 
 install:
 	$(SETUP)
+
+
+run:
+	$(RUN)
 
 
 clean:
