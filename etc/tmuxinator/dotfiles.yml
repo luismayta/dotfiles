@@ -52,5 +52,7 @@ windows:
   - docker:
       layout: main-vertical
       panes:
-        - postgresql:
+        - docker:
+            - pyenv activate dotfiles
+        - docker:
             - pyenv activate dotfiles
