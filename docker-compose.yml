@@ -1,0 +1,6 @@
+version: '2'
+services:
+  dotfile:
+    build: .
+    volumes:
+    - .:/home/root/.dotfiles
