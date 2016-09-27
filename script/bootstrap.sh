@@ -1,22 +1,44 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-HOME=~
-PROJECT_NAME=dotfiles
-PYTHON_VERSION=2.7.9
-PYENV_NAME="${PROJECT_NAME}"
+export HOME=~
+export PROJECT_NAME=dotfiles
+export PYTHON_VERSION=2.7.9
+export PYENV_NAME="${PROJECT_NAME}"
 
-GVM_NAME="${PROJECT_NAME}"
-GVM_PATHS_NAME="{src, pkg, bin}"
+export GVM_NAME="${PROJECT_NAME}"
+export GVM_PATHS_NAME="{src, pkg, bin}"
 
-# Vars Dir
+# Vars Dir application
+export ROOT_DIR
 ROOT_DIR=$(pwd)
-RESOURCES_DIR="${ROOT_DIR}/resources"
-RESOURCES_DB_DIR="${RESOURCES_DIR}/db"
-APP_DIR="${HOME}/.${PROJECT_NAME}"
-SRC_DIR="${APP_DIR}/src"
-CONF_DIR="${APP_DIR}/conf"
-TOOLS_DIR="${APP_DIR}/tools"
+export RESOURCES_DIR="${ROOT_DIR}/resources"
+export RESOURCES_DB_DIR="${RESOURCES_DIR}/db"
+export PATH_REPO="${HOME}/.${PROJECT_NAME}"
+export SRC_DIR="${PATH_REPO}/src"
+export SCRIPT_DIR="${PATH_REPO}/script"
+export CONF_DIR="${PATH_REPO}/conf"
+export TOOLS_DIR="${PATH_REPO}/tools"
+
+export GIT_URI='https://github.com/luismayta/dotfiles.git'
+export GIT_BRANCH='master'
+export DEBUG_MODE='0'
+export PATH_BACKUP="$HOME/backup"
+export PATH_PYENV="$HOME/.pyenv"
+export PATH_GVM="$HOME/.gvm"
+
+export PATH_GIT_EXTRAS="$HOME/.gvm"
+export PATH_RVM="$HOME/.rvm"
+export PATH_NVM="$HOME/.nvm"
+export PATH_TPM="$HOME/.tmux/plugins/tpm"
+export PATH_THEMEPACK="$HOME/.tmux-themepack"
+export PATH_SCM_BREEZE="$HOME/.scm_breeze"
+export PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
+
+export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
+export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"
+
+export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
 
 for file in "$SRC_DIR/"{config.sh,messages.sh,repo.sh,functions.sh}; do
     [ -r "${file}" ] && source "${file}"
