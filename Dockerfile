@@ -16,10 +16,10 @@ ADD docker/.gitconfig /root/.gitconfig
 ADD docker/.scripts /root/.scripts
 
 # Set environment variables.
-# ENV HOME /docker
+ENV HOME /docker
 
 # Define working directory.
-# WORKDIR /docker
+WORKDIR /docker
 
 # Define default command.
 CMD ["bash"]
