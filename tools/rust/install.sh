@@ -6,22 +6,20 @@
 
 cat <<EOF
 
---------------------
- Wakatime install
---------------------
+-------
+ Rust
+-------
 
 EOF
-
-if [[ ! -e $PATH_WAKATIME ]]; then
-    mkdir -p $PATH_WAKATIME
-    cd $PATH_WAKATIME
-    wget -O $NAME_WAKATIME_BASH $URL_WAKATIME_BASH
+RESPONSE_PATH=is_program_exist "rustc"
+if [ ! "$RESPONSE_PATH" -eq '0' ]; then
+    curl -sSf https://static.rust-lang.org/rustup.sh | sh
 fi
 
 cat <<EOF
 
 --------------------------
- Gvm installed! Enjoy!
+ Rust installed! Enjoy!
 --------------------------
 
 EOF

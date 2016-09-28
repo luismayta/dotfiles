@@ -6,8 +6,7 @@ APP_NAME='.dotfiles'
 GIT_URI='https://github.com/luismayta/dotfiles.git'
 GIT_BRANCH='master'
 DEBUG_MODE='0'
-PATH_REPO="$HOME/$APP_NAME"
-PATH_BACKUP="$HOME/backup"
+PATH_REPO="${HOME}/${APP_NAME}"
 
 msg() {
     printf '%b\n' "$1" >&2
@@ -32,10 +31,10 @@ debug() {
 
 ############################  BASIC SETUP TOOLS
 program_exists() {
-    local $app=$1
+    local app=$1
     local message="Need to install $app."
     local ret='0'
-    type $1 >/dev/null 2>&1 || { local ret='1'; }
+    type "$1" >/dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [[ ! "$ret" -eq '0' ]]; then
@@ -68,7 +67,8 @@ clone_repo() {
     fi
 
     if [[ "$ret" -eq '0' ]] && [[ ! $TRAVIS = 'true' ]]; then
-        "$PATH_REPO/bootstrap.sh"
+        cd "${PATH_REPO}" || exit
+        make install
     fi
 }
 
@@ -77,7 +77,7 @@ for app in {zsh,git,tmux}; do
 done
 unset app
 
-clone_repo      "Successfully cloned $app_name"
+clone_repo      "Successfully cloned ${APP_NAME}"
 
-msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` $app_name"
+msg             "\nThanks for installing ${APP_NAME}."
+msg             "© $(date +%Y) ${APP_NAME}"

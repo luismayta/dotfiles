@@ -1,9 +1,36 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+function initialize(){
+    for app in {zsh,git,tmux}; do
+        program_exists "$app"
+    done
+    unset app
+
+    install_apps
+
+    for path in "$CONF_DIR"/{shell,app}; do
+        for file_path in "$path/"*; do
+            local file="$HOME/.${file_path##*/}"
+            do_backup "$file"
+            cp_file "$file_path" "$file"
+            unset file
+        done
+        unset file_path
+    done
+    unset path
+}
+
 function die () {
     echo "${@}"
     exit 1
+}
+
+function is_program_exist() {
+    local $app=$1
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+    return $ret
 }
 
 function program_exists() {
@@ -44,5 +71,22 @@ function cp_file() {
         ret="$?"
         success "$message $1 to $2"
         debug
+    fi
+}
+
+function install_apps(){
+    for app in "${APPS[@]}"; do
+        "$TOOLS_DIR/${app}/install.sh"
+    done
+    unset app
+}
+
+function replace_files(){
+    echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
+
+    read -r response
+
+    if [[ $response =~ ^[Yy]$ ]]; then
+        initialize
     fi
 }
