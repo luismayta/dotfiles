@@ -35,10 +35,10 @@ before_install:
     fi
 
 install:
-  pwd && uname -a && export TRAVIS=true && export TEST=true && ./script/setup
+  pwd && uname -a && export TRAVIS=true && export TEST=true && make setup
 
 script:
-  pwd && uname -a && export TRAVIS=true && export TEST=true && ./script/test
+  pwd && uname -a && export TRAVIS=true && export TEST=true && make test
 
 notifications:
   email: false

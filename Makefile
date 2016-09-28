@@ -53,3 +53,7 @@ sync:
 
 linguist:
 	$(LINGUIST)
+
+
+test:
+	$(TEST)
