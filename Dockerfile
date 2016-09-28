@@ -7,7 +7,7 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
-  apt-get install -y tmux curl git man unzip vim wget && \
+  apt-get install -y tmux curl git man unzip vim wget zsh && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
@@ -16,10 +16,10 @@ ADD docker/.gitconfig /root/.gitconfig
 ADD docker/.scripts /root/.scripts
 
 # Set environment variables.
-ENV HOME /docker
+# ENV HOME /docker
 
 # Define working directory.
-WORKDIR /docker
+# WORKDIR /docker
 
 # Define default command.
 CMD ["bash"]
