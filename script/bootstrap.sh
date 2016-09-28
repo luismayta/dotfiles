@@ -15,7 +15,6 @@ ROOT_DIR=$(pwd)
 export RESOURCES_DIR="${ROOT_DIR}/resources"
 export RESOURCES_DB_DIR="${RESOURCES_DIR}/db"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
-export SRC_DIR="${PATH_REPO}/src"
 export SCRIPT_DIR="${PATH_REPO}/script"
 export CONF_DIR="${PATH_REPO}/conf"
 export TOOLS_DIR="${PATH_REPO}/tools"
@@ -40,7 +39,8 @@ export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"
 
 export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
 
-for file in "$SRC_DIR/"{config.sh,messages.sh,repo.sh,functions.sh}; do
+echo $SCRIPT_DIR
+for file in "$SCRIPT_DIR/"{config,messages,repo,functions}.sh; do
     [ -r "${file}" ] && source "${file}"
 done
 unset file
