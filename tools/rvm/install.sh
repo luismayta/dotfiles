@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+# shellcheck source=script/bootstrap.sh
+[ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
 
 cat <<EOF
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# shellcheck source=script/bootstrap.sh
+[ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
+
 cat <<EOF
 
 ----------------------------
@@ -8,9 +11,6 @@ cat <<EOF
 ----------------------------
 
 EOF
-
-# shellcheck source=src/load.sh
-[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
 
 curl -fsSL https://raw.githubusercontent.com/guarinogabriel/mac-cli/master/mac-cli/tools/install
 
