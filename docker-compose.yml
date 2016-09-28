@@ -2,5 +2,7 @@ version: '2'
 services:
   dotfile:
     build: .
+    image: ubuntu:14.04
     volumes:
-    - .:/home/root/.dotfiles
+    - ./:/home/root/.dotfiles
+    restart: always
