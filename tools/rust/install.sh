@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# shellcheck source=src/load.sh
-[ -r "$SRC_DIR/load.sh" ] && source "$SRC_DIR/load.sh"
+# shellcheck source=script/bootstrap.sh
+[ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
 
 cat <<EOF
 
