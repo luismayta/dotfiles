@@ -53,3 +53,20 @@ function cp_file() {
         debug
     fi
 }
+
+function install_apps(){
+    for app in $APPS; do
+        "$TOOLS_DIR/${app}/install.sh"
+    done
+    unset app
+}
+
+function replace_files(){
+    echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
+
+    read -r response
+
+    if [[ $response =~ ^[Yy]$ ]]; then
+        initialize
+    fi
+}

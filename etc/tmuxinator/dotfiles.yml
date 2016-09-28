@@ -34,7 +34,7 @@ windows:
         - editor:
             - pyenv activate dotfiles
             - <%= ENV["EDITOR"] %>
-        - vagrant:
+        - docker:
             - pyenv activate dotfiles
   - python:
       layout: main-vertical
@@ -49,8 +49,10 @@ windows:
             - pyenv activate dotfiles
         - mysql:
             - pyenv activate dotfiles
-  - vagrant:
+  - docker:
       layout: main-vertical
       panes:
-        - postgresql:
+        - docker:
+            - pyenv activate dotfiles
+        - docker:
             - pyenv activate dotfiles

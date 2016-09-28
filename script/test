@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-ROOT="`pwd`"
-HOME=~
-
-[ -r "$ROOT/src/load.sh" ] && source "$ROOT/src/load.sh"
+# shellcheck source=script/bootstrap.sh
+[ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
 
 cat <<EOF
 
