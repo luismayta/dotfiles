@@ -167,7 +167,7 @@ and reattach them to a different terminal. And do a lot more.
 
 **Wakatime Terminal:**
 
-![zsh-wakatime](https://github.com/wbinglee/zsh-wakatime)
+[zsh-wakatime](https://github.com/wbinglee/zsh-wakatime)
 
 <span class="badges">
 [![linkedin](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
