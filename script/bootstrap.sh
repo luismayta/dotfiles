@@ -9,6 +9,8 @@ export PYENV_NAME="${PROJECT_NAME}"
 export GVM_NAME="${PROJECT_NAME}"
 export GVM_PATHS_NAME="{src, pkg, bin}"
 
+export GRIP_PORT=6430
+
 # Vars Dir application
 export ROOT_DIR
 ROOT_DIR=$(pwd)
@@ -30,7 +32,6 @@ export PATH_GIT_EXTRAS="$HOME/.gvm"
 export PATH_RVM="$HOME/.rvm"
 export PATH_NVM="$HOME/.nvm"
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
-export PATH_THEMEPACK="$HOME/.tmux-themepack"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
 export PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
 
