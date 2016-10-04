@@ -40,14 +40,17 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
+# developer
+brew install editorconfig
+# emacs
+brew update
+brew install emacs --with-cocoa
+brew linkapps emacs
+# silver searcher
+brew install the_silver_searcher
+
 # Install `wget` with IRI support.
 brew install wget --with-iri
-
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
 
 # Install more recent versions of some macOS tools.
 brew install vim --override-system-vi
@@ -61,53 +64,25 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
-brew install aircrack-ng
-brew install bfg
-brew install binutils
-brew install binwalk
-brew install cifer
-brew install dex2jar
-brew install dns2tcp
-brew install fcrackzip
-brew install foremost
-brew install hashpump
-brew install hydra
-brew install john
-brew install knock
-brew install netpbm
-brew install nmap
-brew install pngcheck
-brew install socat
-brew install sqlmap
-brew install tcpflow
-brew install tcpreplay
-brew install tcptrace
-brew install ucspi-tcp # `tcpserver` etc.
-brew install xpdf
-brew install xz
-
 # Install other useful binaries.
-brew install ack
 brew install dark-mode
-#brew install exiv2
+
 brew install git
 brew install git-lfs
 brew install git-flow
-brew install imagemagick --with-webp
 brew install lua
 brew install lynx
 brew install p7zip
+# https://github.com/madler/pigz
 brew install pigz
 brew install pv
 brew install rename
-brew install rhino
-brew install speedtest_cli
 brew install ssh-copy-id
 brew install testssl
 brew install tree
 brew install vbindiff
 brew install webkit2png
+# https://github.com/google/zopfli
 brew install zopfli
 
 # Remove outdated versions from the cellar.
