@@ -32,7 +32,6 @@ export PATH_GIT_EXTRAS="$HOME/.gvm"
 export PATH_RVM="$HOME/.rvm"
 export PATH_NVM="$HOME/.nvm"
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
-export PATH_THEMEPACK="$HOME/.tmux-themepack"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
 export PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
 

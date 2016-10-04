@@ -14,7 +14,6 @@ APPS=(
     "rvm"
     "antibody"
     "scm_breeze"
-    "tmux-themepack"
     "mac-cli"
     "rust"
 )
