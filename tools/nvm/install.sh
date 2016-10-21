@@ -12,7 +12,6 @@ cat <<EOF
 
 EOF
 
-# Create font dir if not exists
 if [[ ! -e $PATH_NVM ]]; then
 
     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
