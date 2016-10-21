@@ -121,6 +121,7 @@ bin/* text eol=lf
 *.7z        binary
 *.rar       binary
 *.ttf       binary
+*.otf       binary
 *.eot       binary
 *.woff      binary
 *.woff2     binary
