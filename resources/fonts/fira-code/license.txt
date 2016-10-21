@@ -1,7 +1,13 @@
-Copyright 2010, 2012 Adobe Systems Incorporated (http://www.adobe.com/),
-with Reserved Font Name 'Source'. All Rights Reserved. Source is a trademark
-of Adobe Systems Incorporated in the United States and/or other countries.
-Copyright (c) 2013, Kim Silkebækken and Carl X. Su.
+Copyright (c) 2014, Nikita Prokopov http://tonsky.me
+with Reserved Font Name Fira Code.
+
+Copyright (c) 2014, Mozilla Foundation https://mozilla.org/
+with Reserved Font Name Fira Sans.
+
+Copyright (c) 2014, Mozilla Foundation https://mozilla.org/
+with Reserved Font Name Fira Mono.
+
+Copyright (c) 2014, Telefonica S.A.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
