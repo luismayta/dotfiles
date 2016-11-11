@@ -14,12 +14,22 @@ EOF
 
 # Install command-line tools using Homebrew.
 brew update
-brew upgrade --all
+brew upgrade
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
+
+# dependences
+brew install doxygen
+
+# Tools Developer
+brew install Caskroom/cask/vagrant
+brew install shellcheck
+brew install dnsmasq
+brew install ispell
+brew install Caskroom/cask/virtualbox
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -42,10 +52,12 @@ fi;
 
 # developer
 brew install editorconfig
+
 # emacs
 brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
+
 # silver searcher
 brew install the_silver_searcher
 
@@ -73,6 +85,7 @@ brew install git-flow
 brew install lua
 brew install lynx
 brew install p7zip
+
 # https://github.com/madler/pigz
 brew install pigz
 brew install pv
@@ -84,6 +97,12 @@ brew install vbindiff
 brew install webkit2png
 # https://github.com/google/zopfli
 brew install zopfli
+
+# Gui mergetool
+brew install homebrew/gui/meld
+
+# Tools System
+brew install htop
 
 # Remove outdated versions from the cellar.
 brew cleanup
