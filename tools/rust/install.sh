@@ -11,9 +11,11 @@ cat <<EOF
 -------
 
 EOF
-RESPONSE_PATH=is_program_exist "rustc" /dev/null 2>&1
-if [[ ! "$RESPONSE_PATH" -eq '0' ]]; then
-    curl -sSf https://static.rust-lang.org/rustup.sh | sh
+
+RESPONSE_PATH=is_program_exist "rustc"
+
+if [[ ! -e "$RESPONSE_PATH" ]]; then
+    bash < <(curl -s -S -L https://static.rust-lang.org/rustup.sh)
 fi
 
 cat <<EOF
