@@ -27,17 +27,15 @@ function die () {
 }
 
 function is_program_exist() {
-    local $app=$1
-    local ret='0'
-    type $1 >/dev/null 2>&1 || { local ret='1'; }
-    return $ret
+    which "${1}" >> /dev/null 2>&1 || return
+    return 1
 }
 
 function program_exists() {
-    local $app=$1
+    local app=$1
     local message="Need to install $app."
     local ret='0'
-    type $1 >/dev/null 2>&1 || { local ret='1'; }
+    which "${1}" >> /dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [ ! "$ret" -eq '0' ]; then
