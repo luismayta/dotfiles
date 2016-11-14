@@ -7,7 +7,11 @@ export PYTHON_VERSION=2.7.9
 export PYENV_NAME="${PROJECT_NAME}"
 
 export GVM_NAME="${PROJECT_NAME}"
-export GVM_PATHS_NAME="{src, pkg, bin}"
+export GVM_PATHS_NAME=(
+    "src"
+    "pkg"
+    "bin"
+)
 
 export GRIP_PORT=6430
 
@@ -16,6 +20,7 @@ export ROOT_DIR
 ROOT_DIR=$(pwd)
 export RESOURCES_DIR="${ROOT_DIR}/resources"
 export RESOURCES_DB_DIR="${RESOURCES_DIR}/db"
+export REQUIREMENTS_DIR="${ROOT_DIR}/requirements"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
 export SCRIPT_DIR="${PATH_REPO}/script"
 export CONF_DIR="${PATH_REPO}/conf"

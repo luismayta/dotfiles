@@ -4,6 +4,8 @@
 # shellcheck source=script/bootstrap.sh
 [ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
 
+[ -r "$HOME/.gvm/scripts/gvm" ] && source "$HOME/.gvm/scripts/gvm"
+
 gvm pkgset list | grep -q "${GVM_NAME}"
 response=$?
 
