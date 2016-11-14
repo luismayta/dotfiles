@@ -14,6 +14,7 @@ CLEAN = $(shell) $(SCRIPT_DIR)/clean.sh
 GVM = $(shell) $(SCRIPT_DIR)/gvm.sh
 GRIP = $(shell) $(SCRIPT_DIR)/grip.sh
 PYENV = $(shell) $(SCRIPT_DIR)/pyenv.sh
+INSTALL = $(shell) $(SCRIPT_DIR)/install.sh
 SETUP = $(shell) $(SCRIPT_DIR)/setup.sh
 TEST = $(shell) $(SCRIPT_DIR)/test.sh
 SYNC = $(shell) $(SCRIPT_DIR)/sync.sh
@@ -22,6 +23,10 @@ RUN = $(shell) $(SCRIPT_DIR)/run.sh
 
 install:
 	$(SETUP)
+
+
+setup:
+	$(INSTALL)
 
 
 run:
