@@ -156,6 +156,10 @@ and reattach them to a different terminal. And do a lot more.
 | Plugins                                                       | Decription                             |
 | ------------------------------------------------------------- |:--------------------------------------:|
 
+### Peco
+
+[Peco](https://github.com/peco/peco) Simplistic interactive filtering tool.
+
 ### Tmux Themepack
 
 [Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
