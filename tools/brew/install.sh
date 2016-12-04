@@ -30,6 +30,8 @@ brew install shellcheck
 brew install dnsmasq
 brew install ispell
 brew install Caskroom/cask/virtualbox
+brew install graphviz
+brew cask install java
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -54,7 +56,6 @@ fi;
 brew install editorconfig
 
 # emacs
-brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
 
@@ -104,6 +105,7 @@ brew install homebrew/gui/meld
 
 # Tools System
 brew install htop
+brew install peco
 
 # Remove outdated versions from the cellar.
 brew cleanup
