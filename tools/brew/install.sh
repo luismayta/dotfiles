@@ -105,6 +105,7 @@ brew install homebrew/gui/meld
 
 # Tools System
 brew install htop
+brew install peco
 
 # Remove outdated versions from the cellar.
 brew cleanup
