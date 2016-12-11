@@ -60,6 +60,10 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ## Resources
 
+### [Asciinema](https://asciinema.org/)
+
+Record and share your terminal sessions, the right way.
+
 ### Fonts
 
 [Fonts](resources/fonts/)
