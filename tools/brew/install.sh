@@ -29,6 +29,7 @@ brew install Caskroom/cask/vagrant
 brew install shellcheck
 brew install dnsmasq
 brew install ispell
+brew install hunspell
 brew install Caskroom/cask/virtualbox
 brew install graphviz
 brew cask install java

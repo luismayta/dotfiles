@@ -64,6 +64,12 @@ This is a list of applications that need to be installed previously to enjoy all
 
 Record and share your terminal sessions, the right way.
 
+### [Hunspell](https://github.com/hunspell/hunspell)
+
+Hunspell is a spell checker and morphological analyzer library and program designed
+for languages with rich morphology and complex word compounding or character encoding.
+
+
 ### Fonts
 
 [Fonts](resources/fonts/)
