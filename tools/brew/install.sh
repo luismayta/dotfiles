@@ -29,9 +29,13 @@ brew install Caskroom/cask/vagrant
 brew install shellcheck
 brew install dnsmasq
 brew install ispell
+brew install hunspell
 brew install Caskroom/cask/virtualbox
 brew install graphviz
 brew cask install java
+
+# Grab movies
+brew install asciinema
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
