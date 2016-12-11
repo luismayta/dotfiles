@@ -180,7 +180,9 @@ This file uses change log convention from [Keep a CHANGELOG](http://keepachangel
 [LICENCE.md]: LICENCE.md
 [README.md]: README.md
 
-[unreleased]: https://github.com/luismayta/dotfiles/compare/v2.0.5...HEAD
+[unreleased]: https://github.com/luismayta/dotfiles/compare/v2.0.6...HEAD
+[v2.0.5]: https://github.com/luismayta/dotfiles/compare/v2.0.5...v2.0.6
+[v2.0.4]: https://github.com/luismayta/dotfiles/compare/v2.0.4...v2.0.5
 [v2.0.4]: https://github.com/luismayta/dotfiles/compare/v2.0.4...v2.0.5
 [v2.0.4]: https://github.com/luismayta/dotfiles/compare/v2.0.3...v2.0.4
 [v2.0.3]: https://github.com/luismayta/dotfiles/compare/v2.0.2...v2.0.3
