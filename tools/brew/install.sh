@@ -33,6 +33,9 @@ brew install Caskroom/cask/virtualbox
 brew install graphviz
 brew cask install java
 
+# Grab movies
+brew install asciinema
+
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
