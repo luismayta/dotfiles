@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 # Install.
-RUN \
+ONBUILD RUN \
   apt-get update && \
   locale-gen en_US.UTF-8 && \
   apt-get install -y build-essential && \
