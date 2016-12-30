@@ -13,7 +13,7 @@ msg() {
 }
 
 success() {
-    if [ "$ret" -eq '0' ]; then
+    if [[ "$ret" -eq '0' ]]; then
         msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
@@ -34,7 +34,7 @@ program_exists() {
     local app=$1
     local message="Need to install $app."
     local ret='0'
-    type "$1" >/dev/null 2>&1 || { local ret='1'; }
+    type "$1" >> /dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [[ ! "$ret" -eq '0' ]]; then
@@ -57,7 +57,7 @@ function upgrade_repo() {
 }
 
 clone_repo() {
-    if [[ ! -e "$PATH_REPO/.git" ]]; then
+    if [[ ! -e "${PATH_REPO}/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
         ret="$?"
         success "$1"
