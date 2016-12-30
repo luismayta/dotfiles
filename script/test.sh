@@ -46,14 +46,3 @@ cat <<EOF
 --------------------------
 
 EOF
-
-cat <<EOF
-
---------------------------
-    Test Load Source
---------------------------
-
-EOF
-
-# shellcheck source=/dev/null
-source "$HOME/.zshrc"
