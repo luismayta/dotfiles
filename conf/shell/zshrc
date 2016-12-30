@@ -16,7 +16,7 @@ source <(antibody init)
 antibody bundle < "$ZSH/tools/antibody/bundles.txt"
 
 # load everything but the path and completion files
-source "$ZSH/zsh/completion.zsh"
+source "$ZSH/zsh/completions.zsh"
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
