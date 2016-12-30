@@ -13,8 +13,8 @@ cat <<EOF
 EOF
 
 if [[ ! -e $PATH_SCM_BREEZE ]]; then
-    git clone git://github.com/ndbroadbent/scm_breeze.git "{$PATH_SCM_BREEZE}"
-    "{$PATH_SCM_BREEZE}"/install.sh
+    git clone git://github.com/ndbroadbent/scm_breeze.git "${PATH_SCM_BREEZE}"
+    "${PATH_SCM_BREEZE}"/install.sh
 fi
 
 cat <<EOF
