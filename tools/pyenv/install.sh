@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# shellcheck source=script/bootstrap.sh
+# shellcheck source=/dev/null
 [ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
 
 cat <<EOF
