@@ -36,6 +36,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # Add RVM to PATH for scripting
 [[ -e "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
+[[ -e "/usr/local/rvm/bin" ]] && export PATH="$PATH:/usr/local/rvm/bin"
 
 # Add NVM to Path for scripting
 [[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
