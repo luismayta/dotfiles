@@ -15,4 +15,4 @@ ENV HOME /docker
 WORKDIR /docker/.dotfiles
 
 # Define default command.
-CMD ["bash"]
+CMD ["zsh"]
