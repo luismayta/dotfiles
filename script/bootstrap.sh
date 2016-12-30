@@ -45,8 +45,8 @@ export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"
 
 export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
 
-echo $SCRIPT_DIR
-for file in "$SCRIPT_DIR/"{config,messages,repo,functions}.sh; do
-    [ -r "${file}" ] && source "${file}"
+for file in "${SCRIPT_DIR}/"{config,messages,repo,functions}.sh; do
+    # shellcheck source=/dev/null
+    [ -e "${file}" ] && source "${file}"
 done
 unset file
