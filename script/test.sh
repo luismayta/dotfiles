@@ -27,6 +27,9 @@ cat <<EOF
 EOF
 
 for path in ${!PATH_@}; do
+    if [[ "${path}" == "PATH_RVM" ]]; then
+        continue
+    fi
     path="${!path}"
     if [[ ! -r $path ]]; then
         error "${path}"

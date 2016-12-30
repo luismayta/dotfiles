@@ -38,7 +38,7 @@ function program_exists() {
     which "${1}" >> /dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
-    if [ ! "$ret" -eq '0' ]; then
+    if [[ ! "$ret" -eq '0' ]]; then
         error "$message"
         exit
     fi
