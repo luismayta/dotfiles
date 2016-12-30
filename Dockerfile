@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 # Install.
-RUN \
+ONBUILD RUN \
   apt-get update && \
   locale-gen en_US.UTF-8 && \
   apt-get install -y build-essential && \
@@ -9,10 +9,10 @@ RUN \
   apt-get install -y tmux curl git man unzip vim wget zsh
 
 # Set environment variables.
-ENV HOME /docker/.dotfiles
+ENV HOME /docker
 
 # Define working directory.
 WORKDIR /docker/.dotfiles
 
 # Define default command.
-CMD ["bash"]
+CMD ["zsh"]
