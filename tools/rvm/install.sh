@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# shellcheck source=script/bootstrap.sh
+# shellcheck source=/dev/null
 [ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
 
 cat <<EOF

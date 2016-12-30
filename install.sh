@@ -46,9 +46,9 @@ program_exists() {
 function upgrade_repo() {
       msg "trying to update $1"
 
-      if [ "$1" = "$APP_NAME" ]; then
-          cd "$PATH_REPO" &&
-          git pull origin "$GIT_BRANCH"
+      if [ "$1" = "${APP_NAME}" ]; then
+        cd "$PATH_REPO" || exit
+        git pull origin "${GIT_BRANCH}"
       fi
 
       ret="$?"
