@@ -13,7 +13,21 @@ DISABLE_CORRECTION="true"
 source <(antibody init)
 
 # setup antibody
-antibody bundle < "$ZSH/tools/antibody/bundles.txt"
+antibody bundle caarlos0/zsh-mkc
+antibody bundle caarlos0/zsh-git-sync
+antibody bundle sh-users/zsh-completions
+antibody bundle sh-users/zsh-syntax-highlighting
+antibody bundle sh-users/zsh-history-substring-search
+antibody bundle benne10/goenv
+antibody bundle mafredri/zsh-async
+antibody bundle marszall87/lambda-pure
+antibody bundle bobthecow/git-flow-completion
+antibody bundle uismayta/zsh-git-aliases
+antibody bundle Tarrasch/zsh-autoenv
+antibody bundle Tarrasch/zsh-colors
+antibody bundle chrissicool/zsh-256color
+antibody bundle dgnest/zsh-gvm-plugin
+antibody bundle wbinglee/zsh-wakatime
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
