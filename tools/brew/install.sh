@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # shellcheck source=/dev/null
-[ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
+[ -r "${SCRIPT_DIR}/bootstrap.sh" ] && source "${SCRIPT_DIR}/bootstrap.sh"
 
 cat <<EOF
 
