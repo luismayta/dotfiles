@@ -190,7 +190,7 @@ and reattach them to a different terminal. And do a lot more.
 Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 
 
-<!-- Plugins Antigen -->
+<!-- Plugins Antibody -->
 [link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
 [link-plugin-git]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
 [link-plugin-git-extras]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-extras
@@ -205,7 +205,7 @@ Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 [link-plugin-command-not-found]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found
 [link-plugin-zsh-syntax-highlighting]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/zsh-syntax-highlighting
 
-<!-- Theme Antigen -->
+<!-- Theme Antibody -->
 [link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
 
 <!-- Wakatime -->
