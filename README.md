@@ -158,13 +158,30 @@ and reattach them to a different terminal. And do a lot more.
 
 #### Plugins
 
-| Plugins                                                       | Decription                             |
-| ------------------------------------------------------------- |:--------------------------------------:|
+| Plugins                                        | Decription                             |
+| ---------------------------------------------- |:--------------------------------------:|
+| caarlos0/zsh-mkc                               |                                        |
+| caarlos0/zsh-git-sync                          |                                        |
+| zsh-users/zsh-completions                      |                                        |
+| zsh-users/zsh-syntax-highlighting              |                                        |
+| zsh-users/zsh-history-substring-search         |                                        |
+| benne10/goenv                                  |                                        |
+| mafredri/zsh-async                             |                                        |
+| bobthecow/git-flow-completion                  |                                        |
+| luismayta/zsh-git-aliases                      |                                        |
+| luismayta/zsh-docker-compose-aliases           |                                        |
+| Tarrasch/zsh-autoenv                           |                                        |
+| Tarrasch/zsh-colors                            |                                        |
+| chrissicool/zsh-256color                       |                                        |
+| dgnest/zsh-gvm-plugin                          |                                        |
+| wbinglee/zsh-wakatime                          |                                        |
+
 
 #### Theme
 
-| Plugins                                                       | Decription                             |
-| ------------------------------------------------------------- |:--------------------------------------:|
+| Plugins                                         | Decription                             |
+| ----------------------------------------------- |:--------------------------------------:|
+| marszall87/lambda-pure                          |                                        |
 
 ### Peco
 
@@ -190,7 +207,7 @@ and reattach them to a different terminal. And do a lot more.
 Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 
 
-<!-- Plugins Antigen -->
+<!-- Plugins Antibody -->
 [link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
 [link-plugin-git]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
 [link-plugin-git-extras]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-extras
@@ -205,7 +222,7 @@ Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 [link-plugin-command-not-found]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found
 [link-plugin-zsh-syntax-highlighting]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/zsh-syntax-highlighting
 
-<!-- Theme Antigen -->
+<!-- Theme Antibody -->
 [link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
 
 <!-- Wakatime -->
