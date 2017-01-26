@@ -23,6 +23,7 @@ antibody bundle mafredri/zsh-async
 antibody bundle marszall87/lambda-pure
 antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-git-aliases
+antibody bundle luismayta/zsh-docker-compose-aliases
 antibody bundle Tarrasch/zsh-autoenv
 antibody bundle Tarrasch/zsh-colors
 antibody bundle chrissicool/zsh-256color
