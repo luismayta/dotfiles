@@ -1,12 +1,9 @@
-FROM ubuntu:14.04
+FROM luismayta/ubuntu-dotfiles:latest
+MAINTAINER Luis Mayta <@slovacus>
 
 # Install.
-ONBUILD RUN \
-  apt-get update && \
-  locale-gen en_US.UTF-8 && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y tmux curl git man unzip vim wget zsh
+RUN \
+  apt-get install -y zsh
 
 # Set environment variables.
 ENV HOME /docker
