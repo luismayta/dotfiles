@@ -158,13 +158,30 @@ and reattach them to a different terminal. And do a lot more.
 
 #### Plugins
 
-| Plugins                                                       | Decription                             |
-| ------------------------------------------------------------- |:--------------------------------------:|
+| Plugins                                        | Decription                             |
+| ---------------------------------------------- |:--------------------------------------:|
+| caarlos0/zsh-mkc                               |                                        |
+| caarlos0/zsh-git-sync                          |                                        |
+| zsh-users/zsh-completions                      |                                        |
+| zsh-users/zsh-syntax-highlighting              |                                        |
+| zsh-users/zsh-history-substring-search         |                                        |
+| benne10/goenv                                  |                                        |
+| mafredri/zsh-async                             |                                        |
+| bobthecow/git-flow-completion                  |                                        |
+| luismayta/zsh-git-aliases                      |                                        |
+| luismayta/zsh-docker-compose-aliases           |                                        |
+| Tarrasch/zsh-autoenv                           |                                        |
+| Tarrasch/zsh-colors                            |                                        |
+| chrissicool/zsh-256color                       |                                        |
+| dgnest/zsh-gvm-plugin                          |                                        |
+| wbinglee/zsh-wakatime                          |                                        |
+
 
 #### Theme
 
-| Plugins                                                       | Decription                             |
-| ------------------------------------------------------------- |:--------------------------------------:|
+| Plugins                                         | Decription                             |
+| ----------------------------------------------- |:--------------------------------------:|
+| marszall87/lambda-pure                          |                                        |
 
 ### Peco
 
