@@ -18,7 +18,6 @@ antibody bundle caarlos0/zsh-git-sync
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle benne10/goenv
 antibody bundle mafredri/zsh-async
 antibody bundle marszall87/lambda-pure
 antibody bundle bobthecow/git-flow-completion

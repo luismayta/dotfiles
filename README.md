@@ -165,7 +165,6 @@ and reattach them to a different terminal. And do a lot more.
 | zsh-users/zsh-completions                      |                                        |
 | zsh-users/zsh-syntax-highlighting              |                                        |
 | zsh-users/zsh-history-substring-search         |                                        |
-| benne10/goenv                                  |                                        |
 | mafredri/zsh-async                             |                                        |
 | bobthecow/git-flow-completion                  |                                        |
 | luismayta/zsh-git-aliases                      |                                        |
