@@ -92,6 +92,22 @@ for languages with rich morphology and complex word compounding or character enc
 | Monofur for Powerline                  | Monofur                  | Freeware                            |
 | Fura Powerline                         | FiraMono                 | SIL Open Font License, Version 1.1  |
 
+## Settings
+
+### netrc
+
+github recently switched to an https scheme as the default for cloning repos. as a side effect you may suddenly
+be prompted for a 'Username' and 'Password' when you push where, previously, you were able to do so without typing in credentials.
+the solution is to cause git to cache https credentials which is easy, since git uses curl under the covers.
+
+***~/.netrc***
+
+```bash
+machine github.com
+login YOUR_GITHUB_USERNAME
+password YOUR_GITHUB_PASSWORD
+```
+
 ## Applications
 
 ### Git
@@ -165,7 +181,6 @@ and reattach them to a different terminal. And do a lot more.
 | zsh-users/zsh-completions                      |                                        |
 | zsh-users/zsh-syntax-highlighting              |                                        |
 | zsh-users/zsh-history-substring-search         |                                        |
-| benne10/goenv                                  |                                        |
 | mafredri/zsh-async                             |                                        |
 | bobthecow/git-flow-completion                  |                                        |
 | luismayta/zsh-git-aliases                      |                                        |
