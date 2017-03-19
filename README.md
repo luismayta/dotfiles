@@ -1,6 +1,5 @@
 # Dotfiles
 
-<span class="badges" align="center">
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Code Climate](https://codeclimate.com/github/luismayta/dotfiles/badges/gpa.svg)](https://codeclimate.com/github/luismayta/dotfiles)
 [![GitHub tag](https://img.shields.io/github/tag/luismayta/dotfiles.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
@@ -8,7 +7,6 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![Issue Count](https://codeclimate.com/github/luismayta/dotfiles/badges/issue_count.svg)](https://codeclimate.com/github/luismayta/dotfiles)
 [![Test Coverage](https://codeclimate.com/github/luismayta/dotfiles/badges/coverage.svg)](https://codeclimate.com/github/luismayta/dotfiles/coverage)
-</span>
 
 ## Introduction
 
