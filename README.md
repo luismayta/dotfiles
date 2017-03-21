@@ -1,6 +1,5 @@
 # Dotfiles
 
-<span class="badges" align="center">
 [![Build Status](https://travis-ci.org/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles)
 [![Code Climate](https://codeclimate.com/github/luismayta/dotfiles/badges/gpa.svg)](https://codeclimate.com/github/luismayta/dotfiles)
 [![GitHub tag](https://img.shields.io/github/tag/luismayta/dotfiles.svg?maxAge=2592000)](https://github.com/luismayta/dotfiles)
@@ -8,7 +7,6 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](LICENSE)
 [![Issue Count](https://codeclimate.com/github/luismayta/dotfiles/badges/issue_count.svg)](https://codeclimate.com/github/luismayta/dotfiles)
 [![Test Coverage](https://codeclimate.com/github/luismayta/dotfiles/badges/coverage.svg)](https://codeclimate.com/github/luismayta/dotfiles/coverage)
-</span>
 
 ## Introduction
 
@@ -185,6 +183,7 @@ and reattach them to a different terminal. And do a lot more.
 | bobthecow/git-flow-completion                  |                                        |
 | luismayta/zsh-git-aliases                      |                                        |
 | luismayta/zsh-docker-compose-aliases           |                                        |
+| luismayta/zsh-servers-functions                |                                        |
 | Tarrasch/zsh-autoenv                           |                                        |
 | Tarrasch/zsh-colors                            |                                        |
 | chrissicool/zsh-256color                       |                                        |
@@ -214,15 +213,12 @@ and reattach them to a different terminal. And do a lot more.
 
 [zsh-wakatime](https://github.com/wbinglee/zsh-wakatime)
 
-<span class="badges">
 [![linkedin](http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png)](http://pe.linkedin.com/in/luismayta)
 [![beacon](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
-</span>
 
 Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 
 
-<!-- Plugins Antibody -->
 [link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
 [link-plugin-git]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
 [link-plugin-git-extras]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-extras
@@ -237,13 +233,10 @@ Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
 [link-plugin-command-not-found]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found
 [link-plugin-zsh-syntax-highlighting]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/zsh-syntax-highlighting
 
-<!-- Theme Antibody -->
 [link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
 
-<!-- Wakatime -->
 [link-wakatime]: https://wakatime.com/
 
-<!-- Other -->
 
 [link-author]: https://github.com/luismayta
 [link-contributors]: AUTHORS.md
