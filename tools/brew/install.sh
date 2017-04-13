@@ -109,6 +109,7 @@ brew install homebrew/gui/meld
 # Tools System
 brew install htop
 brew install peco
+brew install terminal-notifier
 
 # Remove outdated versions from the cellar.
 brew cleanup
