@@ -1,13 +1,8 @@
-version: '2'
+version: '3'
 services:
   dotfile:
     build: .
     image: luismayta/ubuntu-dotfiles:latest
-    volumes_from:
-      - source_store
-    restart: always
-
-  source_store:
-    image: busybox
     volumes:
-      - ./:/docker/.dotfiles
+      - .:/docker/.dotfiles
+    restart: always
