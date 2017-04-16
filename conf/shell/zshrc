@@ -15,20 +15,20 @@ source <(antibody init)
 # setup antibody
 antibody bundle caarlos0/zsh-mkc
 antibody bundle caarlos0/zsh-git-sync
-antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle benne10/goenv
 antibody bundle mafredri/zsh-async
 antibody bundle marszall87/lambda-pure
 antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
+antibody bundle luismayta/zsh-servers-functions
 antibody bundle Tarrasch/zsh-autoenv
 antibody bundle Tarrasch/zsh-colors
 antibody bundle chrissicool/zsh-256color
 antibody bundle dgnest/zsh-gvm-plugin
 antibody bundle wbinglee/zsh-wakatime
+antibody bundle zsh-users/zsh-completions
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-history-substring-search
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"

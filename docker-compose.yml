@@ -1,8 +1,8 @@
-version: '2'
+version: '3'
 services:
   dotfile:
     build: .
     image: luismayta/ubuntu-dotfiles:latest
     volumes:
-    - ./:/docker/.dotfiles
+      - .:/docker/.dotfiles
     restart: always

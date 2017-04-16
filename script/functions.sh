@@ -27,8 +27,7 @@ function die () {
 }
 
 function is_program_exist() {
-    which "${1}" >> /dev/null 2>&1 || return
-    return 1
+    which "${1}" >> /dev/null 2>&1 && echo 1 || echo 0
 }
 
 function program_exists() {
@@ -47,9 +46,10 @@ function program_exists() {
 function do_backup() {
     local ret='0'
     local message="Your old dotfiles stuff has a suffix now and looks like"
-    local today=`date +%Y%m%d`
-    local path_today="$PATH_BACKUP/$today/"
-    `mkdir -p "$path_today"`
+    local today
+    today=$(date +%Y%m%d)
+    local path_today="${PATH_BACKUP}/${today}/"
+    mkdir -p "${path_today}"
     local file_backup="$path_today${file##*/}"
 
     if [ -r "$1" ]; then
