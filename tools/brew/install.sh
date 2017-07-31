@@ -84,6 +84,9 @@ brew install woff2
 # Install other useful binaries.
 brew install dark-mode
 
+# Install youtube-dl
+brew install youtube-dl
+
 brew install git
 brew install git-lfs
 brew install git-flow
