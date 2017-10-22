@@ -1,3 +1,7 @@
--r ../requirements.txt
+-r dev.txt
+behave>=1.2.5
+mock==2.0.0
 PyHamcrest==1.9.0
-tox==2.1.1
+pytest==3.2.2
+pytest-cov==2.5.1
+tox==2.8.2
