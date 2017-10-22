@@ -14,7 +14,6 @@ EOF
 
 # Install command-line tools using Homebrew.
 brew update
-brew upgrade
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -25,12 +24,13 @@ ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 brew install doxygen
 
 # Tools Developer
-brew install Caskroom/cask/vagrant
+brew cask install vagrant virtualbox
+brew install docker-machine docker-machine-nfs
+
 brew install shellcheck
 brew install dnsmasq
 brew install ispell
 brew install hunspell
-brew install Caskroom/cask/virtualbox
 brew install graphviz
 brew cask install java
 
@@ -51,7 +51,7 @@ brew tap homebrew/versions
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
   chsh -s /usr/local/bin/bash;
 fi;
@@ -75,36 +75,13 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install unrar
 
-# Install font tools.
-brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
-brew install woff2
-
-# Install other useful binaries.
-brew install dark-mode
-
-# Install youtube-dl
-brew install youtube-dl
-
-brew install git
-brew install git-lfs
-brew install git-flow
-brew install lua
+brew install git git-lfs git-flow
 brew install lynx
 brew install p7zip
 
-# https://github.com/madler/pigz
-brew install pigz
-brew install pv
 brew install rename
 brew install ssh-copy-id
-brew install testssl
 brew install tree
-brew install vbindiff
-brew install webkit2png
-# https://github.com/google/zopfli
-brew install zopfli
 
 # Gui mergetool
 brew install homebrew/gui/meld
