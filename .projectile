@@ -6,5 +6,7 @@
 -/auto-save-list
 -*.cache
 -*.pyc
+-*.zip
 -.wercker/*
+-.chalice/deployments/*
 -projectile-bookmarks.eld
