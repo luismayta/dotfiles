@@ -3,6 +3,8 @@ docker-compose.yml
 node_modules/
 .git/
 coverage/
+vendor/
+docs/
 
 Dockerfile
 
@@ -16,3 +18,7 @@ Dockerfile
 .cache/
 .wercker/
 .sass-cache/*
+*.sql
+*.log
+*.pyc
+*.tar*
