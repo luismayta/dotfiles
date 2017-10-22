@@ -1,0 +1,6 @@
+pypandoc
+Sphinx==1.6.3
+sphinx-autodoc-typehints
+sphinx-paramlinks
+sphinx-rtd-theme==0.2.4
+sphinxcontrib-plantuml==0.8.1
