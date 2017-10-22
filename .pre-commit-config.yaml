@@ -1,5 +1,5 @@
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v0.9.1
+    sha: v0.9.4
     hooks:
     -   id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -8,8 +8,7 @@
         language_version: python3
         files: ^tf|-|\.(py|tfvars|tf|tfenv|env|yml|yaml|pem|key|mock)$
     -   id: end-of-file-fixer
-        files: ^tf|-|\.(py|tfvars|tf|tfenv|env|yml|yaml|pem|key|mock)$
-        language_version: python3
+        files: ^tf|-|\.(py|env|yml|yaml|pem|key|mock)$
     -   id: check-added-large-files
         files: ^tf|-|\.(py|env|yml|yaml)$
     -   id: check-case-conflict
@@ -20,6 +19,7 @@
     -   id: check-yaml
         language_version: python3
     -   id: check-case-conflict
+    -   id: check-byte-order-marker
     -   id: check-ast
         language_version: python3
     -   id: debug-statements
@@ -30,10 +30,14 @@
         language_version: python3
     -   id: double-quote-string-fixer
     -   id: check-docstring-first
+    -   id: pretty-format-json
     -   id: debug-statements
     -   id: detect-aws-credentials
     -   id: requirements-txt-fixer
+    -   id: check-symlinks
     -   id: name-tests-test
+        args:
+        - --django
     -   id: file-contents-sorter
     -   id: fix-encoding-pragma
     -   id: no-commit-to-branch
@@ -56,27 +60,25 @@
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v0.15.4
+    sha: v1.1.2
     hooks:
-    -   id: validate_config
     -   id: validate_manifest
--   repo: https://github.com/FalconSocial/pre-commit-python-sorter.git
-    sha: 1.0.4
+-   repo: https://github.com/asottile/reorder_python_imports.git
+    sha: v0.3.5
     hooks:
-    -   id: python-import-sorter
-        args:
-        - --silent-overwrite
+    -   id: reorder-python-imports
+        language_version: python3
 -   repo: https://github.com/detailyang/pre-commit-shell.git
-    sha: 1.0.1
+    sha: 1.0.2
     hooks:
     -   id: shell-lint
-        exclude: ^script/wait-for-it.sh$
+        exclude: ^extras/script/wait-for-it.sh$
         args:
         - --exclude=SC1072,SC1073,SC2068
--   repo: https://github.com/antonbabenko/pre-commit-terraform.git
-    sha: v1.2.0
+-   repo: https://github.com/asottile/add-trailing-comma
+    sha: v0.6.4
     hooks:
-    -   id: terraform_fmt
+    -   id: add-trailing-comma
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
     sha: v1.1.0
     hooks:
