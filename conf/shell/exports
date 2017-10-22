@@ -42,4 +42,4 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 [[ -e "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
 
 # Add var plantuml.jar
-export PLANTUML_JAR_PATH="$HOME/.dotfiles/jar/plantuml.jar"
+export PLANTUML_JAR_PATH="$HOME/.dotfiles/extras/jar/plantuml.jar"
