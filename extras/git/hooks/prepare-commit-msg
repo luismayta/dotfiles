@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+
+ORIG_MSG_FILE="$1"
+TEMP=`mktemp /tmp/git-XXXXX`
+
+TICKETNO=`git branch | grep '^\*' | cut -b3- | sed 's/[a-z/]//g'`
+
+(echo "!$TICKETNO"; cat "$ORIG_MSG_FILE") > "$TEMP"
+cat "$TEMP" > "$ORIG_MSG_FILE"
