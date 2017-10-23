@@ -70,7 +70,7 @@ for languages with rich morphology and complex word compounding or character enc
 
 ### Fonts
 
-[Fonts](resources/fonts/)
+[Fonts](extras/fonts/)
 
 | Powerline Font Family                  | Formerly Known As        | License                             |
 | -------------------------------------- |:------------------------:|------------------------------------:|
