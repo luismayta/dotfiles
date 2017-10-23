@@ -37,8 +37,6 @@ alias xclip="xclip -selection c"
 alias ll="ls -l"
 alias ls="ls -a"
 
-alias transfer=transfer
-
 # download
 
 alias wget='wget --user-agent="Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
