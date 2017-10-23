@@ -68,7 +68,7 @@ clone_repo() {
 
     if [[ "$ret" -eq '0' ]] && [[ ! $TRAVIS = 'true' ]]; then
         cd "${PATH_REPO}" || exit
-        make install
+        make run
     fi
 }
 
