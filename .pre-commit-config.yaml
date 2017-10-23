@@ -74,7 +74,7 @@
     -   id: shell-lint
         exclude: ^zsh/.*\.zsh$
         args:
-        - --exclude=SC1072,SC1073,SC2068
+        - --exclude=SC1072,SC1073,SC2068,SC2154,SC2034
 -   repo: https://github.com/asottile/add-trailing-comma
     sha: v0.6.4
     hooks:
