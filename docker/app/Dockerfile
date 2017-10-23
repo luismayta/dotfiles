@@ -1,12 +1,11 @@
-FROM python:3.6.1
+FROM luismayta/ubuntu-dotfiles:latest
 
 MAINTAINER Luis Mayta <@slovacus>
+# Set environment variables.
+ENV HOME /usr/src
+ENV SRC_PATH "${HOME}"/.dotfiles
 
-COPY ./requirements/ /usr/src/requirements/
-COPY ./requirements.txt /usr/src/requirements.txt
+# Define working directory.
+WORKDIR "${SRC_PATH}"
 
-# set working directory to /usr/src/
-WORKDIR /usr/src/
-
-# install python dependencies
-RUN pip install --no-cache -r /usr/src/requirements.txt
+CMD ["zsh"]
