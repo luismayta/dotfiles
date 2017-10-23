@@ -21,10 +21,11 @@ SHELL := /bin/bash
 ROOT_DIR=$(shell pwd)
 MESSAGE:=༼ つ ◕_◕ ༽つ
 MESSAGE_HAPPY:="${MESSAGE} Happy Coding"
-SCRIPT_DIR=$(ROOT_DIR)/extras/scripts
+SCRIPT_DIR=$(ROOT_DIR)/extras/script
 SOURCE_DIR=$(ROOT_DIR)/
 REQUIREMENTS_DIR=$(ROOT_DIR)/requirements/
 FILE_README=$(ROOT_DIR)/README.rst
+RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
 
 include *.mk
 
@@ -36,6 +37,7 @@ help:
 	@echo '    install                   install dependences python by env'
 	@echo '    clean                     remove files of build'
 	@echo '    setup                     install requirements'
+	@echo '    run                       install scripts'
 	@echo ''
 	@echo '    Docker:'
 	@echo ''
@@ -85,3 +87,7 @@ install: clean
 	else \
 		pip install -r "${REQUIREMENTS_DIR}/${env}.txt"; \
 	fi
+
+run: clean
+	@echo $(MESSAGE) "Install environment"
+	$(RUN)
