@@ -70,7 +70,7 @@ for languages with rich morphology and complex word compounding or character enc
 
 ### Fonts
 
-[Fonts](resources/fonts/)
+[Fonts](extras/fonts/)
 
 | Powerline Font Family                  | Formerly Known As        | License                             |
 | -------------------------------------- |:------------------------:|------------------------------------:|
@@ -204,10 +204,6 @@ and reattach them to a different terminal. And do a lot more.
 ### Tmux Themepack
 
 [Tmux Themepack](https://github.com/jimeh/tmux-themepack) A pack of various themes for Tmux.
-
-### Transfer.sh
-
-[transfer.sh](https://transfer.sh/) Easy file sharing from the command line.
 
 **Wakatime Terminal:**
 

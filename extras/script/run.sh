@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # shellcheck source=/dev/null
-[ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
+[ -r "extras/script/bootstrap.sh" ] && source "extras/script/bootstrap.sh"
 
 if [[ $TEST = 'true' ]]; then
     initialize

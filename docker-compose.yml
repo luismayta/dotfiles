@@ -1,8 +1,30 @@
+# dotfiles: Docker Compose
+# https://docs.docker.com/compose/
+#
+# Usage: docker-compose up
 version: '3'
 services:
-  dotfile:
-    build: .
-    image: luismayta/ubuntu-dotfiles:latest
-    volumes:
-      - .:/docker/.dotfiles
+
+  app:
     restart: always
+    image: luismayta/ubuntu-dotfiles:latest
+    environment: &environment
+      - APP_NAME=dotfiles
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    volumes:
+      - .:/usr/src/.dotfiles
+    env_file:
+      - .env
+
+  docs:
+    restart: always
+    image: labpositiva/latex:3.6.1
+    build:
+      context: .
+      dockerfile: docker/docs/Dockerfile
+    volumes:
+      - .:/usr/src
+    env_file:
+      - .env

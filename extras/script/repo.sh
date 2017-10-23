@@ -21,6 +21,6 @@ function clone_repo() {
         success "$1"
         debug
     else
-        upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
+        upgrade_repo "$APP_NAME" "Successfully updated ${APP_NAME}"
     fi
 }

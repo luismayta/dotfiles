@@ -3,7 +3,6 @@
 
 export HOME=~
 export PROJECT_NAME=dotfiles
-export PYTHON_VERSION=2.7.9
 export PYENV_NAME="${PROJECT_NAME}"
 
 export GRIP_PORT=6430
@@ -11,11 +10,9 @@ export GRIP_PORT=6430
 # Vars Dir application
 export ROOT_DIR
 ROOT_DIR=$(pwd)
-export RESOURCES_DIR="${ROOT_DIR}/resources"
-export RESOURCES_DB_DIR="${RESOURCES_DIR}/db"
-export REQUIREMENTS_DIR="${ROOT_DIR}/requirements"
+export EXTRAS_DIR="${ROOT_DIR}/extras"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
-export SCRIPT_DIR="${PATH_REPO}/script"
+export SCRIPT_DIR="${PATH_REPO}/extras/script"
 export CONF_DIR="${PATH_REPO}/conf"
 export TOOLS_DIR="${PATH_REPO}/tools"
 
@@ -31,7 +28,7 @@ export PATH_RVM="$HOME/.rvm"
 export PATH_NVM="$HOME/.nvm"
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
-export PATH_FONTS_REPO="$PATH_REPO/resources/fonts"
+export PATH_FONTS_REPO="$PATH_REPO/extras/fonts"
 
 export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
 export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"

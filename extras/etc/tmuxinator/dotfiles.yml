@@ -33,7 +33,7 @@ windows:
       panes:
         - editor:
             - pyenv activate dotfiles
-            - <%= ENV["EDITOR"] %>
+            - pyenv activate dotfiles
         - docker:
             - pyenv activate dotfiles
   - python:

@@ -11,7 +11,7 @@ function success() {
     fi
 }
 
-function error() {
+function errer() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
     exit 1
 }

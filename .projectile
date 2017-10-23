@@ -1,9 +1,12 @@
 -/log
 -/tmp
--/vendor
 -/.git
+-/.vagrant
+-/vendor
+-/auto-save-list
 -*.cache
+-*.pyc
+-*.zip
+-.wercker/*
+-.chalice/deployments/*
 -projectile-bookmarks.eld
--GPATH
--GRTAGS
--GTAGS
