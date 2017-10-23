@@ -90,22 +90,6 @@ for languages with rich morphology and complex word compounding or character enc
 | Monofur for Powerline                  | Monofur                  | Freeware                            |
 | Fura Powerline                         | FiraMono                 | SIL Open Font License, Version 1.1  |
 
-## Settings
-
-### netrc
-
-github recently switched to an https scheme as the default for cloning repos. as a side effect you may suddenly
-be prompted for a 'Username' and 'Password' when you push where, previously, you were able to do so without typing in credentials.
-the solution is to cause git to cache https credentials which is easy, since git uses curl under the covers.
-
-***~/.netrc***
-
-```bash
-machine github.com
-login YOUR_GITHUB_USERNAME
-password YOUR_GITHUB_PASSWORD
-```
-
 ## Applications
 
 ### Git
@@ -183,6 +167,7 @@ and reattach them to a different terminal. And do a lot more.
 | bobthecow/git-flow-completion                  |                                        |
 | luismayta/zsh-git-aliases                      |                                        |
 | luismayta/zsh-docker-compose-aliases           |                                        |
+| luismayta/zsh-docker-machine-aliases           |                                        |
 | luismayta/zsh-servers-functions                |                                        |
 | Tarrasch/zsh-autoenv                           |                                        |
 | Tarrasch/zsh-colors                            |                                        |
@@ -213,25 +198,6 @@ and reattach them to a different terminal. And do a lot more.
 [![beacon](https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme)](https://github.com/luismayta/dotfiles)
 
 Made with :heart: ️:coffee:️ and :pizza: by [luismayta][link-author].
-
-
-[link-plugin-go]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/go
-[link-plugin-git]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
-[link-plugin-git-extras]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-extras
-[link-plugin-ruby]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/ruby
-[link-plugin-rvm]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/rvm
-[link-plugin-golang]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/golang
-[link-plugin-python]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/python
-[link-plugin-pip]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/pip
-[link-plugin-pyenv]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/pyenv
-[link-plugin-git-flow]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-flow
-[link-plugin-heroku]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/heroku
-[link-plugin-command-not-found]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/command-not-found
-[link-plugin-zsh-syntax-highlighting]: https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/zsh-syntax-highlighting
-
-[link-bullet-train]: https://github.com/caiogondim/bullet-train-oh-my-zsh-theme
-
-[link-wakatime]: https://wakatime.com/
 
 
 [link-author]: https://github.com/luismayta
