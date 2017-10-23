@@ -1,0 +1,13 @@
+# dotfiles: Docker Compose
+# https://docs.docker.com/compose/
+#
+# Usage: test up
+version: '3'
+services:
+
+  app:
+    environment: &environment
+      - APP_NAME=dotfiles
+    build:
+      context: .
+      dockerfile: docker/app-test/Dockerfile
