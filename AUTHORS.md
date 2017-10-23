@@ -1,1 +1,0 @@
-@slovacus <slovacus@gmail.com>
