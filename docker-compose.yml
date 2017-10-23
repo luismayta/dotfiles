@@ -7,14 +7,14 @@ services:
 
   app:
     restart: always
-    image: python:3.6.1
+    image: luismayta/ubuntu-dotfiles:latest
     environment: &environment
       - APP_NAME=dotfiles
     build:
       context: .
       dockerfile: docker/app/Dockerfile
     volumes:
-      - .:/usr/src
+      - .:/usr/src/.dotfiles
     env_file:
       - .env
 
