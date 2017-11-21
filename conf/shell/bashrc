@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+# shellcheck source=/dev/null
+[ -f "$HOME/.zshrc" ] && source "$HOME/.zshrc"
