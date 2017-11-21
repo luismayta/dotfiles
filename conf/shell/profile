@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Load the shell dotfiles, and then some:
-# * ~/.extra can be used for other settings you don’t want to commit.
+# * ~/.customrc can be used for other settings you don’t want to commit.
+# shellcheck source=/dev/null
 for file in ~/.{exports,bash_prompt,load,aliases,functions,inputrc,customrc}; do
 	[ -r "$file" ] && source "$file"
 done
