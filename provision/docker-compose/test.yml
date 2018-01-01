@@ -1,4 +1,4 @@
-# dotfiles: Docker Compose
+# Docker Compose
 # https://docs.docker.com/compose/
 #
 # Usage: test up
@@ -10,4 +10,4 @@ services:
       - APP_NAME=dotfiles
     build:
       context: .
-      dockerfile: docker/app-test/Dockerfile
+      dockerfile: provision/docker/app-test/Dockerfile
