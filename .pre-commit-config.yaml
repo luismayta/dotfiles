@@ -1,7 +1,8 @@
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v0.9.4
+    sha: v1.1.1
     hooks:
     -   id: detect-private-key
+        exclude: ^provision/docker/templates/id_rsa$
         files: ^(?!\.?git-crypt)
     -   id: check-merge-conflict
     -   id: trailing-whitespace
@@ -13,7 +14,9 @@
         files: ^tf|-|\.(py|env|yml|yaml)$
     -   id: check-case-conflict
     -   id: check-json
-        language_version: python3
+    -   id: pretty-format-json
+        args:
+        - --autofix
     -   id: check-xml
         language_version: python3
     -   id: check-yaml
@@ -26,7 +29,7 @@
     -   id: autopep8-wrapper
         args:
         - -i
-        - --ignore=E501
+        - --ignore=E501,D205
         language_version: python3
     -   id: double-quote-string-fixer
     -   id: check-docstring-first
@@ -48,33 +51,35 @@
         - --max-line-length=80
         - --diff
         - --exclude=docs,migrations
+    -   id: check-executables-have-shebangs
 -   repo: https://github.com/pre-commit/mirrors-pylint.git
-    sha: v1.7.2
+    sha: v1.7.4
     hooks:
     -   id: pylint
         language_version: python3
         exclude: ^migrations/.*\.py$
         args:
         - --rcfile=.pylintrc
-        - --errors-only
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.1.2
+    sha: v1.4.1
     hooks:
     -   id: validate_manifest
--   repo: https://github.com/asottile/reorder_python_imports.git
-    sha: v0.3.5
+-   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+    sha: 1.0.4
     hooks:
-    -   id: reorder-python-imports
+    -   id: python-import-sorter
+        args:
+        - --silent-overwrite
         language_version: python3
 -   repo: https://github.com/detailyang/pre-commit-shell.git
     sha: 1.0.2
     hooks:
     -   id: shell-lint
-        exclude: ^zsh/.*\.zsh$
+        exclude: ^extras/script/wait-for-it.sh$
         args:
-        - --exclude=SC1072,SC1073,SC2068,SC2154,SC2034
+        - --exclude=SC1072,SC1073,SC2068
 -   repo: https://github.com/asottile/add-trailing-comma
     sha: v0.6.4
     hooks:
@@ -89,3 +94,21 @@
     -   id: python-bandit-vulnerability-check
         args: []
         files: .py$
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
+    sha: v1.1.0
+    hooks:
+    -   id: dockerfile_lint
+    -   id: markdown-toc
+-   repo: git://github.com/Lucas-C/pre-commit-hooks-markup
+    sha: v1.0.0
+    hooks:
+    -   id: rst-linter
+        exclude: (docs/*|tests/*)
+-   repo: https://github.com/asottile/pyupgrade
+    sha: v1.2.0
+    hooks:
+    -   id: pyupgrade
+-   repo: https://github.com/pricematch/pricematch-pre-commit-hooks
+    sha: 82b0c142b363547cc873bc6581fa3074087a37d2
+    hooks:
+    -   id: do_not_commit
