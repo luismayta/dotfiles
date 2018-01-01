@@ -1,5 +1,4 @@
 # ~/.tmuxinator/dotfiles.yml
-
 name: dotfiles
 root: <%= ENV["PROJECTS"] %>/bash/dotfiles
 tmux_options: -2
@@ -8,6 +7,8 @@ tmux_options: -2
 
 # Runs before everything. Use it to start daemons etc.
 # pre: sudo /etc/rc.d/mysqld start
+pre:
+  - make environment
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -29,12 +30,13 @@ tmux_options: -2
 
 windows:
   - editor:
-      layout: main-vertical
+      layout: even-horizontal
       panes:
         - editor:
             - pyenv activate dotfiles
+        - pwd:
             - pyenv activate dotfiles
-        - docker:
+        - pwd:
             - pyenv activate dotfiles
   - python:
       layout: main-vertical
@@ -42,6 +44,8 @@ windows:
         - python:
             - pyenv activate dotfiles
             - ipython
+        - python:
+            - pyenv activate dotfiles
   - databases:
       layout: main-vertical
       panes:
@@ -49,10 +53,17 @@ windows:
             - pyenv activate dotfiles
         - mysql:
             - pyenv activate dotfiles
+  - aws:
+      layout: main-vertical
+      panes:
+        - webserver:
+            - pyenv activate dotfiles
+        - databases:
+            - pyenv activate dotfiles
   - docker:
       layout: main-vertical
       panes:
-        - docker:
+        - webserver:
             - pyenv activate dotfiles
-        - docker:
+        - databases:
             - pyenv activate dotfiles
