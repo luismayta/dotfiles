@@ -1,0 +1,69 @@
+# ~/.tmuxinator/dotfiles.yml
+name: dotfiles
+root: <%= ENV["PROJECTS"] %>/bash/dotfiles
+tmux_options: -2
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+pre:
+  - make environment
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t dotfiles
+
+windows:
+  - editor:
+      layout: even-horizontal
+      panes:
+        - editor:
+            - pyenv activate dotfiles
+        - pwd:
+            - pyenv activate dotfiles
+        - pwd:
+            - pyenv activate dotfiles
+  - python:
+      layout: main-vertical
+      panes:
+        - python:
+            - pyenv activate dotfiles
+            - ipython
+        - python:
+            - pyenv activate dotfiles
+  - databases:
+      layout: main-vertical
+      panes:
+        - postgresql:
+            - pyenv activate dotfiles
+        - mysql:
+            - pyenv activate dotfiles
+  - aws:
+      layout: main-vertical
+      panes:
+        - webserver:
+            - pyenv activate dotfiles
+        - databases:
+            - pyenv activate dotfiles
+  - docker:
+      layout: main-vertical
+      panes:
+        - webserver:
+            - pyenv activate dotfiles
+        - databases:
+            - pyenv activate dotfiles
