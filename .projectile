@@ -8,5 +8,8 @@
 -*.pyc
 -*.zip
 -.wercker/*
--.chalice/deployments/*
+-/docs/build
+-GPATH
+-GRTAGS
+-GTAGS
 -projectile-bookmarks.eld
