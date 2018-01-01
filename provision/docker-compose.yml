@@ -12,7 +12,7 @@ services:
       - APP_NAME=dotfiles
     build:
       context: .
-      dockerfile: docker/app/Dockerfile
+      dockerfile: provision/docker/app/Dockerfile
     volumes:
       - .:/usr/src/.dotfiles
     env_file:
@@ -23,7 +23,7 @@ services:
     image: labpositiva/latex:3.6.1
     build:
       context: .
-      dockerfile: docker/docs/Dockerfile
+      dockerfile: provision/docker/docs/Dockerfile
     volumes:
       - .:/usr/src
     env_file:
