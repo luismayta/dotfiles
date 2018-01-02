@@ -8,13 +8,14 @@ END :=""
 .PHONY: help build up requirements clean lint test help
 .DEFAULT_GOAL := help
 
-PROJECT_NAME := dotfiles
-PROJECT_NAME_DEV := $(PROJECT_NAME)_dev
-PROJECT_NAME_STAGE := $(PROJECT_NAME)_stage
-PROJECT_NAME_TEST := $(PROJECT_NAME)_test
+PROJECT := peru
+PROJECT_DEV := $(PROJECT)_dev
+PROJECT_STAGE := $(PROJECT)_stage
+PROJECT_TEST := $(PROJECT)_test
+PROJECT_PORT := 8000
 
 PYTHON_VERSION=3.6.1
-PYENV_NAME="${PROJECT_NAME}"
+PYENV_NAME="${PROJECT}"
 
 # Configuration.
 SHELL := /bin/bash
@@ -27,10 +28,12 @@ REQUIREMENTS_DIR=$(ROOT_DIR)/requirements/
 FILE_README=$(ROOT_DIR)/README.rst
 RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
 
+pip_install := pip install --no-cache -r
+
 include *.mk
 
 help:
-	@echo '${MESSAGE} Makefile for dotfiles'
+	@echo '${MESSAGE} Makefile for ${PROJECT}'
 	@echo ''
 	@echo 'Usage:'
 	@echo '    environment               create environment with pyenv'
@@ -39,38 +42,24 @@ help:
 	@echo '    setup                     install requirements'
 	@echo '    run                       install scripts'
 	@echo ''
-	@echo '    Docker:'
-	@echo ''
-	@echo '        docker.build         build all services with docker-compose'
-	@echo '        docker.down          down services docker-compose'
-	@echo '        docker.ssh           connect by ssh to container'
-	@echo '        docker.stop          stop services by env'
-	@echo '        docker.verify_network           verify network'
-	@echo '        docker.up             up services of docker-compose'
-	@echo '        docker.run            run {service} {env}'
-	@echo '        docker.list           list services of docker'
-	@echo ''
-	@echo '    Docs:'
-	@echo ''
-	@echo '        docs.show                  Show restview README'
-	@echo '        docs.make.html             Make documentation html'
-	@echo '        docs.make.pdf              Make documentation pdf'
-	@echo ''
-	@echo '    Tests:'
-	@echo ''
-	@echo '        test.lint                  Run all pre-commit'
-	@echo '        test.syntax                Run all syntax in code'
-	@echo ''
+	@make docker.help
+	@make docs.help
+	@make test.help
 
 clean:
 	@echo "$(TAG)"Cleaning up"$(END)"
 	@rm -rf .tox *.egg dist build .coverage
+	@rm -rf docs/build
 	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
 	@echo
 
 setup: clean
-	pip install -r "${REQUIREMENTS_DIR}/setup.txt"
+	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
 	pre-commit install
+	cp -rf extras/git/hooks/prepare-commit-msg .git/hooks/
+	@if [ ! -e ".env" ]; then \
+		cp -rf .env-sample .env;\
+	fi
 
 environment: clean
 	@if [ -e "$(HOME)/.pyenv" ]; then \
@@ -83,9 +72,9 @@ environment: clean
 install: clean
 	@echo $(MESSAGE) "Deployment environment: ${env}"
 	@if [ "${env}" == "" ]; then \
-		pip install -r requirements.txt; \
+		$(pip_install) requirements.txt; \
 	else \
-		pip install -r "${REQUIREMENTS_DIR}/${env}.txt"; \
+		$(pip_install) "${REQUIREMENTS_DIR}/${env}.txt"; \
 	fi
 
 run: clean
