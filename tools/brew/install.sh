@@ -20,9 +20,6 @@ brew update
 brew install coreutils
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
-# dependences
-brew install doxygen
-
 # Tools Developer
 brew cask install vagrant virtualbox
 brew install docker-machine docker-machine-nfs
@@ -89,9 +86,7 @@ brew install tree
 brew install homebrew/gui/meld
 
 # Tools System
-brew install htop
-brew install peco
-brew install terminal-notifier
+brew install htop peco terminal-notifier
 
 # Remove outdated versions from the cellar.
 brew cleanup
