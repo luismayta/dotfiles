@@ -3,20 +3,25 @@
 
 export ZSH=$HOME/.dotfiles
 
+export SHELL=/bin/zsh
+
 # AUTO-UPDATES
 export UPDATE_ZSH_DAYS=1
 
 # DISABLE AUTOCORRECTION
 DISABLE_CORRECTION="true"
 
+# autoload color
+autoload -U colors && colors
+
 # ANTIBODY — plugin manager
 source <(antibody init)
 
 # setup antibody
+antibody bundle chrissicool/zsh-256color
 antibody bundle caarlos0/zsh-mkc
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
-antibody bundle marszall87/lambda-pure
 antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
@@ -29,7 +34,13 @@ antibody bundle dgnest/zsh-gvm-plugin
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle mollifier/cd-gitroot
+antibody bundle wwilsman/zsh-clean-project
+antibody bundle marzocchi/zsh-notify
+antibody bundle sindresorhus/pretty-time-zsh
+antibody bundle gko/ssh-connect
+antibody bundle unixorn/git-extra-commands
+antibody bundle marszall87/lambda-pure
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
@@ -45,6 +56,9 @@ HISTCONTROL=ignoredups:ignorespace
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+ZSH_TMUX_AUTOSTART=false
+[[ $TMUX == "" ]] && tmux new-session -A -s hacker
 
 # shellcheck source=/dev/null
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
