@@ -2,16 +2,10 @@
 # See ./CONTRIBUTING.rst
 #
 
-TAG :=""
-END :=""
-
 .PHONY: help build up requirements clean lint test help
 .DEFAULT_GOAL := help
 
-PROJECT := peru
-PROJECT_DEV := $(PROJECT)_dev
-PROJECT_STAGE := $(PROJECT)_stage
-PROJECT_TEST := $(PROJECT)_test
+PROJECT := dotfiles
 PROJECT_PORT := 8000
 
 PYTHON_VERSION=3.6.1
@@ -30,14 +24,13 @@ RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
 
 pip_install := pip install --no-cache -r
 
-include *.mk
+include extras/make/*.mk
 
 help:
 	@echo '${MESSAGE} Makefile for ${PROJECT}'
 	@echo ''
 	@echo 'Usage:'
 	@echo '    environment               create environment with pyenv'
-	@echo '    install                   install dependences python by env'
 	@echo '    clean                     remove files of build'
 	@echo '    setup                     install requirements'
 	@echo '    run                       install scripts'
@@ -68,14 +61,6 @@ environment: clean
 	fi
 	pyenv virtualenv "${PYTHON_VERSION}" "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
 	pyenv activate "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
-
-install: clean
-	@echo $(MESSAGE) "Deployment environment: ${env}"
-	@if [ "${env}" == "" ]; then \
-		$(pip_install) requirements.txt; \
-	else \
-		$(pip_install) "${REQUIREMENTS_DIR}/${env}.txt"; \
-	fi
 
 run: clean
 	@echo $(MESSAGE) "Install environment"
