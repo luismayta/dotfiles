@@ -21,9 +21,6 @@ brew install coreutils
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Tools Developer
-brew cask install vagrant virtualbox
-brew install docker-machine docker-machine-nfs
-
 brew install shellcheck
 brew install dnsmasq
 brew install ispell
