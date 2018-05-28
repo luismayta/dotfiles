@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# this commit hook prepends the  branch name to the commit message
+# so that jira, github, gitlab can associate it with a ticket
 
-ORIG_MSG_FILE="$1"
-TEMP=`mktemp /tmp/git-XXXXX`
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+    BRANCHES_TO_SKIP=(master develop test)
+fi
 
-TICKETNO=`git branch | grep '^\*' | cut -b3- | sed 's/[a-z/]//g'`
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+BRANCH_NAME="${BRANCH_NAME##*/}"
 
-(echo "!$TICKETNO"; cat "$ORIG_MSG_FILE") > "$TEMP"
-cat "$TEMP" > "$ORIG_MSG_FILE"
+BRANCH_EXCLUDED=$(printf "%s\\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+BRANCH_IN_COMMIT=$(grep -c "\\[$BRANCH_NAME\]" $1)
+
+if [ -n "$BRANCH_NAME" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $BRANCH_IN_COMMIT -ge 1 ]]; then
+    sed -i.bak -e "1s/^/($BRANCH_NAME) /" $1
+fi
