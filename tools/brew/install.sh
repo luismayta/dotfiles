@@ -54,10 +54,12 @@ fi;
 brew install the_silver_searcher
 brew install editorconfig
 brew install aspell --with-lang-en
+brew install libevent
 
 # for the GNU global tag system. Used by ggtags.
 brew install --HEAD ctags
 brew install global --with-ctags
+
 # program used for plantuml
 brew install graphviz
 brew install markdown
