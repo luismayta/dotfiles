@@ -2,4 +2,7 @@ bumplus==0.0.8
 bumpversion==0.5.3
 docker-compose==1.17.1
 pre-commit==0.15.2
-restview>=2.8.1
+pylint==1.7.1
+restview==2.9.1
+rope==0.10.7
+yapf==0.16.1
