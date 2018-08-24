@@ -8,7 +8,7 @@
 PROJECT := dotfiles
 PROJECT_PORT := 8000
 
-PYTHON_VERSION=3.6.1
+PYTHON_VERSION=3.6.4
 PYENV_NAME="${PROJECT}"
 
 # Configuration.
@@ -49,7 +49,7 @@ clean:
 setup: clean
 	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
 	pre-commit install
-	cp -rf extras/git/hooks/prepare-commit-msg .git/hooks/
+	cp -rf .hooks/prepare-commit-msg .git/hooks/
 	@if [ ! -e ".env" ]; then \
 		cp -rf .env-sample .env;\
 	fi
