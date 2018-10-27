@@ -14,7 +14,7 @@ PYENV_NAME="${PROJECT}"
 # Configuration.
 SHELL := /bin/bash
 ROOT_DIR=$(shell pwd)
-MESSAGE:=༼ つ ◕_◕ ༽つ
+MESSAGE:=🍺️
 MESSAGE_HAPPY:="${MESSAGE} Happy Coding"
 SCRIPT_DIR=$(ROOT_DIR)/extras/script
 SOURCE_DIR=$(ROOT_DIR)/
@@ -50,9 +50,6 @@ setup: clean
 	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
 	pre-commit install
 	cp -rf .hooks/prepare-commit-msg .git/hooks/
-	@if [ ! -e ".env" ]; then \
-		cp -rf .env-sample .env;\
-	fi
 
 environment: clean
 	@if [ -e "$(HOME)/.pyenv" ]; then \
