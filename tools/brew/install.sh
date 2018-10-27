@@ -22,7 +22,6 @@ ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Tools Developer
 brew install shellcheck
-brew install dnsmasq
 brew install ispell
 brew install hunspell
 brew install graphviz
@@ -46,15 +45,15 @@ brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
 if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
+    echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+    chsh -s /usr/local/bin/bash;
 fi;
 
 # developer
 brew install the_silver_searcher
 brew install editorconfig
 brew install aspell --with-lang-en
-brew install libevent
+brew install libevent libev docker-clean
 
 # for the GNU global tag system. Used by ggtags.
 brew install --HEAD ctags
