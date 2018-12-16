@@ -1,24 +1,24 @@
 ChangeLog
-#########
+---------
 
 All notable changes to this project will be documented in this file.
 This file uses change log convention from `keep a CHANGELOG`_.
 
 
 `Unreleased`_
-*************
++++++++++++++
 
 
 `1.2.0`_ - 2018-01-02
-**********************
+++++++++++++++++++++++
 
 
 `1.1.0`_ - 2017-11-21
-**********************
+++++++++++++++++++++++
 
 
 `1.0.0`_ - 2017-10-23
-**********************
+++++++++++++++++++++++
 
 
 .. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.2.0...HEAD
