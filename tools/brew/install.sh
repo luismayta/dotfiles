@@ -70,21 +70,20 @@ brew install wget --with-iri
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
-brew install unrar
+brew install unrar ncdu
 
-brew install git git-lfs git-flow
-brew install lynx
-brew install p7zip
+brew install git git-lfs git-flow lynx p7zip tig
 
 brew install rename
 brew install ssh-copy-id
-brew install tree
+brew install tree telnet
 
 # Gui mergetool
 brew install homebrew/gui/meld
 
-# Tools System
-brew install htop peco terminal-notifier
+# Tools System DevOps
+brew install htop peco terminal-notifier packer terragrunt aws-shell
+brew cask install aws-vault
 
 # Remove outdated versions from the cellar.
 brew cleanup
