@@ -56,8 +56,8 @@ environment: clean
 		eval "$(pyenv init -)"; \
 		eval "$(pyenv virtualenv-init -)"; \
 	fi
-	pyenv virtualenv "${PYTHON_VERSION}" "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
-	pyenv activate "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
+	@pyenv virtualenv ${PYTHON_VERSION} ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
+	@pyenv activate ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
 
 run: clean
 	@echo $(MESSAGE) "Install environment"
