@@ -25,7 +25,6 @@ antibody bundle mafredri/zsh-async
 antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
-antibody bundle luismayta/zsh-docker-machine-aliases
 antibody bundle luismayta/zsh-servers-functions
 antibody bundle Tarrasch/zsh-autoenv
 antibody bundle Tarrasch/zsh-colors
@@ -36,11 +35,17 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle mollifier/cd-gitroot
 antibody bundle wwilsman/zsh-clean-project
+antibody bundle davidparsson/zsh-pyenv-lazy
 antibody bundle marzocchi/zsh-notify
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle gko/ssh-connect
 antibody bundle unixorn/git-extra-commands
 antibody bundle marszall87/lambda-pure
+antibody bundle b4b4r07/enhancd
+antibody bundle jimeh/zsh-peco-history
+antibody bundle desyncr/auto-ls
+antibody bundle blimmer/zsh-aws-vault
+antibody bundle willghatch/zsh-hooks
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
@@ -58,7 +63,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 ZSH_TMUX_AUTOSTART=false
-[[ $TMUX == "" ]] && tmux new-session -A -s hacker
+[[ $TMUX == "" ]] && tmux new-session -A -s "${USER}"
 
 # shellcheck source=/dev/null
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"

@@ -21,11 +21,7 @@ brew install coreutils
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Tools Developer
-brew cask install vagrant virtualbox
-brew install docker-machine docker-machine-nfs
-
 brew install shellcheck
-brew install dnsmasq
 brew install ispell
 brew install hunspell
 brew install graphviz
@@ -49,18 +45,20 @@ brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
 if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
+    echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+    chsh -s /usr/local/bin/bash;
 fi;
 
 # developer
 brew install the_silver_searcher
 brew install editorconfig
 brew install aspell --with-lang-en
+brew install libevent libev docker-clean
 
 # for the GNU global tag system. Used by ggtags.
 brew install --HEAD ctags
 brew install global --with-ctags
+
 # program used for plantuml
 brew install graphviz
 brew install markdown
@@ -72,21 +70,20 @@ brew install wget --with-iri
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
-brew install unrar
+brew install unrar ncdu
 
-brew install git git-lfs git-flow
-brew install lynx
-brew install p7zip
+brew install git git-lfs git-flow lynx p7zip tig
 
 brew install rename
 brew install ssh-copy-id
-brew install tree
+brew install tree telnet
 
 # Gui mergetool
 brew install homebrew/gui/meld
 
-# Tools System
-brew install htop peco terminal-notifier
+# Tools System DevOps
+brew install htop peco terminal-notifier packer terragrunt aws-shell
+brew cask install aws-vault
 
 # Remove outdated versions from the cellar.
 brew cleanup
