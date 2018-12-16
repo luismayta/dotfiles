@@ -70,13 +70,11 @@ brew install wget --with-iri
 brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
-brew install unrar ncdu
+brew install unrar ncdu calc
 
 brew install git git-lfs git-flow lynx p7zip tig
 
-brew install rename
-brew install ssh-copy-id
-brew install tree telnet
+brew install rename ssh-copy-id tree telnet
 
 # Gui mergetool
 brew install homebrew/gui/meld
