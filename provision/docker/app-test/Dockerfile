@@ -1,4 +1,4 @@
-FROM python:3.6.1
+FROM python:3.6.4
 
 MAINTAINER Luis Mayta <@slovacus>
 
@@ -8,8 +8,7 @@ LABEL VERSION latest
 COPY ./requirements/ /usr/src/requirements/
 COPY ./requirements.txt /usr/src/requirements.txt
 
-# set working directory to /app/
 WORKDIR /usr/src/
 
 # install python dependencies
-RUN pip install --no-cache -r /usr/src/requirements/test.txt
+RUN pip install -r /usr/src/requirements/test.txt
