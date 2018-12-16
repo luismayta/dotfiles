@@ -25,14 +25,17 @@ antibody bundle mafredri/zsh-async
 antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
+antibody bundle luismayta/zsh-docker-machine-aliases
 antibody bundle luismayta/zsh-servers-functions
+antibody bundle luismayta/zsh-transfer
 antibody bundle Tarrasch/zsh-autoenv
 antibody bundle Tarrasch/zsh-colors
 antibody bundle chrissicool/zsh-256color
 antibody bundle dgnest/zsh-gvm-plugin
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-autosuggestions
+antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle mollifier/cd-gitroot
 antibody bundle wwilsman/zsh-clean-project
 antibody bundle davidparsson/zsh-pyenv-lazy
@@ -46,9 +49,22 @@ antibody bundle jimeh/zsh-peco-history
 antibody bundle desyncr/auto-ls
 antibody bundle blimmer/zsh-aws-vault
 antibody bundle willghatch/zsh-hooks
+antibody bundle mollifier/cd-gitroot
+antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle Tarrasch/zsh-bd
+antibody bundle srijanshetty/zsh-pip-completion
+antibody bundle b4b4r07/enhancd
+antibody bundle bobthecow/git-flow-completion
+
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
+
+# Keybindings
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[3~' delete-char
+bindkey '^[3;5~' delete-char
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
