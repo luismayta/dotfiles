@@ -42,6 +42,10 @@ antibody bundle gko/ssh-connect
 antibody bundle unixorn/git-extra-commands
 antibody bundle marszall87/lambda-pure
 antibody bundle b4b4r07/enhancd
+antibody bundle jimeh/zsh-peco-history
+antibody bundle desyncr/auto-ls
+antibody bundle blimmer/zsh-aws-vault
+antibody bundle willghatch/zsh-hooks
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
