@@ -14,7 +14,7 @@ PYENV_NAME="${PROJECT}"
 # Configuration.
 SHELL := /bin/bash
 ROOT_DIR=$(shell pwd)
-MESSAGE:=༼ つ ◕_◕ ༽つ
+MESSAGE:=🍺️
 MESSAGE_HAPPY:="${MESSAGE} Happy Coding"
 SCRIPT_DIR=$(ROOT_DIR)/extras/script
 SOURCE_DIR=$(ROOT_DIR)/
@@ -50,17 +50,14 @@ setup: clean
 	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
 	pre-commit install
 	cp -rf .hooks/prepare-commit-msg .git/hooks/
-	@if [ ! -e ".env" ]; then \
-		cp -rf .env-sample .env;\
-	fi
 
 environment: clean
 	@if [ -e "$(HOME)/.pyenv" ]; then \
 		eval "$(pyenv init -)"; \
 		eval "$(pyenv virtualenv-init -)"; \
 	fi
-	pyenv virtualenv "${PYTHON_VERSION}" "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
-	pyenv activate "${PYENV_NAME}" >> /dev/null 2>&1 || echo 'Oh Yeah!!'
+	@pyenv virtualenv ${PYTHON_VERSION} ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
+	@pyenv activate ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
 
 run: clean
 	@echo $(MESSAGE) "Install environment"
