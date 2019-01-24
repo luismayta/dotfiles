@@ -6,7 +6,6 @@
 .DEFAULT_GOAL := help
 
 PROJECT := dotfiles
-PROJECT_PORT := 8000
 
 PYTHON_VERSION=3.6.4
 PYENV_NAME="${PROJECT}"
@@ -22,7 +21,7 @@ REQUIREMENTS_DIR=$(ROOT_DIR)/requirements/
 FILE_README=$(ROOT_DIR)/README.rst
 RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
 
-pip_install := pip install --no-cache -r
+pip_install := pip install -r
 
 include extras/make/*.mk
 
@@ -43,7 +42,7 @@ clean:
 	@echo "$(TAG)"Cleaning up"$(END)"
 	@rm -rf .tox *.egg dist build .coverage
 	@rm -rf docs/build
-	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
+	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.pyo' -delete -print -o -name '*~' -delete -print -o -name '*.tmp' -delete -print
 	@echo
 
 setup: clean
