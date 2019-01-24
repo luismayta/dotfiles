@@ -1,8 +1,7 @@
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v1.2.3
+    sha: v2.1.0
     hooks:
     -   id: detect-private-key
-        exclude: ^provision/docker/templates/id_rsa$
         files: ^(?!\.?git-crypt)
     -   id: check-merge-conflict
     -   id: trailing-whitespace
@@ -53,7 +52,7 @@
         - --exclude=docs,migrations
     -   id: check-executables-have-shebangs
 -   repo: https://github.com/pre-commit/mirrors-pylint.git
-    sha: v2.0.0.dev0
+    sha: v2.3.0.dev0
     hooks:
     -   id: pylint
         language_version: python3
@@ -63,7 +62,7 @@
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.10.0
+    sha: v1.14.2
     hooks:
     -   id: validate_manifest
 -   repo: git://github.com/FalconSocial/pre-commit-python-sorter
@@ -74,14 +73,14 @@
         - --silent-overwrite
         language_version: python3
 -   repo: https://github.com/detailyang/pre-commit-shell.git
-    sha: 1.0.2
+    sha: 1.0.4
     hooks:
     -   id: shell-lint
         exclude: ^extras/script/wait-for-it.sh$
         args:
         - --exclude=SC1072,SC1073,SC2068
 -   repo: https://github.com/asottile/add-trailing-comma
-    sha: v0.6.4
+    sha: v0.7.1
     hooks:
     -   id: add-trailing-comma
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -105,10 +104,10 @@
     -   id: rst-linter
         exclude: (docs/*|tests/*)
 -   repo: https://github.com/asottile/pyupgrade
-    sha: v1.2.0
+    sha: v1.11.1
     hooks:
     -   id: pyupgrade
 -   repo: https://github.com/pricematch/pricematch-pre-commit-hooks
-    sha: 82b0c142b363547cc873bc6581fa3074087a37d2
+    sha: 93f5296d960021ee1f507a59a0bca1fe8f73c285
     hooks:
     -   id: do_not_commit
