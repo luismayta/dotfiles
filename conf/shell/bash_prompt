@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# shellcheck source=/dev/null
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
-
 # Load RVM into a shell session *as a function*
 # shellcheck source=/dev/null
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
