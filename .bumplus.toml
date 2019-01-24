@@ -1,4 +1,4 @@
-version = '1.3.0'
+version = '1.3.1'
 
 [[files."CHANGELOG.rst"]]
 search = """
@@ -10,7 +10,6 @@ search = """
 replace = """
 `Unreleased`_
 +++++++++++++
-
 
 `{{new_version}}`_ - {{utcnow | strftime('%Y-%m-%d')}}
 ++++++++++++++++++++++

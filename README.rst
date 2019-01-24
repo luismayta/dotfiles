@@ -3,40 +3,19 @@ Dotfiles
 
 |Build| |Code Climate| |Tag| |GitHub issues| |License| |Issue Count| |Test Coverage|
 
+:Version: 1.3.1
+:Web: https://github.com/luismayta/dotfiles
+:Download: http://github.com/luismayta/dotfiles
+:Source: http://github.com/luismayta/dotfiles
+:Keywords: dotfiles
+
+.. contents:: Table of Contents:
+    :local:
+
 Introduction
 ------------
 
-Help/Support
-------------
 
-Usage
------
-
--  `CHANGELOG <CHANGELOG.rst>`__
--  `CONTRIBUTING <CONTRIBUTING.rst>`__
-
-Change log
-----------
-
-Please see `CHANGELOG <CHANGELOG.rst>`__ for more information what has
-changed recently.
-
-Contributing
-------------
-
-Please see `CONTRIBUTING <CONTRIBUTING.rst>`__ for details.
-
-Credits
--------
-
--  `Luis Mayta <https://github.com/luismayta>`__
--  `All Contributors <AUTHORS.rst>`__
-
-License
--------
-
-The MIT License (MIT). Please see `License File <LICENSE.rst>`__ for more
-information.
 
 Installation
 ------------
@@ -279,10 +258,86 @@ various themes for Tmux.
 
 `zsh-wakatime <https://github.com/wbinglee/zsh-wakatime>`__
 
-|linkedin| |beacon|
 
-Made with :heart: :coffee: and :pizza: by
-`luismayta <https://github.com/luismayta>`__.
+Support
+-------
+
+If you want to support this project, i only accept ``IOTA`` :p.
+
+.. code-block:: bash
+
+    Address: FTDCZELEMOQGL9MBWFZENJLFIZUBGMXLFVPRB9HTWYDYPTFKASJCEGJMSAXUWDQC9SJUDMZVIQKACQEEYPEUYLAMMD
+
+
+Team
+----
+
++---------------+
+| |Luis Mayta|  |
++---------------+
+| `luis mayta`_ |
++---------------+
+
+License
+-------
+
+The MIT License (MIT). Please see `License File <LICENSE.rst>`__ for more
+information.
+
+Changelog
+---------
+
+Please see `CHANGELOG`_ for more information what
+has changed recently.
+
+Contributing
+------------
+
+Contributions are welcome!
+
+Review the `CONTRIBUTING`_ for details on how to:
+
+* Submit issues
+* Submit pull requests
+
+
+Contact Info
+------------
+
+Feel free to contact me to discuss any issues, questions, or comments.
+
+* `Email`_
+* `Twitter`_
+* `GitHub`_
+* `LinkedIn`_
+* `Website`_
+* `PGP`_
+
+|linkedin| |beacon| |made|
+
+Made with :coffee: and :pizza: by `luis mayta`_ and `hadenlabs`_.
+
+
+.. Links
+.. _`changelog`: CHANGELOG.rst
+.. _`contributors`: AUTHORS
+.. _`contributing`: CONTRIBUTING.rst
+
+.. _`hadenlabs`: https://github.com/hadenlabs
+.. _`luis mayta`: https://github.com/luismayta
+
+
+.. Team:
+.. |Luis Mayta| image:: https://github.com/luismayta.png?size=100
+   :target: https://github.com/luismayta
+
+.. _`Github`: https://github.com/luismayta
+.. _`Linkedin`: https://www.linkedin.com/in/luismayta
+.. _`Email`: slovacus@gmail.com
+    :target: mailto:slovacus@gmail.com
+.. _`Twitter`: https://twitter.com/slovacus
+.. _`Website`: http://luismayta.github.io
+.. _`PGP`: https://keybase.io/luismayta/pgp_keys.asc
 
 .. |Build| image:: https://travis-ci.org/luismayta/dotfiles.svg
    :target: https://travis-ci.org/luismayta/dotfiles
@@ -298,7 +353,11 @@ Made with :heart: :coffee: and :pizza: by
    :target: https://codeclimate.com/github/luismayta/dotfiles
 .. |Test Coverage| image:: https://codeclimate.com/github/luismayta/dotfiles/badges/coverage.svg
    :target: https://codeclimate.com/github/luismayta/dotfiles/coverage
+
+.. Footer:
 .. |linkedin| image:: http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png
    :target: http://pe.linkedin.com/in/luismayta
-.. |beacon| image:: https://ga-beacon.appspot.com/UA-65019326-1/dotfiles/readme
+.. |beacon| image:: https://ga-beacon.appspot.com/UA-65019326-1/github.com/luismayta/dotfiles/readme
    :target: https://github.com/luismayta/dotfiles
+.. |made| image:: https://img.shields.io/badge/Made%20with-Zsh-1f425f.svg
+   :target: http://www.zsh.org
