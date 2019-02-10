@@ -5,8 +5,6 @@ export FONTS_DIR="${HOME}/Library/Fonts"
 export APPS=(
     "homebrew"
     "brew"
-    "pyenv"
-    "gvm"
     "git-extras"
     "fonts"
     "tpm"
