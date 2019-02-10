@@ -19,6 +19,7 @@ function initialize(){
         unset file_path
     done
     unset path
+    rsync -avzh --progress "${CONF_DIR}/.config/" "${HOME}/.config/"
 }
 
 function die () {
