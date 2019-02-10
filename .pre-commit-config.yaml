@@ -52,7 +52,7 @@
         - --exclude=docs,migrations
     -   id: check-executables-have-shebangs
 -   repo: https://github.com/pre-commit/mirrors-pylint.git
-    sha: v2.3.0.dev0
+    sha: v2.3.0.dev1
     hooks:
     -   id: pylint
         language_version: python3
@@ -62,7 +62,7 @@
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.14.2
+    sha: v1.14.3
     hooks:
     -   id: validate_manifest
 -   repo: git://github.com/FalconSocial/pre-commit-python-sorter
@@ -80,7 +80,7 @@
         args:
         - --exclude=SC1072,SC1073,SC2068
 -   repo: https://github.com/asottile/add-trailing-comma
-    sha: v0.7.1
+    sha: v0.7.2
     hooks:
     -   id: add-trailing-comma
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -104,7 +104,7 @@
     -   id: rst-linter
         exclude: (docs/*|tests/*)
 -   repo: https://github.com/asottile/pyupgrade
-    sha: v1.11.1
+    sha: v1.11.2
     hooks:
     -   id: pyupgrade
 -   repo: https://github.com/pricematch/pricematch-pre-commit-hooks
