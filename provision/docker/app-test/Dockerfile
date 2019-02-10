@@ -1,14 +1,25 @@
-FROM python:3.6.4
+FROM python:3.6.4-alpine
 
 MAINTAINER Luis Mayta <@slovacus>
 
-LABEL NAME ubuntu-dotfiles
-LABEL VERSION latest
+ARG stage
 
-COPY ./requirements/ /usr/src/requirements/
-COPY ./requirements.txt /usr/src/requirements.txt
+ENV PACKAGES bash \
+        build-base \
+        git \
+        gcc \
+        libc-dev \
+        libmagic \
+        linux-headers \
+        make \
+        musl-dev \
+        openssl \
+        pcre-dev \
+        zlib-dev
 
-WORKDIR /usr/src/
+ADD . /app
+WORKDIR /app
 
-# install python dependencies
-RUN pip install -r /usr/src/requirements/test.txt
+RUN apk add --update  \
+  $PACKAGES \
+  && pip install -r /app/requirements/$stage.txt

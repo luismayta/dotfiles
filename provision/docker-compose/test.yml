@@ -1,7 +1,6 @@
 # Docker Compose
 # https://docs.docker.com/compose/
-#
-# Usage: test up
+
 version: '3'
 services:
 
@@ -11,3 +10,5 @@ services:
     build:
       context: .
       dockerfile: provision/docker/app-test/Dockerfile
+      args:
+        stage: test
