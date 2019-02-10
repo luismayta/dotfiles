@@ -7,7 +7,6 @@ services:
 
   app:
     restart: always
-    image: luismayta/ubuntu-dotfiles
     environment: &environment
       - APP_NAME=dotfiles
     build:
