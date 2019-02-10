@@ -45,7 +45,8 @@ brew cask install java \
             docker \
             insomnia \
             kap \
-            dash
+            dash \
+            alacritty
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
