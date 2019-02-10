@@ -40,13 +40,14 @@ brew install coreutils \
      wget
 
 brew cask install java \
-            aws-vault \
-            meld \
-            docker \
-            insomnia \
-            kap \
-            dash \
-            alacritty
+     aws-vault \
+     meld \
+     docker \
+     insomnia \
+     kap \
+     dash \
+     alacritty \
+     zazu
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
