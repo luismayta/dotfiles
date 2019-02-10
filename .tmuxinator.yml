@@ -37,21 +37,6 @@ pre_window: pyenv activate dotfiles
 startup_window: docker
 
 windows:
-  - editor:
-      layout: even-horizontal
-      panes:
-        - editor:
-        - pwd:
-        - pwd:
-  - python:
-      layout: main-vertical
-      panes:
-        - ipython:
-  - databases:
-      layout: main-vertical
-      panes:
-        - postgresql:
-        - ls:
   - aws:
       layout: main-vertical
       panes:
