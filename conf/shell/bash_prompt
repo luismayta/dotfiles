@@ -7,14 +7,5 @@
 # shellcheck source=/dev/null
 [[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
 
-# Load Manager Version go Gvm
-# shellcheck source=/dev/null
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
 # shellcheck source=/dev/null
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-
-if [ -e "$HOME/.pyenv" ]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
