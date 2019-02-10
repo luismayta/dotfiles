@@ -12,80 +12,48 @@ cat <<EOF
 
 EOF
 
-# Install command-line tools using Homebrew.
 brew update
 
-# Install GNU core utilities (those that come with macOS are outdated).
-# Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
-brew install coreutils
+brew install coreutils \
+     shellcheck \
+     ispell \
+     hunspell \
+     asciinema \
+     moreutils \
+     findutils \
+     gnu-sed \
+     bash \
+     bash-completion2 \
+     the_silver_searcher \
+     editorconfig \
+     aspell \
+     libevent libev docker-clean \
+     markdown \
+     vim \
+     openssh \
+     git git-lfs git-flow lynx p7zip tig unrar ncdu \
+     rename ssh-copy-id tree telnet grep \
+     htop \
+     peco terminal-notifier packer terragrunt aws-shell \
+     ctags \
+     global \
+     wget
+
+brew cask install java \
+            aws-vault \
+            meld \
+            docker \
+            insomnia \
+            kap \
+            dash
+
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
-
-# Tools Developer
-brew install \
-     shellcheck ispell hunspell \
-     graphviz
-brew cask install java
-
-# Grab movies
-brew install asciinema
-
-# Install some other useful utilities like `sponge`.
-brew install moreutils
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
-brew install findutils
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
-brew install bash
-brew tap homebrew/versions
-brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
 if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
     echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
     chsh -s /usr/local/bin/bash;
 fi;
-
-# developer
-brew install \
-     the_silver_searcher \
-     editorconfig \
-     aspell --with-lang-en \
-     libevent libev docker-clean \
-     # plantuml
-     graphviz \
-         markdown
-
-# for the GNU global tag system. Used by ggtags.
-brew install --HEAD ctags
-brew install global --with-ctags
-
-# program used for plantuml
-
-# Install `wget` with IRI support.
-brew install wget --with-iri
-
-# Install more recent versions of some macOS tools.
-brew install homebrew/dupes/openssh
-
-brew install \
-     vim \
-     git git-lfs git-flow lynx p7zip tig unrar ncdu \
-     # Tools
-     rename ssh-copy-id tree telnet grep
-
-# Tools System DevOps
-brew install \
-     htop peco terminal-notifier packer terragrunt aws-shell
-
-brew cask install \
-     aws-vault \
-     meld \
-     docker \
-     insomnia \
-     kap #software for record movies
 
 # Remove outdated versions from the cellar.
 brew cleanup
