@@ -39,7 +39,8 @@ brew install coreutils \
      global \
      wget \
      jq \
-     fzf
+     fzf \
+     reattach-to-user-namespace
 
 brew cask install java \
      aws-vault \
