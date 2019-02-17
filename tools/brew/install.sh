@@ -37,7 +37,9 @@ brew install coreutils \
      peco terminal-notifier packer terragrunt aws-shell \
      ctags \
      global \
-     wget
+     wget \
+     jq \
+     fzf
 
 brew cask install java \
      aws-vault \
@@ -47,7 +49,8 @@ brew cask install java \
      kap \
      dash \
      alacritty \
-     zazu
+     zazu \
+     "1password-cli"
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
