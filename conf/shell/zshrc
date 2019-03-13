@@ -1,12 +1,13 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
+#zmodload zsh/zprof
+
 export ZSH=$HOME/.dotfiles
+export DOTFILES="$HOME/.dotfiles"
 
 export SHELL=/bin/zsh
 
-# AUTO-UPDATES
-export UPDATE_ZSH_DAYS=1
 
 # DISABLE AUTOCORRECTION
 DISABLE_CORRECTION="true"
@@ -18,11 +19,8 @@ autoload -U colors && colors
 source <(antibody init)
 
 # setup antibody
-antibody bundle chrissicool/zsh-256color
-antibody bundle caarlos0/zsh-mkc
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
-antibody bundle bobthecow/git-flow-completion
 antibody bundle luismayta/zsh-aliases
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-aliases
@@ -31,31 +29,24 @@ antibody bundle luismayta/zsh-servers-functions
 antibody bundle luismayta/zsh-peco-ssh-connect
 antibody bundle luismayta/zsh-gvm
 antibody bundle luismayta/zsh-nvm
+antibody bundle igoradamenko/jira.plugin.zsh
+antibody bundle erikced/zsh-pyenv-lazy-load
+antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
 antibody bundle luismayta/zsh-pyenv
 antibody bundle luismayta/zsh-transfer
-antibody bundle Tarrasch/zsh-autoenv
-antibody bundle Tarrasch/zsh-colors
+antibody bundle luismayta/zsh-flutter
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle mollifier/cd-gitroot
 antibody bundle wwilsman/zsh-clean-project
-antibody bundle davidparsson/zsh-pyenv-lazy
 antibody bundle marzocchi/zsh-notify
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle unixorn/git-extra-commands
-antibody bundle marszall87/lambda-pure
-antibody bundle b4b4r07/enhancd
 antibody bundle jimeh/zsh-peco-history
-antibody bundle desyncr/auto-ls
-antibody bundle blimmer/zsh-aws-vault
 antibody bundle willghatch/zsh-hooks
-antibody bundle mollifier/cd-gitroot
 antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle b4b4r07/enhancd
-antibody bundle bobthecow/git-flow-completion
-
+antibody bundle sindresorhus/pure
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
@@ -77,6 +68,8 @@ HISTCONTROL=ignoredups:ignorespace
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+alias reload!='exec "$SHELL" -l'
 
 ZSH_TMUX_AUTOSTART=false
 [[ $TMUX == "" ]] && tmux new-session -A -s "${USER}"
