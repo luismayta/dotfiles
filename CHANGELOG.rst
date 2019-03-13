@@ -8,6 +8,9 @@ This file uses change log convention from `keep a CHANGELOG`_.
 `Unreleased`_
 +++++++++++++
 
+`1.4.0`_ - 2019-03-13
+++++++++++++++++++++++
+
 `1.3.1`_ - 2019-01-24
 ++++++++++++++++++++++
 
@@ -28,7 +31,8 @@ This file uses change log convention from `keep a CHANGELOG`_.
 ++++++++++++++++++++++
 
 
-.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.3.1...HEAD
+.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.4.0...HEAD
+.. _`1.4.0`: https://github.com/luismayta/dotfiles/compare/1.3.1...1.4.0
 .. _`1.3.1`: https://github.com/luismayta/dotfiles/compare/1.3.0...1.3.1
 .. _`1.3.0`: https://github.com/luismayta/dotfiles/compare/1.2.0...1.3.0
 .. _`1.2.0`: https://github.com/luismayta/dotfiles/compare/1.1.0...1.2.0
