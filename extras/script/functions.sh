@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 function initialize(){
-    for app in {zsh,git,tmux}; do
+    for app in {zsh,git,tmux,rsync}; do
         program_exists "$app"
     done
     unset app
@@ -19,6 +19,7 @@ function initialize(){
         unset file_path
     done
     unset path
+    rsync -avzh --progress "${CONF_DIR}/.config/" "${HOME}/.config/"
 }
 
 function die () {

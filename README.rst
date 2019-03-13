@@ -3,7 +3,7 @@ Dotfiles
 
 |Build| |Code Climate| |Tag| |GitHub issues| |License| |Issue Count| |Test Coverage|
 
-:Version: 1.3.1
+:Version: 1.4.0
 :Web: https://github.com/luismayta/dotfiles
 :Download: http://github.com/luismayta/dotfiles
 :Source: http://github.com/luismayta/dotfiles
@@ -34,17 +34,18 @@ enjoy all the goodies of this configuration.
 -  `Zsh <http://www.zsh.org>`__
 -  `Curl <https://github.com/bagder/curl>`__
 -  `Wget <http://www.gnu.org/software/wget>`__
+-  `Rsync <https://rsync.samba.org>`__
 -  `Tmux <https://tmux.github.io>`__
 
 via curl
 ~~~~~~~~
 
-``bash -c "$(curl -fsSL https://raw.github.com/luismayta/dotfiles/master/install.sh)"``
+``bash -c "$(curl -fsSL https://rebrand.ly/github-6e7e4)"``
 
 via wget
 ~~~~~~~~
 
-``bash -c "$(wget https://raw.github.com/luismayta/dotfiles/master/install.sh -O -)"``
+``bash -c "$(wget https://rebrand.ly/github-6e7e4 -O -)"``
 
 Resources
 ---------
