@@ -2,20 +2,19 @@
 # See ./CONTRIBUTING.rst
 #
 
-OS := $(shell uname)
 .PHONY: help
 .DEFAULT_GOAL := help
 
 PROJECT := dotfiles
 
-PYTHON_VERSION=3.6.4
+PYTHON_VERSION ?=3.6.4
 PYENV_NAME="${PROJECT}"
 
 # Configuration.
-SHELL := /bin/bash
+SHELL ?= /bin/bash
 ROOT_DIR=$(shell pwd)
 MESSAGE:=🍺️
-MESSAGE_HAPPY:="${MESSAGE} Happy Coding"
+MESSAGE_HAPPY:="Done! ${MESSAGE} Now Happy Coding"
 SCRIPT_DIR=$(ROOT_DIR)/extras/script
 SOURCE_DIR=$(ROOT_DIR)/
 REQUIREMENTS_DIR=$(ROOT_DIR)/requirements
@@ -43,20 +42,15 @@ help:
 	@make test.help
 
 clean:
-	@echo "$(TAG)"Cleaning up"$(END)"
-ifneq (Darwin,$(OS))
-	@sudo rm -rf .tox *.egg dist build .coverage .pytest_cache
-	@sudo rm -rf docs/build
-	@sudo find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
-else
 	@rm -rf .tox *.egg dist build .coverage .pytest_cache
 	@rm -rf docs/build
 	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
-endif
-	@echo
 
 setup: clean
 	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
+	@if [ -e "${REQUIREMENTS_DIR}/private.txt" ]; then \
+			$(pip_install) "${REQUIREMENTS_DIR}/private.txt"; \
+	fi
 	pre-commit install
 	cp -rf .hooks/prepare-commit-msg .git/hooks/
 	@if [ ! -e ".env" ]; then \
@@ -64,12 +58,9 @@ setup: clean
 	fi
 
 environment: clean
-	@if [ -e "$(HOME)/.pyenv" ]; then \
-		eval "$(pyenv init -)"; \
-		eval "$(pyenv virtualenv-init -)"; \
-	fi
-	pyenv virtualenv "${PYTHON_VERSION}" "${PYENV_NAME}" >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
-	pyenv activate "${PYENV_NAME}" >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
+	@echo "=====> loading virtualenv ${PYENV_NAME}..."
+	@pyenv virtualenv ${PYTHON_VERSION} ${PYENV_NAME} >> /dev/null 2>&1; \
+	@pyenv activate ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
 
 run: clean
 	@echo $(MESSAGE) "Install environment"
