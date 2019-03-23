@@ -29,6 +29,7 @@ antibody bundle luismayta/zsh-servers-functions
 antibody bundle luismayta/zsh-peco-ssh-connect
 antibody bundle luismayta/zsh-gvm
 antibody bundle luismayta/zsh-nvm
+antibody bundle luismayta/zsh-rvm
 antibody bundle igoradamenko/jira.plugin.zsh
 antibody bundle erikced/zsh-pyenv-lazy-load
 antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
