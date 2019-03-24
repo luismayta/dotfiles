@@ -51,6 +51,7 @@ brew cask install java \
      dash \
      alacritty \
      zazu \
+     hammerspoon \
      "1password-cli"
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
