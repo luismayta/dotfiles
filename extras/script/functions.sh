@@ -29,7 +29,11 @@ function die () {
 }
 
 function is_program_exist() {
-    which "${1}" >> /dev/null 2>&1 && echo 1 || echo 0
+    if ! [ -x "$(command -v ${1})" ]; then
+        echo 1
+        exit 1
+    fi
+    echo 0
 }
 
 function program_exists() {
