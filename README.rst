@@ -249,6 +249,11 @@ Peco
 `Peco <https://github.com/peco/peco>`__ Simplistic interactive filtering
 tool.
 
+Hammerspoon
+~~~~~~~~~~~
+
+`Hammerspoon <https://github.com/Hammerspoon/hammerspoon>`__ Staggeringly powerful OS X desktop automation with Lua.
+
 Tmux Themepack
 ~~~~~~~~~~~~~~
 
