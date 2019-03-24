@@ -12,5 +12,4 @@ export APPS=(
     "antibody"
     "scm_breeze"
     "mac-cli"
-    "rust"
 )
