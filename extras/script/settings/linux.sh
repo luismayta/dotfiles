@@ -11,5 +11,4 @@ export APPS=(
     "nvm"
     "antibody"
     "scm_breeze"
-    "rust"
 )
