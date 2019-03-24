@@ -21,6 +21,7 @@ source <(antibody init)
 # setup antibody
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
+antibody bundle marzocchi/zsh-notify
 antibody bundle luismayta/zsh-aliases
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-aliases
@@ -30,6 +31,7 @@ antibody bundle luismayta/zsh-peco-ssh-connect
 antibody bundle luismayta/zsh-gvm
 antibody bundle luismayta/zsh-nvm
 antibody bundle luismayta/zsh-rvm
+antibody bundle luismayta/zsh-rust
 antibody bundle igoradamenko/jira.plugin.zsh
 antibody bundle erikced/zsh-pyenv-lazy-load
 antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
@@ -41,7 +43,6 @@ antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle wwilsman/zsh-clean-project
-antibody bundle marzocchi/zsh-notify
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle unixorn/git-extra-commands
 antibody bundle jimeh/zsh-peco-history
