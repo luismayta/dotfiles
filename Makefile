@@ -7,7 +7,7 @@
 
 PROJECT := dotfiles
 
-PYTHON_VERSION ?=3.6.4
+PYTHON_VERSION ?=3.6.5
 PYENV_NAME="${PROJECT}"
 
 # Configuration.
@@ -26,7 +26,7 @@ RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
 pip_install := pip install -r
 docker-compose:=docker-compose -f docker-compose.yml
 
-include extras/make/*.mk
+include provision/make/*.mk
 
 help:
 	@echo '${MESSAGE} Makefile for ${PROJECT}'
