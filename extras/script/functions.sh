@@ -21,6 +21,7 @@ function initialize(){
     unset path
     rsync -avzh --progress "${CONF_DIR}/.config/" "${HOME}/.config/"
     rsync -avzh --progress "${CONF_DIR}/.hammerspoon/" "${HOME}/.hammerspoon/"
+    rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
 }
 
 function die () {
