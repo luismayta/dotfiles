@@ -326,8 +326,8 @@ Made with :coffee: and :pizza: by `luis mayta`_ and `hadenlabs`_.
 
 .. Links
 .. _`changelog`: CHANGELOG.rst
-.. _`contributors`: AUTHORS
-.. _`contributing`: CONTRIBUTING.rst
+.. _`contributors`: docs/source/AUTHORS.rst
+.. _`contributing`: docs/source/CONTRIBUTING.rst
 
 .. _`hadenlabs`: https://github.com/hadenlabs
 .. _`luis mayta`: https://github.com/luismayta
