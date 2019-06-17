@@ -110,8 +110,6 @@ end
 
 -- startWatchingEvents()
 
-
-
 -- from https://gist.github.com/cmsj/591624ef07124ad80a1c
 function init()
 
