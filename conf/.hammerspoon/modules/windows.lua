@@ -1,4 +1,11 @@
+hs.loadSpoon("SpoonInstall")
 Install=spoon.SpoonInstall
+Install:andUse(
+   "ModalMgr",
+   {
+      loglevel = 'debug',
+   }
+)
 
 Install:andUse(
    "WindowHalfsAndThirds",
