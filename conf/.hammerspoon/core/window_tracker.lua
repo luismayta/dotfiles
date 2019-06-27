@@ -1,4 +1,4 @@
-require "fntools"
+require("core.fntools")
 local fnutils = require "hs.fnutils"
 each   = fnutils.each
 filter = fnutils.filter
@@ -12,17 +12,17 @@ isWindow      = uielement.isWindow
 local events = hs.uielement.watcher
 
 appEvents = {
-  events.mainWindowChanged,
-  events.focusedWindowChanged,
-  events.windowCreated,
-  events.applicationActivated,
-  events.applicationDeactivated
+   events.mainWindowChanged,
+   events.focusedWindowChanged,
+   events.windowCreated,
+   events.applicationActivated,
+   events.applicationDeactivated
 }
 
 windowEvents = {
-  events.windowCreated,
-  events.focusedWindowChanged,
-  events.windowMoved
+   events.windowCreated,
+   events.focusedWindowChanged,
+   events.windowMoved
 }
 
 function elementType(element)
