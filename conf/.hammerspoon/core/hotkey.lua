@@ -80,12 +80,15 @@ function hotkey.bindWithShiftCmdAlt(key, desc, fn)
    hotkey.bind({ 'SHIFT', 'CMD', 'ALT' }, key, desc, fn)
 end
 
-hotkey.bindWithCtrlCmdAlt('K', '显示所有快捷键', function()
-                             allHotKey = ""
-                             for _, v in pairs(hotkey.registeredHotkey) do
-                                allHotKey = allHotKey .. '▶︎ (' .. v.key .. ') ☞' .. v.desc .. '\n'
-                             end
-                             hs.dialog.blockAlert("已注册的快捷键", allHotKey, "我知道了")
-end)
+hotkey.bindWithCtrlCmdAlt(
+   'K', 'Show HotKeys',
+   function()
+      allHotKey = ""
+      for _, v in pairs(hotkey.registeredHotkey) do
+         allHotKey = allHotKey .. '▶︎ (' .. v.key .. ') ☞' .. v.desc .. '\n'
+      end
+      hs.dialog.blockAlert("已注册的快捷键", allHotKey, "我知道了")
+   end
+)
 
 return hotkey

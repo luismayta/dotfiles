@@ -1,4 +1,4 @@
-require "fntools"
+require("core.fntools")
 
 partial = hs.fnutils.partial
 sequence = hs.fnutils.sequence
@@ -17,7 +17,7 @@ local alert = require "hs.alert"
 local grid = require "hs.grid"
 local geometry = require "hs.geometry"
 
-require "application_window_states"
+require("core.application_window_states")
 
 ---------------------------------------------------------
 -- Shared Globals
