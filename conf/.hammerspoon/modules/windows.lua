@@ -1,3 +1,7 @@
+hyper = {"ctrl", "alt"}
+cmdHyper = {"cmd", "ctrl", "alt"}
+shift_hyper = {"shift", "cmd"}
+
 hs.loadSpoon("SpoonInstall")
 Install=spoon.SpoonInstall
 Install:andUse(
