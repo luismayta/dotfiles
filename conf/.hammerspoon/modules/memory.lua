@@ -9,19 +9,21 @@ local memoryBar = hs.menubar.new()
 memoryBar:setTitle('0.00%') --used_rate
 memoryBar:setIcon(memoryIcon['icon'])
 memoryBar:setTooltip('0M used (0M wired), 0M unused')
-memoryBar:setClickCallback(function()
-	isCleaning = true
-	if (fetchTimer ~= nil) then
-		fetchTimer:stop()
-	end
+memoryBar:setClickCallback(
+   function()
+      isCleaning = true
+      if (fetchTimer ~= nil) then
+         fetchTimer:stop()
+      end
 
-	memoryBar:setTitle('清理中..')
-	memoryBar:setIcon(memoryIcon['clean'])
-	hs.execute('sudo purge')
-	if (fetchTimer ~= nil) then
-		fetchTimer:start()
-	end
-end)
+      memoryBar:setTitle('Cleaning..')
+      memoryBar:setIcon(memoryIcon['clean'])
+      hs.execute('sudo purge')
+      if (fetchTimer ~= nil) then
+         fetchTimer:start()
+      end
+   end
+)
 
 local function fetchPhysMem()
 	if (isCleaning) then
