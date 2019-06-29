@@ -10,16 +10,18 @@ if interface then
    local prev_speed_down = hs.execute(netstat_down)
    local prev_speed_up = hs.execute(netstat_up)
 
-   hs.timer.doEvery(1, function()
-                       speed_down = hs.execute(netstat_down)
-                       speed_up = hs.execute(netstat_up)
-                       speed_down_show = format_show(speed_down - prev_speed_down)
-                       speed_up_show = format_show(speed_up - prev_speed_up)
-                       prev_speed_down = speed_down
-                       prev_speed_up = speed_up
-                       speedBar:setTitle(speed_down_show)
-                       speedBar:setTooltip('UP:'..speed_up_show..', DOWN:'..speed_down_show)
-   end)
+   hs.timer.doEvery(
+      1, function()
+            speed_down = hs.execute(netstat_down)
+            speed_up = hs.execute(netstat_up)
+            speed_down_show = format_show(speed_down - prev_speed_down)
+            speed_up_show = format_show(speed_up - prev_speed_up)
+            prev_speed_down = speed_down
+            prev_speed_up = speed_up
+            speedBar:setTitle(speed_down_show)
+            speedBar:setTooltip('UP:'..speed_up_show..', DOWN:'..speed_down_show)
+         end
+   )
 
    function format_show(diff)
       if diff/1024 > 1024 then

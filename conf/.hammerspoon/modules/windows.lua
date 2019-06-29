@@ -1,6 +1,5 @@
-hyper = {"ctrl", "alt"}
-cmdHyper = {"cmd", "ctrl", "alt"}
-shift_hyper = {"shift", "cmd"}
+require("core.extensions")
+local hotkey = require("core.hotkey")
 
 hs.loadSpoon("SpoonInstall")
 Install=spoon.SpoonInstall
@@ -32,7 +31,12 @@ Install:andUse(
    "WindowGrid",
    {
       config = { gridGeometries = { { "6x4" } } },
-      hotkeys = {show_grid = {hyper, "g"}},
+      hotkeys = {show_grid = {hotkey.hyper, "g"}},
       start = true
    }
 )
+hotkey.bindWithAlt(
+   'm', 'Full Screen', fullScreenCurrent
+)
+-- hs.hotkey.bind(hyper, "D", screenToRight)
+-- hs.hotkey.bind(hyper, "A", screenToLeft)
