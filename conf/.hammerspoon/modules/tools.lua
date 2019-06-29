@@ -1,4 +1,4 @@
-require("core.hotkey")
+local hotkey = require("core.hotkey")
 
 hs.loadSpoon("SpoonInstall")
 Install=spoon.SpoonInstall
@@ -41,36 +41,9 @@ Install:andUse(
    "Caffeine", {
       start = true,
       hotkeys = {
-         toggle = { hyper, "1" }
+         toggle = { hotkey.hyper, "1" }
       },
 })
-
--- Install:andUse(
---    "MouseCircle",
---    {
---       disable = true,
---       config = {
---          color = hs.drawing.color.x11.rebeccapurple
---       },
---       hotkeys = {
---          show = { hyper, "m" }
---       }
---    }
--- )
-
--- Install:andUse(
---    "ColorPicker",
---    {
---       disable = true,
---       hotkeys = {
---          show = { shift_hyper, "c" }
---       },
---       config = {
---          show_in_menubar = false,
---       },
---       start = true,
---    }
--- )
 
 Install:andUse(
    "TimeMachineProgress",
@@ -83,5 +56,15 @@ Install:andUse(
    "HeadphoneAutoPause",
    {
       start = true
+   }
+)
+
+Install:andUse(
+   "ReloadConfiguration",
+   {
+      start = true,
+      hotkeys = {
+         reloadConfiguration = { hotkey.hyper, "0" }
+      },
    }
 )
