@@ -1,12 +1,12 @@
-hyper = {"ctrl", "alt"}
-cmdHyper = {"cmd", "ctrl", "alt"}
-shift_hyper = {"shift", "cmd"}
+local strkit = require('core.strkit')
 
 hotkey = {
-   registeredHotkey = {}
+   registeredHotkey = {},
+   hyper = {"ctrl", "alt"},
+   cmdHyper = {"cmd", "ctrl", "alt"},
+   shift_hyper = {"shift", "cmd"},
 }
 
-local strkit = require('core.strkit')
 
 function hotkey.bind(mods, key, desc, fn)
    hs.hotkey.bind(mods, key, nil, fn)
@@ -53,7 +53,7 @@ function hotkey.bindWithCtrlCmdAlt(key, desc, fn)
 end
 
 function hotkey.bindWithCtrlAlt(key, desc, fn)
-   hotkey.bind(hyper, key, desc, fn)
+   hotkey.bind(hotkey.hyper, key, desc, fn)
 end
 
 function hotkey.bindWithCtrlShift(key, desc, fn)
@@ -87,7 +87,7 @@ hotkey.bindWithCtrlCmdAlt(
       for _, v in pairs(hotkey.registeredHotkey) do
          allHotKey = allHotKey .. '▶︎ (' .. v.key .. ') ☞' .. v.desc .. '\n'
       end
-      hs.dialog.blockAlert("已注册的快捷键", allHotKey, "我知道了")
+      hs.dialog.blockAlert("Show Keys", allHotKey, "Close")
    end
 )
 
