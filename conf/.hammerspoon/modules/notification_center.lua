@@ -58,4 +58,6 @@ function module.init()
    )
 end
 
+module.init()
+
 return module
