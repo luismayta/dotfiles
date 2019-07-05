@@ -9,20 +9,6 @@ Install:andUse(
    }
 )
 
-Install:andUse(
-   "CircleClock",
-   {
-      loglevel = 'debug',
-   }
-)
-
-Install:andUse(
-   "HCalendar",
-   {
-      hotkeys = 'debug',
-   }
-)
-
 -- Change wallpaper immediately
 Install:andUse(
    "UnsplashZ",
