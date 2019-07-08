@@ -130,3 +130,11 @@ function compareShallow(tableA, tableB)
 
   return true
 end
+
+--- Reconfigure volume.
+-- @name reconfigVolume
+-- @param volume number 
+-- @return null
+function reconfigVolume(volume)
+   hs.audiodevice.defaultOutputDevice():setVolume(volume)
+end
