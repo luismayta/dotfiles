@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+bumplus = "==0.0.8"
+bumpversion = "==0.5.3"
+docker-compose = "*"
+pre-commit = "==0.15.2"
+restview = ">=2.8.1"
+rst = "==0.1"
+behave = ">=1.2.5"
+mock = ">=2.0.0"
+pytest-cov = ">=2.5.1"
+pytest = ">=3.2.2"
+tox = ">=2.8.2"
+PyHamcrest = ">=1.9.0"
+
+[packages]
+
+[requires]
+python_version = "3.7.3"
