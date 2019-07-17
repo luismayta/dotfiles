@@ -66,6 +66,7 @@ CHANGELOG.md merge=union
 # App config
 .env text eol=lf
 .env.example text eol=lf
+.env.sample  text eol=lf
 
 # Server config
 .htaccess text eol=lf
@@ -133,6 +134,7 @@ bin/* text eol=lf
 *.pyc       binary
 *.pdf       binary
 *.bz2       binary
+*.sh linguist-language=go
 *.webm      binary
 *.class     binary
 *.dll       binary
