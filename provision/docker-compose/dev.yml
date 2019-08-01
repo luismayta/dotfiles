@@ -1,7 +1,8 @@
 # Docker Compose
 # https://docs.docker.com/compose/
-
-version: '3'
+# Usage: docker-compose up
+---
+version: "3.6"
 services:
 
   app:

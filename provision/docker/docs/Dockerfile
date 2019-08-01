@@ -4,11 +4,8 @@ MAINTAINER Luis Mayta <@slovacus>
 LABEL NAME latex
 LABEL VERSION 3.6.1
 
-COPY ./requirements/ /usr/src/requirements/
-COPY ./requirements.txt /usr/src/requirements.txt
-
 # set working directory to /usr/src
 WORKDIR /usr/src
 
 # Install sphinx dependences
-RUN pip install --no-cache -r /usr/src/requirements/docs.txt
+RUN pipenv install --dev
