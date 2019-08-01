@@ -65,7 +65,7 @@
     sha: v1.17.0
     hooks:
     -   id: validate_manifest
--   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+-   repo: https://github.com/FalconSocial/pre-commit-python-sorter.git
     sha: 1.0.4
     hooks:
     -   id: python-import-sorter
@@ -98,7 +98,7 @@
     hooks:
     -   id: dockerfile_lint
     -   id: markdown-toc
--   repo: git://github.com/Lucas-C/pre-commit-hooks-markup
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-markup
     sha: v1.0.0
     hooks:
     -   id: rst-linter
