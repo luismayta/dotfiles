@@ -1,10 +1,10 @@
-# dotfiles: Docker Compose
+# Docker Compose
 # https://docs.docker.com/compose/
-#
 # Usage: docker-compose up
-version: '3'
-services:
+---
+version: "3.6"
 
+services:
   app:
     restart: always
     environment: &environment
@@ -16,16 +16,5 @@ services:
         home: /usr/src
     volumes:
       - .:/usr/src/.dotfiles
-    env_file:
-      - .env
-
-  docs:
-    restart: always
-    image: labpositiva/latex:3.6.1
-    build:
-      context: .
-      dockerfile: provision/docker/docs/Dockerfile
-    volumes:
-      - .:/usr/src
     env_file:
       - .env
