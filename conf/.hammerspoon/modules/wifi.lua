@@ -15,7 +15,16 @@ Install:andUse(
             -- },
             {
                to = "Evilcorp",
-               fn = { hs.fnutils.partial(reconfigVolume, 100) }
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+                  hs.execute("networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1")
+               end
+            },
+            {
+               to = "ulwifiT",
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+               end
             },
             {
                from = "Wayra 5G",
