@@ -1,14 +1,25 @@
 # Docker Compose
 # https://docs.docker.com/compose/
+# Usage: docker-compose up
+---
+version: "3.6"
 
-version: '3'
 services:
 
   app:
     environment: &environment
       - APP_NAME=dotfiles
     build:
-      context: .
-      dockerfile: provision/docker/app-test/Dockerfile
       args:
         stage: test
+
+  docs:
+    restart: always
+    image: labpositiva/latex:3.6.1
+    build:
+      context: .
+      dockerfile: provision/docker/docs/Dockerfile
+    volumes:
+      - .:/usr/src
+    env_file:
+      - .env
