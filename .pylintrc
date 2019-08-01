@@ -359,3 +359,8 @@ valid-metaclass-classmethod-first-arg=mcs
 # Exceptions that will emit a warning when being caught. Defaults to
 # "Exception"
 overgeneral-exceptions=Exception
+
+[Design]
+max-public-methods=100
+min-public-methods=0
+max-args=6
