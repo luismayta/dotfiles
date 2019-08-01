@@ -1,1 +1,1 @@
-@slovacus slovacus@gmail.com
+@slovacus <slovacus@gmail.com>
