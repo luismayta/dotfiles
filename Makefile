@@ -2,29 +2,30 @@
 # See ./CONTRIBUTING.rst
 #
 
+OS := $(shell uname)
 .PHONY: help
 .DEFAULT_GOAL := help
 
 PROJECT := dotfiles
 
-PYTHON_VERSION ?=3.6.5
+PYTHON_VERSION=3.7.3
 PYENV_NAME="${PROJECT}"
 
 # Configuration.
-SHELL ?= /bin/bash
+SHELL ?=/bin/bash
 ROOT_DIR=$(shell pwd)
 MESSAGE:=🍺️
-MESSAGE_HAPPY:="Done! ${MESSAGE} Now Happy Coding"
+MESSAGE_HAPPY:="Done! ${MESSAGE}, Now Happy Coding"
 SCRIPT_DIR=$(ROOT_DIR)/extras/script
 SOURCE_DIR=$(ROOT_DIR)/
-REQUIREMENTS_DIR=$(ROOT_DIR)/requirements
 PROVISION_DIR:=$(ROOT_DIR)/provision
 FILE_README:=$(ROOT_DIR)/README.rst
-PATH_DOCKER_COMPOSE:=provision/docker-compose
+PATH_DOCKER_COMPOSE:=docker-compose.yml -f provision/docker-compose
 RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
+DOCKER_SERVICE:=app
 
-pip_install := pip install -r
-docker-compose:=docker-compose -f docker-compose.yml
+pipenv_install:=pipenv install
+docker-compose:=docker-compose
 
 include provision/make/*.mk
 
@@ -42,26 +43,27 @@ help:
 	@make test.help
 
 clean:
-	@rm -rf .tox *.egg dist build .coverage .pytest_cache
+	@echo "$(TAG)"Cleaning up"$(END)"
+ifneq (Darwin,$(OS))
+	@sudo rm -rf .tox *.egg *.egg-info dist build .coverage .eggs .mypy_cache
+	@sudo rm -rf docs/build
+	@sudo find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.pyo' -delete -print -o -name '*~' -delete -print -o -name '*.tmp' -delete -print
+else
+	@rm -rf .tox *.egg *.egg-info dist build .coverage .eggs .mypy_cache
 	@rm -rf docs/build
-	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print
+	@find . -name '__pycache__' -delete -print -o -name '*.pyc' -delete -print -o -name '*.pyo' -delete -print -o -name '*~' -delete -print -o -name '*.tmp' -delete -print
+endif
+	@echo
 
 setup: clean
-	$(pip_install) "${REQUIREMENTS_DIR}/setup.txt"
-	@if [ -e "${REQUIREMENTS_DIR}/private.txt" ]; then \
-			$(pip_install) "${REQUIREMENTS_DIR}/private.txt"; \
-	fi
-	pre-commit install
-	cp -rf .hooks/prepare-commit-msg .git/hooks/
+	@echo "=====> install packages..."
+	$(pipenv_install) --dev
+	@pre-commit install
+	@cp -rf .hooks/prepare-commit-msg .git/hooks/
 	@if [ ! -e ".env" ]; then \
-		cp -rf .env-sample .env;\
+		@cp -rf .env-sample .env;\
 	fi
 
 environment: clean
 	@echo "=====> loading virtualenv ${PYENV_NAME}..."
-	@pyenv virtualenv ${PYTHON_VERSION} ${PYENV_NAME} >> /dev/null 2>&1; \
-	@pyenv activate ${PYENV_NAME} >> /dev/null 2>&1 || echo $(MESSAGE_HAPPY)
-
-run: clean
-	@echo $(MESSAGE) "Install environment"
-	$(RUN)
+	$(pipenv_install) --system --python ${PYTHON_VERSION}
