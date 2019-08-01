@@ -16,7 +16,7 @@ memoryBar:setClickCallback(
          fetchTimer:stop()
       end
 
-      memoryBar:setTitle('Cleaning..')
+      memoryBar:setTitle('Cleaning...')
       memoryBar:setIcon(memoryIcon['clean'])
       hs.execute('sudo purge')
       if (fetchTimer ~= nil) then
@@ -63,5 +63,5 @@ local function fetchPhysMem()
 	memoryBar:setTitle((string.gsub(string.format("%6.0f", used_rate * 100), "^%s*(.-)%s*$", "%1"))..'%')
 	memoryBar:setTooltip(string.format('%dM used (%dM wired), %dM unused',used, wired, unused))
 end
-fetchTimer = hs.timer.doEvery(10, fetchPhysMem)
+fetchTimer = hs.timer.doEvery(30, fetchPhysMem)
 fetchPhysMem()
