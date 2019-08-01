@@ -45,12 +45,6 @@ Install:andUse(
       },
 })
 
-Install:andUse(
-   "TimeMachineProgress",
-   {
-      start = true
-   }
-)
 
 Install:andUse(
    "HeadphoneAutoPause",
