@@ -8,6 +8,21 @@ This file uses change log convention from `keep a CHANGELOG`_.
 `Unreleased`_
 +++++++++++++
 
+`1.5.0`_ - 2019-08-05
+++++++++++++++++++++++
+
+Task
+----
+
+- `182 <182>`_ - feat: settings for wifi-trans in hammerspoon.
+- `179 <179>`_ - Upgrade Structure for hammerspoon.
+- `178 <178>`_ - feat: install spoon for wifitransference.
+- `176 <176>`_ - chore: settings for plugins for hammerspoon.
+- `173 <173>`_ - feat: mailspring.
+- `171 <171>`_ - chore: settings hammerspoon.
+- `169 <169>`_ - chore: add rust of luismayta/rust.
+- `167 <167>`_ - feat: clean unnecesary rvm.
+
 `1.4.0`_ - 2019-03-13
 ++++++++++++++++++++++
 
@@ -31,7 +46,8 @@ This file uses change log convention from `keep a CHANGELOG`_.
 ++++++++++++++++++++++
 
 
-.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.4.0...HEAD
+.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.5.0...HEAD
+.. _`1.5.0`: https://github.com/luismayta/dotfiles/compare/1.4.0...1.5.0
 .. _`1.4.0`: https://github.com/luismayta/dotfiles/compare/1.3.1...1.4.0
 .. _`1.3.1`: https://github.com/luismayta/dotfiles/compare/1.3.0...1.3.1
 .. _`1.3.0`: https://github.com/luismayta/dotfiles/compare/1.2.0...1.3.0
