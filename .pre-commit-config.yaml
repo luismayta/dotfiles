@@ -1,5 +1,5 @@
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v2.1.0
+    sha: v2.2.3
     hooks:
     -   id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -52,7 +52,7 @@
         - --exclude=docs,migrations
     -   id: check-executables-have-shebangs
 -   repo: https://github.com/pre-commit/mirrors-pylint.git
-    sha: v2.3.0.dev1
+    sha: v2.3.1
     hooks:
     -   id: pylint
         language_version: python3
@@ -62,10 +62,10 @@
         - --disable=no-name-in-module,import-error
         - --ignore=settings_test, migrations
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.14.3
+    sha: v1.17.0
     hooks:
     -   id: validate_manifest
--   repo: git://github.com/FalconSocial/pre-commit-python-sorter
+-   repo: https://github.com/FalconSocial/pre-commit-python-sorter.git
     sha: 1.0.4
     hooks:
     -   id: python-import-sorter
@@ -73,14 +73,14 @@
         - --silent-overwrite
         language_version: python3
 -   repo: https://github.com/detailyang/pre-commit-shell.git
-    sha: 1.0.4
+    sha: 1.0.5
     hooks:
     -   id: shell-lint
         exclude: ^extras/script/wait-for-it.sh$
         args:
         - --exclude=SC1072,SC1073,SC2068
 -   repo: https://github.com/asottile/add-trailing-comma
-    sha: v0.7.2
+    sha: v1.4.1
     hooks:
     -   id: add-trailing-comma
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -88,7 +88,7 @@
     hooks:
     -   id: python-safety-dependencies-check
 -   repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
-    sha: v1.0.3
+    sha: v1.0.4
     hooks:
     -   id: python-bandit-vulnerability-check
         args: []
@@ -98,13 +98,13 @@
     hooks:
     -   id: dockerfile_lint
     -   id: markdown-toc
--   repo: git://github.com/Lucas-C/pre-commit-hooks-markup
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-markup
     sha: v1.0.0
     hooks:
     -   id: rst-linter
         exclude: (docs/*|tests/*)
 -   repo: https://github.com/asottile/pyupgrade
-    sha: v1.11.2
+    sha: v1.21.0
     hooks:
     -   id: pyupgrade
 -   repo: https://github.com/pricematch/pricematch-pre-commit-hooks

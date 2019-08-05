@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# Load RVM into a shell session *as a function*
-# shellcheck source=/dev/null
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# shellcheck source=/dev/null
-[[ -s "/usr/local/rvm/scripts/rvm" ]] && source "/usr/local/rvm/scripts/rvm"
-
 # shellcheck source=/dev/null
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"

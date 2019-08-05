@@ -3,7 +3,7 @@ Dotfiles
 
 |Build| |Code Climate| |Tag| |GitHub issues| |License| |Issue Count| |Test Coverage|
 
-:Version: 1.4.0
+:Version: 1.5.0
 :Web: https://github.com/luismayta/dotfiles
 :Download: http://github.com/luismayta/dotfiles
 :Source: http://github.com/luismayta/dotfiles
@@ -249,6 +249,11 @@ Peco
 `Peco <https://github.com/peco/peco>`__ Simplistic interactive filtering
 tool.
 
+Hammerspoon
+~~~~~~~~~~~
+
+`Hammerspoon <https://github.com/Hammerspoon/hammerspoon>`__ Staggeringly powerful OS X desktop automation with Lua.
+
 Tmux Themepack
 ~~~~~~~~~~~~~~
 
@@ -321,8 +326,8 @@ Made with :coffee: and :pizza: by `luis mayta`_ and `hadenlabs`_.
 
 .. Links
 .. _`changelog`: CHANGELOG.rst
-.. _`contributors`: AUTHORS
-.. _`contributing`: CONTRIBUTING.rst
+.. _`contributors`: docs/source/AUTHORS.rst
+.. _`contributing`: docs/source/CONTRIBUTING.rst
 
 .. _`hadenlabs`: https://github.com/hadenlabs
 .. _`luis mayta`: https://github.com/luismayta

@@ -9,9 +9,7 @@ export APPS=(
     "fonts"
     "tpm"
     "nvm"
-    "rvm"
     "antibody"
     "scm_breeze"
     "mac-cli"
-    "rust"
 )
