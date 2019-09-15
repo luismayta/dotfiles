@@ -16,9 +16,6 @@ alias week='date +%V'
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
 
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -name '__pycache__' -delete -print -o -name '.DS_Store' -delete -print -name '*.pyc' -delete -print -o -name '*.tmp' -delete -print -o -name 'node_modules' -type d -print -exec rm -rf {} + -o -name '.vagrant' -type d -print -exec rm -rf {} + -o -name '.wercker' -type d -print -exec rm -rf {} + -o -name '.mypy_cache' -type d -print -exec rm -rf {} +"
-
 # selection xclip
 alias xclip="xclip -selection c"
 
