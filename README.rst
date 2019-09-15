@@ -65,7 +65,7 @@ compounding or character encoding.
 Fonts
 ~~~~~
 
-`Fonts <extras/fonts/>`__
+`Fonts <provision/fonts/>`__
 
 +-----------------------------+--------------------+----------------------------+
 | Powerline Font Family       | Formerly Known As  | License                    |
