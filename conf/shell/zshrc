@@ -8,6 +8,7 @@ export DOTFILES="$HOME/.dotfiles"
 
 export SHELL=/bin/zsh
 
+
 # DISABLE AUTOCORRECTION
 DISABLE_CORRECTION="true"
 
@@ -20,7 +21,6 @@ source <(antibody init)
 # setup antibody
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
-antibody bundle marzocchi/zsh-notify
 antibody bundle willghatch/zsh-hooks
 antibody bundle unixorn/git-extra-commands
 antibody bundle luismayta/zsh-aliases
@@ -29,24 +29,28 @@ antibody bundle luismayta/zsh-docker-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
 antibody bundle luismayta/zsh-servers-functions
 antibody bundle luismayta/zsh-peco-ssh-connect
-antibody bundle luismayta/zsh-gvm
 antibody bundle luismayta/zsh-nvm
 antibody bundle luismayta/zsh-rvm
 antibody bundle luismayta/zsh-rust
 antibody bundle luismayta/zsh-pyenv
+antibody bundle luismayta/zsh-pipenv
+antibody bundle luismayta/zsh-tfenv
 antibody bundle erikced/zsh-pyenv-lazy-load
 antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
-antibody bundle luismayta/zsh-transfer
+antibody bundle luismayta/zsh-transfer brand:develop
 antibody bundle luismayta/zsh-flutter
+antibody bundle luismayta/zsh-clean branch:develop
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle b4b4r07/zsh-vimode-visual
 antibody bundle wwilsman/zsh-clean-project
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle jimeh/zsh-peco-history
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle sindresorhus/pure
+antibody bundle piger/zsh-notify
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
