@@ -11,3 +11,16 @@ services:
     build:
       context: .
       dockerfile: provision/docker/app/Dockerfile
+
+  check:
+    image: dotfiles-check-dev
+    environment: *environment
+    build:
+      context: .
+      dockerfile: provision/docker/check/Dockerfile
+      args:
+        stage: dev
+    volumes:
+      - .:/usr/src
+    env_file:
+      - .env
