@@ -10,9 +10,9 @@ export GRIP_PORT=6430
 # Vars Dir application
 export ROOT_DIR
 ROOT_DIR=$(pwd)
-export EXTRAS_DIR="${ROOT_DIR}/extras"
+export EXTRAS_DIR="${ROOT_DIR}/provision"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
-export SCRIPT_DIR="${PATH_REPO}/extras/script"
+export SCRIPT_DIR="${PATH_REPO}/provision/script"
 export CONF_DIR="${PATH_REPO}/conf"
 export TOOLS_DIR="${PATH_REPO}/tools"
 
@@ -23,7 +23,7 @@ export PATH_BACKUP="$HOME/backup"
 
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
-export PATH_FONTS_REPO="$PATH_REPO/extras/fonts"
+export PATH_FONTS_REPO="$PATH_REPO/provision/fonts"
 
 export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
 export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"

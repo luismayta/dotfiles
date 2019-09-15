@@ -5,7 +5,6 @@
 version: "3.6"
 
 services:
-
   app:
     environment: &environment
       - APP_NAME=dotfiles

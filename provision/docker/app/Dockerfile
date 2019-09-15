@@ -22,11 +22,11 @@ ENV PACKAGES bash \
   libgdal20 \
   libev-dev
 
-COPY Pipfile Pipfile.lock /usr/src/
 
-# Define working directory.
-WORKDIR $SRC_PATH
+COPY Pipfile* /usr/src/
 
+# set working directory to /usr/src/
+WORKDIR /usr/src/
 
 RUN  groupadd -g 500 -r python \
   && groupadd developer \
