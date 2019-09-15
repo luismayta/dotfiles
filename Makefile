@@ -70,7 +70,7 @@ setup: clean
 	$(PIPENV_INSTALL) --dev
 	$(PIPENV_RUN) pre-commit install
 	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
-	@[[ ! -e ".env" ]] && [[ -e ".env-sample" ]] || cp -rf .env-sample .env
+	@[[ ! -e ".env" ]] || cp -rf .env-sample .env
 	@echo ${MESSAGE_HAPPY}
 
 environment: clean
