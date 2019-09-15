@@ -63,6 +63,9 @@ CHANGELOG.md merge=union
 *.tmpl text eol=lf
 *.phtml text eol=lf
 
+*.wadl text eol=lf
+*.wsdl text eol=lf
+
 # App config
 .env text eol=lf
 .env.example text eol=lf
