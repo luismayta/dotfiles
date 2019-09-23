@@ -16,6 +16,23 @@ Install:andUse(
             {
                to = "Evilcorp",
                fn = function(_, _, prev_ssid, new_ssid)
+                  hs.fnutils.partial(reconfigVolume, 80)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+                  hs.execute("networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1")
+               end
+            },
+            {
+               from = "ulwifiT",
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.fnutils.partial(reconfigVolume, 25)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+                  hs.execute("networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1")
+               end
+            },
+            {
+               from = "ulwifi",
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.fnutils.partial(reconfigVolume, 25)
                   hs.execute("networksetup -setdnsservers Wi-Fi empty")
                   hs.execute("networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1")
                end
@@ -27,12 +44,29 @@ Install:andUse(
                end
             },
             {
-               from = "Wayra 5G",
+               to = "ulwifi",
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+               end
+            },
+            {
+               to = "Wayra 5G",
                fn = { hs.fnutils.partial(reconfigVolume, 25) }
             },
             {
+               to = "VIPAC-INVITADOS",
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.fnutils.partial(reconfigVolume, 50)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+               end
+            },
+            {
                from = "VIPAC-INVITADOS",
-               fn = { hs.fnutils.partial(reconfigVolume, 25) }
+               fn = function(_, _, prev_ssid, new_ssid)
+                  hs.fnutils.partial(reconfigVolume, 25)
+                  hs.execute("networksetup -setdnsservers Wi-Fi empty")
+                  hs.execute("networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1")
+               end
             },
          }
       },
