@@ -8,16 +8,3 @@ Install:andUse(
       loglevel = 'debug',
    }
 )
-
--- Change wallpaper immediately
-Install:andUse(
-   "UnsplashZ",
-   {
-      hotkeys = 'debug',
-   }
-)
-----------------------------------------------------------------------------------------------------
--- Register UnsplashZ
-hsunsplash_keys = {"alt", "W"}
-spoon.ModalMgr.supervisor:bind(
-   hsunsplash_keys[1], hsunsplash_keys[2], "Change Wallpaper Immediately", function() spoon.UnsplashZ:unsplashRequest() end)
