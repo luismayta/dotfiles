@@ -46,7 +46,7 @@ repos:
         - --exclude=docs,migrations
     -   id: check-executables-have-shebangs
 -   repo: https://github.com/pre-commit/pre-commit
-    rev: v1.18.2
+    rev: v1.18.3
     hooks:
     -   id: validate_manifest
 -   repo: https://github.com/detailyang/pre-commit-shell
@@ -74,7 +74,7 @@ repos:
     rev: v1.1.0
     hooks:
     -   id: markdown-toc
--   repo: git://github.com/Lucas-C/pre-commit-hooks-markup
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-markup
     rev: v1.0.0
     hooks:
     -   id: rst-linter
@@ -83,7 +83,7 @@ repos:
     rev: 93f5296d960021ee1f507a59a0bca1fe8f73c285
     hooks:
     -   id: do_not_commit
--   repo: git://github.com/luismayta/pre-commit-isort
+-   repo: https://github.com/luismayta/pre-commit-isort
     rev: c9fcd050955c7a09201024bc423f36244e2bccac
     hooks:
     -   id: isort
@@ -91,7 +91,7 @@ repos:
         args:
         - --settings-path=.isort.cfg
 -   repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.3.1
+    rev: v2.4.2
     hooks:
     -   id: pylint
         language_version: python3
@@ -100,8 +100,8 @@ repos:
         - --rcfile=.pylintrc
         - --disable=no-name-in-module,import-error,ungrouped-imports
         - --ignore=settings_test, migrations
--   repo: https://github.com/luismayta/pre-commit-mypy
-    rev: 0.1.1
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.730
     hooks:
     -   id: mypy
         language_version: python3
