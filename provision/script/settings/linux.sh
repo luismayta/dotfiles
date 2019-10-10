@@ -8,7 +8,6 @@ export APPS=(
     "git-extras"
     "fonts"
     "tpm"
-    "nvm"
     "antibody"
     "scm_breeze"
 )
