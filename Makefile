@@ -17,7 +17,9 @@ else
 	PIPENV_INSTALL:=
 endif
 
+TEAM := private
 PROJECT := dotfiles
+PROJECT_PORT := 8000
 
 PYTHON_VERSION=3.7.3
 PYENV_NAME="${PROJECT}"
@@ -31,11 +33,18 @@ SCRIPT_DIR=$(ROOT_DIR)/provision/script
 SOURCE_DIR=$(ROOT_DIR)/
 PROVISION_DIR:=$(ROOT_DIR)/provision
 FILE_README:=$(ROOT_DIR)/README.rst
+KEYBASE_PATH ?= /keybase/team/${TEAM}
+KEYS_DIR:=${KEYBASE_PATH}/pem/
+PASSWORD_DIR:=${KEYBASE_PATH}/password/
 PATH_DOCKER_COMPOSE:=docker-compose.yml -f provision/docker-compose
 RUN:= $(SHELL) "${SCRIPT_DIR}"/run.sh
-DOCKER_SERVICE:=app
 
-docker-compose:=$(PIPENV_RUN) docker-compose
+DOCKER_COMPOSE:=$(PIPENV_RUN) docker-compose
+DOCKER_COMPOSE_DEV=$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/dev.yml
+DOCKER_COMPOSE_TEST=$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/test.yml
+
+SERVICE_APP:=app
+SERVICE_CHECK:=check
 
 include provision/make/*.mk
 
@@ -70,7 +79,7 @@ setup: clean
 	$(PIPENV_INSTALL) --dev
 	$(PIPENV_RUN) pre-commit install
 	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
-	@[[ ! -e ".env" ]] && cp -rf .env-sample .env
+	@[[ -e ".env" ]] || cp -rf .env.example .env
 	@echo ${MESSAGE_HAPPY}
 
 environment: clean
