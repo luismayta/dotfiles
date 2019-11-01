@@ -19,11 +19,11 @@ export TOOLS_DIR="${PATH_REPO}/tools"
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
 export GIT_BRANCH='master'
 export DEBUG_MODE='0'
-export PATH_BACKUP="$HOME/backup"
+export PATH_BACKUP="${HOME}/backup"
 
-export PATH_TPM="$HOME/.tmux/plugins/tpm"
+export PATH_TPM="${HOME}/.tmux/plugins/tpm"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
-export PATH_FONTS_REPO="$PATH_REPO/provision/fonts"
+export PATH_FONTS_REPO="${PATH_REPO}/provision/fonts"
 
 export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
 export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"
