@@ -79,15 +79,6 @@ Run unit tests specified
 
     make test run={{path}}
 
-Ngrok
-^^^^^
-
-Run ngrok
-
-.. code-block:: bash
-
-    make ngrok.run
-
 
 Code Submission
 ---------------
