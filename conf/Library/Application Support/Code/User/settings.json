@@ -1,0 +1,227 @@
+{
+  "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "comments": true,
+    "other": true,
+    "strings": true
+  },
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.tabCompletion": true,
+  "explorer.confirmDragAndDrop": false,
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "*.egg-info": true,
+    "*.pyc": true,
+    "*_pycache_*": true,
+    ".mypy_cache": true,
+    ".pytest_cache": true,
+    "htmlcov": true
+  },
+  "gitProjectManager.baseProjectsFolders": [
+    "~/Projects"
+  ],
+  "gitProjectManager.storeRepositoriesBetweenSessions": true,
+  "markdown.preview.fontSize": 16,
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "python.jediEnabled": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pep8Enabled": true,
+  "search.exclude": {
+    "*.egg-info": true,
+    "*_pycache_*": true,
+    ".mypy_cache": true,
+    ".pytest_cache": true,
+    "__pycache__": true,
+    "htmlcov": true
+  },
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "todo-tree.customHighlight": {
+    "FIXME": {},
+    "TODO": {}
+  },
+  "todo-tree.defaultHighlight": {
+    "foreground": "green",
+    "type": "none"
+  },
+  "vim.easymotionMarkerBackgroundColor": "rgba(40, 40, 40, 0.5)",
+  "vim.easymotionMarkerFontFamily": "Fira Code",
+  "vim.easymotionMarkerFontSize": "14",
+  "vim.easymotionMarkerHeight": 24,
+  "vim.easymotionMarkerYOffset": 12,
+  "vim.enableNeovim": true,
+  "vim.leader": ",",
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": [],
+      "before": [
+        "<leader>",
+        "b"
+      ],
+      "commands": [
+        {
+          "args": [],
+          "command": "workbench.action.previousEditor"
+        }
+      ]
+    },
+    {
+      "after": [],
+      "before": [
+        "<leader>",
+        "g"
+      ],
+      "commands": [
+        {
+          "args": [],
+          "command": "editor.action.goToDeclaration"
+        }
+      ]
+    },
+    {
+      "after": [],
+      "before": [
+        "<leader>",
+        "`"
+      ],
+      "commands": [
+        {
+          "args": [],
+          "command": "workbench.action.toggleSidebarVisibility"
+        }
+      ]
+    },
+    {
+      "after": [],
+      "before": [
+        "<leader>",
+        "f",
+        "p"
+      ],
+      "commands": [
+        {
+          "command": "workbench.action.quickOpen"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "c"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.commentLine"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r"
+      ],
+      "commands": [
+        {
+          "command": "workbench.action.reloadWindow"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "f"
+      ],
+      "commands": [
+        {
+          "command": "workbench.view.search"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "s",
+        "p"
+      ],
+      "commands": [
+        {
+          "command": "gitProjectManager.openProject"
+        }
+      ]
+    },
+    {
+      "after": [],
+      "before": [
+        "leader",
+        "q"
+      ],
+      "commands": [
+        {
+          "args": [],
+          "command": "workbench.action.closeActiveEditor"
+        }
+      ]
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "c"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.commentLine"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "s"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.blockComment"
+        }
+      ]
+    }
+  ],
+  "window.zoomLevel": 0,
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Ariake Dark",
+  "workbench.startupEditor": "newUntitledFile",
+  "zenMode.centerLayout": false,
+  "zenMode.fullScreen": true,
+  "zenMode.hideActivityBar": false,
+  "zenMode.hideStatusBar": false,
+  "zenMode.hideTabs": false
+}
