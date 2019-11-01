@@ -15,7 +15,7 @@ docs.help:
 	@echo ''
 
 docs.show: clean
-	restview "${FILE_README}"
+	$(PIPENV_RUN) restview ${FILE_README}
 
 docs.make: clean
 	$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml run --rm docs bash -c "cd docs && make html"
