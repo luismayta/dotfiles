@@ -22,65 +22,65 @@ docker.help:
 
 docker.run: clean
 	@if [ -z "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) run --rm ${service} bash; \
+		$(docker-dev) run --rm ${service} bash; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml run --rm ${service} bash; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml run --rm ${service} bash; \
 	fi
 
 docker.restart: clean
 	@if [ -z "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) restart; \
+		$(docker-dev) restart; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml restart; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml restart; \
 	fi
 
 docker.build: clean
 	@echo $(MESSAGE) "Building stage: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
-		$(DOCKER_COMPOSE_DEV) build ${args}; \
+		$(docker-dev) build ${args}; \
 	elif [ -z "${stage}" ] && [ -n "${service}" ]; then \
-		$(DOCKER_COMPOSE_DEV) build ${service} ${args}; \
+		$(docker-dev) build ${service} ${args}; \
 	elif [ -n "${stage}" ] && [ -z "${service}" ]; then \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${args}; \
+		$(docker_compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${args}; \
 	elif [ -n "${stage}" ] && [ -n "${service}" ]; then \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${service} ${args}; \
+		$(docker_compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${service} ${args}; \
 	fi
 
 docker.log: clean
 	@echo $(MESSAGE) "Building environment: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
-		$(DOCKER_COMPOSE_DEV) logs -f ; \
+		$(docker-dev) logs -f ; \
 	elif [ -z "${stage}" ] && [ -n "${service}" ]; then \
-		$(DOCKER_COMPOSE_DEV) logs -f ${service}; \
+		$(docker-dev) logs -f ${service}; \
 	elif [ -n "${stage}" ] && [ -z "${service}" ]; then \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f; \
 	elif [ -n "${stage}" ] && [ -n "${service}" ]; then \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f ${service} ; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f ${service} ; \
 	fi
 
 docker.down: clean
 	@echo $(MESSAGE) "Down Services Stage: ${stage}"
 	@if [ -z  "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) down --remove-orphans; \
-		$(DOCKER_COMPOSE_TEST) down --remove-orphans; \
+		$(docker-dev) down --remove-orphans; \
+		$(docker-test) down --remove-orphans; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml down --remove-orphans; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml down --remove-orphans; \
 	fi
 
 docker.exec: clean
 	@echo $(MESSAGE) "Exec Services Stage: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) exec ${service} ${command} ; \
+		$(docker-dev) exec ${service} ${command} ; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml exec ${service} ${command} ; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml exec ${service} ${command} ; \
 	fi
 
 docker.stop: clean
 	@echo $(MESSAGE) "Stop Services: ${stage}"
 	@if [ "${stage}" == "" ]; then \
-		$(DOCKER_COMPOSE_DEV) stop; \
+		$(docker-dev) stop; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml stop; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml stop; \
 	fi
 
 docker.verify_network: ## Verify network
@@ -91,15 +91,15 @@ docker.verify_network: ## Verify network
 docker.up: clean
 	@echo $(MESSAGE) "Up Services: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) up --remove-orphans; \
+		$(docker-dev) up --remove-orphans; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml up --remove-orphans; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml up --remove-orphans; \
 	fi
 
 docker.list: clean
 	@echo $(MESSAGE) "List Services: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(DOCKER_COMPOSE_DEV) ps; \
+		$(docker-dev) ps; \
 	else \
-		$(DOCKER_COMPOSE) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml ps; \
+		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml ps; \
 	fi
