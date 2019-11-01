@@ -1,0 +1,33 @@
+[
+  {
+    "command": "workbench.action.git.globalOpenChange",
+    "key": "cmd+c",
+    "when": "textCompareEditorVisible"
+  },
+  {
+    "command": "workbench.action.terminal.focus",
+    "key": "cmd+shift+z"
+  },
+  {
+    "command": "workbench.action.terminal.focusNext",
+    "key": "cmd+shift+a"
+  },
+  {
+    "command": "workbench.action.terminal.toggleTerminal",
+    "key": "cmd+`",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.terminal.kill",
+    "key": "cmd+`",
+    "when": "terminalFocus"
+  },
+  {
+    "command": "workbench.action.nextEditor",
+    "key": "cmd+l"
+  },
+  {
+    "command": "workbench.action.previousEditor",
+    "key": "cmd+h"
+  }
+]
