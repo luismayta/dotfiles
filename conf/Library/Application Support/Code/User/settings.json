@@ -35,6 +35,7 @@
   "python.jediEnabled": false,
   "python.linting.mypyEnabled": true,
   "python.linting.pep8Enabled": true,
+  "python.linting.pylintEnabled": true,
   "search.exclude": {
     "*.egg-info": true,
     "*_pycache_*": true,
