@@ -17,4 +17,4 @@ test.all: clean
 	$(docker-test-run) bash -c "$(PIPENV_RUN) pytest"
 
 test.lint: clean
-	$(docker-test-run) bash -c "$(PIPENV_RUN) pre-commit run --all-files --verbose"
+	$(PIPENV_RUN) pre-commit run --all-files --verbose
