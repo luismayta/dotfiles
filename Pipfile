@@ -14,20 +14,22 @@ pycodestyle = "*"
 pydocstyle = "*"
 pylint = "*"
 mock = "*"
+pyhamcrest = "*"
 pytest-cov = "*"
 pytest = ">=3.7.2"
 tox = "*"
 ipython = "*"
 parso = "*"
-PyHamcrest = ">=1.9.0"
-bumplus = ">=0.0.8"
-bumpversion = ">=0.5.3"
-pre-commit = ">=0.15.2"
-pytest-mock = ">=1.9.0"
-pytest-runner = "*"
-Faker = "*"
+pyyaml = "*"
+bumpversion = "*"
+bumplus = "*"
+pre-commit = "*"
 
 [packages]
+
+
+[scripts]
+test = "pytest"
 
 [requires]
 python_version = "3.8.0"
