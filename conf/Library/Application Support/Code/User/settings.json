@@ -11,10 +11,7 @@
     "other": true,
     "strings": true
   },
-  "editor.rulers": [
-    80,
-    120
-  ],
+  "editor.rulers": [80, 120],
   "editor.tabCompletion": true,
   "explorer.confirmDragAndDrop": false,
   "files.autoSave": "afterDelay",
@@ -26,9 +23,7 @@
     ".pytest_cache": true,
     "htmlcov": true
   },
-  "gitProjectManager.baseProjectsFolders": [
-    "~/Projects"
-  ],
+  "gitProjectManager.baseProjectsFolders": ["~/Projects"],
   "gitProjectManager.storeRepositoriesBetweenSessions": true,
   "markdown.preview.fontSize": 16,
   "path-intellisense.autoSlashAfterDirectory": true,
@@ -68,10 +63,7 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "after": [],
-      "before": [
-        "<leader>",
-        "b"
-      ],
+      "before": ["<leader>", "b"],
       "commands": [
         {
           "args": [],
@@ -81,10 +73,7 @@
     },
     {
       "after": [],
-      "before": [
-        "<leader>",
-        "g"
-      ],
+      "before": ["<leader>", "g"],
       "commands": [
         {
           "args": [],
@@ -94,10 +83,7 @@
     },
     {
       "after": [],
-      "before": [
-        "<leader>",
-        "`"
-      ],
+      "before": ["<leader>", "`"],
       "commands": [
         {
           "args": [],
@@ -107,11 +93,7 @@
     },
     {
       "after": [],
-      "before": [
-        "<leader>",
-        "f",
-        "p"
-      ],
+      "before": ["<leader>", "f", "p"],
       "commands": [
         {
           "command": "workbench.action.quickOpen"
@@ -119,20 +101,11 @@
       ]
     },
     {
-      "before": [
-        "<leader>",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ]
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.files.save"]
     },
     {
-      "before": [
-        "<leader>",
-        "c",
-        "c"
-      ],
+      "before": ["<leader>", "c", "c"],
       "commands": [
         {
           "command": "editor.action.commentLine"
@@ -140,10 +113,7 @@
       ]
     },
     {
-      "before": [
-        "<leader>",
-        "r"
-      ],
+      "before": ["<leader>", "r"],
       "commands": [
         {
           "command": "workbench.action.reloadWindow"
@@ -151,11 +121,7 @@
       ]
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "f"
-      ],
+      "before": ["<leader>", "f", "f"],
       "commands": [
         {
           "command": "workbench.view.search"
@@ -163,12 +129,7 @@
       ]
     },
     {
-      "before": [
-        "<leader>",
-        "f",
-        "s",
-        "p"
-      ],
+      "before": ["<leader>", "f", "s", "p"],
       "commands": [
         {
           "command": "gitProjectManager.openProject"
@@ -177,10 +138,7 @@
     },
     {
       "after": [],
-      "before": [
-        "leader",
-        "q"
-      ],
+      "before": ["leader", "q"],
       "commands": [
         {
           "args": [],
@@ -192,11 +150,7 @@
   "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindings": [
     {
-      "before": [
-        "<leader>",
-        "c",
-        "c"
-      ],
+      "before": ["<leader>", "c", "c"],
       "commands": [
         {
           "command": "editor.action.commentLine"
@@ -204,11 +158,7 @@
       ]
     },
     {
-      "before": [
-        "<leader>",
-        "c",
-        "s"
-      ],
+      "before": ["<leader>", "c", "s"],
       "commands": [
         {
           "command": "editor.action.blockComment"
