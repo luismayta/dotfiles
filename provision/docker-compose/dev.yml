@@ -4,6 +4,7 @@
 ---
 version: '3.6'
 services:
+  # Python
   app:
     environment: &environment
       - APP_NAME=dotfiles
