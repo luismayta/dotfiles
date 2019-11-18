@@ -86,6 +86,10 @@ setup: clean
 	@[[ -e ".env" ]] || cp -rf .env.example .env
 	@echo ${MESSAGE_HAPPY}
 
+run: clean
+	@echo "=====> run ..."
+	$(RUN)
+
 environment: clean
 	@echo "=====> loading virtualenv ${PYENV_NAME}..."
 	@pipenv --venv || $(PIPENV_INSTALL) --skip-lock --python=${PYTHON_VERSION}
