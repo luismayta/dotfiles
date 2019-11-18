@@ -66,14 +66,8 @@
           " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.",
           " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
         ],
-        "parameters": [
-          " * None",
-          ""
-        ],
-        "returns": [
-          " * None",
-          ""
-        ],
+        "parameters": [" * None", ""],
+        "returns": [" * None", ""],
         "signature": "SpoonInstall:updateAllRepos()",
         "stripped_doc": [
           "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",
@@ -87,10 +81,7 @@
         "doc": "Return a sorted list of registered Spoon repositories\n\nParameters:\n * None\n\nReturns:\n * Table containing a list of strings with the repository identifiers",
         "name": "repolist",
         "notes": [],
-        "parameters": [
-          " * None",
-          ""
-        ],
+        "parameters": [" * None", ""],
         "returns": [
           " * Table containing a list of strings with the repository identifiers"
         ],
@@ -230,9 +221,7 @@
           "   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon.",
           ""
         ],
-        "returns": [
-          " * None"
-        ],
+        "returns": [" * None"],
         "signature": "SpoonInstall:andUse(name, arg)",
         "stripped_doc": [
           "Declaratively install, load and configure a Spoon",
@@ -384,9 +373,7 @@
           "   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon.",
           ""
         ],
-        "returns": [
-          " * None"
-        ],
+        "returns": [" * None"],
         "signature": "SpoonInstall:andUse(name, arg)",
         "stripped_doc": [
           "Declaratively install, load and configure a Spoon",
@@ -514,10 +501,7 @@
         "doc": "Return a sorted list of registered Spoon repositories\n\nParameters:\n * None\n\nReturns:\n * Table containing a list of strings with the repository identifiers",
         "name": "repolist",
         "notes": [],
-        "parameters": [
-          " * None",
-          ""
-        ],
+        "parameters": [" * None", ""],
         "returns": [
           " * Table containing a list of strings with the repository identifiers"
         ],
@@ -560,14 +544,8 @@
           " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.",
           " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
         ],
-        "parameters": [
-          " * None",
-          ""
-        ],
-        "returns": [
-          " * None",
-          ""
-        ],
+        "parameters": [" * None", ""],
+        "returns": [" * None", ""],
         "signature": "SpoonInstall:updateAllRepos()",
         "stripped_doc": [
           "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",

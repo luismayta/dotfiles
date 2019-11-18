@@ -21,7 +21,7 @@ TEAM := private
 PROJECT := dotfiles
 PROJECT_PORT := 8000
 
-PYTHON_VERSION=3.7.3
+PYTHON_VERSION=3.8.0
 PYENV_NAME="${PROJECT}"
 
 # Configuration.

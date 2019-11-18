@@ -34,16 +34,9 @@
       "variables": {
         "append": true,
         "directories": {
-          "appPath": [
-            "/Applications"
-          ],
-          "excludeName": [
-            "node_modules",
-            "*.scpt"
-          ],
-          "excludePath": [
-            "~/Library"
-          ],
+          "appPath": ["/Applications"],
+          "excludeName": ["node_modules", "*.scpt"],
+          "excludePath": ["~/Library"],
           "filePath": [
             "~/Documents",
             "~/Downloads",
