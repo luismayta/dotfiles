@@ -74,9 +74,6 @@ repos:
         files: ^tf|-|\.(py|env|yml|yaml)$
       - id: check-case-conflict
       - id: check-json
-      - id: pretty-format-json
-        args:
-          - --autofix
       - id: check-xml
       - id: check-yaml
       - id: check-case-conflict
