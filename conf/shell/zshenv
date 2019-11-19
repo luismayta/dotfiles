@@ -1,0 +1,34 @@
+# autoload
+autoload -Uz add-zsh-hook
+autoload -Uz compinit && compinit -u
+
+export TERM=xterm-256color
+export PROJECTS="$HOME/projects"
+
+export DISABLE_AUTO_TITLE="true"
+
+[ -e "$HOME/.wakatime" ] && export PATH_WAKATIME="$HOME/.wakatime"
+
+# Make vim the default editor
+[ -e "/usr/bin/vim" ] && export EDITOR=/usr/bin/vim
+
+# Larger bash history (allow 32³ entries; default is 500)
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=100000
+export HISTCONTROL=ignoredups
+export SAVEHIST=$HISTSIZE
+
+# Prefer US English and use UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+
+export PATH="/usr/local/opt/libressl/bin:$PATH"
+[[ -e "$HOME/.pyenv" ]] && export PYENV_ROOT="$HOME/.pyenv"
+[[ -e "$HOME/.pyenv/bin" ]] && export PATH="$PATH:$HOME/.pyenv/bin"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+if [[ -x "$(command which pyenv)" ]]; then
+    export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+fi
+export PIPENV_SHELL_FANCY=true
