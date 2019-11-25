@@ -35,7 +35,6 @@ enjoy all the goodies of this configuration.
 -  `Curl <https://github.com/bagder/curl>`__
 -  `Wget <http://www.gnu.org/software/wget>`__
 -  `Rsync <https://rsync.samba.org>`__
--  `Tmux <https://tmux.github.io>`__
 
 via curl
 ~~~~~~~~
