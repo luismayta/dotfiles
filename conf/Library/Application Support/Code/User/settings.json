@@ -1,99 +1,69 @@
 {
-  "editor.fontFamily": "FiraCode-Retina",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.lineNumbers": "relative",
-  "editor.minimap.enabled": false,
-  "editor.quickSuggestions": {
-    "comments": true,
-    "other": true,
-    "strings": true
-  },
-  "editor.rulers": [80, 120],
-  "editor.tabCompletion": true,
-  "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "afterDelay",
-  "files.exclude": {
-    "*.egg-info": true,
-    "*.pyc": true,
-    "*_pycache_*": true,
-    ".mypy_cache": true,
-    ".pytest_cache": true,
-    "htmlcov": true
-  },
-  "gitProjectManager.baseProjectsFolders": ["~/Projects"],
-  "gitProjectManager.storeRepositoriesBetweenSessions": true,
-  "markdown.preview.fontSize": 16,
-  "path-intellisense.autoSlashAfterDirectory": true,
   "python.jediEnabled": false,
-  "python.linting.mypyEnabled": true,
-  "python.linting.pep8Enabled": true,
-  "python.linting.pylintEnabled": true,
-  "search.exclude": {
-    "*.egg-info": true,
+  "zenMode.hideStatusBar": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideActivityBar": false,
+  "zenMode.hideTabs": false,
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.fontFamily": "Fira Code, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.lineNumbers": "relative",
+  "editor.rulers": [80, 120],
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Ariake Dark",
+  "files.exclude": {
     "*_pycache_*": true,
-    ".mypy_cache": true,
     ".pytest_cache": true,
+    ".mypy_cache": true,
+    "htmlcov": true,
+    "*.egg-info": true,
+    "*.pyc": true
+  },
+  "search.exclude": {
+    "*_pycache_*": true,
     "__pycache__": true,
-    "htmlcov": true
+    ".pytest_cache": true,
+    ".mypy_cache": true,
+    "htmlcov": true,
+    "*.egg-info": true
   },
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.fontFamily": "Fira Code",
-  "terminal.integrated.fontSize": 16,
-  "terminal.integrated.macOptionIsMeta": true,
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-  "todo-tree.customHighlight": {
-    "FIXME": {},
-    "TODO": {}
-  },
-  "todo-tree.defaultHighlight": {
-    "foreground": "green",
-    "type": "none"
-  },
-  "vim.easymotionMarkerBackgroundColor": "rgba(40, 40, 40, 0.5)",
-  "vim.easymotionMarkerFontFamily": "Fira Code",
-  "vim.easymotionMarkerFontSize": "14",
-  "vim.easymotionMarkerHeight": 24,
-  "vim.easymotionMarkerYOffset": 12,
-  "vim.enableNeovim": true,
   "vim.leader": ",",
-  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [],
       "before": ["<leader>", "b"],
+      "after": [],
       "commands": [
         {
-          "args": [],
-          "command": "workbench.action.previousEditor"
+          "command": "workbench.action.previousEditor",
+          "args": []
         }
       ]
     },
     {
-      "after": [],
       "before": ["<leader>", "g"],
+      "after": [],
       "commands": [
         {
-          "args": [],
-          "command": "editor.action.goToDeclaration"
+          "command": "editor.action.goToDeclaration",
+          "args": []
         }
       ]
     },
     {
-      "after": [],
       "before": ["<leader>", "`"],
+      "after": [],
       "commands": [
         {
-          "args": [],
-          "command": "workbench.action.toggleSidebarVisibility"
+          "command": "workbench.action.toggleSidebarVisibility",
+          "args": []
         }
       ]
     },
     {
-      "after": [],
       "before": ["<leader>", "f", "p"],
+      "after": [],
       "commands": [
         {
           "command": "workbench.action.quickOpen"
@@ -137,17 +107,16 @@
       ]
     },
     {
-      "after": [],
       "before": ["leader", "q"],
+      "after": [],
       "commands": [
         {
-          "args": [],
-          "command": "workbench.action.closeActiveEditor"
+          "command": "workbench.action.closeActiveEditor",
+          "args": []
         }
       ]
     }
   ],
-  "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindings": [
     {
       "before": ["<leader>", "c", "c"],
@@ -166,13 +135,56 @@
       ]
     }
   ],
+  "gitProjectManager.baseProjectsFolders": ["~/Projects"],
+  "gitProjectManager.storeRepositoriesBetweenSessions": true,
+  "terminal.integrated.fontFamily": "Fira Code",
   "window.zoomLevel": 0,
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Ariake Dark",
-  "workbench.startupEditor": "newUntitledFile",
-  "zenMode.centerLayout": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pycodestyleEnabled": true,
   "zenMode.fullScreen": true,
-  "zenMode.hideActivityBar": false,
-  "zenMode.hideStatusBar": false,
-  "zenMode.hideTabs": false
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.copyOnSelection": true,
+  "editor.tabCompletion": true,
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "vim.easymotionMarkerFontFamily": "Fira Code",
+  "vim.enableNeovim": true,
+  "vim.easymotionMarkerFontSize": "16",
+  "vim.easymotionMarkerYOffset": 12,
+  "vim.easymotionMarkerHeight": 24,
+  "vim.easymotionMarkerBackgroundColor": "rgba(40, 40, 40, 0.5)",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.activityBar.visible": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "terminal.integrated.macOptionIsMeta": true,
+  "markdown.preview.fontSize": 16,
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.iconTheme": "vscode-icons",
+  "zenMode.hideLineNumbers": false,
+  "window.restoreFullscreen": true,
+  "go.autocompleteUnimportedPackages": true,
+  "prettier.arrowParens": "always",
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {},
+    "FIXME": {}
+  },
+  "todo-tree.highlights.defaultHighlight": {
+    "foreground": "green",
+    "type": "none"
+  },
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.py": "python"
+  },
+  "python.venvPath": "~/.local/share/virtualenvs/",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
