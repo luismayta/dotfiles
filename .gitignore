@@ -235,3 +235,4 @@ override.tf.json
 # example: *tfplan*
 
 # End of https://www.gitignore.io/api/terraform,python,node,ansible,bash
+.vscode
