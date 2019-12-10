@@ -22,36 +22,48 @@ source <(antibody init)
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
 antibody bundle willghatch/zsh-hooks
+antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle unixorn/git-extra-commands
+antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
 antibody bundle luismayta/zsh-servers-functions
-antibody bundle luismayta/zsh-peco-ssh-connect
+antibody bundle luismayta/zsh-ssh-connect branch:develop
 antibody bundle luismayta/zsh-goenv branch:develop
-antibody bundle luismayta/zsh-nvm
+antibody bundle luismayta/zsh-nvm branch:develop
 antibody bundle luismayta/zsh-rvm branch:develop
-antibody bundle luismayta/zsh-rust
-antibody bundle luismayta/zsh-pyenv
+antibody bundle luismayta/zsh-rust branch:develop
+antibody bundle luismayta/zsh-vscode branch:develop
+antibody bundle luismayta/zsh-pyenv branch:develop
 antibody bundle luismayta/zsh-pipenv branch:develop
-antibody bundle luismayta/zsh-tfenv
-antibody bundle erikced/zsh-pyenv-lazy-load
-antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
+antibody bundle luismayta/zsh-tfenv branch:develop
+antibody bundle luismayta/zsh-ghq branch:develop
+antibody bundle luismayta/zsh-trash branch:develop
 antibody bundle luismayta/zsh-transfer branch:develop
+antibody bundle luismayta/zsh-pazi branch:develop
 antibody bundle luismayta/zsh-flutter branch:develop
 antibody bundle luismayta/zsh-clean branch:develop
+antibody bundle luismayta/zsh-bitwarden branch:develop
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle b4b4r07/zsh-vimode-visual
-antibody bundle wwilsman/zsh-clean-project
-antibody bundle sindresorhus/pretty-time-zsh
-antibody bundle jimeh/zsh-peco-history
+antibody bundle zdharma/fast-syntax-highlighting
+antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
+#antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle b4b4r07/zsh-vimode-visual
+antibody bundle sindresorhus/pretty-time-zsh
+#antibody bundle luismayta/zsh-history branch:develop
 antibody bundle sindresorhus/pure
 antibody bundle piger/zsh-notify
+antibody bundle luismayta/zsh-tmux
+antibody bundle luismayta/zsh-restic
+antibody bundle luismayta/zsh-osx
+
+#nodejs
+antibody bundle buonomo/yarn-completion
 
 # load everything but the path and completion files
 source "$ZSH/zsh/completions.zsh"
