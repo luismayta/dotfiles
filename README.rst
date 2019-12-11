@@ -3,7 +3,7 @@ Dotfiles
 
 |Build| |Code Climate| |Tag| |GitHub issues| |License| |Issue Count| |Test Coverage|
 
-:Version: 1.5.0
+:Version: 1.6.0
 :Web: https://github.com/luismayta/dotfiles
 :Download: http://github.com/luismayta/dotfiles
 :Source: http://github.com/luismayta/dotfiles
@@ -35,7 +35,6 @@ enjoy all the goodies of this configuration.
 -  `Curl <https://github.com/bagder/curl>`__
 -  `Wget <http://www.gnu.org/software/wget>`__
 -  `Rsync <https://rsync.samba.org>`__
--  `Tmux <https://tmux.github.io>`__
 
 via curl
 ~~~~~~~~
@@ -65,7 +64,7 @@ compounding or character encoding.
 Fonts
 ~~~~~
 
-`Fonts <extras/fonts/>`__
+`Fonts <provision/fonts/>`__
 
 +-----------------------------+--------------------+----------------------------+
 | Powerline Font Family       | Formerly Known As  | License                    |
@@ -229,7 +228,7 @@ Plugins
 +------------------------------------------+--------------+
 | chrissicool/zsh-256color                 |              |
 +------------------------------------------+--------------+
-| dgnest/zsh-gvm-plugin                    |              |
+| luismayta/zsh-goenv                      |              |
 +------------------------------------------+--------------+
 | wbinglee/zsh-wakatime                    |              |
 +------------------------------------------+--------------+

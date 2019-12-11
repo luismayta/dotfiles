@@ -1,4 +1,4 @@
-ChangeLog
+Changelog
 ---------
 
 All notable changes to this project will be documented in this file.
@@ -7,6 +7,17 @@ This file uses change log convention from `keep a CHANGELOG`_.
 
 `Unreleased`_
 +++++++++++++
+
+`1.6.0`_ - 2019-12-11
+++++++++++++++++++++++
+
+Task
+----
+
+- `198 <198>`_ - refactor: clean code unnecesary.
+- `196 <196>`_ - fix: settings alacritty.
+- `194 <194>`_ - chore: implement news utils.
+
 
 `1.5.0`_ - 2019-08-05
 ++++++++++++++++++++++
@@ -46,7 +57,8 @@ Task
 ++++++++++++++++++++++
 
 
-.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.5.0...HEAD
+.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.6.0...HEAD
+.. _`1.6.0`: https://github.com/luismayta/dotfiles/compare/1.5.0...1.6.0
 .. _`1.5.0`: https://github.com/luismayta/dotfiles/compare/1.4.0...1.5.0
 .. _`1.4.0`: https://github.com/luismayta/dotfiles/compare/1.3.1...1.4.0
 .. _`1.3.1`: https://github.com/luismayta/dotfiles/compare/1.3.0...1.3.1

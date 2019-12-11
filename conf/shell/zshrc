@@ -3,11 +3,41 @@
 
 #zmodload zsh/zprof
 
-export ZSH=$HOME/.dotfiles
-export DOTFILES="$HOME/.dotfiles"
+export ZSH=${HOME}/.dotfiles
+export DOTFILES="${HOME}/.dotfiles"
+export GOPATH="${HOME}/Projects" 
 
-export SHELL=/bin/zsh
+[ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
+[ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
 
+# Enable autocompletions
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+zmodload -i zsh/complist
+# Save history so we get auto suggestions
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+# Options
+setopt auto_cd # cd by typing directory name if it's not a command
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+setopt hist_ignore_all_dups # remove older duplicate entries from history
+setopt hist_reduce_blanks # remove superfluous blanks from history items
+setopt inc_append_history # save history entries as soon as they are entered
+setopt share_history # share history between different instances
+setopt correct_all # autocorrect commands
+setopt interactive_comments # allow comments in interactive shells
+# Improve autocompletion style
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
 
 # DISABLE AUTOCORRECTION
 DISABLE_CORRECTION="true"
@@ -21,37 +51,52 @@ source <(antibody init)
 # setup antibody
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
-antibody bundle marzocchi/zsh-notify
 antibody bundle willghatch/zsh-hooks
+antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle unixorn/git-extra-commands
-antibody bundle luismayta/zsh-aliases
+antibody bundle luismayta/zsh-brew branch:develop
+antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases
 antibody bundle luismayta/zsh-docker-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
 antibody bundle luismayta/zsh-servers-functions
-antibody bundle luismayta/zsh-peco-ssh-connect
-antibody bundle luismayta/zsh-gvm
-antibody bundle luismayta/zsh-nvm
-antibody bundle luismayta/zsh-rvm
-antibody bundle luismayta/zsh-rust
-antibody bundle luismayta/zsh-pyenv
-antibody bundle igoradamenko/jira.plugin.zsh
-antibody bundle erikced/zsh-pyenv-lazy-load
-antibody bundle kadaan/zsh-pyenv-virtualenv-lazy
-antibody bundle luismayta/zsh-transfer
-antibody bundle luismayta/zsh-flutter
+antibody bundle luismayta/zsh-ssh-connect branch:develop
+antibody bundle luismayta/zsh-goenv branch:develop
+antibody bundle luismayta/zsh-nvm branch:develop
+antibody bundle luismayta/zsh-rvm branch:develop
+antibody bundle luismayta/zsh-rust branch:develop
+antibody bundle luismayta/zsh-vscode branch:develop
+antibody bundle luismayta/zsh-pyenv branch:develop
+antibody bundle luismayta/zsh-pipenv branch:develop
+antibody bundle luismayta/zsh-tfenv branch:develop
+antibody bundle luismayta/zsh-ghq branch:develop
+antibody bundle luismayta/zsh-trash branch:develop
+antibody bundle luismayta/zsh-transfer branch:develop
+antibody bundle luismayta/zsh-pazi branch:develop
+antibody bundle luismayta/zsh-flutter branch:develop
+antibody bundle luismayta/zsh-clean branch:develop
+antibody bundle luismayta/zsh-bitwarden branch:develop
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle wwilsman/zsh-clean-project
-antibody bundle sindresorhus/pretty-time-zsh
-antibody bundle jimeh/zsh-peco-history
+antibody bundle zdharma/fast-syntax-highlighting
+antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
+#antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle b4b4r07/zsh-vimode-visual
+antibody bundle sindresorhus/pretty-time-zsh
+#antibody bundle luismayta/zsh-history branch:develop
 antibody bundle sindresorhus/pure
+antibody bundle piger/zsh-notify
+antibody bundle luismayta/zsh-tmux
+antibody bundle luismayta/zsh-restic
+antibody bundle luismayta/zsh-osx
+
+#nodejs
+antibody bundle buonomo/yarn-completion
 
 # load everything but the path and completion files
-source "$ZSH/zsh/completions.zsh"
+#source "${ZSH}/zsh/completions.zsh"
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up
@@ -60,8 +105,8 @@ bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit -i -d ${ZSH_COMPDUMP}
+#autoload -U compinit
+#compinit -i -d ${ZSH_COMPDUMP}
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -74,7 +119,7 @@ HISTFILESIZE=2000
 alias reload!='exec "$SHELL" -l'
 
 ZSH_TMUX_AUTOSTART=false
-[[ $TMUX == "" ]] && tmux new-session -A -s "${USER}"
+[ -z $TMUX ] && tmux new-session -A -s "${USER}"
 
 # shellcheck source=/dev/null
-[ -f "$HOME/.profile" ] && source "$HOME/.profile"
+[ -f "${HOME}/.profile" ] && source "${HOME}/.profile"

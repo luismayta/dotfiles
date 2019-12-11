@@ -1,25 +1,32 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+# Configuration for Alacritty, the GPU enhanced terminal emulator
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
-# set by alacritty itself.
+# set by alacritty it self.
 env:
+  # TERM env customization.
+  #
+  # If this property is not set, alacritty will set it to xterm-256color.
+  #
+  # Note that some xterm terminfo databases don't declare support for italics.
+  # You can verify this by checking for the presence of `smso` and `sitm` in
+  # `infocmp xterm-256color`.
   TERM: screen-256color # this is what neovim needs
-  # ALACRITTY: 1
+  #TERM: screen-256color # this is what neovim needs
 
 window:
   # Window dimensions (changes require restart)
   #
-  # Specified in number of columns/lines, not pixels.
-  # If both are `0`, this setting is ignored.
+  # Specified in number of columns/lines, not pixels. If both are zero this
+  # setting is ignored.
   dimensions:
     columns: 0
     lines: 0
 
   # Window padding (changes require restart)
   #
-  # Blank space added around the window in pixels. This padding is scaled
-  # by DPI and the specified value is always added at both opposing sides.
+  # Blank space added around the window in pixels. This padding is not scaled by
+  # DPI and the specified value is always added at both opposing sides.
   padding:
     x: 2
     y: 2
@@ -29,17 +36,23 @@ window:
 
   # Window decorations
   #
-  # Values for `decorations`:
-  #     - full: Borders and title bar
-  #     - none: Neither borders nor title bar
-  #
-  # Values for `decorations` (macOS only):
-  #     - buttonless: Title bar, transparent background and title bar buttons
-  #     - transparent: Title bar, transparent background, but no title bar buttons
+  # Available values:
+  # - full: borders and title bar
+  # - none: neither borders nor title bar
+  # - transparent: title bar, transparent background and title bar buttons
+  # - buttonless: title bar, transparent background, but no title bar buttons
   decorations: full
 
-  # When true, alacritty starts maximized.
-  start_maximized: false
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Maximized
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -53,8 +66,8 @@ scrolling:
   # Faux Scrolling
   #
   # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
+  # should scroll when the alternate screen buffer is active. This is used to
+  # allow mouse scrolling for applications like `man`.
   #
   # Specifying `0` will disable faux scrolling.
   faux_multiplier: 3
@@ -62,50 +75,55 @@ scrolling:
   # Scroll to the bottom when new text is written to the terminal.
   auto_scroll: false
 
-# Spaces per Tab (changes require restart)
+# Display tabs using this many cells (changes require restart)
 #
-# This setting defines the width of a tab in cells.
-#
-# Some applications, like Emacs, rely on knowing about the width of a tab.
-# To prevent unexpected behavior in these applications, it's also required to
+# Some applications, like Emacs, rely on knowing about the width of a tab. To
+# prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 4
+#
+tabspaces: 2
 
 # Font configuration (changes require restart)
 font:
-  use_thin_strokes: true
+  # The normal (roman) font face to use.
+  # Style can be specified to pick a specific face.
   normal:
-    family: Fira Code
-    style: Regular
+    family: 'Fira Code'
+    # family: "Source Code Pro"
+    style: Retina
 
+  # The bold font face
   bold:
-    family: Fira Code
+    family: 'Fira Code'
+    # family: "Source Code Pro"
     style: Bold
 
+  # The italic font face
   italic:
-    family: Fira Code
-    style: ExtraLight Italic
+    # family: "Fira Code"
+    family: 'Source Code Pro'
+    style: 'Medium Italic'
 
-  # Point size
+  # Point size of the font
   size: 18.0
 
-  # Offset is the extra space around each character. `offset.y` can be thought of
-  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
+  # the default being at the bottom. Increase the x offset to move the glyph to
+  # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0
     y: 0
 
   # Thin stroke font rendering (macOS only)
   #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
+  # Thin strokes are suitable for retina displays, but for non-retina you
+  # probably want this set to false.
   #
   # macOS >= 10.14.x:
   #
@@ -116,154 +134,49 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
+  use_thin_strokes: true
 
-# Keep the log file after quitting Alacritty.
-persistent_logging: false
+# Use custom cursor colors. If true, display the cursor in the cursor.foreground
+# and cursor.background colors, otherwise invert the colors of the cursor.
+# custom_cursor_colors: false
+
+# begin_theme
+
+# Colors (One Dark)
+colors:
+  # Default colors
+  primary:
+    background: '0x1e2127'
+    foreground: '0xabb2bf'
+
+  # Normal colors
+  normal:
+    black: '0x1e2127'
+    red: '0xe06c75'
+    green: '0x98c379'
+    yellow: '0xd19a66'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0xabb2bf'
+
+  # Bright colors
+  bright:
+    black: '0x5c6370'
+    red: '0xe06c75'
+    green: '0x98c379'
+    yellow: '0xd19a66'
+    blue: '0x61afef'
+    magenta: '0xc678dd'
+    cyan: '0x56b6c2'
+    white: '0xffffff'
+
+# end_theme
 
 # Colors -----------------------------------------------------------------------
 
-# background_opacity: 1.0
-
 # # Use custom cursor colors. If true, display the cursor in the cursor.foreground and cursor.background colors, otherwise invert the colors of the cursor.
-# custom_cursor_colors: true
-
-# Colors (nova): https://trevordmiller.com/projects/nova
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x3c4c55'
-#     foreground: '0xc5d4dd'
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '0x3c4c55'
-#     cursor: '0x7fc1ca'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x3c4c55'
-#     red:     '0xdf8c8c'
-#     green:   '0xa8ce93'
-#     yellow:  '0xdada93'
-#     blue:    '0x83afe5'
-#     magenta: '0x9a93e1'
-#     cyan:    '0x7fc1ca'
-#     white:   '0xc5d4dd'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x899ba6'
-#     red:     '0xf2c38f'
-#     green:   '0xa8ce93'
-#     yellow:  '0xdada93'
-#     blue:    '0x83afe5'
-#     magenta: '0xd18ec2'
-#     cyan:    '0x7fc1ca'
-#     white:   '0xe6eef3'
-
-# Colors (Ayu Dark)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x0A0E14'
-#     foreground: '0xB3B1AD'
-
-#   # Normal colors
-#   normal:
-#     black: '0x01060E'
-#     red: '0xEA6C73'
-#     green: '0x91B362'
-#     yellow: '0xF9AF4F'
-#     blue: '0x53BDFA'
-#     magenta: '0xFAE994'
-#     cyan: '0x90E1C6'
-#     white: '0xC7C7C7'
-
-#   # Bright colors
-#   bright:
-#     black: '0x686868'
-#     red: '0xF07178'
-#     green: '0xC2D94C'
-#     yellow: '0xFFB454'
-#     blue: '0x59C2FF'
-#     magenta: '0xFFEE99'
-#     cyan: '0x95E6CB'
-#     white: '0xFFFFFF'
-
-# Colors (Nord)
-colors:
-   # Default colors
-   primary:
-     background: '0x2E3440'
-     foreground: '0xD8DEE9'
-
-   # Normal colors
-   normal:
-     black:   '0x3B4252'
-     red:     '0xBF616A'
-     green:   '0xA3BE8C'
-     yellow:  '0xEBCB8B'
-     blue:    '0x81A1C1'
-     magenta: '0xB48EAD'
-     cyan:    '0x88C0D0'
-     white:   '0xE5E9F0'
-
-   # Bright colors
-   bright:
-     black:   '0x4C566A'
-     red:     '0xBF616A'
-     green:   '0xA3BE8C'
-     yellow:  '0xEBCB8B'
-     blue:    '0x81A1C1'
-     magenta: '0xB48EAD'
-     cyan:    '0x8FBCBB'
-     white:   '0xECEFF4'
-
-# colors:
-#   # Default colors
-#   primary:
-#     background: '#0C0C0C' # ro
-#     foreground: '#FCFAF2' # shironeri
-#     bright_foreground: '#1C1C1C' # sumi
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '#080808' # kuro
-#     cursor: '#CB1B45' # kurenai
-
-#   # Normal colors
-#   # theme: nihoncolors
-#   normal:
-#     black:   '#0C0C0C' # ro
-#     red:     '#DB4D6D' # nakabeni
-#     green:   '#227D51' # midori
-#     yellow:  '#F7C242' # hanaba
-#     blue:    '#2EA9DF' # tsuyukusa
-#     magenta: '#66327C' # fuji
-#     cyan:    '#1E88A8' # hanaasagi
-#     white:   '#FCFAF2' # shironeri
-
-#   # Bright colors
-#   bright:
-#     black:   '#434343' # keshizumi
-#     red:     '#F596AA' # momo
-#     green:   '#6A8372' # oitake
-#     yellow:  '#FAD689' # usuki
-#     blue:    '#005CAF' # ruri
-#     magenta: '#B28FCE' # usu
-#     cyan:    '#7DB9DE' # wasurenagusa
-#     white:   '#FFFFFB' # gofun
-
-#   # Dim colors (Optional)
-#   dim:
-#     black:   '#1C1C1C' # sumi
-#     red:     '#D05A6E' # imayoh
-#     green:   '#2D6D4B' # tokusa
-#     yellow:  '#C18A26' # kigaracha
-#     blue:    '#0B346E' # rurikon
-#     magenta: '#533D5B' # messhi
-#     cyan:    '#0C4842' # onando
-#     white:   '#BDC0BA' # shironezumi
+custom_cursor_colors: true
 
 # Visual Bell
 #
@@ -313,9 +226,6 @@ background_opacity: 1.0
 # All available `mods` and `action` values are documented in the key binding
 # section.
 
-
-
-
 # Allow terminal applications to change Alacritty's window title.
 dynamic_title: true
 
@@ -333,59 +243,58 @@ cursor:
   unfocused_hollow: true
 
 key_bindings:
-  - { key: Period,   mods: Command, action: Paste                        }
-  - { key: V,        mods: Command, action: Paste                        }
-  - { key: C,        mods: Command, action: Copy                         }
-  - { key: Q,        mods: Command, action: Quit                         }
-  - { key: W,        mods: Command, action: Quit                         }
-  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
-  - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[4~",  mode: ~AppCursor  }
-  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
-  - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
-  - { key: PageUp,                  chars: "\x1b[5~"                     }
-  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
-  - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                   }
-  - { key: PageDown,                chars: "\x1b[6~"                     }
-  - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }
-  - { key: Left,     mods: Control, chars: "\x1b[1;5D"                   }
-  - { key: Left,     mods: Alt,     chars: "\x1b[1;3D"                   }
-  - { key: Left,                    chars: "\x1b[D",   mode: ~AppCursor  }
-  - { key: Left,                    chars: "\x1bOD",   mode: AppCursor   }
-  - { key: Right,    mods: Shift,   chars: "\x1b[1;2C"                   }
-  - { key: Right,    mods: Control, chars: "\x1b[1;5C"                   }
-  - { key: Right,    mods: Alt,     chars: "\x1b[1;3C"                   }
-  - { key: Right,                   chars: "\x1b[C",   mode: ~AppCursor  }
-  - { key: Right,                   chars: "\x1bOC",   mode: AppCursor   }
-  - { key: Up,       mods: Shift,   chars: "\x1b[1;2A"                   }
-  - { key: Up,       mods: Control, chars: "\x1b[1;5A"                   }
-  - { key: Up,       mods: Alt,     chars: "\x1b[1;3A"                   }
-  - { key: Up,                      chars: "\x1b[A",   mode: ~AppCursor  }
-  - { key: Up,                      chars: "\x1bOA",   mode: AppCursor   }
-  - { key: Down,     mods: Shift,   chars: "\x1b[1;2B"                   }
-  - { key: Down,     mods: Control, chars: "\x1b[1;5B"                   }
-  - { key: Down,     mods: Alt,     chars: "\x1b[1;3B"                   }
-  - { key: Down,                    chars: "\x1b[B",   mode: ~AppCursor  }
-  - { key: Down,                    chars: "\x1bOB",   mode: AppCursor   }
-  - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                      }
-  - { key: F1,                      chars: "\x1bOP"                      }
-  - { key: F2,                      chars: "\x1bOQ"                      }
-  - { key: F3,                      chars: "\x1bOR"                      }
-  - { key: F4,                      chars: "\x1bOS"                      }
-  - { key: F5,                      chars: "\x1b[15~"                    }
-  - { key: F6,                      chars: "\x1b[17~"                    }
-  - { key: F7,                      chars: "\x1b[18~"                    }
-  - { key: F8,                      chars: "\x1b[19~"                    }
-  - { key: F9,                      chars: "\x1b[20~"                    }
-  - { key: F10,                     chars: "\x1b[21~"                    }
-  - { key: F11,                     chars: "\x1b[23~"                    }
-  - { key: F12,                     chars: "\x1b[24~"                    }
-  - { key: Back,                    chars: "\x7f"                        }
-  - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
-  - { key: Insert,                  chars: "\x1b[2~"                     }
-  - { key: Delete,                  chars: "\x1b[3~"                     }
-
+  - { key: Period, mods: Command, action: Paste }
+  - { key: V, mods: Command, action: Paste }
+  - { key: C, mods: Command, action: Copy }
+  - { key: Q, mods: Command, action: Quit }
+  - { key: W, mods: Command, action: Quit }
+  - { key: Home, chars: "\x1bOH", mode: AppCursor }
+  - { key: Home, chars: "\x1b[1~", mode: ~AppCursor }
+  - { key: End, chars: "\x1bOF", mode: AppCursor }
+  - { key: End, chars: "\x1b[4~", mode: ~AppCursor }
+  - { key: PageUp, mods: Shift, chars: "\x1b[5;2~" }
+  - { key: PageUp, mods: Control, chars: "\x1b[5;5~" }
+  - { key: PageUp, chars: "\x1b[5~" }
+  - { key: PageDown, mods: Shift, chars: "\x1b[6;2~" }
+  - { key: PageDown, mods: Control, chars: "\x1b[6;5~" }
+  - { key: PageDown, chars: "\x1b[6~" }
+  - { key: Left, mods: Shift, chars: "\x1b[1;2D" }
+  - { key: Left, mods: Control, chars: "\x1b[1;5D" }
+  - { key: Left, mods: Alt, chars: "\x1b[1;3D" }
+  - { key: Left, chars: "\x1b[D", mode: ~AppCursor }
+  - { key: Left, chars: "\x1bOD", mode: AppCursor }
+  - { key: Right, mods: Shift, chars: "\x1b[1;2C" }
+  - { key: Right, mods: Control, chars: "\x1b[1;5C" }
+  - { key: Right, mods: Alt, chars: "\x1b[1;3C" }
+  - { key: Right, chars: "\x1b[C", mode: ~AppCursor }
+  - { key: Right, chars: "\x1bOC", mode: AppCursor }
+  - { key: Up, mods: Shift, chars: "\x1b[1;2A" }
+  - { key: Up, mods: Control, chars: "\x1b[1;5A" }
+  - { key: Up, mods: Alt, chars: "\x1b[1;3A" }
+  - { key: Up, chars: "\x1b[A", mode: ~AppCursor }
+  - { key: Up, chars: "\x1bOA", mode: AppCursor }
+  - { key: Down, mods: Shift, chars: "\x1b[1;2B" }
+  - { key: Down, mods: Control, chars: "\x1b[1;5B" }
+  - { key: Down, mods: Alt, chars: "\x1b[1;3B" }
+  - { key: Down, chars: "\x1b[B", mode: ~AppCursor }
+  - { key: Down, chars: "\x1bOB", mode: AppCursor }
+  - { key: Tab, mods: Shift, chars: "\x1b[Z" }
+  - { key: F1, chars: "\x1bOP" }
+  - { key: F2, chars: "\x1bOQ" }
+  - { key: F3, chars: "\x1bOR" }
+  - { key: F4, chars: "\x1bOS" }
+  - { key: F5, chars: "\x1b[15~" }
+  - { key: F6, chars: "\x1b[17~" }
+  - { key: F7, chars: "\x1b[18~" }
+  - { key: F8, chars: "\x1b[19~" }
+  - { key: F9, chars: "\x1b[20~" }
+  - { key: F10, chars: "\x1b[21~" }
+  - { key: F11, chars: "\x1b[23~" }
+  - { key: F12, chars: "\x1b[24~" }
+  - { key: Back, chars: "\x7f" }
+  - { key: Back, mods: Alt, chars: "\x1b\x7f" }
+  - { key: Insert, chars: "\x1b[2~" }
+  - { key: Delete, chars: "\x1b[3~" }
 
 # Mouse Bindings ---------------------------------------------------------------
 mouse_bindings:
@@ -404,25 +313,24 @@ mouse:
   hide_when_typing: false
 
   # url:
-    # URL launcher
-    #
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    #
-    # Default:
-    #   - (macOS) open
-    #   - (Linux) xdg-open
-    #   - (Windows) explorer
-    #launcher: xdg-open
-
-    # URL modifiers
-    #
-    # These are the modifiers that need to be held down for opening URLs when clicking
-    # on them. The available modifiers are documented in the key binding section.
-    # modifiers: None
+  # URL launcher
+  #
+  # This program is executed when clicking on a text which is recognized as a URL.
+  # The URL is always added to the command as the last parameter.
+  #
+  # Default:
+  #   - (macOS) open
+  #   - (Linux) xdg-open
+  #   - (Windows) explorer
+  #launcher: xdg-open
+  # URL modifiers
+  #
+  # These are the modifiers that need to be held down for opening URLs when clicking
+  # on them. The available modifiers are documented in the key binding section.
+  # modifiers: None
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
@@ -433,11 +341,10 @@ selection:
 live_config_reload: true
 
 # Should display the render timer
-render_timer: false
+debug.render_timer: false
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: false
-
 # visual_bell:
 #   animation: EaseOutExpo
 #   duration: 1
@@ -448,4 +355,4 @@ draw_bold_text_with_bright_colors: false
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
 # shell:
-#   program: /usr/local/bin/zsh
+# program: /usr/local/bin/zsh

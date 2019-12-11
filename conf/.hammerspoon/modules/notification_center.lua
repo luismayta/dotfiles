@@ -1,3 +1,4 @@
+local pomodor = require('modules.pomodoor')
 local hotkey = require('core.hotkey')
 local module = {}
 
@@ -18,6 +19,7 @@ function module.toggleDoNotDisturb()
 
    -- is not enabled, will be enabled
    if not isEnabled then
+      pomodor.enable()
       hs.notify.new({
             title        = 'Do Not Disturb',
             subTitle     = 'Enabled',
@@ -42,6 +44,7 @@ function module.toggleDoNotDisturb()
 
         -- is enabled, was disabled
         if isEnabled then
+           pomodor.disable()
            hs.notify.new({
                  title        = 'Do Not Disturb',
               subTitle     = 'Disabled',

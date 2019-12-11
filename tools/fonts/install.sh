@@ -17,7 +17,7 @@ find_command="find \"${PATH_FONTS_REPO}\" \( -name '*.[o,t]tf' -or -name '*.pcf.
 eval "${find_command}" | xargs -0 -I % cp "%" "${FONTS_DIR}/" || die "Could not copy fonts to $FONTS_DIR"
 
 # Reset font cache on Linux
-if [[ -n $(which fc-cache) ]]; then
+if [ -x "$(command which fc-cache)" ]; then
     fc-cache -f "${FONTS_DIR}"
 fi
 

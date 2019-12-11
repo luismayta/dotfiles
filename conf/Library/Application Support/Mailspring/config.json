@@ -92,9 +92,7 @@
         "undoSend": 5000
       },
       "theme": "ui-light",
-      "themes": [
-        "ui-light"
-      ],
+      "themes": ["ui-light"],
       "tutorial": {
         "seen": [
           "ThreadSearchBar",

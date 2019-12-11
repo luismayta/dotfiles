@@ -2,10 +2,9 @@
 # https://docs.docker.com/compose/
 # Usage: docker-compose up
 ---
-version: "3.6"
+version: '3.6'
 
 services:
-
   app:
     environment: &environment
       - APP_NAME=dotfiles

@@ -20,64 +20,65 @@ docker.help:
 	@echo '        docker.list           list services of docker'
 	@echo ''
 
-docker.run: clean
+docker.run:
 	@if [ -z "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml run --rm ${service} bash; \
+		$(docker-dev) run --rm ${service} bash; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml run --rm ${service} bash; \
 	fi
 
-docker.restart: clean
+docker.restart:
 	@if [ -z "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml restart; \
+		$(docker-dev) restart; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml restart; \
 	fi
 
-docker.build: clean
+docker.build:
 	@echo $(MESSAGE) "Building stage: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml build ${args}; \
+		$(docker-dev) build ${args}; \
 	elif [ -z "${stage}" ] && [ -n "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml build ${service} ${args}; \
+		$(docker-dev) build ${service} ${args}; \
 	elif [ -n "${stage}" ] && [ -z "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${args}; \
+		$(docker_compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${args}; \
 	elif [ -n "${stage}" ] && [ -n "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${service} ${args}; \
+		$(docker_compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${service} ${args}; \
 	fi
 
-docker.log: clean
+docker.log:
 	@echo $(MESSAGE) "Building environment: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml logs -f ; \
+		$(docker-dev) logs -f ; \
 	elif [ -z "${stage}" ] && [ -n "${service}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml logs -f ${service}; \
+		$(docker-dev) logs -f ${service}; \
 	elif [ -n "${stage}" ] && [ -z "${service}" ]; then \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f; \
 	elif [ -n "${stage}" ] && [ -n "${service}" ]; then \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml logs -f ${service} ; \
 	fi
 
-docker.down: clean
+docker.down:
 	@echo $(MESSAGE) "Down Services Stage: ${stage}"
 	@if [ -z  "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml down --remove-orphans; \
+		$(docker-dev) down --remove-orphans; \
+		$(docker-test) down --remove-orphans; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml down --remove-orphans; \
 	fi
 
-docker.exec: clean
+docker.exec:
 	@echo $(MESSAGE) "Exec Services Stage: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml exec ${service} ${command} ; \
+		$(docker-dev) exec ${service} ${command} ; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml exec ${service} ${command} ; \
 	fi
 
-docker.stop: clean
+docker.stop:
 	@echo $(MESSAGE) "Stop Services: ${stage}"
 	@if [ "${stage}" == "" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml stop; \
+		$(docker-dev) stop; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml stop; \
 	fi
@@ -87,18 +88,18 @@ docker.verify_network: ## Verify network
 		(docker network create $(DOCKER_NETWORK));\
 	fi
 
-docker.up: clean
+docker.up:
 	@echo $(MESSAGE) "Up Services: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml up --remove-orphans; \
+		$(docker-dev) up --remove-orphans; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml up --remove-orphans; \
 	fi
 
-docker.list: clean
+docker.list:
 	@echo $(MESSAGE) "List Services: ${stage}"
 	@if [ -z "${stage}" ]; then \
-		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/dev.yml ps; \
+		$(docker-dev) ps; \
 	else \
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml ps; \
 	fi

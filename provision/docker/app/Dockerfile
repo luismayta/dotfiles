@@ -22,11 +22,10 @@ ENV PACKAGES bash \
   libgdal20 \
   libev-dev
 
-COPY Pipfile Pipfile.lock /usr/src/
+COPY Pipfile* /usr/src/
 
-# Define working directory.
-WORKDIR $SRC_PATH
-
+# set working directory to /usr/src/
+WORKDIR /usr/src/
 
 RUN  groupadd -g 500 -r python \
   && groupadd developer \
@@ -34,10 +33,15 @@ RUN  groupadd -g 500 -r python \
   && chown -R developer:python /usr/local/bin \
   && mkdir -p /usr/src \
   && chown -R developer /usr/src \
+
+# install packages
   && apt-get update -y \
-  && apt-get install -y $PACKAGES \
+  && apt-get install -y ${PACKAGES} --no-install-recommends \
+  && apt-get clean \
+  && apt-get autoremove \
+
   && pip3 install pipenv \
-  && pipenv install --dev \
+  && pipenv install --dev --skip-lock \
   && pipenv shell --fancy \
   && apt-get purge \
   && rm -rf /var/lib/apt/lists/*

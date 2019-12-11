@@ -2,12 +2,25 @@
 # https://docs.docker.com/compose/
 # Usage: docker-compose up
 ---
-version: "3.6"
+version: '3.6'
 services:
-
+  # Python
   app:
     environment: &environment
       - APP_NAME=dotfiles
     build:
       context: .
       dockerfile: provision/docker/app/Dockerfile
+
+  check:
+    image: dotfiles-check-dev
+    environment: *environment
+    build:
+      context: .
+      dockerfile: provision/docker/check/Dockerfile
+      args:
+        stage: dev
+    volumes:
+      - .:/usr/src
+    env_file:
+      - .env
