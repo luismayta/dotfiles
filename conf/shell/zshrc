@@ -61,8 +61,8 @@ antibody bundle luismayta/zsh-docker-aliases
 antibody bundle luismayta/zsh-docker-compose-aliases
 antibody bundle luismayta/zsh-servers-functions
 antibody bundle luismayta/zsh-ssh-connect branch:develop
-antibody bundle luismayta/zsh-goenv branch:develop
-antibody bundle luismayta/zsh-nvm branch:develop
+antibody bundle equipindustry/zsh-goenv branch:develop
+antibody bundle equipindustry/zsh-nvm branch:develop
 antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-rust branch:develop
 antibody bundle luismayta/zsh-vscode branch:develop
