@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 
 function initialize(){
-    for app in {zsh,git,tmux,rsync}; do
+    for app in {zsh,git,rsync}; do
         program_exists "$app"
     done
     unset app
 
     install_apps
 
-    for path in "$CONF_DIR"/{shell,app}; do
-        for file_path in "$path/"*; do
-            local file="$HOME/.${file_path##*/}"
-            do_backup "$file"
+    for path in "${CONF_DIR}"/{shell,app}; do
+        for file_path in "${path}/"*; do
+            local file="${HOME}/.${file_path##*/}"
+            do_backup "${file}"
             cp_file "$file_path" "$file"
             unset file
         done
@@ -24,13 +24,14 @@ function initialize(){
     rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
 }
 
-function die () {
+function die() {
     echo "${@}"
     exit 1
 }
 
 function is_program_exist() {
-    if ! [ -x "$(command -v ${1})" ]; then
+
+    if ! type -p "${1}" > /dev/null; then
         echo 1
         exit 1
     fi
@@ -41,7 +42,7 @@ function program_exists() {
     local app=$1
     local message="Need to install $app."
     local ret='0'
-    which "${1}" >> /dev/null 2>&1 || { local ret='1'; }
+    type -p "${1}" >> /dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [[ ! "$ret" -eq '0' ]]; then
