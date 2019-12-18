@@ -7,7 +7,6 @@ mkdir -p "${FONTS_DIR}"
 export APPS=(
     "git-extras"
     "fonts"
-    "tpm"
     "antibody"
     "scm_breeze"
 )

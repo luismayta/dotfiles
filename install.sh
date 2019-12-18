@@ -73,7 +73,7 @@ clone_repo() {
     fi
 }
 
-for app in {zsh,git,tmux}; do
+for app in {zsh,git,rsync}; do
     program_exists "$app"
 done
 unset app
