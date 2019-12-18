@@ -7,7 +7,6 @@ export APPS=(
     "brew"
     "git-extras"
     "fonts"
-    "tpm"
     "antibody"
     "scm_breeze"
     "mac-cli"
