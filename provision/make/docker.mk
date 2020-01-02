@@ -7,9 +7,9 @@ docker: docker.help
 docker.help:
 	@echo '    Docker:'
 	@echo ''
-	@echo '        docker.build         build all or one example: make docker.build service={{services}}  args=(--pull|...)'
+	@echo '        docker.build         build all or one example: make docker.build service={services}  args=(--pull|...)'
 	@echo '        docker.down          down services docker-compose'
-	@echo '        docker.exec          exec command in container by {{services}} {{command}}'
+	@echo '        docker.exec          exec command in container by {services} {command}'
 	@echo '        docker.ssh           connect by ssh to container'
 	@echo '        docker.stop          stop services by stage'
 	@echo '        docker.log           log {service} {stage}'
