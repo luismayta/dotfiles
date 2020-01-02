@@ -77,7 +77,7 @@ Run unit tests specified
 
 .. code-block:: bash
 
-    make test run={{path}}
+    make test run={path}
 
 
 Code Submission
