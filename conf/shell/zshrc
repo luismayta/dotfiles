@@ -58,15 +58,14 @@ antibody bundle unixorn/git-extra-commands
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases branch:develop
-antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle luismayta/zsh-docker branch:develop
 antibody bundle luismayta/zsh-docker-aliases branch:develop
 antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
 antibody bundle luismayta/zsh-servers-functions branch:develop
+antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-ssh-connect branch:develop
 antibody bundle equipindustry/zsh-goenv branch:develop
 antibody bundle equipindustry/zsh-nvm branch:develop
-antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-rust branch:develop
 antibody bundle luismayta/zsh-vscode branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
@@ -89,12 +88,14 @@ antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle b4b4r07/zsh-vimode-visual
 antibody bundle sindresorhus/pretty-time-zsh
-#antibody bundle luismayta/zsh-history branch:develop
-antibody bundle sindresorhus/pure
-antibody bundle piger/zsh-notify
+antibody bundle luismayta/zsh-history branch:develop
+antibody bundle luismayta/zsh-starship branch:develop
+antibody bundle luismayta/zsh-notify branch:develop
 antibody bundle luismayta/zsh-tmux branch:develop
 antibody bundle luismayta/zsh-restic branch:develop
 antibody bundle luismayta/zsh-osx branch:develop
+antibody bundle luismayta/zsh-scmbreeze branch:develop
+antibody bundle git@gitlab.com:code-stats/code-stats-zsh
 
 #nodejs
 antibody bundle buonomo/yarn-completion
@@ -126,3 +127,9 @@ ZSH_TMUX_AUTOSTART=false
 
 # shellcheck source=/dev/null
 [ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
+
+function editrc {
+  if [ -z "${1}" ]; then
+    vim $HOME/.zshrc
+  fi
+}
