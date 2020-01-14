@@ -19,9 +19,5 @@ alias whois="whois -h whois-servers.net"
 # selection xclip
 alias xclip="xclip -selection c"
 
-# list files
-alias ll="ls -l"
-alias ls="ls -a"
-
 # download
 alias wget='wget --user-agent="Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
