@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
-#zmodload zsh/zprof
+if [ -n "${ZSH_DEBUG}" ]; then
+    zmodload zsh/zprof
+fi
 
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
