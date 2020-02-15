@@ -36,21 +36,6 @@ source ${MOD_DIR}/zsh.zsh
 # load completions
 source ${MOD_DIR}/completions.zsh
 
-# SSH
-source ${MOD_DIR}/ssh.zsh
-
-
-# Enable autocompletions
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-    compinit -i
-else
-    compinit -C -i
-fi
-
-zmodload -i zsh/complist
-
 # ANTIBODY — plugin manager
 
 source <(antibody init)
@@ -115,15 +100,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
-
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 
 ZSH_TMUX_AUTOSTART=false
 [ -z $TMUX ] && tmux new-session -A -s "${USER}"
