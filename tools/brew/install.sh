@@ -33,37 +33,16 @@ brew install coreutils \
      openssh \
      git git-lfs git-flow lynx p7zip tig unrar ncdu \
      rename ssh-copy-id tree telnet grep \
-     htop \
-     peco terminal-notifier packer terragrunt aws-shell \
      global \
      wget \
      jq \
      fzf \
      reattach-to-user-namespace \
-     hub \
-     cask \
-     zplug \
      ctags
 
 brew cask install \
-     java \
-     aws-vault \
-     meld \
      docker \
-     insomnia \
-     kap \
-     dash \
-     alacritty \
-     zazu \
-     hammerspoon \
-     "1password-cli" \
-     skitch \
-     slack \
-     clipy \
-     bitbar \
-     keycastr \
-     licecap \
-     intellij-idea-ce
+     alacritty
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 

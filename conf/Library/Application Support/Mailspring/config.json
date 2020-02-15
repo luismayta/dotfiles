@@ -94,12 +94,7 @@
       "theme": "ui-light",
       "themes": ["ui-light"],
       "tutorial": {
-        "seen": [
-          "ThreadSearchBar",
-          "ActivityListButton",
-          "ModeToggle",
-          "ToolbarSnooze"
-        ]
+        "seen": ["ThreadSearchBar", "ActivityListButton", "ModeToggle", "ToolbarSnooze"]
       },
       "workspace": {
         "hiddenLocations": {

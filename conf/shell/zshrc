@@ -1,75 +1,84 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
-#zmodload zsh/zprof
+if [ -n "${ZSH_DEBUG}" ]; then
+    zmodload zsh/zprof
+fi
 
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
-export GOPATH="${HOME}/Projects" 
+export DOTFILES_DIR="${DOTFILES}/src"
+export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
+
+# antibody
+source <(antibody init)
+
+# language
+export LANG="en_US.UTF-8"
+export LC_ALL=$LANG
+
+[ -e "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
+[ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
+[ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
 
 [ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
 [ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
+
+
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
+# zsh
+source $MOD_DIR/zsh.zsh .
+
+# Homebrew
+export PATH="/usr/local/sbin:$PATH"
+
+# SSH
+source $MOD_DIR/ssh.zsh .
+
 
 # Enable autocompletions
 autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
+    compinit -i
 else
-  compinit -C -i
+    compinit -C -i
 fi
+
 zmodload -i zsh/complist
-# Save history so we get auto suggestions
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=$HISTSIZE
-# Options
-setopt auto_cd # cd by typing directory name if it's not a command
-setopt auto_list # automatically list choices on ambiguous completion
-setopt auto_menu # automatically use menu completion
-setopt always_to_end # move cursor to end if word had one match
-setopt hist_ignore_all_dups # remove older duplicate entries from history
-setopt hist_reduce_blanks # remove superfluous blanks from history items
-setopt inc_append_history # save history entries as soon as they are entered
-setopt share_history # share history between different instances
-setopt correct_all # autocorrect commands
-setopt interactive_comments # allow comments in interactive shells
-# Improve autocompletion style
-zstyle ':completion:*' menu select # select completions with arrow keys
-zstyle ':completion:*' group-name '' # group results by category
-zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
-
-# DISABLE AUTOCORRECTION
-DISABLE_CORRECTION="true"
-
-# autoload color
-autoload -U colors && colors
 
 # ANTIBODY — plugin manager
-source <(antibody init)
 
+source <(antibody init)
 # setup antibody
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
 antibody bundle willghatch/zsh-hooks
 antibody bundle luismayta/zsh-functions branch:develop
+antibody bundle Aloxaf/fzf-tab
 antibody bundle unixorn/git-extra-commands
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
-antibody bundle luismayta/zsh-git-aliases
-antibody bundle luismayta/zsh-docker-aliases
-antibody bundle luismayta/zsh-docker-compose-aliases
-antibody bundle luismayta/zsh-servers-functions
+antibody bundle luismayta/zsh-git-aliases branch:develop
+antibody bundle luismayta/zsh-docker branch:develop
+antibody bundle luismayta/zsh-templates branch:develop
+antibody bundle luismayta/zsh-docker-aliases branch:develop
+antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
+antibody bundle luismayta/zsh-servers-functions branch:develop
+antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-ssh-connect branch:develop
 antibody bundle equipindustry/zsh-goenv branch:develop
 antibody bundle equipindustry/zsh-nvm branch:develop
-antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-rust branch:develop
 antibody bundle luismayta/zsh-vscode branch:develop
+antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
 antibody bundle luismayta/zsh-pipenv branch:develop
 antibody bundle luismayta/zsh-tfenv branch:develop
-antibody bundle luismayta/zsh-ghq branch:develop
+antibody bundle luismayta/zsh-yarn branch:develop
+antibody bundle equipindustry/zsh-ghq branch:develop
+antibody bundle luismayta/zsh-gst branch:develop
 antibody bundle luismayta/zsh-trash branch:develop
 antibody bundle luismayta/zsh-transfer branch:develop
 antibody bundle luismayta/zsh-pazi branch:develop
@@ -82,31 +91,26 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
-#antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle b4b4r07/zsh-vimode-visual
 antibody bundle sindresorhus/pretty-time-zsh
-#antibody bundle luismayta/zsh-history branch:develop
-antibody bundle sindresorhus/pure
-antibody bundle piger/zsh-notify
-antibody bundle luismayta/zsh-tmux
-antibody bundle luismayta/zsh-restic
-antibody bundle luismayta/zsh-osx
-
-#nodejs
-antibody bundle buonomo/yarn-completion
-
-# load everything but the path and completion files
-#source "${ZSH}/zsh/completions.zsh"
+# antibody bundle luismayta/zsh-history branch:develop
+antibody bundle luismayta/zsh-starship branch:develop
+antibody bundle luismayta/zsh-notify branch:develop
+antibody bundle luismayta/zsh-tmux branch:develop
+antibody bundle luismayta/zsh-restic branch:develop
+antibody bundle luismayta/zsh-osx branch:develop
+antibody bundle luismayta/zsh-scmbreeze branch:develop
+antibody bundle luismayta/zsh-aws branch:develop
+antibody bundle git@gitlab.com:code-stats/code-stats-zsh
+antibody bundle luismayta/zsh-resources branch:develop
+antibody bundle luismayta/zsh-apps branch:develop
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
-
-# initialize autocomplete here, otherwise functions won't be loaded
-#autoload -U compinit
-#compinit -i -d ${ZSH_COMPDUMP}
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -116,7 +120,6 @@ HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-alias reload!='exec "$SHELL" -l'
 
 ZSH_TMUX_AUTOSTART=false
 [ -z $TMUX ] && tmux new-session -A -s "${USER}"

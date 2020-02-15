@@ -8,6 +8,9 @@ This file uses change log convention from `keep a CHANGELOG`_.
 `Unreleased`_
 +++++++++++++
 
+`1.7.0`_ - 2020-02-15
+++++++++++++++++++++++
+
 `1.6.1`_ - 2019-12-18
 ++++++++++++++++++++++
 
@@ -60,7 +63,8 @@ Task
 ++++++++++++++++++++++
 
 
-.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.6.1...HEAD
+.. _`Unreleased`: https://github.com/luismayta/dotfiles/compare/1.7.0...HEAD
+.. _`1.7.0`: https://github.com/luismayta/dotfiles/compare/1.6.1...1.7.0
 .. _`1.6.1`: https://github.com/luismayta/dotfiles/compare/1.6.0...1.6.1
 .. _`1.6.0`: https://github.com/luismayta/dotfiles/compare/1.5.0...1.6.0
 .. _`1.5.0`: https://github.com/luismayta/dotfiles/compare/1.4.0...1.5.0
