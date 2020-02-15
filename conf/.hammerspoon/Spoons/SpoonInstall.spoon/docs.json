@@ -27,10 +27,7 @@
           ""
         ],
         "signature": "SpoonInstall:asyncUpdateRepo(repo, callback)",
-        "stripped_doc": [
-          "Asynchronously fetch the information about the contents of a Spoon repository",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously fetch the information about the contents of a Spoon repository", ""],
         "type": "Method"
       },
       {
@@ -42,19 +39,10 @@
           " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.",
           " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
         ],
-        "parameters": [
-          " * repo - name of the repository to update. Defaults to `\"default\"`.",
-          ""
-        ],
-        "returns": [
-          " * `true` if the update was successful, `nil` otherwise",
-          ""
-        ],
+        "parameters": [" * repo - name of the repository to update. Defaults to `\"default\"`.", ""],
+        "returns": [" * `true` if the update was successful, `nil` otherwise", ""],
         "signature": "SpoonInstall:updateRepo(repo)",
-        "stripped_doc": [
-          "Synchronously fetch the information about the contents of a Spoon repository",
-          ""
-        ],
+        "stripped_doc": ["Synchronously fetch the information about the contents of a Spoon repository", ""],
         "type": "Method"
       },
       {
@@ -82,14 +70,9 @@
         "name": "repolist",
         "notes": [],
         "parameters": [" * None", ""],
-        "returns": [
-          " * Table containing a list of strings with the repository identifiers"
-        ],
+        "returns": [" * Table containing a list of strings with the repository identifiers"],
         "signature": "SpoonInstall:repolist()",
-        "stripped_doc": [
-          "Return a sorted list of registered Spoon repositories",
-          ""
-        ],
+        "stripped_doc": ["Return a sorted list of registered Spoon repositories", ""],
         "type": "Method"
       },
       {
@@ -109,10 +92,7 @@
           "   * repo - identifier in the repository where the match was found"
         ],
         "signature": "SpoonInstall:search(pat)",
-        "stripped_doc": [
-          "Search repositories for a pattern",
-          ""
-        ],
+        "stripped_doc": ["Search repositories for a pattern", ""],
         "type": "Method"
       },
       {
@@ -128,14 +108,9 @@
           "   * success - boolean indicating whether the installation was successful",
           ""
         ],
-        "returns": [
-          " * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"
-        ],
+        "returns": [" * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"],
         "signature": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
-        "stripped_doc": [
-          "Asynchronously download a Spoon zip file and install it.",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously download a Spoon zip file and install it.", ""],
         "type": "Method"
       },
       {
@@ -144,18 +119,10 @@
         "doc": "Synchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise",
         "name": "installSpoonFromZipURL",
         "notes": [],
-        "parameters": [
-          " * url - URL of the zip file to install.",
-          ""
-        ],
-        "returns": [
-          " * `true` if the installation was successful, `nil` otherwise"
-        ],
+        "parameters": [" * url - URL of the zip file to install.", ""],
+        "returns": [" * `true` if the installation was successful, `nil` otherwise"],
         "signature": "SpoonInstall:installSpoonFromZipURL(url)",
-        "stripped_doc": [
-          "Synchronously download a Spoon zip file and install it.",
-          ""
-        ],
+        "stripped_doc": ["Synchronously download a Spoon zip file and install it.", ""],
         "type": "Method"
       },
       {
@@ -176,10 +143,7 @@
           " * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise."
         ],
         "signature": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
-        "stripped_doc": [
-          "Asynchronously install a Spoon from a registered repository",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously install a Spoon from a registered repository", ""],
         "type": "Method"
       },
       {
@@ -193,14 +157,9 @@
           " * repo - Name of the repository to use. Defaults to `\"default\"`",
           ""
         ],
-        "returns": [
-          " * `true` if the installation was successful, `nil` otherwise."
-        ],
+        "returns": [" * `true` if the installation was successful, `nil` otherwise."],
         "signature": "SpoonInstall:installSpoonFromRepo(name, repo)",
-        "stripped_doc": [
-          "Synchronously install a Spoon from a registered repository",
-          ""
-        ],
+        "stripped_doc": ["Synchronously install a Spoon from a registered repository", ""],
         "type": "Method"
       },
       {
@@ -223,10 +182,7 @@
         ],
         "returns": [" * None"],
         "signature": "SpoonInstall:andUse(name, arg)",
-        "stripped_doc": [
-          "Declaratively install, load and configure a Spoon",
-          ""
-        ],
+        "stripped_doc": ["Declaratively install, load and configure a Spoon", ""],
         "type": "Method"
       }
     ],
@@ -375,10 +331,7 @@
         ],
         "returns": [" * None"],
         "signature": "SpoonInstall:andUse(name, arg)",
-        "stripped_doc": [
-          "Declaratively install, load and configure a Spoon",
-          ""
-        ],
+        "stripped_doc": ["Declaratively install, load and configure a Spoon", ""],
         "type": "Method"
       },
       {
@@ -399,10 +352,7 @@
           " * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise."
         ],
         "signature": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
-        "stripped_doc": [
-          "Asynchronously install a Spoon from a registered repository",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously install a Spoon from a registered repository", ""],
         "type": "Method"
       },
       {
@@ -418,14 +368,9 @@
           "   * success - boolean indicating whether the installation was successful",
           ""
         ],
-        "returns": [
-          " * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"
-        ],
+        "returns": [" * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"],
         "signature": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
-        "stripped_doc": [
-          "Asynchronously download a Spoon zip file and install it.",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously download a Spoon zip file and install it.", ""],
         "type": "Method"
       },
       {
@@ -448,10 +393,7 @@
           ""
         ],
         "signature": "SpoonInstall:asyncUpdateRepo(repo, callback)",
-        "stripped_doc": [
-          "Asynchronously fetch the information about the contents of a Spoon repository",
-          ""
-        ],
+        "stripped_doc": ["Asynchronously fetch the information about the contents of a Spoon repository", ""],
         "type": "Method"
       },
       {
@@ -465,14 +407,9 @@
           " * repo - Name of the repository to use. Defaults to `\"default\"`",
           ""
         ],
-        "returns": [
-          " * `true` if the installation was successful, `nil` otherwise."
-        ],
+        "returns": [" * `true` if the installation was successful, `nil` otherwise."],
         "signature": "SpoonInstall:installSpoonFromRepo(name, repo)",
-        "stripped_doc": [
-          "Synchronously install a Spoon from a registered repository",
-          ""
-        ],
+        "stripped_doc": ["Synchronously install a Spoon from a registered repository", ""],
         "type": "Method"
       },
       {
@@ -481,18 +418,10 @@
         "doc": "Synchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise",
         "name": "installSpoonFromZipURL",
         "notes": [],
-        "parameters": [
-          " * url - URL of the zip file to install.",
-          ""
-        ],
-        "returns": [
-          " * `true` if the installation was successful, `nil` otherwise"
-        ],
+        "parameters": [" * url - URL of the zip file to install.", ""],
+        "returns": [" * `true` if the installation was successful, `nil` otherwise"],
         "signature": "SpoonInstall:installSpoonFromZipURL(url)",
-        "stripped_doc": [
-          "Synchronously download a Spoon zip file and install it.",
-          ""
-        ],
+        "stripped_doc": ["Synchronously download a Spoon zip file and install it.", ""],
         "type": "Method"
       },
       {
@@ -502,14 +431,9 @@
         "name": "repolist",
         "notes": [],
         "parameters": [" * None", ""],
-        "returns": [
-          " * Table containing a list of strings with the repository identifiers"
-        ],
+        "returns": [" * Table containing a list of strings with the repository identifiers"],
         "signature": "SpoonInstall:repolist()",
-        "stripped_doc": [
-          "Return a sorted list of registered Spoon repositories",
-          ""
-        ],
+        "stripped_doc": ["Return a sorted list of registered Spoon repositories", ""],
         "type": "Method"
       },
       {
@@ -529,10 +453,7 @@
           "   * repo - identifier in the repository where the match was found"
         ],
         "signature": "SpoonInstall:search(pat)",
-        "stripped_doc": [
-          "Search repositories for a pattern",
-          ""
-        ],
+        "stripped_doc": ["Search repositories for a pattern", ""],
         "type": "Method"
       },
       {
@@ -562,19 +483,10 @@
           " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.",
           " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
         ],
-        "parameters": [
-          " * repo - name of the repository to update. Defaults to `\"default\"`.",
-          ""
-        ],
-        "returns": [
-          " * `true` if the update was successful, `nil` otherwise",
-          ""
-        ],
+        "parameters": [" * repo - name of the repository to update. Defaults to `\"default\"`.", ""],
+        "returns": [" * `true` if the update was successful, `nil` otherwise", ""],
         "signature": "SpoonInstall:updateRepo(repo)",
-        "stripped_doc": [
-          "Synchronously fetch the information about the contents of a Spoon repository",
-          ""
-        ],
+        "stripped_doc": ["Synchronously fetch the information about the contents of a Spoon repository", ""],
         "type": "Method"
       }
     ],
