@@ -13,9 +13,7 @@ function editrc() {
 
 # create cache and reload settings
 function reload() {
-    zcompile ${HOME}/.zshrc
-    for f in ${MOD_DIR}/*.zsh; zcompile $f
-             source ${HOME}/.zshrc
+    exec $SHELL
 }
 
 # default keybind
