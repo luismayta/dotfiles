@@ -2,7 +2,7 @@
   "keywords": [],
   "name": "dotfiles",
   "private": true,
-  "version": "0.0.0",
+  "version": "version='1.7.0'",
   "browserslist": {
     "development": [
       "last 1 chrome version",
