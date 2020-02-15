@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+CLEAR='\033[0m'
+LIGHT_GREEN='\033[1;32m'
+
+printf "${CLEAR}${LIGHT_GREEN}[INFO]: %s ${CLEAR}\n" "$1";
