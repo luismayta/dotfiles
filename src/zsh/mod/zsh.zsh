@@ -4,18 +4,18 @@
 autoload -Uz add-zsh-hook # enable zsh hooks
 
 function editrc() {
-  if [[ -z $1 ]]; then
-    vim $HOME/.zshrc
-  else
-    vim $MOD_DIR/$1.zsh
-  fi
+    if [ -z ${1} ]; then
+        vim "${HOME}"/.zshrc
+    else
+        vim "${MOD_DIR}"/"${1}".zsh
+    fi
 }
 
 # create cache and reload settings
 function reload() {
-  zcompile $HOME/.zshrc
-  for f in $MOD_DIR/*.zsh; zcompile $f
-  source $HOME/.zshrc
+    zcompile ${HOME}/.zshrc
+    for f in ${MOD_DIR}/*.zsh; zcompile $f
+             source ${HOME}/.zshrc
 }
 
 # default keybind
@@ -40,7 +40,7 @@ setopt correct   # spelling correction for commands
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # History
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="${HOME}/.zsh_history"
 HISTSIZE=5000 # maximum number of in-memory history
 SAVEHIST=5000 # maximum number of records in $HISTFILE
 setopt share_history
