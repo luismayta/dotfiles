@@ -1,9 +1,10 @@
 # autoload
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit -u
 
 export TERM=xterm-256color
-export PROJECTS="${HOME}/Projects"
+export PROJECTS="${HOME}/Project/src"
 
 export DISABLE_AUTO_TITLE="true"
 
@@ -31,3 +32,6 @@ if ! type -p pyenv > /dev/null; then
 fi
 
 export PIPENV_SHELL_FANCY=true
+
+[ -e "${HOME}/.goenv/bin" ] && export PATH="${PATH}:${HOME}/.goenv/bin"
+[ -e "${HOME}/.docker-slim/bin" ] && export PATH="${PATH}:${HOME}/.docker-slim/bin"

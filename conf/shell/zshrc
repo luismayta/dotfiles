@@ -32,7 +32,10 @@ export LC_ALL=$LANG
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 # zsh
-source $MOD_DIR/zsh.zsh .
+source $MOD_DIR/zsh.zsh
+
+# completion
+source $MOD_DIR/completion.zsh
 
 # Homebrew
 export PATH="/usr/local/sbin:$PATH"
