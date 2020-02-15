@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
 if [ -n "${ZSH_DEBUG}" ]; then
@@ -27,14 +27,17 @@ export LC_ALL=$LANG
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
-# zsh
-source $MOD_DIR/zsh.zsh .
-
 # Homebrew
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:${PATH}"
+
+# zsh
+source ${MOD_DIR}/zsh.zsh
+
+# load completions
+source ${MOD_DIR}/completions.zsh
 
 # SSH
-source $MOD_DIR/ssh.zsh .
+source ${MOD_DIR}/ssh.zsh
 
 
 # Enable autocompletions
@@ -51,6 +54,7 @@ zmodload -i zsh/complist
 # ANTIBODY — plugin manager
 
 source <(antibody init)
+
 # setup antibody
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
