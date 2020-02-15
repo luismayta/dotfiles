@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+CLEAR='\033[0m'
+GREEN="\033[0;32m"
+
+printf "${CLEAR}${GREEN}[SUCCESS]: %s ${CLEAR}\n" "$1";

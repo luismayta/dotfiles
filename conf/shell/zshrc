@@ -8,7 +8,11 @@ fi
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}/src"
+export DOTFILES_BIN="${DOTFILES}/bin"
 export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
+
+export PATH="${DOTFILES_BIN}/${PATH}"
+
 
 # antibody
 source <(antibody init)

@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+message_info "${1}"

@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+[ -e "${1}" ] && export PATH="${1}:${PATH}"
