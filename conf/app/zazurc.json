@@ -13,14 +13,7 @@
     {
       "name": "tinytacoteam/zazu-fallback",
       "variables": {
-        "rootSearches": [
-          "duck",
-          "stack",
-          "giphy",
-          "gh",
-          "google",
-          "amazon"
-        ]
+        "rootSearches": ["duck", "stack", "giphy", "gh", "google", "amazon"]
       }
     },
     {
@@ -37,11 +30,7 @@
           "appPath": ["/Applications"],
           "excludeName": ["node_modules", "*.scpt"],
           "excludePath": ["~/Library"],
-          "filePath": [
-            "~/Documents",
-            "~/Downloads",
-            "~/Dropbox"
-          ]
+          "filePath": ["~/Documents", "~/Downloads", "~/Dropbox"]
         }
       }
     },
