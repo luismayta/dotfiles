@@ -3,7 +3,7 @@ Dotfiles
 
 |Build| |Code Climate| |Tag| |GitHub issues| |License| |Issue Count| |Test Coverage|
 
-:Version: 1.6.1
+:Version: 1.7.0
 :Web: https://github.com/luismayta/dotfiles
 :Download: http://github.com/luismayta/dotfiles
 :Source: http://github.com/luismayta/dotfiles
