@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env ksh
 
 # Force rehash when command not found
 _force_rehash() {
