@@ -4,7 +4,7 @@ autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit -u
 
 export TERM=xterm-256color
-export PROJECTS="${HOME}/Project/src"
+export PROJECTS="${HOME}/Projects/src"
 
 export DISABLE_AUTO_TITLE="true"
 
@@ -32,6 +32,17 @@ if ! type -p pyenv > /dev/null; then
 fi
 
 export PIPENV_SHELL_FANCY=true
+
+# Prefer US English and use UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+if ! type -p pyenv > /dev/null; then
+    [ -e "${HOME}/.pyenv" ] && export PYENV_ROOT="${HOME}/.pyenv"
+    [ -e "${HOME}/.pyenv/bin" ] && export PATH="${PATH}:${HOME}/.pyenv/bin"
+    export PIPENV_PYTHON="${PYENV_ROOT}/shims/python"
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
 
 [ -e "${HOME}/.goenv/bin" ] && export PATH="${PATH}:${HOME}/.goenv/bin"
 [ -e "${HOME}/.docker-slim/bin" ] && export PATH="${PATH}:${HOME}/.docker-slim/bin"
