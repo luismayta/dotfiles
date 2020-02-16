@@ -36,11 +36,15 @@ source ${MOD_DIR}/zsh.zsh
 # load completions
 source ${MOD_DIR}/completions.zsh
 
+# load mode vim
+source ${MOD_DIR}/vim.zsh
+
 # ANTIBODY — plugin manager
 
 source <(antibody init)
 
 # setup antibody
+antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
 antibody bundle willghatch/zsh-hooks
@@ -80,8 +84,6 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle b4b4r07/zsh-vimode-visual
 antibody bundle sindresorhus/pretty-time-zsh
 # antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
