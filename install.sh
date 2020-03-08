@@ -29,33 +29,6 @@ debug() {
     fi
 }
 
-############################  BASIC SETUP TOOLS
-program_exists() {
-    local app=$1
-    local message="Need to install $app."
-    local ret='0'
-    type "$1" >> /dev/null 2>&1 || { local ret='1'; }
-
-    # throw error on non-zero return value
-    if [[ ! "$ret" -eq '0' ]]; then
-        error "$message"
-        exit
-    fi
-}
-
-function upgrade_repo() {
-      msg "trying to update $1"
-
-      if [ "$1" = "${APP_NAME}" ]; then
-        cd "$PATH_REPO" || exit
-        git pull origin "${GIT_BRANCH}"
-      fi
-
-      ret="$?"
-      success "$2"
-      debug
-}
-
 clone_repo() {
     if [[ ! -e "${PATH_REPO}/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
@@ -71,6 +44,54 @@ clone_repo() {
         make run
     fi
 }
+
+############################  BASIC SETUP TOOLS
+program_exists() {
+    local app=$1
+    local message="Need to install $app."
+    local ret='0'
+    type "$1" >> /dev/null 2>&1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [[ ! "$ret" -eq '0' ]]; then
+        error "$message"
+        exit
+    fi
+}
+
+function upgrade_repo() {
+    msg "trying to update $1"
+
+    if [ "$1" = "${APP_NAME}" ]; then
+        cd "$PATH_REPO" || exit
+        git pull origin "${GIT_BRANCH}"
+    fi
+
+    ret="$?"
+    success "$2"
+    debug
+}
+
+# Mac Stuff -------------------------------------------------------------------
+if [[ $(uname) == 'Darwin' ]]; then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew install zsh git go rsync
+    # Utils -----------------------------------------------------------------------
+    brew install jq ag fd ripgrep cmake ctags
+fi
+
+# Archlinux Stuff
+if type -p pacman > /dev/null; then
+    packages=(
+        go
+        npm
+        yarn
+    )
+    for package in "${packages[@]}"; do
+        pacman -S --noconfirm "${package}"
+    done
+    npm install -g n
+fi
 
 for app in {zsh,git,rsync}; do
     program_exists "$app"
