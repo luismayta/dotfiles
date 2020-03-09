@@ -3,8 +3,6 @@
 
 export FONTS_DIR="${HOME}/Library/Fonts"
 export APPS=(
-    "homebrew"
-    "brew"
     "git-extras"
     "fonts"
     "antibody"
