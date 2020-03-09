@@ -75,17 +75,21 @@ function upgrade_repo() {
 # Mac Stuff -------------------------------------------------------------------
 if [[ $(uname) == 'Darwin' ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    brew install zsh git go rsync
-    # Utils -----------------------------------------------------------------------
-    brew install jq ag fd ripgrep cmake ctags
+    brew install zsh git go rsync \
+         # Utils -----------------------------------------------------------------------
+         jq ag fd ripgrep cmake ctags \
+             bash
 fi
 
 # Archlinux Stuff
 if type -p pacman > /dev/null; then
     packages=(
+        git
         go
         npm
         yarn
+        gcc
+        rsync
     )
     for package in "${packages[@]}"; do
         pacman -S --noconfirm "${package}"
