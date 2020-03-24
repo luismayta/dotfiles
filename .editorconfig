@@ -17,7 +17,7 @@ trim_trailing_whitespace = true
 [*.{el}]
 insert_final_newline = false
 
-[*.{el,md,yml,yaml,js,json,toml}]
+[*.{el,md,yml,yaml,js,json,toml,ts,tsx}]
 indent_style = space
 indent_size = 2
 
