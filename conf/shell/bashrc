@@ -2,4 +2,4 @@
 # -*- coding: utf-8 -*-
 
 # shellcheck source=/dev/null
-[ -f "$HOME/.zshrc" ] && source "$HOME/.zshrc"
+[ -f "${HOME}/.zshrc" ] && source "${HOME}/.zshrc"

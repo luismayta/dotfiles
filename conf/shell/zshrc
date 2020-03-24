@@ -13,8 +13,6 @@ export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
 
-# antibody
-source <(antibody init)
 
 # language
 export LANG="en_US.UTF-8"
@@ -23,6 +21,7 @@ export LC_ALL=$LANG
 [ -e "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
 [ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
 [ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
+[ -e "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:${PATH}"
 
 [ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
 [ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
@@ -61,18 +60,19 @@ antibody bundle luismayta/zsh-docker branch:develop
 antibody bundle luismayta/zsh-templates branch:develop
 antibody bundle luismayta/zsh-docker-aliases branch:develop
 antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
-antibody bundle luismayta/zsh-servers-functions branch:develop
-antibody bundle luismayta/zsh-rvm branch:develop
-antibody bundle luismayta/zsh-ssh-connect branch:develop
-antibody bundle equipindustry/zsh-goenv branch:develop
-antibody bundle equipindustry/zsh-nvm branch:develop
-antibody bundle luismayta/zsh-rust branch:develop
-antibody bundle luismayta/zsh-vscode branch:develop
-antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
 antibody bundle luismayta/zsh-pipenv branch:develop
 antibody bundle luismayta/zsh-tfenv branch:develop
 antibody bundle luismayta/zsh-yarn branch:develop
+antibody bundle equipindustry/zsh-goenv branch:develop
+antibody bundle equipindustry/zsh-nvm branch:develop
+antibody bundle luismayta/zsh-rvm branch:develop
+antibody bundle luismayta/zsh-rust branch:develop
+antibody bundle luismayta/zsh-resources branch:develop
+antibody bundle luismayta/zsh-servers-functions branch:develop
+antibody bundle luismayta/zsh-ssh-connect branch:develop
+antibody bundle luismayta/zsh-vscode branch:develop
+antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle equipindustry/zsh-ghq branch:develop
 antibody bundle luismayta/zsh-gst branch:develop
 antibody bundle luismayta/zsh-trash branch:develop
@@ -87,17 +87,17 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle sindresorhus/pretty-time-zsh
-# antibody bundle luismayta/zsh-history branch:develop
+antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
 antibody bundle luismayta/zsh-tmux branch:develop
 antibody bundle luismayta/zsh-restic branch:develop
 antibody bundle luismayta/zsh-osx branch:develop
-antibody bundle luismayta/zsh-scmbreeze branch:develop
+# antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle luismayta/zsh-aws branch:develop
-antibody bundle git@gitlab.com:code-stats/code-stats-zsh
-antibody bundle luismayta/zsh-resources branch:develop
+# antibody bundle git@gitlab.com:code-stats/code-stats-zsh
 antibody bundle luismayta/zsh-apps branch:develop
 
 # Keybindings
@@ -107,7 +107,7 @@ bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
 ZSH_TMUX_AUTOSTART=false
-[ -z $TMUX ] && tmux new-session -A -s "${USER}"
+[ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
 
 # shellcheck source=/dev/null
 [ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
