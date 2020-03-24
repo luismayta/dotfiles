@@ -19,10 +19,10 @@ on_project_start: make environment
 # on_project_restart: command
 
 # Run on project exit ( detaching from tmux session )
-on_project_exit: make docker.down
+# on_project_exit: make docker.down
 
 # Run on project stop
-on_project_stop: make docker.down
+# on_project_stop: make docker.down
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: pipenv shell --fancy
