@@ -1,51 +1,26 @@
 {
   "keywords": [],
-  "name": "dotfiles",
+  "name": "@luismayta/dotfiles",
   "private": true,
-  "version": "1.7.1",
-  "browserslist": {
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ]
-  },
-  "dependencies": {
-  },
-  "engines": {
-    "node": ">=12"
+  "version": "0.0.0",
+  "description": "dotfiles for zsh",
+  "repository": "ssh://git@github.com/luismayta/dotfiles.git",
+  "author": "Luis Mayta <slovacus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist .next out build",
+    "clean:all": "yarn clean  && rimraf node_modules",
+    "lint": "eslint -c ./.eslintrc.js --ext .js,.jsx,.mjs,.d.ts,.ts,.tsx ./.",
+    "lint:fix": "eslint -c ./.eslintrc.js --fix --ext .js,.jsx,.mjs,.d.ts,.ts,.tsx ./",
+    "prettier:fix": "prettier '**/*.{js?(on),ts?(x),scss,md,yml,yaml}' --write --list-different",
+    "prettier": "prettier '**/*.{js?(on),ts?(x),scss,md,yml,yaml}' --write=false --list-different",
+    "precommit": "lint-staged"
   },
   "publishConfig": {
     "access": "private"
   },
-  "description": "",
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@equipindustry/prettierrc": "^0.1.0",
-    "@typescript-eslint/parser": "^2.19.0",
-    "typescript": "^3.7.5",
-    "babel-plugin-import": "^1.13.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.2.1",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "rimraf": "^3.0.1",
-    "semantic-release": "^17.0.2"
-  },
-    "scripts": {
-      "lint": "eslint . --ext .js,.jsx,.mjs,.ts,.tsx",
-      "lint:fix": "eslint --fix . --ext .js,.jsx,.mjs,.ts,.tsx",
-      "clean": "rimraf dist out",
-      "semantic-release": "semantic-release",
-      "prettier": "prettier '**/*.{js?(on),ts?(x),scss,md,yml}' --write --list-different",
-      "prettier-check": "yarn prettier -- --write=false",
-      "precommit": "lint-staged"
+  "engines": {
+    "node": ">=12"
   },
   "commitlint": {
     "extends": [
@@ -57,5 +32,26 @@
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
       "pre-commit": "yarn precommit"
     }
-  }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@equipindustry/eslint-config": "^0.2.0",
+    "@equipindustry/prettierrc": "^0.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "babel": "^6.23.0",
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "prettier-tslint": "^0.4.2",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.0.4",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {}
 }
