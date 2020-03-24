@@ -8,5 +8,4 @@ export APPS=(
     "git-extras"
     "fonts"
     "antibody"
-    "scm_breeze"
 )
