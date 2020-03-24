@@ -7,7 +7,7 @@ function initialize(){
     done
     unset app
 
-    dotfiles::install::apps
+    dotfiles::install::factory
 
     for path in "${CONF_DIR}"/{shell,app}; do
         for file_path in "${path}/"*; do
@@ -81,8 +81,9 @@ function cp_file() {
 function dotfiles::install::factory {
     if type -p pacman > /dev/null; then
         # shellcheck source=/dev/null
-        source "${DOTFILES}"/archlinu.sh
+        source "${DOTFILES}"/archlinux.sh
     fi
+    dotfiles::install::apps
 }
 
 function dotfiles::install::apps(){
