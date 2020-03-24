@@ -17,11 +17,10 @@ export CONF_DIR="${PATH_REPO}/conf"
 export TOOLS_DIR="${PATH_REPO}/tools"
 
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
-export GIT_BRANCH='master'
+export GIT_BRANCH='develop'
 export DEBUG_MODE='0'
 export PATH_BACKUP="${HOME}/backup"
 
-export PATH_SCM_BREEZE="$HOME/.scm_breeze"
 export PATH_FONTS_REPO="${PATH_REPO}/provision/fonts"
 
 export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
