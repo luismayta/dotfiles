@@ -18,6 +18,7 @@ else
 endif
 
 TEAM := private
+AWS_VAULT ?= luismayta
 PROJECT := dotfiles
 PROJECT_PORT := 8000
 
@@ -61,9 +62,11 @@ help:
 	@echo '    setup                     install requirements'
 	@echo '    run                       install scripts'
 	@echo ''
+	@make alias.help
 	@make docker.help
 	@make docs.help
 	@make test.help
+
 
 setup:
 	@echo "=====> install packages..."
@@ -83,5 +86,5 @@ run:
 environment:
 	@echo "=====> loading virtualenv ${PYENV_NAME}..."
 	pyenv local ${PYTHON_VERSION}
-	@pipenv --venv || $(PIPENV_INSTALL) --skip-lock --python=${PYTHON_VERSION}
+	@pipenv --venv || $(PIPENV_INSTALL) --python=${PYTHON_VERSION} --skip-lock
 	@echo ${MESSAGE_HAPPY}
