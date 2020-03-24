@@ -7,7 +7,7 @@ function initialize(){
     done
     unset app
 
-    install_apps
+    dotfiles::install::apps
 
     for path in "${CONF_DIR}"/{shell,app}; do
         for file_path in "${path}/"*; do
@@ -29,7 +29,6 @@ function die() {
 }
 
 function is_program_exist() {
-
     if ! type -p "${1}" > /dev/null; then
         echo 1
         exit 1
@@ -79,9 +78,16 @@ function cp_file() {
     fi
 }
 
-function install_apps(){
+function dotfiles::install::factory {
+    if type -p pacman > /dev/null; then
+        # shellcheck source=/dev/null
+        source "${DOTFILES}"/archlinu.sh
+    fi
+}
+
+function dotfiles::install::apps(){
     for app in "${APPS[@]}"; do
-        "$TOOLS_DIR/${app}/install.sh"
+        "${TOOLS_DIR}/${app}/install.sh"
     done
     unset app
 }
