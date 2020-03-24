@@ -92,7 +92,7 @@ if type -p pacman > /dev/null; then
         rsync
     )
     for package in "${packages[@]}"; do
-        pacman -S --noconfirm "${package}"
+        sudo pacman -S --noconfirm "${package}"
     done
     npm install -g n
 fi
