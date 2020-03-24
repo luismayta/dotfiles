@@ -4,7 +4,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.0.1
+    rev: v2.2.0
     hooks:
       - id: validate_manifest
   - repo: https://github.com/detailyang/pre-commit-shell
@@ -25,7 +25,7 @@ repos:
         args: []
         files: .py$
   - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
-    rev: v1.1.0
+    rev: v1.1.1
     hooks:
       - id: markdown-toc
   - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
@@ -51,12 +51,15 @@ repos:
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.761
+    rev: v0.770
     hooks:
       - id: mypy
         args:
           - --ignore-missing-imports
-        exclude: migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
+  - repo: https://github.com/tcassou/python-pre-commit-hooks
+    rev: 3383e2f83463370cf4651040fb697a636bb0374e
+    hooks:
+      - id: do_not_commit
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.5.0
     hooks:
@@ -70,13 +73,13 @@ repos:
       - id: check-added-large-files
         files: ^tf|-|\.(py|env|yml|yaml)$
       - id: check-case-conflict
+      - id: check-json
       - id: check-xml
       - id: check-yaml
       - id: check-byte-order-marker
       - id: check-ast
       - id: debug-statements
       - id: check-docstring-first
-      - id: detect-aws-credentials
       - id: requirements-txt-fixer
       - id: check-symlinks
       - id: name-tests-test
@@ -89,18 +92,21 @@ repos:
         fix: lr
       - id: check-executables-have-shebangs
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.5.0-1
+    rev: v1.6.0
     hooks:
       - id: blacken-docs
         additional_dependencies:
           - black
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.25.0
+    rev: v1.27.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
-  - repo: https://github.com/prettier/prettier
-    rev: 1.19.1 # Use the sha or tag you want to point at
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v7.0.0-alpha.2
     hooks:
-      - id: prettier
-        exclude: node_modules
+      - id: eslint
+        additional_dependencies:
+          - eslint
+          - eslint-plugin-prettier
+          - prettier
