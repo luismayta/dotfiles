@@ -3,7 +3,6 @@
 
 # System
 
-alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 
@@ -15,9 +14,6 @@ alias week='date +%V'
 
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
-
-# selection xclip
-alias xclip="xclip -selection c"
 
 # download
 alias wget='wget --user-agent="Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"'
