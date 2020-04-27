@@ -7,9 +7,10 @@ services:
   app:
     environment: &environment
       - APP_NAME=dotfiles
+    image: dotfiles-app-dev
     build:
-      context: .
-      dockerfile: provision/docker/app/Dockerfile
+      args:
+        stage: dev
 
   check:
     image: dotfiles-check-dev
