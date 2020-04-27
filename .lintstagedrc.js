@@ -6,4 +6,5 @@ module.exports = {
     ...filenames.map((filename) => `git add "${filename}"`),
   ],
   '*.{ts,tsx,js,jsx}': ['eslint'],
+  '*.{ts,tsx,css}': ['stylelint'],
 };
