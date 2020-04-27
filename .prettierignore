@@ -1,5 +1,8 @@
 .next
+.serverless
 .serverless_nextjs
 node_modules
+dist
+package.json
 package-lock.json
 dist/
