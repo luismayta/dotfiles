@@ -24,10 +24,6 @@ repos:
       - id: python-bandit-vulnerability-check
         args: []
         files: .py$
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-nodejs
-    rev: v1.1.1
-    hooks:
-      - id: markdown-toc
   - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
     rev: v1.0.0
     hooks:
@@ -56,10 +52,6 @@ repos:
       - id: mypy
         args:
           - --ignore-missing-imports
-  - repo: https://github.com/tcassou/python-pre-commit-hooks
-    rev: 3383e2f83463370cf4651040fb697a636bb0374e
-    hooks:
-      - id: do_not_commit
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.5.0
     hooks:
@@ -91,6 +83,10 @@ repos:
       - id: mixed-line-ending
         fix: lr
       - id: check-executables-have-shebangs
+  - repo: https://github.com/tcassou/python-pre-commit-hooks
+    rev: 3383e2f83463370cf4651040fb697a636bb0374e
+    hooks:
+      - id: do_not_commit
   - repo: https://github.com/asottile/blacken-docs
     rev: v1.6.0
     hooks:
@@ -98,15 +94,28 @@ repos:
         additional_dependencies:
           - black
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.27.0
+    rev: v1.29.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
+  - repo: https://github.com/prettier/prettier
+    rev: 2.0.4 # Use the sha or tag you want to point at
+    hooks:
+      - id: prettier
+        args: [--config=prettier.config.js]
+        exclude: lib|node_modules
   - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v7.0.0-alpha.2
+    rev: v7.0.0-alpha.3 # Use the sha / tag you want to point at
     hooks:
       - id: eslint
+        args: [--fix]
+        types: [text]
+        files: '\.(js|ts|tsx)$'
         additional_dependencies:
-          - eslint
-          - eslint-plugin-prettier
-          - prettier
+          - 'eslint@6.2.0'
+          - 'typescript'
+          - 'prettier'
+          - '@typescript-eslint/parser@2.0.0'
+          - '@typescript-eslint/eslint-plugin@2.0.0'
+          - eslint-config-prettier@6.0.0
+          - eslint-plugin-prettier@3.1.0
