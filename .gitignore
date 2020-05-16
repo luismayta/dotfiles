@@ -85,8 +85,17 @@ typings/
 # nuxt.js build output
 .nuxt
 
-# react / gatsby 
-public/
+# rollup.js default build output
+dist/
+
+# Uncomment the public line if your project uses Gatsby
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# https://create-react-app.dev/docs/using-the-public-folder/#docsNav
+# public
+
+# Storybook build outputs
+.out
+.storybook-out
 
 # vuepress build output
 .vuepress/dist
@@ -99,6 +108,10 @@ public/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Temporary folders
+tmp/
+temp/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -113,7 +126,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -235,4 +247,3 @@ override.tf.json
 # example: *tfplan*
 
 # End of https://www.gitignore.io/api/terraform,python,node,ansible,bash
-.vscode

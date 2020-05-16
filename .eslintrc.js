@@ -1,6 +1,10 @@
 module.exports = {
   extends: ['@equipindustry/eslint-config'],
-  parser: 'babel-eslint',
+  env: {
+    browser: true,
+    jest: true,
+  },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
