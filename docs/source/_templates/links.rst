@@ -2,7 +2,10 @@
 .. AWS
 .. _ssh: https://en.wikipedia.org/wiki/Secure_Shell
 .. _aws route53: https://aws.amazon.com/route53/
+.. _aws elasticache: https://aws.amazon.com/elasticache/
 .. _aws dynamodb: https://aws.amazon.com/dynamodb/
+.. _aws cloudfront: https://aws.amazon.com/cloudfront/
+.. _aws s3: https://aws.amazon.com/s3/
 
 .. code developer
 .. _cloud computing: https://en.wikipedia.org/wiki/Cloud_computing
@@ -21,7 +24,7 @@
 .. _Redis: http://redis.io
 .. _ApacheSolr: http://lucene.apache.org/solr
 .. _Vagrant: http://www.vagrantup.comhttp://bundler.io/
-.. _Gitlab: https://github.com
+.. _Github: https://github.com
 .. _Bitbucket: https://bitbucket.org
 .. _Terraform: https://www.terraform.io/
 .. _Wercker: https://www.wercker.com/
