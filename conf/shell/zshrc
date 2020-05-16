@@ -5,11 +5,16 @@ if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
 fi
 
+export ZSH_TMUX_AUTOSTART=false
+
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}/src"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
+export PRIVATERC="${HOME}/.privaterc"
+export CUSTOMRC="${HOME}/.customrc"
+export PROFILERC="${HOME}/.profile"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
 
@@ -28,20 +33,18 @@ export LC_ALL=$LANG
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
-# Homebrew
-export PATH="/usr/local/sbin:${PATH}"
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
-# zsh
-source ${MOD_DIR}/zsh.zsh
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/completions.zsh" ] && source "${MOD_DIR}/completions.zsh"
 
-# load completions
-source ${MOD_DIR}/completions.zsh
-
-# load mode vim
-source ${MOD_DIR}/vim.zsh
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/vim.zsh" ] && source "${MOD_DIR}/vim.zsh"
 
 # ANTIBODY — plugin manager
 
+# shellcheck source=/dev/null
 source <(antibody init)
 
 # setup antibody
@@ -107,15 +110,15 @@ bindkey '^[[B' history-substring-search-down
 bindkey '^[[3~' delete-char
 bindkey '^[3;5~' delete-char
 
-ZSH_TMUX_AUTOSTART=false
 [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
 
 # shellcheck source=/dev/null
-[ -f "${HOME}/.profile" ] && source "${HOME}/.profile"
+[ -f "${PROFILERC}" ] && source "${PROFILERC}"
 
 if [ -n "${GITHUB_TOKEN}" ]; then
     git config --global \
         url."https://${GITHUB_TOKEN}:@github.com/".insteadOf "https://github.com/"
 fi
 
-[ -f "${HOME}/.privaterc" ] && source "${HOME}/.privaterc"
+# shellcheck source=/dev/null
+[ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
