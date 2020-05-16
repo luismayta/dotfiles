@@ -4,12 +4,13 @@
 autoload -Uz add-zsh-hook # enable zsh hooks
 
 function editrc {
-    if [[ -z "${1}" ]]; then
-        vim "${HOME}"/.zshrc
-    else
-        vim "${MOD_DIR}"/"${1}".zsh
+    if [ -z "${1}" ]; then
+        "${EDITOR}" "${HOME}"/.zshrc
+        return
     fi
+    "${EDITOR}" "${MOD_DIR}"/"${1}".zsh
 }
+
 
 # History
 export HISTFILE="${HOME}/.zsh_history"
