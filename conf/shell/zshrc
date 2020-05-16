@@ -49,14 +49,17 @@ antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
 antibody bundle willghatch/zsh-hooks
+antibody bundle agkozak/zhooks
+antibody bundle unixorn/git-extra-commands
 antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle Aloxaf/fzf-tab
-antibody bundle unixorn/git-extra-commands
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases branch:develop
+antibody bundle luismayta/zsh-alacritty branch:develop
+antibody bundle luismayta/zsh-keybase branch:develop
 antibody bundle luismayta/zsh-docker branch:develop
-antibody bundle luismayta/zsh-templates branch:develop
+antibody bundle equipindustry/zsh-templates branch:develop
 antibody bundle luismayta/zsh-docker-aliases branch:develop
 antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
@@ -96,7 +99,6 @@ antibody bundle luismayta/zsh-restic branch:develop
 antibody bundle luismayta/zsh-osx branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle luismayta/zsh-aws branch:develop
-# antibody bundle git@gitlab.com:code-stats/code-stats-zsh
 antibody bundle luismayta/zsh-apps branch:develop
 
 # Keybindings
