@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-[ -e "${1}" ] && export PATH="${PATH}:${1}"
+[ -e "${1}" ] && PATH="${PATH}:${1}"
