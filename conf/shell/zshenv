@@ -2,22 +2,31 @@
 autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit -u
 
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
 export TERM=xterm-256color
-export PROJECTS="${HOME}/Projects/src"
+if [ -z "${PROJECTS}" ]; then
+    export PROJECTS="${HOME}/Projects/src"
+    mkdir -p "${PROJECS}"
+fi
 
 export DISABLE_AUTO_TITLE="true"
 
-[ -e "${HOME}/.wakatime" ] && export PATH_WAKATIME="${HOME}/.wakatime"
+if ! type -p wakatime > /dev/null; then
+    [ -e "${HOME}/.wakatime" ] && export PATH_WAKATIME="${HOME}/.wakatime"
+fi
 
 # Make vim the default editor
-[ -e "/usr/bin/vim" ] && export EDITOR=/usr/bin/vim
+if ! type -p vim > /dev/null; then
+    export EDITOR=vim
+fi
 
 # Larger bash history (allow 32³ entries; default is 500)
 
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
-export SAVEHIST=$HISTSIZE
+export SAVEHIST="${HISTSIZE}"
 
 # Prefer US English and use UTF-8
 export LANG=en_US.UTF-8
