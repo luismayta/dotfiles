@@ -126,3 +126,8 @@ fi
 
 # shellcheck source=/dev/null
 [ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
+
+# remove duplicates path
+if ! type -p path_remove_duplicate > /dev/null; then
+    path_remove_duplicate
+fi
