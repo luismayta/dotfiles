@@ -31,8 +31,13 @@ export LC_ALL=$LANG
 [ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
 
 # Make vim the default editor
-if ! type -p vim > /dev/null; then
+if type -p vim > /dev/null; then
     export EDITOR=vim
+fi
+
+# Make nvim the default editor
+if type -p nvim > /dev/null; then
+    export EDITOR=nvim
 fi
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
