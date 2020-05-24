@@ -15,6 +15,7 @@ export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
 export PROFILERC="${HOME}/.profile"
+export LOCAL_PATH_BIN="${HOME}/.local/bin"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
 
@@ -22,7 +23,7 @@ export PATH="${DOTFILES_BIN}:${PATH}"
 export LANG="en_US.UTF-8"
 export LC_ALL=$LANG
 
-[ -e "${HOME}/.local/bin" ] && export PATH="${HOME}/.local/bin:${PATH}"
+[ -e "${LOCAL_PATH_BIN}" ] && export PATH="${LOCAL_PATH_BIN}:${PATH}"
 [ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
 [ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
 [ -e "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:${PATH}"
