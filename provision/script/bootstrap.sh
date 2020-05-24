@@ -4,7 +4,6 @@
 export HOME=~
 export PROJECT_NAME=dotfiles
 export PYENV_NAME="${PROJECT_NAME}"
-
 export GRIP_PORT=6430
 
 # Vars Dir application
@@ -27,6 +26,10 @@ export FILE_SETTINGS_OSX="${SCRIPT_DIR}/settings/osx.sh"
 export FILE_SETTINGS_LINUX="${SCRIPT_DIR}/settings/linux.sh"
 
 export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
+
+export LOCAL_PATH_BIN="${HOME}/.local/bin"
+
+mkdir -p "${LOCAL_PATH_BIN}"
 
 for file in "${SCRIPT_DIR}/"{config,messages,repo,functions}.sh; do
     # shellcheck source=/dev/null
