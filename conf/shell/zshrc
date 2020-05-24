@@ -68,10 +68,11 @@ antibody bundle Aloxaf/fzf-tab
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases branch:develop
+antibody bundle luismayta/zsh-deno branch:develop
 antibody bundle luismayta/zsh-alacritty branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
-antibody bundle luismayta/zsh-docker branch:develop
 antibody bundle equipindustry/zsh-templates branch:develop
+antibody bundle luismayta/zsh-docker branch:develop
 antibody bundle luismayta/zsh-docker-aliases branch:develop
 antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
@@ -101,7 +102,6 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
