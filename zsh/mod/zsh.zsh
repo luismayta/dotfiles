@@ -1,6 +1,8 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
+antibody bundle zsh-users/zsh-syntax-highlighting
+
 autoload -Uz add-zsh-hook # enable zsh hooks
 
 function editrc {
@@ -9,6 +11,16 @@ function editrc {
         return
     fi
     "${EDITOR}" "${MOD_DIR}"/"${1}".zsh
+}
+
+# create cache and reload settings
+function reload {
+    zcompile "${HOME}"/.zshrc
+    for file in "${MOD_DIR}"/*.zsh; do
+        zcompile "${file}"
+    done
+    # shellcheck source=/dev/null
+    source "${HOME}"/.zshrc
 }
 
 function editprivaterc {
@@ -30,5 +42,9 @@ function editcustomrc {
 
 # History
 export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=100000 # maximum number of in-memory history
-export SAVEHIST=100000 # maximum number of records in $HISTFILE
+export HISTSIZE=5000 # maximum number of in-memory history
+export SAVEHIST=5000 # maximum number of records in $HISTFILE
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
