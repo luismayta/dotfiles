@@ -11,7 +11,8 @@ function initialize(){
 
     for path in "${CONF_DIR}"/{shell,app}; do
         for file_path in "${path}/"*; do
-            local file="${HOME}/.${file_path##*/}"
+            local file
+            file="${HOME}/.${file_path##*/}"
             do_backup "${file}"
             cp_file "$file_path" "$file"
             unset file
@@ -19,6 +20,10 @@ function initialize(){
         unset file_path
     done
     unset path
+
+    cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
+    cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
+
     rsync -avzh --progress "${CONF_DIR}/.config/" "${HOME}/.config/"
     rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
 }
