@@ -4,6 +4,7 @@
 export HOME=~
 export PROJECT_NAME=dotfiles
 export PYENV_NAME="${PROJECT_NAME}"
+
 export GRIP_PORT=6430
 
 # Vars Dir application
@@ -13,6 +14,7 @@ export EXTRAS_DIR="${ROOT_DIR}/provision"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
 export SCRIPT_DIR="${PATH_REPO}/provision/script"
 export CONF_DIR="${PATH_REPO}/conf"
+export ZSH_DIR="${PATH_REPO}/zsh"
 export TOOLS_DIR="${PATH_REPO}/tools"
 
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
