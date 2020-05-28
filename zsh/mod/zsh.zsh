@@ -15,12 +15,7 @@ function editrc {
 
 # create cache and reload settings
 function reload {
-    zcompile "${HOME}"/.zshrc
-    for file in "${MOD_DIR}"/*.zsh; do
-        zcompile "${file}"
-    done
-    # shellcheck source=/dev/null
-    source "${HOME}"/.zshrc
+    exec "${SHELL}" -l
 }
 
 function editprivaterc {
