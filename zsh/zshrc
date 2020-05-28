@@ -31,6 +31,12 @@ export LC_ALL=$LANG
 [ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
 [ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
 
+#
+# ANTIBODY — plugin manager
+
+# shellcheck source=/dev/null
+source <(antibody init)
+
 # Make vim the default editor
 if type -p vim > /dev/null; then
     export EDITOR=vim
@@ -43,29 +49,30 @@ fi
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
+# Fix for autosuggest when copy-pasting, it prints super slow on long
+# Buffers (pastes)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+
 # shellcheck source=/dev/null
 [ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
 # shellcheck source=/dev/null
-[ -e "${MOD_DIR}/completions.zsh" ] && source "${MOD_DIR}/completions.zsh"
-
-# shellcheck source=/dev/null
 [ -e "${MOD_DIR}/vim.zsh" ] && source "${MOD_DIR}/vim.zsh"
 
-# ANTIBODY — plugin manager
-
-# shellcheck source=/dev/null
-source <(antibody init)
-
 # setup antibody
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle caarlos0/zsh-git-sync
 antibody bundle mafredri/zsh-async
+antibody bundle caarlos0/zsh-git-sync
+antibody bundle zsh-users/zsh-completions
+antibody bundle zsh-users/zsh-autosuggestions
+antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle willghatch/zsh-hooks
+antibody bundle caarlos0/zsh-git-sync
 antibody bundle agkozak/zhooks
 antibody bundle unixorn/git-extra-commands
-antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle Aloxaf/fzf-tab
+antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-git-aliases branch:develop
@@ -74,8 +81,6 @@ antibody bundle luismayta/zsh-alacritty branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
 antibody bundle equipindustry/zsh-templates branch:develop
 antibody bundle luismayta/zsh-docker branch:develop
-antibody bundle luismayta/zsh-docker-aliases branch:develop
-antibody bundle luismayta/zsh-docker-compose-aliases branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
 antibody bundle luismayta/zsh-pipenv branch:develop
 antibody bundle luismayta/zsh-tfenv branch:develop
@@ -99,10 +104,6 @@ antibody bundle luismayta/zsh-clean branch:develop
 antibody bundle luismayta/zsh-bitwarden branch:develop
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
-antibody bundle zsh-users/zsh-completions
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
@@ -134,6 +135,6 @@ fi
 [ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
 
 # remove duplicates path
-if ! type -p path_remove_duplicate > /dev/null; then
+if type -p path_remove_duplicate > /dev/null; then
     path_remove_duplicate
 fi
