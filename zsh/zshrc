@@ -68,14 +68,12 @@ antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle willghatch/zsh-hooks
-antibody bundle caarlos0/zsh-git-sync
 antibody bundle agkozak/zhooks
-antibody bundle unixorn/git-extra-commands
+# antibody bundle unixorn/git-extra-commands
 antibody bundle Aloxaf/fzf-tab
 antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
-antibody bundle luismayta/zsh-git-aliases branch:develop
 antibody bundle luismayta/zsh-deno branch:develop
 antibody bundle luismayta/zsh-alacritty branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
@@ -114,6 +112,7 @@ antibody bundle luismayta/zsh-osx branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle luismayta/zsh-aws branch:develop
 antibody bundle luismayta/zsh-apps branch:develop
+antibody bundle luismayta/zsh-git branch:develop
 
 # Keybindings
 bindkey '^[[A' history-substring-search-up

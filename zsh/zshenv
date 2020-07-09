@@ -37,25 +37,46 @@ export SAVEHIST="${HISTSIZE}"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-if ! type -p pyenv > /dev/null; then
-    [ -e "${HOME}/.pyenv" ] && export PYENV_ROOT="${HOME}/.pyenv"
-    [ -e "${HOME}/.pyenv/bin" ] && export PATH="${PATH}:${HOME}/.pyenv/bin"
-    export PIPENV_PYTHON="${PYENV_ROOT}/shims/python"
-    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
-
 export PIPENV_SHELL_FANCY=true
 
-# Prefer US English and use UTF-8
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
 if ! type -p pyenv > /dev/null; then
     [ -e "${HOME}/.pyenv" ] && export PYENV_ROOT="${HOME}/.pyenv"
     [ -e "${HOME}/.pyenv/bin" ] && export PATH="${PATH}:${HOME}/.pyenv/bin"
+fi
+
+if type -p pyenv > /dev/null; then
     export PIPENV_PYTHON="${PYENV_ROOT}/shims/python"
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
-[ -e "${HOME}/.goenv/bin" ] && export PATH="${PATH}:${HOME}/.goenv/bin"
-[ -e "${HOME}/.docker-slim/bin" ] && export PATH="${PATH}:${HOME}/.docker-slim/bin"
+if ! type -p goenv > /dev/null; then
+    [ -e "${HOME}/.goenv/bin" ] && export PATH="${PATH}:${HOME}/.goenv/bin"
+fi
+
+if type -p goenv > /dev/null; then
+    eval "$(goenv init -)"
+fi
+
+if type -p go > /dev/null; then
+        local goenv_path goenv_global goroot
+        goenv_path=$(go env GOPATH)
+        goenv_global=$(goenv global)
+        goroot=$(goenv prefix)
+        [ -e "${GOPATH}/bin" ] && export PATH="${goenv_path}/bin:${PATH}"
+        [ -e "${GOENV_ROOT}/versions/${goenv_global}/bin" ] && export PATH="${GOENV_ROOT}/versions/${goenv_global}/bin:${PATH}"
+        export GOROOT="${goroot}"
+fi
+
+if type -p goenv > /dev/null; then
+    [ -e "${GOROOT}/bin" ] && export PATH="${GOROOT}/bin:${PATH}"
+    [ -e "${GOPATH}/bin" ] && export PATH="${PATH}:${GOPATH}/bin"
+    export GO111MODULES=on
+fi
+
+if [ -d "/home/linuxbrew/.linuxbrew/bin" ]; then
+    export PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.linuxbrew/bin" ]; then
+    export PATH="${HOME}/.linuxbrew/bin:${PATH}"
+fi
