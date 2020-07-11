@@ -69,13 +69,10 @@ antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle willghatch/zsh-hooks
 antibody bundle agkozak/zhooks
-# antibody bundle unixorn/git-extra-commands
 antibody bundle Aloxaf/fzf-tab
 antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
-antibody bundle luismayta/zsh-deno branch:develop
-antibody bundle luismayta/zsh-alacritty branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
 antibody bundle equipindustry/zsh-templates branch:develop
 antibody bundle luismayta/zsh-docker branch:develop
@@ -95,9 +92,7 @@ antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle equipindustry/zsh-ghq branch:develop
 antibody bundle luismayta/zsh-gst branch:develop
 antibody bundle luismayta/zsh-trash branch:develop
-antibody bundle luismayta/zsh-transfer branch:develop
 antibody bundle luismayta/zsh-pazi branch:develop
-antibody bundle luismayta/zsh-flutter branch:develop
 antibody bundle luismayta/zsh-clean branch:develop
 antibody bundle luismayta/zsh-bitwarden branch:develop
 antibody bundle chrissicool/zsh-256color
@@ -106,12 +101,8 @@ antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
-antibody bundle luismayta/zsh-tmux branch:develop
 antibody bundle luismayta/zsh-restic branch:develop
-antibody bundle luismayta/zsh-osx branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
-antibody bundle luismayta/zsh-aws branch:develop
-antibody bundle luismayta/zsh-apps branch:develop
 antibody bundle luismayta/zsh-git branch:develop
 
 # Keybindings
