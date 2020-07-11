@@ -36,12 +36,12 @@ enjoy all the goodies of this configuration.
 via curl
 ~~~~~~~~
 
-``bash -c "$(curl -fsSL https://rebrand.ly/github-6e7e4)"``
+``bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"``
 
 via wget
 ~~~~~~~~
 
-``bash -c "$(wget https://rebrand.ly/github-6e7e4 -O -)"``
+``bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"``
 
 Resources
 ---------
