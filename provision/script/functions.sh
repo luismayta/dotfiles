@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-function initialize(){
+function initialize() {
     for app in {zsh,git,rsync}; do
         program_exists "$app"
     done
     unset app
 
-    dotfiles::install::factory
+    dotfiles_install_factory
 
     for path in "${CONF_DIR}"/{shell,app}; do
         for file_path in "${path}/"*; do
@@ -83,15 +83,15 @@ function cp_file() {
     fi
 }
 
-function dotfiles::install::factory {
+function dotfiles_install_factory {
     if type -p pacman > /dev/null; then
         # shellcheck source=/dev/null
         source "${DOTFILES}"/archlinux.sh
     fi
-    dotfiles::install::apps
+    dotfiles_install_apps
 }
 
-function dotfiles::install::apps(){
+function dotfiles_install_apps() {
     for app in "${APPS[@]}"; do
         "${TOOLS_DIR}/${app}/install.sh"
     done
