@@ -14,7 +14,6 @@ export DOTFILES_BIN="${DOTFILES}/bin"
 export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
-export PROFILERC="${HOME}/.profile"
 export LOCAL_PATH_BIN="${HOME}/.local/bin"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
@@ -25,6 +24,9 @@ export LC_ALL=$LANG
 
 [ -e "${LOCAL_PATH_BIN}" ] && export PATH="${LOCAL_PATH_BIN}:${PATH}"
 [ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
+
+[ -e "${HOME}/.pub-cache/bin" ] && export PATH="${HOME}/.pub-cache/bin:${PATH}"
+
 [ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
 [ -e "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:${PATH}"
 
@@ -58,7 +60,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 [ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
 # shellcheck source=/dev/null
-[ -e "${MOD_DIR}/vim.zsh" ] && source "${MOD_DIR}/vim.zsh"
+[ -e "${MOD_DIR}/aliases.zsh" ] && source "${MOD_DIR}/aliases.zsh"
 
 # setup antibody
 antibody bundle mafredri/zsh-async
@@ -67,6 +69,7 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
+antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle willghatch/zsh-hooks
 antibody bundle agkozak/zhooks
 antibody bundle Aloxaf/fzf-tab
@@ -95,34 +98,30 @@ antibody bundle luismayta/zsh-trash branch:develop
 antibody bundle luismayta/zsh-pazi branch:develop
 antibody bundle luismayta/zsh-clean branch:develop
 antibody bundle luismayta/zsh-bitwarden branch:develop
-antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
-antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
-antibody bundle luismayta/zsh-restic branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle luismayta/zsh-git branch:develop
+antibody bundle b4b4r07/zsh-vimode-visual
 
-# Keybindings
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^[[3~' delete-char
-bindkey '^[3;5~' delete-char
 
-[ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
+if type -p tmux > /dev/null; then
+    [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
+fi
 
 # shellcheck source=/dev/null
-[ -f "${PROFILERC}" ] && source "${PROFILERC}"
+[ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
+
+# shellcheck source=/dev/null
+[ -f "${CUSTOMRC}" ] && source "${CUSTOMRC}"
+
 
 if [ -n "${GITHUB_TOKEN}" ]; then
     git config --global \
         url."https://${GITHUB_TOKEN}:@github.com/".insteadOf "https://github.com/"
 fi
-
-# shellcheck source=/dev/null
-[ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
 
 # remove duplicates path
 if type -p path_remove_duplicate > /dev/null; then
