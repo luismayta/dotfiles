@@ -1,7 +1,5 @@
 FROM sphinxdoc/docker-ci
 
-MAINTAINER Luis Mayta <slovacus@gmail.com>
-
 ARG stage
 
 LABEL NAME dotfiles-doc
