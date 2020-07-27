@@ -8,4 +8,3 @@ Leads
 
 Contributors (chronological)
 ============================
-
