@@ -60,7 +60,7 @@ docker.log:
 
 docker.down:
 	@echo $(MESSAGE) "Down Services Stage: ${stage}"
-	@if [ -z  "${stage}" ]; then \
+	@if [ -z "${stage}" ]; then \
 		$(docker-dev) down --remove-orphans; \
 		$(docker-test) down --remove-orphans; \
 	else \
