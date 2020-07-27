@@ -4,7 +4,8 @@ autoload -Uz compinit && compinit -u
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
-export TERM=xterm-256color
+export TERM=screen-256color
+
 if [ -z "${PROJECTS}" ]; then
     export PROJECTS="${HOME}/Projects/src"
     mkdir -p "${PROJECTS}"
@@ -54,7 +55,9 @@ if ! type -p goenv > /dev/null; then
 fi
 
 if type -p goenv > /dev/null; then
-    eval "$(goenv init -)"
+    if [ -z "${GOPATH}" ]; then
+        eval "$(goenv init -)"
+    fi
 fi
 
 if type -p go > /dev/null; then
