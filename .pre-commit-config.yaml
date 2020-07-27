@@ -1,21 +1,15 @@
+exclude: 'docs|.serverless|.serveless_nextjs|node_modules|migrations|.git|.tox|.gen'
 default_language_version:
   # force all unspecified python hooks to run python3
   python: python3.8.0
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.2.0
+    rev: v2.6.0
     hooks:
       - id: validate_manifest
-  - repo: https://github.com/detailyang/pre-commit-shell
-    rev: 1.0.5
-    hooks:
-      - id: shell-lint
-        exclude: (^provision/script/wait-for-it.sh$|^provision/git/hooks/prepare-commit-msg$)
-        args:
-          - --exclude=SC1072,SC1073,SC2068
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.1.0
+    rev: v1.1.3
     hooks:
       - id: python-safety-dependencies-check
   - repo: https://github.com/Lucas-C/pre-commit-hooks-bandit
@@ -30,7 +24,7 @@ repos:
       - id: rst-linter
         exclude: (docs/*|tests/*)
   - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.4.4
+    rev: v2.5.3
     hooks:
       - id: pylint
         exclude: __pycache__|migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
@@ -43,17 +37,18 @@ repos:
     hooks:
       - id: black
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
+    rev: 3.8.3
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.770
+    rev: v0.782
     hooks:
       - id: mypy
         args:
           - --ignore-missing-imports
+        exclude: migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v3.1.0
     hooks:
       - id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -72,6 +67,7 @@ repos:
       - id: check-ast
       - id: debug-statements
       - id: check-docstring-first
+      - id: detect-aws-credentials
       - id: requirements-txt-fixer
       - id: check-symlinks
       - id: name-tests-test
@@ -88,34 +84,54 @@ repos:
     hooks:
       - id: do_not_commit
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.6.0
+    rev: v1.7.0
     hooks:
       - id: blacken-docs
         additional_dependencies:
           - black
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.29.0
+    rev: v1.31.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
   - repo: https://github.com/prettier/prettier
-    rev: 2.0.4 # Use the sha or tag you want to point at
+    rev: 2.0.5 # Use the sha or tag you want to point at
     hooks:
       - id: prettier
         args: [--config=prettier.config.js]
         exclude: lib|node_modules
-  - repo: https://github.com/pre-commit/mirrors-eslint
-    rev: v7.0.0-alpha.3 # Use the sha / tag you want to point at
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.7.1.1
+    hooks:
+      - id: shellcheck
+        exclude: (^provision/script/wait-for-it.sh$|^provision/git/hooks/prepare-commit-msg$)
+        args:
+          - --exclude=SC1072,SC1073,SC2068
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.0.0
+    hooks:
+      - id: docker-compose-check
+  - repo: local
     hooks:
       - id: eslint
+        name: eslint
+        language: system
+        pass_filenames: true
+        entry: node_modules/eslint/bin/eslint.js --config=.eslintrc.js --ignore-path=.eslintignore --color
+        args:
+          - '--fix'
+        files: \.(js|jsx|ts|tsx|mjs|d.ts)$
+      - id: stylint
+        name: stylint
+        language: system
+        pass_filenames: true
+        entry: node_modules/stylelint/bin/stylelint.js --config=.stylintrc --syntax less **/*.less
         args: [--fix]
-        types: [text]
-        files: '\.(js|ts|tsx)$'
-        additional_dependencies:
-          - 'eslint@6.2.0'
-          - 'typescript'
-          - 'prettier'
-          - '@typescript-eslint/parser@2.0.0'
-          - '@typescript-eslint/eslint-plugin@2.0.0'
-          - eslint-config-prettier@6.0.0
-          - eslint-plugin-prettier@3.1.0
+        files: \.(less)$
+      - id: dockerfile-provides-entrypoint
+        name: hadolint
+        description: Lint Dockerfiles with hadolint
+        language: docker_image
+        entry: --entrypoint /bin/hadolint hadolint/hadolint:latest --ignore DL3008 --ignore DL3013 --ignore DL3018 --ignore DL3008 --ignore DL4006 --ignore SC2001 --ignore SC2086 --ignore SC2102 -
+        types: [file]
+        files: Dockerfile(.*)
