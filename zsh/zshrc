@@ -90,7 +90,7 @@ antibody bundle luismayta/zsh-rust branch:develop
 antibody bundle luismayta/zsh-resources branch:develop
 antibody bundle luismayta/zsh-servers-functions branch:develop
 antibody bundle luismayta/zsh-ssh-connect branch:develop
-antibody bundle luismayta/zsh-vscode branch:develop
+antibody bundle luismayta/zsh-vscodium branch:develop
 antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle equipindustry/zsh-ghq branch:develop
 antibody bundle luismayta/zsh-gst branch:develop
@@ -98,8 +98,7 @@ antibody bundle luismayta/zsh-trash branch:develop
 antibody bundle luismayta/zsh-pazi branch:develop
 antibody bundle luismayta/zsh-clean branch:develop
 antibody bundle luismayta/zsh-bitwarden branch:develop
-antibody bundle wbinglee/zsh-wakatime
-antibody bundle luismayta/zsh-history branch:develop
+
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
@@ -110,9 +109,6 @@ antibody bundle b4b4r07/zsh-vimode-visual
 if type -p tmux > /dev/null; then
     [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
 fi
-
-# shellcheck source=/dev/null
-[ -f "${PRIVATERC}" ] && source "${PRIVATERC}"
 
 # shellcheck source=/dev/null
 [ -f "${CUSTOMRC}" ] && source "${CUSTOMRC}"
@@ -127,3 +123,5 @@ fi
 if type -p path_remove_duplicate > /dev/null; then
     path_remove_duplicate
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
