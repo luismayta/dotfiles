@@ -51,11 +51,6 @@ fi
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
-# Fix for autosuggest when copy-pasting, it prints super slow on long
-# Buffers (pastes)
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
-
 # shellcheck source=/dev/null
 [ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
@@ -63,7 +58,6 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 [ -e "${MOD_DIR}/aliases.zsh" ] && source "${MOD_DIR}/aliases.zsh"
 
 # setup antibody
-antibody bundle mafredri/zsh-async
 antibody bundle caarlos0/zsh-git-sync
 antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
