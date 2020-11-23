@@ -1,11 +1,11 @@
-exclude: 'docs|.serverless|.serveless_nextjs|node_modules|migrations|.git|.tox|.gen'
+exclude: 'provision/ansible/prod/roles/contrib|provision/ansible/dev/roles/contrib|vendor|docs|.serverless|.serveless_nextjs|node_modules|migrations|.git|.tox|.gen'
 default_language_version:
   # force all unspecified python hooks to run python3
   python: python3.8.0
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.6.0
+    rev: v2.8.1
     hooks:
       - id: validate_manifest
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -24,7 +24,7 @@ repos:
       - id: rst-linter
         exclude: (docs/*|tests/*)
   - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: v2.5.3
+    rev: v2.6.0
     hooks:
       - id: pylint
         exclude: __pycache__|migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
@@ -33,22 +33,22 @@ repos:
           - --disable=no-name-in-module,import-error,ungrouped-imports
           - --ignore=settings_test, migrations
   - repo: https://github.com/ambv/black
-    rev: 19.10b0
+    rev: 20.8b1
     hooks:
       - id: black
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+    rev: 3.8.4
     hooks:
       - id: flake8
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.782
+    rev: v0.790
     hooks:
       - id: mypy
         args:
           - --ignore-missing-imports
         exclude: migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.1.0
+    rev: v3.3.0
     hooks:
       - id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -67,7 +67,6 @@ repos:
       - id: check-ast
       - id: debug-statements
       - id: check-docstring-first
-      - id: detect-aws-credentials
       - id: requirements-txt-fixer
       - id: check-symlinks
       - id: name-tests-test
@@ -84,22 +83,16 @@ repos:
     hooks:
       - id: do_not_commit
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.7.0
+    rev: v1.8.0
     hooks:
       - id: blacken-docs
         additional_dependencies:
           - black
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.31.0
+    rev: v1.43.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
-  - repo: https://github.com/prettier/prettier
-    rev: 2.0.5 # Use the sha or tag you want to point at
-    hooks:
-      - id: prettier
-        args: [--config=prettier.config.js]
-        exclude: lib|node_modules
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.7.1.1
     hooks:
@@ -113,6 +106,16 @@ repos:
       - id: docker-compose-check
   - repo: local
     hooks:
+      - id: prettier
+        name: prettier
+        language: system
+        entry: ./node_modules/prettier/bin-prettier.js
+        args:
+          - '--write=true'
+          - '--list-different'
+          - '--config=prettier.config.js'
+        files: \.(js?(on),ts?(x),scss,md,y?(a)ml,gql,graphql?(s),less,mjml,html)$
+        exclude: lib|node_modules
       - id: eslint
         name: eslint
         language: system
