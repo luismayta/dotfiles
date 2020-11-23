@@ -63,9 +63,6 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle willghatch/zsh-hooks
-antibody bundle agkozak/zhooks
 antibody bundle Aloxaf/fzf-tab
 antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle luismayta/zsh-brew branch:develop
@@ -91,7 +88,6 @@ antibody bundle luismayta/zsh-gst branch:develop
 antibody bundle luismayta/zsh-trash branch:develop
 antibody bundle luismayta/zsh-pazi branch:develop
 antibody bundle luismayta/zsh-clean branch:develop
-antibody bundle luismayta/zsh-bitwarden branch:develop
 
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
