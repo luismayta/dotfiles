@@ -79,6 +79,7 @@ if [[ $(uname) == 'Darwin' ]]; then
          # Utils -----------------------------------------------------------------------
          jq ag fd ripgrep cmake ctags \
              bash
+    zsh --login
 fi
 
 # Archlinux Stuff
