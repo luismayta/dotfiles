@@ -3,4 +3,4 @@
 CLEAR='\033[0m'
 GREEN="\033[0;32m"
 
-printf "${CLEAR}${GREEN}[SUCCESS]: %s ${CLEAR}\n" "$1";
+printf "${CLEAR}${GREEN}${ZSH_PACKAGE_NAME}:[SUCCESS]: %s ${CLEAR}\n" "$1";
