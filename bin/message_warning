@@ -2,4 +2,4 @@
 CLEAR='\033[0m'
 YELLOW="\033[0;33m"
 
-printf "${CLEAR}${YELLOW}[WARNING]: %s ${CLEAR}\n" "$1";
+printf "${CLEAR}${YELLOW}${ZSH_PACKAGE_NAME}:[WARNING]: %s ${CLEAR}\n" "$1";

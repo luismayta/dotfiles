@@ -3,4 +3,4 @@
 CLEAR='\033[0m'
 RED="\033[0;31m"
 
-printf "${CLEAR}${RED}[ERROR]: %s ${CLEAR}\n" "${1}"; return 0;
+printf "${CLEAR}${RED}${ZSH_PACKAGE_NAME}:[ERROR]: %s ${CLEAR}\n" "${1}"; return 0;
