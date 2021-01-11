@@ -40,7 +40,7 @@ brew install coreutils \
      reattach-to-user-namespace \
      ctags
 
-brew cask install \
+brew install --cask \
      docker \
      alacritty
 
