@@ -33,7 +33,6 @@ python.fix: ## Fix lint violations
 .PHONY: python.setup
 python.setup:
 	@echo "=====> setup python..."
-	pyenv local ${PYTHON_VERSION}
 	$(PIPENV_INSTALL) --dev --skip-lock
 	@echo ${MESSAGE_HAPPY}
 
@@ -41,7 +40,6 @@ python.setup:
 .PHONY: python.environment
 python.environment:
 	@echo "=====> environment python..."
-	pyenv local ${PYTHON_VERSION}
 	pipenv --venv || $(PIPENV_INSTALL) --python=${PYTHON_VERSION} --skip-lock
 	@echo ${MESSAGE_HAPPY}
 
