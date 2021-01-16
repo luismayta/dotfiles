@@ -20,10 +20,7 @@ export GIT_URI='https://github.com/luismayta/dotfiles.git'
 export GIT_BRANCH='master'
 export DEBUG_MODE='0'
 export PATH_BACKUP="$HOME/backup"
-export PATH_PYENV="$HOME/.pyenv"
-export PATH_GVM="$HOME/.gvm"
 
-export PATH_GIT_EXTRAS="$HOME/.gvm"
 export PATH_RVM="$HOME/.rvm"
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"

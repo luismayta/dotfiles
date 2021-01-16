@@ -5,8 +5,6 @@ export FONTS_DIR="$HOME/.fonts"
 mkdir -p "${FONTS_DIR}"
 
 export APPS=(
-    "pyenv"
-    "gvm"
     "git-extras"
     "fonts"
     "tpm"
