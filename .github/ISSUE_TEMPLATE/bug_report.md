@@ -1,3 +1,9 @@
+---
+name: 🐛 Bug report
+about: Create a report to help us improve
+labels: type/bug
+---
+
 ## The problem
 
 Briefly describe the issue you are experiencing (or the feature you want to see added). Tell us what you were trying to do and what happened instead. Remember, this is _not_ a place to ask questions.
@@ -18,3 +24,9 @@ Create a [GIST](https://gist.github.com) which is a paste of your _full_ logs, a
 ## Tasks
 
 - [ ] Task number 1
+
+## Checklist (after created issue)
+
+- [ ] Added label(s)
+- [ ] Added to project
+- [ ] Added to milestone
