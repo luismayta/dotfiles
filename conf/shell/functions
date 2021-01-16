@@ -73,7 +73,7 @@ function fs() {
 
 # Use Git’s colored diff when available
 hash git &>/dev/null
-if [[ $? -eq 0 ]]; then
+if [ $? -eq 0 ]; then
     function diff() {
         git diff --no-index --color-words "$@"
     }
@@ -199,7 +199,7 @@ function gi() {
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
 function v() {
-    if [[ $# -eq 0 ]]; then
+    if [ $# -eq 0 ]; then
         vim .
     else
         vim "$@"
