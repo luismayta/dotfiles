@@ -1,33 +1,36 @@
-# http://editorconfig.org
-root                     = true
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+root = true
 
 [*]
-indent_style             = space
-indent_size              = 2
-end_of_line              = lf
+end_of_line = lf
+charset = utf-8
 trim_trailing_whitespace = true
-charset                  = utf-8
-insert_final_newline     = false
-max_line_length          = 80
+insert_final_newline = true
 
-[*.{py,sh,sql}]
-indent_size              = 4
-max_line_length          = 120
+# Spaces in coffee
+[**.coffee]
+indent_style = space
+indent_size = 2
 
-[*.md]
-trim_trailing_whitespace = false
+[**.js]
+indent_style = space
+indent_size = 2
 
-# Tabs
-[*.{less,css}]
-indent_style             = tab
+# Tabs in less
+[**.less]
+indent_style = tab
+indent_size = 2
 
-[Vagrantfile]
-indent_style             = tab
+[**.css]
+indent_style = tab
+indent_size = 2
 
-[Makefile]
-indent_style             = tab
-indent_size              = 4
+[**.php]
+indent_style = space
+indent_size = 4
 
-[*.{make,mk}]
-indent_style             = tab
-indent_size              = 4
+[**.html]
+indent_style = tab
+indent_size = 2
