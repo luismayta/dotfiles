@@ -21,7 +21,6 @@ export GIT_BRANCH='master'
 export DEBUG_MODE='0'
 export PATH_BACKUP="$HOME/backup"
 
-export PATH_RVM="$HOME/.rvm"
 export PATH_TPM="$HOME/.tmux/plugins/tpm"
 export PATH_SCM_BREEZE="$HOME/.scm_breeze"
 export PATH_FONTS_REPO="$PATH_REPO/extras/fonts"
