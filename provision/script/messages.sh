@@ -6,12 +6,12 @@ function msg() {
 }
 
 function success() {
-    if [[ "${ret}" -eq '0' ]]; then
+    if [[ "$ret" -eq '0' ]]; then
         msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
 
-function errer() {
+function error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
     exit 1
 }
