@@ -30,11 +30,8 @@ Prerequisites
 This is a list of applications that need to be installed previously to
 enjoy all the goodies of this configuration.
 
--  `Git <http://git-scm.com>`__
--  `Zsh <http://www.zsh.org>`__
 -  `Curl <https://github.com/bagder/curl>`__
 -  `Wget <http://www.gnu.org/software/wget>`__
--  `Rsync <https://rsync.samba.org>`__
 
 via curl
 ~~~~~~~~
@@ -353,7 +350,6 @@ Made with :coffee: and :pizza: by `luis mayta`_ and `hadenlabs`_.
    :target: https://codeclimate.com/github/luismayta/dotfiles
 .. |Test Coverage| image:: https://codeclimate.com/github/luismayta/dotfiles/badges/coverage.svg
    :target: https://codeclimate.com/github/luismayta/dotfiles/coverage
-
 .. Footer:
 .. |linkedin| image:: http://www.linkedin.com/img/webpromo/btn_liprofile_blue_80x15.png
    :target: http://pe.linkedin.com/in/luismayta
