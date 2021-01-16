@@ -1,6 +1,6 @@
 # How To Contribute
 
-Contributions to terraform-github-repository are welcome.
+Contributions to dotfiles are welcome.
 
 ## Getting Started
 
