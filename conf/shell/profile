@@ -4,7 +4,7 @@
 # Load the shell dotfiles, and then some:
 # * ~/.customrc can be used for other settings you don’t want to commit.
 # shellcheck source=/dev/null
-for file in ~/.{exports,bash_prompt,load,aliases,functions,inputrc,customrc}; do
-	[ -r "$file" ] && source "$file"
+for file in ~/.{exports,bash_prompt,load,aliases,customrc}; do
+	  [ -r "$file" ] && source "$file"
 done
 unset file
