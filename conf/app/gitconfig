@@ -5,7 +5,7 @@
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore
-    editor = "vim"
+	editor = "$EDITOR"
     preloadindex = true
     fscache = true
 
