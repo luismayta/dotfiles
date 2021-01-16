@@ -1,52 +1,125 @@
-### v1.0.3 (19-07-2015)
+# Changelog
 
-- validation code source
+All notable changes to this project will be documented in this file. This file uses change log convention from [keep a CHANGELOG](http://keepachangelog.com/en/0.3.0/).
 
-### v1.0.2 (16-07-2015)
 
-- clean config unnecesary
+<a name="0.0.0"></a>
+## [0.0.0](https://github.com/luismayta/dotfiles/compare/1.7.1...0.0.0)
 
-### v1.0.1 (DATE)
+> 2021-01-16
 
-- fixed boostrap
 
-### 1.0.0 (DATE)
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/luismayta/dotfiles/compare/1.7.0...1.7.1)
 
-- fixed boostrap
-- fixed install fonts
+> 2020-02-15
 
-### 0.1.9 (DATE)
+### Bug Fixes
 
-- added install fonts
+* load value for version (1.7.1)
+* name replace value to new (1.7.1)
+* value for setup (1.7.1)
+* load var value for version (1.7.1)
+* load mode vim for zsh (1.7.1)
+* load version for search and replace (1.7.1)
 
-### 0.1.8 (DATE)
+### Code Refactoring
 
-- Fixed conf shell
+* load modules completions (1.7.1)
+* load best settings for zshenv (1.7.1)
+* load mod without completions (1.7.1)
 
-### 0.1.7 (DATE)
+### Features
 
-- Fixed install dotfiles
+* value new patch version (1.7.1)
 
-### 0.1.6 (DATE)
+### Features
 
-- Install
+* implement load bindkey (1.7.1)
 
-### v0.1.5 (DATE)
 
-- template
+<a name="1.7.0"></a>
+## [1.7.0](https://github.com/luismayta/dotfiles/compare/1.6.1...1.7.0)
 
-### v0.1.4 (DATE)
+> 2020-02-15
 
-- template
+### Bug Fixes
 
-### v0.1.3 (DATE)
+* value version (1.7.0)
 
-- fixed name email
+### Code Refactoring
 
-### v0.1.2 (DATE)
+* load bin more fast ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* load modules of zsh ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* change path for completion ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* packages install for python ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* clean unnecesary packages ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* settings project ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* settings pre-commit ([#204](https://github.com/luismayta/dotfiles/issues/204))
 
-- texto1
+### Features
 
-### v0.1.1 (DATE)
+* implement version 1.7.0 (1.7.0)
+* implement file package.json version ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* implement package validation for prettier ([#204](https://github.com/luismayta/dotfiles/issues/204))
 
-- texto1
+### Features
+
+* deleted unnecesary hammerspoon ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* clean unnecesary action ([#204](https://github.com/luismayta/dotfiles/issues/204))
+* upgrade year license ([#204](https://github.com/luismayta/dotfiles/issues/204))
+
+
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/luismayta/dotfiles/compare/1.6.0...1.6.1)
+
+> 2019-12-17
+
+
+<a name="1.6.0"></a>
+## [1.6.0](https://github.com/luismayta/dotfiles/compare/1.5.0...1.6.0)
+
+> 2019-12-11
+
+
+<a name="1.5.0"></a>
+## [1.5.0](https://github.com/luismayta/dotfiles/compare/1.4.0...1.5.0)
+
+> 2019-08-05
+
+
+<a name="1.4.0"></a>
+## [1.4.0](https://github.com/luismayta/dotfiles/compare/1.3.1...1.4.0)
+
+> 2019-03-13
+
+
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/luismayta/dotfiles/compare/1.3.0...1.3.1)
+
+> 2019-01-24
+
+
+<a name="1.3.0"></a>
+## [1.3.0](https://github.com/luismayta/dotfiles/compare/1.2.0...1.3.0)
+
+> 2018-12-16
+
+
+<a name="1.2.0"></a>
+## [1.2.0](https://github.com/luismayta/dotfiles/compare/1.1.0...1.2.0)
+
+> 2018-01-02
+
+
+<a name="1.1.0"></a>
+## [1.1.0](https://github.com/luismayta/dotfiles/compare/1.0.0...1.1.0)
+
+> 2017-11-21
+
+
+<a name="1.0.0"></a>
+## 1.0.0
+
+> 2017-10-23
+
