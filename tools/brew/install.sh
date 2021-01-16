@@ -21,10 +21,9 @@ brew install coreutils
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Tools Developer
-brew install shellcheck
-brew install ispell
-brew install hunspell
-brew install graphviz
+brew install \
+     shellcheck ispell hunspell \
+     graphviz
 brew cask install java
 
 # Grab movies
@@ -50,38 +49,43 @@ if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
 fi;
 
 # developer
-brew install the_silver_searcher
-brew install editorconfig
-brew install aspell --with-lang-en
-brew install libevent libev docker-clean
+brew install \
+     the_silver_searcher \
+     editorconfig \
+     aspell --with-lang-en \
+     libevent libev docker-clean \
+     # plantuml
+     graphviz \
+         markdown
 
 # for the GNU global tag system. Used by ggtags.
 brew install --HEAD ctags
 brew install global --with-ctags
 
 # program used for plantuml
-brew install graphviz
-brew install markdown
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
 # Install more recent versions of some macOS tools.
-brew install vim --override-system-vi
-brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
-brew install unrar ncdu calc
 
-brew install git git-lfs git-flow lynx p7zip tig
-
-brew install rename ssh-copy-id tree telnet
-
-# Gui mergetool
-brew install homebrew/gui/meld
+brew install \
+     vim \
+     git git-lfs git-flow lynx p7zip tig unrar ncdu \
+     # Tools
+     rename ssh-copy-id tree telnet grep
 
 # Tools System DevOps
-brew install htop peco terminal-notifier packer terragrunt aws-shell
-brew cask install aws-vault
+brew install \
+     htop peco terminal-notifier packer terragrunt aws-shell
+
+brew cask install \
+     aws-vault \
+     meld \
+     docker \
+     insomnia \
+     kap #software for record movies
 
 # Remove outdated versions from the cellar.
 brew cleanup
