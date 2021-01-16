@@ -5,7 +5,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit
-    rev: v2.8.1
+    rev: v2.9.3
     hooks:
       - id: validate_manifest
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
@@ -18,11 +18,6 @@ repos:
       - id: python-bandit-vulnerability-check
         args: []
         files: .py$
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
-    rev: v1.0.0
-    hooks:
-      - id: rst-linter
-        exclude: (docs/*|tests/*)
   - repo: https://github.com/pre-commit/mirrors-pylint
     rev: v2.6.0
     hooks:
@@ -48,7 +43,7 @@ repos:
           - --ignore-missing-imports
         exclude: migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.3.0
+    rev: v3.4.0
     hooks:
       - id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -83,13 +78,13 @@ repos:
     hooks:
       - id: do_not_commit
   - repo: https://github.com/asottile/blacken-docs
-    rev: v1.8.0
+    rev: v1.9.1
     hooks:
       - id: blacken-docs
         additional_dependencies:
           - black
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.43.0
+    rev: v1.45.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
