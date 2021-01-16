@@ -4,6 +4,7 @@
 ############################  SETUP PARAMETERS
 app_name='.dotfiles'
 git_uri='https://github.com/luismayta/dotfiles.git'
+git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
 path_repo="$HOME/$app_name"
@@ -62,6 +63,10 @@ clone_repo() {
     else
         upgrade_repo "$app_name" "Successfully updated $app_name"
     fi
+
+    if [ "$ret" -eq '0' ]; then
+        "$path_repo/bootstrap.sh"
+    fi
 }
 
 for app in {zsh,git,tmux}; do
@@ -73,5 +78,3 @@ clone_repo      "Successfully cloned $app_name"
 
 msg             "\nThanks for installing $app_name."
 msg             "© `date +%Y` $app_name"
-
-"$path_repo/bootstrap.sh"
