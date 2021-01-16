@@ -9,7 +9,7 @@ export ZSH_TMUX_AUTOSTART=false
 
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
-export DOTFILES_DIR="${DOTFILES}/src"
+export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 export PRIVATERC="${HOME}/.privaterc"
@@ -100,9 +100,9 @@ antibody bundle luismayta/zsh-bitwarden branch:develop
 antibody bundle chrissicool/zsh-256color
 antibody bundle wbinglee/zsh-wakatime
 antibody bundle zsh-users/zsh-completions
-antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle sindresorhus/pretty-time-zsh
 antibody bundle luismayta/zsh-history branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
