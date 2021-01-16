@@ -5,8 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 docker-compose = "*"
-restview = "*"
-rst = "*"
 caniusepython3 = "*"
 isort = "*"
 mypy = "*"
@@ -22,12 +20,16 @@ ipython = "*"
 parso = "*"
 pyyaml = "*"
 bumpversion = "*"
-bumplus = "*"
 pre-commit = "*"
 doc8 = "*"
+bridgecrew = "*"
+mkdocs = "*"
+click-man = "*"
+pygments = "*"
+pymdown-extensions = "*"
+mkdocs-material = "*"
 
 [packages]
-
 
 [scripts]
 test = "pytest"
