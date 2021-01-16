@@ -17,8 +17,13 @@ if ! type -p wakatime > /dev/null; then
 fi
 
 # Make vim the default editor
-if ! type -p vim > /dev/null; then
+if type -p vim > /dev/null; then
     export EDITOR=vim
+fi
+
+# Make nvim the default editor
+if type -p nvim > /dev/null; then
+    export EDITOR=nvim
 fi
 
 # Larger bash history (allow 32³ entries; default is 500)
