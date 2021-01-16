@@ -1,6 +1,5 @@
 .dockerignore
 docker-compose.yml
-provision
 node_modules/
 .git/
 coverage/
@@ -17,6 +16,7 @@ Dockerfile
 .vagrant/
 .cache/
 .wercker/
+.mypy_cache/
 .sass-cache/*
 *.sql
 *.log
