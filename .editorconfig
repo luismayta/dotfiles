@@ -36,7 +36,7 @@ insert_final_newline = ignore
 indent_style = tab
 
 # Indentation override for all JS under lib directory
-[*.{el,js,json,md,yml,yaml}]
+[*.{el,js,json,md,yml,yaml,tf}]
 indent_style = space
 indent_size = 2
 
