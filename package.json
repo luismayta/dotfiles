@@ -40,7 +40,7 @@
     "prettier": "^2.0.5",
     "prettier-tslint": "^0.4.2",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.0.7",
+    "semantic-release": "^17.2.3",
     "typescript": "^3.8.3"
   },
   "publishConfig": {
