@@ -148,20 +148,7 @@ Plugins Decription
 
 ---
 
-caarlos0/zsh-mkc
- caarlos0/zsh-git-sync
- zsh-users/zsh-completions
- zsh-users/zsh-syntax-highlighting
- zsh-users/zsh-history-substring-search
- bobthecow/git-flow-completion
- luismayta/zsh-git-aliases
- luismayta/zsh-docker-compose-aliases
- luismayta/zsh-servers-functions
- Tarrasch/zsh-autoenv
- Tarrasch/zsh-colors
- chrissicool/zsh-256color
- luismayta/zsh-goenv
- wbinglee/zsh-wakatime
+caarlos0/zsh-mkc caarlos0/zsh-git-sync zsh-users/zsh-completions zsh-users/zsh-syntax-highlighting zsh-users/zsh-history-substring-search bobthecow/git-flow-completion luismayta/zsh-git-aliases luismayta/zsh-docker-compose-aliases luismayta/zsh-servers-functions Tarrasch/zsh-autoenv Tarrasch/zsh-colors chrissicool/zsh-256color luismayta/zsh-goenv wbinglee/zsh-wakatime
 
 ### Tmux Themepack
 
@@ -170,14 +157,6 @@ caarlos0/zsh-mkc
 **Wakatime Terminal:**
 
 [zsh-wakatime](https://github.com/wbinglee/zsh-wakatime)
-
-## Support
-
-If you want to support this project, i only accept `IOTA` :p.
-
-```{.sourceCode .bash}
-Address: FTDCZELEMOQGL9MBWFZENJLFIZUBGMXLFVPRB9HTWYDYPTFKASJCEGJMSAXUWDQC9SJUDMZVIQKACQEEYPEUYLAMMD
-```
 
 ## Team
 
@@ -215,4 +194,4 @@ Feel free to contact me to discuss any issues, questions, or comments.
 - [Website](https://luismayta.github.io)
 - [PGP](https://keybase.io/luismayta/pgp_keys.asc)
 
-Made with :coffee: and :pizza: by [Luis Mayta](https://github.com/luismayta) and [equipindustry](https://github.com/equipindustry).
+Made with :coffee: and :pizza: by [Luis Mayta](https://github.com/luismayta) and [hadenlabs](https://github.com/hadenlabs).
