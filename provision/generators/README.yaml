@@ -26,22 +26,22 @@ email:
 #logo: docs/logo.png
 
 # License of this project
-license: "APACHE2"
+license: 'APACHE2'
 
 # Canonical GitHub repo
 github_repo: luismayta/dotfiles
 
 # Badges to display
 badges:
-  - name: "Build Status"
-    image: "https://travis-ci.org/luismayta/dotfiles.svg?branch=main"
-    url: "https://travis-ci.org/luismayta/dotfiles"
-  - name: "Issues"
-    image: "https://img.shields.io/github/issues/luismayta/dotfiles.svg"
-    url: "https://github.com/luismayta/dotfiles/issues"
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/luismayta/dotfiles.svg"
-    url: "https://travis-ci.org/luismayta/dotfiles/releases"
+  - name: 'Build Status'
+    image: 'https://travis-ci.org/luismayta/dotfiles.svg?branch=main'
+    url: 'https://travis-ci.org/luismayta/dotfiles'
+  - name: 'Issues'
+    image: 'https://img.shields.io/github/issues/luismayta/dotfiles.svg'
+    url: 'https://github.com/luismayta/dotfiles/issues'
+  - name: 'Latest Release'
+    image: 'https://img.shields.io/github/release/luismayta/dotfiles.svg'
+    url: 'https://travis-ci.org/luismayta/dotfiles/releases'
 
 # Short description of this project
 description: |-
@@ -56,8 +56,8 @@ requirements: |-
   - [Wget](http://www.gnu.org/software/wget)
 
 installation:
-  - "docs/include/installation/curl.md"
-  - "docs/include/installation/wget.md"
+  - 'docs/include/installation/curl.md'
+  - 'docs/include/installation/wget.md'
 
 # How to use this project
 usage: |-
@@ -67,5 +67,5 @@ usage: |-
 
 # Contributors to this project
 contributors:
-  - name: "Luis Mayta"
-    github: "luismayta"
+  - name: 'Luis Mayta'
+    github: 'luismayta'
