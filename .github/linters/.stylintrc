@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-hex-length": "long",
+    "declaration-colon-newline-after": null,
+    "function-calc-no-invalid": null,
+    "indentation": "tab",
+    "no-descending-specificity": null,
+    "no-empty-source": null,
+    "no-eol-whitespace": null,
+    "number-leading-zero": "always",
+    "selector-list-comma-newline-after": null,
+    "selector-pseudo-element-colon-notation": "double"
+  }
+}
