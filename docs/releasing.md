@@ -5,7 +5,7 @@
 Make a new version of dotfiles in the following steps:
 
 - Make sure everything is commit to github.com.
-- Update `Changelog.md` with the next version.
+- Update `CHANGELOG.md` with the next version.
 
 - Dry Run: `bumpversion --dry-run --verbose --new-version 0.8.1 patch`
 - Do it: `bumpversion --new-version 0.8.1 patch`
