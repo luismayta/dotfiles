@@ -2,7 +2,6 @@
 # See ./CONTRIBUTING.rst
 #
 
-
 docs:
 	make docs.help
 
