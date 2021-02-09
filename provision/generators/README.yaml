@@ -1,0 +1,71 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: dotfiles
+
+company:
+  name: hadenlabs
+  description: |-
+    company labs
+  url: https://hadenlabs.com
+  github: https://github.com/hadenlabs
+  email: support@hadenlabs.com
+
+copyright:
+  name: Hadenlabs
+  url: https://hadenlabs.com
+
+email:
+  support: support@hadenlabs.com
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Canonical GitHub repo
+github_repo: luismayta/dotfiles
+
+# Badges to display
+badges:
+  - name: "Build Status"
+    image: "https://travis-ci.org/luismayta/dotfiles.svg?branch=main"
+    url: "https://travis-ci.org/luismayta/dotfiles"
+  - name: "Issues"
+    image: "https://img.shields.io/github/issues/luismayta/dotfiles.svg"
+    url: "https://github.com/luismayta/dotfiles/issues"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/luismayta/dotfiles.svg"
+    url: "https://travis-ci.org/luismayta/dotfiles/releases"
+
+# Short description of this project
+description: |-
+
+  dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
+
+requirements: |-
+
+  This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
+
+  - [Curl](https://github.com/bagder/curl)
+  - [Wget](http://www.gnu.org/software/wget)
+
+installation:
+  - "docs/include/installation/curl.md"
+  - "docs/include/installation/wget.md"
+
+# How to use this project
+usage: |-
+  ```bash
+  make setup
+  ```
+
+# Contributors to this project
+contributors:
+  - name: "Luis Mayta"
+    github: "luismayta"
