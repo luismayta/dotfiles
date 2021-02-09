@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This file u
 > {{ datetime "2006-01-02" .Tag.Date }}
 
 {{ range .CommitGroups -}}
+
 ### {{ .Title }}
 
 {{ range .Commits -}}
@@ -17,6 +18,7 @@ All notable changes to this project will be documented in this file. This file u
 {{ end -}}
 
 {{- if .RevertCommits -}}
+
 ### Reverts
 
 {{ range .RevertCommits -}}
