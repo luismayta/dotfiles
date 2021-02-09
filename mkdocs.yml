@@ -15,7 +15,7 @@ extra:
   font:
     text: 'Source Sans Pro'
 
-repo_name: 'luismayta/dotfiles-github-repository'
+repo_name: 'luismayta/dotfiles'
 repo_url: 'https://github.com/luismayta/dotfiles'
 copyright: 'Copyright © 2020 <a href="https://hadenlabs.com">hadenlabs</a>'
 
