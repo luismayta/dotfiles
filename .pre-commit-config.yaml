@@ -24,7 +24,7 @@ repos:
       - id: pylint
         exclude: __pycache__|migrations|conf.py|_build|.tox|pootle/static|pootle/translations|pootle/locale|pootle/assets|templates
         args:
-          - --rcfile=.pylintrc
+          - --rcfile=.github/linters/.pylintrc
           - --disable=no-name-in-module,import-error,ungrouped-imports
           - --ignore=settings_test, migrations
   - repo: https://github.com/ambv/black
@@ -108,24 +108,22 @@ repos:
         args:
           - '--write=true'
           - '--list-different'
-          - '--config=prettier.config.js'
-        files: \.(js?(on),ts?(x),scss,md,y?(a)ml,gql,graphql?(s),less,mjml,html)$
-        exclude: lib|node_modules
+          - '--config=.github/linters/prettier.config.js'
+          - '--ignore-path=.github/linters/.prettierignore'
+        exclude: node_modules
       - id: eslint
         name: eslint
         language: system
         pass_filenames: true
-        entry: node_modules/eslint/bin/eslint.js --config=.eslintrc.js --ignore-path=.eslintignore --color
+        entry: node_modules/eslint/bin/eslint.js --config=.github/linters/.eslintrc.js --ignore-path=.github/linters/.eslintignore --color
         args:
           - '--fix'
-        files: \.(js|jsx|ts|tsx|mjs|d.ts)$
       - id: stylint
         name: stylint
         language: system
         pass_filenames: true
-        entry: node_modules/stylelint/bin/stylelint.js --config=.stylintrc --syntax less **/*.less
+        entry: node_modules/stylelint/bin/stylelint.js --config=.github/linters/.stylintrc --syntax less **/*.less
         args: [--fix]
-        files: \.(less)$
       - id: dockerfile-provides-entrypoint
         name: hadolint
         description: Lint Dockerfiles with hadolint
