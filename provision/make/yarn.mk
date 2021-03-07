@@ -1,5 +1,5 @@
 #
-# See ./CONTRIBUTING.rst
+# See ./docs/contributing.md
 #
 yarn.help:
 	@echo '    yarn:'
@@ -18,6 +18,12 @@ yarn.help:
 yarn.setup:
 	@echo "=====> setup dependence yarn..."
 	yarn install
+	@echo ${MESSAGE_HAPPY}
+
+.PHONY: yarn.environment
+yarn.environment:
+	@echo "=====> enviroment yarn..."
+	nvm use ${NODE_VERSION}
 	@echo ${MESSAGE_HAPPY}
 
 yarn.install:
