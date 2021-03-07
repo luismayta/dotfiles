@@ -33,9 +33,9 @@ github_repo: luismayta/dotfiles
 
 # Badges to display
 badges:
-  - name: 'Build Status'
-    image: 'https://travis-ci.org/luismayta/dotfiles.svg?branch=main'
-    url: 'https://travis-ci.org/luismayta/dotfiles'
+  - name: Lint
+    image: https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop
+    url: https://github.com/luismayta/dotfiles/actions
   - name: 'Issues'
     image: 'https://img.shields.io/github/issues/luismayta/dotfiles.svg'
     url: 'https://github.com/luismayta/dotfiles/issues'
@@ -65,7 +65,5 @@ usage: |-
   make setup
   ```
 
-# Contributors to this project
-contributors:
-  - name: 'Luis Mayta'
-    github: 'luismayta'
+examples:
+  - 'docs/examples/common.md'
