@@ -3,7 +3,6 @@
 #
 # Usage: test up
 
-version: '3.6'
 services:
   app:
     image: dotfiles-app-test
