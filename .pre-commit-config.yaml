@@ -83,11 +83,12 @@ repos:
       - id: blacken-docs
         additional_dependencies:
           - black
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.45.0
+  - repo: git://github.com/dnephin/pre-commit-golang
+    rev: v0.3.5
     hooks:
-      - id: terraform_fmt
-      - id: terraform_docs
+      - id: validate-toml
+      - id: no-go-testing
+      - id: golangci-lint
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.7.1.1
     hooks:
@@ -110,6 +111,7 @@ repos:
           - '--list-different'
           - '--config=.github/linters/prettier.config.js'
           - '--ignore-path=.github/linters/.prettierignore'
+        files: \.(js|jsx|json|ts|tsx|mjs|d.ts|md|yml|yaml|gql|graphql|mjml)$
         exclude: node_modules
       - id: eslint
         name: eslint
@@ -118,12 +120,14 @@ repos:
         entry: node_modules/eslint/bin/eslint.js --config=.github/linters/.eslintrc.js --ignore-path=.github/linters/.eslintignore --color
         args:
           - '--fix'
+        files: \.(js|jsx|ts|tsx|mjs|d.ts)$
       - id: stylint
         name: stylint
         language: system
         pass_filenames: true
         entry: node_modules/stylelint/bin/stylelint.js --config=.github/linters/.stylintrc --syntax less **/*.less
         args: [--fix]
+        files: \.(css|scss|sass|less)$
       - id: dockerfile-provides-entrypoint
         name: hadolint
         description: Lint Dockerfiles with hadolint
