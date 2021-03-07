@@ -1,0 +1,75 @@
+name: lint code
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every day at midnight
+
+  pull_request:
+    branches:
+      - develop
+
+  push:
+    branches:
+      - develop
+
+env:
+  NODE_VERSION: 14.15.5
+  PYTHON_VERSION: 3.8.0
+  LANG: en_US.UTF-8
+  LC_ALL: en_US.UTF-8
+
+jobs:
+  build:
+    name: build
+    runs-on: Ubuntu-20.04
+    env:
+      LANG: en_US.UTF-8
+      LC_ALL: en_US.UTF-8
+
+    steps:
+      - name: Check out a copy of the repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: install yarn
+        run: npm install -g yarn
+
+      - name: get package manager's global cache path
+        id: global-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: cache package manager's global cache and node_modules
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.global-cache-dir-path.outputs.dir }}
+            node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{
+            hashFiles('**/yarn.lock'
+            ) }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+        if: |
+          steps.cache-dependencies.outputs.cache-hit != 'true'
+
+      - name: switch version ptyhon
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: install pipenv
+        run: python -m pip install --no-cache-dir pipenv
+
+      - name: install dependences python
+        run: pipenv install --dev --deploy --skip-lock --python="$(which python)"
+
+      - name: execute pre-commit
+        run: pipenv run pre-commit run --all-files
