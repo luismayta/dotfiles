@@ -16,13 +16,13 @@ yarn.help:
 # setup download and install dependence.
 .PHONY: yarn.setup
 yarn.setup:
-	@echo "=====> setup dependence yarn..."
+	@echo "==> setup dependence yarn..."
 	yarn install
 	@echo ${MESSAGE_HAPPY}
 
 .PHONY: yarn.environment
 yarn.environment:
-	@echo "=====> enviroment yarn..."
+	@echo "==> enviroment yarn..."
 	nvm use ${NODE_VERSION}
 	@echo ${MESSAGE_HAPPY}
 
