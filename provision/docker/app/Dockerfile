@@ -1,6 +1,4 @@
-FROM luismayta/ubuntu-dotfiles
-
-MAINTAINER Luis Mayta <@slovacus>
+FROM luismayta/ubuntu-dotfiles:latest
 
 ARG home
 
@@ -40,7 +38,7 @@ RUN  groupadd -g 500 -r python \
   && apt-get clean \
   && apt-get autoremove \
 
-  && pip3 install pipenv \
+  && pip3 install --no-cache-dir pipenv \
   && pipenv install --dev --skip-lock \
   && pipenv shell --fancy \
   && apt-get purge \
