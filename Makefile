@@ -30,6 +30,9 @@ PYENV_NAME="${PROJECT}"
 GIT_IGNORES:=python,node,go,zsh
 GI:=gi
 
+# issues reviewers
+REVIEWERS?=luismayta
+
 # Configuration.
 SHELL ?=/bin/bash
 ROOT_DIR=$(shell pwd)
