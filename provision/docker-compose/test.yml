@@ -11,13 +11,3 @@ services:
     build:
       args:
         stage: test
-
-  docs:
-    restart: always
-    build:
-      context: .
-      dockerfile: provision/docker/docs/Dockerfile
-    volumes:
-      - .:/usr/src
-    env_file:
-      - .env
