@@ -6,9 +6,6 @@ version: '3.6'
 
 services:
   app:
-    restart: always
-    environment: &environment
-      - APP_NAME=dotfiles
     build:
       context: .
       dockerfile: provision/docker/app/Dockerfile
