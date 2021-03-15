@@ -8,13 +8,12 @@ test.help:
 
 test:
 	@echo $(MESSAGE) Running tests on the current Python interpreter with coverage $(END)
-	@if [ -z "${run}" ]; then \
-		make test.help;\
-	fi
+	make test.help
 
 test.all:
-	@echo $(MESSAGE) Running tests on the current Python interpreter with coverage $(END)
-	$(docker-test-run) bash -c "$(PIPENV_RUN) pytest"
+	@echo $(MESSAGE) Running all tests $(END)
+	make test.lint
 
 test.lint:
+	@echo $(MESSAGE) Running validator for pre-commit $(END)
 	$(PIPENV_RUN) pre-commit run --all-files --verbose
