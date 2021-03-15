@@ -1,8 +1,11 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
+# export ZSH_DEBUG=true
+
+autoload -Uz compinit
 
 if [ -n "${ZSH_DEBUG}" ]; then
-    zmodload zsh/zprof && zprof
+    zmodload zsh/zprof
 fi
 
 export ZSH_TMUX_AUTOSTART=false
@@ -51,6 +54,12 @@ fi
 
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
+# Fix for autosuggest when copy-pasting, it prints super slow on long
+# Buffers (pastes)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+
 # shellcheck source=/dev/null
 [ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
@@ -58,41 +67,32 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 [ -e "${MOD_DIR}/aliases.zsh" ] && source "${MOD_DIR}/aliases.zsh"
 
 # setup antibody
-antibody bundle caarlos0/zsh-git-sync
-antibody bundle zsh-users/zsh-completions
+antibody bundle hadenlabs/zsh-core branch:develop
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
-antibody bundle Aloxaf/fzf-tab
+antibody bundle hadenlabs/zsh-nvm branch:develop
+antibody bundle hadenlabs/zsh-rvm branch:develop
+antibody bundle hadenlabs/zsh-goenv branch:develop
+antibody bundle hadenlabs/zsh-git branch:develop
 antibody bundle luismayta/zsh-functions branch:develop
 antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle luismayta/zsh-aliases branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
-antibody bundle equipindustry/zsh-templates branch:develop
-antibody bundle luismayta/zsh-docker branch:develop
+antibody bundle hadenlabs/zsh-templates branch:develop
+antibody bundle hadenlabs/zsh-docker branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
-antibody bundle luismayta/zsh-pipenv branch:develop
 antibody bundle luismayta/zsh-tfenv branch:develop
-antibody bundle equipindustry/zsh-goenv branch:develop
-antibody bundle equipindustry/zsh-nvm branch:develop
-antibody bundle luismayta/zsh-yarn branch:develop
-antibody bundle luismayta/zsh-rvm branch:develop
 antibody bundle luismayta/zsh-rust branch:develop
-antibody bundle luismayta/zsh-resources branch:develop
-antibody bundle luismayta/zsh-servers-functions branch:develop
+antibody bundle hadenlabs/zsh-ghq branch:develop
 antibody bundle luismayta/zsh-ssh-connect branch:develop
-antibody bundle luismayta/zsh-vscodium branch:develop
 antibody bundle luismayta/zsh-issues branch:develop
-antibody bundle equipindustry/zsh-ghq branch:develop
-antibody bundle luismayta/zsh-gst branch:develop
-antibody bundle luismayta/zsh-trash branch:develop
-antibody bundle luismayta/zsh-pazi branch:develop
-antibody bundle luismayta/zsh-clean branch:develop
-
+antibody bundle luismayta/zsh-tmux branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
-antibody bundle luismayta/zsh-git branch:develop
+antibody bundle Aloxaf/fzf-tab
+antibody bundle zsh-users/zsh-completions
 antibody bundle b4b4r07/zsh-vimode-visual
 
 
@@ -101,17 +101,24 @@ if type -p tmux > /dev/null; then
 fi
 
 # shellcheck source=/dev/null
-[ -f "${CUSTOMRC}" ] && source "${CUSTOMRC}"
-
-
-if [ -n "${GITHUB_TOKEN}" ]; then
-    git config --global \
-        url."https://${GITHUB_TOKEN}:@github.com/".insteadOf "https://github.com/"
-fi
+[ -s "${CUSTOMRC}" ] && source "${CUSTOMRC}"
 
 # remove duplicates path
 if type -p path_remove_duplicate > /dev/null; then
     path_remove_duplicate
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Auto completion
+case "$OSTYPE" in
+  darwin*)
+    if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+        compinit
+    else
+        compinit -d
+    fi
+    ;;
+esac
+
+if [ -n "${ZSH_DEBUG}" ]; then
+    zprof
+fi
