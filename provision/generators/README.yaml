@@ -7,18 +7,6 @@
 # Name of this project
 name: dotfiles
 
-company:
-  name: hadenlabs
-  description: |-
-    company labs
-  url: https://hadenlabs.com
-  github: https://github.com/hadenlabs
-  email: support@hadenlabs.com
-
-copyright:
-  name: Hadenlabs
-  url: https://hadenlabs.com
-
 email:
   support: support@hadenlabs.com
 
@@ -26,7 +14,7 @@ email:
 #logo: docs/logo.png
 
 # License of this project
-license: 'APACHE2'
+license: 'MIT'
 
 # Canonical GitHub repo
 github_repo: luismayta/dotfiles
@@ -36,12 +24,12 @@ badges:
   - name: Lint
     image: https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop
     url: https://github.com/luismayta/dotfiles/actions
-  - name: 'Issues'
-    image: 'https://img.shields.io/github/issues/luismayta/dotfiles.svg'
-    url: 'https://github.com/luismayta/dotfiles/issues'
-  - name: 'Latest Release'
-    image: 'https://img.shields.io/github/release/luismayta/dotfiles.svg'
-    url: 'https://travis-ci.org/luismayta/dotfiles/releases'
+  - name: Issues
+    image: https://img.shields.io/github/issues/luismayta/dotfiles.svg
+    url: https://github.com/luismayta/dotfiles/issues
+  - name: Latest Release
+    image: https://img.shields.io/github/release/luismayta/dotfiles.svg
+    url: https://github.com/luismayta/dotfiles/releases
 
 # Short description of this project
 description: |-
