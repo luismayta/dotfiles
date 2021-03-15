@@ -23,7 +23,6 @@ REPOSITORY_DOMAIN:=github.com
 REPOSITORY_OWNER:=${TEAM}
 AWS_VAULT ?= ${TEAM}
 PROJECT := dotfiles
-PROJECT_PORT := 3000
 
 PYTHON_VERSION=3.8.0
 NODE_VERSION=14.15.5
@@ -89,7 +88,7 @@ readme:
 		--out $(README_FILE)
 
 setup:
-	@echo "=====> install packages..."
+	@echo "==> install packages..."
 	make python.setup
 	make python.precommit
 	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
@@ -99,10 +98,10 @@ setup:
 	@echo ${MESSAGE_HAPPY}
 
 run:
-	@echo "=====> run ..."
+	@echo "==> run ..."
 	$(RUN)
 
 environment:
-	@echo "=====> loading virtualenv ${PYENV_NAME}..."
+	@echo "==> loading virtualenv ${PYENV_NAME}..."
 	make python.environment
 	@echo ${MESSAGE_HAPPY}
