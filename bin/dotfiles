@@ -1,0 +1,7 @@
+#!/usr/bin/env ksh
+
+function dotfiles::upgrade {
+    message_info "Upgrade for dotfiles"
+    cd "${DOTFILES_DIR}" && git pull && cd - || return
+    message_success "Upgraded dotfiles"
+}
