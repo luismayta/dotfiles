@@ -14,15 +14,9 @@
 
 # dotfiles
 
-[![Build Status](https://travis-ci.org/luismayta/dotfiles.svg?branch=main)](https://travis-ci.org/luismayta/dotfiles) [![Issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles.svg)](https://travis-ci.org/luismayta/dotfiles/releases)
+[![Lint](https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop)](https://github.com/luismayta/dotfiles/actions) [![Issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/releases)
 
 dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
-
----
-
-This project is part of our comprehensive [hadenlabs](https://hadenlabs.com) plugins of zsh.
-
-It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 
 ## Requirements
 
@@ -35,7 +29,9 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ### via curl
 
-`bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"`### via wget
+`bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"`
+
+### via wget
 
 `bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"`
 
@@ -45,11 +41,15 @@ This is a list of applications that need to be installed previously to enjoy all
 make setup
 ```
 
+## Examples
+
+### common
+
 ## Help
 
 **Got a question?**
 
-File a GitHub [issue](https://github.com/luismayta/dotfiles/issues), send us an [email][email] or join our [Slack Community][slack].
+File a GitHub [issue](https://github.com/luismayta/dotfiles/issues), send us an [email](email) or join our [Slack Community](slack).
 
 ## Contributing
 
@@ -57,9 +57,7 @@ File a GitHub [issue](https://github.com/luismayta/dotfiles/issues), send us an 
 
 Please use the [issue tracker](https://github.com/luismayta/dotfiles/issues) to report any bugs or file feature requests.
 
-### Developing
-
-If you are interested in being a contributor and want to get involved in developing this project or [help out](https://hadenlabs.com) with our other projects, we would love to hear from you! Shoot us an [email](mailto:support@hadenlabs.com).
+### Development
 
 In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
@@ -71,49 +69,22 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 **NOTE:** Be sure to rebase the latest changes from "upstream" before making a pull request!
 
-### Versioning
+#### Versioning
 
-Releases are managed using github release feature. We use \[Semantic Versioning\](<http://semver.org>) for all the releases. Every change made to the code base will be referred to in the release notes (except for cleanups and refactorings).
+Releases are managed using github release feature. We use [Semantic Versioning](http://semver.org) for all the releases. Every change made to the code base will be referred to in the release notes (except for cleanups and refactorings).
 
 ## Copyright
 
 Copyright © 2018-2021 [Hadenlabs](https://hadenlabs.com)
 
-## License
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-See [LICENSE](LICENSE) for full details.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-
 ## Trademarks
 
 All other trademarks referenced herein are the property of their respective owners.
 
-## About
+## License
 
-This project is maintained and funded by [Hadenlabs][https://hadenlabs.com]. Like it? Please let us know at <support@hadenlabs.com>
+The code and styles are licensed under the MIT license [See project license.](LICENSE).
 
-### Contributors
+## Don't forget to 🌟 Star 🌟 the repo if you like dotfiles
 
-| [![Luis Mayta][luismayta_avatar]][luismayta_homepage]<br/>[Luis Mayta][luismayta_homepage] |
-| ------------------------------------------------------------------------------------------ |
-
-[luismayta_homepage]: https://github.com/luismayta
-[luismayta_avatar]: https://github.com/luismayta.png?size=150
+[Your feedback is appreciated](https://github.com/luismayta/dotfiles/issues)
