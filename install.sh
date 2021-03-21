@@ -50,7 +50,7 @@ program_exists() {
     local app=$1
     local message="Need to install $app."
     local ret='0'
-    type "$1" >> /dev/null 2>&1 || { local ret='1'; }
+    type -p "$1" >> /dev/null 2>&1 || { local ret='1'; }
 
     # throw error on non-zero return value
     if [[ ! "$ret" -eq '0' ]]; then
@@ -77,10 +77,8 @@ if [[ $(uname) == 'Darwin' ]]; then
     if ! type -p brew > /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     fi
-    brew install zsh git go rsync \
-         # Utils -----------------------------------------------------------------------
-         jq ag fd ripgrep cmake ctags \
-             bash
+    brew install zsh git rsync \
+         jq ag fd ripgrep cmake
     zsh --login
 fi
 
