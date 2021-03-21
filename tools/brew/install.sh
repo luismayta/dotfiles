@@ -17,32 +17,24 @@ brew update
 brew install coreutils \
      shellcheck \
      ispell \
+     aspell \
      hunspell \
      asciinema \
      moreutils \
      findutils \
      gnu-sed \
-     bash \
      bash-completion2 \
      the_silver_searcher \
      editorconfig \
-     aspell \
-     libevent libev docker-clean \
+     libevent libev \
      markdown \
      vim \
      openssh \
      git git-lfs git-flow lynx p7zip tig unrar ncdu \
      rename ssh-copy-id tree telnet grep \
-     global \
      wget \
      jq \
-     fzf \
-     reattach-to-user-namespace \
-     ctags
-
-brew install --cask \
-     docker \
-     alacritty
+     fzf
 
 ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
