@@ -74,7 +74,9 @@ function upgrade_repo() {
 
 # Mac Stuff -------------------------------------------------------------------
 if [[ $(uname) == 'Darwin' ]]; then
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if ! type -p brew > /dev/null; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    fi
     brew install zsh git go rsync \
          # Utils -----------------------------------------------------------------------
          jq ag fd ripgrep cmake ctags \
