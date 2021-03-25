@@ -42,10 +42,10 @@ packages=(
     ttf-inconsolata-g
     ttf-meslo
     ttf-monaco
-    ttf-ms-fonts
     xclip
     zathura             # pdf viewer
     zathura-pdf-poppler # pdf pluggin
+    ksh
     zsh
 )
 

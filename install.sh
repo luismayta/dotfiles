@@ -78,7 +78,7 @@ if [[ $(uname) == 'Darwin' ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     fi
     brew install zsh git rsync \
-         jq ag fd ripgrep cmake
+         jq ag fd ripgrep cmake ksh
     zsh --login
 fi
 
