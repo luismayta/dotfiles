@@ -3,3 +3,17 @@
 message_info "Upgrade for dotfiles"
 cd "${DOTFILES_DIR}" && git pull && cd - || return
 message_success "Upgraded dotfiles"
+
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/config.zsh" ] && source "${MOD_DIR}/config.zsh"
+
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
+
+backup "${HOME}/.bashrc"
+backup "${HOME}/.zshrc"
+backup "${HOME}/.zshenv"
+
+cp -rf "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
+cp -rf "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
+cp -rf "${DOTFILES_DIR}/conf/shell/bashrc" "${HOME}/.bashrc"
