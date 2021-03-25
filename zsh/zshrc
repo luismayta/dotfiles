@@ -82,6 +82,12 @@ fi
 # shellcheck source=/dev/null
 [ -s "${CUSTOMRC}" ] && source "${CUSTOMRC}"
 
+
+setopt share_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+
 # remove duplicates path
 if type -p path_remove_duplicate > /dev/null; then
     path_remove_duplicate

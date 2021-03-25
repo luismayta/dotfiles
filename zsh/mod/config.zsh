@@ -21,6 +21,11 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 
+# History
+export HISTFILE="${HOME}/.zsh_history"
+export HISTSIZE=5000 # maximum number of in-memory history
+export SAVEHIST=5000 # maximum number of records in $HISTFILE
+
 [ -e "${LOCAL_PATH_BIN}" ] && export PATH="${LOCAL_PATH_BIN}:${PATH}"
 [ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
 
