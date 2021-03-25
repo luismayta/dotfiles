@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# shellcheck source=/dev/null
-[ -f "${HOME}/.zshrc" ] && source "${HOME}/.zshrc"
+exec "${SHELL}"
