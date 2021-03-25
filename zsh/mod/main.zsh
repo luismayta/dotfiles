@@ -1,19 +1,8 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-function dotfiles::internal::main::factory {
-    # shellcheck source=/dev/null
-    source "${ZSH_DOTFILES_PATH}"/internal/base.zsh
-    case "${OSTYPE}" in
-    darwin*)
-        # shellcheck source=/dev/null
-        source "${ZSH_DOTFILES_PATH}"/internal/osx.zsh
-        ;;
-    linux*)
-        # shellcheck source=/dev/null
-        source "${ZSH_DOTFILES_PATH}"/internal/linux.zsh
-      ;;
-    esac
-}
+# shellcheck source=/dev/null
+source "${DOTFILES_MOD_DIR}"/config/main.zsh
 
-dotfiles::internal::main::factory
+# shellcheck source=/dev/null
+source "${DOTFILES_MOD_DIR}"/internal/main.zsh

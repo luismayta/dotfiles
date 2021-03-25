@@ -6,7 +6,7 @@ function editrc {
         "${EDITOR}" "${HOME}"/.zshrc
         return
     fi
-    "${EDITOR}" "${MOD_DIR}"/"${1}".zsh
+    "${EDITOR}" "${DOTFILES_MOD_DIR}"/"${1}".zsh
 }
 
 # create cache and reload settings
