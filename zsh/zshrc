@@ -3,6 +3,8 @@
 # export ZSH_DEBUG=true
 
 autoload -Uz compinit
+autoload -Uz add-zsh-hook # enable zsh hooks
+autoload -Uz is-at-least
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
@@ -75,6 +77,7 @@ antibody bundle hadenlabs/zsh-goenv branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
 antibody bundle luismayta/zsh-tfenv branch:develop
 antibody bundle luismayta/zsh-rust branch:develop
+antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle hadenlabs/zsh-git branch:develop
 antibody bundle luismayta/zsh-keybase branch:develop
 antibody bundle hadenlabs/zsh-templates branch:develop
