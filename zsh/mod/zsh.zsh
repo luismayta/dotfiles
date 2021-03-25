@@ -31,7 +31,9 @@ function editcustomrc {
 }
 
 function backup {
-    local today path_today file_backup
+    typeset today
+    typeset path_today
+    typeset file_backup
     if [ -z "${BACKUP_DIR}" ]; then
         message_info "not exist path ~/.backup"
         return
@@ -47,12 +49,3 @@ function backup {
     file_backup="${path_today}/${1##*/}"
     cp -rf "${1}" "$file_backup"
 }
-
-# History
-export HISTFILE="${HOME}/.zsh_history"
-export HISTSIZE=5000 # maximum number of in-memory history
-export SAVEHIST=5000 # maximum number of records in $HISTFILE
-setopt share_history
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
