@@ -19,7 +19,7 @@ export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
-export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
+export DOTFILES_MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 
 
 # Make vim the default editor
@@ -33,13 +33,7 @@ if type -p nvim > /dev/null; then
 fi
 
 # shellcheck source=/dev/null
-[ -e "${MOD_DIR}/config.zsh" ] && source "${MOD_DIR}/config.zsh"
-
-# shellcheck source=/dev/null
-[ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
-
-# shellcheck source=/dev/null
-[ -e "${MOD_DIR}/aliases.zsh" ] && source "${MOD_DIR}/aliases.zsh"
+[ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
 
 autoload -Uz compinit
 autoload -Uz add-zsh-hook # enable zsh hooks
