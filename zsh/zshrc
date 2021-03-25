@@ -1,5 +1,6 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
+
 # export ZSH_DEBUG=true
 
 autoload -Uz compinit
@@ -10,6 +11,9 @@ if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
 fi
 
+[ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
+[ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
+
 export ZSH_TMUX_AUTOSTART=false
 
 export ZSH=${HOME}/.dotfiles
@@ -17,27 +21,6 @@ export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export MOD_DIR="${DOTFILES_DIR}/zsh/mod"
-export PRIVATERC="${HOME}/.privaterc"
-export CUSTOMRC="${HOME}/.customrc"
-export LOCAL_PATH_BIN="${HOME}/.local/bin"
-
-export PATH="${DOTFILES_BIN}:${PATH}"
-
-# language
-export LANG="en_US.UTF-8"
-export LC_ALL=$LANG
-
-[ -e "${LOCAL_PATH_BIN}" ] && export PATH="${LOCAL_PATH_BIN}:${PATH}"
-[ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
-
-[ -e "${HOME}/.pub-cache/bin" ] && export PATH="${HOME}/.pub-cache/bin:${PATH}"
-
-[ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
-[ -e "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:${PATH}"
-
-[ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
-[ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
-
 #
 # ANTIBODY — plugin manager
 
@@ -54,13 +37,8 @@ if type -p nvim > /dev/null; then
     export EDITOR=nvim
 fi
 
-export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
-
-# Fix for autosuggest when copy-pasting, it prints super slow on long
-# Buffers (pastes)
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
-
+# shellcheck source=/dev/null
+[ -e "${MOD_DIR}/config.zsh" ] && source "${MOD_DIR}/config.zsh"
 
 # shellcheck source=/dev/null
 [ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
