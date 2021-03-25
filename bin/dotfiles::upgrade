@@ -1,4 +1,4 @@
-#!/usr/bin/env ksh
+#!/usr/bin/env zsh
 
 message_info "Upgrade for dotfiles"
 cd "${DOTFILES_DIR}" && git pull && cd - || return
