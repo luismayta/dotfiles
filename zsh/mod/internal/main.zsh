@@ -3,19 +3,19 @@
 
 function dotfiles::internal::main::factory {
     # shellcheck source=/dev/null
-    source "${ZSH_DOTFILES_PATH}"/internal/base.zsh
+    source "${DOTFILES_MOD_DIR}"/internal/base.zsh
 
     # shellcheck source=/dev/null
-    source "${ZSH_DOTFILES_PATH}"/internal/aliases.zsh
+    source "${DOTFILES_MOD_DIR}"/internal/aliases.zsh
 
     case "${OSTYPE}" in
     darwin*)
         # shellcheck source=/dev/null
-        source "${ZSH_DOTFILES_PATH}"/internal/osx.zsh
+        source "${DOTFILES_MOD_DIR}"/internal/osx.zsh
         ;;
     linux*)
         # shellcheck source=/dev/null
-        source "${ZSH_DOTFILES_PATH}"/internal/linux.zsh
+        source "${DOTFILES_MOD_DIR}"/internal/linux.zsh
       ;;
     esac
 }
