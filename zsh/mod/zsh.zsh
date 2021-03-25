@@ -30,6 +30,23 @@ function editcustomrc {
     "${EDITOR}" "${CUSTOMRC}"
 }
 
+function backup {
+    local today path_today file_backup
+    if [ -z "${BACKUP_DIR}" ]; then
+        message_info "not exist path ~/.backup"
+        return
+    fi
+    if [ -z "${1}" ] || [ ! -r "${1}" ]; then
+        message_info "is it neccessary file"
+        return
+    fi
+
+    today=$(date +%Y%m%d)
+    path_today="${BACKUP_DIR}/${today}"
+    mkdir -p "${path_today}"
+    file_backup="${path_today}/${1##*/}"
+    cp -rf "${1}" "$file_backup"
+}
 
 # History
 export HISTFILE="${HOME}/.zsh_history"
