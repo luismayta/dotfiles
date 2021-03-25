@@ -3,15 +3,15 @@
 
 function dotfiles::config::main::factory {
     # shellcheck source=/dev/null
-    source "${MOD_DIR}"/config/base.zsh
+    source "${DOTFILES_MOD_DIR}"/config/base.zsh
     case "${OSTYPE}" in
     darwin*)
         # shellcheck source=/dev/null
-        source "${MOD_DIR}"/config/osx.zsh
+        source "${DOTFILES_MOD_DIR}"/config/osx.zsh
         ;;
     linux*)
         # shellcheck source=/dev/null
-        source "${MOD_DIR}"/config/linux.zsh
+        source "${DOTFILES_MOD_DIR}"/config/linux.zsh
       ;;
     esac
 }

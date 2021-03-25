@@ -5,10 +5,8 @@ cd "${DOTFILES_DIR}" && git pull && cd - || return
 message_success "Upgraded dotfiles"
 
 # shellcheck source=/dev/null
-[ -e "${MOD_DIR}/config.zsh" ] && source "${MOD_DIR}/config.zsh"
+[ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
 
-# shellcheck source=/dev/null
-[ -e "${MOD_DIR}/zsh.zsh" ] && source "${MOD_DIR}/zsh.zsh"
 
 backup "${HOME}/.bashrc"
 backup "${HOME}/.zshrc"
