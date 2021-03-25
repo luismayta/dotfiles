@@ -1,10 +1,6 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-antibody bundle zsh-users/zsh-syntax-highlighting
-
-autoload -Uz add-zsh-hook # enable zsh hooks
-
 function editrc {
     if [ -z "${1}" ]; then
         "${EDITOR}" "${HOME}"/.zshrc
@@ -15,7 +11,7 @@ function editrc {
 
 # create cache and reload settings
 function reload {
-    exec "${SHELL}" -l
+    exec "${SHELL}"
 }
 
 function editprivaterc {
