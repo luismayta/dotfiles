@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
-
 # System
 
 alias df='df -h'                          # human-readable sizes
@@ -28,3 +27,4 @@ if type -p nvim > /dev/null; then
     alias vi='nvim'
     alias vimdiff='nvim -d'
 fi
+
