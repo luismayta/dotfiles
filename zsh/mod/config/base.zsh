@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*-
 
 export BACKUP_DIR="${HOME}/.backup"
+export CACHE_DIR="${HOME}/.cache/dotfiles"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
 export LOCAL_PATH_BIN="${HOME}/.local/bin"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
-
-[ ! -e "${BACKUP_DIR}" ] && mkdir -p "${BACKUP_DIR}"
 
 # language
 export LANG="en_US.UTF-8"
