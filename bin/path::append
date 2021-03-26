@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+[ -e "${1}" ] && PATH="${PATH}:${1}"

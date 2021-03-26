@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+# Remove duplicate entries from PATH:
+function path::clean {
+    echo "${1}" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}'
+}
+
+path::clean "${1}"
