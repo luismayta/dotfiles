@@ -1,11 +1,11 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-# export ZSH_DEBUG=true
+unset ZSH_DEBUG
 
 # Add some completions (we need this before compinit)
 [ -e /usr/share/zsh ] && fpath=(/usr/share/zsh/site-functions:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/VCS_Info/Backends:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle $fpath)
-
+#
 [ -e "/usr/local/bin/zsh" ] && export SHELL=/usr/local/bin/zsh
 [ -e "/usr/bin/zsh" ] && export SHELL=/usr/bin/zsh
 
@@ -71,7 +71,6 @@ antibody bundle Aloxaf/fzf-tab
 antibody bundle zsh-users/zsh-completions
 antibody bundle b4b4r07/zsh-vimode-visual
 
-
 if type -p tmux > /dev/null; then
     [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
 fi
@@ -87,19 +86,10 @@ setopt hist_reduce_blanks
 # remove duplicates path
 if type -p path::clean > /dev/null; then
     export PATH="$(path::clean ${PATH})"
-    export FPATH="$(path::clean ${FPATH})"
+    export FPATH="$(path::clean ${PATH})"
 fi
 
 # Auto completion
-case "$OSTYPE" in
-  darwin*)
-    if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-        compinit
-    else
-        compinit -d
-    fi
-    ;;
-esac
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zprof
