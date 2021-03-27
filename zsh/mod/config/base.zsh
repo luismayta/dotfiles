@@ -1,8 +1,8 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-export BACKUP_DIR="${HOME}/.backup"
-export CACHE_DIR="${HOME}/.cache/dotfiles"
+export DOTFILES_BACKUP_DIR="${HOME}/.backup"
+export DOTFILES_CACHE_DIR="${HOME}/.cache/dotfiles"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
 export LOCAL_PATH_BIN="${HOME}/.local/bin"
