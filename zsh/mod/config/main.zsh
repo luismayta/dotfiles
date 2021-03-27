@@ -18,5 +18,5 @@ function dotfiles::config::main::factory {
 
 dotfiles::config::main::factory
 
-[ ! -e "${BACKUP_DIR}" ] && mkdir -p "${BACKUP_DIR}"
-[ ! -e "${CACHE_DIR}" ] && mkdir -p "${CACHE_DIR}"
+[ ! -e "${DOTFILES_BACKUP_DIR}" ] && mkdir -p "${DOTFILES_BACKUP_DIR}"
+[ ! -e "${DOTFILES_CACHE_DIR}" ] && mkdir -p "${DOTFILES_CACHE_DIR}"
