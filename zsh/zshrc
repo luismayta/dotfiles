@@ -1,6 +1,5 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
-
 unset ZSH_DEBUG
 
 # Add some completions (we need this before compinit)
@@ -58,7 +57,6 @@ antibody bundle luismayta/zsh-keybase branch:develop
 antibody bundle hadenlabs/zsh-templates branch:develop
 antibody bundle hadenlabs/zsh-docker branch:develop
 antibody bundle hadenlabs/zsh-ghq branch:develop
-antibody bundle hadenlabs/zsh-ssh branch:develop
 antibody bundle luismayta/zsh-issues branch:develop
 antibody bundle hadenlabs/zsh-tmux branch:develop
 antibody bundle luismayta/zsh-starship branch:develop
@@ -90,6 +88,15 @@ if type -p path::clean > /dev/null; then
 fi
 
 # Auto completion
+case "$OSTYPE" in
+ darwin*)
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+    compinit
+else
+    compinit -d
+fi
+;;
+esac
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zprof
