@@ -12,28 +12,46 @@
 
   -->
 
+ 
+
 # dotfiles
+ [![Lint](https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop)](https://github.com/luismayta/dotfiles/actions) [![Issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/releases)
 
-[![Lint](https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop)](https://github.com/luismayta/dotfiles/actions) [![Issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/releases)
+ 
+dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`. 
 
-dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
+
+
+
+
+
+
+
+
+
+
+
 
 ## Requirements
+
 
 This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
 - [Curl](https://github.com/bagder/curl)
 - [Wget](http://www.gnu.org/software/wget)
 
-## Installation
 
+
+## Installation
 ### via curl
 
 `bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"`
-
 ### via wget
 
 `bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"`
+
+
+
 
 ## Usage
 
@@ -41,9 +59,22 @@ This is a list of applications that need to be installed previously to enjoy all
 make setup
 ```
 
+
+
+
+
+
 ## Examples
 
 ### common
+
+
+
+
+
+
+
+
 
 ## Help
 
@@ -73,17 +104,28 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 Releases are managed using github release feature. We use [Semantic Versioning](http://semver.org) for all the releases. Every change made to the code base will be referred to in the release notes (except for cleanups and refactorings).
 
+
+
 ## Copyright
 
 Copyright © 2018-2021 [Hadenlabs](https://hadenlabs.com)
+
+
 
 ## Trademarks
 
 All other trademarks referenced herein are the property of their respective owners.
 
+
+
+
+
+
 ## License
 
-The code and styles are licensed under the MIT license [See project license.](LICENSE).
+The code and styles are licensed under the LGPL-3.0 license [See project license.](LICENSE).
+
+
 
 ## Don't forget to 🌟 Star 🌟 the repo if you like dotfiles
 
