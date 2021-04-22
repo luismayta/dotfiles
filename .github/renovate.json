@@ -1,0 +1,9 @@
+{
+  "extends": ["github>hadenlabs/renovate-config"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true
+    }
+  ]
+}
