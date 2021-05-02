@@ -1,25 +1,28 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   env: {
     node: true,
-    es2021: true,
+    es2021: true
+  },
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module' // Allows for the use of imports
   },
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    'plugin:promise/recommended',
-    'prettier',
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'plugin:import/warnings'
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
+  plugins: ['@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/semicolon': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
+    '@typescript-eslint/naming-convention': 'warn',
+    '@typescript-eslint/semi': 'off',
+    'no-throw-literal': 'warn',
+    curly: 'warn',
+    eqeqeq: 'warn',
+    semi: 'off'
   },
-  plugins: ['@typescript-eslint', 'prettier'],
-  rules: {},
+  ignorePatterns: ['**/*.d.ts']
 }
