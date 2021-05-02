@@ -1,58 +1,65 @@
 module.exports = {
-  tabWidth: 2,
-  printWidth: 100,
+  arrowParens: 'always',
+  printWidth: 120,
   proseWrap: 'preserve',
   semi: false,
-  trailingComma: 'es5',
-  arrowParens: 'always',
   singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'none',
   overrides: [
     {
-      files: '{*.js?(on),*.y?(a)ml,.*.js?(on),.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
+      files: '{*.js?(x),*.ts?(x),*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
       options: {
+        arrowParens: 'always',
+        printWidth: 100,
+        semi: false,
+        singleQuote: true,
+        quoteProps: 'as-needed',
         tabWidth: 2,
-      },
+        trailingComma: 'none'
+      }
     },
     {
-      files: '{**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json,.stylelintrc}',
+      files: '{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
       options: {
         parser: 'json',
+        tabWidth: 2,
         quoteProps: 'preserve',
-        singleQuote: false,
-      },
+        singleQuote: false
+      }
     },
     {
       files: '*.md',
       options: {
         parser: 'markdown',
-        printWidth: 100,
+        printWidth: 120,
         proseWrap: 'never',
         semi: false,
-        trailingComma: 'none',
-      },
+        trailingComma: 'none'
+      }
     },
     {
       files: '*.mdx',
       options: {
-        printWidth: 100,
+        printWidth: 120,
         proseWrap: 'never',
         semi: false,
-        trailingComma: 'none',
-      },
+        trailingComma: 'none'
+      }
     },
     {
       files: '*.{sass,scss}',
       options: {
-        parser: 'scss',
-      },
+        parser: 'scss'
+      }
     },
     {
       files: '*.less',
       options: {
         tabWidth: 4,
         printWidth: 80,
-        parser: 'less',
-      },
-    },
-  ],
+        parser: 'less'
+      }
+    }
+  ]
 }
