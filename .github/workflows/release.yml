@@ -1,8 +1,8 @@
-name: create release
+name: create-release
 
 on:
   workflow_run:
-    workflows: ['lint code']
+    workflows: ['lint-code']
     types:
       - completed
 
