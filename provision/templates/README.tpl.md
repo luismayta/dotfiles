@@ -14,13 +14,13 @@
 
 {{ defineDatasource "config" .Env.README_YAML | regexp.Replace ".*" "" }} {{ defineDatasource "includes" .Env.README_INCLUDES | regexp.Replace ".*" "" }}
 
-# {{(ds "config").name}}{{ if gt (len (ds "config").name) 34 }}{{ print "\n\n" }}{{ end }}
 {{ if has (ds "config") "badges" }}{{- range $badge := (ds "config").badges -}}{{ printf " [![%s](%s)](%s)" $badge.name $badge.image $badge.url }}{{ end }}{{ end }}
+
+# {{(ds "config").name}}{{ if gt (len (ds "config").name) 34 }}{{ print "\n\n" }}{{ end }}
 
 {{ if has (ds "config") "logo" }} ![{{(ds "config").name}}]({{ (ds "config").logo }}) {{- end -}}
 
 {{ if has (ds "config") "description" }} {{(ds "config").description }} {{ end }}
-
 
 {{ if has (ds "config") "screenshots" }}
 
@@ -44,7 +44,7 @@
 
 {{ if has (ds "config") "todo" }}
 
-## To-do
+## TODO
 
 {{ range $todo := (ds "config").todo }}
 {{ printf "* [%s](%s)" $todo.name $todo.url }}
@@ -114,7 +114,7 @@ For additional context, refer to some of these links.
 
 **Got a question?**
 
-File a GitHub [issue]({{ printf "https://github.com/%s/issues" (ds "config").github_repo}}), send us an [email](email) or join our [Slack Community](slack).
+File a GitHub [issue]({{ printf "https://github.com/%s/issues" (ds "config").github_repo}}).
 
 ## Contributing
 
@@ -134,9 +134,23 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 **NOTE:** Be sure to rebase the latest changes from "upstream" before making a pull request!
 
-#### Versioning
+## Module Versioning
 
-Releases are managed using github release feature. We use [Semantic Versioning](http://semver.org) for all the releases. Every change made to the code base will be referred to in the release notes (except for cleanups and refactorings).
+This Module follows the principles of [Semantic Versioning (SemVer)](https://semver.org/).
+
+Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following constructs:
+
+1. Use the `MAJOR` version for incompatible changes.
+1. Use the `MINOR` version when adding functionality in a backwards compatible manner.
+1. Use the `PATCH` version when introducing backwards compatible bug fixes.
+
+### Backwards compatibility in `0.0.z` and `0.y.z` version
+
+- In the context of initial development, backwards compatibility in versions `0.0.z` is **not guaranteed** when `z` is
+  increased. (Initial development)
+- In the context of pre-release, backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is
+  increased. (Pre-release)
+
 
 {{ if has (ds "config") "copyrights" }}
 
