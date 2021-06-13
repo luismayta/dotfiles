@@ -27,7 +27,7 @@ PROJECT := dotfiles
 PYTHON_VERSION=3.8.0
 NODE_VERSION=14.16.1
 PYENV_NAME="${PROJECT}"
-GIT_IGNORES:=python,node,go,zsh
+GIT_IGNORES:=python,node,go,zsh,ruby,vagrant
 GI:=gi
 
 # issues reviewers
@@ -97,6 +97,8 @@ setup:
 	@[ -e ".env" ] || cp -rf .env.example .env
 	make yarn.setup
 	make git.setup
+	make ruby.setup
+	make vagrant.setup
 	@echo ${MESSAGE_HAPPY}
 
 run:
