@@ -23,13 +23,15 @@ git:
 git.setup:
 	@echo "==> setup git..."
 	make git.ignore
+	make git.hooks
 	make git.reviews
 
 ## Setup git hooks files.
 .PHONY: git.hooks
 git.hooks:
 	@echo "==> git setup hooks..."
-	@rsync -vhP  provision/git/hooks/ .git/hooks/
+	@rsync -avhP  provision/git/hooks/ .git/hooks/
+	@chmod +x .git/hooks/*
 	@echo ${MESSAGE_HAPPY}
 
 ## Generate git ignore of files.
