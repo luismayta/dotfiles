@@ -86,7 +86,7 @@ function cp_file() {
 function dotfiles_install_factory {
     if type -p pacman > /dev/null; then
         # shellcheck source=/dev/null
-        source "${DOTFILES}"/archlinux.sh
+        source "${HOME}/.dotfiles"/archlinux.sh
     fi
     dotfiles_install_apps
 }
