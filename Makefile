@@ -101,6 +101,8 @@ setup:
 	make vagrant.setup
 	@echo ${MESSAGE_HAPPY}
 
+## run script execute install
+.PHONY: run
 run:
 	@echo "==> run ..."
 	$(RUN)
