@@ -1,0 +1,10 @@
+---
+name_project: dotfiles
+environment: dev
+
+servers:
+  - name: 1.host.dotfiles.vm
+    ip: 10.10.10.20
+    box: archlinux/archlinux
+    hostname: 1-host-dotfiles.vm
+    ram: 1024
