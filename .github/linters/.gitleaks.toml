@@ -1,0 +1,265 @@
+title = "gitleaks config"
+
+[[rules]]
+    description = "AWS Access Key"
+    regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+    tags = ["key", "AWS"]
+    [rules.allowlist]
+        description = "ignore value fake"
+        regexes = [
+            '''AIDAQEAAAAAAAAAAAAAA''',
+        ]
+
+[[rules]]
+    description = "AWS cred file info"
+    regex = '''(?i)(aws_access_key_id|aws_secret_access_key)(.{0,20})?=.[0-9a-zA-Z\/+]{20,40}'''
+    tags = ["AWS"]
+
+[[rules]]
+    description = "AWS Secret Key"
+    regex = '''(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z\/+]{40}['\"]'''
+    tags = ["key", "AWS"]
+
+[[rules]]
+    description = "AWS MWS key"
+    regex = '''amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'''
+    tags = ["key", "AWS", "MWS"]
+
+[[rules]]
+  description = "Facebook Secret Key"
+  regex = '''(?i)(facebook|fb)(.{0,20})?(?-i)['\"][0-9a-f]{32}['\"]'''
+  tags = ["key", "Facebook"]
+
+[[rules]]
+  description = "Facebook Client ID"
+  regex = '''(?i)(facebook|fb)(.{0,20})?['\"][0-9]{13,17}['\"]'''
+  tags = ["key", "Facebook"]
+
+[[rules]]
+  description = "Facebook access token"
+  regex = '''EAACEdEose0cBA[0-9A-Za-z]+'''
+  tags = ["key", "Facebook"]
+
+[[rules]]
+    description = "Twitter Secret Key"
+    regex = '''(?i)twitter(.{0,20})?['\"][0-9a-z]{35,44}['\"]'''
+    tags = ["key", "Twitter"]
+
+[[rules]]
+    description = "Twitter Client ID"
+
+    regex = '''(?i)twitter(.{0,20})?['\"][0-9a-z]{18,25}['\"]'''
+    tags = ["client", "Twitter"]
+
+[[rules]]
+    description = "Github"
+    regex = '''(?i)github(.{0,20})?(?-i)['\"][0-9a-zA-Z]{35,40}['\"]'''
+    tags = ["key", "Github"]
+
+[[rules]]
+    description = "LinkedIn Client ID"
+    regex = '''(?i)linkedin(.{0,20})?(?-i)['\"][0-9a-z]{12}['\"]'''
+    tags = ["client", "LinkedIn"]
+
+[[rules]]
+    description = "LinkedIn Secret Key"
+    regex = '''(?i)linkedin(.{0,20})?['\"][0-9a-z]{16}['\"]'''
+    tags = ["secret", "LinkedIn"]
+
+[[rules]]
+    description = "Slack"
+    regex = '''xox[baprs]-([0-9a-zA-Z]{10,48})?'''
+    tags = ["key", "Slack"]
+
+[[rules]]
+    description = "EC"
+    regex = '''-----BEGIN EC PRIVATE KEY-----'''
+    tags = ["key", "EC"]
+
+[[rules]]
+    description = "Google API key"
+    regex = '''AIza[0-9A-Za-z\\-_]{35}'''
+    tags = ["key", "Google"]
+
+[[rules]]
+  description = "Google Cloud Platform API key"
+  regex = '''(?i)(google|gcp|youtube|drive|yt)(.{0,20})?['\"][AIza[0-9a-z\\-_]{35}]['\"]'''
+  tags = ["key", "Google", "GCP"]
+
+[[rules]]
+  description = "Google OAuth"
+  regex = '''(?i)(google|gcp|auth)(.{0,20})?['"][0-9]+-[0-9a-z_]{32}\.apps\.googleusercontent\.com['"]'''
+  tags = ["key", "Google", "OAuth"]
+
+[[rules]]
+  description = "Google OAuth access token"
+  regex = '''ya29\.[0-9A-Za-z\-_]+'''
+  tags = ["key", "Google", "OAuth"]
+
+[[rules]]
+    description = "Heroku API key"
+    regex = '''(?i)heroku(.{0,20})?['"][0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['"]'''
+    tags = ["key", "Heroku"]
+
+[[rules]]
+    description = "MailChimp API key"
+    regex = '''(?i)(mailchimp|mc)(.{0,20})?['"][0-9a-f]{32}-us[0-9]{1,2}['"]'''
+    tags = ["key", "Mailchimp"]
+
+[[rules]]
+    description = "Mailgun API key"
+    regex = '''(?i)(mailgun|mg)(.{0,20})?['"][0-9a-z]{32}['"]'''
+    tags = ["key", "Mailgun"]
+
+[[rules]]
+    description = "PayPal Braintree access token"
+    regex = '''access_token\$production\$[0-9a-z]{16}\$[0-9a-f]{32}'''
+    tags = ["key", "Paypal"]
+
+[[rules]]
+    description = "Picatic API key"
+    regex = '''sk_live_[0-9a-z]{32}'''
+    tags = ["key", "Picatic"]
+
+[[rules]]
+    description = "Slack Webhook"
+    regex = '''https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}'''
+    tags = ["key", "slack"]
+
+[[rules]]
+    description = "Stripe API key"
+    regex = '''(?i)stripe(.{0,20})?['\"'][sk|rk]_live_[0-9a-zA-Z]{24}'''
+    tags = ["key", "Stripe"]
+
+[[rules]]
+    description = "Square access token"
+    regex = '''sq0atp-[0-9A-Za-z\-_]{22}'''
+    tags = ["key", "square"]
+
+[[rules]]
+    description = "Square OAuth secret"
+    regex = '''sq0csp-[0-9A-Za-z\\-_]{43}'''
+    tags = ["key", "square"]
+
+[[rules]]
+    description = "Twilio API key"
+    regex = '''(?i)twilio(.{0,20})?['\"][0-9a-f]{32}['\"]'''
+    tags = ["key", "twilio"]
+
+[[rules]]
+  description = "Password in URL"
+  regex = '''[a-zA-Z]{3,10}:\/\/[^\/\s:@]{3,20}:[^\/\s:@]{3,20}@.{1,100}\/?.?'''
+  tags = ["key", "URL", "generic"]
+
+
+[[rules]]
+    description = "Env Var"
+    regex = '''(?i)(apikey|secret|key|api|password|pass|pw|host)=[0-9a-zA-Z-_.{}]{4,120}'''
+    tags = ["env"]
+    [rules.allowlist]
+        description = "ignore value fake"
+        regexes = [
+            '''host=HOST''',
+        ]
+
+[[rules]]
+    description = "Email"
+    regex = '''[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}'''
+    tags = ["email"]
+    [rules.allowlist]
+        description = "ignore emails"
+        regexes = [
+            '''[a-zA-Z0-9._%+-]+@users.noreply.github.com''',
+            '''[a-zA-Z0-9._%+-]+@lists.alioth.debian.org''',
+            '''[a-zA-Z0-9._%+-]+@example.com''',
+            '''git@github.com''',
+            '''git@gitlab.com''',
+            '''slovacus@gmail.com''',
+            '''luis@okchaty.com''',
+            '''hola@hadenlabs.com''',
+            '''support@hadenlbas.com''',
+            '''support@hadenlabs.com''',
+            '''dum-u@hadenlabs.com''',
+        ]
+
+[[rules]]
+    description = "High Entropy"
+    regex = '''[0-9a-zA-Z-_!{}/=]{4,120}'''
+    file = '''(?i)(dump.sql|high-entropy-misc.txt)$'''
+    tags = ["entropy"]
+    [[rules.Entropies]]
+        Min = "4.3"
+        Max = "7.0"
+    [rules.allowlist]
+        description = "ignore some"
+        files = ['''(.*pub|env)$''']
+        paths = ['''(security.*)''']
+
+[[rules]]
+    description = "Potential bash var"
+    regex='''(?i)(=)([0-9a-zA-Z-_!{}=]{4,120})'''
+    tags = ["key", "bash", "API", "generic"]
+        [[rules.Entropies]]
+            Min = "3.5"
+            Max = "4.5"
+            Group = "1"
+
+[[rules]]
+    description = "WP-Config"
+    regex='''define(.{0,20})?(DB_CHARSET|NONCE_SALT|LOGGED_IN_SALT|AUTH_SALT|NONCE_KEY|DB_HOST|DB_PASSWORD|AUTH_KEY|SECURE_AUTH_KEY|LOGGED_IN_KEY|DB_NAME|DB_USER)(.{0,20})?['|"'].{10,120}['|"']'''
+    tags = ["key", "API", "generic"]
+
+[[rules]]
+  description = "Generic API Key"
+  regex = '''[a|A][p|P][i|I][_]?[k|K][e|E][y|Y].*['|\"][0-9a-zA-Z]{32,45}['|\"]'''
+
+[[rules]]
+  description = "Generic Secret"
+  regex = '''[s|S][e|E][c|C][r|R][e|E][t|T].*['|\"][0-9a-zA-Z]{32,45}['|\"]'''
+
+
+[[rules]]
+    description = "Files with keys and credentials"
+    file = '''(?i)(id_rsa|passwd|id_rsa.pub|pgpass)$'''
+    tags = ["key", "files"]
+
+[[rules]]
+    description = "Extension Files with keys and credentials"
+    file = '''(.*?)(pub|pem|ppk|key)$'''
+    tags = ["key", "files"]
+
+# Global allowlist
+[allowlist]
+  description = "Whitelisted files"
+    files = [
+      '''(.*?)(jpg|gif|png|doc|pdf|bin|mp3|mp4|mov|ttf|woff|woff2|eot|lock)$''',
+      '''^\.gitignore$''',
+      '''^\.gitleaks.toml$''',
+      '''^yarn.lock$''',
+      '''^vendor/(.*?)$''',
+      '''^node_modules/(.*?)$''',
+    ]
+    commits =[
+      '''1ee3050744632143d668ab7013639e6a706bc31f''',
+      '''1f3b65c8451945c8e51b9b0f7c08bc80bf2fdb49''',
+      '''2bcaa998efc810bcc54d78fae934ca0537dc3871''',
+      '''4bf94e227d18b1a51ce0ddf3c11e71a7cbbdfc6e''',
+      '''74e8fc29010fd853de7b9d068e7073220d9caf2f''',
+      '''8d64635e4a1b603919f106fb238dc104b79e8dac''',
+      '''8ec34a8efd0d24073f84755a028e7050a4364328''',
+      '''a2f228a72801320b7bd6ce3ad58a64ffd8421ace''',
+      '''a575d35a2cdf3f974de2b2650f054cd22cbb6153''',
+      '''addd8786175946275900f370746771a621af89ab''',
+      '''c67bda68457f0cbe5e9e775304fc998cd77fc11b''',
+      '''ee176f32ecaea23bcbd4819bae5f5f2204235489''',
+    ]
+
+
+[whitelist]
+  description = "image and html allowlists"
+	files = [
+    '''(.*?)(jpg|gif|png|doc|pdf|bin|mp3|mp4|mov|ttf|woff|woff2|eot|lock)$''',
+    '''^\.gitleaks.toml$''',
+    '''^\.gitignore$''',
+    '''^yarn.lock$''',
+  ]
