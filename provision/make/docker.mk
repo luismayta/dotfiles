@@ -2,8 +2,10 @@
 .PHONY: docker.help
 DOCKER_NETWORK = $(PROJECT)_network
 
+.PHONY: docker
 docker: docker.help
 
+.PHONY: docker.help
 docker.help:
 	@echo '    Docker:'
 	@echo ''
@@ -20,6 +22,8 @@ docker.help:
 	@echo '        docker.list           list services of docker'
 	@echo ''
 
+## Run docker args {service} {stage}
+.PHONY: docker.run
 docker.run:
 	@if [ -z "${stage}" ]; then \
 		$(docker-dev) run --rm ${service} bash; \
@@ -27,6 +31,7 @@ docker.run:
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml run --rm ${service} bash; \
 	fi
 
+.PHONY: docker.restart
 docker.restart:
 	@if [ -z "${stage}" ]; then \
 		$(docker-dev) restart; \
@@ -34,6 +39,7 @@ docker.restart:
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml restart; \
 	fi
 
+.PHONY: docker.build
 docker.build:
 	@echo $(MESSAGE) "Building stage: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
@@ -46,6 +52,7 @@ docker.build:
 		$(docker-compose) -f ${PATH_DOCKER_COMPOSE}/${stage}.yml build ${service} ${args}; \
 	fi
 
+.PHONY: docker.log
 docker.log:
 	@echo $(MESSAGE) "Building environment: ${stage} ${service}"
 	@if [ -z "${stage}" ] && [ -z "${service}" ]; then \
