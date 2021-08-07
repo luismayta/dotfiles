@@ -14,12 +14,15 @@
 
  
 
+
+
+
+ [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles)](https://github.com/luismayta/dotfiles/releases) [![Lint](https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code)](https://github.com/luismayta/dotfiles/actions?workflow=lint-code) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/Keep%20A%20Changelog-1.0.0-%23E05735)](https://keepachangelog.com)
+
 # dotfiles
- [![Lint](https://github.com/luismayta/dotfiles/actions/workflows/lint.yml/badge.svg?branch=develop)](https://github.com/luismayta/dotfiles/actions) [![Issues](https://img.shields.io/github/issues/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/issues) [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles.svg)](https://github.com/luismayta/dotfiles/releases)
 
  
 dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`. 
-
 
 
 
@@ -80,7 +83,7 @@ make setup
 
 **Got a question?**
 
-File a GitHub [issue](https://github.com/luismayta/dotfiles/issues), send us an [email](email) or join our [Slack Community](slack).
+File a GitHub [issue](https://github.com/luismayta/dotfiles/issues).
 
 ## Contributing
 
@@ -100,9 +103,23 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 **NOTE:** Be sure to rebase the latest changes from "upstream" before making a pull request!
 
-#### Versioning
+## Module Versioning
 
-Releases are managed using github release feature. We use [Semantic Versioning](http://semver.org) for all the releases. Every change made to the code base will be referred to in the release notes (except for cleanups and refactorings).
+This Module follows the principles of [Semantic Versioning (SemVer)](https://semver.org/).
+
+Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following constructs:
+
+1. Use the `MAJOR` version for incompatible changes.
+1. Use the `MINOR` version when adding functionality in a backwards compatible manner.
+1. Use the `PATCH` version when introducing backwards compatible bug fixes.
+
+### Backwards compatibility in `0.0.z` and `0.y.z` version
+
+- In the context of initial development, backwards compatibility in versions `0.0.z` is **not guaranteed** when `z` is
+  increased. (Initial development)
+- In the context of pre-release, backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is
+  increased. (Pre-release)
+
 
 
 
