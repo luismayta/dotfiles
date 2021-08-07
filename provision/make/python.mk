@@ -50,4 +50,5 @@ python.precommit:
 	@echo "==> install hooks for pre-commit..."
 	$(PIPENV_RUN) pre-commit install
 	$(PIPENV_RUN) pre-commit install -t pre-push
+	$(PIPENV_RUN) pre-commit install --hook-type commit-msg
 	@echo ${MESSAGE_HAPPY}
