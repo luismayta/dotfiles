@@ -4,36 +4,25 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-docker-compose = "*"
-caniusepython3 = "*"
+bridgecrew = "*"
+bumpversion = "*"
+doc8 = "*"
+grip = "*"
 isort = "*"
+mkdocs = "*"
+mkdocs-material = "*"
 mypy = "*"
+parso = "*"
+pre-commit = "*"
 pycodestyle = "*"
 pydocstyle = "*"
-pylint = "*"
-mock = "*"
-pyhamcrest = "*"
-pytest-cov = "*"
-pytest = "*"
-tox = "*"
-ipython = "*"
-parso = "*"
-pyyaml = "*"
-bumpversion = "*"
-pre-commit = "*"
-doc8 = "*"
-bridgecrew = "*"
-mkdocs = "*"
-click-man = "*"
 pygments = "*"
+pylint = "*"
 pymdown-extensions = "*"
-mkdocs-material = "*"
-grip = "*"
 
 [packages]
 
 [scripts]
-test = "pytest"
 update = "pre-commit autoupdate"
 
 [requires]
