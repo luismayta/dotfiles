@@ -1,3 +1,6 @@
+default_stages:
+  - commit
+
 repos:
   - repo: https://github.com/codespell-project/codespell
     rev: v2.1.0
@@ -10,6 +13,14 @@ repos:
             .+\.node_modules\/.*$|
             .+\.lock$|
           )$
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v5.0.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ['@hadenlabs/commitlint-config']
+        args:
+          - --config=.github/linters/.commitlintrc.json
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
@@ -36,7 +47,7 @@ repos:
       - id: fix-encoding-pragma
       - id: sort-simple-yaml
   - repo: https://github.com/hadenlabs/pre-commit-hooks
-    rev: 2bed7c6ec4930b235aaf54aff1cf34e3df694f37
+    rev: 29c3f47f8fa0ec66d35ccbad761b7cf299e5ee19
     hooks:
       - id: do-not-commit
       - id: markdown-link-check
@@ -50,35 +61,12 @@ repos:
             .+\.tpl.sh$|
           )$
         args:
-          - --exclude=SC1071,SC1073,SC2068
-      - id: validate-toml
+          - --exclude=SC1072,SC1073,SC2068
       - id: todocheck
       - id: gitleaks
         args:
           - --path=.
           - --repo-config-path=.github/linters/.gitleaks.toml
           - --verbose
-
-  - repo: local
-    hooks:
-      - id: prettier
-        name: prettier
-        language: system
-        entry: ./node_modules/prettier/bin-prettier.js
-        args:
-          - '--write=true'
-          - '--config=.github/linters/prettier.config.js'
-          - '--ignore-path=.github/linters/.prettierignore'
-        files: \.(js|jsx|json|ts|tsx|mjs|d.ts|md|yml|yaml|gql|graphql|mjml)$
-        exclude: node_modules
-      - id: eslint
-        name: eslint
-        language: node
-        entry: node_modules/eslint/bin/eslint.js
-        args:
-          - '--fix'
-          - '--color'
-          - '--config=.github/linters/.eslintrc.js'
-          - '--ignore-path=.github/linters/.eslintignore'
-        files: \.(js|jsx|ts|tsx|mjs|d.ts)$
-        exclude: node_modules
+      - id: prepare-commit-msg
+        stages: [prepare-commit-msg]

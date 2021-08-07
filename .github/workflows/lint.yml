@@ -19,6 +19,6 @@ jobs:
       - name: Checkout
         if: ${{ !env.ACT }}
         uses: actions/checkout@v2
-      - uses: hadenlabs/action-pre-commit@0.1.2
+      - uses: hadenlabs/action-pre-commit@0.1.4
         with:
           args: run --all-files
