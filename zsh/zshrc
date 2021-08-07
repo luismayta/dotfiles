@@ -42,17 +42,21 @@ source <(antibody init)
 
 # setup antibody
 antibody bundle hadenlabs/zsh-core branch:develop
+antibody bundle luismayta/zsh-brew branch:develop
 antibody bundle hadenlabs/zsh-nvm branch:develop
 antibody bundle hadenlabs/zsh-rvm branch:develop
+antibody bundle hadenlabs/zsh-goenv branch:develop
 antibody bundle luismayta/zsh-pyenv branch:develop
+antibody bundle hadenlabs/zsh-tfenv branch:develop
+antibody bundle luismayta/zsh-rust branch:develop
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle hadenlabs/zsh-git branch:develop
-antibody bundle luismayta/zsh-keybase branch:develop
+antibody bundle hadenlabs/zsh-keybase branch:develop
 antibody bundle hadenlabs/zsh-templates branch:develop
 antibody bundle hadenlabs/zsh-docker branch:develop
 antibody bundle hadenlabs/zsh-ghq branch:develop
 antibody bundle hadenlabs/zsh-tmux branch:develop
-antibody bundle luismayta/zsh-starship branch:develop
+antibody bundle hadenlabs/zsh-starship branch:develop
 antibody bundle luismayta/zsh-notify branch:develop
 antibody bundle luismayta/zsh-scmbreeze branch:develop
 antibody bundle zsh-users/zsh-autosuggestions
@@ -60,7 +64,6 @@ antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma/fast-syntax-highlighting
 antibody bundle Aloxaf/fzf-tab
 antibody bundle zsh-users/zsh-completions
-# antibody bundle jeffreytse/zsh-vi-mode
 antibody bundle b4b4r07/zsh-vimode-visual
 
 if type -p tmux > /dev/null; then
