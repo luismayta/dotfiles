@@ -18,6 +18,6 @@ function error() {
 
 function debug() {
     if [ "$DEBUG_MODE" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
     fi
 }
