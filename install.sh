@@ -25,7 +25,7 @@ error() {
 
 debug() {
     if [ "$DEBUG_MODE" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
     fi
 }
 
@@ -75,7 +75,7 @@ function upgrade_repo() {
 # Mac Stuff -------------------------------------------------------------------
 if [[ $(uname) == 'Darwin' ]]; then
     if ! type -p brew > /dev/null; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
     brew install zsh git rsync \
          jq ag fd ripgrep cmake ksh
