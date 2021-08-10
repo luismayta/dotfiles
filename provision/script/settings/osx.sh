@@ -6,5 +6,4 @@ export APPS=(
     "git-extras"
     "fonts"
     "antibody"
-    "mac-cli"
 )
