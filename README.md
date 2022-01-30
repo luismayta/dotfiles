@@ -26,7 +26,7 @@ dotfiles is installed by running one of the following commands in your terminal.
 This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
 - [Curl](https://github.com/bagder/curl)
-- [Wget](http://www.gnu.org/software/wget)
+- [Wget](https://www.gnu.org/software/wget)
 
 ## Installation
 
@@ -41,7 +41,7 @@ This is a list of applications that need to be installed previously to enjoy all
 ## Usage
 
 ```bash
-make setup
+task setup
 ```
 
 ## Examples
