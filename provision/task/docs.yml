@@ -1,0 +1,63 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist mkdocs and grip dependences
+    run: once
+    deps:
+      - task: check:python
+      - task: check:pipenv
+      - task: check:mkdocs
+      - task: check:grip
+
+  check:python:
+    desc: Exist Python
+    run: once
+    preconditions:
+      - sh: command -v python
+        msg: 'Please Install python'
+
+  check:pipenv:
+    desc: Exist Pipenv
+    run: once
+    preconditions:
+      - sh: command -v pipenv
+        msg: 'Please Install pipenv'
+
+  check:mkdocs:
+    desc: Exist mkdocs
+    run: once
+    preconditions:
+      - sh: test "pipenv run command -v mkdocs"
+        msg: 'Please Install mkdocs'
+
+  check:grip:
+    desc: Exist grip
+    run: once
+    preconditions:
+      - sh: test "pipenv run command -v grip"
+        msg: 'Please Install grip'
+
+  show:
+    desc: Show grip readme.
+    run: once
+    cmds:
+      - pipenv run grip
+    deps:
+      - task: check:grip
+
+  build:
+    desc: Build documentation with mkdocs.
+    run: once
+    cmds:
+      - pipenv run mkdocs build
+    deps:
+      - task: check:mkdocs
+
+  serve:
+    desc: Server make documentation.
+    run: once
+    cmds:
+      - pipenv run mkdocs serve
+    deps:
+      - task: check:mkdocs

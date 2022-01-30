@@ -1,0 +1,88 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  FILES_CONFLUENCE:
+    sh: >-
+      find ./ -type f -name '*.md' -print
+      | grep -v '.tpl.md'
+      | grep -v '.terraform'
+      | xargs grep '<!-- Space'
+      | cut -d : -f 1
+      | sort -u
+      | xargs
+
+tasks:
+  default:
+    desc: Show commands confluence
+    run: once
+    silent: true
+    cmds:
+      - cmd: task -l
+
+  check:
+    desc: Exist Mark and dependences
+    run: once
+    deps:
+      - task: check:docker
+      - task: check:vars
+
+  check:docker:
+    desc: Exist docker
+    run: once
+    preconditions:
+      - sh: command -v docker
+        msg: 'Please Install docker'
+
+  check:vars:
+    desc: Exist vars for mark
+    run: once
+    preconditions:
+      - sh: test -v CONFLUENCE_BASE_URL
+        msg: 'Please add var environment CONFLUENCE_BASE_URL'
+      - sh: test -v CONFLUENCE_ACCESS_TOKEN
+        msg: 'Please add var environment CONFLUENCE_ACCESS_TOKEN'
+      - sh: test -v CONFLUENCE_USER
+        msg: 'Please add var environment CONFLUENCE_USER'
+
+  sync:
+    desc: run sync mark.
+    run: once
+    cmds:
+      - cmd: echo initial sync files
+      - cmd: >-
+          for file in {{.FILES_CONFLUENCE}}; do
+            echo "> Sync $file";
+            docker run \
+            --platform linux/amd64 \
+            --rm \
+            --workdir /usr/src/ \
+            -v {{.PWD}}/:/usr/src/ \
+            kovetskiy/mark:latest mark -u {{.CONFLUENCE_USER}} \
+            -p {{.CONFLUENCE_ACCESS_TOKEN}} -b {{.CONFLUENCE_BASE_URL}} \
+            -f $file;
+            echo;
+          done
+      - cmd: echo ending sync files
+
+    deps:
+      - task: check
+
+  mark:
+    desc: run mark.
+    run: once
+    cmds:
+      - cmd: echo initial sync files
+      - >-
+        docker run
+        --platform linux/amd64
+        --rm
+        --workdir /usr/src/
+        -v {{.PWD}}/:/usr/src/
+        kovetskiy/mark:latest mark -u {{.CONFLUENCE_USER}}
+        -p {{.CONFLUENCE_ACCESS_TOKEN}} -b {{.CONFLUENCE_BASE_URL}}
+        -f {{.CLI_ARGS}}
+      - cmd: echo ending sync files
+    deps:
+      - task: check

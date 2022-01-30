@@ -1,0 +1,39 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist Yarn and dependences
+    run: once
+    deps:
+      - task: check:yarn
+      - task: check:nvm
+
+  check:yarn:
+    desc: Exist Yarn
+    run: once
+    preconditions:
+      - sh: command -v yarn
+        msg: 'Please Install yarn'
+
+  check:nvm:
+    desc: Exist Nvm
+    run: once
+    preconditions:
+      - sh: test "command -v nvm"
+        msg: 'Please Install nvm'
+
+  setup:
+    desc: Setup yarn dependences.
+    run: once
+    cmds:
+      - yarn install
+    deps:
+      - task: check:yarn
+
+  environment:
+    desc: Setup environment nvm version node.
+    run: once
+    cmds:
+      - nvm use {{.NODE_VERSION}}
+    deps:
+      - task: check

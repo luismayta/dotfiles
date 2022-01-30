@@ -1,0 +1,46 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist git and dependences
+    run: once
+    deps:
+      - task: check:git
+
+  check:git:
+    desc: Exist git
+    run: once
+    preconditions:
+      - sh: command -v git
+        msg: 'Please Install git'
+
+  setup:
+    desc: Setup git.
+    run: once
+    cmds:
+      - task: ignore
+      - task: reviews
+
+  ignore:
+    desc: Generate ignore.
+    run: once
+    silent: true
+    cmds:
+      - task: gi
+      - echo "# custom git ignore files" >> .gitignore
+      - echo {{.GIT_IGNORES_CUSTOM}} | tr ' ' '\n' | sort -u >> .gitignore
+
+  gi:
+    desc: command gi
+    silent: true
+    cmds:
+      - >-
+        curl -sL https://www.toptal.com/developers/gitignore/api/"{{.GIT_IGNORES}}" > .gitignore
+
+  reviews:
+    desc: Add issues revievers.
+    run: once
+    deps:
+      - task: check:git
+    cmds:
+      - git config github.reviews {{.REVIEWERS}}

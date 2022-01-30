@@ -1,0 +1,58 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist prettier and dependences
+    run: once
+    deps:
+      - task: check:prettier
+
+  check:prettier:
+    desc: Exist Prettier
+    run: once
+    preconditions:
+      - sh: command -v prettier
+        msg: 'Please Install prettier'
+
+  all:
+    run: once
+    desc: Execute prettier files all
+    cmds:
+      - task: execute
+        vars:
+          FILES_PRETTIER: '**/*.{js?(on),scss,less,ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}'
+
+  less:
+    run: once
+    desc: Execute prettier files sass
+    cmds:
+      - task: execute
+        vars:
+          FILES_PRETTIER: '**/*.less'
+
+  code:
+    run: once
+    desc: Execute prettier files code
+    cmds:
+      - task: execute
+        vars:
+          FILES_PRETTIER: '**/*.{js?(on),ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}'
+
+  sass:
+    run: once
+    desc: Execute prettier files sass
+    cmds:
+      - task: execute
+        vars:
+          FILES_PRETTIER: '**/*.scss'
+
+  execute:
+    run: once
+    desc: Execute prettier using vars
+    cmds:
+      - >-
+        prettier --config=.github/linters/prettier.config.js
+        --ignore-path=.github/linters/.prettierignore
+        '{{.FILES_PRETTIER}}'
+        --write=true
+        --list-different
