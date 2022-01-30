@@ -67,4 +67,5 @@ repos:
         args:
           - --path=.
           - --repo-config-path=.github/linters/.gitleaks.toml
+          - --commit-since=2022-01-01
           - --verbose
