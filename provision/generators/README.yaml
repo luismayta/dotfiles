@@ -38,7 +38,7 @@ badges:
     image: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow
     url: https://conventionalcommits.org
   - name: KeepAChangelog
-    image: https://img.shields.io/badge/Keep%20A%20Changelog-1.0.0-%23E05735
+    image: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange
     url: https://keepachangelog.com
 
 # Short description of this project
@@ -51,7 +51,7 @@ requirements: |-
   This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
   - [Curl](https://github.com/bagder/curl)
-  - [Wget](http://www.gnu.org/software/wget)
+  - [Wget](https://www.gnu.org/software/wget)
 
 installation:
   - 'docs/include/installation/curl.md'
@@ -60,7 +60,7 @@ installation:
 # How to use this project
 usage: |-
   ```bash
-  make setup
+  task setup
   ```
 
 examples:
