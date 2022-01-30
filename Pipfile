@@ -26,4 +26,4 @@ pymdown-extensions = "*"
 update = "pre-commit autoupdate"
 
 [requires]
-python_version = "3.8.0"
+python_version = "3.9.2"
