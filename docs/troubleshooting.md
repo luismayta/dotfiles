@@ -2,10 +2,10 @@
 
 ## Environment
 
-### Wrong pre-commit with pyenv
+### Wrong pre-commit with pipenv
 
 Execute the next:
 
 ```{.bash}
-make environment
+task environment
 ```

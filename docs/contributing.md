@@ -1,91 +1,98 @@
+<!-- Space: Dotfiles -->
+<!-- Parent: Project -->
+<!-- Title: Contributing -->
+
+<!-- Label: Dotfiles -->
+<!-- Label: Project -->
+<!-- Label: Contributing -->
+<!-- Include: docs/disclaimer.md -->
+<!-- Include: ac:toc -->
+
 # How To Contribute
 
 Contributions to dotfiles are welcome.
 
+Feel free to use all of the contribution options:
+
+- Contribute to dotfiles repositories on [GitHub](https://github.com/hadenlabs/dotfiles). See [Git flow](./contribute/git-flow.md).
+
 ## Getting Started
 
-### Commits
+### Development
 
-Follow [semantic commits](https://seesparkbox.com/foundry/semantic_commit_messages) to make `git log`{.interpreted-text role="command"} a little easier to follow.
+In general, MRs are welcome. We follow the typical "fork-and-pull" [Git flow](./contribute/git-flow.md).
 
-chore: something just needs to happen, e.g. versioning
+1.  **Fork** the repo on GitLab
+2.  **Clone** the project to your own machine
+3.  **Commit** changes to your own branch using [Git flow](./contribute/git-flow.md)
+4.  **Push** your work back up to your fork
 
-docs: documentation pages in `_docs/` or docstrings
+5.  Submit a **Pull Request** so that we can review your changes
 
-feat: new code in `src/`
+**NOTE:** Be sure to rebase the latest changes from "upstream" before making a pull request!
 
-fix: code improvement in `src/`
+## Styleguides
 
-refactor: code movement in `src/`
+### Git Commit Messages
 
-style: aesthetic changes
+Your commit messages should serve these 3 important purposes:
 
-test: test case modifications in `test/`
+- To speed up the reviewing process.
+- To provide the least amount of necessary documentation
+- To help the future maintainers.
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0) to make `git log`{.interpreted-text role="command"} a little easier to follow. We use commitlint enforcing conventional commits (See more [here](https://github.com/conventional-changelog/commitlint))
+
+**chore**: something just needs to happen, e.g. versioning
+
+**docs**: documentation pages in `docs/` or docstrings
+
+**feat**: new code in `./`
+
+**fix**: code improvement in `./`
+
+**refactor**: code movement in `./`
+
+**style**: aesthetic changes
+
+**test**: test case modifications in `test/`
 
 Examples commit messages:
 
-- chore: v10.0 (IN-698)
-- docs: Add configuration setting (IN-698)
-- feat: Create Lambda function (IN-698)
-- fix: Retry upload on failure (IN-698)
-- refctor: Extract duplicate code (IN-698)
-- style: isort, YAPF (IN-698)
-- test: Coverage around add permissions (IN-698)
+- chore: IN-698 implement model devices
+- docs: IN-698 implement configuration settings
+- feat: IN-698 create lambda function
+- fix: IN-698 retry upload on failure
+- refactor: IN-698 extract duplicate code
+- style: IN-698 format files python
+- test: IN-698 coverage around add permissions
+
+**Keep it short and simple!**
 
 ### Branches
 
-Use [slash convention]() with the same leaders as `commits` e.g.:
-
-- (prefix-task)
+See [Git flow](./contribute/git-flow.md).
 
 ### Documentation
 
+Documentation is a part of the dotfiles code base. You can find the documentation files in the `doc/` subdirectory of the [main repository](https://github.com/hadenlabs/dotfiles). This means that the contribution process is the same for both the source code and documentation.
+
 ### Testing
 
-## Code Submission
-
-### Code Improvement
+See [Testing](./testing.md).
 
 ### Code Submission
 
-1.  See if a [Pull Request](https://github.com/luismayta/dotfiles/pulls/) exists
+1.  See if a [Pull Request](https://github.com/hadenlabs/dotfiles/pulls) exists
     - Add some comments or review the code to help it along
     - Don\'t be afraid to comment when logic needs clarification
-2.  Create a Fork and open a [Pull Request](https://github.com/luismayta/dotfiles/pulls/) if needed
+2.  Create a Fork and open a [Pull Request](https://github.com/hadenlabs/dotfiles/pulls) if needed
 
 ### Code Review
 
 - Anyone can review code
-- Any [Pull Request](https://github.com/luismayta/dotfiles/pulls/) should be closed or merged within a week
+- Any [Pull Request](https://github.com/hadenlabs/dotfiles/pulls) should be closed or merged within a week
 
 ### Code Acceptance
 
 Try to keep history as linear as possible using a [rebase] merge strategy.
-
-1. One thumb up at minimum, two preferred
-
-2. Request submitter to [rebase]{.title-ref} and resolve all conflicts
-
-   ```{.bash}
-   # Update `develop`
-   git checkout develop
-   git pull origin develop
-
-   # Update `IN-698` Branch
-   git flow feature start IN-698
-   git rebase develop
-
-   # Update remote Branch and Pull Request
-   git push -f
-   ```
-
-3. Merge the new feature
-
-   ```{.bash}
-   # Merge `IN-698` into `develop`
-   git checkout develop
-   git merge --ff-only feature/IN-698
-   git push
-   ```
-
-4. Delete merged Branch
