@@ -1,0 +1,29 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist sonarqube and dependences
+    run: once
+    deps:
+      - task: check:docker
+
+  check:docker:
+    desc: Exist docker
+    run: once
+    preconditions:
+      - sh: command -v docker
+        msg: 'Please Install docker'
+
+  make:
+    desc: generate plantuml.
+    run: once
+    cmds:
+      - >-
+        docker run
+        --platform linux/amd64
+        --rm
+        --workdir /data
+        -v $(pwd):/data
+        hadenlabs/plantuml {{.CLI_ARGS}}
+    deps:
+      - task: check

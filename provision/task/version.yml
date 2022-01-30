@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  default:
+    desc: 'Show current release version'
+    cmds:
+      - echo Release version {{.APP_TAG}}
+    silent: true
+
+  major:
+    desc: 'Increase major version'
+    run: once
+    cmds:
+      - pipenv run bumpversion major
+
+  minor:
+    desc: 'Increase minor version'
+    run: once
+    cmds:
+      - pipenv run bumpversion minor
+
+  patch:
+    desc: 'Increase patch version'
+    run: once
+    cmds:
+      - pipenv run bumpversion patch

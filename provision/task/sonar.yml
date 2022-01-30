@@ -1,0 +1,50 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist sonar and dependences
+    run: once
+    deps:
+      - task: check:docker
+      - task: check:vars
+
+  check:docker:
+    desc: Exist docker
+    run: once
+    preconditions:
+      - sh: command -v docker
+        msg: 'Please Install docker'
+
+  check:vars:
+    desc: Exist vars for sonarqube
+    run: once
+    preconditions:
+      - sh: test -v SONAR_HOST_URL
+        msg: 'Please add var environment SONAR_HOST_URL'
+      - sh: test -v SONAR_LOGIN
+        msg: 'Please add var environment SONAR_LOGIN'
+
+  show:
+    desc: show vars sonarqube.
+    run: once
+    cmds:
+      - >-
+        echo {{.SONAR_HOST_URL}}
+        echo {{.SONAR_LOGIN}}
+    deps:
+      - task: check
+
+  scan:
+    desc: scan sonarqube.
+    run: once
+    cmds:
+      - >-
+        docker run --rm
+        --platform linux/amd64
+        --volume $(pwd)/:/usr/src
+        --environment SONAR_HOST_URL={{.SONAR_HOST_URL}}
+        --environment SONAR_LOGIN={{.SONAR_LOGIN}}
+        sonarsource/sonar-scanner-cli:latest
+        sonar-scanner
+    deps:
+      - task: check

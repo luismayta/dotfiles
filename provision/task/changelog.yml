@@ -1,0 +1,58 @@
+version: '3'
+
+env:
+  TMP_CHANGELOG_FILENAME: TMP_CHANGELOG.md
+
+tasks:
+  check:
+    desc: Exist git-chglog
+    run: once
+    deps:
+      - task: check:go
+      - task: check:chglog
+
+  check:chglog:
+    desc: Exist git-chglog
+    run: once
+    preconditions:
+      - sh: command -v git-chglog
+        msg: 'Please install git-chglog'
+
+  check:go:
+    desc: Exist go
+    run: once
+    preconditions:
+      - sh: command -v go
+        msg: 'Please install go'
+
+  install:
+    desc: install dependences git-chglog
+    run: once
+    cmds:
+      - go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
+    deps:
+      - task: check:go
+
+  generate:
+    desc: Generate changelog
+    run: once
+    cmds:
+      - git-chglog -o CHANGELOG.md
+    deps:
+      - task: check:chglog
+
+  tag:
+    desc: Generate tag changelog
+    run: once
+    cmds:
+      - git-chglog {{.APP_TAG}} > {{.TMP_CHANGELOG_FILENAME}}
+    deps:
+      - task: check:chglog
+
+  next:
+    desc: Generate next tag changelog
+    run: once
+    cmds:
+      - git-chglog --next-tag {{.APP_TAG}} --output CHANGELOG.md
+    deps:
+      - task: check:chglog

@@ -1,0 +1,103 @@
+version: '3'
+
+env:
+  GO_FILES:
+    sh: find ./ -type f -name '*.go' | grep -v '/vendor/' | sort -u | xargs
+
+tasks:
+  check:
+    desc: Exist go and dependences
+    run: once
+    deps:
+      - task: check:go
+      - task: check:gofmt
+      - task: check:golangcilint
+      - task: check:goreleaser
+
+  check:go:
+    desc: Exist Go
+    run: once
+    preconditions:
+      - sh: command -v go
+        msg: 'Please Install Go'
+
+  check:gofmt:
+    desc: Exist gofmt
+    run: once
+    preconditions:
+      - sh: command -v gofmt
+        msg: 'Please Install gofmt'
+
+  check:golangcilint:
+    desc: Exist golangci-lint
+    run: once
+    preconditions:
+      - sh: command -v golangci-lint
+        msg: 'Please Install golangci-lint'
+
+  check:goreleaser:
+    desc: Exist goreleaser
+    run: once
+    preconditions:
+      - sh: command -v goreleaser
+        msg: 'Please Install goreleaser'
+
+  setup:
+    desc: Setup go dependences.
+    run: once
+    cmds:
+      - go mod download
+      - go mod tidy
+      - go mod vendor
+      - go generate -v ./...
+    deps:
+      - task: check:go
+
+  fmt:
+    desc: format files go.
+    run: once
+    cmds:
+      - gofmt -s -l -w {{.GO_FILES}}
+    deps:
+      - task: check:gofmt
+
+  lint:
+    desc: Run linter go.
+    run: once
+    cmds:
+      - golangci-lint run --config .github/linters/.golangci.yml
+    deps:
+      - task: check:golangcilint
+
+  fix:
+    desc: Fix lint violations.
+    run: once
+    cmds:
+      - golangci-lint run --fix --config .github/linters/.golangci.yml
+    deps:
+      - task: check:golangcilint
+
+  vet:
+    desc: Run go vet against code.
+    run: once
+    cmds:
+      - go vet ./ ...
+    deps:
+      - task: check:go
+
+  test:
+    desc: Run go test against code.
+    run: once
+    cmds:
+      - go test -v ./...
+    deps:
+      - task: check:go
+
+  build:
+    desc: Build go packages.
+    run: once
+    cmds:
+      - goreleaser build --snapshot --rm-dist
+    deps:
+      - task: check:go
+      - task: check:goreleaser
