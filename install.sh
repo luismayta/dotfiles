@@ -1,32 +1,27 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-############################  SETUP PARAMETERS
-APP_NAME='.dotfiles'
-GIT_URI='https://github.com/luismayta/dotfiles.git'
-GIT_BRANCH='develop'
-DEBUG_MODE='0'
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;36m"
+NORMAL="\033[0m"
+
+DOTFILES_NAME='.dotfiles'
+DOTFILES_GIT_URI='https://github.com/luismayta/dotfiles.git'
+DOTFILES_GIT_BRANCH='Develop'
 PATH_REPO="${HOME}/${APP_NAME}"
 
-msg() {
-    printf '%b\n' "$1" >&2
+function message::info {
+    printf "${BLUE}%s${NORMAL}\n" "[INFO]: ${1}"
 }
 
-success() {
-    if [[ "$ret" -eq '0' ]]; then
-        msg "\e[32m[✔]\e[0m ${1}${2}"
-    fi
+function message::warning {
+    printf "${YELLOW}%s${NORMAL}\n" "[WARNING]: ${1}"
 }
 
-error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
-    exit 1
-}
-
-debug() {
-    if [ "$DEBUG_MODE" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
-    fi
+function message::success {
+    printf "${GREEN}%s${NORMAL}\n" "🍺️ [SUCCESS]: ${1}"
 }
 
 clone_repo() {
