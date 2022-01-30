@@ -10,6 +10,10 @@ name: dotfiles
 email:
   support: support@hadenlabs.com
 
+confluence:
+  space: Dotfiles
+  title: Project
+
 # Logo for this project
 #logo: docs/logo.png
 
@@ -22,11 +26,11 @@ github_repo: luismayta/dotfiles
 # Badges to display
 badges:
   - name: Latest Release
-    image: https://img.shields.io/github/release/luismayta/dotfiles
-    url: https://github.com/luismayta/dotfiles/releases
+    image: https://img.shields.io/github/release/hadenlabs/base-template
+    url: https://github.com/hadenlabs/base-template/releases
   - name: Lint
-    image: https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code
-    url: https://github.com/luismayta/dotfiles/actions?workflow=lint-code
+    image: https://img.shields.io/github/workflow/status/hadenlabs/base-template/lint-code
+    url: https://github.com/hadenlabs/base-template/actions?workflow=lint-code
   - name: pre-commit
     image: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     url: https://github.com/pre-commit/pre-commit
@@ -61,3 +65,6 @@ usage: |-
 
 examples:
   - 'docs/examples/common.md'
+
+include:
+  - 'docs/functions.md'
