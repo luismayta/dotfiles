@@ -1,0 +1,109 @@
+version: '3'
+
+includes:
+  changelog: ./provision/task/changelog.yml
+  python: ./provision/task/python.yml
+  git: ./provision/task/git.yml
+  docs: ./provision/task/docs.yml
+  docker: ./provision/task/docker.yml
+  plantuml: ./provision/task/plantuml.yml
+  gitflow: ./provision/task/gitflow.yml
+  version: ./provision/task/version.yml
+  mark: ./provision/task/mark.yml
+  prettier: ./provision/task/prettier.yml
+  sonar: ./provision/task/sonar.yml
+
+env:
+  DOCKER:
+    sh: docker --version 2> /dev/null || echo "not exist"
+  PYTHON:
+    sh: python --version 2> /dev/null || echo "not exist"
+  GO:
+    sh: go version 2> /dev/null || echo "not exist"
+  NODE:
+    sh: node --version 2> /dev/null || echo "not exist"
+  APP_TAG:
+    sh: git describe --tags $(git rev-list --tags --max-count=1) 2> /dev/null || echo "0.0.0"
+  README_YAML: provision/generators/README.yaml
+  README_TEMPLATE: provision/templates/README.tpl.md
+  README_INCLUDES: file://
+
+dotenv:
+  - .env
+
+vars:
+  PROJECT_NAME: dotfiles
+  ORGANIZATION: luismayta
+  REVIEWERS: luismayta
+  PYTHON_VERSION: 3.9.2
+  NODE_VERSION: 16.6.1
+  GIT_IGNORES: python,node,go,zsh,sonar
+  GOLANGCI_VERSION: 1.42.0
+  README_FILE: README.md
+  GIT_IGNORES_CUSTOM: >-
+    bin
+    .scannerwork
+    .secrets
+    TMP_CHANGELOG.md
+    .task
+    *.lock.hcl
+
+tasks:
+  default:
+    deps:
+      - task: check
+    cmds:
+      - cmd: echo Application {{.PROJECT_NAME}}
+        silent: true
+      - task: version:default
+      - task: summary
+      - cmd: task -l
+    silent: true
+
+  summary:
+    desc: 'Summary information'
+    cmds:
+      - echo Go available {{.GO}}
+      - echo Python available {{.PYTHON}}
+      - echo Docker available {{.DOCKER}}
+      - echo Node available {{.NODE}}
+    silent: true
+
+  check:
+    desc: 'Check all dependencies'
+    deps:
+      - python:check
+      - changelog:check
+      - git:check
+      - gitflow:check
+      - docs:check
+
+  readme:
+    run: once
+    desc: Generate Readme
+    silent: true
+    cmds:
+      - >-
+        gomplate --file {{.README_TEMPLATE}}
+        --out {{.README_FILE}}
+        --datasource config={{.README_YAML}}
+        --datasource includes={{.README_INCLUDES}}
+
+  prettier:
+    run: once
+    desc: Execute prettier files
+    cmds:
+      - task: prettier:all
+
+  setup:
+    desc: Setup dependences of project
+    cmds:
+      - task: python:setup
+      - task: python:precommit
+      - task: git:setup
+      - task: gitflow:setup
+
+  environment:
+    desc: Setup environment of project
+    cmds:
+      - task: python:environment

@@ -1,0 +1,54 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist docker and dependences
+    run: once
+    deps:
+      - task: check:docker
+
+  check:docker:
+    desc: Exist docker
+    run: once
+    preconditions:
+      - sh: command -v docker
+        msg: 'Please Install docker'
+
+  check:vars:
+    desc: Exist vars for docker
+    run: once
+    preconditions:
+      - sh: test -v DOCKERHUB_USERNAME
+        msg: 'Please add var environment DOCKERHUB_USERNAME'
+      - sh: test -v DOCKERHUB_TOKEN
+        msg: 'Please add var environment DOCKERHUB_TOKEN'
+
+  login:
+    silent: true
+    deps:
+      - task: check:vars
+    cmds:
+      - echo "Logging in to DockerHub"
+      - >-
+        docker login -u {{.DOCKERHUB_USERNAME}} -p {{.DOCKERHUB_TOKEN}} 2> /dev/null
+
+  build:
+    desc: Build Image.
+    run: once
+    deps:
+      - task: check:docker
+    cmds:
+      - >-
+        docker buildx build --platform={{.DOCKER_PLATFORMS}}
+        --file Dockerfile
+        --tag {{.DOCKER_ORGANIZATION}}/{{.IMAGE_NAME}}:{{.APP_TAG}} .
+        --build-arg VERSION={{.APP_TAG}}
+
+  publish:
+    desc: Publish Image.
+    run: once
+    deps:
+      - task: login
+      - task: build
+    cmds:
+      - docker push {{.DOCKER_ORGANIZATION}}/{{.IMAGE_NAME}}:{{.APP_TAG}}

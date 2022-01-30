@@ -1,0 +1,45 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist ssh and dependences
+    run: once
+    deps:
+      - task: check:keygen
+
+  check:keygen:
+    desc: Exist ssh keygen
+    run: once
+    preconditions:
+      - sh: command -v ssh-keygen
+        msg: 'Please Install ssh-keygen'
+
+  make:pem:dev:
+    desc: Make pem for stage dev
+    run: once
+    cmds:
+      - task: make
+        vars:
+          STAGE: dev
+
+  make:pem:testing:
+    desc: Make pem for stage testing
+    run: once
+    cmds:
+      - task: make
+        vars:
+          STAGE: testing
+
+  make:
+    desc: generate ssh pem
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - >-
+        ssh-keygen -q -m PEM -t rsa -b 4096
+        -C "admin@{{.PROJECT_NAME}}-{{.STAGE}}.com" -f {{.PROJECT_NAME}}-{{.STAGE}} -P ""
+      - >-
+        openssl rsa -in {{.PROJECT_NAME}}-{{.STAGE}} -outform pem > {{.PROJECT_NAME}}-{{.STAGE}}.pem
+      - >-
+        chmod 0600 {{.PROJECT_NAME}}-{{.STAGE}}.pem
