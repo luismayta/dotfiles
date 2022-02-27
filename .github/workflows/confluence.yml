@@ -1,0 +1,45 @@
+name: confluence
+
+on:
+  workflow_run:
+    workflows:
+      - lint-code
+    types:
+      - completed
+    branches:
+      - develop
+      - main
+
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+      # https://semver.org/ proper release tags, more or less
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      # prerelease tags, more or less
+      - 'v[0-9]+.[0-9]+.[0-9]+-*'
+
+jobs:
+  confluence:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out a copy of the repo
+        if: ${{ !env.ACT }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v17.1
+        with:
+          files: |
+            *.md
+          files_ignore: |
+            *.tpl.md
+
+      - name: Sync confluence
+        uses: hadenlabs/action-confluence-sync@0.1.0
+        with:
+          files: '${{ steps.changed-files.outputs.all_changed_files }}'
+          confluence_url: ${{ secrets.CONFLUENCE_BASE_URL }}
+          confluence_username: ${{ secrets.CONFLUENCE_USER }}
+          confluence_token: ${{ secrets.CONFLUENCE_ACCESS_TOKEN }}
