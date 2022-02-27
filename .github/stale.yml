@@ -23,6 +23,8 @@ exemptLabels:
   - priority/critical
   - good first issue
   - pinned
+  - security
+  - planned
 
 # Set to true to ignore issues in a project (defaults to false)
 exemptProjects: false
