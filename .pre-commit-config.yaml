@@ -11,6 +11,7 @@ repos:
           (?x)^(
             .+\.vendor\/.*$|
             .+\.node_modules\/.*$|
+            ^conf/shell/ideavimrc$|
             .+\.lock$|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
@@ -62,7 +63,6 @@ repos:
           )$
         args:
           - --exclude=SC1072,SC1073,SC2068
-      - id: todocheck
       - id: gitleaks
         args:
           - --path=.
