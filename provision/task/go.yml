@@ -65,7 +65,7 @@ tasks:
     desc: Run linter go.
     run: once
     cmds:
-      - golangci-lint run --config .github/linters/.golangci.yml
+      - golangci-lint run --config .ci/linters/.golangci.yml
     deps:
       - task: check:golangcilint
 
@@ -73,7 +73,7 @@ tasks:
     desc: Fix lint violations.
     run: once
     cmds:
-      - golangci-lint run --fix --config .github/linters/.golangci.yml
+      - golangci-lint run --fix --config .ci/linters/.golangci.yml
     deps:
       - task: check:golangcilint
 

@@ -7,7 +7,6 @@ includes:
   docs: ./provision/task/docs.yml
   docker: ./provision/task/docker.yml
   plantuml: ./provision/task/plantuml.yml
-  gitflow: ./provision/task/gitflow.yml
   version: ./provision/task/version.yml
   mark: ./provision/task/mark.yml
   prettier: ./provision/task/prettier.yml
@@ -75,7 +74,6 @@ tasks:
       - python:check
       - changelog:check
       - git:check
-      - gitflow:check
       - docs:check
 
   readme:
@@ -101,7 +99,6 @@ tasks:
       - task: python:setup
       - task: python:precommit
       - task: git:setup
-      - task: gitflow:setup
 
   environment:
     desc: Setup environment of project
