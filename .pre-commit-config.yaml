@@ -21,7 +21,7 @@ repos:
         stages: [commit-msg]
         additional_dependencies: ['@hadenlabs/commitlint-config']
         args:
-          - --config=.github/linters/.commitlintrc.json
+          - --config=.ci/linters/.commitlintrc.json
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
@@ -53,7 +53,7 @@ repos:
       - id: do-not-commit
       - id: markdown-link-check
         args:
-          - --config=.github/linters/markdown-link-config.json
+          - --config=.ci/linters/markdown-link-config.json
         exclude: \.tpl.md$
       - id: shellcheck
         exclude: >
@@ -66,6 +66,6 @@ repos:
       - id: gitleaks
         args:
           - --path=.
-          - --repo-config-path=.github/linters/.gitleaks.toml
+          - --repo-config-path=.ci/linters/.gitleaks.toml
           - --commit-since=2022-01-01
           - --verbose

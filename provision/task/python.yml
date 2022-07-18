@@ -44,14 +44,14 @@ tasks:
     run: once
     cmds:
       - cmd: >-
-          docker run
-          -it --rm
-          --platform linux/amd64
-          --entrypoint black
-          --user "$(id -u)":"$(id -g)"
-          --volume "$PWD":/code
-          --workdir /code
-          pyfound/black {{.CLI_ARGS}}
+          pipenv run black ./ {{.CLI_ARGS}}
+
+  test:
+    desc: run pytest.
+    run: once
+    cmds:
+      - cmd: >-
+          pipenv run pytest
 
   environment:
     desc: Generate environment python.
