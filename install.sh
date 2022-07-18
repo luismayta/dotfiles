@@ -28,6 +28,10 @@ function message::error {
     printf "${RED}%s${NORMAL}\n" "😈 [ERROR]: ${1}"
 }
 
+function message::debug {
+    printf "${YELLOW}%s${NORMAL}\n" "😈 [DEBUG]: ${1}"
+}
+
 clone_repo() {
     if [[ ! -e "${PATH_REPO}/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
@@ -67,7 +71,7 @@ function upgrade_repo() {
     fi
 
     ret="$?"
-    message::success "$2"
+    message::success "${2}"
     message::debug
 }
 
