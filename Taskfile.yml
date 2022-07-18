@@ -2,13 +2,13 @@ version: '3'
 
 includes:
   changelog: ./provision/task/changelog.yml
+  confluence: ./provision/task/confluence.yml
   python: ./provision/task/python.yml
   git: ./provision/task/git.yml
   docs: ./provision/task/docs.yml
   docker: ./provision/task/docker.yml
   plantuml: ./provision/task/plantuml.yml
   version: ./provision/task/version.yml
-  mark: ./provision/task/mark.yml
   prettier: ./provision/task/prettier.yml
   sonar: ./provision/task/sonar.yml
 
@@ -36,7 +36,7 @@ vars:
   REVIEWERS: luismayta
   PYTHON_VERSION: 3.9.2
   NODE_VERSION: 16.6.1
-  GIT_IGNORES: python,node,go,zsh,sonar
+  GIT_IGNORES: python,node,go,zsh,sonar,linux
   GOLANGCI_VERSION: 1.42.0
   README_FILE: README.md
   GIT_IGNORES_CUSTOM: >-
@@ -86,6 +86,7 @@ tasks:
         --out {{.README_FILE}}
         --datasource config={{.README_YAML}}
         --datasource includes={{.README_INCLUDES}}
+      - task: prettier
 
   prettier:
     run: once
@@ -96,6 +97,8 @@ tasks:
   setup:
     desc: Setup dependences of project
     cmds:
+      - >-
+        [ -e ".env" ] || cp -rf .env.example .env
       - task: python:setup
       - task: python:precommit
       - task: git:setup
