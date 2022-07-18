@@ -1,0 +1,150 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    desc: Show commands confluence
+    run: once
+    silent: true
+    cmds:
+      - cmd: task -l
+
+  check:
+    desc: Exist Mark and dependences
+    run: once
+    deps:
+      - task: check:docker
+      - task: check:vars
+
+  check:docker:
+    desc: Exist docker
+    run: once
+    preconditions:
+      - sh: command -v docker
+        msg: 'Please Install docker'
+
+  check:vars:
+    desc: Exist vars for mark
+    run: once
+    preconditions:
+      - sh: test -v CONFLUENCE_BASE_URL
+        msg: 'Please add var environment CONFLUENCE_BASE_URL'
+      - sh: test -v CONFLUENCE_ACCESS_TOKEN
+        msg: 'Please add var environment CONFLUENCE_ACCESS_TOKEN'
+      - sh: test -v CONFLUENCE_USER
+        msg: 'Please add var environment CONFLUENCE_USER'
+
+  make:credentials:
+    desc: run sync mark.
+    run: once
+    silent: true
+    cmds:
+      - cmd: echo initial sync files
+      - cmd: echo "" > config.log
+      - cmd: echo "username = '{{.CONFLUENCE_USER}}'" >> config.log
+      - cmd: echo "password = '{{.CONFLUENCE_ACCESS_TOKEN}}'" >> config.log
+      - cmd: echo "base_url = '{{.CONFLUENCE_BASE_URL}}'" >> config.log
+    deps:
+      - task: check
+
+  sync:
+    desc: run sync mark.
+    run: once
+    cmds:
+      - cmd: >-
+          for file in {{.FILES_CONFLUENCE}}; do
+            echo "> Sync $file";
+            docker run \
+            --platform linux/amd64 \
+            --rm \
+            --workdir /usr/src/ \
+            -v {{.PWD}}/:/usr/src/ \
+            -v {{.PWD}}/config.log:/config/config.toml \
+            kovetskiy/mark:latest mark --config /config/config.toml \
+            --minor-edit \
+            -f $file;
+            echo;
+          done
+      - cmd: echo ending sync files
+    deps:
+      - task: make:credentials
+
+  sync:all:
+    desc: run sync mark branch develop.
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - task: sync
+        vars:
+          FILES_CONFLUENCE:
+            sh: >-
+              find ./ -type f -name '*.md' -print
+              | grep -v '.tpl.md'
+              | grep -v '.terraform'
+              | xargs grep '<!-- Space'
+              | cut -d : -f 1
+              | sed -r 's/.\/\///g'
+              | sort -u
+              | xargs
+
+  sync:develop:
+    desc: run sync mark branch develop.
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - task: sync
+        vars:
+          FILES_CONFLUENCE:
+            sh: >-
+              git diff develop HEAD --name-only
+              | grep '.md'
+              | grep -v '.tpl.md'
+              | grep -v '.terraform'
+              | xargs grep '<!-- Space'
+              | cut -d : -f 1
+              | sed -r 's/.\/\///g'
+              | sort -u
+              | xargs
+
+  sync:main:
+    desc: run sync mark branch main.
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - task: sync
+        vars:
+          FILES_CONFLUENCE:
+            sh: >-
+              git diff main HEAD --name-only
+              | grep '.md'
+              | grep -v '.tpl.md'
+              | grep -v '.terraform'
+              | xargs grep '<!-- Space'
+              | cut -d : -f 1
+              | sed -r 's/.\/\///g'
+              | sort -u
+              | xargs
+
+  sync:master:
+    desc: run sync mark branch master.
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - task: sync
+        vars:
+          FILES_CONFLUENCE:
+            sh: >-
+              git diff master HEAD --name-only
+              | grep '.md'
+              | grep -v '.tpl.md'
+              | grep -v '.terraform'
+              | xargs grep '<!-- Space'
+              | cut -d : -f 1
+              | sed -r 's/.\/\///g'
+              | sort -u
+              | xargs

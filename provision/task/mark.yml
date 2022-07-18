@@ -46,29 +46,6 @@ tasks:
       - sh: test -v CONFLUENCE_USER
         msg: 'Please add var environment CONFLUENCE_USER'
 
-  sync:
-    desc: run sync mark.
-    run: once
-    cmds:
-      - cmd: echo initial sync files
-      - cmd: >-
-          for file in {{.FILES_CONFLUENCE}}; do
-            echo "> Sync $file";
-            docker run \
-            --platform linux/amd64 \
-            --rm \
-            --workdir /usr/src/ \
-            -v {{.PWD}}/:/usr/src/ \
-            kovetskiy/mark:latest mark -u {{.CONFLUENCE_USER}} \
-            -p {{.CONFLUENCE_ACCESS_TOKEN}} -b {{.CONFLUENCE_BASE_URL}} \
-            -f $file;
-            echo;
-          done
-      - cmd: echo ending sync files
-
-    deps:
-      - task: check
-
   mark:
     desc: run mark.
     run: once
