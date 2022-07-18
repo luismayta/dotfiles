@@ -32,8 +32,8 @@ clone_repo() {
     if [[ ! -e "${PATH_REPO}/.git" ]]; then
         git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
         ret="$?"
-        success "$1"
-        debug
+        message::success "$1"
+        message::debug
     else
         upgrade_repo "$APP_NAME" "Successfully updated $APP_NAME"
     fi
@@ -59,7 +59,7 @@ program_exists() {
 }
 
 function upgrade_repo() {
-    msg "trying to update $1"
+    message::info "trying to update $1"
 
     if [ "$1" = "${APP_NAME}" ]; then
         cd "$PATH_REPO" || exit
@@ -67,8 +67,8 @@ function upgrade_repo() {
     fi
 
     ret="$?"
-    success "$2"
-    debug
+    message::success "$2"
+    message::debug
 }
 
 # Mac Stuff -------------------------------------------------------------------
@@ -104,5 +104,5 @@ unset app
 
 clone_repo      "Successfully cloned ${APP_NAME}"
 
-msg             "\nThanks for installing ${APP_NAME}."
-msg             "© $(date +%Y) ${APP_NAME}"
+message::info             "\nThanks for installing ${APP_NAME}."
+message::info             "© $(date +%Y) ${APP_NAME}"
