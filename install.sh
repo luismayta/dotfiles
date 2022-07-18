@@ -21,7 +21,11 @@ function message::warning {
 }
 
 function message::success {
-    printf "${GREEN}%s${NORMAL}\n" "🍺️ [SUCCESS]: ${1}"
+    printf "${GREEN}%s${NORMAL}\n" "🧉 [SUCCESS]: ${1}"
+}
+
+function message::error {
+    printf "${RED}%s${NORMAL}\n" "😈 [ERROR]: ${1}"
 }
 
 clone_repo() {
@@ -49,7 +53,7 @@ program_exists() {
 
     # throw error on non-zero return value
     if [[ ! "$ret" -eq '0' ]]; then
-        error "$message"
+        message::error "${message}"
         exit
     fi
 }
