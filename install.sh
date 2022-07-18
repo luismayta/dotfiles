@@ -21,7 +21,7 @@ function message::warning {
 }
 
 function message::success {
-    printf "${GREEN}%s${NORMAL}\n" "🍺️ [SUCCESS]: ${1}"
+    printf "${GREEN}%s${NORMAL}\n" "🧉 [SUCCESS]: ${1}"
 }
 
 function message::error {
