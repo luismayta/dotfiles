@@ -19,6 +19,7 @@ pydocstyle = "*"
 pygments = "*"
 pylint = "*"
 pymdown-extensions = "*"
+black = "*"
 
 [packages]
 

@@ -1,15 +1,14 @@
-<!-- Space: Dotfiles -->
-<!-- Parent: Project -->
-<!-- Title: Contributing GitFlow -->
-
+<!-- Space: Projects -->
+<!-- Parent: Dotfiles -->
+<!-- Title: Contributing GitFlow Dotfiles -->
 <!-- Label: Dotfiles -->
 <!-- Label: Project -->
 <!-- Label: Contributing -->
 <!-- Label: GitFlow -->
-<!-- Include: docs/disclaimer.md -->
+<!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-To contribute to dotfiles project on [GitHub](https://github.com/hadenlabs/dotfiles), We use Gitflow (See more [here](https://datasift.github.io/gitflow/IntroducingGitFlow.html)) In a nutshell, it means that you should branch from the main repository and contribute back by making [pull request](https://github.com/hadenlabs/dotfiles/pulls).
+To contribute to dotfiles project on [GitHub](https://github.com/luismayta/dotfiles), We use Gitflow (See more [here](https://datasift.github.io/gitflow/IntroducingGitFlow.html)) In a nutshell, it means that you should branch from the main repository and contribute back by making [pull request](https://github.com/luismayta/dotfiles/pulls).
 
 ![workflow gitflow](https://datasift.github.io/gitflow/GitFlowHotfixBranch.png)
 
@@ -17,16 +16,16 @@ To contribute to dotfiles project on [GitHub](https://github.com/hadenlabs/dotfi
 
 To follow the instructions in this guide and start contributing to dotfiles project on Gitlab:
 
-1.  **Fork** the repo on GitLab
+1.  **Fork** the repo on GitHub
 2.  **Clone** the project to your own machine
 
 To synchronize with the main repository, add it to the remotes:
 
 ```bash
-git remote add upstream  https://github.com/hadenlabs/dotfiles.git
+git remote add upstream  https://github.com/luismayta/dotfiles.git
 ```
 
-Now your **upstream** points to **hadenlabs/dotfiles**.
+Now your **upstream** points to **luismayta/dotfiles**.
 
 ## Branches
 
@@ -63,7 +62,7 @@ To resolve a conflict, run the following commands.
 
 ```bash
 # checkout a branch you open MR from
-git fetch upstream # assuming upstream is rfid/dotfiles
+git fetch upstream # assuming upstream is luismayta/dotfiles
 git merge upstream/merge_branch # Where merge_branch is a branch you open merge request against.
 # resolve merge requests
 git add changed_files
@@ -75,7 +74,7 @@ Github will automatically update your pull request.
 
 ### Testing
 
-All merge requests are automatically tested using [Github Actions](https://github.com/hadenlabs/dotfiles/actions). In case some tests fail, fix the issues or describe why the fix cannot be done.
+All merge requests are automatically tested using [Github Actions](https://github.com/luismayta/dotfiles/actions). In case some tests fail, fix the issues or describe why the fix cannot be done.
 
 ### Review
 

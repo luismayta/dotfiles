@@ -1,6 +1,3 @@
- <!-- Space: Dotfiles -->
-<!-- Title: Project -->
-
 <!--
 
 
@@ -40,26 +37,26 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ## Usage
 
+# How to use this project
+
 ```bash
 task setup
 ```
 
 ## Examples
 
-<!-- Space: Dotfiles -->
-<!-- Parent: Project -->
-<!-- Title: Project Examples -->
-
+<!-- Space: Projects -->
+<!-- Parent: Dotfiles -->
+<!-- Title: Examples Dotfiles -->
 <!-- Label: Examples -->
-<!-- Include: docs/disclaimer.md -->
+<!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
 ### common
 
- <!-- Space: Dotfiles -->
+ <!-- Space: Projects -->
 <!-- Parent: Project -->
 <!-- Title: Functions -->
-
 <!-- Label: Functions -->
 <!-- Include: docs/disclaimer.md -->
 <!-- Include: ac:toc -->

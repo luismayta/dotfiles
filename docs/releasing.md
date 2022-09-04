@@ -1,11 +1,10 @@
-<!-- Space: Dotfiles -->
-<!-- Parent: Project -->
-<!-- Title: Releasing -->
-
+<!-- Space: Projects -->
+<!-- Parent: Dotfiles -->
+<!-- Title: Releasing Dotfiles -->
 <!-- Label: Dotfiles -->
 <!-- Label: Project -->
 <!-- Label: Releasing -->
-<!-- Include: docs/disclaimer.md -->
+<!-- Include: disclaimer.md -->
 <!-- Include: ac:toc -->
 
 # Releasing

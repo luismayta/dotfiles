@@ -10,12 +10,8 @@ name: dotfiles
 email:
   support: support@hadenlabs.com
 
-confluence:
-  space: Dotfiles
-  title: Project
-
 # Logo for this project
-#logo: docs/logo.png
+# logo: docs/logo.png
 
 # License of this project
 license: 'LGPL-3.0'
@@ -57,14 +53,11 @@ installation:
   - 'docs/include/installation/curl.md'
   - 'docs/include/installation/wget.md'
 
-# How to use this project
-usage: |-
-  ```bash
-  task setup
-  ```
-
-examples:
-  - 'docs/examples/common.md'
+usages:
+  - docs/usage.md
 
 include:
   - 'docs/functions.md'
+
+examples:
+  - 'docs/examples/common.md'

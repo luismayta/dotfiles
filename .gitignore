@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/python,node,go,zsh,sonar
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,node,go,zsh,sonar
+# Created by https://www.toptal.com/developers/gitignore/api/python,node,go,zsh,sonar,linux
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,node,go,zsh,sonar,linux
 
 ### Go ###
 # If you prefer the allow list template instead of the deny list, see community template:
@@ -27,6 +27,21 @@ go.work
 ### Go Patch ###
 /vendor/
 /Godeps/
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### Node ###
 # Logs
@@ -359,7 +374,7 @@ zsdoc/data
 /tests/_output/*
 !/tests/_output/.gitkeep
 
-# End of https://www.toptal.com/developers/gitignore/api/python,node,go,zsh,sonar
+# End of https://www.toptal.com/developers/gitignore/api/python,node,go,zsh,sonar,linux
 # custom git ignore files
 *.lock.hcl
 .scannerwork

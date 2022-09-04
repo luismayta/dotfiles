@@ -1,12 +1,10 @@
 <!-- Space: Projects -->
 <!-- Parent: Dotfiles -->
-<!-- Title: EnvVars Dotfiles -->
+<!-- Title: Components Dotfiles -->
 <!-- Label: Dotfiles -->
 <!-- Label: Project -->
-<!-- Label: EnvVars -->
+<!-- Label: Components -->
 <!-- Include: disclaimer.md -->
 <!-- Include: ac:toc -->
 
----
-
-## Env Vars
+# components
