@@ -18,7 +18,7 @@ export ZSH_DIR="${PATH_REPO}/zsh"
 export TOOLS_DIR="${PATH_REPO}/tools"
 
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
-export GIT_BRANCH='develop'
+export GIT_BRANCH='main'
 export DEBUG_MODE='0'
 export PATH_BACKUP="${HOME}/backup"
 
