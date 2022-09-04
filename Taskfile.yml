@@ -7,10 +7,11 @@ includes:
   git: ./provision/task/git.yml
   docs: ./provision/task/docs.yml
   docker: ./provision/task/docker.yml
-  plantuml: ./provision/task/plantuml.yml
   version: ./provision/task/version.yml
+  plantuml: ./provision/task/plantuml.yml
   prettier: ./provision/task/prettier.yml
   sonar: ./provision/task/sonar.yml
+  diagrams: ./provision/diagrams/Taskfile.yml
 
 env:
   DOCKER:

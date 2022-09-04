@@ -175,8 +175,10 @@ title = "gitleaks config"
             '''git@github.com''',
             '''git@gitlab.com''',
             '''slovacus@gmail.com''',
-            '''luis@okchaty.com''',
+            '''luis@hadenlabs.com''',
+            '''security@hadenlabs.com''',
             '''hola@hadenlabs.com''',
+            '''hello@hadenlabs.com''',
             '''support@hadenlbas.com''',
             '''support@hadenlabs.com''',
             '''dum-u@hadenlabs.com''',
@@ -262,4 +264,9 @@ title = "gitleaks config"
     '''^\.gitleaks.toml$''',
     '''^\.gitignore$''',
     '''^yarn.lock$''',
+    '''^sonar-project.properties$''',
+  ]
+  paths = [
+    '''^vendor/(.*?)$''',
+    '''^node_modules/(.*?)$''',
   ]

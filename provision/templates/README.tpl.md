@@ -78,12 +78,14 @@
 {{- end }}
 {{- end }}
 
-{{ if has (ds "config") "usage" }}
+{{ if has (ds "config") "usages" }}
 
 ## Usage
 
-{{ (ds "config").usage -}} {{ end }}
-
+{{ range $file := (datasource "config").usages -}}
+{{ (include "includes" $file) }}
+{{- end }}
+{{ end }}
 
 {{ if has (ds "config") "quickstart" -}}
 

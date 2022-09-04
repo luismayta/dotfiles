@@ -9,7 +9,7 @@ NORMAL="\033[0m"
 
 DOTFILES_NAME='.dotfiles'
 DOTFILES_GIT_URI='https://github.com/luismayta/dotfiles.git'
-DOTFILES_GIT_BRANCH='Develop'
+DOTFILES_GIT_BRANCH='main'
 PATH_REPO="${HOME}/${APP_NAME}"
 
 function message::info {
