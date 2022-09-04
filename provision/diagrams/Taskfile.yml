@@ -1,0 +1,46 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  build:
+    desc: Build Diagrams Plantuml.
+    run: once
+    silent: true
+    cmds:
+      - cmd: mkdir -p decks/images/diagrams
+      - cmd: mkdir -p static/images/diagrams
+      - cmd: mkdir -p docs/images/diagrams
+      - task: make
+
+  publish:
+    desc: Publish Diagrams.
+    run: once
+    silent: true
+    deps:
+      - task: build
+    cmds:
+      - >-
+        rsync -avhP --remove-source-files
+        --include='*.png' --include='*/'
+        --exclude='*'
+        provision/diagrams/ ./
+
+  make:
+    desc: generate files plantuml.
+    cmds:
+      - cmd: echo {{.FILES_PLANTUML}}
+      - cmd: |-
+          docker run
+          --platform linux/amd64
+          --rm
+          --workdir /data
+          -v {{.PWD}}:/data
+          infosisarg/plantuml {{.FILES_PLANTUML}}
+        vars:
+          FILES_PLANTUML:
+            sh: >-
+              find ./ -type f -name '*.plantuml'
+              | grep -v '.terraform'
+              | sort -u
+              | xargs

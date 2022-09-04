@@ -1,0 +1,11 @@
+download-external-modules: true
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework:
+  - all
+no-guide: true
+output: cli
+quiet: true
+skip-fixes: true
+skip-suppressions: true
+soft-fail: true
