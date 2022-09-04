@@ -1,12 +1,11 @@
 #!/usr/bin/env zsh
 
 message_info "Upgrade for dotfiles"
-cd "${DOTFILES_DIR}" && git pull && cd - || return
+cd "${DOTFILES_DIR}" && git pull origin main && cd - || return
 message_success "Upgraded dotfiles"
 
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
-
 
 backup "${HOME}/.bashrc"
 backup "${HOME}/.zshrc"
