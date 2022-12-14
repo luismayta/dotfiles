@@ -1,6 +1,6 @@
 <!-- Space: Projects -->
-<!-- Parent: Project -->
-<!-- Title: Functions -->
+<!-- Parent: Dotfiles -->
+<!-- Title: Functions Dotfiles -->
 <!-- Label: Functions -->
 <!-- Include: docs/disclaimer.md -->
 <!-- Include: ac:toc -->
