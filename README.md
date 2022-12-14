@@ -12,7 +12,7 @@
 
   -->
 
-[![Latest Release](https://img.shields.io/github/release/hadenlabs/base-template)](https://github.com/hadenlabs/base-template/releases) [![Lint](https://img.shields.io/github/workflow/status/hadenlabs/base-template/lint-code)](https://github.com/hadenlabs/base-template/actions?workflow=lint-code) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com)
+[![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles)](https://github.com/luismayta/dotfiles/releases) [![Lint](https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code)](https://github.com/luismayta/dotfiles/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/luismayta/dotfiles/ci)](https://github.com/luismayta/dotfiles/actions?workflow=ci) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com)
 
 # dotfiles
 
@@ -55,8 +55,8 @@ task setup
 ### common
 
  <!-- Space: Projects -->
-<!-- Parent: Project -->
-<!-- Title: Functions -->
+<!-- Parent: Dotfiles -->
+<!-- Title: Functions Dotfiles -->
 <!-- Label: Functions -->
 <!-- Include: docs/disclaimer.md -->
 <!-- Include: ac:toc -->

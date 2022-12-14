@@ -89,7 +89,7 @@ tasks:
     desc: Run go test against code.
     run: once
     cmds:
-      - go test -v ./... -coverprofile cover.out
+      - go test -v ./... -coverprofile cover.out -timeout 60m
     deps:
       - task: check:go
 

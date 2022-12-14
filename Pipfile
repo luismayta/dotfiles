@@ -24,4 +24,5 @@ black = "*"
 [packages]
 
 [scripts]
+test = "pytest"
 update = "pre-commit autoupdate"

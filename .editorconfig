@@ -13,6 +13,21 @@ indent_style = space
 # Set default charset
 charset = utf-8
 trim_trailing_whitespace = true
+indent_size = 2
+
+# Custom Coding Styles for Java files
+[*.java]
+
+# The other allowed value you can use is space
+indent_style = tab
+
+# You can play with this value and set it to how
+# many characters you want your indentation to be
+indent_size = 2
+
+# Character set to be used in java files.
+charset = utf-8
+trim_trailing_whitespace = true
 
 [*.{el}]
 insert_final_newline = false

@@ -15,6 +15,13 @@ terraform.md
 *.tpl.md
 *.enc.yaml
 vendor
+public
+staticfiles
 out
 .vscode-test
+.cache
 .venv
+contrib/
+site/
+.external_modules
+CHANGELOG.md

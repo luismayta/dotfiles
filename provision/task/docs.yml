@@ -58,6 +58,6 @@ tasks:
     desc: Server make documentation.
     run: once
     cmds:
-      - pipenv run mkdocs serve
+      - pipenv run mkdocs serve --dev-addr '127.0.0.1:8001'
     deps:
       - task: check:mkdocs

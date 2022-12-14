@@ -28,7 +28,7 @@ tasks:
     cmds:
       - task: gi
       - echo "# custom git ignore files" >> .gitignore
-      - echo {{.GIT_IGNORES_CUSTOM}} | tr ' ' '\n' | sort -u >> .gitignore
+      - echo "{{.GIT_IGNORES_CUSTOM}}" >> .gitignore
 
   gi:
     desc: command gi

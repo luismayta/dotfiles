@@ -32,9 +32,10 @@ jobs:
         uses: tj-actions/changed-files@v26
         with:
           files: |
-            *.md
+            docs/*.md
           files_ignore: |
             *.tpl.md
+            ^.terraform
 
       - name: Sync confluence
         uses: hadenlabs/action-confluence-sync@0.1.0

@@ -22,11 +22,14 @@ github_repo: luismayta/dotfiles
 # Badges to display
 badges:
   - name: Latest Release
-    image: https://img.shields.io/github/release/hadenlabs/base-template
-    url: https://github.com/hadenlabs/base-template/releases
+    image: https://img.shields.io/github/release/luismayta/dotfiles
+    url: https://github.com/luismayta/dotfiles/releases
   - name: Lint
-    image: https://img.shields.io/github/workflow/status/hadenlabs/base-template/lint-code
-    url: https://github.com/hadenlabs/base-template/actions?workflow=lint-code
+    image: https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code
+    url: https://github.com/luismayta/dotfiles/actions?workflow=lint-code
+  - name: CI
+    image: https://img.shields.io/github/workflow/status/luismayta/dotfiles/ci
+    url: https://github.com/luismayta/dotfiles/actions?workflow=ci
   - name: pre-commit
     image: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
     url: https://github.com/pre-commit/pre-commit

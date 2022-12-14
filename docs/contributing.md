@@ -12,17 +12,17 @@ Contributions to dotfiles are welcome.
 
 Feel free to use all of the contribution options:
 
-- Contribute to dotfiles repositories on [GitHub](https://github.com/luismayta/dotfiles). See [Git flow](./contribute/git-flow.md).
+- Contribute to dotfiles repositories on [GitHub](https://github.com/luismayta/dotfiles). See [Git flow](./contribute/github-flow.md).
 
 ## Getting Started
 
 ### Development
 
-In general, MRs are welcome. We follow the typical "fork-and-pull" [Git flow](./contribute/git-flow.md).
+In general, MRs are welcome. We follow the typical "fork-and-pull" [Git flow](./contribute/github-flow.md).
 
 1.  **Fork** the repo on Github
 2.  **Clone** the project to your own machine
-3.  **Commit** changes to your own branch using [Git flow](./contribute/git-flow.md)
+3.  **Commit** changes to your own branch using [Git flow](./contribute/github-flow.md)
 4.  **Push** your work back up to your fork
 
 5.  Submit a **Pull Request** so that we can review your changes
@@ -69,7 +69,7 @@ Examples commit messages:
 
 ### Branches
 
-See [Git flow](./contribute/git-flow.md).
+See [Git flow](./contribute/github-flow.md).
 
 ### Documentation
 

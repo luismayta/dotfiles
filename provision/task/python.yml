@@ -34,7 +34,7 @@ tasks:
     desc: Setup python dependences.
     run: once
     cmds:
-      - pipenv install --dev --skip-lock
+      - pipenv install --dev --skip-lock --python="$(which python)"
     deps:
       - task: check:python
       - task: check:pipenv

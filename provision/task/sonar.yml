@@ -19,18 +19,18 @@ tasks:
     desc: Exist vars for sonarqube
     run: once
     preconditions:
-      - sh: test -v SONAR_HOST_URL
-        msg: 'Please add var environment SONAR_HOST_URL'
-      - sh: test -v SONAR_LOGIN
-        msg: 'Please add var environment SONAR_LOGIN'
+      - sh: test -v SONAR_URL
+        msg: 'Please add var environment SONAR_URL'
+      - sh: test -v SONAR_TOKEN
+        msg: 'Please add var environment SONAR_TOKEN'
 
   show:
     desc: show vars sonarqube.
     run: once
     cmds:
       - >-
-        echo {{.SONAR_HOST_URL}}
-        echo {{.SONAR_LOGIN}}
+        echo {{.SONAR_URL}}
+        echo {{.SONAR_TOKEN}}
     deps:
       - task: check
 
@@ -42,8 +42,8 @@ tasks:
         docker run --rm
         --platform linux/amd64
         --volume $(pwd)/:/usr/src
-        --env SONAR_HOST_URL={{.SONAR_HOST_URL}}
-        --env SONAR_LOGIN={{.SONAR_LOGIN}}
+        --env SONAR_URL={{.SONAR_URL}}
+        --env SONAR_TOKEN={{.SONAR_TOKEN}}
         sonarsource/sonar-scanner-cli:latest
         sonar-scanner
     deps:

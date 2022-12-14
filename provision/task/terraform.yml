@@ -1,0 +1,32 @@
+version: '3'
+
+tasks:
+  check:
+    desc: Exist terraform and dependences
+    run: once
+    deps:
+      - task: check:terraform
+
+  check:terraform:
+    desc: Exist Terraform
+    run: once
+    preconditions:
+      - sh: command -v terraform
+        msg: 'Please Install terraform'
+
+  command:
+    desc: generate docs using docs
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - >-
+        terraform-docs ./ --config=.ci/config/.terraform-docs.yml
+
+  docs:all:
+    desc: generate docs using docs all
+    run: once
+    deps:
+      - task: check
+    cmds:
+      - task: command
