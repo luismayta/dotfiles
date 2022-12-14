@@ -80,9 +80,9 @@ tasks:
         vars:
           FILES_CONFLUENCE:
             sh: >-
-              find ./ -type f -name '*.md' -print
+              find ./docs -type f -name '*.md' -print
               | grep -v '.tpl.md'
-              | grep -v '.terraform'
+              | grep -v '^.terraform'
               | xargs grep '<!-- Space'
               | cut -d : -f 1
               | sed -r 's/.\/\///g'
@@ -122,7 +122,7 @@ tasks:
               git diff main HEAD --name-only
               | grep '.md'
               | grep -v '.tpl.md'
-              | grep -v '.terraform'
+              | grep -v '^.terraform'
               | xargs grep '<!-- Space'
               | cut -d : -f 1
               | sed -r 's/.\/\///g'
@@ -142,7 +142,7 @@ tasks:
               git diff master HEAD --name-only
               | grep '.md'
               | grep -v '.tpl.md'
-              | grep -v '.terraform'
+              | grep -v '^.terraform'
               | xargs grep '<!-- Space'
               | cut -d : -f 1
               | sed -r 's/.\/\///g'

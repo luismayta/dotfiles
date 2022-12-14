@@ -29,7 +29,7 @@ tasks:
     desc: install dependences git-chglog
     run: once
     cmds:
-      - go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
+      - go install github.com/git-chglog/git-chglog/cmd/git-chglog@latest
     deps:
       - task: check:go
 

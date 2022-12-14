@@ -146,6 +146,7 @@ bin/* text eol=lf
 *.so        binary
 *.war       binary
 *.xls       binary
-*.xlsx       binary
+*.xlsx      binary
 *.pem       binary
 *.pub       binary
+*.crt       binary
