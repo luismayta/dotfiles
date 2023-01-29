@@ -27,4 +27,3 @@ if type -p nvim > /dev/null; then
     alias vi='nvim'
     alias vimdiff='nvim -d'
 fi
-
