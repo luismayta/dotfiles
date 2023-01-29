@@ -24,7 +24,7 @@ function initialize() {
     cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
     cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
 
-    rsync -avzh --progress "${CONF_DIR}/.config/" "${HOME}/.config/"
+    rsync -avzh --progress "${ROOT_DIR}/config/" "${HOME}/.config/"
     rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
 }
 

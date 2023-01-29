@@ -14,3 +14,7 @@ backup "${HOME}/.zshenv"
 cp -rf "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
 cp -rf "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
 cp -rf "${DOTFILES_DIR}/conf/shell/bashrc" "${HOME}/.bashrc"
+
+message_info "Start Sync config"
+rsync -avzh --progress "${DOTFILES_DIR}/config/" "${HOME}/.config/"
+message_success "Finish Sync config"
