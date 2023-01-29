@@ -42,16 +42,16 @@ source <(antibody init)
 
 # setup antibody
 antibody bundle hadenlabs/zsh-core
-antibody bundle luismayta/zsh-brew branch:develop
+antibody bundle luismayta/zsh-brew
 antibody bundle hadenlabs/zsh-nvm
 antibody bundle hadenlabs/zsh-goenv
 antibody bundle luismayta/zsh-pyenv
 antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle hadenlabs/zsh-git branch:develop
+antibody bundle hadenlabs/zsh-git
 antibody bundle hadenlabs/zsh-ghq
-antibody bundle hadenlabs/zsh-starship branch:develop
-antibody bundle luismayta/zsh-notify branch:develop
-antibody bundle luismayta/zsh-scmbreeze branch:develop
+antibody bundle luismayta/zsh-notify
+antibody bundle hadenlabs/zsh-starship
+antibody bundle luismayta/zsh-scmbreeze
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma-continuum/fast-syntax-highlighting

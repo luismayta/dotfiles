@@ -42,6 +42,7 @@ tasks:
     cmds:
       - >-
         docker build
+        --no-cache
         --platform={{.DOCKER_PLATFORMS}}
         --file Dockerfile
         --tag {{.CI_REGISTRY}}/{{.GROUP_NAME}}/{{.PROJECT_NAME}}:{{.APP_TAG}} .
