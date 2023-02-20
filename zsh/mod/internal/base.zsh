@@ -34,12 +34,12 @@ function backup {
     typeset today
     typeset path_today
     typeset file_backup
-    if [ -z "${BACKUP_DIR}" ]; then
+    if [ ! -d "${BACKUP_DIR}" ]; then
         message_info "not exist path ~/.backup"
         return
     fi
     if [ -z "${1}" ] || [ ! -r "${1}" ]; then
-        message_info "is it neccessary file"
+        message_info "is it necessary file"
         return
     fi
 

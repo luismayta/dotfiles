@@ -38,7 +38,7 @@ vars:
   REVIEWERS: luismayta
   PYTHON_VERSION: 3.10.6
   NODE_VERSION: 16.6.1
-  GIT_IGNORES: python,node,go,zsh,sonar,java,maven,intellij+all,terraform,linux
+  GIT_IGNORES: linux,windows,python,node,go,zsh,sonar,terraform,ansible,intellij+all
   DOCKER_PLATFORMS: linux/amd64
   GOLANGCI_VERSION: 1.42.0
   README_FILE: README.md
