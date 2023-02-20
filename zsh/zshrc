@@ -16,16 +16,6 @@ export DOTFILES_MOD_DIR="${DOTFILES_DIR}/zsh/mod"
 
 autoload -Uz compinit add-zsh-hook is-at-least
 
-# Make vim the default editor
-if type -p vim > /dev/null; then
-    export EDITOR=vim
-fi
-
-# Make nvim the default editor
-if type -p nvim > /dev/null; then
-    export EDITOR=nvim
-fi
-
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
 
@@ -57,7 +47,6 @@ antibody bundle zsh-users/zsh-history-substring-search
 antibody bundle zdharma-continuum/fast-syntax-highlighting
 antibody bundle Aloxaf/fzf-tab
 antibody bundle zsh-users/zsh-completions
-antibody bundle b4b4r07/zsh-vimode-visual
 
 if type -p tmux > /dev/null; then
     [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
