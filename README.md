@@ -52,7 +52,7 @@ task setup
 <!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-### common
+### Common
 
  <!-- Space: Projects -->
 <!-- Parent: Dotfiles -->
