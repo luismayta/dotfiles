@@ -20,11 +20,3 @@ alias wget='wget --user-agent="Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; S
 
 # alias git
 alias gc='git commit --verbose'
-
-# Make nvim the default editor
-if type -p nvim > /dev/null; then
-    alias oldvim='vim'
-    alias vim='nvim'
-    alias vi='nvim'
-    alias vimdiff='nvim -d'
-fi
