@@ -1,6 +1,6 @@
 plugin "aws" {
   enabled = true
-  version = "0.24.3"
+  version = "0.25.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 rule "terraform_deprecated_index" {
