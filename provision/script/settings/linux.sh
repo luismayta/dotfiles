@@ -7,5 +7,5 @@ mkdir -p "${FONTS_DIR}"
 export APPS=(
     "git-extras"
     "fonts"
-    "antibody"
+    "antidote"
 )
