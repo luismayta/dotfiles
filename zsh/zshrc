@@ -12,7 +12,8 @@ export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
-export DOTFILES_MOD_DIR="${DOTFILES_DIR}/zsh/mod"
+export DOTFILES_ZSH_DIR="${DOTFILES_DIR}/zsh"
+export DOTFILES_MOD_DIR="${DOTFILES_ZSH_DIR}/mod"
 
 autoload -Uz compinit add-zsh-hook is-at-least
 
@@ -24,29 +25,11 @@ if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
 fi
 
-#
-# ANTIBODY — plugin manager
+# source antidote
+source "${HOME}"/.antidote/antidote.zsh
 
-# shellcheck source=/dev/null
-source <(antibody init)
-
-# setup antibody
-antibody bundle hadenlabs/zsh-core
-antibody bundle luismayta/zsh-brew
-antibody bundle hadenlabs/zsh-nvm
-antibody bundle hadenlabs/zsh-goenv
-antibody bundle luismayta/zsh-pyenv
-antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle hadenlabs/zsh-git
-antibody bundle hadenlabs/zsh-ghq
-antibody bundle luismayta/zsh-notify
-antibody bundle hadenlabs/zsh-starship
-antibody bundle luismayta/zsh-scmbreeze
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle zsh-users/zsh-history-substring-search
-antibody bundle zdharma-continuum/fast-syntax-highlighting
-antibody bundle Aloxaf/fzf-tab
-antibody bundle zsh-users/zsh-completions
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load "${DOTFILES_ZSH_DIR}/zsh_plugins.txt"
 
 if type -p tmux > /dev/null; then
     [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
