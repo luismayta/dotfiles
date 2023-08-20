@@ -1,64 +1,62 @@
 module.exports = {
-  arrowParens: 'always',
+  arrowParens: "always",
   printWidth: 120,
-  proseWrap: 'preserve',
+  proseWrap: "preserve",
   semi: false,
-  singleQuote: true,
+  singleQuote: false,
   tabWidth: 2,
-  trailingComma: 'none',
+  trailingComma: "none",
   overrides: [
     {
-      files: '{*.js?(x),*.ts?(x),*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}',
+      files: "{*.js?(x),*.ts?(x),*.y?(a)ml,.*.y?(a)ml,*.md,.prettierrc,.stylelintrc,.babelrc}",
       options: {
-        arrowParens: 'always',
+        arrowParens: "always",
         printWidth: 100,
         semi: false,
-        singleQuote: true,
-        quoteProps: 'as-needed',
+        quoteProps: "as-needed",
         tabWidth: 2,
-        trailingComma: 'none'
+        trailingComma: "none"
       }
     },
     {
-      files: '{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
+      files: "{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}",
       options: {
-        parser: 'json',
+        parser: "json",
         tabWidth: 2,
-        quoteProps: 'preserve',
-        singleQuote: false
+        quoteProps: "preserve"
       }
     },
     {
-      files: '*.md',
+      files: "*.md",
       options: {
-        parser: 'markdown',
+        parser: "markdown",
         printWidth: 120,
-        proseWrap: 'never',
+        proseWrap: "never",
         semi: false,
-        trailingComma: 'none'
+        trailingComma: "none"
       }
     },
     {
-      files: '*.mdx',
+      files: "*.mdx",
       options: {
         printWidth: 120,
-        proseWrap: 'never',
+        proseWrap: "never",
         semi: false,
-        trailingComma: 'none'
+        trailingComma: "none"
       }
     },
     {
-      files: '*.{sass,scss}',
+      files: "*.{sass,scss}",
       options: {
-        parser: 'scss'
+        parser: "scss"
       }
     },
     {
-      files: '*.less',
+      files: "*.less",
       options: {
         tabWidth: 4,
         printWidth: 80,
-        parser: 'less'
+        parser: "less"
       }
     }
   ]

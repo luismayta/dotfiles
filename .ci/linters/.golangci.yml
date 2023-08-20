@@ -99,6 +99,7 @@ linters:
     - unconvert
     - misspell
     - nakedret
+    - unused
 
   presets:
     - bugs
@@ -113,6 +114,17 @@ linters:
     - goerr113
     - scopelint
     - golint
+    - bodyclose
+    - contextcheck
+    - nilerr
+    - noctx
+    - rowserrcheck
+    - sqlclosecheck
+    - structcheck
+    - unparam
+    - deadcode
+    - varcheck
+    - asasalint
 
     # Drives todos nuts
     - godox
