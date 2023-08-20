@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dotfiles"
-version = "1.7.1"
+version = "2.0.0"
 description = "dotfiles"
 authors = ["Luis Mayta <luis@hadenlabs.com>"]
 license = "GPL"
