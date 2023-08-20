@@ -3,6 +3,9 @@
   "ignorePatterns": [
     {
       "pattern": "^https://hadenlabs.com"
+    },
+    {
+      "pattern": "^https://github.com/luismayta/dotfiles/compare"
     }
   ],
   "replacementPatterns": [
