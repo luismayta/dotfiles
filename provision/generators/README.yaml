@@ -14,7 +14,7 @@ email:
 # logo: docs/logo.png
 
 # License of this project
-license: 'LGPL-3.0'
+license: "LGPL-3.0"
 
 # Canonical GitHub repo
 github_repo: luismayta/dotfiles
@@ -53,14 +53,14 @@ requirements: |-
   - [Wget](https://www.gnu.org/software/wget)
 
 installation:
-  - 'docs/include/installation/curl.md'
-  - 'docs/include/installation/wget.md'
+  - "docs/include/installation/curl.md"
+  - "docs/include/installation/wget.md"
 
 usages:
   - docs/usage.md
 
 include:
-  - 'docs/functions.md'
+  - "docs/functions.md"
 
 examples:
-  - 'docs/examples/common.md'
+  - "docs/examples/common.md"

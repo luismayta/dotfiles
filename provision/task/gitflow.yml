@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
-    desc: 'Exist git-flow and dependences'
+    desc: "Exist git-flow and dependences"
     run: once
     deps:
       - task: check:git
@@ -13,23 +13,23 @@ tasks:
     run: once
     preconditions:
       - sh: command -v git
-        msg: 'Please Install git'
+        msg: "Please Install git"
 
   check:gitflow:
-    desc: 'Exist git-flow'
+    desc: "Exist git-flow"
     run: once
     preconditions:
       - sh: command -v git-flow
-        msg: 'Please Install git-flow'
+        msg: "Please Install git-flow"
 
   setup:
-    desc: 'Setup all gitflow actions.'
+    desc: "Setup all gitflow actions."
     run: once
     cmds:
       - task: prefix
 
   install:
-    desc: 'Install gitflow configuration.'
+    desc: "Install gitflow configuration."
     run: once
     cmds:
       - git-flow init -d
@@ -37,7 +37,7 @@ tasks:
       - task: check
 
   prefix:
-    desc: 'Generate gitflow prefix of files.'
+    desc: "Generate gitflow prefix of files."
     run: once
     cmds:
       - git config gitflow.prefix.feature {{.GITFLOW_PREFIX_FEATURE}}

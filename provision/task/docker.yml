@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -12,18 +12,18 @@ tasks:
     run: once
     preconditions:
       - sh: command -v docker
-        msg: 'Please Install docker'
+        msg: "Please Install docker"
 
   check:vars:
     desc: Exist vars for docker
     run: once
     preconditions:
       - sh: test -v CI_REGISTRY_USER
-        msg: 'Please add var environment CI_REGISTRY_USER'
+        msg: "Please add var environment CI_REGISTRY_USER"
       - sh: test -v CI_REGISTRY_PASSWORD
-        msg: 'Please add var environment CI_REGISTRY_PASSWORD'
+        msg: "Please add var environment CI_REGISTRY_PASSWORD"
       - sh: test -v CI_REGISTRY
-        msg: 'Please add var environment CI_REGISTRY'
+        msg: "Please add var environment CI_REGISTRY"
 
   login:
     silent: true

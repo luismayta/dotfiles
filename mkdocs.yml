@@ -1,5 +1,5 @@
 site_name: dotfiles Documentation
-theme: 'material'
+theme: "material"
 markdown_extensions:
   - toc:
       permalink: True
@@ -10,15 +10,15 @@ markdown_extensions:
       linenums: True
 extra:
   palette:
-    primary: '#087da1'
-    accent: '#00a889'
+    primary: "#087da1"
+    accent: "#00a889"
   font:
-    text: 'Source Sans Pro'
+    text: "Source Sans Pro"
 
-repo_name: 'luismayta/dotfiles'
-repo_url: 'https://github.com/luismayta/dotfiles'
+repo_name: "luismayta/dotfiles"
+repo_url: "https://github.com/luismayta/dotfiles"
 copyright: 'Copyright © 2021 <a href="https://hadenlabs.com">hadenlabs</a>'
 
 google_analytics:
-  - ''
-  - 'auto'
+  - ""
+  - "auto"

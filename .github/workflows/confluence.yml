@@ -10,11 +10,11 @@ on:
       - main
 
     tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
+      - "[0-9]+.[0-9]+.[0-9]+"
       # https://semver.org/ proper release tags, more or less
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - "v[0-9]+.[0-9]+.[0-9]+"
       # prerelease tags, more or less
-      - 'v[0-9]+.[0-9]+.[0-9]+-*'
+      - "v[0-9]+.[0-9]+.[0-9]+-*"
 
 jobs:
   confluence:
@@ -39,7 +39,7 @@ jobs:
       - name: Sync confluence
         uses: hadenlabs/action-confluence-sync@0.1.0
         with:
-          files: '${{ steps.changed-files.outputs.all_changed_files }}'
+          files: "${{ steps.changed-files.outputs.all_changed_files }}"
           confluence_url: ${{ secrets.CONFLUENCE_BASE_URL }}
           confluence_username: ${{ secrets.CONFLUENCE_USER }}
           confluence_token: ${{ secrets.CONFLUENCE_ACCESS_TOKEN }}

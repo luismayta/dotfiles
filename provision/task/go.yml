@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 env:
   GO_FILES:
@@ -19,28 +19,28 @@ tasks:
     run: once
     preconditions:
       - sh: command -v go
-        msg: 'Please Install Go'
+        msg: "Please Install Go"
 
   check:gofmt:
     desc: Exist gofmt
     run: once
     preconditions:
       - sh: command -v gofmt
-        msg: 'Please Install gofmt'
+        msg: "Please Install gofmt"
 
   check:golangcilint:
     desc: Exist golangci-lint
     run: once
     preconditions:
       - sh: command -v golangci-lint
-        msg: 'Please Install golangci-lint'
+        msg: "Please Install golangci-lint"
 
   check:goreleaser:
     desc: Exist goreleaser
     run: once
     preconditions:
       - sh: command -v goreleaser
-        msg: 'Please Install goreleaser'
+        msg: "Please Install goreleaser"
 
   setup:
     desc: Setup go dependences.

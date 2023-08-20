@@ -1,28 +1,28 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   env: {
     node: true,
     es2021: true
   },
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: 'module' // Allows for the use of imports
+    sourceType: "module" // Allows for the use of imports
   },
   extends: [
-    'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'plugin:import/warnings'
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "plugin:import/warnings"
   ],
-  plugins: ['@typescript-eslint'],
+  plugins: ["@typescript-eslint"],
   rules: {
-    '@typescript-eslint/semicolon': 'off',
-    '@typescript-eslint/member-delimiter-style': 'off',
-    '@typescript-eslint/naming-convention': 'warn',
-    '@typescript-eslint/semi': 'off',
-    'no-throw-literal': 'warn',
-    curly: 'warn',
-    eqeqeq: 'warn',
-    semi: 'off'
+    "@typescript-eslint/semicolon": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/naming-convention": "warn",
+    "@typescript-eslint/semi": "off",
+    "no-throw-literal": "warn",
+    curly: "warn",
+    eqeqeq: "warn",
+    semi: "off"
   },
-  ignorePatterns: ['**/*.d.ts']
+  ignorePatterns: ["**/*.d.ts"]
 }

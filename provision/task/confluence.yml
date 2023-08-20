@@ -1,6 +1,6 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 tasks:
   default:
@@ -22,18 +22,18 @@ tasks:
     run: once
     preconditions:
       - sh: command -v docker
-        msg: 'Please Install docker'
+        msg: "Please Install docker"
 
   check:vars:
     desc: Exist vars for mark
     run: once
     preconditions:
       - sh: test -v CONFLUENCE_BASE_URL
-        msg: 'Please add var environment CONFLUENCE_BASE_URL'
+        msg: "Please add var environment CONFLUENCE_BASE_URL"
       - sh: test -v CONFLUENCE_ACCESS_TOKEN
-        msg: 'Please add var environment CONFLUENCE_ACCESS_TOKEN'
+        msg: "Please add var environment CONFLUENCE_ACCESS_TOKEN"
       - sh: test -v CONFLUENCE_USER
-        msg: 'Please add var environment CONFLUENCE_USER'
+        msg: "Please add var environment CONFLUENCE_USER"
 
   make:credentials:
     desc: run sync mark.
