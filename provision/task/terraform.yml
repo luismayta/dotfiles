@@ -12,7 +12,14 @@ tasks:
     run: once
     preconditions:
       - sh: command -v terraform
-        msg: 'Please Install terraform'
+        msg: "Please Install terraform"
+
+  check:tfenv:
+    desc: Exist tfenv
+    run: once
+    preconditions:
+      - sh: command -v tfenv
+        msg: "Please Install tfenv"
 
   command:
     desc: generate docs using docs
@@ -30,3 +37,11 @@ tasks:
       - task: check
     cmds:
       - task: command
+
+  environment:
+    desc: Generate environment terraform.
+    run: once
+    cmds:
+      - tfenv use {{ .TERRAFORM_VERSION }} || tfenv install {{ .TERRAFORM_VERSION }} && tfenv use {{ .TERRAFORM_VERSION }}
+    deps:
+      - task: check:tfenv

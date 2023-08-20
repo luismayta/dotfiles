@@ -7,7 +7,6 @@ on:
     types:
       - completed
     branches:
-      - develop
       - main
 
     tags:
