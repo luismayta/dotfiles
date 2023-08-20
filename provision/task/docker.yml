@@ -43,7 +43,7 @@ tasks:
       - >-
         docker build
         --no-cache
-        --platform={{.DOCKER_PLATFORMS}}
+        --platform={{.DOCKER_PLATFORM}}
         --file Dockerfile
         --tag {{.CI_REGISTRY}}/{{.GROUP_NAME}}/{{.PROJECT_NAME}}:{{.APP_TAG}} .
         --build-arg VERSION={{.APP_TAG}}
@@ -57,7 +57,7 @@ tasks:
       - >-
         docker buildx build
         --no-cache
-        --platform={{.DOCKER_PLATFORMS}}
+        --platform={{.DOCKER_PLATFORM}}
         --file Dockerfile
         --tag {{.CI_REGISTRY}}/{{.GROUP_NAME}}/{{.PROJECT_NAME}}:{{.APP_TAG}} .
         --build-arg VERSION={{.APP_TAG}}

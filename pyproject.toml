@@ -1,0 +1,77 @@
+[tool.poetry]
+name = "dotfiles"
+version = "1.7.1"
+description = "dotfiles"
+authors = ["Luis Mayta <luis@hadenlabs.com>"]
+license = "GPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8,<3.12"
+boto3 = "^1.26.130"
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.28.2"
+bridgecrew = "*"
+doc8 = "*"
+grip = "*"
+isort = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mypy = "*"
+parso = "*"
+pre-commit = "*"
+pycodestyle = "*"
+pydocstyle = "*"
+pygments = "*"
+pylint = "*"
+pymdown-extensions = "*"
+pytest = ">=6.2.4"
+black = "*"
+
+[tool.poetry.extras]
+docs = ["mkdocs", "mkdocs-material"]
+
+[tool.poetry_bumpversion.file."sonar-project.properties"]
+search = 'sonar.projectVersion={current_version}'
+replace = 'sonar.projectVersion={new_version}'
+
+[tool.black]
+line-length = 120
+
+[tool.bandit]
+skips = ["B101"]
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.11"
+files = ["."]
+show_error_codes = true
+pretty = true
+#strict = true
+allow_redefinition = true
+disallow_subclassing_any = true
+#disallow_untyped_calls = true
+#disallow_untyped_defs = true
+#disallow_incomplete_defs = true
+no_implicit_optional = true
+local_partial_types = true
+#no_implicit_reexport = true
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+#warn_return_any = true
+#warn_unreachable = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+norecursedirs = ["build", "docs", ".egg"]
+
+addopts = "-s -v --cov zsh-pyenv --cov-report html --no-cov-on-fail --capture=no --ignore setup.py --ignore test_envs.py --ignore docs --ignore .egg --ignore .eggs --ignore .mypy_cache --ignore provision --ignore node_modules --doctest-modules"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

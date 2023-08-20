@@ -53,6 +53,12 @@ tasks:
     deps:
       - task: check:go
 
+  prettier:
+    desc: format files go.
+    run: once
+    cmds:
+      - task: fmt
+
   fmt:
     desc: format files go.
     run: once

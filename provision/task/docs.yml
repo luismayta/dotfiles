@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -6,7 +6,7 @@ tasks:
     run: once
     deps:
       - task: check:python
-      - task: check:pipenv
+      - task: check:poetry
       - task: check:mkdocs
       - task: check:grip
 
@@ -15,34 +15,34 @@ tasks:
     run: once
     preconditions:
       - sh: command -v python
-        msg: 'Please Install python'
+        msg: "Please Install python"
 
-  check:pipenv:
-    desc: Exist Pipenv
+  check:poetry:
+    desc: Exist Poetry
     run: once
     preconditions:
-      - sh: command -v pipenv
-        msg: 'Please Install pipenv'
+      - sh: command -v poetry
+        msg: "Please Install poetry"
 
   check:mkdocs:
     desc: Exist mkdocs
     run: once
     preconditions:
-      - sh: test "pipenv run command -v mkdocs"
-        msg: 'Please Install mkdocs'
+      - sh: test "poetry run command -v mkdocs"
+        msg: "Please Install mkdocs"
 
   check:grip:
     desc: Exist grip
     run: once
     preconditions:
-      - sh: test "pipenv run command -v grip"
-        msg: 'Please Install grip'
+      - sh: test "poetry run command -v grip"
+        msg: "Please Install grip"
 
   show:
     desc: Show grip readme.
     run: once
     cmds:
-      - pipenv run grip
+      - poetry run grip
     deps:
       - task: check:grip
 
@@ -50,7 +50,7 @@ tasks:
     desc: Build documentation with mkdocs.
     run: once
     cmds:
-      - pipenv run mkdocs build
+      - poetry run mkdocs build
     deps:
       - task: check:mkdocs
 
@@ -58,6 +58,6 @@ tasks:
     desc: Server make documentation.
     run: once
     cmds:
-      - pipenv run mkdocs serve --dev-addr '127.0.0.1:8001'
+      - poetry run mkdocs serve --dev-addr '127.0.0.1:8001'
     deps:
       - task: check:mkdocs

@@ -2,7 +2,7 @@
 
 ## Environment
 
-### Wrong pre-commit with pipenv
+### Wrong pre-commit with poetry
 
 Execute the next:
 
