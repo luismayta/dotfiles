@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -13,14 +13,14 @@ tasks:
     run: once
     preconditions:
       - sh: command -v yarn
-        msg: 'Please Install yarn'
+        msg: "Please Install yarn"
 
   check:nvm:
     desc: Exist Nvm
     run: once
     preconditions:
       - sh: test "command -v nvm"
-        msg: 'Please Install nvm'
+        msg: "Please Install nvm"
 
   setup:
     desc: Setup yarn dependences.

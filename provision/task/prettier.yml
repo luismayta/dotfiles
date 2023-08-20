@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -12,7 +12,7 @@ tasks:
     run: once
     preconditions:
       - sh: command -v prettier
-        msg: 'Please Install prettier'
+        msg: "Please Install prettier"
 
   all:
     run: once
@@ -20,7 +20,7 @@ tasks:
     cmds:
       - task: execute
         vars:
-          FILES_PRETTIER: '**/*.{js?(on),scss,less,ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}'
+          FILES_PRETTIER: "**/*.{js?(on),scss,less,ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}"
 
   less:
     run: once
@@ -28,7 +28,7 @@ tasks:
     cmds:
       - task: execute
         vars:
-          FILES_PRETTIER: '**/*.less'
+          FILES_PRETTIER: "**/*.less"
 
   code:
     run: once
@@ -36,7 +36,7 @@ tasks:
     cmds:
       - task: execute
         vars:
-          FILES_PRETTIER: '**/*.{js?(on),ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}'
+          FILES_PRETTIER: "**/*.{js?(on),ts?(x),md,y?(a)ml,gql,graphql?(s),mjml}"
 
   sass:
     run: once
@@ -44,7 +44,7 @@ tasks:
     cmds:
       - task: execute
         vars:
-          FILES_PRETTIER: '**/*.scss'
+          FILES_PRETTIER: "**/*.scss"
 
   execute:
     run: once

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -12,7 +12,7 @@ tasks:
     run: once
     preconditions:
       - sh: command -v git
-        msg: 'Please Install git'
+        msg: "Please Install git"
 
   setup:
     desc: Setup git.
