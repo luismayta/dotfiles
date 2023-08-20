@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 tasks:
   check:
@@ -6,7 +6,7 @@ tasks:
     run: once
     deps:
       - task: check:python
-      - task: check:pipenv
+      - task: check:poetry
       - task: check:precommit
 
   check:python:
@@ -14,61 +14,61 @@ tasks:
     run: once
     preconditions:
       - sh: command -v python
-        msg: 'Please Install python'
+        msg: "Please Install python"
 
-  check:pipenv:
-    desc: Exist Pipenv
+  check:poetry:
+    desc: Exist Poetry
     run: once
     preconditions:
-      - sh: command -v pipenv
-        msg: 'Please Install pipenv'
+      - sh: command -v poetry
+        msg: "Please Install poetry"
 
   check:precommit:
     desc: Exist pre-commit
     run: once
     preconditions:
-      - sh: test "pipenv run command -v pre-commit"
-        msg: 'Please Install pre-commit'
+      - sh: test "poetry run command -v pre-commit"
+        msg: "Please Install pre-commit"
 
   setup:
     desc: Setup python dependences.
     run: once
     cmds:
-      - pipenv install --dev --python {{.PYTHON_VERSION}}
+      - poetry install
     deps:
       - task: check:python
-      - task: check:pipenv
+      - task: check:poetry
 
   fmt:
     desc: format black python.
     run: once
     cmds:
       - cmd: >-
-          pipenv run black ./ {{.CLI_ARGS}}
+          poetry run black ./ {{.CLI_ARGS}}
 
   test:
     desc: run pytest.
     run: once
     cmds:
       - cmd: >-
-          pipenv run pytest
+          poetry run pytest
 
   environment:
     desc: Generate environment python.
     run: once
     cmds:
-      - pipenv --venv || pipenv install --skip-lock
+      - poetry env info || poetry install
     deps:
       - task: check:python
-      - task: check:pipenv
+      - task: check:poetry
 
   precommit:
     desc: Install pre-commit.
     run: once
     cmds:
-      - pipenv run pre-commit install
-      - pipenv run pre-commit install -t pre-push
-      - pipenv run pre-commit install -t commit-msg
-      - pipenv run pre-commit install -t prepare-commit-msg
+      - poetry run pre-commit install
+      - poetry run pre-commit install -t pre-push
+      - poetry run pre-commit install -t commit-msg
+      - poetry run pre-commit install -t prepare-commit-msg
     deps:
       - task: check
