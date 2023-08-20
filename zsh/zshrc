@@ -28,15 +28,18 @@ fi
 # source antidote
 source "${HOME}"/.antidote/antidote.zsh
 
-# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
-antidote load "${DOTFILES_ZSH_DIR}/zsh_plugins.txt"
+touch ~/.custom_zsh_plugins.txt
+
+cat "${DOTFILES_ZSH_DIR}/zsh_plugins.txt" ~/.custom_zsh_plugins.txt > ~/.zsh_plugins.txt
+
+# shellcheck source=/dev/null
+[ -s "${CUSTOMRC}" ] && source "${CUSTOMRC}"
+
+antidote load ~/.zsh_plugins.txt
 
 if type -p tmux > /dev/null; then
     [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
 fi
-
-# shellcheck source=/dev/null
-[ -s "${CUSTOMRC}" ] && source "${CUSTOMRC}"
 
 setopt share_history
 setopt hist_ignore_dups
