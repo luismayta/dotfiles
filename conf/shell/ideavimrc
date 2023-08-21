@@ -1,5 +1,58 @@
-" search for actions: :actionlist <patter>
+"" Source your .vimrc
+" source ~/.vimrc
 
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+Plug 'mg979/vim-visual-multi'
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" clipboard
+set clipboard^=unnamed,unnamedplus,ideaput
+
+" Ignore case
+set ignorecase
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+set gdefault                      " substitute all occurrences in line per default
+set history=10000                 " keep x lines of command line history
+
+""" Plugins  --------------------------------
+set NERDTree
+set ReplaceWithRegister
+set argtextobj
+set commentary
+set easymotion
+set exchange
+set highlightedyank
+set surround                      " emulate vim-surround plugin
+set matchit
+set textobj-entire
+set textobj-indent
+set vim-paragraph-motion
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+let g:EasyMotion_smartcase = 1
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+set visualbell
 set number                        " line numbers
 
 set hlsearch                      " highlight search occurrences
@@ -8,28 +61,116 @@ set smartcase                     " no ignore case when pattern is uppercase
 set incsearch                     " show search results while typing
 set wrapscan                      " searches wrap around the end of the file
 
-set gdefault                      " substitute all occurrences in line per default
-set history=10000                 " keep x lines of command line history
-set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
-set clipboard=unnamedplus,unnamed,ideaput " integrate with system clipboard
-
-" set multiple-cursors
-set commentary
-set surround                      " emulate vim-surround plugin
-
+""" Leader ------------------
 let mapleader=","
+nnoremap <space> <nop>
 
-" edit ideavim config
+""" Manage .ideavimrc ---------------
 nnoremap <leader>vv :e ~/.ideavimrc<CR>
-nnoremap <leader>vr :source ~/.ideavimrc<CR>
+nnoremap <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
+
+""" Insert mappings ------------------
+inoremap hsr =>
+inoremap nra ->
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" Map leader s to save.
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
+
+" Keymap
+inoremap jk <esc>
+
+""" Plugin Mappings --------------------------------
+
+map ; <Plug>(easymotion-sn)
+omap ; <Plug>(easymotion-tn)
+map ,n <Plug>(easymotion-next)
+map ,N <Plug>(easymotion-prev)
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+""" Distraction Free Mode -------------------
+nnoremap <C-z> :action ToggleDistractionFreeMode<CR>
+
+""" Terminal -------------------
+nnoremap <C-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>i :action Terminal.OpenInTerminal<CR>
+
+""" Navigation -------------------
+nnoremap <c-x>1 :action Unsplit<CR>
+nnoremap <c-x>2 :action SplitHorizontally<CR>
+nnoremap <c-x>3 :action SplitVertically<CR>
+
+nnoremap <C-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
+nnoremap <leader>en :action EditSourceInNewWindow<CR>
+nnoremap <leader>n :action NextWindow<CR>
+map <leader>x :action CloseContent<CR>
+map <leader>X :action ReopenClosedTab<CR>
+map <leader>qa :action CloseAllEditors<CR>
+
+""" Editing source code -------------------
+" make dot work on visual line selections.
+xnoremap . :norm.<CR>
+" Y should behave like D and C, from cursor till the end of line.
+noremap Y y$
+" U for redo, the opposite of u for undo.
+nnoremap U <C-r>
+
+" Map commenting or uncommenting to gc
+vmap gcc :action CommentByLineComment<cr>
+nnoremap gcc :action CommentByLineComment<CR>
+
+""" Searching and Source Code Navigation -------------------
+nnoremap <C-/> :action FindInPath<CR>
+nnoremap <C-a> :action GotoAction<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <C-s> :action FileStructurePopup<CR>
+nnoremap <C-y> :action GotoSymbol<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gp :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+nnoremap <C-S-g> :!echo % \| sed "s#${HOME}#~#"<CR>
+
+""" Tool windows -------------------
+nnoremap <C-p> :action JumpToLastWindow<CR>
+nnoremap <C-q> :action HideAllWindows<CR>
 
 """"""""""""""""""""""""""""""""""""""Basics""""""""""""""""""""""""""""""""""""""
-"debug Artifact
+
+""" debug Artifact --------------------------------
+
 nmap <C-j> :action StepOver<CR>
 nmap <C-k> :action Resume<CR>
 nmap <C-h> :action StepOut<CR>
 nmap <C-l> :action ForceStepInto<CR>
-"Mobile specialization
+
+""" Mobile specialization --------------------------------
+
 vmap <C-j> <C-e>
 vmap <C-k> <C-y>
 vmap <C-h> 10zh
@@ -39,12 +180,15 @@ imap <C-k> <Up>
 imap <C-h> <Left>
 imap <C-l> <Right>
 imap <C-i> <CR>
+
 "Left and right vision
 nnoremap zH 50zh
 nnoremap zL 50zl
+
 "^$ The symbol is too hard to press
 map gh ^
 map gl $
+
 """"""""""""""""""""""""""""""""""""""Refactoring""""""""""""""""""""""""""""""""""""""
 noremap <leader>re :action RenameElement<CR>
 noremap <leader>mv :action Move<CR>
@@ -65,31 +209,34 @@ noremap <leader>pu :action MembersPullUp<CR>
 noremap <leader>RF :action RenameFile<CR>
 noremap <leader>cs  :action ChangeSignature<CR>
 noremap <leader>ai :action AnonymousToInner<CR>
+
 """"""""""""""""""""""""""""""""""""""Jump articles""""""""""""""""""""""""""""""""""""""
-noremap <leader>te :action SearchEverywhere<CR>
 nnoremap <leader>ts mm`m:action GotoSymbol<CR>
-noremap  <leader>tu  mm`m:action Toolkit.GotoService<CR>
+noremap <leader>tu mm`m:action Toolkit.GotoService<CR>
 nnoremap <leader>ta mm`m:action GotoAction<CR>
-noremap <leader>tf mm`m:action GotoFile<CR>
+noremap <leader>fe mm`m:action GotoFile<CR>
+noremap <leader>fp mm`m:action FindInPath<CR>
+noremap <leader>fb :action RecentFiles<CR>
+noremap <leader>fg :action SearchEverywhere<CR>
 noremap <leader>tt mm`m:action GotoTest<CR>
 noremap <leader>tc mm`m:action GotoClass<CR>
-noremap <leader>tp mm`m:action FindInPath<CR>
 noremap <leader>ne mm`m:action GotoNextError<CR>
 noremap <leader>pe mm`m:action GotoPreviousError<CR>
 noremap <leader>gs mm`m:action GotoSuperMethod<CR>
 noremap <leader>gi mm`m:action GotoImplementation<CR>
 noremap <leader>g, mm`m:action JumpToLastChange<CR>
 noremap <leader>g; mm`m:action JumpToNextChange<CR>
-noremap <leader>rf :action RecentFiles<CR>
 noremap <leader>rF :action RecentChangedFiles<CR>
 noremap <leader>nw :action NextProjectWindow<CR>
 noremap <leader>pw :action PreviousProjectWindow<CR>
+
 """"""""""""""""""""""""""""""""""""""SQL""""""""""""""""""""""""""""""""""""""
-noremap <leader>sc :action Console.Transaction.Commit<CR>
-noremap <leader>sr :action Console.Transaction.Rollback<CR>
-noremap <leader>se :action Console.Jdbc.Execute<CR>
+#noremap <leader>sc :action Console.Transaction.Commit<CR>
+#noremap <leader>sr :action Console.Transaction.Rollback<CR>
+#noremap <leader>se :action Console.Jdbc.Execute<CR>
 "Open the database log window, provided the MyBatis Log Plugin is installed
-noremap <leader>AL :action TailMyBatisLog0<CR>:action ActivateMyBatisLogToolWindow<CR>
+#noremap <leader>AL :action TailMyBatisLog0<CR>:action ActivateMyBatisLogToolWindow<CR>
+
 """"""""""""""""""""""""""""""""""""""Run""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>rc :action RunConfiguration<CR>
 noremap <leader>rr :action Run<CR>
@@ -98,7 +245,8 @@ noremap <leader>dd :action Debug<CR>
 noremap <leader>dn :action DebugClass<CR>
 noremap <leader>cc :action Coverage<CR>
 noremap <leader>cn :action RunCoverage<CR>
-noremap <leader>sp   :action Stop<CR>
+noremap <leader>sp :action Stop<CR>
+
 """"""""""""""""""""""""""""""""""""""Debug""""""""""""""""""""""""""""""""""""""
 noremap <leader>bp :action ToggleLineBreakpoint<CR>
 noremap <leader>qe :action QuickEvaluateExpression <CR>
@@ -117,9 +265,9 @@ noremap <leader>mb :action XDebugger.MuteBreakpoints<CR>
 
 
 """"""""""""""""""""""""""""""""""""""Window""""""""""""""""""""""""""""""""""""""
-noremap <leader>AM  :action ActivateMavenToolWindow<CR>
-noremap <leader>AD  :action ActivateDatabaseToolWindow<CR>
-noremap <leader>AT   :action ActivateTODOToolWindow<CR>
+noremap <leader>AM :action ActivateMavenToolWindow<CR>
+noremap <leader>AD :action ActivateDatabaseToolWindow<CR>
+noremap <leader>AT :action ActivateTODOToolWindow<CR>
 noremap <leader>AF :action ActivateFavoritesToolWindow<CR>
 noremap <leader>AP :action ActivateProjectToolWindow<CR>
 noremap <leader>AG :action ActivateVersionControlToolWindow<CR>
@@ -135,39 +283,53 @@ noremap <leader><leader> :action HideAllWindows<CR>
 noremap <leader>si :action SelectInProjectView<CR>
 noremap <leader>eb :action EditBreakpoint<CR>
 
+" Undo
+nnoremap <leader>u :action LocalHistory.ShowHistory<CR>
+
 """"""""""""""""""""""""""""""""""""""Information""""""""""""""""""""""""""""""""""""""
 noremap <leader>ed :action ShowErrorDescription<CR>
 noremap <leader>ti :action ExpressionTypeInfo<CR>
 noremap <leader>pi :action ParameterInfo<CR>
 noremap <leader>jd :action QuickJavaDoc<CR>
 noremap <leader>fs mm`m:action FileStructurePopup<CR>
-noremap <leader>sd  :action ShowUmlDiagram<CR>
+noremap <leader>sd :action ShowUmlDiagram<CR>
 noremap <leader>ch :action CallHierarchy<CR>
 nnoremap <leader>fu :action FindUsages<CR>
 nnoremap <leader>su :action ShowUsages<CR>
 noremap <leader>mh :action MethodHierarchy<CR>
-noremap <leader>ss  :action ShowSettings<CR>
+noremap <leader>ss :action ShowSettings<CR>
 noremap <leader>ps :action ShowProjectStructureSettings<CR>
 """"""""""""""""""""""""""""""""""""""Project""""""""""""""""""""""""""""""""""""""
+
 noremap <leader>cP :action CloseProject<CR>
 noremap <leader>CP :action CloseProject<CR>
-noremap <leader>oP :action OpenFile<CR>
-noremap <leader>OP :action OpenFile<CR>
+#noremap <leader>fe :action OpenFile<CR>
 noremap <leader>nP :action NewProject<CR>
 noremap <leader>NP :action NewProject<CR>
+
+
+""""""""""""""""""""""""""""""""""""""Quick window navigation""""""""""""""""""""""""""""""""
+nnoremap <c-l> <c-x>l
+nnoremap <c-j> <c-x>j
+nnoremap <c-h> <c-x>h
+nnoremap <c-k> <c-x>k :action MethodUp<CR>
+
+nnoremap [m :action MethodUp<cr>
+nnoremap ]m :action MethodDown<cr>
+
 """"""""""""""""""""""""""""""""""""""Utilities""""""""""""""""""""""""""""""""
 noremap <leader>sw :action SurroundWith<CR>
 noremap <leader>= :action ReformatCode<CR>
 noremap <leader>sm :action ShowPopupMenu<CR>
 noremap <leader>st :action SaveAsTemplate<CR>
-noremap <leader>cap   :action CopyAbsolutePath<CR>
-noremap <leader>ccp   :action CopyContentRootPath<CR>
+noremap <leader>cap :action CopyAbsolutePath<CR>
+noremap <leader>ccp :action CopyContentRootPath<CR>
 noremap <leader>oi :action OptimizeImports<CR>
 nnoremap <leader>cv :action ChangeView<CR>
 noremap <leader>co :action CloseAllEditorsButActive<CR>
 noremap <leader>ag :action antlr.Generate<CR>:action antlr.Generate<CR>
-noremap <leader>bc   :action ByteCodeViewer<CR>
-noremap <leader>qq   :action $TranslateTextComponent<CR>
+noremap <leader>bc :action ByteCodeViewer<CR>
+noremap <leader>qq :action $TranslateTextComponent<CR>
 noremap <leader>tr :action $TranslateAndReplaceAction<CR>
 noremap <leader>gfu :action GenerateFullRestUrl<CR>
 noremap <leader>atf :action AddToFavorites<CR>
@@ -182,8 +344,4 @@ noremap <leader>ps :action ShowProjectStructureSettings<CR>
 noremap <leader>ri :action RevealIn<CR>
 noremap <leader>ga :action Generate<CR>
 noremap <leader>cu :action CloseAllUnmodifiedEditors<CR>
-noremap <leader>oc :action OpenCodotaSearch<CR>
-noremap <leader>AC :action ActivateCodotaToolWindow<CR>
-"Codota activation window, Codota plug-in needs to be installed in advance
-noremap <leader>cl :action CodotaLeanSearchCrossRefAction<CR>
 set ideajoin

@@ -3,7 +3,7 @@ name = "dotfiles"
 version = "2.0.0"
 description = "dotfiles"
 authors = ["Luis Mayta <luis@hadenlabs.com>"]
-license = "GPL"
+license = "LGPL-3.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
