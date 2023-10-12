@@ -1150,14 +1150,14 @@ test = ["black", "coverage[toml]", "ddt (>=1.1.1,!=1.4.3)", "mypy", "pre-commit"
 
 [[package]]
 name = "grip"
-version = "4.6.1"
+version = "4.6.2"
 description = "Render local readme files before sending off to GitHub."
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "grip-4.6.1-py3-none-any.whl", hash = "sha256:3feed5c3eff92a02e56bba5f7c6d8b8007752b260b5c9c6946e045c2812d9b69"},
-    {file = "grip-4.6.1.tar.gz", hash = "sha256:a5e6ac48cd253892f0fbd0aaef3f74fe8169d8ed3d94a2e9be6bf1540e008e9f"},
+    {file = "grip-4.6.2-py3-none-any.whl", hash = "sha256:f2192e9d75b603d3de4a2c80ba70d82c7d9ebaade650306e41a7583966d0ed88"},
+    {file = "grip-4.6.2.tar.gz", hash = "sha256:3cf6dce0aa06edd663176914069af83f19dcb90f3a9c401271acfa71872f8ce3"},
 ]
 
 [package.dependencies]
