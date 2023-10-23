@@ -433,18 +433,18 @@ crt = ["awscrt (==0.16.26)"]
 
 [[package]]
 name = "bridgecrew"
-version = "2.5.18"
+version = "2.5.19"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "bridgecrew-2.5.18-py3-none-any.whl", hash = "sha256:10fc3f39f4423f5d5385c0614a1a8a65d98eebe61bd9b74fdd84f6eefed7e6ca"},
-    {file = "bridgecrew-2.5.18.tar.gz", hash = "sha256:7e2680fb454ed559b21191fb88191dee1a4e709c1caf55b61f0fa9fbb0c88528"},
+    {file = "bridgecrew-2.5.19-py3-none-any.whl", hash = "sha256:39c5837aba77b4e5f83bd9c036a0b3394414ce832e811db07edcd5882293fff5"},
+    {file = "bridgecrew-2.5.19.tar.gz", hash = "sha256:46b69d6dda03c9e9841162febd23f0b89e4e800eb91758c94cc9b7f8b6f244e6"},
 ]
 
 [package.dependencies]
-checkov = "2.5.18"
+checkov = "2.5.19"
 
 [[package]]
 name = "cached-property"
@@ -661,14 +661,14 @@ files = [
 
 [[package]]
 name = "checkov"
-version = "2.5.18"
+version = "2.5.19"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "checkov-2.5.18-py3-none-any.whl", hash = "sha256:063f36c4c841a4a728997ce04645fe33292db402acb91893612f21f8ad04e5b0"},
-    {file = "checkov-2.5.18.tar.gz", hash = "sha256:bdd24cdc2ed90ca06c19bd87a170c3f57315657d3da9052055cc9415ef9d379a"},
+    {file = "checkov-2.5.19-py3-none-any.whl", hash = "sha256:bc896d86543a37d0bab0d012eec304710c8ed070c4ac8163edfd554dfbeca301"},
+    {file = "checkov-2.5.19.tar.gz", hash = "sha256:1299f1cff92aa716ae6d6dcfa83256986856e3217aa242d205d9082990f1fb43"},
 ]
 
 [package.dependencies]
@@ -683,7 +683,7 @@ boto3 = ">=1.17"
 cachetools = "*"
 charset-normalizer = "*"
 click = ">=8.0.0"
-cloudsplaining = ">=0.4.3"
+cloudsplaining = ">=0.6.2"
 colorama = "*"
 configargparse = "*"
 cyclonedx-python-lib = ">=2.4.0,<4.0.0"
@@ -701,7 +701,6 @@ networkx = "<2.7"
 openai = "*"
 packageurl-python = "*"
 packaging = "*"
-policyuniverse = "*"
 prettytable = ">=3.0.0"
 pycep-parser = "0.4.1"
 pyston = {version = "2.3.5", markers = "python_version < \"3.11\" and sys_platform == \"linux\" and platform_machine == \"x86_64\" and implementation_name == \"cpython\" or python_version < \"3.11\" and sys_platform == \"darwin\" and platform_machine == \"x86_64\" and implementation_name == \"cpython\""}
@@ -2076,22 +2075,6 @@ click = "*"
 PyYAML = "*"
 requests = "*"
 schema = "*"
-
-[[package]]
-name = "policyuniverse"
-version = "1.5.1.20230817"
-description = "Parse and Process AWS IAM Policies, Statements, ARNs, and wildcards."
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "policyuniverse-1.5.1.20230817-py2.py3-none-any.whl", hash = "sha256:6317928273b18de8ed28ddf9f06faf501e044344d86f86b7681817fb32fff67a"},
-    {file = "policyuniverse-1.5.1.20230817.tar.gz", hash = "sha256:7920896195af163230635f1a5cee0958f56003ef8c421f805ec81f134f80a57c"},
-]
-
-[package.extras]
-dev = ["black", "pre-commit"]
-tests = ["bandit", "coveralls", "pytest"]
 
 [[package]]
 name = "pre-commit"
