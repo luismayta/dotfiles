@@ -167,28 +167,6 @@ files = [
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.9\""}
 
 [[package]]
-name = "anyio"
-version = "3.7.1"
-description = "High level compatibility layer for multiple asynchronous event loop implementations"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "anyio-3.7.1-py3-none-any.whl", hash = "sha256:91dee416e570e92c64041bd18b900d1d6fa78dff7048769ce5ac5ddad004fbb5"},
-    {file = "anyio-3.7.1.tar.gz", hash = "sha256:44a3c9aba0f5defa43261a8b3efb97891f2bd7d804e0e1f56419befa1adfc780"},
-]
-
-[package.dependencies]
-exceptiongroup = {version = "*", markers = "python_version < \"3.11\""}
-idna = ">=2.8"
-sniffio = ">=1.1"
-
-[package.extras]
-doc = ["Sphinx", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme (>=1.2.2)", "sphinxcontrib-jquery"]
-test = ["anyio[trio]", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=4)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
-trio = ["trio (<0.22)"]
-
-[[package]]
 name = "appdirs"
 version = "1.4.4"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
@@ -318,14 +296,14 @@ ply = "*"
 
 [[package]]
 name = "bc-python-hcl2"
-version = "0.3.51"
+version = "0.4.1"
 description = "A parser for HCL2"
 category = "dev"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "bc-python-hcl2-0.3.51.tar.gz", hash = "sha256:15bfecbae882ead998dd9300737237a14e40dfd8c973e5c7de7b4c92040a010f"},
-    {file = "bc_python_hcl2-0.3.51-py3-none-any.whl", hash = "sha256:ab72880dd58689a4ee9a47f229788311a2b4d607fe034a819a40a63dab432644"},
+    {file = "bc-python-hcl2-0.4.1.tar.gz", hash = "sha256:72a438ceeced7d2e4c898e218f55a2a4aba7a887c1d64a4cf913837193c446b6"},
+    {file = "bc_python_hcl2-0.4.1-py3-none-any.whl", hash = "sha256:55943510b9a4f4a8571405a14570d59c48b542857c5395e11d99852be3d1ad0d"},
 ]
 
 [package.dependencies]
@@ -482,18 +460,18 @@ crt = ["awscrt (==0.19.10)"]
 
 [[package]]
 name = "bridgecrew"
-version = "3.0.34"
+version = "3.0.35"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "bridgecrew-3.0.34-py3-none-any.whl", hash = "sha256:cc9dd946ed6985eca9ad9b046eeb47c9b80a4b7005f378908d4c86930386692f"},
-    {file = "bridgecrew-3.0.34.tar.gz", hash = "sha256:a882e434294f3946f9ec08dcd677643e7beb51443d2cc07029e5063b67550ec5"},
+    {file = "bridgecrew-3.0.35-py3-none-any.whl", hash = "sha256:6cf229b73da49002fa7f219e3fb0cdd598bd60cba4805d1df426be7184f05de9"},
+    {file = "bridgecrew-3.0.35.tar.gz", hash = "sha256:c4b00e068d6da6ae509d42dd63e5f44b54392930aea7b9522060910fd649c598"},
 ]
 
 [package.dependencies]
-checkov = "3.0.34"
+checkov = "3.0.35"
 
 [[package]]
 name = "cached-property"
@@ -710,14 +688,14 @@ files = [
 
 [[package]]
 name = "checkov"
-version = "3.0.34"
+version = "3.0.35"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "checkov-3.0.34-py3-none-any.whl", hash = "sha256:04222b6fec443fbc958c61e070c85c5c7d04e0750ad49421a66b7ae07176c02e"},
-    {file = "checkov-3.0.34.tar.gz", hash = "sha256:5c1b6c6b4e454dd020d10da16c985033d773afa60dd0ccbc0a1bbc33bc26de26"},
+    {file = "checkov-3.0.35-py3-none-any.whl", hash = "sha256:bf7bbc5a8335c67312e9b18c9f7205586077075e1222ada9b5397533ce8b7009"},
+    {file = "checkov-3.0.35.tar.gz", hash = "sha256:15a4a1a6bf1fd021f1e1cbe231e2ea1b54aec3eada595a87c2aa70b990aff637"},
 ]
 
 [package.dependencies]
@@ -727,7 +705,7 @@ aiomultiprocess = "*"
 argcomplete = "*"
 bc-detect-secrets = "1.4.30"
 bc-jsonpath-ng = "1.5.9"
-bc-python-hcl2 = "0.3.51"
+bc-python-hcl2 = "0.4.1"
 boto3 = ">=1.17"
 cachetools = "*"
 charset-normalizer = "*"
@@ -747,7 +725,7 @@ jsonschema = ">=4.6.0,<5.0.0"
 junit-xml = ">=1.9"
 license-expression = "*"
 networkx = "<2.7"
-openai = "*"
+openai = "<1.0.0"
 packageurl-python = "*"
 packaging = "*"
 prettytable = ">=3.0.0"
@@ -942,18 +920,6 @@ python-versions = "*"
 files = [
     {file = "distlib-0.3.7-py2.py3-none-any.whl", hash = "sha256:2e24928bc811348f0feb63014e97aaae3037f2cf48712d51ae61df7fd6075057"},
     {file = "distlib-0.3.7.tar.gz", hash = "sha256:9dafe54b34a028eafd95039d5e5d4851a13734540f1331060d31c9916e7147a8"},
-]
-
-[[package]]
-name = "distro"
-version = "1.8.0"
-description = "Distro - an OS platform information API"
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "distro-1.8.0-py3-none-any.whl", hash = "sha256:99522ca3e365cac527b44bde033f64c6945d90eb9f769703caaec52b09bbd3ff"},
-    {file = "distro-1.8.0.tar.gz", hash = "sha256:02e111d1dc6a50abb8eed6bf31c3e48ed8b0830d1ea2a1b78c61765c2513fdd8"},
 ]
 
 [[package]]
@@ -1245,65 +1211,6 @@ Werkzeug = ">=0.7"
 
 [package.extras]
 tests = ["flake8 (>=3.0.0)", "pytest (>=4.4.1)", "responses (>=0.5.0)"]
-
-[[package]]
-name = "h11"
-version = "0.14.0"
-description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
-    {file = "h11-0.14.0.tar.gz", hash = "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"},
-]
-
-[[package]]
-name = "httpcore"
-version = "1.0.2"
-description = "A minimal low-level HTTP client."
-category = "dev"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "httpcore-1.0.2-py3-none-any.whl", hash = "sha256:096cc05bca73b8e459a1fc3dcf585148f63e534eae4339559c9b8a8d6399acc7"},
-    {file = "httpcore-1.0.2.tar.gz", hash = "sha256:9fc092e4799b26174648e54b74ed5f683132a464e95643b226e00c2ed2fa6535"},
-]
-
-[package.dependencies]
-certifi = "*"
-h11 = ">=0.13,<0.15"
-
-[package.extras]
-asyncio = ["anyio (>=4.0,<5.0)"]
-http2 = ["h2 (>=3,<5)"]
-socks = ["socksio (>=1.0.0,<2.0.0)"]
-trio = ["trio (>=0.22.0,<0.23.0)"]
-
-[[package]]
-name = "httpx"
-version = "0.25.1"
-description = "The next generation HTTP client."
-category = "dev"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "httpx-0.25.1-py3-none-any.whl", hash = "sha256:fec7d6cc5c27c578a391f7e87b9aa7d3d8fbcd034f6399f9f79b45bcc12a866a"},
-    {file = "httpx-0.25.1.tar.gz", hash = "sha256:ffd96d5cf901e63863d9f1b4b6807861dbea4d301613415d9e6e57ead15fc5d0"},
-]
-
-[package.dependencies]
-anyio = "*"
-certifi = "*"
-httpcore = "*"
-idna = "*"
-sniffio = "*"
-
-[package.extras]
-brotli = ["brotli", "brotlicffi"]
-cli = ["click (>=8.0.0,<9.0.0)", "pygments (>=2.0.0,<3.0.0)", "rich (>=10,<14)"]
-http2 = ["h2 (>=3,<5)"]
-socks = ["socksio (>=1.0.0,<2.0.0)"]
 
 [[package]]
 name = "identify"
@@ -2027,26 +1934,26 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.2.3"
-description = "The official Python library for the openai API"
+version = "0.28.1"
+description = "Python client library for the OpenAI API"
 category = "dev"
 optional = false
 python-versions = ">=3.7.1"
 files = [
-    {file = "openai-1.2.3-py3-none-any.whl", hash = "sha256:d8d1221d777c3b2d12468f17410bf929ca0cb06e9556586e61f5a4255f0cf2b4"},
-    {file = "openai-1.2.3.tar.gz", hash = "sha256:800d206ec02c8310400f07b3bb52e158751f3a419e75d080117d913f358bf0d5"},
+    {file = "openai-0.28.1-py3-none-any.whl", hash = "sha256:d18690f9e3d31eedb66b57b88c2165d760b24ea0a01f150dd3f068155088ce68"},
+    {file = "openai-0.28.1.tar.gz", hash = "sha256:4be1dad329a65b4ce1a660fe6d5431b438f429b5855c883435f0f7fcb6d2dcc8"},
 ]
 
 [package.dependencies]
-anyio = ">=3.5.0,<4"
-distro = ">=1.7.0,<2"
-httpx = ">=0.23.0,<1"
-pydantic = ">=1.9.0,<3"
-tqdm = ">4"
-typing-extensions = ">=4.5,<5"
+aiohttp = "*"
+requests = ">=2.20"
+tqdm = "*"
 
 [package.extras]
-datalib = ["numpy (>=1)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+datalib = ["numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)"]
+dev = ["black (>=21.6b0,<22.0)", "pytest (>=6.0.0,<7.0.0)", "pytest-asyncio", "pytest-mock"]
+embeddings = ["matplotlib", "numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "plotly", "scikit-learn (>=1.0.2)", "scipy", "tenacity (>=8.0.1)"]
+wandb = ["numpy", "openpyxl (>=3.0.7)", "pandas (>=1.2.3)", "pandas-stubs (>=1.1.0.11)", "wandb"]
 
 [[package]]
 name = "packageurl-python"
@@ -3264,18 +3171,6 @@ python-versions = ">=3.7"
 files = [
     {file = "smmap-5.0.1-py3-none-any.whl", hash = "sha256:e6d8668fa5f93e706934a62d7b4db19c8d9eb8cf2adbb75ef1b675aa332b69da"},
     {file = "smmap-5.0.1.tar.gz", hash = "sha256:dceeb6c0028fdb6734471eb07c0cd2aae706ccaecab45965ee83f11c8d3b1f62"},
-]
-
-[[package]]
-name = "sniffio"
-version = "1.3.0"
-description = "Sniff out which async library your code is running under"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "sniffio-1.3.0-py3-none-any.whl", hash = "sha256:eecefdce1e5bbfb7ad2eeaabf7c1eeb404d7757c379bd1f7e5cce9d8bf425384"},
-    {file = "sniffio-1.3.0.tar.gz", hash = "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101"},
 ]
 
 [[package]]
