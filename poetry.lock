@@ -397,18 +397,18 @@ files = [
 
 [[package]]
 name = "boto3"
-version = "1.34.25"
+version = "1.34.72"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.25-py3-none-any.whl", hash = "sha256:87532469188f1eeef4dca67dffbd3f0cc1d51cef7d5e5b5dc95d3b8125f8446e"},
-    {file = "boto3-1.34.25.tar.gz", hash = "sha256:1b415e0553679ea05b9e2aed3eb271431011a67a165e3e0aefa323e13b8b7e92"},
+    {file = "boto3-1.34.72-py3-none-any.whl", hash = "sha256:a33585ef0d811ee0dffd92a96108344997a3059262c57349be0761d7885f6ae7"},
+    {file = "boto3-1.34.72.tar.gz", hash = "sha256:cbfabd99c113bbb1708c2892e864b6dd739593b97a76fbb2e090a7d965b63b82"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.25,<1.35.0"
+botocore = ">=1.34.72,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -417,14 +417,14 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.25"
+version = "1.34.72"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.25-py3-none-any.whl", hash = "sha256:35dfab5bdb4620f73ac7c557c4e0d012429706d8760b100f099feea34b5505f8"},
-    {file = "botocore-1.34.25.tar.gz", hash = "sha256:a39070bb760bd9545b0eef52a8bcb2d03918206e67a5a786ea4bd6f4bd949edd"},
+    {file = "botocore-1.34.72-py3-none-any.whl", hash = "sha256:a6b92735a73c19a7e540d77320420da3af3f32c91fa661c738c0b8c9f912d782"},
+    {file = "botocore-1.34.72.tar.gz", hash = "sha256:342edb6f91d5839e790411822fc39f9c712c87cdaa7f3b1999f50b1ca16c4a14"},
 ]
 
 [package.dependencies]
@@ -432,7 +432,7 @@ jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
 urllib3 = [
     {version = ">=1.25.4,<1.27", markers = "python_version < \"3.10\""},
-    {version = ">=1.25.4,<2.1", markers = "python_version >= \"3.10\""},
+    {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""},
 ]
 
 [package.extras]
@@ -440,18 +440,18 @@ crt = ["awscrt (==0.19.19)"]
 
 [[package]]
 name = "bridgecrew"
-version = "3.2.44"
+version = "3.2.10"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "bridgecrew-3.2.44-py3-none-any.whl", hash = "sha256:6835fcd4009b09f0855752c1d50eeb28b2edc8d538f3f6f085fca915021b52aa"},
-    {file = "bridgecrew-3.2.44.tar.gz", hash = "sha256:8a6b713deaba07d78f07e28591d59fe9d937156497462c77a608ed76bea2f2b2"},
+    {file = "bridgecrew-3.2.10-py3-none-any.whl", hash = "sha256:42da603d788707a12a0c001134f08ea52502aa8096e57bbf93e151d326136161"},
+    {file = "bridgecrew-3.2.10.tar.gz", hash = "sha256:3e711346c12b6a94768e52d7561058f0cc1c5e67f267fe7feb6991a134d695d8"},
 ]
 
 [package.dependencies]
-checkov = "3.2.44"
+checkov = "3.2.10"
 
 [[package]]
 name = "cached-property"
@@ -668,14 +668,14 @@ files = [
 
 [[package]]
 name = "checkov"
-version = "3.2.44"
+version = "3.2.10"
 description = "Infrastructure as code static analysis"
 category = "dev"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "checkov-3.2.44-py3-none-any.whl", hash = "sha256:5be2c701f624713a9568f22af8637d022e737b0e91c9729d978a68261c15246a"},
-    {file = "checkov-3.2.44.tar.gz", hash = "sha256:b202897e3f24a343f72f71c2b71183f12f505d086fbfebf84db6bec8e2f79150"},
+    {file = "checkov-3.2.10-py3-none-any.whl", hash = "sha256:6b16608d633327f37abb60641678e447e538914e9185a055882ed6641dbed18b"},
+    {file = "checkov-3.2.10.tar.gz", hash = "sha256:18156d7d3d8fc669717fe9924894ff76f4795745d835628f8c5c86f76446d630"},
 ]
 
 [package.dependencies]
@@ -686,8 +686,7 @@ argcomplete = ">=3.0.0,<4.0.0"
 bc-detect-secrets = "1.5.4"
 bc-jsonpath-ng = "1.6.1"
 bc-python-hcl2 = "0.4.2"
-boto3 = "1.34.25"
-botocore = "1.34.25"
+boto3 = ">=1.28.0,<2.0.0"
 cachetools = ">=5.2.0,<6.0.0"
 charset-normalizer = ">=3.1.0,<4.0.0"
 click = ">=8.1.0,<9.0.0"
