@@ -1,0 +1,134 @@
+{
+  "theme": "Catppuccin Macchiato",
+  "base_keymap": "VSCode",
+  "auto_update": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "format_on_save": "on",
+  "vim_mode": true,
+  "relative_line_numbers": true,
+  "ui_font_size": 16,
+  "buffer_font_features": {
+    "calt": false,
+    "liga": false
+  },
+  "buffer_font_size": 18,
+  "buffer_font_family": "FiraCode Nerd Font Mono",
+  "tab_size": 4,
+  "projects_online_by_default": false,
+  "enable_language_server": false,
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "shell": {
+    "program": "fish"
+  },
+  "formatter": "prettier",
+  "file_types": {
+    "HTML": ["hbs", "njk"]
+  },
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    }
+  },
+  "language_overrides": {
+    "JSON": {
+      "enable_language_server": true
+    },
+    "Rust": {
+      "enable_language_server": true
+    },
+    "Python": {
+      "preferred_line_length": 88,
+      "format_on_save": {
+        "external": {
+          "command": "black",
+          "arguments": ["-"]
+        }
+      }
+    },
+    "Go": {
+      "hard_tabs": true,
+      "tab_size": 2,
+      "formatter": {
+        "external": {
+          "command": "goimports",
+          "arguments": []
+        }
+      }
+    },
+    "Ruby": {
+      "formatter": {
+        "external": {
+          "command": "standardrb",
+          "arguments": ["--fix", "--stdin", "ignored", "--stderr"]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "compositeLiteralTypes": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "assist": {
+          "importGranularity": "module"
+        },
+        "inlayHints": {
+          "enable": false
+        },
+        "diagnostics": {
+          "enable": false
+        },
+        "lens": {
+          "enable": false
+        },
+        "check": {
+          "allTargets": false
+        }
+      }
+    },
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayVariableTypeHints": false,
+          "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true,
+          "includeInlayEnumMemberValueHints": true
+        }
+      }
+    }
+  },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font Mono"
+  }
+}
