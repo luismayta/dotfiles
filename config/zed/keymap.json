@@ -1,0 +1,75 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "enter": null,
+      "tab": null,
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && showing_code_actions",
+    "bindings": {
+      "enter": null,
+      "ctrl-y": "editor::ConfirmCodeAction"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      ":": "command_palette::Toggle",
+      "a": "project_panel::NewFile",
+      "/": "project_panel::NewSearchInDirectory",
+      "A": "project_panel::NewDirectory",
+      "l": "project_panel::OpenPermanent",
+      "h": "project_panel::CollapseSelectedEntry",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrev",
+      "o": "project_panel::OpenPermanent",
+      "d": "project_panel::Delete",
+      "r": "project_panel::Rename",
+      "x": "project_panel::RevealInFinder"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space o": "outline::Toggle",
+      "space /": "pane::SplitLeft",
+      "space _": "pane::SplitDown",
+      "g r": "editor::FindAllReferences",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToTypeDefinition",
+      "shift-k": "editor::Hover",
+      "g c c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      "g c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  }
+]
