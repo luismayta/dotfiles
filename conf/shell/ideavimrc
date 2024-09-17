@@ -7,6 +7,10 @@ set scroll=7
 set relativenumber
 set incsearch
 set clipboard+=unnamed,unnamedplus,ideaput
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set mouse=a
+set surround
 set ignorecase
 set gdefault
 set history=10000
@@ -25,27 +29,27 @@ set idearefactormode=keep
 set noerrorbells
 set visualbell
 
-" Don't use Ex mode, use Q for formatting.
-map Q gq
-
 """""""""""""""""""""""""""""""""""""" Plugins """""""""""""""""""""""""""""""""""""""""
 " Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 Plug 'machakann/vim-highlightedyank' " Highlight copied text
 Plug 'tpope/vim-commentary' " Commentary plugin
 Plug 'easymotion/vim-easymotion' " Easy Motions
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/argtextobj.vim'
 
-" Set leader key
+"""""""""""""""""""""""""""""""""""""" Leader key """""""""""""""""""""""""""""""""""""""""
 let mapleader=","
 
 """""""""""""""""""""""""""""""""""""" Manage .ideavimrc """""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>ve :e ~/.ideavimrc<CR>
 nnoremap <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
 
+"""""""""""""""""""""""""""""""""""""" argtextobj """""""""""""""""""""""""""""""""""""""""
+let g:argtextobj_pairs="[:],(:),<:>"
+
 """""""""""""""""""""""""""""""""""""" Custom Hot Keys """""""""""""""""""""""""""""""""""""""""
-" Jump to the end of the line
-nnoremap <C-e> $
-vnoremap <C-e> $
 
 """""""""""""""""""""""""""""""""""""" Navigation """""""""""""""""""""""""""""""""""""""""
 """ window splitting & navigation
@@ -56,18 +60,16 @@ nmap <C--> <Action>(SplitHorizontally)
 nmap <C-=> <Action>(Unsplit)
 nmap <C-m> <Action>(MoveEditorToOppositeTabGroup)
 
-" sethandler <c-j> a:vim
-" sethandler <c-k> a:vim
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-"nnoremap <C-x>1 :action MaximizeToolWindow<CR>
-nnoremap <C-x>1 :action MoveEditorToOppositeTabGroup<CR>
+"nnoremap <C-x>0 :action MaximizeToolWindow<CR>
+"nnoremap <C-x>1 :action MoveEditorToOppositeTabGroup<CR>
+map <C-X>1 :action TabShiftActions.ToggleMaximizeRestore<CR>:action HideAllWindows<CR>
 nnoremap <C-x>2 :action SplitHorizontally<CR>
 nnoremap <C-x>3 :action SplitVertically<CR>
-nnoremap <C-m> :action MoveEditorToOppositeTabGroup<CR>
+
+map <C-A>h :action TabShiftActions.MoveFocusLeft<CR>
+map <C-A>j :action TabShiftActions.MoveFocusDown<CR>
+map <C-A>k :action TabShiftActions.MoveFocusUp<CR>
+map <C-A>l :action TabShiftActions.MoveFocusRight<CR>
 
 nnoremap <TAB> :action PreviousTab<CR>
 nnoremap <S-TAB> :action NextTab<CR>
@@ -81,6 +83,7 @@ map <leader>qa :action CloseAllEditors<CR>
 
 """ Navigate tabs (opened files)
 nmap <TAB> <Action>(NextSplitter)
+nnoremap <leader>nw :action NextSplitter<CR>
 
 """ Zen mode
 nmap <C-z> <Action>(ToggleDistractionFreeMode)
@@ -90,16 +93,6 @@ inoremap hsr =>
 inoremap nra ->
 
 """""""""""""""""""""""""""""""""""""" Plugin Mappings """""""""""""""""""""""""""""""""""""""""
-map ; <Plug>(easymotion-sn)
-omap ; <Plug>(easymotion-tn)
-map ,n <Plug>(easymotion-next)
-map ,N <Plug>(easymotion-prev)
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
 
 """""""""""""""""""""""""""""""""""""" Distraction Free Mode """""""""""""""""""""""""""""""""""""""""
 nnoremap <C-z> :action ToggleDistractionFreeMode<CR>
@@ -109,8 +102,8 @@ nnoremap <C-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>i :action Terminal.OpenInTerminal<CR>
 
 """""""""""""""""""""""""""""""""""""" Tool windows """""""""""""""""""""""""""""""""""""""""
-nnoremap <C-p> :action JumpToLastWindow<CR>
-nnoremap <C-q> :action HideAllWindows<CR>
+"nnoremap <C-p> :action JumpToLastWindow<CR>
+"nnoremap <C-q> :action HideAllWindows<CR>
 
 """""""""""""""""""""""""""""""""""""" Editing source code """""""""""""""""""""""""""""""""""""""""
 """ Make dot work on visual line selections.
@@ -129,7 +122,10 @@ nnoremap gc :action CommentByLineComment<CR>
 vnoremap gc :action CommentByLineComment<CR>
 
 """""""""""""""""""""""""""""""""""""" Documentation """""""""""""""""""""""""""""""""""""""""
-nnoremap <C-k> :action QuickJavaDoc<CR>
+nnoremap <leader>jd :action QuickJavaDoc<CR>
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>gb :action Back<CR>
 
 """""""""""""""""""""""""""""""""""""" Searching and Source Code Navigation """""""""""""""""""""""""""""""""""""""""
 """ Normal mode mappings (nnoremap)
@@ -138,13 +134,15 @@ nnoremap <C-a> :action GotoAction<CR>
 nnoremap <C-p> :action FindInPath<CR>
 nnoremap <C-s> :action FileStructurePopup<CR>
 nnoremap <C-y> :action GotoSymbol<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+
 nnoremap <leader>b :action ShowNavBar<CR>
-nnoremap <leader>e :NERDTreeFocus<CR>
-nnoremap <leader>fi m`:action FindInPath<CR>
+nnoremap <leader>fb :action RecentFiles<CR>
+nnoremap <leader>fg :action SearchEverywhere<CR>
+nnoremap <leader>fe m`:action FindInPath<CR>
+nnoremap <leader>fp m`:action FindInPath<CR>
 nnoremap <leader>ff m`:action GotoFile<CR>
-nnoremap <leader>fr m`:action RecentFiles<CR>
 nnoremap <leader>fu :action FindUsages<CR>
-nnoremap <leader>gs :action GotoRelated<CR>
 nnoremap <leader>h :action CallHierarchy<CR>
 
 """ Goto
@@ -164,24 +162,6 @@ nnoremap <leader>ts mm`m:action GotoSymbol<CR>
 " Visual mode mappings (vnoremap)
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-
-" Other mappings (noremap)
-noremap <leader>fb :action RecentFiles<CR>
-noremap <leader>fd :action FileStructurePopup<CR>
-noremap <leader>fe mm`m:action GotoFile<CR>
-noremap <leader>fg :action SearchEverywhere<CR>
-noremap <leader>fm :action JumpToLastWindow<CR>
-noremap <leader>fp mm`m:action FindInPath<CR>
-noremap <leader>tu mm`m:action Toolkit.GotoService<CR>
-
-"""" Jump to commands
-let g:WhichKeyDesc_jump_to = "<leader>j Jump To"
-nmap <leader>jb <Plug>(easymotion-s)
-let g:WhichKeyDesc_jump_to_backwards = "<leader>jb Jump To Backwards"
-nmap <leader>jf <Plug>(easymotion-f)
-let g:WhichKeyDesc_jump_to_forward = "<leader>jf Jump To Forward"
-nmap <leader>jn <Action>(ShowNavBar)
-let g:WhichKeyDesc_jump_to_navigation = "<leader>jn Jump To Navigation"
 
 """""""""""""""""""""""""""""""""""""" Code completion """""""""""""""""""""""""""""""""""""""""
 
