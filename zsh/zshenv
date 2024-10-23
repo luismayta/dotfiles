@@ -40,10 +40,6 @@ if type -p pyenv > /dev/null; then
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 fi
 
-if [ -d "/home/linuxbrew/.linuxbrew/bin" ]; then
-    export PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
-fi
-
 if [ -d "${HOME}/.linuxbrew/bin" ]; then
     export PATH="${HOME}/.linuxbrew/bin:${PATH}"
 fi
