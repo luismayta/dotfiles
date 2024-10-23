@@ -5,7 +5,7 @@ default_language_version:
   node: 18.19.1
 
 default_stages:
-  - commit
+  - pre-commit
 exclude: >
   (?x)^(
     ^(\/|)vendor\/(.*?)$|
@@ -18,7 +18,7 @@ exclude: >
 
 repos:
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
+    rev: v2.3.0
     hooks:
       - id: codespell
         args: [--ignore-words=.codespell-ignores]
@@ -32,7 +32,7 @@ repos:
             go.sum|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.4.0
+    rev: v9.18.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
@@ -40,7 +40,7 @@ repos:
         args:
           - --config=.ci/linters/.commitlintrc.json
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: detect-private-key
         files: ^(?!\.?git-crypt)
