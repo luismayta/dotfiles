@@ -1,6 +1,9 @@
 ci:
   autoupdate_schedule: monthly
 
+default_language_version:
+  node: 18.19.1
+
 default_stages:
   - commit
 exclude: >
