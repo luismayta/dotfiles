@@ -30,6 +30,14 @@ tasks:
     deps:
       - task: check:yarn
 
+  update:
+    desc: Update yarn.
+    run: once
+    cmds:
+      - yarn ncu:patch
+    deps:
+      - task: check:yarn
+
   environment:
     desc: Setup environment nvm version node.
     run: once
