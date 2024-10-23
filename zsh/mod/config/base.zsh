@@ -6,6 +6,7 @@ export DOTFILES_CACHE_DIR="${HOME}/.cache/dotfiles"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
 export LOCAL_PATH_BIN="${HOME}/.local/bin"
+export HOMEBREW_BIN_PATH="/opt/homebrew/bin"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
 
