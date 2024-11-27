@@ -251,13 +251,13 @@ dev = ["freezegun (>=1.0,<2.0)", "pytest (>=6.0)", "pytest-cov"]
 
 [[package]]
 name = "bc-detect-secrets"
-version = "1.5.17"
+version = "1.5.27"
 description = "Tool for detecting secrets in the codebase"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "bc-detect-secrets-1.5.17.tar.gz", hash = "sha256:a9a42de5e95e7a2fbea3987a0c345ec83568a95a95a6816a63ef9c4af2c30f02"},
-    {file = "bc_detect_secrets-1.5.17-py3-none-any.whl", hash = "sha256:a2158062bd7b43c46f974b98039093811648893340d7cc47927a86d5aaf9c237"},
+    {file = "bc_detect_secrets-1.5.27-py3-none-any.whl", hash = "sha256:87a1f546a9a758dc4022ad00e8ebca936207a340d4616dab36ec06ff943b20be"},
+    {file = "bc_detect_secrets-1.5.27.tar.gz", hash = "sha256:1da39c1254b894b68c52c7d4e69f9e94f227ceea69f3e15bf29920d883f50abd"},
 ]
 
 [package.dependencies]
@@ -407,17 +407,17 @@ files = [
 
 [[package]]
 name = "boto3"
-version = "1.34.25"
+version = "1.35.49"
 description = "The AWS SDK for Python"
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.25-py3-none-any.whl", hash = "sha256:87532469188f1eeef4dca67dffbd3f0cc1d51cef7d5e5b5dc95d3b8125f8446e"},
-    {file = "boto3-1.34.25.tar.gz", hash = "sha256:1b415e0553679ea05b9e2aed3eb271431011a67a165e3e0aefa323e13b8b7e92"},
+    {file = "boto3-1.35.49-py3-none-any.whl", hash = "sha256:b660c649a27a6b47a34f6f858f5bd7c3b0a798a16dec8dda7cbebeee80fd1f60"},
+    {file = "boto3-1.35.49.tar.gz", hash = "sha256:ddecb27f5699ca9f97711c52b6c0652c2e63bf6c2bfbc13b819b4f523b4d30ff"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.25,<1.35.0"
+botocore = ">=1.35.49,<1.36.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -426,13 +426,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.25"
+version = "1.35.70"
 description = "Low-level, data-driven core of boto 3."
 optional = false
-python-versions = ">= 3.8"
+python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.25-py3-none-any.whl", hash = "sha256:35dfab5bdb4620f73ac7c557c4e0d012429706d8760b100f099feea34b5505f8"},
-    {file = "botocore-1.34.25.tar.gz", hash = "sha256:a39070bb760bd9545b0eef52a8bcb2d03918206e67a5a786ea4bd6f4bd949edd"},
+    {file = "botocore-1.35.70-py3-none-any.whl", hash = "sha256:ba8a4797cf7c5d9c237e67a62692f5146e895613fd3e6a43b00b66f3a8c7fc73"},
+    {file = "botocore-1.35.70.tar.gz", hash = "sha256:18d1bb505722d9efd50c50719ed8de7284bfe6d3908a9e08756a7646e549da21"},
 ]
 
 [package.dependencies]
@@ -440,25 +440,25 @@ jmespath = ">=0.7.1,<2.0.0"
 python-dateutil = ">=2.1,<3.0.0"
 urllib3 = [
     {version = ">=1.25.4,<1.27", markers = "python_version < \"3.10\""},
-    {version = ">=1.25.4,<2.1", markers = "python_version >= \"3.10\""},
+    {version = ">=1.25.4,<2.2.0 || >2.2.0,<3", markers = "python_version >= \"3.10\""},
 ]
 
 [package.extras]
-crt = ["awscrt (==0.19.19)"]
+crt = ["awscrt (==0.22.0)"]
 
 [[package]]
 name = "bridgecrew"
-version = "3.2.280"
+version = "3.2.317"
 description = "Infrastructure as code static analysis"
 optional = false
 python-versions = "*"
 files = [
-    {file = "bridgecrew-3.2.280-py3-none-any.whl", hash = "sha256:21ba712e0f8b605ed941073f28daf6ccc7650145d19cb88615921b253b20a1a0"},
-    {file = "bridgecrew-3.2.280.tar.gz", hash = "sha256:d33410d3deefdb98883ff296ca6d0b08d5f509e5e5417ebcb445da8a470dcfa5"},
+    {file = "bridgecrew-3.2.317-py3-none-any.whl", hash = "sha256:2044283e6edd3b5786b9e779a4a9a0d1486ef8c18ac0494ccc08d4b89631f7ee"},
+    {file = "bridgecrew-3.2.317.tar.gz", hash = "sha256:6f876ed7477f3770819069e6b938221738a4b7d8473248e38d26d3e21c005b09"},
 ]
 
 [package.dependencies]
-checkov = "3.2.280"
+checkov = "3.2.317"
 
 [[package]]
 name = "cached-property"
@@ -699,13 +699,13 @@ files = [
 
 [[package]]
 name = "checkov"
-version = "3.2.280"
+version = "3.2.317"
 description = "Infrastructure as code static analysis"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "checkov-3.2.280-py3-none-any.whl", hash = "sha256:68134b60a1271cd2cdb6a00a4c81bf96f54bd415084b0e4c9c3d450c1df50a50"},
-    {file = "checkov-3.2.280.tar.gz", hash = "sha256:68bc6f8816384ed5e81f5cce5f69b0d383586bf751a5755d51259c28e305e143"},
+    {file = "checkov-3.2.317-py3-none-any.whl", hash = "sha256:7efe9ae7f8338061c3499f1cebafc0167f2270389e2cc517f37ac7e2139b7c59"},
+    {file = "checkov-3.2.317.tar.gz", hash = "sha256:f568b5da17a33fe9bc51ff8a73e5cf08d1c04134cbb1c6101a74c8b61dae87dd"},
 ]
 
 [package.dependencies]
@@ -713,11 +713,10 @@ aiodns = ">=3.0.0,<4.0.0"
 aiohttp = ">=3.8.0,<4.0.0"
 aiomultiprocess = ">=0.9.0,<0.10.0"
 argcomplete = ">=3.0.0,<4.0.0"
-bc-detect-secrets = "1.5.17"
+bc-detect-secrets = "1.5.27"
 bc-jsonpath-ng = "1.6.1"
 bc-python-hcl2 = "0.4.2"
-boto3 = "1.34.25"
-botocore = "1.34.25"
+boto3 = "1.35.49"
 cachetools = ">=5.2.0,<6.0.0"
 charset-normalizer = ">=3.1.0,<4.0.0"
 click = ">=8.1.0,<9.0.0"
@@ -739,7 +738,7 @@ openai = "<1.0.0"
 packageurl-python = ">=0.11.1,<0.14.0"
 packaging = ">=23.0,<24.0"
 prettytable = ">=3.6.0,<4.0.0"
-pycep-parser = "0.4.1"
+pycep-parser = "0.5.1"
 pydantic = ">=2.0.0,<3.0.0"
 pyston = {version = "2.3.5", markers = "python_version < \"3.11\" and (sys_platform == \"linux\" or sys_platform == \"darwin\") and platform_machine == \"x86_64\" and implementation_name == \"cpython\""}
 pyston-autoload = {version = "2.3.5", markers = "python_version < \"3.11\" and (sys_platform == \"linux\" or sys_platform == \"darwin\") and platform_machine == \"x86_64\" and implementation_name == \"cpython\""}
@@ -752,7 +751,6 @@ tabulate = ">=0.9.0,<0.10.0"
 termcolor = ">=1.1.0,<2.4.0"
 tqdm = ">=4.65.0,<5.0.0"
 typing-extensions = ">=4.5.0,<5.0.0"
-urllib3 = "*"
 yarl = ">=1.9.1,<2.0.0"
 
 [package.extras]
@@ -2366,13 +2364,13 @@ idna = ["idna (>=2.1)"]
 
 [[package]]
 name = "pycep-parser"
-version = "0.4.1"
+version = "0.5.1"
 description = "A Python based Bicep parser"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = "<4.0,>=3.8"
 files = [
-    {file = "pycep_parser-0.4.1-py3-none-any.whl", hash = "sha256:27c87ad875538eb17d696002b266d921ce8eb3f7fa3b7fc09c1b3c085009527f"},
-    {file = "pycep_parser-0.4.1.tar.gz", hash = "sha256:a3edd1c3d280c283d614c865a854a693daf56c35cd4095b373016c214baa76dd"},
+    {file = "pycep_parser-0.5.1-py3-none-any.whl", hash = "sha256:8c3f99c0dc1301193b1bcbe0a44c6b2763f6d2daf24964ca48dcdfbb73087fa0"},
+    {file = "pycep_parser-0.5.1.tar.gz", hash = "sha256:683bb001077c09f98408285b1b6ba10cfb3941610966c45d0638a0e1a5e1d2a4"},
 ]
 
 [package.dependencies]
