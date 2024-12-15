@@ -35,14 +35,14 @@ function message::debug {
 
 clone_repo() {
   if [[ ! -e "${PATH_REPO}/.git" ]]; then
-    git clone --recursive -b "$DOTFILES_GIT_BRANCH" "$DOTFILES_GIT_URI" "$PATH_REPO"
+    git clone --recursive -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_URI}" "$PATH_REPO"
     ret="$?"
     message::success "$1"
   else
-    upgrade_repo "$APP_NAME" "Successfully updated $DOTFILES_NAME"
+    upgrade_repo "${APP_NAME}" "Successfully updated ${DOTFILES_NAME}"
   fi
 
-  if [[ "$ret" -eq '0' ]] && [[ ! $TRAVIS = 'true' ]]; then
+  if [[ "$ret" -eq '0' ]] && [[ ! ${TRAVIS} = 'true' ]]; then
     cd "${PATH_REPO}" || exit
     make run
   fi
@@ -51,7 +51,7 @@ clone_repo() {
 ############################  BASIC SETUP TOOLS
 program_exists() {
   local app=$1
-  local message="Need to install $app."
+  local message="Need to install ${app}."
   local ret='0'
   type -p "${1}" >>/dev/null 2>&1 || { local ret='1'; }
 
@@ -63,10 +63,10 @@ program_exists() {
 }
 
 function upgrade_repo() {
-  message::info "trying to update $1"
+  message::info "trying to update ${1}"
 
-  if [ "$1" = "${DOTFILES_NAME}" ]; then
-    cd "$PATH_REPO" || exit
+  if [ "${1}" = "${DOTFILES_NAME}" ]; then
+    cd "${PATH_REPO}" || exit
     git pull origin "${GIT_BRANCH}"
   fi
 
@@ -98,7 +98,7 @@ if type -p pacman >/dev/null; then
 fi
 
 for app in {zsh,git,rsync}; do
-  program_exists "$app"
+  program_exists "${app}"
 done
 unset app
 
