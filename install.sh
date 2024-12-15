@@ -79,6 +79,9 @@ if [[ $(uname) == 'Darwin' ]]; then
   if ! type -p brew >/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+  brew install zsh git rsync \
+    jq ag fd ripgrep cmake ksh
+  zsh --login
 fi
 
 # Archlinux Stuff
