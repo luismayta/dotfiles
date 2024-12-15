@@ -9,8 +9,8 @@ function initialize() {
 
   dotfiles_install_factory
 
-  for path in "${CONF_DIR}"/{shell,app}; do
-    for file_path in "${path}/"*; do
+  for path_key in "${CONF_DIR}"/{shell,app}; do
+    for file_path in "${path_key}/"*; do
       local file
       file="${HOME}/.${file_path##*/}"
       do_backup "${file}"
@@ -19,7 +19,7 @@ function initialize() {
     done
     unset file_path
   done
-  unset path
+  unset path_key
 
   cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
   cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
