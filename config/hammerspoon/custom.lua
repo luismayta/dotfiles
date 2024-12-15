@@ -2,11 +2,11 @@
 local config = {}
 config.devs = {
 	{ key = "b", name = "Bitwarden" },
-	{ key = "c", name = "Vscodium" },
 	{ key = "d", name = "draw.io" },
-	{ key = "e", name = "IntelliJ IDEA CE" },
-	{ key = "t", name = "Kitty" },
-	{ key = "n", name = "Notion" },
+	{ key = "[", name = "Android Studio" },
+	{ key = "]", name = "IntelliJ IDEA CE" },
+	{ key = ";", name = "Zed" },
+	{ key = "t", name = "Alacritty" },
 	{ key = "x", name = "XCode" },
 	{ key = "i", name = "Insomnia" },
 	{ key = "k", name = "Keybase" },
@@ -25,11 +25,12 @@ config.apps = {
 	{ key = "e", name = "Spark" },
 	{ key = "a", name = "Airtable" },
 	{ key = "b", name = "Brave Browser" },
-	{ key = "c", name = "GoogleCalendar" },
+	{ key = "c", name = "Calendar" },
 	{ key = "h", name = "WhatsApp" },
 	{ key = "t", name = "Telegram" },
 	{ key = "m", name = "Spotify" },
 	{ key = "r", name = "Reminders" },
+	{ key = "s", name = "Stocks" },
 	{ key = "o", name = "Finder" },
 }
 
