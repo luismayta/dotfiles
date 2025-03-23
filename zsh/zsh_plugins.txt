@@ -1,6 +1,6 @@
 hadenlabs/zsh-core
 luismayta/zsh-brew
-hadenlabs/zsh-nvm
+hadenlabs/zsh-fnm
 hadenlabs/zsh-goenv
 luismayta/zsh-pyenv
 zsh-users/zsh-syntax-highlighting

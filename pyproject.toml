@@ -5,6 +5,7 @@ description = "dotfiles"
 authors = ["Luis Mayta <luis@hadenlabs.com>"]
 license = "LGPL-3.0"
 readme = "README.md"
+repository = "https://github.com/luismayta/dotfiles"
 
 [tool.poetry.dependencies]
 python = "^3.9,<3.12"
@@ -31,10 +32,6 @@ black = "*"
 
 [tool.poetry.extras]
 docs = ["mkdocs", "mkdocs-material"]
-
-[tool.poetry_bumpversion.file."sonar-project.properties"]
-search = 'sonar.projectVersion={current_version}'
-replace = 'sonar.projectVersion={new_version}'
 
 [tool.black]
 line-length = 120
@@ -72,6 +69,9 @@ norecursedirs = ["build", "docs", ".egg"]
 
 addopts = "-s -v --cov zsh-pyenv --cov-report html --no-cov-on-fail --capture=no --ignore setup.py --ignore test_envs.py --ignore docs --ignore .egg --ignore .eggs --ignore .mypy_cache --ignore provision --ignore node_modules --doctest-modules"
 
+[tool.poetry_bumpversion.file."sonar-project.properties"]
+search = 'sonar.projectVersion={current_version}'
+replace = 'sonar.projectVersion={new_version}'
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
