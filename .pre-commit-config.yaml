@@ -14,6 +14,7 @@ exclude: >
     .+\.terraform.*$|
     .+\.venv.*$|
     .+\.lock$|
+    .+\.mdx$|
   )$
 
 repos:
@@ -21,18 +22,21 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        args: [--ignore-words=.codespell-ignores]
+        args: [--ignore-words=.ci/linters/.codespell-ignores]
         exclude: >
           (?x)^(
+            go.mod|
+            go.sum|
+            app/ia/datasets\/.*$|
+            openapi.yaml|
             .+\.vendor\/.*$|
             .+\.node_modules\/.*$|
             .+\.sops.*$|
             .+\.lock$|
-            go.mod|
-            go.sum|
+            .+\.mdx$|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.18.0
+    rev: v9.20.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
@@ -47,6 +51,7 @@ repos:
         exclude: >
           (?x)^(
             .+\.gitleaks.toml$|
+            test/fixtures/keys/.*-test.*$
           )$
       - id: check-merge-conflict
       - id: check-added-large-files
@@ -66,10 +71,9 @@ repos:
       - id: file-contents-sorter
       - id: fix-encoding-pragma
       - id: sort-simple-yaml
-  - repo: https://github.com/hadenlabs/pre-commit-hooks
-    rev: e50751c9323b0a03f27271c57513f5c389f6591b
+  - repo: https://github.com/tcort/markdown-link-check
+    rev: v3.12.2
     hooks:
-      - id: do-not-commit
       - id: markdown-link-check
         args:
           - --config=.ci/linters/markdown-link-config.json
@@ -80,6 +84,11 @@ repos:
             docs\/include\/terraform.md$|
             .+\.tpl.md$|
           )$
+
+  - repo: https://github.com/hadenlabs/pre-commit-hooks
+    rev: e50751c9323b0a03f27271c57513f5c389f6591b
+    hooks:
+      - id: do-not-commit
 
       - id: shellcheck
         exclude: >

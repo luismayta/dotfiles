@@ -162,6 +162,7 @@ title = "gitleaks config"
             '''host=HOST''',
             '''--private-key={{.PRIVATE_KEY_FILE}}''',
             '''PASSWORD=XXXXXX''',
+            '''password={password}''',
         ]
 
 
@@ -205,11 +206,19 @@ title = "gitleaks config"
     description = "Files with keys and credentials"
     file = '''(?i)(id_rsa|passwd|id_rsa.pub|pgpass)$'''
     tags = ["key", "files"]
+    [rules.allowlist]
+        description = "ignore some"
+        files = ['''(.*pub|env)$''']
 
 [[rules]]
     description = "Extension Files with keys and credentials"
     file = '''(.*?)(pub|pem|ppk|key)$'''
     tags = ["key", "files"]
+    [rules.allowlist]
+        description = "ignore file test"
+        files = [
+          '''.*-test.*$''',
+        ]
 
 # Global allowlist
 [allowlist]

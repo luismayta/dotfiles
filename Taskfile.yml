@@ -2,17 +2,54 @@
 version: "3"
 
 includes:
-  changelog: ./provision/task/changelog.yml
-  confluence: ./provision/task/confluence.yml
-  python: ./provision/task/python.yml
-  git: ./provision/task/git.yml
   docs: ./provision/task/docs.yml
-  docker: ./provision/task/docker.yml
-  version: ./provision/task/version.yml
-  plantuml: ./provision/task/plantuml.yml
-  prettier: ./provision/task/prettier.yml
-  sonar: ./provision/task/sonar.yml
-  diagrams: ./provision/diagrams/Taskfile.yml
+
+  ansible:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/ansible/Taskfile.yml"
+  pre-commit:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/pre-commit/Taskfile.yml"
+  github:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/github/Taskfile.yml"
+  changelog:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/changelog/Taskfile.yml"
+  confluence:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/confluence/Taskfile.yml"
+  python:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/python/Taskfile.yml"
+  node:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/node/Taskfile.yml"
+  git:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/git/Taskfile.yml"
+  # docs:
+  #   taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/docs/Taskfile.yml"
+  docker:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/docker/Taskfile.yml"
+  version:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/version/Taskfile.yml"
+  yarn:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/yarn/Taskfile.yml"
+  plantuml:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/plantuml/Taskfile.yml"
+  packer:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/packer/Taskfile.yml"
+  prettier:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/prettier/Taskfile.yml"
+  sonar:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/sonar/Taskfile.yml"
+  sops:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/sops/Taskfile.yml"
+  keybase:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/keybase/Taskfile.yml"
+  multipass:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/multipass/Taskfile.yml"
+  terraform:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/terraform/Taskfile.yml"
+  terragrunt:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/terragrunt/Taskfile.yml"
+  openssl:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/openssl/Taskfile.yml"
+  ssh:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/main/ssh/Taskfile.yml"
 
 env:
   DOCKER:
@@ -35,12 +72,14 @@ dotenv:
 vars:
   PROJECT_NAME: dotfiles
   ORGANIZATION: luismayta
-  DOCKER_PLATFORM: linux/amd64
   REVIEWERS: luismayta
+  DOCKER_PLATFORM: linux/amd64
   PYTHON_VERSION: 3.11.5
-  NODE_VERSION: 18.19.1
+  TERRAFORM_DIR: provision/terraform
+  NODE_VERSION: v20.18.3
   GIT_IGNORES: linux,windows,python,node,go,zsh,sonar,terraform,ansible,intellij+all
   GOLANGCI_VERSION: 1.42.0
+  TERRAFORM_VERSION: 1.10.5
   README_FILE: README.md
   GIT_IGNORES_CUSTOM: |
     bin
@@ -55,6 +94,7 @@ vars:
     *.zip
     .external_modules
     vendor
+    .DS_Store
 
 tasks:
   default:
@@ -128,3 +168,4 @@ tasks:
     desc: Setup environment of project
     cmds:
       - task: python:environment
+      - task: node:environment
