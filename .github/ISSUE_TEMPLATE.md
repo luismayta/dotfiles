@@ -6,7 +6,6 @@ Briefly describe the issue you are experiencing (or the feature you want to see 
 
 - OS: {Please write here}
 - Python version: {Please write here}
-- Python Facebook Chatbot version : {Please write here}
 
 ## Details
 
