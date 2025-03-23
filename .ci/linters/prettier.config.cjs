@@ -19,6 +19,15 @@ module.exports = {
       }
     },
     {
+      files: "{*.lua}",
+      options: {
+        printWidth: 100,
+        tabWidth: 2,
+        quoteProps: "preserve"
+      }
+    },
+
+    {
       files: "{*.json,.*.json,**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}",
       options: {
         parser: "json",

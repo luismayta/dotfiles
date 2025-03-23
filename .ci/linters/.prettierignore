@@ -3,6 +3,7 @@
 .serverless_nextjs
 node_modules
 dist
+build
 package.json
 package-lock.json
 coverage
@@ -25,3 +26,4 @@ contrib/
 site/
 .external_modules
 CHANGELOG.md
+charts
