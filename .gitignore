@@ -542,6 +542,7 @@ zsdoc/data
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,python,node,go,zsh,sonar,terraform,ansible,intellij+all
 # custom git ignore files
 bin
+.project
 .scannerwork
 .secrets
 public

@@ -29,11 +29,13 @@ This is a list of applications that need to be installed previously to enjoy all
 
 ### via curl
 
-`bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"`
+````bash
+bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"
+```### via wget
 
-### via wget
-
-`bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"`
+```bash
+bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"
+````
 
 ## Usage
 
@@ -52,7 +54,13 @@ task setup
 <!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-### Common
+## Common
+
+### Install Dependencies
+
+```bash
+task setup
+```
 
  <!-- Space: Projects -->
 <!-- Parent: Dotfiles -->
