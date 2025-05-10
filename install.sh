@@ -33,8 +33,55 @@ function message::debug {
   printf "${YELLOW}%s${NORMAL}\n" "😈 [DEBUG]: ${1}"
 }
 
-clone_repo() {
-  if [[ ! -e "${PATH_REPO}/.git" ]]; then
+function detect::os {
+    uname
+}
+
+function setup::factory {
+    local os_name
+    os_name=$(detect_os)
+    case "$os_name" in
+        "Darwin")
+            setup::mac
+            ;;
+        "Linux")
+            setup::linux
+            ;;
+        *)
+            echo "Unsupported OS: $os_name"
+            exit 1
+            ;;
+    esac
+}
+
+function setup::mac {
+  if ! type -p brew >/dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+  brew install zsh git rsync \
+    jq ag fd ripgrep cmake ksh
+}
+
+function setup::linux {
+# Archlinux Stuff
+  if type -p pacman >/dev/null; then
+    packages=(
+      git
+      go
+      npm
+      yarn
+      gcc
+      rsync
+    )
+    for package in "${packages[@]}"; do
+      sudo pacman -S --noconfirm "${package}"
+    done
+    npm install -g n
+  fi
+}
+
+function clone_repo {
+  if [[ ! -e "${PATH_REPO}" ]]; then
     git clone --recursive -b "${DOTFILES_GIT_BRANCH}" "${DOTFILES_GIT_URI}" "$PATH_REPO"
     ret="$?"
     message::success "$1"
@@ -44,7 +91,8 @@ clone_repo() {
 
   if [[ "$ret" -eq '0' ]] && [[ ! ${TRAVIS} = 'true' ]]; then
     cd "${PATH_REPO}" || exit
-    make run
+    # shellcheck source=/dev/null
+    source provision/script/run.sh
   fi
 }
 
@@ -74,31 +122,7 @@ function upgrade_repo() {
   message::success "${2}"
 }
 
-# Mac Stuff -------------------------------------------------------------------
-if [[ $(uname) == 'Darwin' ]]; then
-  if ! type -p brew >/dev/null; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
-  brew install zsh git rsync \
-    jq ag fd ripgrep cmake ksh
-  zsh --login
-fi
-
-# Archlinux Stuff
-if type -p pacman >/dev/null; then
-  packages=(
-    git
-    go
-    npm
-    yarn
-    gcc
-    rsync
-  )
-  for package in "${packages[@]}"; do
-    sudo pacman -S --noconfirm "${package}"
-  done
-  npm install -g n
-fi
+setup::factory
 
 for app in {zsh,git,rsync}; do
   program_exists "${app}"
