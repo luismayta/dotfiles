@@ -15,6 +15,7 @@ on:
 env:
   SONAR_HOST_URL: "${{ secrets.SONAR_HOST_URL }}"
   SONAR_LOGIN: "${{ secrets.SONAR_LOGIN }}"
+  TASK_X_REMOTE_TASKFILES: 1
 
 jobs:
   sonar-scan:
@@ -32,4 +33,4 @@ jobs:
 
       - name: Scan Sonar
         if: ${{ !env.ACT }}
-        run: task sonar:scan
+        run: task sonar:scan --yes

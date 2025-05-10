@@ -5,13 +5,9 @@ run:
   tests: true
 
 output:
-  format: tab
+  formats: tab
 
 linters-settings:
-  govet:
-    # report about shadowed variables
-    check-shadowing: true
-
   gofmt:
     # simplify code: gofmt with `-s` option, true by default
     simplify: true
@@ -24,10 +20,6 @@ linters-settings:
   gocyclo:
     # minimal code complexity to report, 30 by default (but we recommend 10-20)
     min-complexity: 10
-
-  maligned:
-    # print struct with more effective memory layout or not, false by default
-    suggest-new: true
 
   dupl:
     # tokens count to trigger issue, 150 by default
@@ -88,7 +80,6 @@ linters-settings:
 
 linters:
   enable:
-    - megacheck
     - govet
     - gocyclo
     - gocritic
@@ -106,24 +97,16 @@ linters:
     - unused
   fast: false
   disable:
-    - gomnd
     - funlen
-    - maligned
     - wsl
     - testpackage
-    - goerr113
-    - scopelint
-    - golint
     - bodyclose
     - contextcheck
     - nilerr
     - noctx
     - rowserrcheck
     - sqlclosecheck
-    - structcheck
     - unparam
-    - deadcode
-    - varcheck
     - asasalint
 
     # Drives todos nuts
@@ -139,13 +122,10 @@ issues:
         - errcheck
         - dupl
         - gosec
-        - scopelint
         - unparam
-        - golint
-
-    # - text: "should have a package comment"
-    #   linters:
-    #     - golint
+        - scopelint
+        - goanalysis_metalinter
+        - structcheck
 
   # Independently from option `exclude` we use default exclude patterns,
   # it can be disabled by this option. To list all

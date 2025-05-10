@@ -1,11 +1,7 @@
 name: confluence
 
 on:
-  workflow_run:
-    workflows:
-      - lint-code
-    types:
-      - completed
+  push:
     branches:
       - main
 
@@ -15,6 +11,9 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
       # prerelease tags, more or less
       - "v[0-9]+.[0-9]+.[0-9]+-*"
+
+env:
+  TASK_X_REMOTE_TASKFILES: 1
 
 jobs:
   confluence:

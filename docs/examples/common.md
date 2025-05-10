@@ -5,4 +5,10 @@
 <!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-### Common
+## Common
+
+### Install Dependencies
+
+```bash
+task setup
+```

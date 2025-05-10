@@ -11,37 +11,44 @@ on:
 
 env:
   TMP_CHANGELOG_FILENAME: TMP_CHANGELOG.md
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  TASK_X_REMOTE_TASKFILES: 1
 
 jobs:
   release:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     if: startsWith(github.ref, 'refs/tags/')
     container:
-      image: golang:1.19
+      image: golang:1.23
     steps:
+      - name: Enabled secure repository
+        run: |
+          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+
       - name: Check out a copy of the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
       - name: Install Task
         uses: arduino/setup-task@v1
 
+      - name: Added go path to path
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+
       - name: Install changelog
-        run: task changelog:install
+        run: task changelog:install --yes
 
       - name: Check dependences
-        run: task changelog:check
+        run: task changelog:check --yes
 
       - id: get_version
         uses: battila7/get-version-action@v2
 
-      - name: set vars to github
-        run: |
-          echo "APP_TAG=${{ steps.get_version.outputs.version-without-v }}" >> $GITHUB_ENV
-
       - name: Generate changelog
-        run: task changelog:tag
+        run: task changelog:tag APP_TAG=${{ steps.get_version.outputs.version-without-v }} --yes
 
       - name: Create Release
         if: ${{ !env.ACT }}
@@ -50,8 +57,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag_name: ${{ env.APP_TAG }}
-          release_name: ${{ env.APP_TAG }}
+          tag_name: ${{ steps.get_version.outputs.version-without-v }}
+          release_name: ${{ steps.get_version.outputs.version-without-v }}
           draft: false
           prerelease: false
           body_path: ${{ env.TMP_CHANGELOG_FILENAME }}

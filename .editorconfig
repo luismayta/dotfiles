@@ -32,7 +32,11 @@ trim_trailing_whitespace = true
 [*.{el}]
 insert_final_newline = false
 
-[*.{el,md,mdx,yml,yaml,js,json,toml,ts,tsx,hcl,tf,graphql,hbs,sh}]
+[*.{el,md,mdx,yml,yaml,js,json,toml,ts,tsx,hcl,tf,graphql,hbs,sh,lua}]
+indent_style = space
+indent_size = 2
+
+[*.{lua}]
 indent_style = space
 indent_size = 2
 
