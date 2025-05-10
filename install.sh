@@ -39,7 +39,7 @@ function detect::os {
 
 function setup::factory {
     local os_name
-    os_name=$(detect_os)
+    os_name=$(detect::os)
     case "$os_name" in
         "Darwin")
             setup::mac
