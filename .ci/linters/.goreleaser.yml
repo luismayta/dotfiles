@@ -64,9 +64,10 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
 release:
   github:
-    owner: hadenlabs
+    owner: luismayta
     name: dotfiles
   draft: true
   prerelease: auto

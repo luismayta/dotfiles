@@ -1,0 +1,7 @@
+warn_list:
+  - '204' # Lines should be less than 160 characters
+  - '701'  # meta/main.yml should contain relevant info
+skip_list:
+  - '106' # Role name must match ^[a-z][a-z0-9_]+$ pattern
+  - 'yaml'
+  - 'role-name'

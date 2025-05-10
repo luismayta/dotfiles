@@ -12,18 +12,51 @@ options:
         - fix
         - perf
         - refactor
+    sort_by: Scope
+
   commit_groups:
+    group_by: Type
+    sort_by: Title
+    title_order:
+      - feat
+      - chore
+      - fix
+      - perf
+      - refactor
+
     title_maps:
-      chore: Features
-      feat: Features
-      fix: Bug Fixes
-      perf: Performance Improvements
-      refactor: Code Refactoring
+      feat: ✨ Features
+      fix: 🐛 Bug Fixes
+      fixed: 🐛 Bug Fixes
+      perf: ⚡ Performance Improvements
+      docs: 📝 Docs changes
+      refactor: 🎨 Code Refactoring
+      rename: 🚚 Renamed
+      revert: ⏪ Reverted
+      update: 🔄 Updates
+      build: 👷 Building scripts changes
+      chore: Other changes
+      style: 💄 Code styling
+      ci: 👷 CI changes
+
   header:
-    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern: "^(\\w+)(?:\\s*.*)?(?:\\s*\\((.*?)\\))?:\\s*(.*)$"
     pattern_maps:
       - Type
+      - Scope
       - Subject
+
+  merges:
+    pattern: "^Merge branch '(\\w+)'$"
+    pattern_maps:
+      - Source
+
+  reverts:
+    pattern: "^Revert \"([\\s\\S]*)\"$"
+    pattern_maps:
+      - Header
+
   notes:
     keywords:
       - BREAKING CHANGE
+      - 💥

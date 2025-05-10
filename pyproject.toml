@@ -1,77 +1,175 @@
-[tool.poetry]
+# https://docs.astral.sh/uv/reference/settings/
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+[project]
 name = "dotfiles"
-version = "2.0.0"
 description = "dotfiles"
-authors = ["Luis Mayta <luis@hadenlabs.com>"]
+version = "2.0.0"
 license = "LGPL-3.0"
 readme = "README.md"
+requires-python = ">=3.9"
+keywords = []
+authors = [{ name = "Luis Mayta", email = "luis@hadenlabs.com" }]
 repository = "https://github.com/luismayta/dotfiles"
 
-[tool.poetry.dependencies]
-python = "^3.9,<3.12"
-boto3 = "^1.26.130"
+dependencies = ["boto3>=1.26.130"]
 
-[tool.poetry.group.dev.dependencies]
-requests = "^2.28.2"
-bridgecrew = "*"
-doc8 = "*"
-grip = "*"
-isort = "*"
-mkdocs = "*"
-mkdocs-material = "*"
-mypy = "*"
-parso = "*"
-pre-commit = "*"
-pycodestyle = "*"
-pydocstyle = "*"
-pygments = "*"
-pylint = "*"
-pymdown-extensions = "*"
-pytest = ">=6.2.4"
-black = "*"
+[project.urls]
+Source = "https://github.com/luismayta/dotfiles"
+Tracker = "https://github.com/luismayta/dotfiles/-/issues"
 
-[tool.poetry.extras]
-docs = ["mkdocs", "mkdocs-material"]
+[dependency-groups]
 
-[tool.black]
-line-length = 120
+lint = ["ruff>=0.7.4", "pre-commit>=3.5.0"]
 
-[tool.bandit]
-skips = ["B101"]
+types = ["loguru-mypy>=0.0.4", "mypy>=1.14.0", "types-toml>=0.10.8.7"]
 
-[tool.isort]
-profile = "black"
+test = [
+  "pytest-mock>=3.14.0",
+  "pytest>=8.3.4",
+  "coverage>=7.6.1",
+  "factory-boy>=3.3.0",
+  "faker>=22.2.0",
+  "freezegun>=1.2.2",
+  "mock>=5.1.0",
+  "pyhamcrest>=2.0.4",
+  "pytest>=7.4.0",
+  "pytest-asyncio>=0.21.1",
+  "pytest-cov>=4.1.0",
+  "pytest-mock>=3.11.1",
+  "responses>=0.23.3",
+]
+test-integration = ["torch>=2.0.1"]
+
+lsp = ["basedpyright>=1.23.1"]
+dap = ["debugpy>=1.8.11"]
+dev = [
+  "bump-pydantic>=0.6.1",
+  "bump-my-version>=1.1.2",
+  "greenlet>=2.0.2",
+  "ipdb>=0.13.13",
+]
+docs = [
+  "doc8",
+  "grip>=4.6.1",
+  "mkdocs>=1.5.2",
+  "mkdocs-material>=9.2.6",
+  "pymdown-extensions>=10.2.1",
+]
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+useLibraryCodeForTypes = true
+# enable subset of "strict"
+reportDuplicateImport = true
+reportInconsistentConstructor = true
+reportInvalidStubStatement = true
+reportOverlappingOverload = true
+reportPropertyTypeMismatch = true
+reportUntypedClassDecorator = true
+reportUntypedFunctionDecorator = true
+reportUntypedNamedTuple = true
+reportUnusedImport = true
+# disable subset of "basic"
+reportGeneralTypeIssues = false
+reportMissingModuleSource = false
+reportOptionalCall = false
+reportOptionalIterable = false
+reportOptionalMemberAccess = false
+reportOptionalOperand = false
+reportOptionalSubscript = false
+reportPrivateImportUsage = false
+reportUnboundVariable = false
+
+[tool.ruff]
+src = ["src", "tests"]
+line-length = 90       # black default
+
+[tool.ruff.lint]
+select = [
+  "E", # pycodestyle (supersedes pep8)
+  "W", # pycodestyle warnings
+  # "D",  # pydocstyle
+  "F", # pyflakes
+  # "UP", # pyupgrade
+  "S", # flake8-bandit
+  "B", # flake8-bugbear
+  "I", # isort
+  "N", # pep8-naming
+  # "ERA",  # eradicate
+  "C4",  # flake8-comprehensions
+  "A",   # flake8-builtins
+  "Q",   # flake8-quotes
+  "YTT", # flake8-2020
+  # "ANN",  # flake8-annotations
+  "BLE", # flake8-blind-except
+  # "FBT",  # flake8-boolean-trap
+  "C90", # mccabe
+  "T10", # flake8-debugger
+  # "EM",  # flake8-errmsg
+  "ICN", # flake8-import-conventions
+  # "T20",  # flake8-print
+  # "RET",  # flake8-return
+  "SIM", # flake8-simplify
+  "TID", # flake8-tidy-imports
+  # "ARG",  # flake8-unused-arguments
+  "PGH", # pygrep-hooks
+  "PLC", # pylint
+  "PLE", # pylint
+  "PLR", # pylint
+  "PLW", # pylint
+  "RUF", # ruff-specific rules
+]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+  "S101", # assert used
+  "S105", # hardcoded password
+]
+
+[tool.basedpyright]
+pythonVersion = "3.11"
+venvPath = ".venv"
 
 [tool.mypy]
 python_version = "3.11"
-files = ["."]
-show_error_codes = true
-pretty = true
-#strict = true
-allow_redefinition = true
-disallow_subclassing_any = true
-#disallow_untyped_calls = true
-#disallow_untyped_defs = true
-#disallow_incomplete_defs = true
-no_implicit_optional = true
-local_partial_types = true
-#no_implicit_reexport = true
-strict_equality = true
-warn_redundant_casts = true
-warn_unused_configs = true
-warn_unused_ignores = true
-#warn_return_any = true
-#warn_unreachable = true
+ignore_missing_imports = "True"
+disallow_untyped_defs = "True"
+exclude = ["notebooks"]
+strict = true
 
-[tool.pytest.ini_options]
-pythonpath = ["."]
-norecursedirs = ["build", "docs", ".egg"]
+[[tool.mypy.overrides]]
+module = ["dotty_dict.*", "pip_requirements_parser.*", "tomli.*"]
+ignore_missing_imports = true
 
-addopts = "-s -v --cov zsh-pyenv --cov-report html --no-cov-on-fail --capture=no --ignore setup.py --ignore test_envs.py --ignore docs --ignore .egg --ignore .eggs --ignore .mypy_cache --ignore provision --ignore node_modules --doctest-modules"
+[tool.coverage.run]
+omit = ["tests/*"]
 
-[tool.poetry_bumpversion.file."sonar-project.properties"]
+[tool.bumpversion]
+current_version = "0.0.0"
+parse = '''
+(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)
+(?:-(?P<pre_release>(alpha|beta|rc))\.(?P<pre_release_number>\d+))?
+'''
+serialize = [
+  "{major}.{minor}.{patch}-{pre_release}.{pre_release_number}",
+  "{major}.{minor}.{patch}",
+]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+tag = false
+sign_tags = false
+tag_name = "v{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+allow_dirty = false
+commit = false
+message = "Bump version: {current_version} → {new_version}"
+commit_args = ""
+
+[[tool.bumpversion.files]]
+filename = "sonar-project.properties"
 search = 'sonar.projectVersion={current_version}'
 replace = 'sonar.projectVersion={new_version}'
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
