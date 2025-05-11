@@ -1,6 +1,5 @@
 # Configurations Zsh
-hadenlabs/zsh-deno
-hadenlabs/zsh-alacritty
+hadenlabs/zsh-ghostty
 hadenlabs/zsh-resources
 hadenlabs/zsh-templates
 hadenlabs/zsh-ssh
