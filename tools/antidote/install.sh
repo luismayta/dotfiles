@@ -12,7 +12,7 @@ EOF
 # shellcheck source=/dev/null
 [ -r "${SCRIPT_DIR}/bootstrap.sh" ] && source "${SCRIPT_DIR}/bootstrap.sh"
 
-git clone --depth=1 https://github.com/mattmc3/antidote.git "${HOME}"/.antidote
+git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$HOME}/.antidote"
 
 cat <<EOF
 

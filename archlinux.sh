@@ -20,7 +20,7 @@ packages=(
     i3blocks-gaps-git
     jack2               # audio
     jq
-    lxappearance        # gtk themeing
+    lxappearance        # gtk theming
     neovim
     pandoc
     pavucontrol         # audio control
@@ -44,7 +44,7 @@ packages=(
     ttf-monaco
     xclip
     zathura             # pdf viewer
-    zathura-pdf-poppler # pdf pluggin
+    zathura-pdf-poppler # pdf plugin
     ksh
     zsh
 )

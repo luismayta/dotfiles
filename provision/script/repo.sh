@@ -15,8 +15,9 @@ function upgrade_repo() {
 }
 
 function clone_repo() {
-    if [ ! -e "$PATH_REPO/.git" ]; then
-        git clone --recursive -b "$GIT_BRANCH" "$GIT_URI" "$PATH_REPO"
+    if [ ! -e "${PATH_REPO}/.git" ]; then
+        git clone --recursive -b "${GIT_BRANCH}" "${GIT_URI}" "${PATH_REPO}"
+        # shellcheck disable=SC2034
         ret="$?"
         success "$1"
         debug

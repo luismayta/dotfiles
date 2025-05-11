@@ -24,6 +24,9 @@ badges:
   - name: Latest Release
     image: https://img.shields.io/github/release/luismayta/dotfiles
     url: https://github.com/luismayta/dotfiles/releases
+  - name: Version
+    image: https://img.shields.io/badge/version-0.0.0-df5e88
+    url: https://img.shields.io/github/release/luismayta/dotfiles
   - name: Lint
     image: https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code
     url: https://github.com/luismayta/dotfiles/actions?workflow=lint-code
