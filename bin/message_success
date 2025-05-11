@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env ksh
 
 CLEAR='\033[0m'
 GREEN="\033[0;32m"

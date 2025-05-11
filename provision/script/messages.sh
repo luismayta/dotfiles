@@ -6,7 +6,8 @@ function msg() {
 }
 
 function success() {
-    if [[ "$ret" -eq '0' ]]; then
+    # shellcheck disable=SC2154
+    if [[ "${ret}" -eq '0' ]]; then
         msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
