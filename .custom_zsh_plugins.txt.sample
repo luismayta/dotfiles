@@ -31,7 +31,6 @@ hadenlabs/zsh-tfenv
 # Languages
 hadenlabs/zsh-flutter
 hadenlabs/zsh-rvm
-luismayta/zsh-rust
 
 # Platform
 hadenlabs/zsh-aws
