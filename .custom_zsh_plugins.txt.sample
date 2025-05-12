@@ -1,4 +1,4 @@
-# Configurations Zsh
+
 hadenlabs/zsh-ghostty
 hadenlabs/zsh-resources
 hadenlabs/zsh-templates
@@ -12,7 +12,6 @@ hadenlabs/zsh-cheat
 luismayta/zsh-aliases
 luismayta/zsh-clean
 
-# Tools
 hadenlabs/zsh-bitwarden
 hadenlabs/zsh-docker
 hadenlabs/zsh-keybase
@@ -20,21 +19,17 @@ luismayta/zsh-apps
 luismayta/zsh-vscodium
 luismayta/zsh-trash
 
-# DevOps & K8s
 hadenlabs/zsh-k9s
 hadenlabs/zsh-kubectl
 hadenlabs/zsh-helm
 hadenlabs/zsh-devops
 hadenlabs/zsh-tfenv
 
-# Languages
 hadenlabs/zsh-flutter
 hadenlabs/zsh-rvm
 
-# Platform
 hadenlabs/zsh-aws
 luismayta/zsh-osx
 
-# Other
 hadenlabs/zsh-hacker
 luismayta/zsh-pazi
