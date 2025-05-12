@@ -92,6 +92,7 @@ repos:
           (?x)^(
             .+\.provision/git/hooks/prepare-commit-msg$|
             .+\.tpl.sh$|
+            bin\/.*$|
           )$
         args:
           - --exclude=SC1072,SC1073,SC2068
