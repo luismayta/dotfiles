@@ -1,5 +1,5 @@
 ### via curl
 
 ```bash
-bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh)"
 ```

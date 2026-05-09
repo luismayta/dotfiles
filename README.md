@@ -1,3 +1,6 @@
+
+
+
 <!--
 
 
@@ -12,32 +15,49 @@
 
   -->
 
-[![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles)](https://github.com/luismayta/dotfiles/releases) [![Version](https://img.shields.io/badge/version-0.0.0-df5e88)](https://img.shields.io/github/release/luismayta/dotfiles) [![Lint](https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code)](https://github.com/luismayta/dotfiles/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/luismayta/dotfiles/ci)](https://github.com/luismayta/dotfiles/actions?workflow=ci) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com)
+
+ [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles)](https://github.com/luismayta/dotfiles/releases) [![Version](https://img.shields.io/badge/version-0.0.0-df5e88)](https://img.shields.io/github/release/luismayta/dotfiles) [![Lint](https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code)](https://github.com/luismayta/dotfiles/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/luismayta/dotfiles/ci)](https://github.com/luismayta/dotfiles/actions?workflow=ci) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com)
 
 # dotfiles
 
-dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`.
+
+
+
+dotfiles is installed by running one of the following commands in your terminal. You can install this via the command-line with either `curl` or `wget`. 
+
+
+
+
+
+
+
+
+
+
 
 ## Requirements
+
 
 This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
 - [Curl](https://github.com/bagder/curl)
 - [Wget](https://www.gnu.org/software/wget)
 
+
+
 ## Installation
 
 ### via curl
 
 ```bash
-bash -c "$(curl -fsSL https://rebrand.ly/73aaa2n)"
-```
-
-### via wget
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh)"
+```### via wget
 
 ```bash
-bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"
+bash -c "$(wget https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh -O -)"
 ```
+
+
 
 ## Usage
 
@@ -46,6 +66,12 @@ bash -c "$(wget https://rebrand.ly/73aaa2n -O -)"
 ```bash
 task setup
 ```
+
+
+
+
+
+
 
 ## Examples
 
@@ -64,6 +90,8 @@ task setup
 task setup
 ```
 
+
+
  <!-- Space: Projects -->
 <!-- Parent: Dotfiles -->
 <!-- Title: Functions Dotfiles -->
@@ -75,11 +103,18 @@ task setup
 
 dotfiles includes a small utility `dotfiles` to fetch and install new packages.
 
+
+
+
+
+
 ## Help
 
-**Got a question?**
+### Got a question?
+
 
 File a GitHub [issue](https://github.com/luismayta/dotfiles/issues).
+
 
 ## Contributing
 
@@ -97,28 +132,36 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 
 ### Backwards compatibility in `0.0.z` and `0.y.z` version
 
-- In the context of initial development, backwards compatibility in versions `0.0.z` is **not guaranteed** when `z` is increased. (Initial development)
-- In the context of pre-release, backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is increased. (Pre-release)
+- In the context of initial development, backwards compatibility in versions `0.0.z` is **not guaranteed** when `z` is
+  increased. (Initial development)
+- In the context of pre-release, backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is
+  increased. (Pre-release)
+
+
+
 
 ## Copyright
 
-Copyright © 2018-2025 [Hadenlabs](https://hadenlabs.com)
+Copyright © 2018-2026 [Hadenlabs](https://hadenlabs.com)
+
+
 
 ## Trademarks
 
 All other trademarks referenced herein are the property of their respective owners.
 
+
+
+
+
+
 ## License
 
 The code and styles are licensed under the LGPL-3.0 license [See project license.](LICENSE).
 
+
+
 ## Don't forget to 🌟 Star 🌟 the repo if you like dotfiles
 
+
 [Your feedback is appreciated](https://github.com/luismayta/dotfiles/issues)
-
-
-<!-- Security scan triggered at 2025-09-02 15:56:02 -->
-
-<!-- Security scan triggered at 2025-09-09 06:02:10 -->
-
-<!-- Security scan triggered at 2025-09-28 16:12:39 -->

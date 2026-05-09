@@ -81,15 +81,15 @@ See [Testing](./testing.md).
 
 ### Code Submission
 
-1. See if a [Pull Request](https://github.com/luismayta/dotfiles/pulls) exists
+1. See if a [Pull Request](https://github.com/luismayta/dotfiles/pulls/new) exists
    - Add some comments or review the code to help it along
    - Don\'t be afraid to comment when logic needs clarification
-2. Create a Fork and open a [Pull Request](https://github.com/luismayta/dotfiles/pulls) if needed
+2. Create a Fork and open a [Pull Request](https://github.com/luismayta/dotfiles/pulls/new) if needed
 
 ### Code Review
 
 - Anyone can review code
-- Any [Pull Request](https://github.com/luismayta/dotfiles/pulls) should be closed or merged within a week
+- Any [Pull Request](https://github.com/luismayta/dotfiles/pulls/new) should be closed or merged within a week
 
 ### Code Acceptance
 
