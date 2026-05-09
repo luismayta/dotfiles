@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. This file uses change log convention from [keep a CHANGELOG](http://keepachangelog.com/en/0.3.0/).
 
+{{- $jira := "https://hadenlabs.atlassian.net/browse" -}}
+{{- $pattern := "([A-Z]+-[0-9]+)" -}}
+
 {{ range .Versions }}
 <a name="{{ .Tag.Name }}"></a>
 ## {{ if .Tag.Previous }}[{{ .Tag.Name }}]({{ $.Info.RepositoryURL }}/compare/{{ .Tag.Previous.Name }}...{{ .Tag.Name }}){{ else }}{{ .Tag.Name }}{{ end }}
@@ -13,7 +16,8 @@ All notable changes to this project will be documented in this file. This file u
 ### {{ .Title }}
 
 {{ range .Commits -}}
-* {{ .Subject }}
+{{- $subject := regexReplaceAll $pattern .Subject (printf "[$1](%s/$1)" $jira) -}}
+* {{ $subject }}
 {{ end }}
 {{ end -}}
 
@@ -22,7 +26,8 @@ All notable changes to this project will be documented in this file. This file u
 ### Reverts
 
 {{ range .RevertCommits -}}
-* {{ .Revert.Header }}
+{{- $header := regexReplaceAll $pattern .Revert.Header (printf "[$1](%s/$1)" $jira) -}}
+* {{ $header }}
 {{ end }}
 {{ end -}}
 

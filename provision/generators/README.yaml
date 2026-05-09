@@ -59,11 +59,11 @@ installation:
   - "docs/include/installation/curl.md"
   - "docs/include/installation/wget.md"
 
-usages:
-  - docs/usage.md
-
 include:
   - "docs/functions.md"
+
+usages:
+  - docs/usage.md
 
 examples:
   - "docs/examples/common.md"
