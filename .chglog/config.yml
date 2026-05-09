@@ -1,5 +1,6 @@
-style: github
+style: jira
 template: CHANGELOG.tpl.md
+
 info:
   title: CHANGELOG
   repository_url: https://github.com/luismayta/dotfiles
