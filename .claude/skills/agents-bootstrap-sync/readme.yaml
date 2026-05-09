@@ -1,0 +1,15 @@
+name: agents-bootstrap-sync
+description: Bootstrap agent configuration and generate AGENTS.md from docs using a template-based, idempotent approach without external templating engines.
+triggers:
+  - "bootstrap sync"
+  - "sync agents"
+  - "bootstrap agentes"
+  - "agent config"
+  - "agent bootstrap"
+what_i_do:
+  - "Bootstrap de jasper.toml y .goji.json"
+  - "Generación de AGENTS.md como entrypoint para agentes"
+  - "Enfoque idempotente y seguro"
+usage_examples:
+  - "bootstrap sync"
+  - "sync agents"

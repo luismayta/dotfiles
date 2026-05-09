@@ -1,0 +1,14 @@
+name: image-compression
+description: Reduce image file size using the MCP image-compression tool. If no path is provided, ask the user for the file.
+triggers:
+  - "Usa el skill `image-compression`"
+  - "Reduce el peso de una imagen"
+  - "Comprime esta imagen"
+what_i_do:
+  - "Validate the input file exists and is an image."
+  - "Report current file size (and dimensions when available)."
+  - "Compress using the MCP tool `image-compression_image_compression`."
+  - "Write the compressed output next to the original with a predictable name."
+usage_examples:
+  - "Compress an image to reduce file size"
+  - "Optimize images for web performance"

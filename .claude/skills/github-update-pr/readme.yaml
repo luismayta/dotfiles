@@ -1,0 +1,16 @@
+---
+name: github-update-pr
+description: Push branch commits and update the existing PR body safely (prefer REST API)
+triggers:
+  - "Use the skill `github-update-pr`"
+  - "Refresh the existing pull request description"
+  - "Update the PR body to match the latest diff"
+what_i_do:
+  - "Validate the branch locally."
+  - "Push the current branch, handling unset upstreams."
+  - "Detect which PR corresponds to the current branch."
+  - "Regenerate the PR body from `.github/PULL_REQUEST_TEMPLATE.md` using `main...HEAD`."
+  - "Update the PR body via `gh pr update` or the `gh api` fallback."
+usage_examples:
+  - "When you already have a PR open and need to refresh its description for the latest changes."
+  - "Ask the agent to update the PR body right before merging."

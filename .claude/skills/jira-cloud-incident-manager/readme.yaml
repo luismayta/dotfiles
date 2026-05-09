@@ -1,0 +1,6 @@
+name: "jira-cloud-incident-manager"
+description: "Skill para gestionar incidentes en Jira Cloud usando el MCP de Atlassian (crear, buscar y actualizar issues)."
+triggers:
+what_i_do:
+usage_examples:
+  - "Use this skill for its documented workflow."

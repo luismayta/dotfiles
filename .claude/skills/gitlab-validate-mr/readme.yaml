@@ -1,0 +1,16 @@
+---
+name: gitlab-validate-mr
+description: Find vulnerabilities or errors in a pull request (checks, scans, merge blockers) and propose fixes.
+triggers:
+  - "Use the skill `gitlab-validate-mr`"
+  - "Validate a pull request for checks and blockers"
+  - "Review MR CI status and merge blockers"
+what_i_do:
+  - "Ask which PR to validate (number or URL)."
+  - "List PRs assigned to you so you can pick one quickly."
+  - "Inspect CI/check failures, required checks, and merge blockers."
+  - "Look for security signals such as vulnerability findings when available."
+  - "Produce an actionable checklist to get the MR merge-ready."
+usage_examples:
+  - "When you want a thorough validation report before merging a MR."
+  - "Ask for failing jobs, blockers, and next steps for the merge request."

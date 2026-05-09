@@ -1,0 +1,16 @@
+---
+name: github-validate-pr
+description: Find vulnerabilities or errors in a pull request (checks, scans, merge blockers) and propose fixes.
+triggers:
+  - "Use the skill `github-validate-pr`"
+  - "Validate a pull request for checks and blockers"
+  - "Review PR CI status and merge blockers"
+what_i_do:
+  - "Ask which PR to validate (number or URL)."
+  - "List PRs assigned to you so you can pick one quickly."
+  - "Inspect CI/check failures, required checks, and merge blockers."
+  - "Look for security signals such as vulnerability findings when available."
+  - "Produce an actionable checklist to get the PR merge-ready."
+usage_examples:
+  - "When you want a thorough validation report before merging a PR."
+  - "Ask for failing jobs, blockers, and next steps for the pull request."

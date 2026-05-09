@@ -1,0 +1,15 @@
+name: jira-sync-filters
+description: Skill para sincronizar filtros de Jira con un archivo markdown. Crea, actualiza y reconcilia filtros (incluyendo JQL, description y favourite).
+triggers:
+  - "Usa el skill `jira-sync-filters`"
+  - "Sincroniza filtros de Jira con este archivo"
+  - "Crea filtros desde markdown"
+what_i_do:
+  - "Resolve `filePath` from `{{args}}`"
+  - "Validate file access and parse markdown"
+  - "Get filters from Jira via MCP"
+  - "Compare and reconcile: create, update, add from Jira"
+  - "Write updated file preserving format"
+usage_examples:
+  - "Sync Jira filters with a markdown file"
+  - "Create filters from markdown and update JQL"
