@@ -577,6 +577,7 @@ vendor
 charts
 .DS_Store
 .turbo
+.opencode
 .jira-config.json
 .infobot
 .jasper
