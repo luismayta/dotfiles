@@ -45,14 +45,14 @@ indent_size = 2
 indent_style = space
 indent_size = 4
 
-[*.go]
+[*.{go, rs}]
 indent_size = 2
 indent_style = tab
 
 # Minified JavaScript files shouldn't be changed
 [**.min.js]
-indent_style = ignore
-insert_final_newline = ignore
+indent_style = space
+insert_final_newline = true
 
 # Tab indentation (no size specified)
 [Makefile]
