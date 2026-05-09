@@ -1,6 +1,9 @@
 ci:
   autoupdate_schedule: monthly
 
+default_language_version:
+  node: 24.11.1
+
 default_stages:
   - pre-commit
 exclude: >
@@ -9,6 +12,7 @@ exclude: >
     .+\.node_modules\/.*$|
     .+\.external_modules.*$|
     .+\.terraform.*$|
+    pnpm-lock.yaml|
     .+\.venv.*$|
     .+\.lock$|
     .+\.mdx$|
@@ -16,25 +20,41 @@ exclude: >
 
 repos:
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         args:
           - --ignore-words=.ci/linters/.codespell-ignores
         exclude: >
           (?x)^(
-            go.mod|
-            go.sum|
-            app/ia/datasets\/.*$|
-            openapi.yaml|
-            .+\.vendor\/.*$|
-            .+\.node_modules\/.*$|
-            .+\.sops.*$|
-            .+\.lock$|
-            .+\.mdx$|
+          AGENTS.md|
+          CHANGELOG.md|
+          skills/.*/SKILL\.md$|
+          skills/.*/README\.md$|
+          app/components/sections\/.*$|
+          .claude/skills\/.*$|
+          .agents/skills\/.*$|
+          .opencode/skills\/.*$|
+          app/data\/.*$|
+          app/ia/datasets\/.*$|
+          app/routes\/.*$|
+          data/patterns\/.*$|
+          openspec\/.*$|
+          go.mod|
+          go.sum|
+          openapi.yaml|
+          provision/prompts\/.*$|
+          openspec\/.*$|
+          docs/prompts/openspec\/.*$|
+          .+\.lock$|
+          .+\.mdx$|
+          .+\.node_modules\/.*$|
+          .+\.sops.*$|
+          .+\.vendor\/.*$|
+          src/context/humans\.md$|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.20.0
+    rev: v9.24.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
@@ -42,7 +62,7 @@ repos:
         args:
           - --config=.ci/linters/.commitlintrc.json
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: detect-private-key
         files: ^(?!\.?git-crypt)
@@ -56,43 +76,55 @@ repos:
         files: ^tf|-|\.(py|env|yml|yaml)$
       - id: check-case-conflict
       - id: check-json
+        exclude: >
+          (?x)^(
+            .zed/tasks.json$|
+          )$
       - id: check-xml
       - id: check-yaml
         args:
           - --allow-multiple-documents
-      - id: check-byte-order-marker
+        exclude: >
+          (?x)^(
+            .*\.tpl\.yaml$
+          )$
+      - id: fix-byte-order-marker
       - id: check-ast
       - id: debug-statements
       - id: check-docstring-first
       - id: requirements-txt-fixer
       - id: check-symlinks
       - id: file-contents-sorter
-      - id: fix-encoding-pragma
       - id: sort-simple-yaml
+
   - repo: https://github.com/tcort/markdown-link-check
-    rev: v3.12.2
+    rev: v3.14.2
     hooks:
       - id: markdown-link-check
         args:
           - --config=.ci/linters/markdown-link-config.json
         exclude: >
           (?x)^(
-            .+\.docs/env-vars.md$|
-            docs/env-vars.md$|
-            docs\/include\/terraform.md$|
-            .+\.tpl.md$|
+          .+\.docs/env-vars.md$|
+          .+\.tpl.md$|
+          data/patterns\/.*$|
+          docs/env-vars.md$|
+          docs\/include\/terraform.md$|
+          docs/opencode/commands/.*\.md$|
           )$
 
   - repo: https://github.com/hadenlabs/pre-commit-hooks
-    rev: e50751c9323b0a03f27271c57513f5c389f6591b
+    rev: 0.6.0
     hooks:
       - id: do-not-commit
+
       - id: shellcheck
         exclude: >
           (?x)^(
             .+\.provision/git/hooks/prepare-commit-msg$|
             .+\.tpl.sh$|
-            bin\/.*$|
+            .+\.envrc$|
+            bin\/.*$
           )$
         args:
           - --exclude=SC1072,SC1073,SC2068
@@ -100,7 +132,6 @@ repos:
         args:
           - --path=.
           - --repo-config-path=.ci/linters/.gitleaks.toml
-          - --commit-since=2022-01-01
           - --verbose
       - id: hadolint
         args:
