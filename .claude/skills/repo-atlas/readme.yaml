@@ -1,0 +1,16 @@
+name: "repo-atlas"
+description: "Language-agnostic repository codemap generator and structural analyzer powered by cartographer engine"
+triggers:
+  - "Understand an unfamiliar repository"
+  - "Generate architecture documentation"
+  - "Prepare context for implementation tasks"
+  - "Analyze structure before refactoring"
+what_i_do:
+  - "Loads optional atlas config from `.slim/atlas.config.json` to override include, exclude, and domains."
+  - "Detects repository type and monorepo layout to infer domains and scanning patterns."
+  - "Initializes cartographer state and generates codemaps when `.slim/cartography.json` is missing."
+  - "Detects file changes and updates root plus affected folder codemaps incrementally."
+  - "Persists the updated state and enforces non-empty codemap sections derived from tracked files."
+usage_examples:
+  - "Map a new repository before making implementation changes."
+  - "Refresh codemaps after code changes while updating only impacted areas."

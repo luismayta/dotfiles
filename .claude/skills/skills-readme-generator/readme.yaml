@@ -1,0 +1,19 @@
+name: "skills-readme-generator"
+description: "Genera archivos readme.yaml para cada skill en el directorio skills/. Usa IA para extraer metadata de SKILL.md y llena el template `readme.yaml.tpl` desde la carpeta del skill."
+triggers:
+  - "\"valida los skills\""
+  - "\"genera los readme.yaml de los skills\""
+  - "\"skills readme generator\""
+what_i_do:
+  - "Determino la **carpeta base del skill** (puede ser `.agents/skills`, `.claude/skills`, `.opencode/skills` u otra según instalación) para localizar `readme.yaml.tpl`."
+  - "Busco todas las carpetas que contienen `SKILL.md` (`skills/**/SKILL.md`) para generar los `readme.yaml`."
+  - "Por cada skill (o solo el indicado):"
+  - "`name`"
+  - "`description`"
+  - "`triggers`"
+  - "`what_i_do`"
+  - "`usage_examples`"
+  - "Si no existe, se reporta un error."
+  - "Reporto archivos creados, existentes o errores encontrados."
+usage_examples:
+  - "Use this skill for its documented workflow."

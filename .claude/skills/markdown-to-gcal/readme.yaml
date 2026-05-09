@@ -1,0 +1,14 @@
+name: markdown-to-gcal
+description: Create Google Calendar events from structured markdown files using MCP.
+triggers:
+  - "markdown to gcal"
+  - "create calendar event"
+  - "schedule event"
+what_i_do:
+  - "Convert a structured markdown file into a Google Calendar event"
+  - "Parse event metadata (title, start, end, timezone, attendees)"
+  - "Create or update events in Google Calendar via MCP"
+usage_examples:
+  - "Use the markdown-to-gcal skill with this file"
+  - "Create a Google Calendar event from this markdown"
+  - "Schedule this event from the markdown file"

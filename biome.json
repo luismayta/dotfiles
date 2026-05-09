@@ -1,0 +1,128 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 120,
+    "attributePosition": "auto",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "expand": "auto",
+    "useEditorconfig": true,
+    "includes": [
+      "**",
+      "!**/.next",
+      "!**/.serverless",
+      "!**/.serverless_nextjs",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/package.json",
+      "!**/package-lock.json",
+      "!**/coverage",
+      "!**/.mypy_cache/",
+      "!**/.build",
+      "!**/.terraform",
+      "!.ci/linters/.cache/*",
+      "!.cache/*",
+      "!**/terraform.md",
+      "!**/*.tpl.md",
+      "!**/*.enc.yaml",
+      "!**/vendor",
+      "!**/public",
+      "!**/staticfiles",
+      "!**/out",
+      "!**/.vscode-test",
+      "!**/.cache",
+      "!**/.venv",
+      "!**/.task",
+      "!**/contrib/",
+      "!**/site/",
+      "!**/.external_modules",
+      "!**/CHANGELOG.md",
+      "!**/charts",
+      "!.claude/skills/*",
+      "!.agents/skills/*",
+      "!.skills/*",
+      "!.opencode/skills/*"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": { "recommended": true, "suspicious": { "noExplicitAny": "warn" } }
+  },
+  "javascript": {
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "none",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "quoteStyle": "double",
+      "attributePosition": "auto",
+      "bracketSpacing": true
+    }
+  },
+  "html": {
+    "formatter": {
+      "indentScriptAndStyle": false,
+      "selfCloseVoidElements": "always"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.test.ts", "**/*.test.tsx"],
+      "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } }
+    },
+    {
+      "includes": [],
+      "javascript": {
+        "formatter": {
+          "quoteProperties": "asNeeded",
+          "trailingCommas": "none",
+          "semicolons": "asNeeded",
+          "arrowParentheses": "always"
+        }
+      },
+      "formatter": { "indentWidth": 2, "lineWidth": 100 }
+    },
+    {
+      "includes": ["{*.lua}"],
+      "javascript": { "formatter": { "quoteProperties": "preserve" } },
+      "formatter": { "indentWidth": 2, "lineWidth": 100 }
+    },
+    {
+      "includes": [],
+      "javascript": { "formatter": { "quoteProperties": "preserve" } },
+      "formatter": { "indentWidth": 2 }
+    },
+    {
+      "includes": ["*.md"],
+      "javascript": {
+        "formatter": { "trailingCommas": "none", "semicolons": "asNeeded" }
+      },
+      "formatter": { "lineWidth": 120 }
+    },
+    {
+      "includes": ["*.mdx"],
+      "javascript": {
+        "formatter": { "trailingCommas": "none", "semicolons": "asNeeded" }
+      },
+      "formatter": { "lineWidth": 120 }
+    },
+    { "includes": ["*.{sass,scss}"] },
+    {
+      "includes": ["*.less"],
+      "formatter": { "indentWidth": 4, "lineWidth": 80 }
+    }
+  ],
+  "assist": {
+    "enabled": null,
+    "actions": { "source": { "organizeImports": "on" } }
+  }
+}

@@ -1,0 +1,16 @@
+name: github-create-pr
+description: Validate, push the current branch, and create a GitHub pull request from the current diff
+triggers:
+  - "Use the skill `github-create-pr`"
+  - "Create a GitHub pull request from this branch"
+  - "Open a PR and push the current branch"
+what_i_do:
+  - "Run `task validate` before opening the PR."
+  - "Inspect the `main...HEAD` diff and recent commits to summarize the branch."
+  - "Detect whether a PR already exists for the current branch and stop if one is open."
+  - "Push the current branch, setting upstream if needed."
+  - "Build the PR title and description from `.github/PULL_REQUEST_TEMPLATE.md`."
+  - "Create the pull request with `gh pr create` and return the URL."
+usage_examples:
+  - "When your branch is ready for review and you want a consistent GitHub PR created automatically."
+  - "Ask the agent to open a pull request that includes testing and migration notes."

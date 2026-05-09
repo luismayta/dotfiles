@@ -1,0 +1,10 @@
+name: "release"
+description: "Run a release bump (major/minor/patch) and generate next changelog from the updated pyproject.toml version."
+triggers:
+  - "\"haz un release:major\""
+  - "\"haz un release:minor\""
+  - "\"haz un release:patch\""
+  - "\"haz un release:pre_release\""
+what_i_do:
+usage_examples:
+  - "Use this skill for its documented workflow."

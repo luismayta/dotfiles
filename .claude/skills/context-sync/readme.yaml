@@ -1,0 +1,10 @@
+name: "context-sync"
+description: "Audit and synchronize local OpenCode context, commands, skills, agents, config, and AGENTS.md with the current repository."
+triggers:
+what_i_do:
+  - "Audit the repo's local OpenCode surface against the current checkout."
+  - "Verify that documented paths, commands, skills, and agent metadata still exist."
+  - "Detect stale repo names, nonexistent paths, missing `Load skill:` targets, invalid task names, and metadata drift."
+  - "Fix safe documentation and configuration drift directly when the source of truth is clear."
+usage_examples:
+  - "Use this skill for its documented workflow."

@@ -1,0 +1,15 @@
+name: jira-add-worklog
+description: Skill para registrar worklogs en Jira usando el issue key derivado del branch actual y una descripcion basada en los commits del branch.
+triggers:
+  - "Usa el skill `jira-add-worklog`"
+  - "Registra tiempo en Jira usando el issue del branch actual"
+  - "Agrega un worklog a la tarea de Jira actual tomando la descripcion de los commits"
+what_i_do:
+  - "Read `jasper.toml` and confirm Jira is configured."
+  - "Derive the issue key from the current branch using the project key or a regex override."
+  - "Ask for the time to log in Jira-friendly formats such as `30m` or `1h 30m`."
+  - "Summarize the latest commits into a concise description."
+  - "Submit a worklog to Jira with the derived issue key, time, and comment."
+usage_examples:
+  - "Tell the agent to log time against the Jira issue tied to the current branch."
+  - "Ask for a worklog entry built from the commit summaries without entering the issue key manually."

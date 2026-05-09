@@ -1,0 +1,9 @@
+name: "git-release"
+description: "Create consistent releases and changelogs"
+triggers:
+what_i_do:
+  - "Draft release notes from merged PRs"
+  - "Propose a version bump"
+  - "Provide a copy-pasteable `glab release create` command"
+usage_examples:
+  - "Use this when preparing a tagged release. Ask clarifying questions if versioning scheme is unclear."

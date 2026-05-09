@@ -1,0 +1,11 @@
+name: "validate-pr"
+description: "Find vulnerabilities or errors in a merge request (checks, scans, merge blockers) and propose fixes."
+triggers:
+what_i_do:
+  - "Ask which MR to validate (IID or URL)."
+  - "List MRs assigned to you so you can pick quickly."
+  - "Inspect CI/check failures, required checks, and merge blockers."
+  - "Look for security signals when available (vulnerability findings / dependency updates)."
+  - "Produce an actionable checklist to get the MR merge-ready."
+usage_examples:
+  - "Use this skill for its documented workflow."
