@@ -85,21 +85,27 @@
     },
     {
       "emoji": "🔍",
-      "code": ":sample:",
+      "code": ":mag:",
       "description": "Add or update sample code or examples.",
       "name": "sample"
     },
     {
       "emoji": "⏪",
-      "code": ":revert:",
+      "code": ":rewind:",
       "description": "Revert previous changes.",
       "name": "revert"
     },
     {
       "emoji": "👷",
-      "code": ":ci:",
+      "code": ":construction_worker:",
       "description": "Add or update Continuous Integration.",
       "name": "ci"
+    },
+    {
+      "emoji": "📝",
+      "code": ":memo:",
+      "description": "Add or update prompts (PDD/Fabric).",
+      "name": "prompt"
     }
   ]
 }

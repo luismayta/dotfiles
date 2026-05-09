@@ -30,6 +30,16 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/docker/Taskfile.yml"
   version:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/version/Taskfile.yml"
+  release:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/release/Taskfile.yml"
+  opencode:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/opencode/Taskfile.yml"
+  biome:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/biomejs/Taskfile.yml"
+  bun:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/bun/Taskfile.yml"
+  skills:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/skills/Taskfile.yml"
   plantuml:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/plantuml/Taskfile.yml"
   prettier:
@@ -63,6 +73,8 @@ env:
   README_INCLUDES: file://
   TERRAFORM_PATH: ./
   PYTHON_PACKAGE_MANAGER: uv
+  SKILL_REPOS:
+    https://github.com/hadenlabs/jasper
 
 dotenv:
   - .env
@@ -73,13 +85,17 @@ vars:
   DOCKER_PLATFORM: linux/amd64
   REVIEWERS: luismayta
   PYTHON_VERSION: 3.11.5
-  NODE_VERSION: v20.9.0
+  NODE_VERSION: v24.11.1
   GRADLE_VERSION: 8.4.0
-  GOLANG_VERSION: 1.22.4
-  GIT_IGNORES: linux,windows,python,node,go,zsh,sonar,terraform,ansible,intellij+all
+  GOLANG_VERSION: 1.24.11
+  GIT_IGNORES: python,node,go,zsh,sonar,java,maven,intellij+all,terraform,linux
+  COMMIT: $(git rev-parse HEAD)
+  RELEASE_DIR: ./release
+  DATE: $(date +%s)
   GOLANGCI_VERSION: 1.42.0
   TERRAFORM_VERSION: 1.11.4
   README_FILE: README.md
+  # NOTE: Agent workflow conventions live in `jasper.toml`.
   GIT_IGNORES_CUSTOM: |
     bin
     .project
@@ -89,12 +105,35 @@ vars:
     TMP_CHANGELOG.md
     .task
     .terraform.lock.hcl
-    *.lock.hcl
+    build
+    .task
+    .terraform.lock.hcl
     *.lock
+    *.lock.hcl
+    .cq/
     *.zip
+    package-lock.json
+    provision/ansible/*/roles/contrib
     .external_modules
     vendor
+    charts
     .DS_Store
+    .turbo
+    .jira-config.json
+    .infobot
+    .jasper
+  AI_IGNORE_CUSTOM: |
+    # Block specific paths
+    /secrets/**
+    /private/**
+    !/private/public-config.json
+
+    # Block directories anywhere
+    **/node_modules/**
+    **/dist/**
+    **/build/**
+    **/.cache/**
+    build
 
 tasks:
   default:
@@ -125,9 +164,11 @@ tasks:
       - changelog:check
       - git:check
       - docs:check
+      - opencode:check
+      - bun:check
+      - skills:check
 
   readme:
-    run: once
     desc: Generate Readme
     silent: true
     cmds:
@@ -136,52 +177,46 @@ tasks:
         --out {{.README_FILE}}
         --datasource config={{.README_YAML}}
         --datasource includes={{.README_INCLUDES}}
-      - task: prettier
+      - task: format
 
-  prettier:
-    run: once
-    desc: Execute prettier files
+  format:
+    desc: Execute format files
     cmds:
-      - task: prettier:all
       - task: uv:fmt
-
-  test:
-    run: once
-    desc: Execute of test
-    cmds:
-      - task: go:test
+      - task: biome:fmt
 
   upgrade:
-    run: once
     desc: Execute upgrade packages
     cmds:
       - uv update
-      - uv run pre-commit autoupdate
+      - task: pre-commit:update
 
   setup:
-    run: once
     desc: Setup dependences of project
     cmds:
       - >-
         [ -e ".env" ] || cp -rf .env.example .env
       - task: uv:setup
-      - task: uv:precommit
-      - task: git:setup
+      - task: skills:setup
 
   environment:
-    run: once
     desc: Setup environment of project
     cmds:
-      - task: terraform:environment
       - task: uv:environment
       - task: pnpm:environment
+      - task: bun:setup
+      - task: pre-commit:setup
+      - task: git:setup
 
-  generate:
-    run: once
-    desc: Generate files
+  fix:
+    desc: "Run fix on all files"
     cmds:
-      - task: go:mockery
-      - task: go:generate
+      - task: biome:fix
+
+  validate:
+    desc: "Run validate on all files"
+    cmds:
+      - task: pre-commit:lint
 
   help:
     cmds:
