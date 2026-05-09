@@ -2,16 +2,13 @@
   "baseUrl": "https://github.com/luismayta/dotfiles",
   "ignorePatterns": [
     {
-      "pattern": "^https://hadenlabs.com"
-    },
-    {
-      "pattern": "^https://github.com/luismayta/dotfiles/compare"
-    },
-    {
       "pattern": "^mailto:.*@hadenlabs\\.com"
     },
     {
       "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^\\.\\./data/opencode/commands/"
     }
   ],
   "replacementPatterns": [
@@ -25,7 +22,8 @@
     }
   ],
   "timeout": "20s",
+  "retryOn429": true,
   "retryCount": 3,
   "fallbackRetryDelay": "30s",
-  "aliveStatusCodes": [200, 206, 202]
+  "aliveStatusCodes": [200, 201, 202, 206]
 }

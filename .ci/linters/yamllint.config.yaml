@@ -1,5 +1,6 @@
 ignore: |
   .gitlab/
+  .*/.*\.tpl\.yaml$
 
 extends: default
 

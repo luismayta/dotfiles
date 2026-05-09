@@ -154,7 +154,7 @@ title = "gitleaks config"
 
 [[rules]]
     description = "Env Var"
-    regex = '''(?i)(apikey|secret|key|api|password|pass)=[0-9a-zA-Z-_.{}]{4,120}'''
+    regex = '''(?i)(apikey|secret|key|api|password|pass|pw|host)=[0-9a-zA-Z-_.{}]{4,120}'''
     tags = ["env"]
     [rules.allowlist]
         description = "ignore value fake"
@@ -239,9 +239,8 @@ title = "gitleaks config"
     '''^test/fixtures/keys/.*-test.*$''',
     '''^node_modules/(.*?)$''',
   ]
-  commits = [
-    '''5530b41269a24a0a680e78f0281eb28ef7cee591''',
-  ]
+
+  commits = []
 
 [whitelist]
   description = "image and html allowlists"
