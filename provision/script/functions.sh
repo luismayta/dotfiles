@@ -79,11 +79,11 @@ function cp_file() {
 function dotfiles_install_factory {
   if type -p paru >/dev/null; then
     # shellcheck source=/dev/null
-    source "${HOME}/.dotfiles"/provision/script/desktop.sh
+    source "${PATH_REPO}/provision/script/desktop.sh"
   elif type -p pacman >/dev/null; then
     sudo pacman -S --noconfirm paru
     # shellcheck source=/dev/null
-    source "${HOME}/.dotfiles"/provision/script/desktop.sh
+    source "${PATH_REPO}/provision/script/desktop.sh"
   fi
   dotfiles_install_apps
 }
@@ -96,7 +96,7 @@ function dotfiles_install_apps() {
 }
 
 function replace_files() {
-  if [[ "${DOTFILES_YES}" == "true" ]] || [[ ! -t 0 ]]; then
+  if [[ "${DOTFILES_YES:-}" == "true" ]] || [[ ! -t 0 ]]; then
     initialize
   else
     echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "

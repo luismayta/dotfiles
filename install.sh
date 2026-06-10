@@ -135,7 +135,7 @@ program_exists() {
   local app=$1
   local message="Need to install ${app}."
   local ret='0'
-  type -p "${app}" >>/dev/null 2>&1 || ret='1'
+  type -p "${app}" >/dev/null 2>&1 || ret='1'
 
   if [[ "$ret" -eq '0' ]]; then
     return 0
@@ -166,6 +166,8 @@ done
 unset app
 
 clone_repo "Successfully cloned ${DOTFILES_NAME}"
+
+message::info "git-extras is available for manual install. See tools/git-extras/install.sh"
 
 message::info "\nThanks for installing ${DOTFILES_NAME}."
 message::info "© $(date +%Y) ${DOTFILES_NAME}"
