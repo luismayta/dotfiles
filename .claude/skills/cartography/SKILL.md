@@ -103,7 +103,7 @@ Defines agent personalities and manages their configuration lifecycle.
 Each agent is a prompt + permission set. Config system uses:
 
 - Default prompts (orchestrator.ts, explorer.ts, etc.)
-- User overrides from ~/.config/opencode/jasper.json
+- User overrides from ~/.config/opencode/jasper-opencode.json
 - Permission wildcards for skill/MCP access control
 
 ## Flow
