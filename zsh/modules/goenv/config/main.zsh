@@ -6,9 +6,14 @@
 # ==============================================================================
 # shellcheck shell=bash
 
+# shellcheck source=/dev/null
 source "${GOENV_PATH}/config/base.zsh"
 
 case "${OSTYPE}" in
-darwin*) source "${GOENV_PATH}/config/osx.zsh" ;;
-linux*) source "${GOENV_PATH}/config/linux.zsh" ;;
+darwin*)
+    # shellcheck source=/dev/null
+    source "${GOENV_PATH}/config/osx.zsh" ;;
+linux*)
+    # shellcheck source=/dev/null
+    source "${GOENV_PATH}/config/linux.zsh" ;;
 esac

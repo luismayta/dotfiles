@@ -6,13 +6,19 @@
 # ==============================================================================
 # shellcheck shell=bash
 
+# shellcheck source=/dev/null
 source "${GOENV_PATH}/internal/base.zsh"
 
 case "${OSTYPE}" in
-darwin*) source "${GOENV_PATH}/internal/osx.zsh" ;;
-linux*) source "${GOENV_PATH}/internal/linux.zsh" ;;
+darwin*)
+    # shellcheck source=/dev/null
+    source "${GOENV_PATH}/internal/osx.zsh" ;;
+linux*)
+    # shellcheck source=/dev/null
+    source "${GOENV_PATH}/internal/linux.zsh" ;;
 esac
 
+# shellcheck source=/dev/null
 source "${GOENV_PATH}/internal/helper.zsh"
 
 goenv::internal::load
