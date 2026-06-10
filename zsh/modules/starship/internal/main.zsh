@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Starship internal main loader
 
 source "${ZSH_STARSHIP_PATH}/internal/base.zsh"
