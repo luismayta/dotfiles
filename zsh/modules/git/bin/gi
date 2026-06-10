@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if [ "$#" == 0 ]; then
+	echo "Ussage: gi <language>"
+	exit
+fi
+curl -sL https://www.toptal.com/developers/gitignore/api/"${@}"

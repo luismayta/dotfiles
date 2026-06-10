@@ -1,0 +1,41 @@
+#!/bin/bash
+# git-delete-local-merged
+# Author: Carlos Alexandro Becker
+# Created: 2020
+
+_log() {
+  echo "==> $*"
+}
+
+
+_base_branch() {
+  git config --get "gitflow.branch.master" || echo 'master'
+}
+
+_develop_branch() {
+  git config --get "gitflow.branch.develop" || echo 'develop'
+}
+
+# shellcheck disable=SC2039
+git-delete-local-merged() {
+  # shellcheck disable=SC2039
+  local branches base_branch develop_branch
+  base_branch="$(_base_branch)"
+  develop_branch="$(_develop_branch)"
+  _log "Removing merged branches..."
+  branches="$(git branch --merged | grep -v "^\*" | grep -v "${base_branch}" | grep -v "${develop_branch}" | tr -d '\n')"
+  echo "${branches}"
+  [ -n "$branches" ] && echo "$branches" | xargs git branch -d
+
+  _log "Removing squashed and merged branches..."
+
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | while read -r branch; do
+    base="$(git merge-base "${base_branch}" "$branch")"
+    hash="$(git rev-parse "$branch^{tree}")"
+    commit="$(git commit-tree "$hash" -p "$base" -m _)"
+    [[ $(git cherry "${base_branch}" "$commit") == "-"* ]] && git branch -D "$branch"
+  done
+}
+
+
+git-delete-local-merged "$@"

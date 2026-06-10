@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#
+# Delete a tag, both locally and from the origin remote
+
+exec git tag -d "$1" && git push origin ":refs/tags/$1"
