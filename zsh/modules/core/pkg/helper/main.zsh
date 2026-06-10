@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Helper main — sources core.zsh and backup.zsh
 #
 

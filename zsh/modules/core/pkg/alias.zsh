@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # eza (modern ls) aliases and auto-install
 #
 

@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Internal: core utilities and messaging
 #
 

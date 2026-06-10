@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Docker CLI wrappers
 #
 

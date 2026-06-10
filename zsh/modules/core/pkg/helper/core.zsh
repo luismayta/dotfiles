@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # FZF helpers, auto-install side-effects, and misc utilities
 #
 
@@ -90,7 +91,8 @@ fgb() {
 
 # ftm — create or switch tmux session via fzf
 ftm() {
-  [[ -n "${TMUX}" ]] && local change="switch-client" || local change="attach-session"
+  local change="attach-session"
+  [[ -n "${TMUX}" ]] && change="switch-client"
   if [ -n "${1}" ]; then
     tmux "${change}" -t "${1}" 2>/dev/null \
       || (tmux new-session -d -s "${1}" && tmux "${change}" -t "${1}")
@@ -98,7 +100,7 @@ ftm() {
   fi
   local session
   session="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --exit-0)" \
-    && tmux ${change} -t "${session}" \
+    && tmux "${change}" -t "${session}" \
     || echo "No sessions found."
 }
 
@@ -135,6 +137,7 @@ fag() {
 
 # agr — replace text using ag + perl
 agr() {
+  # shellcheck disable=SC2016
   ag --hidden --ignore=.git -0 -l "${1}" \
     | AGR_FROM="${1}" AGR_TO="${2}" xargs -0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g'
 }

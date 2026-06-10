@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Core env vars
 #
 

@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Config main — sources base.zsh + OS-specific overrides
 #
 

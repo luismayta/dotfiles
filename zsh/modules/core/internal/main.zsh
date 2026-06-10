@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Internal main — sources all internal modules
 #
 

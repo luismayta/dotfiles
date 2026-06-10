@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Linux helpers — guarded by platform check
 #
 

@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Core ZSH module
 #
 # Port of hadenlabs/zsh-core into the modules/ convention.

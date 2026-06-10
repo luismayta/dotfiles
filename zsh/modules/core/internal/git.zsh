@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Git utilities
 #
 

@@ -1,4 +1,5 @@
 #
+# shellcheck shell=bash
 # Pkg main — sources all package modules
 #
 
