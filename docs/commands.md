@@ -1,15 +1,4 @@
-<!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Commands Dotfiles -->
-<!-- Label: Dotfiles -->
-<!-- Label: Project -->
-<!-- Label: Commands -->
-<!-- Include: disclaimer.md -->
-<!-- Include: ac:toc -->
-
 # Commands
-
-## Poetry
 
 ## Taskfile
 

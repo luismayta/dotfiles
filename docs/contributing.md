@@ -1,11 +1,3 @@
-<!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Contributing Dotfiles -->
-<!-- Label: Dotfiles -->
-<!-- Label: Contributing -->
-<!-- Include: disclaimer.md -->
-<!-- Include: ac:toc -->
-
 # How To Contribute
 
 Contributions to dotfiles are welcome.
