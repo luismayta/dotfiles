@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# shellcheck disable=SC2154 # brew_package_name defined in config/base.zsh
 function brew::dependences::install {
     message_info "Installing Dependences for ${brew_package_name}"
     message_success "${brew_package_name} Dependences Installed"
