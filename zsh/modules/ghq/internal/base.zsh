@@ -5,8 +5,8 @@ function ghq::internal::ghq::install {
     message_info "Installing ${GHQ_PACKAGE_NAME}"
     if core::exists brew; then
         brew install "${GHQ_PACKAGE_NAME}"
-    elif core::exists apt-get; then
-        sudo apt-get update && sudo apt-get install -y "${GHQ_PACKAGE_NAME}"
+    elif core::exists paru; then
+        paru -S --noconfirm "${GHQ_PACKAGE_NAME}"
     else
         message_error "No package manager found to install ${GHQ_PACKAGE_NAME}"
         return 1
