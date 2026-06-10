@@ -17,5 +17,3 @@ source "${DEVOPS_PATH}/pkg/helm.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/tfenv.zsh"
 
-# shellcheck source=/dev/null
-source "${DEVOPS_PATH}/pkg/docker.zsh"
