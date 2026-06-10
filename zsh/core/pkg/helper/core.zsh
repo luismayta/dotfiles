@@ -90,33 +90,6 @@ fgb() {
     git checkout "$(echo "${branch}" | sed 's/.* //' | sed 's#remotes/[^/]*/##')"
 }
 
-# ftm — create or switch tmux session via fzf
-ftm() {
-  local change="attach-session"
-  [[ -n "${TMUX}" ]] && change="switch-client"
-  if [ -n "${1}" ]; then
-    tmux "${change}" -t "${1}" 2>/dev/null \
-      || (tmux new-session -d -s "${1}" && tmux "${change}" -t "${1}")
-    return
-  fi
-  local session
-  session="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --exit-0)" \
-    && tmux "${change}" -t "${session}" \
-    || echo "No sessions found."
-}
-
-# ftmk — kill a tmux session via fzf
-ftmk() {
-  if [ -n "${1}" ]; then
-    tmux kill-session -t "${1}"
-    return
-  fi
-  local session
-  session="$(tmux list-sessions -F '#{session_name}' 2>/dev/null \
-    | fzf --exit-0)" \
-    && tmux kill-session -t "${session}" \
-    || echo "No session found to delete."
-}
 
 # fgr — grep via rg and open in $EDITOR
 fgr() {
