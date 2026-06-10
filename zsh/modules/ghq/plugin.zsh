@@ -23,3 +23,6 @@ source "${ZSH_GHQ_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
 source "${ZSH_GHQ_PATH}/pkg/main.zsh"
+
+# shellcheck source=/dev/null
+source "${ZSH_GHQ_PATH}/keybindings.zsh"

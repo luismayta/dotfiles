@@ -24,6 +24,5 @@ source "${BITWARDEN_PATH}/internal/main.zsh"
 # shellcheck source=/dev/null
 source "${BITWARDEN_PATH}/pkg/main.zsh"
 
-# Keybinding
-zle -N fbw
-bindkey '^Xk' fbw
+# shellcheck source=/dev/null
+source "${BITWARDEN_PATH}/keybindings.zsh"

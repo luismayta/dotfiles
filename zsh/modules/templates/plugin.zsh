@@ -24,6 +24,5 @@ source "${TEMPLATES_PATH}/internal/main.zsh"
 # shellcheck source=/dev/null
 source "${TEMPLATES_PATH}/pkg/main.zsh"
 
-# Keybinding
-zle -N templates::run
-bindkey '^Xt' templates::run
+# shellcheck source=/dev/null
+source "${TEMPLATES_PATH}/keybindings.zsh"

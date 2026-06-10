@@ -9,6 +9,6 @@ if [[ -z "${__ZSH_SSH_LOADED}" ]]; then
   source "${SSH_PATH}/internal/main.zsh"
   # shellcheck source=/dev/null
   source "${SSH_PATH}/pkg/main.zsh"
-  zle -N ssh::connect
-  bindkey '^Xs' ssh::connect
+  # shellcheck source=/dev/null
+  source "${SSH_PATH}/keybindings.zsh"
 fi
