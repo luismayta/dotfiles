@@ -126,7 +126,6 @@ function clone_repo {
 
   if [[ "$ret" -eq 0 ]]; then
     cd "${PATH_REPO}" || exit 1
-    export DOTFILES_YES="true"
     # shellcheck source=/dev/null
     source provision/script/run.sh
   fi

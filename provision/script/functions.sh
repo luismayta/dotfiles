@@ -96,16 +96,13 @@ function dotfiles_install_apps() {
 }
 
 function replace_files() {
-  if [[ -t 0 ]]; then
+  if [[ "${DOTFILES_YES}" == "true" ]] || [[ ! -t 0 ]]; then
+    initialize
+  else
     echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
     read -r response
     if [[ $response =~ ^[Yy]$ ]]; then
       initialize
     fi
-  elif [[ "${DOTFILES_YES:-}" == "true" ]]; then
-    initialize
-  else
-    echo "Run with DOTFILES_YES=true to skip confirmation."
-    exit 1
   fi
 }
