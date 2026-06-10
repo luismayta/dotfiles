@@ -77,7 +77,7 @@ function ghq::find::project {
         local buffer
         buffer=$(ghq::projects::list | fzf)
         if [ -n "${buffer}" ]; then
-            cd "$(ghq root)/${buffer}"
+            cd "$(ghq root)/${buffer}" || return
         fi
     fi
 }
