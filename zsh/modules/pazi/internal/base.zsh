@@ -3,7 +3,7 @@
 
 function pazi::internal::pazi::install {
     if ! core::exists cargo > /dev/null; then
-        message_warning "${PAZI_MESSAGE_CARGO}"
+        message_warning "${CORE_MESSAGE_CARGO}"
         return
     fi
     message_info "Installing ${PAZI_PACKAGE_NAME}"
