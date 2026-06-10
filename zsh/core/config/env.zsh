@@ -3,11 +3,13 @@
 # Core env vars
 #
 
-export CORE_MESSAGE_BREW="Please install brew or use antibody bundle hadenlabs/zsh-brew"
-export CORE_MESSAGE_YAY="Please install Yay or use antibody bundle hadenlabs/zsh-yay"
-export CORE_MESSAGE_RVM="Please install rvm or use antibody bundle hadenlabs/zsh-rvm"
-export CORE_MESSAGE_RUST="Please install rust or use antibody bundle hadenlabs/zsh-rust"
-export CORE_MESSAGE_NVM="Please install nvm or use antibody bundle hadenlabs/zsh-nvm"
+export CORE_MESSAGE_BREW="Please install brew or use the brew module at zsh/modules/brew"
+export CORE_MESSAGE_YAY="Please install yay (Arch Linux AUR helper)"
+export CORE_MESSAGE_RVM="Please install rvm or use the rvm module at zsh/modules/rvm"
+export CORE_MESSAGE_RUST="Please install rust or use the rust module at zsh/modules/rust"
+export CORE_MESSAGE_NVM="Please install nvm or use the fnm module at zsh/modules/fnm"
+export CORE_MESSAGE_CARGO="Please install cargo or use the rust module at zsh/modules/rust"
+export CORE_MESSAGE_PYENV="Please install pyenv or use the pyenv module at zsh/modules/pyenv"
 export CORE_PROJECTS_BACKUP_PATH="${HOME}/backup"
 
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
