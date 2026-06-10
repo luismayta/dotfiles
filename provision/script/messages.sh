@@ -7,7 +7,7 @@ function msg() {
 
 function success() {
     # shellcheck disable=SC2154
-    if [[ "${ret}" -eq '0' ]]; then
+    if [[ "${ret:-0}" -eq '0' ]]; then
         msg "\e[32m[✔]\e[0m ${1}${2}"
     fi
 }
@@ -18,7 +18,7 @@ function error() {
 }
 
 function debug() {
-    if [ "$DEBUG_MODE" -eq '1' ] && [ "$ret" -gt '1' ]; then
-      msg "An error occurred in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    if [ "${DEBUG_MODE:-0}" -eq '1' ] && [ "${ret:-0}" -gt '1' ]; then
+      msg "An error occurred in function \"${FUNCNAME[1]:-unknown}\" on line ${BASH_LINENO[1]:-0}, we're sorry for that."
     fi
 }

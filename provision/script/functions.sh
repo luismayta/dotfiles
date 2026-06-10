@@ -33,14 +33,6 @@ function die() {
   exit 1
 }
 
-function is_program_exist() {
-  if ! type -p "${1}" >/dev/null; then
-    echo 1
-    exit 1
-  fi
-  echo 0
-}
-
 function program_exists() {
   local app=$1
   local message="Need to install $app."
@@ -50,7 +42,7 @@ function program_exists() {
   # throw error on non-zero return value
   if [[ ! "$ret" -eq '0' ]]; then
     error "$message"
-    exit
+    exit 1
   fi
 }
 
@@ -61,7 +53,8 @@ function do_backup() {
   today=$(date +%Y%m%d)
   local path_today="${PATH_BACKUP}/${today}/"
   mkdir -p "${path_today}"
-  local file_backup="$path_today${file##*/}"
+  local file_backup
+  file_backup="${path_today}$(basename "$1")"
 
   if [ -r "$1" ]; then
     mv "$1" "$file_backup"
@@ -84,7 +77,11 @@ function cp_file() {
 }
 
 function dotfiles_install_factory {
-  if type -p pacman >/dev/null; then
+  if type -p paru >/dev/null; then
+    # shellcheck source=/dev/null
+    source "${HOME}/.dotfiles"/archlinux.sh
+  elif type -p pacman >/dev/null; then
+    sudo pacman -S --noconfirm paru
     # shellcheck source=/dev/null
     source "${HOME}/.dotfiles"/archlinux.sh
   fi
@@ -99,11 +96,16 @@ function dotfiles_install_apps() {
 }
 
 function replace_files() {
-  echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
-
-  read -r response
-
-  if [[ $response =~ ^[Yy]$ ]]; then
+  if [[ -t 0 ]]; then
+    echo -n "This may overwrite existing files in your home directory. Are you sure? (y/n) "
+    read -r response
+    if [[ $response =~ ^[Yy]$ ]]; then
+      initialize
+    fi
+  elif [[ "${DOTFILES_YES:-}" == "true" ]]; then
     initialize
+  else
+    echo "Run with DOTFILES_YES=true to skip confirmation."
+    exit 1
   fi
 }

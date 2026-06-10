@@ -44,7 +44,6 @@ function config::factory {
         "Linux")
             # shellcheck source=/dev/null
             [ -r "${FILE_CONFIG_LINUX}" ] && source "${FILE_CONFIG_LINUX}"
-            setup::linux
             ;;
         *)
             echo "Unsupported OS: $os_name"
@@ -55,7 +54,7 @@ function config::factory {
 
 config::factory
 
-for file in "${SCRIPT_DIR}/"{config,messages,repo,functions}.sh; do
+for file in "${SCRIPT_DIR}/"{messages,functions}.sh; do
     # shellcheck source=/dev/null
     [ -e "${file}" ] && source "${file}"
 done
