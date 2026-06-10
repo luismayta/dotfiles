@@ -1,8 +1,8 @@
 ---
-name: 📋 General issue
+## name: 📋 General issue
+
 about: Good for questions, clarifications etc
 labels: type/general-report
----
 
 ## What is the issue?
 
@@ -10,6 +10,6 @@ labels: type/general-report
 
 ## Checklist (after created issue)
 
-- [ ] Added label(s)
-- [ ] Added to project
-- [ ] Added to milestone
+- [] Added label(s)
+- [] Added to project
+- [] Added to milestone

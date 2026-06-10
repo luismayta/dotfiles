@@ -1,8 +1,8 @@
 ---
-name: 🐛 Bug report
+## name: 🐛 Bug report
+
 about: Create a report to help us improve
 labels: type/bug
----
 
 ## The problem
 
@@ -23,10 +23,10 @@ Create a [GIST](https://gist.github.com) which is a paste of your _full_ logs, a
 
 ## Tasks
 
-- [ ] Task number 1
+- [] Task number 1
 
 ## Checklist (after created issue)
 
-- [ ] Added label(s)
-- [ ] Added to project
-- [ ] Added to milestone
+- [] Added label(s)
+- [] Added to project
+- [] Added to milestone

@@ -1,8 +1,8 @@
 ---
-name: Support Question
+## name: Support Question
+
 about: I have a question and require assistance
 labels: question
----
 
 <!--
   If you have some trouble, feel free to ask.

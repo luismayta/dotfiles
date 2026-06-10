@@ -1,8 +1,8 @@
 ---
-name: 🚀 Feature request
+## name: 🚀 Feature request
+
 about: Suggest an idea for this project
 labels: type/enhancement
----
 
 ## Feature description
 
@@ -14,6 +14,6 @@ labels: type/enhancement
 
 ## Checklist (after created issue)
 
-- [ ] Added label(s)
-- [ ] Added to project
-- [ ] Added to milestone
+- [] Added label(s)
+- [] Added to project
+- [] Added to milestone

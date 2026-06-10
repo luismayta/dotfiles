@@ -17,4 +17,4 @@ Create a [GIST](https://gist.github.com) which is a paste of your _full_ logs, a
 
 ## Tasks
 
-- [ ] Task number 1
+- [] Task number 1
