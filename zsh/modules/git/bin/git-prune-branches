@@ -16,7 +16,7 @@
 
 merged=$(git branch --no-color --merged master | grep -v master | sed 's/\*/ /')
 
-if [ ! -z "$merged" ] ; then
+if [ -n "$merged" ] ; then
   echo "Deleting the following merged branches:"
   for branch in $merged ; do
     echo "    " "$branch"

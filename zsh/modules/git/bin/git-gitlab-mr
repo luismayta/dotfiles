@@ -44,7 +44,7 @@ if ! havecmd jq; then
   err 'Required program missing: jq'
 fi
 
-ref="$(git rev-parse --abbrev-ref --symbolic-full-name @{u})"
+ref="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}')"
 if [ -z "$ref" ]; then
   err "No upstream for branch: $(git rev-parse --abbrev-ref --symbolic-full-name @)"
 fi
@@ -52,7 +52,7 @@ repo="${ref%%/*}"
 if [ -z "$repo" ]; then
   err "Unable to determine repository for ref: $ref"
 fi
-branch="${ref#$repo/}"
+branch="${ref#"$repo"/}"
 if [ -z "$branch" ]; then
   err "Unable to determine ref in repository of ref: $ref"
 fi
@@ -67,20 +67,20 @@ case "$uri" in
 *@*:*)     # SSH
   uri="${uri#*@}"
   domain="${uri%:*}"
-  path="/${uri#${domain}:}"
+  path="/${uri#"${domain}":}"
   ;;
 https://*) # HTTPS
   uri="${uri#https://}"
   uri="${uri#*@}"
   domain="${uri%%/*}"
-  path="${uri#${domain}}"
+  path="${uri#"${domain}"}"
   ;;
 http://*)  # HTTP?
   scheme=http # Why? Why do this?
   uri="${uri#https://}"
   uri="${uri#*@}"
   domain="${uri%%/*}"
-  path="${uri#${domain}}"
+  path="${uri#"${domain}"}"
   ;;
 *)
   err "Unrecognized URI: $uri"
