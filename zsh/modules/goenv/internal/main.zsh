@@ -23,5 +23,5 @@ source "${GOENV_PATH}/internal/helper.zsh"
 
 goenv::internal::load
 
-if ! core::exists curl; then core::install curl; fi
+core::ensure curl
 if ! core::exists gobrew; then goenv::internal::install; fi

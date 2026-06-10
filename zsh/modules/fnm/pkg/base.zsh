@@ -32,6 +32,6 @@ function fnm::install::version::global {
 
 # Auto-invoke: load fnm and auto-install if missing
 fnm::load
-if ! core::exists curl; then core::install curl; fi
-if ! core::exists unzip; then core::install unzip; fi
+core::ensure curl
+core::ensure unzip
 if ! core::exists fnm; then fnm::install; fi

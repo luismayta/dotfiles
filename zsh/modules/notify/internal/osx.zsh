@@ -2,7 +2,7 @@
 # macOS-specific notify internals
 
 # Ensure terminal-notifier is available
-if ! core::exists terminal-notifier; then core::install terminal-notifier; fi
+core::ensure terminal-notifier
 
 # Show a macOS notification via terminal-notifier
 function notify::internal::popup {

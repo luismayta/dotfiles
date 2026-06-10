@@ -18,7 +18,7 @@ esac
 export PATH="${ZSH_GIT_PATH}/bin:${PATH}"
 
 # Ensure core dependencies are installed
-if ! core::exists git; then core::install git; fi
-if ! core::exists hub; then core::install hub; fi
-if ! core::exists rsync; then core::install rsync; fi
-if ! core::exists git-flow; then core::install git-flow; fi
+core::ensure git
+core::ensure hub
+core::ensure rsync
+core::ensure git-flow

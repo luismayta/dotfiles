@@ -16,4 +16,4 @@ linux*)
 esac
 
 # Ensure mpg123 is available for sound playback
-if ! core::exists mpg123; then core::install mpg123; fi
+core::ensure mpg123

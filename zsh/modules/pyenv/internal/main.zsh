@@ -16,5 +16,5 @@ esac
 
 pyenv::internal::pyenv::load
 
-if ! core::exists curl; then core::install curl; fi
+core::ensure curl
 if ! core::exists pyenv; then pyenv::internal::pyenv::install; fi

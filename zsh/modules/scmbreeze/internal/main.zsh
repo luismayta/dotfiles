@@ -16,7 +16,7 @@ esac
 scmbreeze::internal::load
 
 # Ensure git is available
-if ! core::exists git; then core::install git; fi
+core::ensure git
 
 # Auto-install if not present
 if [ ! -e "${SCMBREEZE_ROOT}" ]; then
