@@ -13,7 +13,7 @@ readonly RESET="\033[0m"
 readonly DOTFILES_NAME='.dotfiles'
 readonly DOTFILES_GIT_URI='https://github.com/luismayta/dotfiles.git'
 readonly DOTFILES_GIT_BRANCH='main'
-readonly PATH_REPO="${HOME}/${DOTFILES_NAME}"
+PATH_REPO="${HOME}/${DOTFILES_NAME}"
 
 function message::info {
   printf "${BLUE}%s${RESET}\n" "[INFO]: ${1}"
