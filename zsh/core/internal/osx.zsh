@@ -4,3 +4,12 @@
 function reload {
     exec "${SHELL}" -l
 }
+
+# Homebrew install override
+core::internal::core::install() {
+  if ! core::internal::core::exists brew; then
+    core::internal::message::warning "${CORE_MESSAGE_BREW}"
+    return 1
+  fi
+  brew install "${@}"
+}

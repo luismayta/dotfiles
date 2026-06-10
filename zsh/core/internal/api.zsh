@@ -4,10 +4,8 @@
 #
 
 core::internal::core::install() {
-  if ! core::internal::core::exists brew; then
-    core::internal::message::warning "${CORE_MESSAGE_BREW}"
-  fi
-  brew install "${@}"
+  core::internal::message::error "core::install not implemented for ${OSTYPE}"
+  return 1
 }
 
 core::internal::cargo::install() {
@@ -26,7 +24,26 @@ core::internal::core::exists() {
 }
 
 core::internal::multiplatform::install() {
-  core::internal::message::warning "Method not implemented for ${CORE_PACKAGE_NAME:-core}"
+  case "${OSTYPE}" in
+    darwin*)
+      if core::internal::core::exists brew; then
+        brew bundle --file="${DOTFILES_CORE_DIR}/Brewfile" 2>/dev/null || true
+      else
+        core::internal::message::warning "${CORE_MESSAGE_BREW}"
+      fi
+      ;;
+    linux*)
+      if core::internal::core::exists paru; then
+        paru -Syu --noconfirm
+      else
+        core::internal::message::warning "${CORE_MESSAGE_PARU}"
+      fi
+      ;;
+    *)
+      core::internal::message::error "multiplatform::install not supported for ${OSTYPE}"
+      return 1
+      ;;
+  esac
 }
 
 core::internal::message::info() {
