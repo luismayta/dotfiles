@@ -1,0 +1,22 @@
+# k9s plugins configuration
+plugins:
+  get-all:
+    shortCut: Ctrl-A
+    description: "Get all resources in namespace"
+    scopes:
+      - contexts
+    command: sh
+    background: true
+    args:
+      - -c
+      - "kubectl get all --all-namespaces | less"
+  delete-ctx:
+    shortCut: Ctrl-D
+    description: "Delete current context"
+    scopes:
+      - contexts
+    command: sh
+    background: true
+    args:
+      - -c
+      - "kubectl config delete-context $(kubectl config current-context)"

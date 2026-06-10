@@ -1,0 +1,17 @@
+# k9s configuration file
+k9s:
+  refreshRate: 2
+  logger:
+    tail: 100
+    since: 24h
+  clusters:
+    - local
+    - staging
+    - production
+  thresholds:
+    cpu:
+      critical: 90
+      warning: 80
+    memory:
+      critical: 90
+      warning: 80
