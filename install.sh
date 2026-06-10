@@ -98,6 +98,9 @@ function setup::linux {
     yarn
     gcc
     rsync
+    zsh
+    ksh
+    fd
   )
 
   for package in "${packages[@]}"; do

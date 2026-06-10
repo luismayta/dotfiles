@@ -11,6 +11,7 @@ if ! core::exists jq; then core::install jq; fi
 if ! core::exists bat; then core::install bat; fi
 if ! core::exists ghead; then core::install coreutils; fi
 if ! core::exists ag; then core::install the_silver_searcher; fi
+if ! core::exists fd; then core::install fd; fi
 
 # cat → bat
 cat() {

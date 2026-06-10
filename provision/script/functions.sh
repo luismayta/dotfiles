@@ -79,11 +79,11 @@ function cp_file() {
 function dotfiles_install_factory {
   if type -p paru >/dev/null; then
     # shellcheck source=/dev/null
-    source "${HOME}/.dotfiles"/archlinux.sh
+    source "${HOME}/.dotfiles"/provision/script/desktop.sh
   elif type -p pacman >/dev/null; then
     sudo pacman -S --noconfirm paru
     # shellcheck source=/dev/null
-    source "${HOME}/.dotfiles"/archlinux.sh
+    source "${HOME}/.dotfiles"/provision/script/desktop.sh
   fi
   dotfiles_install_apps
 }
