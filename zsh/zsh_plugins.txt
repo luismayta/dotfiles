@@ -1,4 +1,3 @@
-hadenlabs/zsh-core
 luismayta/zsh-brew
 luismayta/zsh-rust
 hadenlabs/zsh-fnm
