@@ -3,7 +3,7 @@
 
 function eza::install {
     if ! type brew > /dev/null; then
-        message_warning "please install brew or use luismayta/zsh-brew"
+        message_warning "${CORE_MESSAGE_BREW}"
         return
     fi
     message_info "Installing eza"
