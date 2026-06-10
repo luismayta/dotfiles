@@ -3,7 +3,7 @@
 
 # Store the last command and its start time (called from preexec hook)
 function notify::internal::command::store {
-    # shellcheck disable=SC2296,SC2299,SC1072,SC1073,SC1035
+    # shellcheck disable=SC2296,SC2299,SC1072,SC1073,SC1035,SC1009
     if [ "${1}" -regex-match "${_ZSH_NOTIFY_RE_SKIP_COMMANDS}" ]; then
         return
     fi

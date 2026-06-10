@@ -13,8 +13,11 @@ zmodload zsh/regex
 
 export ZSH_NOTIFY_PATH="${0:h}"
 
+# shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/config/main.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/internal/main.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/pkg/main.zsh"
 
 # Notify if commands were running for more than TIME_THRESHOLD seconds
