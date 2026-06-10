@@ -9,39 +9,41 @@ options:
     filters:
       Type:
         - chore
+        - refactor
         - feat
         - fix
+        - hotfix
         - perf
-        - refactor
+        - deprecate
+        - revert
+        - docs
     sort_by: Scope
 
   commit_groups:
-    group_by: Type
+    group_by: Scope
     sort_by: Title
     title_order:
-      - feat
       - chore
-      - fix
-      - perf
       - refactor
-
+      - feat
+      - fix
+      - hotfix
+      - perf
+      - deprecate
+      - revert
+      - docs
     title_maps:
+      refactor: 🎨 Code Refactoring
       feat: ✨ Features
       fix: 🐛 Bug Fixes
-      fixed: 🐛 Bug Fixes
+      hotfix: 🚑 Hotfixes
       perf: ⚡ Performance Improvements
-      docs: 📝 Docs changes
-      refactor: 🎨 Code Refactoring
-      rename: 🚚 Renamed
-      revert: ⏪ Reverted
-      update: 🔄 Updates
-      build: 👷 Building scripts changes
-      chore: Other changes
-      style: 💄 Code styling
-      ci: 👷 CI changes
+      deprecate: ⚰ Deprecations
+      revert: ⏪ Reverts
+      docs: 📚 Documentation
 
   header:
-    pattern: "^(\\w+)(?:\\s*.*)?(?:\\s*\\((.*?)\\))?:\\s*(.*)$"
+    pattern: "^(\\w+)(?:\\s*[^(:]*)?(?:\\s*\\((.*?)\\))?:\\s*(.*)$"
     pattern_maps:
       - Type
       - Scope
