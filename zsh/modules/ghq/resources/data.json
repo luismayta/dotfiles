@@ -1,0 +1,172 @@
+{
+  "projects": [
+    {
+      "name": "next template",
+      "author": "@slovacus",
+      "type": "template",
+      "description": "template for generate next",
+      "repository": "gh:hadenlabs/cookiecutter-next-redux-saga --checkout develop"
+    },
+    {
+      "name": "cookiecutter base",
+      "author": "@slovacus",
+      "type": "template",
+      "description": "template for base project",
+      "repository": "gh:luismayta/cookiecutter-base --checkout develop"
+    },
+    {
+      "name": "golang service",
+      "author": "@slovacus",
+      "type": "service golang",
+      "description": "template golang service",
+      "repository": "gh:larsyencken/cookiecutter-go-service"
+    },
+    {
+      "name": "golang lambda",
+      "author": "@slovacus",
+      "type": "lambda golang",
+      "description": "cookiecutter-golambda is an AWS Lambda function generator",
+      "repository": "gh:Ryanair/cookiecutter-golambda"
+    },
+    {
+      "name": "golang server",
+      "author": "@slovacus",
+      "type": "server golang",
+      "description": "A cookiecutter template for starting a new server in Go",
+      "repository": "gh:theodesp/cookiecutter-go-server"
+    },
+    {
+      "name": "api server",
+      "author": "@slovacus",
+      "type": "api template",
+      "description": "A cookiecutter for api template with golang",
+      "repository": "gh:Esaws/golang-api-template"
+    },
+    {
+      "name": "go library",
+      "author": "@slovacus",
+      "type": "library",
+      "description": "A cookiecutter for go library",
+      "repository": "gh:theodesp/cookiecutter-go-library"
+    },
+    {
+      "name": "go gin",
+      "author": "@slovacus",
+      "type": "project",
+      "description": "This sets up a Golang Gin web application with a health check",
+      "repository": "gh:shokunin/cookiecutter-golang-gin"
+    },
+    {
+      "name": "go project",
+      "author": "@slovacus",
+      "type": "project",
+      "description": "This sets up a Golang web project",
+      "repository": "gh:lacion/cookiecutter-golang"
+    },
+    {
+      "name": "cookiecutter-node-typescript",
+      "author": "@israelgp24",
+      "type": "template",
+      "description": "template for base project",
+      "repository": "gh:sagi/cookiecutter-node-typescript"
+    },
+    {
+      "name": "cookiecutter-npm",
+      "author": "@israelgp24",
+      "type": "template",
+      "description": "template for base project",
+      "repository": "gh:rrwen/cookiecutter-npm"
+    },
+    {
+      "name": "node_starter",
+      "author": "@israelgp24",
+      "type": "template",
+      "description": "template for base project",
+      "repository": "gh:jhillgithub/node_starter"
+    },
+    {
+      "name": "node-mongo-cookiecutter",
+      "author": "@israelgp24",
+      "type": "template",
+      "description": "template for base project",
+      "repository": "gh:binary-sort/node-mongo-cookiecutter"
+    },
+    {
+      "name": "terraform module",
+      "author": "@slovacus",
+      "type": "module",
+      "description": "template for terraform module",
+      "repository": "gh:hadenlabs/cookiecutter-terraform-module --checkout develop"
+    },
+    {
+      "name": "docker image",
+      "author": "@slovacus",
+      "type": "image",
+      "description": "template for docker image",
+      "repository": "gh:hadenlabs/cookiecutter-docker --checkout develop"
+    },
+    {
+      "name": "docker image",
+      "author": "@slovacus",
+      "type": "image",
+      "description": "template for docker image",
+      "repository": "gh:thornycrackers/cookiecutter_docker"
+    },
+    {
+      "name": "docker image",
+      "author": "@slovacus",
+      "type": "image",
+      "description": "template for docker image",
+      "repository": "gh:practicalci/cookiecutter-docker"
+    },
+    {
+      "name": "Cookiecutter Pylibrary",
+      "author": "@christianquispe",
+      "type": "template",
+      "description": "template for Python libraries",
+      "repository": "gh:ionelmc/cookiecutter-pylibrary"
+    },
+    {
+      "name": "Cookiecutter Django",
+      "author": "@christianquispe",
+      "type": "Framework",
+      "description": "is a framework for jumpstarting production-ready Django projects quickly",
+      "repository": "gh:pydanny/cookiecutter-django"
+    },
+    {
+      "name": "Cookiecutter Serverless Aws Lambda",
+      "author": "@christianquispe",
+      "type": "Cookiecutter template",
+      "description": "setup AWS lambda development with serverless framework",
+      "repository": "gh:hypoport/cookiecutter-serverless-aws-lambda"
+    },
+    {
+      "name": "React TS",
+      "author": "@aireck2",
+      "type": "template",
+      "description": "template for React TS",
+      "repository": "gh:Ell/cookiecutter-parcel-typescript-react"
+    },
+    {
+      "name": "Zsh PLugin",
+      "author": "@slovacus",
+      "type": "template",
+      "description": "template for make zsh plugin",
+      "repository": "gh:hadenlabs/cookiecutter-zsh-plugin --checkout develop"
+    },
+    {
+      "name": "slide Gatsby mdx",
+      "author": "@slovacus",
+      "type": "slides",
+      "description": "template for slides for gatsby",
+      "repository": "gh:luismayta/cookiecutter-gatsby-slides --checkout develop"
+    },
+    {
+      "name": "Cookiecutter ansible role",
+      "author": "@slovacus",
+      "type": "role",
+      "description": "is a role for ansible server",
+      "repository": "gh:hadenlabs/cookiecutter-ansible-role --checkout develop"
+    }
+  ]
+}
