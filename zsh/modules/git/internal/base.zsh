@@ -5,7 +5,7 @@
 function git::internal::git::install {
     message_info "Installing ${GIT_PACKAGE_NAME}"
     if ! type -p brew > /dev/null; then
-        message_warning "${GIT_MESSAGE_BREW}"
+        message_warning "${CORE_MESSAGE_BREW}"
         return
     fi
     brew install git
