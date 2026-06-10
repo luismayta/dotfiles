@@ -15,6 +15,10 @@ core::exists() {
   core::internal::core::exists "${@}"
 }
 
+core::ensure() {
+  core::exists "${1}" || core::install "${1}"
+}
+
 core::cargo::install() {
   core::internal::cargo::install "${@}"
 }
