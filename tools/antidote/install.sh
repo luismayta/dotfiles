@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+set -euo pipefail
+
+trap 'echo "[ERROR]: antidote install failed at line ${LINENO}"' ERR
+
 cat <<EOF
 
 ----------------------------
@@ -10,9 +14,11 @@ cat <<EOF
 EOF
 
 # shellcheck source=/dev/null
-[ -r "${SCRIPT_DIR}/bootstrap.sh" ] && source "${SCRIPT_DIR}/bootstrap.sh"
+[ -r "${SCRIPT_DIR:-}/bootstrap.sh" ] && source "${SCRIPT_DIR:-}/bootstrap.sh"
 
-git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$HOME}/.antidote"
+readonly ZDOTDIR="${ZDOTDIR:-${HOME}}"
+
+git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR}/.antidote"
 
 cat <<EOF
 

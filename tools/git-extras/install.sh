@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+set -euo pipefail
+
+trap 'echo "[ERROR]: git-extras install failed at line ${LINENO}"' ERR
+
 # shellcheck source=/dev/null
-[ -r "$SCRIPT_DIR/bootstrap.sh" ] && source "$SCRIPT_DIR/bootstrap.sh"
+[ -r "${SCRIPT_DIR:-}/bootstrap.sh" ] && source "${SCRIPT_DIR:-}/bootstrap.sh"
 
 cat <<EOF
 
