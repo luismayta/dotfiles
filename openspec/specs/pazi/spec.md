@@ -26,4 +26,3 @@ The pazi module SHALL be self-contained within `zsh/modules/pazi/` with `plugin.
 #### Scenario: Subdirectory structure is complete
 - **WHEN** the module files are enumerated
 - **THEN** `config/`, `internal/`, and `pkg/` subdirectories contain the expected platform-specific files
-
