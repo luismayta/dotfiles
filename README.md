@@ -35,6 +35,8 @@ dotfiles is installed by running one of the following commands in your terminal.
 
 
 
+
+
 ## Requirements
 
 
@@ -74,13 +76,6 @@ task setup
 
 ## Examples
 
-<!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Examples Dotfiles -->
-<!-- Label: Examples -->
-<!-- Include: ./../disclaimer.md -->
-<!-- Include: ac:toc -->
-
 ## Common
 
 ### Install Dependencies
@@ -88,6 +83,7 @@ task setup
 ```bash
 task setup
 ```
+
 
 
  <!-- Space: Projects -->
