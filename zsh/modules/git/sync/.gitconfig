@@ -1,0 +1,171 @@
+[user]
+	name = Luis Mayta
+	email = luis@hadenlabs.com
+	signingKey = ~/.ssh/id_ed25519.pub
+
+[core]
+	editor = nvim
+	autocrlf = input
+	excludesfile = ~/.gitignore
+	preloadindex = true
+	fscache = true
+	filemode = true
+	pager = delta
+
+[github]
+	user = luismayta
+
+[commit]
+	gpgSign = true
+
+[gpg]
+	format = ssh
+
+[alias]
+	# Common Commands
+	co = checkout
+	ck = checkout
+	br = branch
+	s = status
+	st = status
+	cm = commit
+	ci = commit
+
+	# Logs
+	lol = log --pretty=oneline --abbrev-commit --graph
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+	ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+
+	# Network
+	in = fetch --dry-run
+	out = push --dry-run
+
+	# clean
+	rm-orig = find ./ -name "*.orig" | xargs rm
+
+	# Utils
+	lastchange = log -p --follow -n 1
+
+	# Files Ignoreds
+	fixgitignore = !git rm -r --cached . && git add . && git commit -m "Just a .gitignore fix"
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
+	ignore = "!f() { echo \"$1\" >> \"${GIT_PREFIX}.gitignore\"; }; f"
+
+	# File List
+	ls-untracked = ls-files --others
+	ls-ign = ls-files --exclude-standard -o -i
+	ls-ignored = ls-files --others --ignored --exclude-standard
+
+	# Difftool
+	showtool = "!f() { rev=$(git rev-parse \"${*:-HEAD}\"); git difftool $rev~1 $rev; }; f"
+	diff-file-last-commit = "!f() { \
+		project_root_dir=$(git root); \
+		echo finding full file path of $1 in $project_root_dir; \
+		filepath=$(find $project_root_dir -type f -name $1); \
+		echo full file path $filepath; \
+		last_modified_commit_hash=$(git rev-list -1 HEAD $filepath); \
+		echo last commit file modified $last_modified_commit_hash; \
+		git difftool $last_modified_commit_hash^ $filepath; \
+	}; f"
+	diffall = difftool -t meld --dir-diff
+
+	# Util
+	root = rev-parse --show-toplevel
+
+[status]
+	submoduleSummary = true
+
+[pull]
+	rebase = true
+
+[push]
+	default = simple
+
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	status = auto
+	interactive = auto
+
+[color "branch"]
+	current = cyan bold
+	local = green bold
+	remote = red bold
+	upstream = red bold
+	plain = yellow reverse
+
+[color "diff"]
+	plain = "#888888"
+	meta = 11
+	frag = magenta bold
+	func = "#cc99cc"
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
+
+[color "status"]
+	header = normal
+	added = green bold
+	changed = yellow bold
+	untracked = cyan
+	branch = cyan bold
+	nobranch = bold ul blink 12
+	unmerged = red reverse bold
+
+[color "grep"]
+	context = "#888888"
+	filename = yellow bold
+	function = red
+	linenumber = magenta bold
+	match = green reverse bold
+	matchContext = yellow reverse bold
+	matchSelected = yellow bold blue
+	separator = red bold
+	selected = white
+
+[diff]
+	tool = meld
+	renames = copies
+	renameLimit = 30000
+	algorithm = patience
+	mnemonicprefix = true
+	noprefix = true
+	colorMoved = dimmed_zebra
+
+[difftool]
+	prompt = false
+
+[difftool "meld"]
+	cmd = meld "$LOCAL" "$REMOTE"
+
+[merge]
+	tool = meld
+	conflictStyle = zdiff3
+	stat = true
+	summary = true
+	log = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+
+[gc]
+	auto = 256
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[grep]
+	lineNumber = true
+	fullName = true
+
+[credential]
+	helper = store
