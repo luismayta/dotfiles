@@ -20,6 +20,13 @@ autoload -Uz compinit add-zsh-hook is-at-least
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
 
+# Load modules from modules/ directory
+for __module_dir in "${DOTFILES_ZSH_DIR}"/modules/*(/N); do
+  if [ -e "${__module_dir}/plugin.zsh" ]; then
+    source "${__module_dir}/plugin.zsh"
+  fi
+done
+unset __module_dir
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
