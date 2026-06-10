@@ -21,7 +21,4 @@ esac
 source "${DOTFILES_CORE_DIR}"/pkg/helper/main.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/pkg/docker.zsh
-
-# shellcheck source=/dev/null
 source "${DOTFILES_CORE_DIR}"/pkg/alias.zsh
