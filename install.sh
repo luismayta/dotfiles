@@ -107,7 +107,6 @@ function setup::linux {
     paru -S --noconfirm "${package}"
   done
 
-  npm install -g n
 }
 
 function clone_repo {

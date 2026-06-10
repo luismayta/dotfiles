@@ -44,19 +44,16 @@ This is a list of applications that need to be installed previously to enjoy all
 
 - [Curl](https://github.com/bagder/curl)
 - [Wget](https://ftp.gnu.org/gnu/wget/)
-
-
-
 ## Installation
-
 ### via curl
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh)"
-```### via wget
+curl -fsSL https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh | bash
+```
+### via wget
 
 ```bash
-bash -c "$(wget https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh -O -)"
+wget -qO- https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh | bash
 ```
 
 
@@ -83,7 +80,6 @@ task setup
 ```bash
 task setup
 ```
-
 
 
  <!-- Space: Projects -->

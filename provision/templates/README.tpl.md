@@ -77,12 +77,11 @@
 
 {{ (ds "config").requirements -}} {{ end }}
 
-{{ if has (ds "config") "installation" }}
-
+{{- if has (ds "config") "installation" }}
 ## Installation
 
-{{ range $file := (datasource "config").installation -}}
-{{ (include "includes" $file) }}
+{{- range $file := (datasource "config").installation }}
+{{ include "includes" $file }}
 {{- end }}
 {{- end }}
 
