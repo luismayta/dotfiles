@@ -1,0 +1,46 @@
+# Fonts
+font-family = "FiraCode Nerd Font"
+font-size = 20
+font-feature = liga
+
+adjust-underline-position = 4
+adjust-underline-thickness = 2
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-invert-fg-bg = true
+
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+mouse-shift-capture = true
+
+# Scroll
+scrollback-limit = 100000
+
+# Theme
+theme = Catppuccin Macchiato
+background-opacity = 0.92
+cursor-invert-fg-bg = true
+
+# Window
+window-padding-x = 6
+window-padding-y = 6
+
+# Clipboard
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Shell
+shell-integration = detect
+working-directory = inherit
+
+# Other
+confirm-close-surface = false
+
+# Keybinds
+keybind = shift+enter=text:\n
+keybind = ctrl+enter=text:\n
+

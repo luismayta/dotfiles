@@ -1,0 +1,29 @@
+includes:
+  - ~/.ssh/custom.yml
+
+defaults:
+  # Check for changed server IPs or possible DNS spoofings
+  CheckHostIP: yes
+  # Enable compression
+  Compression: yes
+  # Enables the sharing of multiple sessions over a single socket
+  ControlMaster: no
+  # ControlPath: ~/.ssh/sockets/%h-%p-%r
+  ControlPersist: yes
+  Port: 22
+  # Store hashed domains in known_hosts for extra security
+  HashKnownHosts: yes
+  # Disable password authentication (bruteforce attacks, etc.)
+  # PasswordAuthentication: no
+  # Only enable public key authentication
+  # PubkeyAuthentication: yes
+  # Regenerate keys after a while
+  RekeyLimit: 100M 3600
+  # Ask to verify server fingerprint
+  StrictHostKeyChecking: no
+  # Send keep-alive signals to avoid connection timeout
+  TCPKeepAlive: yes
+  # https://security.stackexchange.com/questions/110639/how-exploitable-is-the-recent-useroaming-ssh-problem
+  UseRoaming: no
+  # Display randomart images of hostkeys
+  VisualHostKey: yes
