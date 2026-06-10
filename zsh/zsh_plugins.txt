@@ -1,4 +1,3 @@
-luismayta/zsh-brew
 luismayta/zsh-rust
 hadenlabs/zsh-fnm
 hadenlabs/zsh-goenv
