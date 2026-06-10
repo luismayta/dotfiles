@@ -45,8 +45,16 @@
 {{ if has (ds "config") "features" }}
 
 ## Features
+
 {{ range $feature := (ds "config").features }}{{printf "- %s\n" $feature}}{{ end }}
+
 {{ end }}
+
+{{ if has (ds "config") "modules" }}
+
+## Modules
+
+{{ range $module := (ds "config").modules }}{{printf "- %s\n" $module}}{{ end }} {{ end }}
 
 {{ if has (ds "config") "introduction" }}
 
