@@ -1,13 +1,4 @@
-luismayta/zsh-rust
-hadenlabs/zsh-fnm
-hadenlabs/zsh-goenv
-luismayta/zsh-pyenv
 zsh-users/zsh-syntax-highlighting
-hadenlabs/zsh-git
-hadenlabs/zsh-ghq
-luismayta/zsh-notify
-hadenlabs/zsh-starship
-luismayta/zsh-scmbreeze
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
 zdharma-continuum/fast-syntax-highlighting
