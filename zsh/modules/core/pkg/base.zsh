@@ -1,0 +1,39 @@
+#
+# Public API wrappers
+#
+
+core::install() {
+  core::internal::core::install "${@}"
+}
+
+core::load() {
+  core::internal::core::load "${@}"
+}
+
+core::exists() {
+  core::internal::core::exists "${@}"
+}
+
+core::cargo::install() {
+  core::internal::cargo::install "${@}"
+}
+
+core::multiplatform::install() {
+  core::internal::multiplatform::install
+}
+
+message_info() {
+  core::internal::message::info "${@}"
+}
+
+message_error() {
+  core::internal::message::error "${@}"
+}
+
+message_warning() {
+  core::internal::message::warning "${@}"
+}
+
+message_success() {
+  core::internal::message::success "${@}"
+}

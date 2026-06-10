@@ -1,0 +1,3 @@
+#
+# Internal macOS overrides (placeholder)
+#

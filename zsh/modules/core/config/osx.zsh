@@ -1,0 +1,3 @@
+#
+# macOS-specific config (placeholder)
+#
