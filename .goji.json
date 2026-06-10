@@ -1,6 +1,6 @@
 {
   "noemoji": false,
-  "scopes": ["ci", "conf", "core", "docs", "hammerspoon", "opencode", "provision", "skills", "terminal", "tools", "zsh"],
+  "scopes": ["brew", "ci", "conf", "core", "docs", "fnm", "ghq", "git", "goenv", "hammerspoon", "notify", "opencode", "provision", "pyenv", "rust", "scmbreeze", "skills", "starship", "terminal", "tools", "zsh"],
   "signoff": true,
   "skipquestions": null,
   "subjectmaxlength": 100,
