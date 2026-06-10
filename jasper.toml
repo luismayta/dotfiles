@@ -19,8 +19,8 @@ flow = "auto"
 # - Optional body: Closes #123
 
 [issueTracking]
-provider = "github"
-# projectKey = "HAD"
+provider = "jira"
+projectKey= "HAD"
 
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
 # keyRegexOverride = "^AR-[0-9]+$"
@@ -46,7 +46,7 @@ gitlabIssueNumberRegex = "(?:^|/)([0-9]+)(?:-|$)"
 [commit]
 tool = "goji"
 format = "<type> <emoji> (<scope>): <subject>"
-style = "github"
+style = "jira"
 signoff = true
 subjectMaxLength = 100
 

@@ -1,6 +1,6 @@
 {
   "noemoji": false,
-  "scopes": ["core", "accounts", "ci"],
+  "scopes": ["ci", "conf", "core", "docs", "hammerspoon", "opencode", "provision", "skills", "terminal", "tools", "zsh"],
   "signoff": true,
   "skipquestions": null,
   "subjectmaxlength": 100,
@@ -85,19 +85,19 @@
     },
     {
       "emoji": "🔍",
-      "code": ":mag:",
+      "code": ":sample:",
       "description": "Add or update sample code or examples.",
       "name": "sample"
     },
     {
       "emoji": "⏪",
-      "code": ":rewind:",
+      "code": ":revert:",
       "description": "Revert previous changes.",
       "name": "revert"
     },
     {
       "emoji": "👷",
-      "code": ":construction_worker:",
+      "code": ":ci:",
       "description": "Add or update Continuous Integration.",
       "name": "ci"
     },

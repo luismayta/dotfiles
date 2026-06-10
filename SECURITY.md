@@ -1,11 +1,3 @@
-<!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Security Dotfiles -->
-<!-- Label: Dotfiles -->
-<!-- Label: Security -->
-<!-- Include: docs/disclaimer.md -->
-<!-- Include: ac:toc -->
-
 # Security Policy
 
 ## Reporting a Security Bug
