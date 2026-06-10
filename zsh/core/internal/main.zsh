@@ -1,23 +1,24 @@
-#!/usr/bin/env ksh
-# -*- coding: utf-8 -*-
+# shellcheck shell=bash
 
-function dotfiles::internal::main::factory {
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/path.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/editor.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/backup.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/reload.zsh
+
+case "${OSTYPE}" in
+darwin*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_MOD_DIR}"/internal/base.zsh
-
+    source "${DOTFILES_CORE_DIR}"/internal/osx.zsh
+    ;;
+linux*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_MOD_DIR}"/internal/aliases.zsh
-
-    case "${OSTYPE}" in
-    darwin*)
-        # shellcheck source=/dev/null
-        source "${DOTFILES_MOD_DIR}"/internal/osx.zsh
-        ;;
-    linux*)
-        # shellcheck source=/dev/null
-        source "${DOTFILES_MOD_DIR}"/internal/linux.zsh
-      ;;
-    esac
-}
-
-dotfiles::internal::main::factory
+    source "${DOTFILES_CORE_DIR}"/internal/linux.zsh
+  ;;
+esac

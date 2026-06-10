@@ -1,2 +1,1 @@
-#!/usr/bin/env ksh
-# -*- coding: utf-8 -*-
+# shellcheck shell=bash

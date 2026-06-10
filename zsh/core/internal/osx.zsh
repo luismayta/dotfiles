@@ -1,5 +1,4 @@
-#!/usr/bin/env ksh
-# -*- coding: utf-8 -*-
+# shellcheck shell=bash
 
 # create cache and reload settings
 function reload {

@@ -1,8 +1,7 @@
-#!/usr/bin/env ksh
-# -*- coding: utf-8 -*-
+# shellcheck shell=bash
 
 # shellcheck source=/dev/null
-source "${DOTFILES_MOD_DIR}"/config/main.zsh
+source "${DOTFILES_CORE_DIR}"/config/main.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_MOD_DIR}"/internal/main.zsh
+source "${DOTFILES_CORE_DIR}"/internal/main.zsh
