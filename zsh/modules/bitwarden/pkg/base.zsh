@@ -48,7 +48,7 @@ function bw::search::all {
 }
 
 function bw::search {
-    local items selected item_id value
+    local items selected value
     items=$(bw list items 2>/dev/null) || return
     selected=$(echo "${items}" | jq -r '.[].name' | fzf --preview "echo {}" 2>/dev/null)
     [[ -z "${selected}" ]] && return

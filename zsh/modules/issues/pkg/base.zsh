@@ -12,10 +12,6 @@ function issues::pkg::config::setup {
     fi
 }
 
-function issues::provider::factory {
-    issues::provider::factory
-}
-
 function issues {
     local action="${1}"
     case "${action}" in
