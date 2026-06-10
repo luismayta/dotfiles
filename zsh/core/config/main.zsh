@@ -1,6 +1,9 @@
 # shellcheck shell=bash
 
 # shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/config/env.zsh
+
+# shellcheck source=/dev/null
 source "${DOTFILES_CORE_DIR}"/config/paths.zsh
 
 # shellcheck source=/dev/null

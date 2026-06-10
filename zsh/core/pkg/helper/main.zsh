@@ -4,7 +4,7 @@
 #
 
 # shellcheck source=/dev/null
-source "${CORE_PATH}/pkg/helper/backup.zsh"
+source "${DOTFILES_CORE_DIR}"/pkg/helper/backup.zsh
 
 # shellcheck source=/dev/null
-source "${CORE_PATH}/pkg/helper/core.zsh"
+source "${DOTFILES_CORE_DIR}"/pkg/helper/core.zsh

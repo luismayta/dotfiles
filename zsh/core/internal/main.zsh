@@ -10,6 +10,12 @@ source "${DOTFILES_CORE_DIR}"/internal/editor.zsh
 source "${DOTFILES_CORE_DIR}"/internal/backup.zsh
 
 # shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/api.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_DIR}"/internal/git.zsh
+
+# shellcheck source=/dev/null
 source "${DOTFILES_CORE_DIR}"/internal/reload.zsh
 
 case "${OSTYPE}" in
