@@ -10,6 +10,11 @@
 #   config/main.zsh → internal/main.zsh → pkg/main.zsh
 #
 
+# Rsync guard — ensure rsync is available for data directory operations
+if ! core::exists rsync; then
+    core::install rsync
+fi
+
 # Idempotency guard
 [[ -n "${__ZSH_STARSHIP_LOADED:-}" ]] && return
 __ZSH_STARSHIP_LOADED=1

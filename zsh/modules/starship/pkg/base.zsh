@@ -24,5 +24,5 @@ function starship::post_install {
 }
 
 function starship::sync {
-    rsync -avzh --progress "${ZSH_STARSHIP_PATH}/conf/" "${ZSH_HOME_CONF_DIR}/"
+    rsync -avzh --progress "${ZSH_STARSHIP_DATA_PATH}/" "${ZSH_HOME_CONF_DIR}/"
 }
