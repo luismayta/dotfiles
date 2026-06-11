@@ -11,4 +11,3 @@ export TMUX_TPM_PATH="${HOME}"/.tmux/plugins/tpm
 export TMUXINATOR_TEMPLATE_DIR="${HOME_CONFIG_PATH}/tmuxinator/templates"
 export TMUXINATOR_DEFAULT_TEMPLATE="default"
 
-[ -z "${EDITOR}" ] && export EDITOR="vim"
