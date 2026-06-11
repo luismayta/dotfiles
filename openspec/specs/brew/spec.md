@@ -14,16 +14,12 @@ The module SHALL guard against double-sourcing using `__ZSH_BREW_LOADED`.
 - **WHEN** `brew/plugin.zsh` is sourced a second time
 - **THEN** it SHALL return immediately without re-executing
 
-### Requirement: Brew installation with OS dispatch
-The module SHALL provide `brew::install` which dispatches to `brew::install::osx` on macOS and `brew::install::linux` on Linux.
+### Requirement: Brew installation on macOS
+The module SHALL provide `brew::install` which calls `brew::install::osx` on macOS.
 
 #### Scenario: macOS brew install
 - **WHEN** `brew::install::osx` is called on macOS
 - **THEN** it SHALL run `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
-#### Scenario: Linux brew install
-- **WHEN** `brew::install::linux` is called on Linux
-- **THEN** it SHALL run the Linuxbrew install script and `brew vendor-install ruby`
 
 ### Requirement: Dependency checking before install
 The module SHALL verify that `ruby` is available before attempting brew installation.
@@ -39,19 +35,8 @@ The module SHALL provide `brew::post_install` to install additional packages aft
 - **WHEN** `brew::post_install` runs on macOS
 - **THEN** it SHALL install `jq`, `the_silver_searcher`, and `tree` via brew
 
-#### Scenario: Post-install on Debian/Ubuntu Linux
-- **WHEN** `brew::post_install` runs on Debian or Ubuntu Linux
-- **THEN** it SHALL install `jq` via brew
-
-### Requirement: PATH and environment setup
-The module SHALL provide `brew::load` to export PATH, MANPATH, INFOPATH, and LD_LIBRARY_PATH for Linuxbrew.
-
-#### Scenario: Linuxbrew paths on Linux
-- **WHEN** `brew::load` runs on Linux and `/home/linuxbrew/.linuxbrew` exists
-- **THEN** it SHALL export `MANPATH` and `INFOPATH` pointing into `/home/linuxbrew/.linuxbrew`
-
 ### Requirement: Auto-install when brew not found
-The module SHALL automatically invoke `brew::load` on source, and if brew is not found, run `brew::install` followed by `brew::post_install`.
+The module SHALL automatically install brew when not found, running `brew::install` followed by `brew::post_install`.
 
 #### Scenario: Auto-install triggers on missing brew
 - **WHEN** the module is sourced and brew is not in PATH
