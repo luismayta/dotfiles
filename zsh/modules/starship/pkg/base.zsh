@@ -13,7 +13,7 @@ function starship::dependences {
 function starship::install {
     starship::dependences
     message_info "Installing ${STARSHIP_PACKAGE_NAME}"
-    starship::internal::starship::install
+    starship::internal::install
     message_success "Installed ${STARSHIP_PACKAGE_NAME}"
 }
 
