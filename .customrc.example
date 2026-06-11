@@ -1,0 +1,13 @@
+# =============================================================================
+# Custom ZSH Configuration
+# =============================================================================
+# This file is sourced by zsh/zshrc after core loads but before modules.
+# Use it to override settings, set environment variables, or disable modules.
+#
+# Available configuration:
+# -----------------------------------------------------------------------------
+
+# Disable specific zsh modules (space or comma separated)
+#   export ZSH_DISABLED_MODULES="tmux"
+#   export ZSH_DISABLED_MODULES="tmux starship"
+#   export ZSH_DISABLED_MODULES="tmux,starship"
