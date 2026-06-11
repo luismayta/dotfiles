@@ -1,0 +1,86 @@
+# shellcheck shell=bash
+
+# edithypr — edit Hyprland settings
+function edithypr {
+    if [ -z "${EDITOR}" ]; then
+        message_warning "it's necessary the var EDITOR"
+        return
+    fi
+    "${EDITOR}" "${HYPRLAND_FILE_SETTINGS}"
+}
+
+# hypr::workspaces — list workspaces
+function hypr::workspaces {
+    hyprctl workspaces -j | jq -r '.[] | "\(.id) \(.name)"' 2>/dev/null
+}
+
+# hypr::switch — switch to workspace by id
+function hypr::switch {
+    if [ -z "${1}" ]; then
+        message_warning "Usage: hypr::switch <workspace-id>"
+        return 1
+    fi
+    hyprctl dispatch workspace "${1}"
+}
+
+# hypr::move-to — move window to workspace
+function hypr::move-to {
+    if [ -z "${1}" ]; then
+        message_warning "Usage: hypr::move-to <workspace-id>"
+        return 1
+    fi
+    hyprctl dispatch movetoworkspace "${1}"
+}
+
+# hypr::wallpaper — set wallpaper via hyprpaper
+function hypr::wallpaper {
+    if [ -z "${1}" ]; then
+        message_warning "Usage: hypr::wallpaper <image-path>"
+        return 1
+    fi
+    hyprctl hyprpaper wallpaper ",${1}"
+}
+
+# hypr::reload — reload Hyprland config
+function hypr::reload {
+    hyprctl reload
+}
+
+# hypr::check — verify installed components
+function hypr::check {
+    if core::exists Hyprland; then
+        message_success "Hyprland: installed"
+    else
+        message_error "Hyprland: not installed"
+    fi
+    if core::exists hyprctl; then
+        message_success "hyprctl: available"
+    else
+        message_error "hyprctl: not available"
+    fi
+    if core::exists hypridle; then
+        message_success "hypridle: installed"
+    else
+        message_error "hypridle: not installed"
+    fi
+    if core::exists hyprlock; then
+        message_success "hyprlock: installed"
+    else
+        message_error "hyprlock: not installed"
+    fi
+    if core::exists hyprpaper; then
+        message_success "hyprpaper: installed"
+    else
+        message_error "hyprpaper: not installed"
+    fi
+    if core::exists waybar; then
+        message_success "waybar: installed"
+    else
+        message_error "waybar: not installed"
+    fi
+    if core::exists dunst; then
+        message_success "dunst: installed"
+    else
+        message_error "dunst: not installed"
+    fi
+}

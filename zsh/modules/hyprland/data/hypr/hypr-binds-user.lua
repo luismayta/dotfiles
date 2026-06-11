@@ -1,0 +1,3 @@
+-- Optional per-user keybind overrides.
+-- This file is loaded after hypr-binds.lua, so binds defined here override defaults.
+-- See hypr-binds.lua for available key combinations.
