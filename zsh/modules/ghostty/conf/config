@@ -1,6 +1,6 @@
 # Fonts
 font-family = "FiraCode Nerd Font"
-font-size = 20
+font-size = 16
 font-feature = liga
 
 adjust-underline-position = 4
