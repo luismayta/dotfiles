@@ -15,4 +15,3 @@ export GHQ_REGEX_IS_REPOSITORY="^(git:|git@|ssh://|http://|https://)"
 GITHUB_USER="$(git config --global github.user 2>/dev/null || echo "")"
 export GITHUB_USER
 
-[ -z "${EDITOR:-}" ] && export EDITOR="vim"
