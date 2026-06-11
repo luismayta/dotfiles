@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+#
+# Plugin main entry point.
+# nvim module - neovim configuration and package management
+#
+# Auto-discovery: this file is sourced by zsh/zshrc via directory iteration.
+
+# Guard: prevent multiple sources
+if [[ -n "${__ZSH_NVIM_LOADED:-}" ]]; then
+  return 0
+fi
+readonly __ZSH_NVIM_LOADED=1
+
+# Get the module root directory
+: "${ZSH_NVIM_PATH:="${${(%):-%x}:A:h}"}"
+
+# Source layers in order: config → internal → pkg
+source "${ZSH_NVIM_PATH}/config/main.zsh"
+source "${ZSH_NVIM_PATH}/internal/main.zsh"
+source "${ZSH_NVIM_PATH}/pkg/main.zsh"
