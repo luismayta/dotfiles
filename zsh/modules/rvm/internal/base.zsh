@@ -31,7 +31,7 @@ function rvm::internal::rvm::load {
 
 function rvm::internal::packages::install {
   if ! core::exists gem; then
-      message_warning "it's neccesary have gem"
+      message_warning "it's necessary have gem"
       return
   fi
 
