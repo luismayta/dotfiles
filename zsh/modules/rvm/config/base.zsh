@@ -13,3 +13,6 @@ export RVM_PACKAGES=(
     solargraph
     bundler
 )
+export RVM_INSTALL_URL="https://get.rvm.io"
+export RVM_INSTALL_URL_MPAPIS="https://rvm.io/mpapis.asc"
+export RVM_INSTALL_URL_PKUCZYNSKI="https://rvm.io/pkuczynski.asc"

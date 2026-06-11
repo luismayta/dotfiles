@@ -19,7 +19,7 @@ function rvm::internal::rvm::install {
 
   rvm::internal::install::gpg
 
-  curl -sSL https://get.rvm.io | bash -s stable
+  curl -sSL "${RVM_INSTALL_URL}" | bash -s stable
   rvm get stable
   rvm::internal::rvm::load
   message_success "Installed ${RVM_PACKAGE_NAME}"
