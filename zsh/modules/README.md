@@ -27,3 +27,20 @@ touch zsh/modules/my-module/plugin.zsh
 ```
 
 The module is automatically sourced on next shell start.
+
+## Disabling a module
+
+To skip a module without removing it, set `ZSH_DISABLED_MODULES` in `~/.customrc`:
+
+```zsh
+# Disable a single module
+export ZSH_DISABLED_MODULES="tmux"
+
+# Disable multiple modules (space separated)
+export ZSH_DISABLED_MODULES="tmux starship"
+
+# Also supports comma-separated values
+export ZSH_DISABLED_MODULES="tmux,starship"
+```
+
+The variable is read before the module loading loop. Modules not listed continue to load normally.
