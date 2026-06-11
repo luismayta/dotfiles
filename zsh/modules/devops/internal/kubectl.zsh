@@ -75,7 +75,7 @@ function devops::kubectl::go::internal::packages::install {
     fi
 
     for package in "${DEVOPS_KUBECTL_GO_PACKAGES[@]}"; do
-        goenv::internal::package::get "${package}"
+        goenv::internal::package::install "${package}"
     done
 
     for package in "${DEVOPS_KUBECTL_GO_INSTALL[@]}"; do

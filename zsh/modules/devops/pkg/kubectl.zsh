@@ -23,7 +23,7 @@ function devops::kubectl::go::packages::install {
 }
 
 function devops::kubectl::go::package::install {
-    Goenv::internal::package::install "${@}"
+    goenv::internal::package::install "${@}"
 }
 
 # Kubectl aliases
