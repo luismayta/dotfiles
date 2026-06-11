@@ -3,7 +3,7 @@
 
 function devops::k9s::sync {
     message_info "k9s sync conf for ${DEVOPS_K9S_PACKAGE_NAME}"
-    rsync -avzh --progress "${DEVOPS_PATH}/conf/k9s/" "${DEVOPS_K9S_CONF_DIR}/"
+    rsync -avzh --progress "${DEVOPS_PATH}/data/k9s/" "${DEVOPS_K9S_CONF_DIR}/"
     message_success "sync for ${DEVOPS_K9S_PACKAGE_NAME}"
 }
 

@@ -5,6 +5,11 @@
 # Provides DevOps tooling aliases and helpers for infrastructure workflows.
 #
 
+# Rsync guard — ensure rsync is available for data directory operations
+if ! core::exists rsync; then
+    core::install rsync
+fi
+
 [[ -n "${__ZSH_DEVOPS_LOADED:-}" ]] && return
 __ZSH_DEVOPS_LOADED=1
 
