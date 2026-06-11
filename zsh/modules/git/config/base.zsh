@@ -6,7 +6,8 @@ export GIT_PACKAGE_NAME=git
 export HOME_CONFIG_PATH="${HOME}"/.config
 export GIT_FILE_SETTINGS="${HOME}"/.gitconfig
 export GIT_PROVISION_HOOKS_PATH="provision/git/hooks/"
-export ZSH_GIT_HOOKS_PATH="${ZSH_GIT_PATH}/template/git/hooks/"
+export GIT_DATA_PATH="${ZSH_GIT_PATH}/data"
+export ZSH_GIT_HOOKS_PATH="${GIT_DATA_PATH}/hooks/"
 export ZSH_GIT_REGEX_IS_HOOK="^(prepare-commit-msg)"
 export ZSH_GIT_REGEX_DOMAIN_ENABLED="(github.com|bitbucket.org)"
 

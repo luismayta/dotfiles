@@ -22,7 +22,7 @@ function git::internal::provision::hooks::sync {
 
 # git::internal::sync — sync config files to home
 function git::internal::sync {
-    rsync -avzh --progress "${ZSH_GIT_PATH}/sync/" "${HOME}/"
+    rsync -avzh --progress "${GIT_DATA_PATH}/sync/" "${HOME}/"
 }
 
 # git::internal::gunwipall — un-wip all recent --wip-- commits
