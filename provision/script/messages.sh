@@ -8,12 +8,12 @@ function msg() {
 function success() {
     # shellcheck disable=SC2154
     if [[ "${ret:-0}" -eq '0' ]]; then
-        msg "\e[32m[✔]\e[0m ${1}${2}"
+        msg "\e[32m[✔]\e[0m ${1}${2:-}"
     fi
 }
 
 function error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
+    msg "\e[31m[✘]\e[0m ${1}${2:-}"
     exit 1
 }
 
