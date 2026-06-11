@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 #
 # Plugin main entry point.
 # nvim module - neovim configuration and package management
@@ -12,6 +13,7 @@ fi
 readonly __ZSH_NVIM_LOADED=1
 
 # Get the module root directory
+# shellcheck disable=SC2296,SC2298
 : "${ZSH_NVIM_PATH:="${${(%):-%x}:A:h}"}"
 
 # Source layers in order: config → internal → pkg

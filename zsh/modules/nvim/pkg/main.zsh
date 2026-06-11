@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 #
 # Pkg layer - OS dispatch.
 # Sources public API, OS-specific files, aliases, and helpers.

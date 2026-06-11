@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
 #
 # Configuration variables for the nvim module.
 

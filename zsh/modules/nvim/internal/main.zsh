@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 #
 # Internal layer - OS dispatch + auto-install.
 # Sources OS-specific overrides, ensures dependencies, and auto-installs nvimrc.

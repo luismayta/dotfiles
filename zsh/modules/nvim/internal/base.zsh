@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
 #
 # Internal core logic for the nvim module.
 # Implements nvimrc installation, upgrade, and cache cleanup.

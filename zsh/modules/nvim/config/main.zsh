@@ -1,4 +1,5 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
+# shellcheck disable=SC1091
 #
 # Config layer - OS dispatch.
 # Sources configuration variables and OS-specific overrides.

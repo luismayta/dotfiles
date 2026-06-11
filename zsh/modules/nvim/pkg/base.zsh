@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+# shellcheck shell=bash
 #
 # Public API for the nvim module.
 # Thin wrappers around internal functions.
