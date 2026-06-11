@@ -1,0 +1,27 @@
+{
+  "sound": true,
+  "notification": true,
+  "timeout": 5,
+  "showProjectName": true,
+  "showSessionTitle": false,
+  "showIcon": true,
+  "suppressWhenFocused": true,
+  "enableOnDesktop": false,
+  "notificationSystem": "osascript",
+  "linux": {
+    "grouping": false
+  },
+  "events": {
+    "permission": { "sound": true, "notification": true, "command": true },
+    "complete": { "sound": true, "notification": true, "command": true },
+    "subagent_complete": { "sound": false, "notification": false, "command": true },
+    "error": { "sound": true, "notification": true, "command": true },
+    "question": { "sound": true, "notification": true, "command": true },
+    "user_cancelled": { "sound": false, "notification": false, "command": true },
+    "plan_exit": { "sound": true, "notification": true, "command": true }
+  },
+  "sounds": {
+    "complete": "~/.config/opencode/assets/sounds/success.mp3",
+    "subagent_complete": "~/.config/opencode/assets/sounds/success.mp3"
+  }
+}

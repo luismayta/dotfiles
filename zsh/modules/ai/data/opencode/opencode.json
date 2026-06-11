@@ -1,0 +1,463 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "explore": {
+      "disable": true
+    },
+    "general": {
+      "disable": true
+    }
+  },
+  "autoupdate": false,
+  "instructions": ["AGENTS.md"],
+  "mcp": {
+    "awslabs.aws-knowledge": {
+      "type": "remote",
+      "url": "https://knowledge-mcp.global.api.aws",
+      "enabled": false
+    },
+    "awslabs.aws-terraform": {
+      "type": "local",
+      "command": ["uvx", "awslabs.terraform-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": false
+    },
+    "bitbucket": {
+      "type": "local",
+      "command": ["bunx", "-y", "bitbucket-mcp@latest"],
+      "enabled": false,
+      "environment": {
+        "BITBUCKET_URL": "https://api.bitbucket.org/2.0",
+        "BITBUCKET_WORKSPACE": "{env:BITBUCKET_WORKSPACE}",
+        "BITBUCKET_USERNAME": "{env:BITBUCKET_USERNAME}",
+        "BITBUCKET_PASSWORD": "{env:BITBUCKET_PASSWORD}",
+        "BITBUCKET_TOKEN": "{env:BITBUCKET_TOKEN}"
+      }
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--headless", "true"],
+      "enabled": false
+    },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "{env:CONTEXT7_API_KEY}"],
+      "enabled": true
+    },
+    "docker": {
+      "type": "local",
+      "command": ["bunx", "-y", "docker-mcp"],
+      "enabled": false,
+      "environment": {
+        "DOCKER_MCP_LOCAL": "true",
+        "DOCKER_MCP_HOST": "{env:DOCKER_MCP_HOST}",
+        "DOCKER_MCP_USERNAME": "{env:DOCKER_MCP_USERNAME}",
+        "DOCKER_MCP_PRIVATE_KEY": "{env:DOCKER_MCP_PRIVATE_KEY}",
+        "DOCKER_MCP_PORT": "{env:DOCKER_MCP_PORT}",
+        "DOCKER_MCP_PASSPHRASE": "{env:DOCKER_MCP_PASSPHRASE}"
+      }
+    },
+    "engram": {
+      "command": ["/opt/homebrew/Cellar/engram/1.10.10/bin/engram", "mcp", "--tools=agent"],
+      "enabled": true,
+      "type": "local"
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-filesystem"],
+      "enabled": true,
+      "environment": {
+        "ROOT": "."
+      }
+    },
+    "github": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "gitlab": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-gitlab"],
+      "enabled": false,
+      "environment": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_PERSONAL_ACCESS_TOKEN}",
+        "GITLAB_API_URL": "https://gitlab.com/api/v4"
+      }
+    },
+    "grafana": {
+      "type": "local",
+      "command": ["uvx", "mcp-grafana"],
+      "environment": {
+        "GRAFANA_URL": "{env:GRAFANA_URL}",
+        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_SERVICE_ACCOUNT_TOKEN}"
+      },
+      "enabled": true
+    },
+    "grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true
+    },
+    "hashicorp.terraform": {
+      "type": "local",
+      "command": ["docker", "run", "-i", "--rm", "hashicorp/terraform-mcp-server:latest"],
+      "enabled": true
+    },
+    "image-compression": {
+      "type": "local",
+      "command": ["bunx", "-y", "@inhiblab-core/mcp-image-compression"],
+      "enabled": true,
+      "environment": {
+        "IMAGE_COMPRESSION_DOWNLOAD_DIR": "assets/images"
+      }
+    },
+    "jira": {
+      "type": "remote",
+      "url": "{env:JIRA_MCP_URL}",
+      "enabled": true,
+      "oauth": {}
+    },
+    "kubernetes": {
+      "type": "local",
+      "command": ["bunx", "-y", "mcp-server-kubernetes"],
+      "enabled": false,
+      "environment": {
+        "ALLOW_ONLY_NON_DESTRUCTIVE_TOOLS": "true"
+      }
+    },
+    "notebooklm": {
+      "type": "local",
+      "command": ["npx", "-y", "notebooklm-mcp@latest"]
+    },
+    "notion": {
+      "type": "local",
+      "command": ["bunx", "-y", "@notionhq/notion-mcp-server"],
+      "enabled": false,
+      "environment": {
+        "NOTION_TOKEN": "{env:NOTION_TOKEN}"
+      }
+    },
+    "obsidian": {
+      "type": "local",
+      "command": ["uvx", "mcp-obsidian"],
+      "enabled": true,
+      "environment": {
+        "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
+      }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    },
+    "sentry": {
+      "type": "local",
+      "command": ["uvx", "mcp-server-sentry"],
+      "enabled": false,
+      "environment": {
+        "SENTRY_AUTH_TOKEN": "{env:SENTRY_AUTH_TOKEN}"
+      }
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "enabled": true
+    },
+    "serena": {
+      "type": "local",
+      "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"],
+      "enabled": false
+    },
+    "supabase": {
+      "type": "local",
+      "command": ["bunx", "-y", "supabase-mcp@latest", "supabase-mcp-claude"],
+      "enabled": false,
+      "environment": {
+        "SUPABASE_URL": "{env:SUPABASE_URL}",
+        "SUPABASE_ANON_KEY": "{env:SUPABASE_ANON_KEY}",
+        "SUPABASE_SERVICE_ROLE_KEY": "{env:SUPABASE_SERVICE_ROLE_KEY}",
+        "MCP_API_KEY": "{env:SUPABASE_MCP_API_KEY}"
+      }
+    }
+  },
+  "permission": {
+    "external_directory": {
+      "*": "ask",
+      "~/.config/opencode/skills/*": "allow",
+      "~/.config/opencode/.jira-config.json": "allow",
+      "/var/tmp/*": "allow",
+      "/tmp/*": "allow"
+    }
+  },
+  "plugin": [
+    "opencode-gemini-auth@latest",
+    "opencode-openai-codex-auth@latest",
+    "opencode-antigravity-auth@latest",
+    "opencode-websearch-cited@latest",
+    "@mohak34/opencode-notifier@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-pty@0.2.1",
+    "@architecture/infosis-opencode-slim@1.2.1"
+  ],
+  "provider": {
+    "openai": {
+      "name": "OpenAI"
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "options": {
+        "apiKey": "{env:OPENROUTER_API_KEY}"
+      }
+    },
+    "google": {
+      "models": {
+        "antigravity-gemini-3.1-pro": {
+          "name": "Gemini 3.1 Pro (Antigravity)",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-gemini-3-flash": {
+          "name": "Gemini 3 Flash (Antigravity)",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "minimal": {
+              "thinkingLevel": "minimal"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5 (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "antigravity-claude-sonnet-4-5-thinking": {
+          "name": "Claude Sonnet 4.5 Thinking (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        },
+        "antigravity-claude-opus-4-5-thinking": {
+          "name": "Claude Opus 4.5 Thinking (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        },
+        "gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash (Gemini CLI)",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "gemini-2.5-pro": {
+          "name": "Gemini 2.5 Pro (Gemini CLI)",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash Preview (Gemini CLI)",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "gemini-3.1-pro-preview": {
+          "name": "Gemini 3.1 Pro Preview (Gemini CLI)",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
+    "opencode": {},
+    "custom": {
+      "name": "shimmy",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11435/v1",
+        "apiKey": "sk-local"
+      },
+      "models": {
+        "registry.ollama.ai/library/qwen2.5-coder/7b": {
+          "name": "qwen2.5-coder:7b"
+        },
+        "registry.ollama.ai/library/qwen2.5-coder/14b": {
+          "name": "qwen2.5-coder:14b"
+        },
+        "registry.ollama.ai/library/deepseek-coder/6.7b": {
+          "name": "deepseek-coder:6.7b"
+        }
+      }
+    },
+    "shimmy": {
+      "name": "shimmy",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11435/v1",
+        "apiKey": "sk-local"
+      },
+      "models": {
+        "registry.ollama.ai/library/qwen2.5-coder/7b": {
+          "name": "qwen2.5-coder:7b"
+        },
+        "registry.ollama.ai/library/qwen2.5-coder/14b": {
+          "name": "qwen2.5-coder:14b"
+        },
+        "registry.ollama.ai/library/deepseek-coder/6.7b": {
+          "name": "deepseek-coder:6.7b"
+        }
+      }
+    },
+    "ollama": {
+      "name": "Ollama (local)",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen3:8b": {
+          "attachment": true,
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "temperature": 0.2,
+            "num_ctx": 40960
+          },
+          "limit": {
+            "context": 40960,
+            "output": 8192
+          },
+          "name": "qwen3:8b"
+        },
+        "qwen2.5-coder:7b": {
+          "name": "qwen2.5-coder:7b"
+        },
+        "qwen2.5-coder:14b": {
+          "attachment": true,
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "temperature": 0.2,
+            "num_ctx": 8192
+          },
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          },
+          "name": "qwen2.5-coder:14b"
+        },
+        "qwen3-coder": {
+          "attachment": true,
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "temperature": 0.2,
+            "num_ctx": 81920
+          },
+          "limit": {
+            "context": 81920,
+            "output": 16384
+          },
+          "name": "qwen3-coder"
+        }
+      }
+    }
+  }
+}
