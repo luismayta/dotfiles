@@ -17,8 +17,13 @@ EOF
 [ -r "${SCRIPT_DIR:-}/bootstrap.sh" ] && source "${SCRIPT_DIR:-}/bootstrap.sh"
 
 readonly ZDOTDIR="${ZDOTDIR:-${HOME}}"
+readonly ANTIDOTE_DIR="${ZDOTDIR}/.antidote"
 
-git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR}/.antidote"
+if [[ ! -d "${ANTIDOTE_DIR}" ]]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git "${ANTIDOTE_DIR}"
+else
+  msg "antidote already installed at ${ANTIDOTE_DIR}, skipping"
+fi
 
 cat <<EOF
 
