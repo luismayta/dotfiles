@@ -1,4 +1,4 @@
-#!/usr/bin/env ksh
+#!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 unset ZSH_DEBUG
 
@@ -13,12 +13,12 @@ export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export DOTFILES_ZSH_DIR="${DOTFILES_DIR}/zsh"
-export DOTFILES_MOD_DIR="${DOTFILES_ZSH_DIR}/mod"
+export DOTFILES_CORE_DIR="${DOTFILES_ZSH_DIR}/core"
 
 autoload -Uz compinit add-zsh-hook is-at-least
 
 # shellcheck source=/dev/null
-[ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
+[ -e "${DOTFILES_CORE_DIR}/main.zsh" ] && source "${DOTFILES_CORE_DIR}/main.zsh"
 
 # Load modules from modules/ directory
 for __module_dir in "${DOTFILES_ZSH_DIR}"/modules/*(/N); do
@@ -40,7 +40,7 @@ touch ~/.custom_zsh_plugins.txt
 cat "${DOTFILES_ZSH_DIR}/zsh_plugins.txt" ~/.custom_zsh_plugins.txt > ~/.zsh_plugins.txt
 
 # shellcheck source=/dev/null
-[ -s "${CUSTOMRC}" ] && source "${CUSTOMRC}"
+[ -s "${CUSTOMRC:-${HOME}/.customrc}" ] && source "${CUSTOMRC:-${HOME}/.customrc}"
 
 antidote load ~/.zsh_plugins.txt
 
@@ -54,9 +54,9 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 
 # remove duplicates path
-if type -p path::clean > /dev/null; then
+if (( $+functions[path::clean] )); then
     export PATH="$(path::clean ${PATH})"
-    export FPATH="$(path::clean ${PATH})"
+    export FPATH="$(path::clean ${FPATH})"
 fi
 
 # Auto completion
@@ -66,6 +66,11 @@ if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
     compinit
 else
     compinit -d
+fi
+;;
+ linux*)
+if [ -z "${ZSH_DEBUG}" ]; then
+    compinit
 fi
 ;;
 esac

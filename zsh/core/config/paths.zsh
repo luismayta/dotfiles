@@ -6,6 +6,8 @@ export LOCAL_PATH_BIN="${HOME}/.local/bin"
 export HOMEBREW_BIN_PATH="/opt/homebrew/bin"
 export PRIVATERC="${HOME}/.privaterc"
 export CUSTOMRC="${HOME}/.customrc"
+export DOTFILES_CORE_DIR="${DOTFILES_ZSH_DIR}/core"
+export DOTFILES_MOD_DIR="${DOTFILES_CORE_DIR}"
 
 export PATH="${DOTFILES_BIN}:${PATH}"
 
