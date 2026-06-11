@@ -26,6 +26,7 @@ function rvm::internal::install::gpg {
 function rvm::internal::rvm::load {
   # Add RVM to PATH for scripting
   [ -e "${RVM_ROOT}/bin" ] && export PATH="${PATH}:${RVM_ROOT}/bin"
+  # shellcheck source=/dev/null
   [[ -s "${RVM_ROOT}/scripts/rvm" ]] && . "${RVM_ROOT}/scripts/rvm"
 }
 
@@ -42,7 +43,7 @@ function rvm::internal::packages::install {
 
 function rvm::internal::version::install {
   local version=${1}
-  rvm install ${version}
+  rvm install "${version}"
 }
 
 function rvm::internal::version::all::install {
