@@ -15,7 +15,7 @@ function nvim::internal::install {
   fi
 
   command git clone --depth=1 \
-    "https://github.com/${NVIM_REPO_HTTPS}.git" \
+    "${NVIM_INSTALL_URL}" \
     "${NVIM_CONFIG_PATH}"
   message_success "Installed nvimrc configuration"
 }
