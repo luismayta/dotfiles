@@ -33,3 +33,4 @@ export FNM_PACKAGES=(
     @vscode/vsce
     vercel
 )
+export FNM_INSTALL_URL="https://fnm.vercel.app/install"

@@ -3,7 +3,7 @@
 
 function fnm::internal::fnm::install {
     message_info "Installing ${FNM_PACKAGE_NAME}"
-    curl -fsSL https://fnm.vercel.app/install | bash
+    curl -fsSL "${FNM_INSTALL_URL}" | bash
     fnm::internal::fnm::load
     message_success "Installed ${FNM_PACKAGE_NAME}"
 }
