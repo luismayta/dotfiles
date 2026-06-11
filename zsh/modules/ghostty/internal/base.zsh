@@ -3,7 +3,7 @@
 function ghostty::internal::conf::sync {
     message_info "Syncing ghostty configuration"
     if ! core::exists rsync; then core::install rsync; fi
-    rsync -avh --no-perms "${GHOSTTY_CONF_DIR}/" "${HOME}/.config/ghostty/"
+    rsync -avh --no-perms "${GHOSTTY_DATA_PATH}/" "${HOME}/.config/ghostty/"
     message_success "Synced ghostty configuration"
 }
 
