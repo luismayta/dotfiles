@@ -21,5 +21,5 @@ function ssh::internal::ssh::connect {
 }
 
 function ssh::internal::ssh::sync {
-    rsync -avzh --progress "${SSH_PATH_CONF}/" "${HOME}/.ssh/"
+    rsync -avzh --progress "${SSH_DATA_PATH}/" "${HOME}/.ssh/"
 }
