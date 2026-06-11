@@ -1,6 +1,6 @@
 [user]
-	name = Luis Mayta
-	email = luis@hadenlabs.com
+	name = Lucho
+	email = luch@hadenlabs.com
 	signingKey = ~/.ssh/id_ed25519.pub
 
 [core]
