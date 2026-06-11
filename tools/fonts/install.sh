@@ -25,7 +25,14 @@ if command -v fc-cache >/dev/null 2>&1; then
     fc-cache -f "${FONTS_DIR:-${HOME}/.fonts}"
 fi
 
-cd "${FONTS_DIR:-${HOME}/.fonts}" && curl -fLo "Sauce Code Pro Medium Nerd Font Complete Mono.ttf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete%20Mono.ttf
+# Install Source Code Pro Nerd Font via package manager (preferred) or direct download
+if command -v paru &>/dev/null; then
+  paru -S --noconfirm ttf-sourcecodepro-nerd
+elif command -v brew &>/dev/null; then
+  brew install --cask font-source-code-pro
+else
+  curl -fsSL https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/install.sh | bash -s -- SourceCodePro
+fi
 
 cat <<EOF
 
