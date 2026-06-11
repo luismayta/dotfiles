@@ -2,6 +2,8 @@
 export RUST_CARGO_BIN="${HOME}/.cargo/bin"
 export RUST_CARGO_ENV="${HOME}/.cargo/env"
 export RUST_PACKAGE_NAME=rust
+export RUST_INSTALL_URL_RUSTUP="https://sh.rustup.rs"
+export RUST_INSTALL_URL_UV="https://github.com/astral-sh/uv"
 export RUST_CARGO_PACKAGES=(
   bat
   fselect
@@ -18,7 +20,7 @@ export RUST_CARGO_PACKAGES=(
   eza
   git-delta
   yazi-fm yazi-cli --locked
-  --git https://github.com/astral-sh/uv uv
+  --git "${RUST_INSTALL_URL_UV}" uv
 )
 
 export RUST_RUSTUP_PACKAGES=(
