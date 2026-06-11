@@ -15,11 +15,6 @@ function brew::install::osx {
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
-function brew::install::linux {
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-    brew vendor-install ruby
-}
-
 function brew::install {
     brew::dependences::checked
     message_info "Installing ${brew_package_name}"
@@ -27,9 +22,6 @@ function brew::install {
     darwin*)
         brew::install::osx
         ;;
-    linux*)
-        brew::install::linux
-      ;;
     esac
     message_success "${brew_package_name} Installed"
 }
@@ -44,17 +36,6 @@ function brew::post_install {
             jq \
             the_silver_searcher \
             tree
-          ;;
-        linux*)
-          case "${DIST}" in
-            Redhat | RedHat)
-              brew install homebrew/dupes/gperf
-              ;;
-            Debian | Ubuntu | "")
-              brew install \
-                jq
-              ;;
-          esac
           ;;
       esac
 
