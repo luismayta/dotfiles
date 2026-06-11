@@ -1,6 +1,6 @@
 To contribute to dotfiles project on [GitHub](https://github.com/luismayta/dotfiles), We use [GitHub Flow](https://githubflow.github.io/), it means that you should branch from the main repository and contribute back by making [pull request](https://github.com/luismayta/dotfiles/pulls/new).
 
-GitHub Flow is very lightweight (especially compared to GitFlow). This workflow uses only two kinds of branches:
+GitHub Flow is very lightweight. This workflow uses only two kinds of branches:
 
 - Feature branch
 - Main branch (previously called master)
