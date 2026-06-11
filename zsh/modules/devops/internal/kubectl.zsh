@@ -9,20 +9,8 @@ function devops::kubectl::internal::load::completion {
 }
 
 function devops::kubectl::internal::krew::install {
-    message_info "Installing KREW"
-    (set -x; cd "$(mktemp -d)" &&
-    OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
-    ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
-    KREW="krew-${OS}_${ARCH}" &&
-    curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
-    tar zxvf "${KREW}.tar.gz" &&
-    ./"${KREW}" install krew)
-    message_success "Installed KREW"
-}
-
-function devops::kubectl::internal::kubecolor::install {
-    if ! core::exists kubecolor; then
-        brew install hidetatz/tap/kubecolor
+    if ! core::exists kubectl-krew; then
+        core::install krew
     fi
 }
 
@@ -30,13 +18,6 @@ function devops::kubectl::internal::krew::load {
     if core::exists kubectl; then
         [ -e "${KREW_ROOT_BIN}" ] && export PATH="${KREW_ROOT_BIN}:${PATH}"
     fi
-}
-
-function devops::kubectl::internal::crossplane::install {
-    message_info "Installing crossplane"
-    curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
-    mv crossplane "${DEVOPS_KUBECTL_LOCAL_PATH_BIN}/"
-    message_success "Installed crossplane"
 }
 
 function devops::kubectl::internal::plugin::install {
@@ -90,8 +71,7 @@ function devops::kubectl::internal::main::factory {
     core::ensure helm
     if ! core::exists kubectl-krew; then devops::kubectl::internal::krew::install; fi
     core::ensure kubectx
-    if ! core::exists crossplane; then devops::kubectl::internal::crossplane::install; fi
-    if ! core::exists kubecolor; then devops::kubectl::internal::kubecolor::install; fi
+    core::ensure kubecolor
 
     devops::kubectl::internal::load::completion
 }
