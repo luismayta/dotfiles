@@ -35,7 +35,7 @@ function goenv::internal::packages::install {
         return
     fi
     message_info "Installing required go packages"
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)"/bin v1.41.0
+    curl -sSfL "${GOENV_INSTALL_URL_LINT}" | sh -s -- -b "$(go env GOPATH)"/bin v1.41.0
     local package
     for package in "${GOENV_INSTALL_PACKAGES[@]}"; do
         goenv::internal::package::install "${package}"
@@ -71,6 +71,6 @@ function goenv::internal::version::global::install {
 
 function goenv::internal::upgrade {
     message_info "Upgrade for ${GOENV_PACKAGE_NAME}"
-    curl -sLk https://git.io/gobrew | sh -
+    curl -sLk "${GOBREW_INSTALL_URL}" | sh -
     message_success "Upgraded ${GOENV_PACKAGE_NAME}"
 }
