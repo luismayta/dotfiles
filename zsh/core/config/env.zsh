@@ -13,3 +13,4 @@ export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export ANDROID_PLATFORM_VERSION="35"
 export ANDROID_SDK_VERSION="35.0.1"
 export ANDROID_FILE_REPOSITORIES="${HOME}/.android/repositories.cfg"
+export FUNCNEST=5000
