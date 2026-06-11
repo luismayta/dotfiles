@@ -21,4 +21,3 @@ export PATH="${ZSH_GIT_PATH}/bin:${PATH}"
 core::ensure git
 core::ensure hub
 core::ensure rsync
-core::ensure "${GIT_FLOW_PACKAGE_NAME:-git-flow}"

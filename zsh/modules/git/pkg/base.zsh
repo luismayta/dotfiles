@@ -1,45 +1,10 @@
 # shellcheck shell=bash
 # shellcheck disable=SC2154 # Variables defined in config/base.zsh
 
-# gitflow::is_installed — check if git-flow is installed
-function gitflow::is_installed {
-    if type -p git-flow > /dev/null; then
-        echo 1
-        return
-    fi
-    echo 0
-}
-
 # git::dependences::check — verify git user config
 function git::dependences::check {
     if [ -z "${GITHUB_USER}" ]; then
         message_warning "You should set 'git config --global github.user'."
-    fi
-}
-
-# gff — git-flow feature helper
-function gff {
-    local action branch_name branch_eq_action action_to_skip action_excluded
-    action_to_skip=(publish start)
-    branch_name="$(git::internal::branch::task_name)"
-    action="${1}"
-    if [ -z "${action}" ]; then
-        action="${branch_name}"
-    fi
-    action_excluded=$(printf "%s\\n" "${action_to_skip[@]}" | grep -c "^${action}")
-    branch_eq_action=$(printf "%s" "${branch_name}" | grep -c "${action}")
-
-    git::internal::gitflow::setup
-
-    if [ -n "${action}" ] && [ "${action_excluded}" -eq 0 ] && [ "${branch_eq_action}" -eq 1 ]; then
-        git::internal::gff::publish
-    elif [ -n "${action}" ] && [ "${action_excluded}" -eq 0 ] && [ "${branch_eq_action}" -eq 0 ]; then
-        git::internal::gff::sync
-        git flow feature start "${action}"
-    fi
-
-    if [ -n "${action}" ] && [ "${action_excluded}" -eq 1 ]; then
-        git flow feature "${action}"
     fi
 }
 

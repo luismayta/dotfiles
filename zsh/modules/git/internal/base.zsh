@@ -51,56 +51,6 @@ function git::internal::git::branch::name {
     git symbolic-ref --short HEAD
 }
 
-# git::internal::gitflow::branch::develop — get gitflow develop branch name
-function git::internal::gitflow::branch::develop {
-    git config --local gitflow.branch.develop || echo 'develop'
-}
-
-# git::internal::gitflow::branch::base — get gitflow base branch name
-function git::internal::gitflow::branch::base {
-    git config --local gitflow.branch.master || echo 'main'
-}
-
-# git::internal::gitflow::validate::exist::develop — check if develop branch exists
-function git::internal::gitflow::validate::exist::develop {
-    local response
-    response="$(git config --local gitflow.branch.develop 2>/dev/null | cut -d ' ' -f 2)"
-    if [ -n "${response}" ]; then
-        echo 1
-        return
-    fi
-    echo 0
-}
-
-# git::internal::gitflow::validate::exist::master — check if master branch exists
-function git::internal::gitflow::validate::exist::master {
-    local response
-    response="$(git config --local gitflow.branch.master 2>/dev/null | cut -d ' ' -f 2)"
-    if [ -n "${response}" ]; then
-        echo 1
-        return
-    fi
-    echo 0
-}
-
-# git::internal::gitflow::has_master::configured — alias for master check
-function git::internal::gitflow::has_master::configured {
-    git::internal::gitflow::validate::exist::master
-}
-
-# git::internal::gitflow::has_develop::configured — alias for develop check
-function git::internal::gitflow::has_develop::configured {
-    git::internal::gitflow::validate::exist::develop
-}
-
-# git::internal::gitflow::setup — initialize gitflow for repo
-function git::internal::gitflow::setup {
-    if [ "$(git::internal::gitflow::has_develop::configured)" -eq 0 ] || [ "$(git::internal::gitflow::has_master::configured)" -eq 0 ]; then
-        git flow init -d
-    fi
-    git::internal::hook::factory
-}
-
 # git::internal::exist_hook — check if hook name matches regex
 function git::internal::exist_hook {
     local hook_name
@@ -150,15 +100,6 @@ function git::internal::branch::task_name {
     echo "${branch_name}"
 }
 
-# git::internal::branch::is_develop — check if on develop branch
-function git::internal::branch::is_develop {
-    if [ "$(git::internal::git::branch::name)" = "$(git::internal::gitflow::branch::develop)" ]; then
-        echo 1
-        return
-    fi
-    echo 0
-}
-
 # git::internal::repository::remote::url — get remote URL
 function git::internal::repository::remote::url {
     local remote_name
@@ -183,26 +124,4 @@ function git::internal::repository::fork::private {
     echo 0
 }
 
-# git::internal::gff::publish — push branch to appropriate remote
-function git::internal::gff::publish {
-    local branch_name
-    branch_name="$(git::internal::git::branch::name)"
-    if [ "$(git::internal::repository::fork::private)" -eq 1 ]; then
-        git push upstream "${branch_name}"
-        return
-    fi
-    git push origin "${branch_name}"
-}
 
-# git::internal::gff::sync — sync branches with remote
-function git::internal::gff::sync {
-    if [ -z "$(git::internal::repository::remote::url origin)" ]; then
-        return
-    fi
-    message_info "starting sync branches"
-    if [ "$(git::internal::branch::is_develop)" -eq 0 ]; then
-        git checkout "$(git::internal::gitflow::branch::develop)"
-    fi
-    git-sync
-    message_success "finish sync branches"
-}
