@@ -3,7 +3,7 @@
 
 function scmbreeze::internal::install {
     message_info "Installing ${SCMBREEZE_PACKAGE_NAME}"
-    git clone https://github.com/scmbreeze/scm_breeze.git "${SCMBREEZE_ROOT}"
+    git clone "${SCMBREEZE_INSTALL_URL}" "${SCMBREEZE_ROOT}"
     "${SCMBREEZE_ROOT}/install.sh"
     message_success "Installed ${SCMBREEZE_PACKAGE_NAME}"
 }
