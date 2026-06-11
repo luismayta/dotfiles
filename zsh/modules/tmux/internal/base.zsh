@@ -19,6 +19,6 @@ function tmux::internal::tmuxinator::install {
 
 function tmux::internal::tpm::install {
     message_info "Installing tpm for ${TMUX_PACKAGE_NAME}"
-    git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_PATH}"
+    git clone "${TMUX_INSTALL_URL_TPM}" "${TMUX_TPM_PATH}"
     message_success "Installed tpm for ${TMUX_PACKAGE_NAME}"
 }

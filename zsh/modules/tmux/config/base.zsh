@@ -9,3 +9,5 @@ export TMUX_TPM_PATH="${HOME}"/.tmux/plugins/tpm
 export TMUXINATOR_TEMPLATE_DIR="${HOME_CONFIG_PATH}/tmuxinator/templates"
 export TMUXINATOR_DEFAULT_TEMPLATE="default"
 
+export TMUX_INSTALL_URL_TPM="https://github.com/tmux-plugins/tpm"
+
