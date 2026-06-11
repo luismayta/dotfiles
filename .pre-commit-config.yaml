@@ -35,6 +35,7 @@ repos:
           .claude/skills\/.*$|
           .agents/skills\/.*$|
           .opencode/skills\/.*$|
+          zsh/modules/ai/data/patterns\/.*$|
           app/data\/.*$|
           app/ia/datasets\/.*$|
           app/routes\/.*$|
@@ -111,6 +112,7 @@ repos:
           docs/env-vars.md$|
           docs\/include\/terraform.md$|
           docs/opencode/commands/.*\.md$|
+          zsh/modules/ai/data/patterns\/.*$|
           )$
 
   - repo: https://github.com/hadenlabs/pre-commit-hooks
