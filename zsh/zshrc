@@ -20,13 +20,30 @@ autoload -Uz compinit add-zsh-hook is-at-least
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_CORE_DIR}/main.zsh" ] && source "${DOTFILES_CORE_DIR}/main.zsh"
 
+# Bootstrap customrc from example template if not present
+if [[ ! -e "${CUSTOMRC:-${HOME}/.customrc}" ]] && [[ -e "${DOTFILES_DIR}/.customrc.example" ]]; then
+  cp "${DOTFILES_DIR}/.customrc.example" "${CUSTOMRC:-${HOME}/.customrc}"
+fi
+
+# shellcheck source=/dev/null
+[ -s "${CUSTOMRC:-${HOME}/.customrc}" ] && source "${CUSTOMRC:-${HOME}/.customrc}"
+
 # Load modules from modules/ directory
+# To disable a module, set ZSH_DISABLED_MODULES in ~/.customrc:
+#   export ZSH_DISABLED_MODULES="tmux"
+#   export ZSH_DISABLED_MODULES="tmux starship"
+#   export ZSH_DISABLED_MODULES="tmux,starship"
 for __module_dir in "${DOTFILES_ZSH_DIR}"/modules/*(/N); do
   if [ -e "${__module_dir}/plugin.zsh" ]; then
+    # Skip if module is in ZSH_DISABLED_MODULES (space or comma separated)
+    __module_name="${__module_dir:t}"
+    if [[ -n "${ZSH_DISABLED_MODULES:-}" ]] && [[ ",${ZSH_DISABLED_MODULES// /,}," == *",${__module_name},"* ]]; then
+      continue
+    fi
     source "${__module_dir}/plugin.zsh"
   fi
 done
-unset __module_dir
+unset __module_name __module_dir
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
@@ -38,9 +55,6 @@ source "${HOME}"/.antidote/antidote.zsh
 touch ~/.custom_zsh_plugins.txt
 
 cat "${DOTFILES_ZSH_DIR}/zsh_plugins.txt" ~/.custom_zsh_plugins.txt > ~/.zsh_plugins.txt
-
-# shellcheck source=/dev/null
-[ -s "${CUSTOMRC:-${HOME}/.customrc}" ] && source "${CUSTOMRC:-${HOME}/.customrc}"
 
 antidote load ~/.zsh_plugins.txt
 
