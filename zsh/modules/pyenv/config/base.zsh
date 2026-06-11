@@ -34,3 +34,5 @@ export PYENV_MODULES=(
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 export ZSH_PYENV_LAZY_VIRTUALENV=true
+
+export PYENV_INSTALL_URL="https://github.com/pyenv/pyenv.git"

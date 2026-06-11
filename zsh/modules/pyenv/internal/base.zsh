@@ -3,7 +3,7 @@
 
 function pyenv::internal::pyenv::install {
     message_info "Installing ${PYENV_PACKAGE_NAME}"
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    git clone "${PYENV_INSTALL_URL}" ~/.pyenv
     message_success "Installed ${PYENV_PACKAGE_NAME}"
 }
 
