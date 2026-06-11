@@ -3,7 +3,7 @@
 
 function devops::tfenv::internal::tfenv::install {
     message_info "Installing ${DEVOPS_TFENV_PACKAGE_NAME}"
-    git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+    git clone "${DEVOPS_INSTALL_URL_TFENV}" ~/.tfenv
     devops::tfenv::internal::tfenv::load
     message_success "Installed ${DEVOPS_TFENV_PACKAGE_NAME}"
 }
