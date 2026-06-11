@@ -14,18 +14,8 @@ linux*)
 esac
 
 function issues::workflow::factory {
-    local workflow
-    workflow=$(issues::internal::git::workflow::detect)
-    case "${workflow}" in
-    gitflow)
-        # shellcheck source=/dev/null
-        source "${ISSUES_PATH}/workflow/gitflow.zsh"
-        ;;
-    *)
-        # shellcheck source=/dev/null
-        source "${ISSUES_PATH}/workflow/githubflow.zsh"
-        ;;
-    esac
+    # shellcheck source=/dev/null
+    source "${ISSUES_PATH}/workflow/githubflow.zsh"
 }
 
 # Auto-detect on initial load

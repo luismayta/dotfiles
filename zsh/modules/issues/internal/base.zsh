@@ -28,33 +28,6 @@ function issues::internal::git::branch::current {
     git rev-parse --abbrev-ref HEAD 2>/dev/null
 }
 
-function issues::internal::git::workflow::detect {
-    if git config --get "gitflow.branch.master" >/dev/null 2>&1; then
-        echo "gitflow"
-        return
-    fi
-    if [[ -f ".gitflow" ]] || [[ -f "gitflow.toml" ]]; then
-        echo "gitflow"
-        return
-    fi
-    echo "githubflow"
-}
-
 function issues::internal::git::branch::base {
-    local workflow
-    workflow=$(issues::internal::git::workflow::detect)
-    if [[ "${workflow}" == "gitflow" ]]; then
-        local current_branch
-        current_branch=$(issues::internal::git::branch::current)
-        case "${current_branch}" in
-        hotfix/*|release/*)
-            echo "master"
-            ;;
-        *)
-            echo "develop"
-            ;;
-        esac
-    else
-        echo "main"
-    fi
+    echo "main"
 }
