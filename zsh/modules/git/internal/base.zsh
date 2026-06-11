@@ -8,7 +8,7 @@ function git::internal::git::install {
         message_warning "${CORE_MESSAGE_BREW}"
         return
     fi
-    brew install git
+    core::install git
     message_success "Installed ${GIT_PACKAGE_NAME}"
 }
 

@@ -13,6 +13,6 @@ function ghostty::internal::ghostty::install {
         message_warning "Please install brew or use antibody bundle hadenlabs/zsh-core branch:develop"
         return
     fi
-    brew install --cask ghostty
+    core::install ghostty
     message_success "Installed ${GHOSTTY_PACKAGE_NAME}"
 }

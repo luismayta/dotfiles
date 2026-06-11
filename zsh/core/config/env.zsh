@@ -3,10 +3,11 @@
 # Core env vars
 #
 
-export CORE_MESSAGE_BREW="Please install brew or use the brew module at zsh/modules/brew"
+export CORE_MESSAGE_BREW="Please install brew or use core::install"
 export CORE_MESSAGE_PARU="Please install paru or use the paru module at zsh/modules/paru"
 export CORE_MESSAGE_RUST="Please install rust or use the rust module at zsh/modules/rust"
 export CORE_MESSAGE_CARGO="Please install cargo or use the rust module at zsh/modules/rust"
+export CORE_MESSAGE_RVM="Please install rvm or use the rvm module at zsh/modules/rvm"
 export CORE_PROJECTS_BACKUP_PATH="${HOME}/backup"
 
 export ANDROID_HOME="${HOME}/Library/Android/sdk"

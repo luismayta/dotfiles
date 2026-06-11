@@ -10,7 +10,7 @@ function tmux::internal::tmux::install {
 function tmux::internal::tmuxinator::install {
     message_info "Installing tmuxinator for ${TMUX_PACKAGE_NAME}"
     if ! core::exists gem; then
-        message_warning "${TMUX_MESSAGE_RVM}"
+        message_warning "${CORE_MESSAGE_RVM}"
         return
     fi
     gem install tmuxinator

@@ -7,7 +7,7 @@ function eza::install {
         return
     fi
     message_info "Installing eza"
-    brew install eza
+    core::install eza
     message_success "Installed eza"
 }
 

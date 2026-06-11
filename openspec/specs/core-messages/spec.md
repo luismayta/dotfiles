@@ -7,7 +7,7 @@ The system SHALL define centralized message variables for common tool installati
 #### Scenario: CORE_MESSAGE_BREW is defined
 
 - **WHEN** `zsh/core/config/env.zsh` is sourced
-- **THEN** `CORE_MESSAGE_BREW` SHALL be set to a string that references `zsh/modules/brew` instead of an external bundle
+- **THEN** `CORE_MESSAGE_BREW` SHALL be set to a string that references `core::install`
 
 #### Scenario: CORE_MESSAGE_RVM is defined
 

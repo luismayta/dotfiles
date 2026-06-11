@@ -4,7 +4,7 @@
 function ghq::internal::ghq::install {
     message_info "Installing ${GHQ_PACKAGE_NAME}"
     if core::exists brew; then
-        brew install "${GHQ_PACKAGE_NAME}"
+        core::install "${GHQ_PACKAGE_NAME}"
     elif core::exists paru; then
         paru -S --noconfirm "${GHQ_PACKAGE_NAME}"
     else
