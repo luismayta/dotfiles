@@ -73,6 +73,8 @@ function setup::mac {
     jq ag fd ripgrep cmake ksh
 
   brew install --cask font-source-code-pro
+
+  sudo chsh -s /bin/zsh "$USER"
 }
 
 function setup::linux {
@@ -109,6 +111,8 @@ function setup::linux {
   for package in "${packages[@]}"; do
     paru -S --noconfirm "${package}"
   done
+
+  sudo chsh -s /usr/bin/zsh "$USER"
 
 }
 
