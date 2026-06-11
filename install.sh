@@ -170,7 +170,5 @@ unset app
 
 clone_repo "Successfully cloned ${DOTFILES_NAME}"
 
-message::info "git-extras is available for manual install. See tools/git-extras/install.sh"
-
 message::info "\nThanks for installing ${DOTFILES_NAME}."
 message::info "© $(date +%Y) ${DOTFILES_NAME}"

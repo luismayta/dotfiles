@@ -7,7 +7,6 @@ export GIT_BRANCH='main'
 export FONTS_DIR="${HOME}/.fonts"
 
 export APPS=(
-    "fonts"
     "antidote"
 )
 
