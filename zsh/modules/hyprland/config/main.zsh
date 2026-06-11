@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck source=/dev/null
 source "${HYPRLAND_PATH}/config/base.zsh"
 
 case "${OSTYPE}" in

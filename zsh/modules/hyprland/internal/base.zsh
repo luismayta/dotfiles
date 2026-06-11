@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 function hyprland::internal::hyprland::install {
     message_info "Installing ${HYPRLAND_PACKAGE_NAME}"
     core::install hyprland
