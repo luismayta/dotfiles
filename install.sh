@@ -71,6 +71,8 @@ function setup::mac {
 
   brew install zsh git rsync \
     jq ag fd ripgrep cmake ksh
+
+  brew install --cask font-source-code-pro
 }
 
 function setup::linux {
@@ -101,6 +103,7 @@ function setup::linux {
     zsh
     ksh
     fd
+    ttf-sourcecodepro-nerd
   )
 
   for package in "${packages[@]}"; do

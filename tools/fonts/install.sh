@@ -24,16 +24,6 @@ eval "${find_command}" | xargs -0 -I % cp "%" "${FONTS_DIR:-${HOME}/.fonts}/" ||
 if command -v fc-cache >/dev/null 2>&1; then
     fc-cache -f "${FONTS_DIR:-${HOME}/.fonts}"
 fi
-
-# Install Source Code Pro Nerd Font via package manager (preferred) or direct download
-if command -v paru &>/dev/null; then
-  paru -S --noconfirm ttf-sourcecodepro-nerd
-elif command -v brew &>/dev/null; then
-  brew install --cask font-source-code-pro
-else
-  curl -fsSL https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/install.sh | bash -s -- SourceCodePro
-fi
-
 cat <<EOF
 
 --------------------------
