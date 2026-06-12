@@ -35,7 +35,6 @@ function goenv::internal::packages::install {
         return
     fi
     message_info "Installing required go packages"
-    curl -sSfL "${GOENV_INSTALL_URL_LINT}" | sh -s -- -b "$(go env GOPATH)"/bin v1.41.0
     local package
     for package in "${GOENV_INSTALL_PACKAGES[@]}"; do
         goenv::internal::package::install "${package}"
