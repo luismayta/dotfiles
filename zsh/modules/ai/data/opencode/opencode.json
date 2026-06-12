@@ -1,5 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "autoupdate": false,
+  "instructions": ["AGENTS.md"],
   "agent": {
     "explore": {
       "disable": true
@@ -8,20 +10,23 @@
       "disable": true
     }
   },
-  "autoupdate": false,
-  "instructions": ["AGENTS.md"],
   "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["bunx", "-y", "@playwright/mcp"],
+      "enabled": true
+    },
+    "google-calendar": {
+      "type": "local",
+      "command": ["bunx", "-y", "@cocal/google-calendar-mcp"],
+      "environment": {
+        "GOOGLE_OAUTH_CREDENTIALS": "/Users/luchomayta/.local/secure/google/mcp-luismayta4k-oauth.json"
+      },
+      "enabled": true
+    },
     "awslabs.aws-knowledge": {
       "type": "remote",
       "url": "https://knowledge-mcp.global.api.aws",
-      "enabled": false
-    },
-    "awslabs.aws-terraform": {
-      "type": "local",
-      "command": ["uvx", "awslabs.terraform-mcp-server@latest"],
-      "environment": {
-        "FASTMCP_LOG_LEVEL": "ERROR"
-      },
       "enabled": false
     },
     "bitbucket": {
@@ -39,7 +44,22 @@
     "chrome-devtools": {
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--headless", "true"],
+      "enabled": true
+    },
+    "memglobal": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory", "--file-path", "~/.config/opencode/memory.json"],
       "enabled": false
+    },
+    "tmux": {
+      "type": "local",
+      "command": ["npx", "-y", "tmux-mcp"],
+      "enabled": false
+    },
+    "markitdown": {
+      "type": "local",
+      "enabled": false,
+      "command": ["uvx", "markitdown-mcp"]
     },
     "context7": {
       "type": "local",
@@ -60,9 +80,9 @@
       }
     },
     "engram": {
-      "command": ["/opt/homebrew/Cellar/engram/1.10.10/bin/engram", "mcp", "--tools=agent"],
-      "enabled": true,
-      "type": "local"
+      "type": "local",
+      "command": ["/opt/homebrew/Cellar/engram/1.15.8/bin/engram", "mcp", "--tools=agent"],
+      "enabled": false
     },
     "filesystem": {
       "type": "local",
@@ -96,7 +116,7 @@
         "GRAFANA_URL": "{env:GRAFANA_URL}",
         "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_SERVICE_ACCOUNT_TOKEN}"
       },
-      "enabled": true
+      "enabled": false
     },
     "grep": {
       "type": "remote",
@@ -132,7 +152,8 @@
     },
     "notebooklm": {
       "type": "local",
-      "command": ["npx", "-y", "notebooklm-mcp@latest"]
+      "command": ["npx", "-y", "notebooklm-mcp@latest"],
+      "enabled": true
     },
     "notion": {
       "type": "local",
@@ -150,11 +171,6 @@
         "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
       }
     },
-    "playwright": {
-      "type": "local",
-      "command": ["npx", "@playwright/mcp@latest"],
-      "enabled": true
-    },
     "sentry": {
       "type": "local",
       "command": ["uvx", "mcp-server-sentry"],
@@ -166,7 +182,7 @@
     "sequential-thinking": {
       "type": "local",
       "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "enabled": true
+      "enabled": false
     },
     "serena": {
       "type": "local",
@@ -183,6 +199,11 @@
         "SUPABASE_SERVICE_ROLE_KEY": "{env:SUPABASE_SERVICE_ROLE_KEY}",
         "MCP_API_KEY": "{env:SUPABASE_MCP_API_KEY}"
       }
+    },
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp"],
+      "enabled": true
     }
   },
   "permission": {
@@ -194,16 +215,7 @@
       "/tmp/*": "allow"
     }
   },
-  "plugin": [
-    "opencode-gemini-auth@latest",
-    "opencode-openai-codex-auth@latest",
-    "opencode-antigravity-auth@latest",
-    "opencode-websearch-cited@latest",
-    "@mohak34/opencode-notifier@latest",
-    "@tarquinen/opencode-dcp@latest",
-    "opencode-pty@0.2.1",
-    "@architecture/infosis-opencode-slim@1.2.1"
-  ],
+  "plugin": ["opencode-gemini-auth@latest", "@mohak34/opencode-notifier@latest", "opencode-antigravity-auth@latest"],
   "provider": {
     "openai": {
       "name": "OpenAI"
@@ -364,44 +376,6 @@
       }
     },
     "opencode": {},
-    "custom": {
-      "name": "shimmy",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11435/v1",
-        "apiKey": "sk-local"
-      },
-      "models": {
-        "registry.ollama.ai/library/qwen2.5-coder/7b": {
-          "name": "qwen2.5-coder:7b"
-        },
-        "registry.ollama.ai/library/qwen2.5-coder/14b": {
-          "name": "qwen2.5-coder:14b"
-        },
-        "registry.ollama.ai/library/deepseek-coder/6.7b": {
-          "name": "deepseek-coder:6.7b"
-        }
-      }
-    },
-    "shimmy": {
-      "name": "shimmy",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11435/v1",
-        "apiKey": "sk-local"
-      },
-      "models": {
-        "registry.ollama.ai/library/qwen2.5-coder/7b": {
-          "name": "qwen2.5-coder:7b"
-        },
-        "registry.ollama.ai/library/qwen2.5-coder/14b": {
-          "name": "qwen2.5-coder:14b"
-        },
-        "registry.ollama.ai/library/deepseek-coder/6.7b": {
-          "name": "deepseek-coder:6.7b"
-        }
-      }
-    },
     "ollama": {
       "name": "Ollama (local)",
       "npm": "@ai-sdk/openai-compatible",
