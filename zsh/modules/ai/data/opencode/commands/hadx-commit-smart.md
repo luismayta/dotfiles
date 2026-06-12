@@ -13,5 +13,3 @@ Execute skill `goji-commit-smart` with the following constraints:
 - No confirmations
 - Infer all required data from context
 - Complete the full commit workflow end-to-end
-
-(End of file - total 15 lines)

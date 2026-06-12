@@ -12,5 +12,3 @@ description: Crea issues epic y/o task en Jira desde un archivo Markdown estruct
 6. Completa `labels` y `components` con `jira_editJiraIssue`.
 7. Actualiza siempre el archivo Markdown con `issueKey` y `parentEpic` reales cuando corresponda.
 8. Devuelve un resumen con los issue keys creados o actualizados.
-
-(End of file - total 14 lines)

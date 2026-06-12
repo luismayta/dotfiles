@@ -13,5 +13,3 @@ Delegates the execution of `/opsx-propose` using Athena as the default agent.
 
 2. **Delegate execution**
    - Invoke `/opsx-propose` with `{{args}}` using Athena
-
-(End of file - total 15 lines)

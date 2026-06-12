@@ -3,5 +3,3 @@ description: Genera un reporte de implementacion en Jira usando el issue del bra
 ---
 
 1. Load skill: jira-work-report
-
-(End of file - total 5 lines)

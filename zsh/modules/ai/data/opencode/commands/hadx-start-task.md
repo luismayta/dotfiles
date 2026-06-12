@@ -1,5 +1,4 @@
 ---
-name: hadx-start-task
 description: Executes jira-start-task skill. Uses direct mode if arguments are provided, otherwise interactive mode.
 ---
 
@@ -42,5 +41,3 @@ The skill `jira-start-task` is solely responsible for:
 - selecting or validating the Jira issue
 - handling branch creation or reuse
 - generating any prompts or outputs
-
-(End of file - total 44 lines)

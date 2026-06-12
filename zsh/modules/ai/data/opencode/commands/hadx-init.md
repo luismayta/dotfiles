@@ -16,5 +16,3 @@ Run the skill `agents-bootstrap-sync` with all provided arguments: {{args}}
 - Forward them directly to the skill
 - Execute autonomously
 - Return only the final result
-
-(End of file - total 18 lines)
