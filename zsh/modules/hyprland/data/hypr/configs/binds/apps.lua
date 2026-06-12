@@ -29,15 +29,15 @@ function M.register(mainMod)
 
   -- Hyper tier: development tools (SUPER + ALT + CTRL + key)
   -- Mnemonic groupings:
-  --   Editors:  [ = Android Studio, ] = IntelliJ, ; = Zed
+  --   Editors:  bracketleft = Android Studio, bracketright = IntelliJ, semicolon = Zed
   --   Data:     S = DataGrip, I = Insomnia, D = draw.io
   --   Comm:     J = Jira, O = Obsidian, Z = Zoom, K = Keybase
   --   Security: B = Bitwarden
   --   Terminal: T = Ghostty
   local hyper_binds = {
-    { key = "[", exec = "android-studio" },
-    { key = "]", exec = "idea" },
-    { key = ";", exec = "zed" },
+    { key = "bracketleft", exec = "android-studio" },
+    { key = "bracketright", exec = "idea" },
+    { key = "semicolon", exec = "zed" },
     { key = "B", exec = "bitwarden-desktop" },
     { key = "D", exec = "draw.io" },
     { key = "T", exec = "ghostty" },

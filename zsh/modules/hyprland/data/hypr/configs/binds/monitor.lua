@@ -12,7 +12,7 @@ function M.register(mainMod)
   hl.bind(ALT .. " + O", hl.dsp.window.move({ monitor = "+1" }))
 
   -- Maximize window (fill workspace, keep bar visible): ALT + M
-  hl.bind(ALT .. " + M", hl.dsp.window.fullscreen({ mode = "maximize" }))
+  hl.bind(ALT .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
 end
 
 return M
