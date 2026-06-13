@@ -20,6 +20,10 @@ function ai::internal::openclaw::load {
     [ -e "${AI_OPENCLAW_BIN_PATH}" ] && export PATH="${AI_OPENCLAW_BIN_PATH}:${PATH}"
 }
 
+function ai::internal::codegraph::load {
+    [ -e "${AI_CODEGRAPH_BIN_PATH}/codegraph" ] && export PATH="${AI_CODEGRAPH_BIN_PATH}:${PATH}"
+}
+
 # === Batch Install ===
 
 function ai::internal::packages::install {
@@ -43,6 +47,9 @@ function ai::internal::packages::install {
                 ;;
             openclaw)
                 ai::internal::openclaw::install
+                ;;
+            codegraph)
+                ai::internal::codegraph::install
                 ;;
             tmuxai)
                 ai::internal::tmuxai::install
@@ -158,6 +165,20 @@ function ai::internal::openclaw::install {
         message_success "openclaw installed successfully"
     else
         message_error "Failed to install openclaw"
+        return 1
+    fi
+}
+
+function ai::internal::codegraph::install {
+    if core::exists codegraph; then
+        return 0
+    fi
+
+    message_info "Installing codegraph..."
+    if curl -fsSL "${AI_INSTALL_URL_CODEGRAPH}" | sh; then
+        message_success "codegraph installed successfully"
+    else
+        message_error "Failed to install codegraph"
         return 1
     fi
 }

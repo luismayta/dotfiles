@@ -17,6 +17,8 @@ __ZSH_AI_LOADED=1
 # Module root path — used by all sourced sub-files
 AI_PATH="$(dirname "${0}")"
 
+message_info "Loading module: ai"
+
 # shellcheck source=/dev/null
 source "${AI_PATH}/config/main.zsh"
 

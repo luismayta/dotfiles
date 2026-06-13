@@ -57,6 +57,10 @@ function ai::openclaw::install {
     ai::internal::openclaw::install
 }
 
+function ai::codegraph::install {
+    ai::internal::codegraph::install
+}
+
 function ai::tmuxai::install {
     ai::internal::tmuxai::install
 }
