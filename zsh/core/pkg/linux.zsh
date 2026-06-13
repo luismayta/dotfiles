@@ -21,4 +21,8 @@ if [[ "$(uname -s)" == "Linux" ]]; then
     if type xclip > /dev/null; then xclip -selection clipboard -o; fi
     if type xsel > /dev/null; then xsel --clipboard --output; fi
   }
+
+  core::fix::audio() {
+    systemctl --user restart wireplumber pipewire pipewire-pulse
+  }
 fi
