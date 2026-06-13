@@ -1,8 +1,7 @@
--- App launcher keybindings
 -- Three-tier modifier convention:
 --   Direct    = SUPER           (migrated from legacy config)
 --   Hyper     = SUPER + ALT + CTRL  (development tools)
---   Secondary = SUPER + ALT         (system applications)
+--   Secondary = CTRL + ALT         (system applications)
 
 local dsp = require("custom.dispatcher")
 
@@ -10,26 +9,23 @@ local M = {}
 
 function M.register(mainMod)
   local hyper = mainMod .. " + ALT + CTRL"
-  local secondary = mainMod .. " + ALT"
+  local secondary = "CTRL + ALT"
 
   -- Direct apps (SUPER + key, migrated from legacy config)
   local direct_binds = {
-    -- File manager
     { key = "E", exec = dsp.launch_or_focus("dolphin") },
     -- Screenshots
     { key = "P", exec = "dms screenshot" },
     { key = "SHIFT + P", exec = "dms screenshot window" },
-    { key = "CTRL + P", exec = "dms screenshot full" },
-    -- Clipboard
-    { key = "V", exec = "dms ipc call clipboard toggle" },
+    { key = "CTRL + P", exec = "dms screenshot area" },
   }
 
   -- Hyper tier: development tools (SUPER + ALT + CTRL + key)
   local hyper_binds = {
     { key = "bracketleft", exec = dsp.launch_or_focus("android-studio") },
     { key = "bracketright", exec = dsp.launch_or_focus("idea") },
-    { key = "semicolon", exec = dsp.launch_or_focus("zed") },
-    { key = "B", exec = dsp.launch_or_focus("bitwarden-desktop") },
+    { key = "semicolon", exec = dsp.launch_or_focus("dev.zed.Zed", "zed") },
+    { key = "B", exec = dsp.launch_or_focus("Bitwarden", "bitwarden-desktop") },
     { key = "D", exec = dsp.launch_or_focus("draw.io") },
     { key = "T", exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
     { key = "I", exec = dsp.launch_or_focus("insomnia") },
@@ -39,7 +35,7 @@ function M.register(mainMod)
     { key = "O", exec = dsp.launch_or_focus("obsidian") },
   }
 
-  -- Secondary tier: system applications (SUPER + ALT + key)
+  -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
     { key = "B", exec = dsp.launch_or_focus("zen", "zen-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
