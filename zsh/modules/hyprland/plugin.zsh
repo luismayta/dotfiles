@@ -14,6 +14,7 @@ __ZSH_HYPRLAND_LOADED=1
 
 # Module root path — used by all sourced sub-files
 HYPRLAND_PATH="$(dirname "${0}")"
+message_info "Loading module: hyprland"
 
 # shellcheck source=/dev/null
 source "${HYPRLAND_PATH}/config/main.zsh"

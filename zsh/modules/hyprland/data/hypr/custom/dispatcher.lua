@@ -61,16 +61,22 @@ end
 
 ---@param class string Window class to find
 ---@param cmd string? Launch command (defaults to class)
----@return HL.Dispatcher
+---@return HL.Custom.Dispatcher
 local function launch_or_focus(class, cmd)
-  local script = os.getenv("HOME") .. "/.config/hypr/scripts/launch_or_focus.sh"
-  local shell_cmd
-  if cmd and cmd ~= class then
-    shell_cmd = script .. " --class " .. class .. " " .. cmd
-  else
-    shell_cmd = script .. " " .. (cmd or class)
+  return function()
+    -- 1. Try native focus by class (pure Lua API — no shell)
+    hl.dispatch(hl.dsp.focus({ window = "class:^(" .. class .. ")$" }))
+
+    -- 2. Check if focus landed on our target (dispatch is synchronous in keybind context)
+    local active = hl.get_active_window()
+
+    if active ~= nil and active.class == class then
+      return -- focus succeeded, we're done
+    end
+
+    -- 3. Window not found — launch it
+    hl.dispatch(hl.dsp.exec_cmd(cmd or class))
   end
-  return hl.dsp.exec_cmd(shell_cmd)
 end
 
 ---@return HL.Custom.Dispatcher
