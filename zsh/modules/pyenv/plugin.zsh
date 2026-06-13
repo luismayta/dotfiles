@@ -17,6 +17,8 @@ __ZSH_PYENV_LOADED=1
 # Module root path — used by all sourced sub-files
 ZSH_PYENV_PATH="$(dirname "${0}")"
 
+message_info "Loading module: pyenv"
+
 # shellcheck source=/dev/null
 source "${ZSH_PYENV_PATH}/config/main.zsh"
 
