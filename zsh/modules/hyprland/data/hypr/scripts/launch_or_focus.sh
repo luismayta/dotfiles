@@ -14,8 +14,11 @@ fallback_cmd="$@"
 
 window_class_lower=$(echo "$window_class" | tr '[:upper:]' '[:lower:]')
 
-if hyprctl clients -j | jq -e --arg cls "$window_class_lower" '[.[] | select(.class | ascii_downcase == $cls and .workspace.id != -1)] | length > 0' > /dev/null 2>&1; then
-    hyprctl dispatch focuswindow "$window_class"
+address=$(hyprctl clients -j | jq -r --arg cls "$window_class_lower" \
+  '[.[] | select(.class | ascii_downcase == $cls) | .address][0] // empty')
+
+if [ -n "$address" ]; then
+    hyprctl dispatch focuswindow "address:$address"
 else
     $fallback_cmd
 fi

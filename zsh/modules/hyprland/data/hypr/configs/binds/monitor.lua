@@ -13,6 +13,15 @@ function M.register(mainMod)
 
   -- Maximize window (fill workspace, keep bar visible): ALT + M
   hl.bind(ALT .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
+
+  -- Disable internal display & reload: ALT + D
+  hl.bind(ALT .. " + D", hl.dsp.exec_cmd([[
+    other=$(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | .name' | head -1) &&
+    [ -n "$other" ] || exit 1 &&
+    hyprctl workspaces -j | jq -r '.[] | select(.monitor == "eDP-1") | .id' |
+    while read ws; do hyprctl dispatch moveworkspacetomonitor "$ws" "$other"; done &&
+    hyprctl eval 'hl.monitor({ output="eDP-1", disabled=true})'
+  ]]))
 end
 
 return M

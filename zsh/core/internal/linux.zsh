@@ -8,3 +8,8 @@ core::internal::core::install() {
   fi
   paru -S --noconfirm "${@}"
 }
+
+core::internal::packages::install() {
+  core::internal::message::info "Installing packages: ${*}"
+  core::internal::core::install "${@}"
+}

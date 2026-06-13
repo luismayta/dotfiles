@@ -59,6 +59,20 @@ local function switch_layout(step)
   end
 end
 
+---@param class string Window class to find
+---@param cmd string? Launch command (defaults to class)
+---@return HL.Dispatcher
+local function launch_or_focus(class, cmd)
+  local script = os.getenv("HOME") .. "/.config/hypr/scripts/launch_or_focus.sh"
+  local shell_cmd
+  if cmd and cmd ~= class then
+    shell_cmd = script .. " --class " .. class .. " " .. cmd
+  else
+    shell_cmd = script .. " " .. (cmd or class)
+  end
+  return hl.dsp.exec_cmd(shell_cmd)
+end
+
 ---@return HL.Custom.Dispatcher
 local function next_layout()
   return switch_layout(1)
@@ -78,6 +92,7 @@ local M = {
   resize_window = resize_window,
   next_layout = next_layout,
   prev_layout = prev_layout,
+  launch_or_focus = launch_or_focus,
 }
 
 return M

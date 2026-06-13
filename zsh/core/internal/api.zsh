@@ -8,6 +8,11 @@ core::internal::core::install() {
   return 1
 }
 
+core::internal::packages::install() {
+  core::internal::message::error "core::packages::install not implemented for ${OSTYPE}"
+  return 1
+}
+
 core::internal::cargo::install() {
   if ! core::internal::core::exists cargo; then
     core::internal::message::warning "${CORE_MESSAGE_RUST}"
@@ -35,6 +40,7 @@ core::internal::multiplatform::install() {
     linux*)
       if core::internal::core::exists paru; then
         paru -Syu --noconfirm
+        core::internal::packages::install "${CORE_LINUX_PACKAGES[@]}"
       else
         core::internal::message::warning "${CORE_MESSAGE_PARU}"
       fi

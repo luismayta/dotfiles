@@ -23,6 +23,10 @@ core::cargo::install() {
   core::internal::cargo::install "${@}"
 }
 
+core::packages::install() {
+  core::internal::packages::install "${@}"
+}
+
 core::multiplatform::install() {
   core::internal::multiplatform::install
 }

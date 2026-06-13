@@ -10,3 +10,5 @@ function hyprland::internal::hyprland::install {
     message_success "Installed ${HYPRLAND_PACKAGE_NAME}"
     hyprland::post_install
 }
+
+

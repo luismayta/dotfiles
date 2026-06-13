@@ -46,6 +46,24 @@ function hypr::reload {
     hyprctl reload
 }
 
+# hypr::disable-laptop-display — move workspaces off eDP-1 and disable it
+function hypr::disable-laptop-display {
+    local laptop_monitor="eDP-1"
+    local other_monitor
+
+    other_monitor=$(hyprctl monitors -j | jq -r --arg m "$laptop_monitor" '.[] | select(.name != $m) | .name' | head -1) || true
+    if [ -z "$other_monitor" ]; then
+        message_warning "No other monitor found to move workspaces to"
+        return 1
+    fi
+
+    hyprctl workspaces -j | jq -r --arg m "$laptop_monitor" '.[] | select(.monitor == $m) | .id' | while read -r ws_id; do
+        hyprctl dispatch moveworkspacetomonitor "$ws_id" "$other_monitor"
+    done
+
+    hyprctl eval "hl.monitor({ output=\"$laptop_monitor\", disabled=true})"
+}
+
 # hypr::check — verify installed components
 function hypr::check {
     if core::exists Hyprland; then

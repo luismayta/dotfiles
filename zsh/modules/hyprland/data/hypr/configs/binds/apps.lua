@@ -4,6 +4,8 @@
 --   Hyper     = SUPER + ALT + CTRL  (development tools)
 --   Secondary = SUPER + ALT         (system applications)
 
+local dsp = require("custom.dispatcher")
+
 local M = {}
 
 function M.register(mainMod)
@@ -12,13 +14,8 @@ function M.register(mainMod)
 
   -- Direct apps (SUPER + key, migrated from legacy config)
   local direct_binds = {
-    -- Terminal
-    { key = "RETURN", exec = "ghostty" },
-    { key = "SHIFT + RETURN", exec = "ghostty --class ghostty-float" },
-    -- Browser
-    { key = "B", exec = "zen-browser" },
     -- File manager
-    { key = "E", exec = "dolphin" },
+    { key = "E", exec = dsp.launch_or_focus("dolphin") },
     -- Screenshots
     { key = "P", exec = "dms screenshot" },
     { key = "SHIFT + P", exec = "dms screenshot window" },
@@ -28,52 +25,42 @@ function M.register(mainMod)
   }
 
   -- Hyper tier: development tools (SUPER + ALT + CTRL + key)
-  -- Mnemonic groupings:
-  --   Editors:  bracketleft = Android Studio, bracketright = IntelliJ, semicolon = Zed
-  --   Data:     S = DataGrip, I = Insomnia, D = draw.io
-  --   Comm:     J = Jira, O = Obsidian, Z = Zoom, K = Keybase
-  --   Security: B = Bitwarden
-  --   Terminal: T = Ghostty
   local hyper_binds = {
-    { key = "bracketleft", exec = "android-studio" },
-    { key = "bracketright", exec = "idea" },
-    { key = "semicolon", exec = "zed" },
-    { key = "B", exec = "bitwarden-desktop" },
-    { key = "D", exec = "draw.io" },
-    { key = "T", exec = "ghostty" },
-    { key = "I", exec = "insomnia" },
-    { key = "S", exec = "datagrip" },
-    { key = "K", exec = "keybase" },
-    { key = "J", exec = "jira" },
-    { key = "O", exec = "obsidian" },
-    { key = "Z", exec = "zoom" },
+    { key = "bracketleft", exec = dsp.launch_or_focus("android-studio") },
+    { key = "bracketright", exec = dsp.launch_or_focus("idea") },
+    { key = "semicolon", exec = dsp.launch_or_focus("zed") },
+    { key = "B", exec = dsp.launch_or_focus("bitwarden-desktop") },
+    { key = "D", exec = dsp.launch_or_focus("draw.io") },
+    { key = "T", exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
+    { key = "I", exec = dsp.launch_or_focus("insomnia") },
+    { key = "S", exec = dsp.launch_or_focus("datagrip") },
+    { key = "K", exec = dsp.launch_or_focus("keybase") },
+    { key = "J", exec = dsp.launch_or_focus("jira") },
+    { key = "O", exec = dsp.launch_or_focus("obsidian") },
   }
 
   -- Secondary tier: system applications (SUPER + ALT + key)
-  -- Mnemonic: A = Zen, C = Comet, D = Discord, F = Figma,
-  --           H = WhatsApp, T = Telegram, M = Music, O = Dolphin
   local secondary_binds = {
-    { key = "A", exec = "zen-browser" },
-    { key = "C", exec = "comet" },
-    { key = "D", exec = "discord" },
-    { key = "F", exec = "figma" },
-    { key = "H", exec = "whatsapp" },
-    { key = "T", exec = "telegram-desktop" },
-    { key = "M", exec = "spotify" },
-    { key = "O", exec = "dolphin" },
+    { key = "B", exec = dsp.launch_or_focus("zen", "zen-browser") },
+    { key = "D", exec = dsp.launch_or_focus("discord") },
+    { key = "F", exec = dsp.launch_or_focus("figma") },
+    { key = "H", exec = dsp.launch_or_focus("whatsapp") },
+    { key = "T", exec = dsp.launch_or_focus("telegram-desktop") },
+    { key = "M", exec = dsp.launch_or_focus("spotify") },
+    { key = "O", exec = dsp.launch_or_focus("dolphin") },
   }
 
   -- Register all tiers
   for _, bind in ipairs(direct_binds) do
-    hl.bind(mainMod .. " + " .. bind.key, hl.dsp.exec_cmd(bind.exec))
+    hl.bind(mainMod .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
   end
 
   for _, bind in ipairs(hyper_binds) do
-    hl.bind(hyper .. " + " .. bind.key, hl.dsp.exec_cmd(bind.exec))
+    hl.bind(hyper .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
   end
 
   for _, bind in ipairs(secondary_binds) do
-    hl.bind(secondary .. " + " .. bind.key, hl.dsp.exec_cmd(bind.exec))
+    hl.bind(secondary .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
   end
 end
 
