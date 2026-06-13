@@ -16,6 +16,7 @@ __ZSH_SCMBREEZE_LOADED=1
 
 # Module root path — used by all sourced sub-files
 ZSH_SCMBREEZE_PATH="$(dirname "${0}")"
+message_info "Loading module: scmbreeze"
 
 # shellcheck source=/dev/null
 source "${ZSH_SCMBREEZE_PATH}/config/main.zsh"

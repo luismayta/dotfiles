@@ -1,5 +1,6 @@
 # shellcheck shell=bash
 RESOURCES_PATH="${0:A:h}"
+message_info "Loading module: resources"
 
 if [[ -z "${__ZSH_RESOURCES_LOADED}" ]]; then
   __ZSH_RESOURCES_LOADED="true"

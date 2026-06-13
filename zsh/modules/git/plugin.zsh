@@ -16,6 +16,7 @@ __ZSH_GIT_LOADED=1
 
 # Module root path — used by all sourced sub-files
 ZSH_GIT_PATH="$(dirname "${0}")"
+message_info "Loading module: git"
 
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/config/main.zsh"

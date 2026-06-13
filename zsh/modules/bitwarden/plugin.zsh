@@ -14,6 +14,7 @@ __ZSH_BITWARDEN_LOADED=1
 
 # Module root path
 BITWARDEN_PATH="$(dirname "${0}")"
+message_info "Loading module: bitwarden"
 
 # shellcheck source=/dev/null
 source "${BITWARDEN_PATH}/config/main.zsh"

@@ -16,6 +16,8 @@ readonly __ZSH_NVIM_LOADED=1
 # shellcheck disable=SC2296,SC2298
 : "${ZSH_NVIM_PATH:="${${(%):-%x}:A:h}"}"
 
+message_info "Loading module: nvim"
+
 # Source layers in order: config → internal → pkg
 source "${ZSH_NVIM_PATH}/config/main.zsh"
 source "${ZSH_NVIM_PATH}/internal/main.zsh"

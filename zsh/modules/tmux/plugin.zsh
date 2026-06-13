@@ -17,6 +17,7 @@ __ZSH_TMUX_LOADED=1
 
 # Module root path — used by all sourced sub-files
 TMUX_PATH="$(dirname "${0}")"
+message_info "Loading module: tmux"
 
 # shellcheck source=/dev/null
 source "${TMUX_PATH}/config/main.zsh"

@@ -9,6 +9,7 @@
 __ZSH_CLEAN_LOADED=1
 
 CLEAN_PATH="$(dirname "${0}")"
+message_info "Loading module: clean"
 
 # shellcheck source=/dev/null
 source "${CLEAN_PATH}/config/main.zsh"

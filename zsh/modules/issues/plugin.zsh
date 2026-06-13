@@ -16,6 +16,7 @@ __ZSH_ISSUES_LOADED=1
 
 # Module root path
 ISSUES_PATH="$(dirname "${0}")"
+message_info "Loading module: issues"
 
 # shellcheck source=/dev/null
 source "${ISSUES_PATH}/config/main.zsh"

@@ -11,6 +11,8 @@ __ZSH_ALIASES_LOADED=1
 
 ALIASES_PATH="$(dirname "${0}")"
 
+message_info "Loading module: aliases"
+
 # shellcheck source=/dev/null
 source "${ALIASES_PATH}/config/main.zsh"
 

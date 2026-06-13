@@ -16,6 +16,7 @@ __ZSH_RUST_LOADED=1
 
 # Module root path — used by all sourced sub-files
 RUST_PATH="$(dirname "${0}")"
+message_info "Loading module: rust"
 
 # shellcheck source=/dev/null
 source "${RUST_PATH}/config/main.zsh"

@@ -12,6 +12,7 @@ zmodload zsh/regex
 0="${${(M)0:#/*}:-$PWD/$0}"
 
 export ZSH_NOTIFY_PATH="${0:h}"
+message_info "Loading module: notify"
 
 # shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/config/main.zsh"

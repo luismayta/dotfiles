@@ -1,5 +1,6 @@
 # shellcheck shell=bash
 SSH_PATH="${0:A:h}"
+message_info "Loading module: ssh"
 
 # Rsync guard — ensure rsync is available for data directory operations
 if ! core::exists rsync; then

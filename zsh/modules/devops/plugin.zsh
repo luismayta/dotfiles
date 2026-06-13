@@ -14,6 +14,7 @@ fi
 __ZSH_DEVOPS_LOADED=1
 
 DEVOPS_PATH="$(dirname "${0}")"
+message_info "Loading module: devops"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/main.zsh"

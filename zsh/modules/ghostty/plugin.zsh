@@ -15,6 +15,7 @@ __ZSH_GHOSTTY_LOADED=1
 
 # Module root path — used by all sourced sub-files
 GHOSTTY_PATH="$(dirname "${0}")"
+message_info "Loading module: ghostty"
 
 # shellcheck source=/dev/null
 source "${GHOSTTY_PATH}/config/main.zsh"

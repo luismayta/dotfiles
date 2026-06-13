@@ -21,6 +21,7 @@ __ZSH_STARSHIP_LOADED=1
 
 # Module root path — used by all sourced sub-files
 ZSH_STARSHIP_PATH="$(dirname "${0}")"
+message_info "Loading module: starship"
 
 # shellcheck source=/dev/null
 source "${ZSH_STARSHIP_PATH}/config/main.zsh"

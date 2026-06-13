@@ -16,6 +16,7 @@ __ZSH_RVM_LOADED=1
 
 # Module root path — used by all sourced sub-files
 ZSH_RVM_PATH="$(dirname "${0}")"
+message_info "Loading module: rvm"
 
 # shellcheck source=/dev/null
 source "${ZSH_RVM_PATH}/config/main.zsh"
