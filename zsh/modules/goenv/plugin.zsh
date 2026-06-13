@@ -10,6 +10,7 @@
 __ZSH_GOENV_LOADED=1
 
 GOENV_PATH="$(dirname "${0}")"
+message_info "Loading module: goenv"
 
 # shellcheck source=/dev/null
 source "${GOENV_PATH}/config/main.zsh"

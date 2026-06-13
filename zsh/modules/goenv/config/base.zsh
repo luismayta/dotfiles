@@ -71,6 +71,7 @@ GOENV_INSTALL_PACKAGES+=(
   github.com/motemen/ghq@latest
   github.com/matsuyoshi30/gitsu@latest
   gitlab.com/gitlab-org/cli/cmd/glab@main
+  github.com/muandane/goji@latest
 )
 
 # Quality & Linters
