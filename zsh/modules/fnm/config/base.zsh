@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 export FNM_PACKAGE_NAME=fnm
-export YARN_PATH="${HOME}"/.yarn
+export BUN_PATH="${HOME}/.bun"
 export FNM_PATH="${HOME}/.local/share/fnm"
 export FNM_VERSIONS=(
   24.11.1
@@ -27,10 +27,10 @@ export FNM_PACKAGES=(
     get-graphql-schema
     surge
     markdown-link-check
-    yo
-    generator-code
     nativefier
     @vscode/vsce
     vercel
+    @fission-ai/openspec@latest
 )
+
 export FNM_INSTALL_URL="https://fnm.vercel.app/install"

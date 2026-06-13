@@ -35,3 +35,5 @@ fnm::load
 core::ensure curl
 core::ensure unzip
 if ! core::exists fnm; then fnm::install; fi
+
+fnm::internal::bun::install

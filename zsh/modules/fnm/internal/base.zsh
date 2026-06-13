@@ -17,13 +17,28 @@ function fnm::internal::fnm::load {
 }
 
 function fnm::internal::packages::install {
-    if ! core::exists yarn; then
-        npm install --global yarn
+    message_info "Installing required bun packages"
+    bun install -g "${FNM_PACKAGES[@]}"
+    message_success "Installed required bun packages"
+}
+
+function fnm::internal::bunx::load {
+    local bun_bin="${HOME}/.bun/bin"
+    [ -e "${bun_bin}/bun" ] && export PATH="${bun_bin}:${PATH}"
+}
+
+function fnm::internal::bun::install {
+    if core::exists bun; then
+        return 0
     fi
 
-    message_info "Installing required yarn packages"
-    yarn global add "${FNM_PACKAGES[@]}"
-    message_success "Installed required yarn packages"
+    message_info "Installing bun..."
+    if curl -fsSL "https://bun.com/install" | bash; then
+        message_success "bun installed successfully"
+    else
+        message_error "Failed to install bun"
+        return 1
+    fi
 }
 
 function fnm::internal::version::all::install {

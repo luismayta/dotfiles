@@ -16,6 +16,7 @@ __ZSH_FNM_LOADED=1
 
 # Module root path — used by all sourced sub-files
 ZSH_FNM_PATH="$(dirname "${0}")"
+message_info "Loading module: fnm"
 
 # shellcheck source=/dev/null
 source "${ZSH_FNM_PATH}/config/main.zsh"
