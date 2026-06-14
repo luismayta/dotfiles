@@ -1,6 +1,7 @@
 {
   "noemoji": false,
   "scopes": [
+    "ai",
     "aliases",
     "bitwarden",
     "brew",
@@ -17,6 +18,7 @@
     "git",
     "goenv",
     "hammerspoon",
+    "hyprland",
     "issues",
     "notify",
     "nvim",
