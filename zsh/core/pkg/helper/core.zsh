@@ -50,19 +50,6 @@ fah() {
   dir="$(find "${1:-.}" -type d 2> /dev/null | fzf +m)" && cd "${dir}" || return
 }
 
-# fcs — select and copy a git commit hash via fzf
-fcs() {
-  local commits commit
-  commits="$(git log --color=always --pretty=oneline --abbrev-commit --reverse)" && \
-    commit="$(echo "${commits}" | fzf --tac +s +m -e --ansi)" && \
-    echo -n "$(echo -n "${commit}" \
-      | awk '{print $(1)}' \
-      | perl -pe 'chomp' \
-      | sed 's/\"//g' \
-      | ghead -c -1 \
-      | pbcopy)"
-}
-
 # fenv — select and copy an env var value via fzf
 fenv() {
   local out
@@ -84,15 +71,6 @@ fo() {
   if [ -n "${file}" ]; then
     ${EDITOR} "${file}"
   fi
-}
-
-# fgb — checkout a git branch via fzf
-fgb() {
-  local branches branch
-  branches="$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)')" && \
-    branch="$(echo "${branches}" \
-      | fzf-tmux -d $(( 2 + $(wc -l <<< "${branches}") )) +m)" && \
-    git checkout "$(echo "${branch}" | sed 's/.* //' | sed 's#remotes/[^/]*/##')"
 }
 
 

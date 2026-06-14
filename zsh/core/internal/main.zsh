@@ -13,9 +13,6 @@ source "${DOTFILES_CORE_PATH}"/internal/backup.zsh
 source "${DOTFILES_CORE_PATH}"/internal/api.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_PATH}"/internal/git.zsh
-
-# shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/internal/reload.zsh
 
 case "${OSTYPE}" in

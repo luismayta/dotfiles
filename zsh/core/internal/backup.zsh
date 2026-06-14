@@ -32,7 +32,7 @@ core::backup::snapshot() {
   fi
 
   local module_path
-  module_path="$(core::git::get_module_path)"
+  module_path="$(git::internal::get_module_path)"
 
   local branch="no-git"
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
