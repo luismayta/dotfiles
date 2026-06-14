@@ -1,6 +1,7 @@
 # shellcheck shell=bash
 # Git aliases — ported from hadenlabs/zsh-git
 
+alias g='git'
 alias gl='git pull'
 alias gp='git push'
 alias gau='git add --update'
