@@ -6,14 +6,14 @@
 [[ -n "${__ZSH_ZED_LOADED:-}" ]] && return
 __ZSH_ZED_LOADED=1
 
-ZED_PATH="$(dirname "${0}")"
-message_info "Loading module: zed"
+ZSH_ZED_PATH="$(dirname "${0}")"
+message_info "Loading module: ${ZED_PACKAGE_NAME}"
 
 # shellcheck source=/dev/null
-source "${ZED_PATH}/config/main.zsh"
+source "${ZSH_ZED_PATH}/config/main.zsh"
 
 # shellcheck source=/dev/null
-source "${ZED_PATH}/internal/main.zsh"
+source "${ZSH_ZED_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
-source "${ZED_PATH}/pkg/main.zsh"
+source "${ZSH_ZED_PATH}/pkg/main.zsh"

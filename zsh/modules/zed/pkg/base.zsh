@@ -9,7 +9,7 @@ function zed::sync {
 }
 
 function zed::post_install {
-    message_info "Post Install zed"
+    message_info "Post Install ${ZED_PACKAGE_NAME}"
     zed::sync
-    message_success "Success Install zed"
+    message_success "Success Install ${ZED_PACKAGE_NAME}"
 }
