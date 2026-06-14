@@ -63,6 +63,7 @@ apps::internal::webapp::build() {
     local artifact
     artifact=$(find "${APPS_WEB_APPS_BUILD_DIR}" -maxdepth 1 -name "${name}*.pkg.tar.zst" -print -quit 2>/dev/null)
     if [[ -n "${artifact}" ]]; then
+        # shellcheck disable=SC2296
         mv "${artifact}" "${APPS_WEB_APPS_BUILD_DIR}/${(L)name}.pkg.tar.zst"
         message_success "Built web app: ${name}"
     else
@@ -78,6 +79,7 @@ apps::internal::webapp::install() {
         return 1
     fi
 
+    # shellcheck disable=SC2296
     local artifact="${APPS_WEB_APPS_BUILD_DIR}/${(L)name}.pkg.tar.zst"
 
     if [[ ! -f "${artifact}" ]]; then
