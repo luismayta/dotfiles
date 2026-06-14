@@ -1,15 +1,15 @@
 # shellcheck shell=bash
 # shellcheck source=/dev/null
-source "${ZED_PATH}/pkg/base.zsh"
+source "${ZSH_ZED_PATH}/pkg/base.zsh"
 
 case "${OSTYPE}" in
 darwin*)
-  source "${ZED_PATH}/pkg/osx.zsh" ;;
+  source "${ZSH_ZED_PATH}/pkg/osx.zsh" ;;
 linux*)
-  source "${ZED_PATH}/pkg/linux.zsh" ;;
+  source "${ZSH_ZED_PATH}/pkg/linux.zsh" ;;
 esac
 
 # shellcheck source=/dev/null
-source "${ZED_PATH}/pkg/helper.zsh"
+source "${ZSH_ZED_PATH}/pkg/helper.zsh"
 # shellcheck source=/dev/null
-source "${ZED_PATH}/pkg/alias.zsh"
+source "${ZSH_ZED_PATH}/pkg/alias.zsh"
