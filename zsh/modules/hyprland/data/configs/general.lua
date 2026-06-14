@@ -33,3 +33,10 @@ hl.monitor({
 ---------------
 ---- INPUT ----
 ---------------
+
+hl.config({
+    input = {
+        repeat_rate = 35,
+        repeat_delay = 200,
+    },
+})
