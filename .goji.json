@@ -37,6 +37,7 @@
     "terminal",
     "tmux",
     "tools",
+    "zed",
     "zsh"
   ],
   "signoff": true,
