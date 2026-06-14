@@ -116,3 +116,68 @@ apps::internal::webapp::install() {
             ;;
     esac
 }
+
+apps::internal::webapp::all::install() {
+    if [[ ${#APPS_WEB_APPS_BUILD[@]} -eq 0 ]]; then
+        message_info "No web apps configured to install"
+        return 0
+    fi
+
+    message_info "Installing all configured web apps"
+
+    # Ensure build directory exists
+    mkdir -p "${APPS_WEB_APPS_BUILD_DIR}"
+
+    local entry name url artifact
+    for entry in "${APPS_WEB_APPS_BUILD[@]}"; do
+        name="${entry%%:*}"
+        url="${entry#*:}"
+        # shellcheck disable=SC2296
+        artifact="${APPS_WEB_APPS_BUILD_DIR}/${(L)name}.pkg.tar.zst"
+
+        # Build if artifact missing
+        if [[ ! -f "${artifact}" ]]; then
+            apps::internal::webapp::build "${url}" "${name}" || continue
+        fi
+
+        # Skip install if already present (Linux only)
+        if [[ "${OSTYPE}" == linux* ]] && core::exists paru && paru -Qi "${name}" &>/dev/null; then
+            message_info "Web app already installed: ${name}"
+            continue
+        fi
+
+        apps::internal::webapp::install "${name}" || continue
+    done
+    message_success "Finished installing web apps"
+}
+
+apps::internal::webapp::ensure() {
+    local name="${1}"
+    local url="${2}"
+
+    if [[ -z "${name}" ]]; then
+        message_error "Name is required for webapp::ensure"
+        return 1
+    fi
+
+    if [[ -z "${url}" ]]; then
+        message_error "URL is required for webapp::ensure"
+        return 1
+    fi
+
+    # shellcheck disable=SC2296
+    local artifact="${APPS_WEB_APPS_BUILD_DIR}/${(L)name}.pkg.tar.zst"
+
+    # Build if artifact doesn't exist
+    if [[ ! -f "${artifact}" ]]; then
+        apps::internal::webapp::build "${url}" "${name}" || return 1
+    fi
+
+    # Skip install if already present (Linux only)
+    if [[ "${OSTYPE}" == linux* ]] && core::exists paru && paru -Qi "${name}" &>/dev/null; then
+        message_info "Web app already installed: ${name}"
+        return 0
+    fi
+
+    apps::internal::webapp::install "${name}"
+}

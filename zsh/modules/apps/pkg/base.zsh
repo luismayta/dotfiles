@@ -28,6 +28,17 @@ apps::webapp::install() {
     apps::internal::webapp::install "${@}"
 }
 
+# Build and install all configured webapps idempotently
+apps::webapp::all::install() {
+    apps::internal::webapp::all::install
+}
+
+# Ensure a single webapp is built and installed
+# Usage: apps::webapp::ensure <name> <url>
+apps::webapp::ensure() {
+    apps::internal::webapp::ensure "${@}"
+}
+
 apps::upgrade() {
     message_warning "method not implemented"
 }
