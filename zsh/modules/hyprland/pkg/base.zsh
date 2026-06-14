@@ -11,5 +11,5 @@ function hyprland::post_install {
 }
 
 function hyprland::sync {
-    rsync -avzh --progress "${HYPRLAND_PATH}/data/" "${HOME_CONFIG_PATH}/"
+    rsync -avzh --progress "${HYPRLAND_PATH}/data/" "${HYPRLAND_CONFIG_PATH}/"
 }
