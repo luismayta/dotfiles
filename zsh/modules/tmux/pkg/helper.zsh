@@ -23,10 +23,10 @@ function tx::project {
   local templates=()
   while IFS= read -r template; do
     templates+=("$template")
-  done < <(find "${TMUXINATOR_TEMPLATE_DIR}" -maxdepth 1 -name '*.yml' -exec basename -s .yml {} \;)
+  done < <(find "${TMUXINATOR_TEMPLATE_PATH}" -maxdepth 1 -name '*.yml' -exec basename -s .yml {} \;)
 
   if (( ${#templates[@]} == 0 )); then
-    message_warning "No templates found in ${TMUXINATOR_TEMPLATE_DIR}"
+    message_warning "No templates found in ${TMUXINATOR_TEMPLATE_PATH}"
     return 1
   fi
 

@@ -5,7 +5,7 @@ function editrc {
         "${EDITOR}" "${HOME}"/.zshrc
         return
     fi
-    "${EDITOR}" "${DOTFILES_CORE_DIR}"/"${1}".zsh
+    "${EDITOR}" "${DOTFILES_CORE_PATH}"/"${1}".zsh
 }
 
 function editprivaterc {

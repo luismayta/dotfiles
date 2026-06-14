@@ -1,2 +1,2 @@
 # shellcheck shell=bash
-export RESOURCES_FONTS_DIR="${HOME}/.fonts"
+export RESOURCES_FONTS_PATH="${HOME}/.fonts"

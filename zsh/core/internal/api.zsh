@@ -32,7 +32,7 @@ core::internal::multiplatform::install() {
   case "${OSTYPE}" in
     darwin*)
       if core::internal::core::exists brew; then
-        brew bundle --file="${DOTFILES_CORE_DIR}/Brewfile" 2>/dev/null || true
+        brew bundle --file="${DOTFILES_CORE_PATH}/Brewfile" 2>/dev/null || true
       else
         core::internal::message::warning "${CORE_MESSAGE_BREW}"
       fi

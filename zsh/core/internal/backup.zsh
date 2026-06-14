@@ -5,7 +5,7 @@ function backup {
     typeset path_today
     typeset file_backup
 
-    if [ ! -d "${DOTFILES_BACKUP_DIR}" ]; then
+    if [ ! -d "${DOTFILES_BACKUP_PATH}" ]; then
         message_info "not exist path ~/.backup"
         return
     fi
@@ -15,7 +15,7 @@ function backup {
     fi
 
     today=$(date +%Y%m%d)
-    path_today="${DOTFILES_BACKUP_DIR}/${today}"
+    path_today="${DOTFILES_BACKUP_PATH}/${today}"
     mkdir -p "${path_today}"
     file_backup="${path_today}/${1##*/}"
     cp -rf "${1}" "$file_backup"

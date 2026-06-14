@@ -13,10 +13,10 @@ __ZSH_CORE_LOADED=1
 CORE_PATH="$(dirname "${0}")"
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/main.zsh
+source "${DOTFILES_CORE_PATH}"/config/main.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/main.zsh
+source "${DOTFILES_CORE_PATH}"/internal/main.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/pkg/main.zsh
+source "${DOTFILES_CORE_PATH}"/pkg/main.zsh

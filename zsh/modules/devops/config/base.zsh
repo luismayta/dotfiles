@@ -21,8 +21,8 @@ export DEVOPS_PACKAGES=(
 
 # K9S configuration
 export DEVOPS_K9S_PACKAGE_NAME=k9s
-export DEVOPS_K9S_CONF_DIR=${HOME}/Library/Application\ Support/k9s
-export DEVOPS_K9S_FILE_SETTINGS="${DEVOPS_K9S_CONF_DIR}"/config.yml
+export DEVOPS_K9S_CONF_PATH=${HOME}/Library/Application\ Support/k9s
+export DEVOPS_K9S_FILE_SETTINGS="${DEVOPS_K9S_CONF_PATH}"/config.yml
 
 # Kubectl configuration
 export DEVOPS_KUBECTL_PACKAGE_NAME=kubectl
@@ -83,7 +83,7 @@ export DEVOPS_HELM_PACKAGE_NAME=helm
 export DEVOPS_TFENV_ROOT="${HOME}/.tfenv"
 export DEVOPS_TFENV_ROOT_BIN="${DEVOPS_TFENV_ROOT}/bin"
 export DEVOPS_TFENV_PACKAGE_NAME=tfenv
-export TF_PLUGIN_CACHE_DIR="${HOME}"/.terraform.d/plugin-cache
+export TF_PLUGIN_CACHE_PATH="${HOME}"/.terraform.d/plugin-cache
 export DEVOPS_TFENV_VERSIONS=(
     0.13.0
     0.14.10

@@ -4,21 +4,21 @@
 #
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/pkg/base.zsh
+source "${DOTFILES_CORE_PATH}"/pkg/base.zsh
 
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null
-  source "${DOTFILES_CORE_DIR}"/pkg/osx.zsh
+  source "${DOTFILES_CORE_PATH}"/pkg/osx.zsh
   ;;
 linux*)
   # shellcheck source=/dev/null
-  source "${DOTFILES_CORE_DIR}"/pkg/linux.zsh
+  source "${DOTFILES_CORE_PATH}"/pkg/linux.zsh
   ;;
 esac
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/pkg/helper/main.zsh
+source "${DOTFILES_CORE_PATH}"/pkg/helper/main.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/pkg/alias.zsh
+source "${DOTFILES_CORE_PATH}"/pkg/alias.zsh

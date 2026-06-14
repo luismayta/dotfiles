@@ -1,33 +1,33 @@
 # shellcheck shell=bash
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/env.zsh
+source "${DOTFILES_CORE_PATH}"/config/env.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/paths.zsh
+source "${DOTFILES_CORE_PATH}"/config/paths.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/history.zsh
+source "${DOTFILES_CORE_PATH}"/config/history.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/language.zsh
+source "${DOTFILES_CORE_PATH}"/config/language.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/autosuggest.zsh
+source "${DOTFILES_CORE_PATH}"/config/autosuggest.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/config/git.zsh
+source "${DOTFILES_CORE_PATH}"/config/git.zsh
 
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_CORE_DIR}"/config/osx.zsh
+    source "${DOTFILES_CORE_PATH}"/config/osx.zsh
     ;;
 linux*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_CORE_DIR}"/config/linux.zsh
+    source "${DOTFILES_CORE_PATH}"/config/linux.zsh
   ;;
 esac
 
-[ ! -e "${DOTFILES_BACKUP_DIR}" ] && mkdir -p "${DOTFILES_BACKUP_DIR}"
-[ ! -e "${DOTFILES_CACHE_DIR}" ] && mkdir -p "${DOTFILES_CACHE_DIR}"
+[ ! -e "${DOTFILES_BACKUP_PATH}" ] && mkdir -p "${DOTFILES_BACKUP_PATH}"
+[ ! -e "${DOTFILES_CACHE_PATH}" ] && mkdir -p "${DOTFILES_CACHE_PATH}"

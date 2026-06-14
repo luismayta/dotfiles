@@ -13,12 +13,12 @@ export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export DOTFILES_ZSH_DIR="${DOTFILES_DIR}/zsh"
-export DOTFILES_CORE_DIR="${DOTFILES_ZSH_DIR}/core"
+export DOTFILES_CORE_PATH="${DOTFILES_ZSH_DIR}/core"
 
 autoload -Uz compinit add-zsh-hook is-at-least
 
 # shellcheck source=/dev/null
-[ -e "${DOTFILES_CORE_DIR}/main.zsh" ] && source "${DOTFILES_CORE_DIR}/main.zsh"
+[ -e "${DOTFILES_CORE_PATH}/main.zsh" ] && source "${DOTFILES_CORE_PATH}/main.zsh"
 
 # Bootstrap customrc from example template if not present
 if [[ ! -e "${CUSTOMRC:-${HOME}/.customrc}" ]] && [[ -e "${DOTFILES_DIR}/.customrc.example" ]]; then

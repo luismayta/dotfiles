@@ -1,30 +1,30 @@
 # shellcheck shell=bash
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/path.zsh
+source "${DOTFILES_CORE_PATH}"/internal/path.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/editor.zsh
+source "${DOTFILES_CORE_PATH}"/internal/editor.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/backup.zsh
+source "${DOTFILES_CORE_PATH}"/internal/backup.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/api.zsh
+source "${DOTFILES_CORE_PATH}"/internal/api.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/git.zsh
+source "${DOTFILES_CORE_PATH}"/internal/git.zsh
 
 # shellcheck source=/dev/null
-source "${DOTFILES_CORE_DIR}"/internal/reload.zsh
+source "${DOTFILES_CORE_PATH}"/internal/reload.zsh
 
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_CORE_DIR}"/internal/osx.zsh
+    source "${DOTFILES_CORE_PATH}"/internal/osx.zsh
     ;;
 linux*)
     # shellcheck source=/dev/null
-    source "${DOTFILES_CORE_DIR}"/internal/linux.zsh
+    source "${DOTFILES_CORE_PATH}"/internal/linux.zsh
   ;;
 esac

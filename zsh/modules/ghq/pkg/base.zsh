@@ -126,7 +126,7 @@ function ghq::cache::list {
 }
 
 function ghq::cache::create {
-    [ -e "${GHQ_CACHE_DIR}" ] || mkdir -p "${GHQ_CACHE_DIR}"
+    [ -e "${GHQ_CACHE_PATH}" ] || mkdir -p "${GHQ_CACHE_PATH}"
     ghq list > "${GHQ_CACHE_PROJECT}"
 }
 
