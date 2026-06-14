@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# shellcheck disable=SC1091
 # apps module — desktop application management
 
 [[ -n "${__ZSH_APPS_LOADED:-}" ]] && return

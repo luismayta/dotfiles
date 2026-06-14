@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+# shellcheck disable=SC1091
 source "${ZSH_APPS_PATH}/pkg/base.zsh"
 
 case "${OSTYPE}" in
