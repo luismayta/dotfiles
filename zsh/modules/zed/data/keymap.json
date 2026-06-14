@@ -1,4 +1,7 @@
 [
+  // ============================================================
+  // GLOBAL WORKSPACE (no solo editor)
+  // ============================================================
   {
     "context": "Editor || ProjectPanel || EmptyPane",
     "bindings": {
@@ -10,6 +13,9 @@
     }
   },
 
+  // ============================================================
+  // PANE NAVIGATION (Editor + Dock)
+  // ============================================================
   {
     "context": "Editor || Dock",
     "bindings": {
@@ -20,6 +26,9 @@
     }
   },
 
+  // ============================================================
+  // PANE MANAGEMENT (Vim style splits)
+  // ============================================================
   {
     "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
     "bindings": {
@@ -29,32 +38,43 @@
     }
   },
 
+  // ============================================================
+  // EDITOR - NORMAL & VISUAL
+  // ============================================================
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
+      // -------- Scroll centrado --------
       "ctrl-shift-u": "vim::ScrollUp",
       "ctrl-shift-d": "vim::ScrollDown",
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
 
+      // -------- Búsqueda centrada --------
       "ctrl-shift-n": "vim::MoveToNextMatch",
       "n": ["workspace::SendKeystrokes", "ctrl-shift-n z z"],
 
+      // -------- Folding --------
       "z f": "editor::ToggleFold",
       "z a": "editor::FoldAll",
       "z u": "editor::UnfoldAll"
     }
   },
 
+  // ============================================================
+  // EDITOR - NORMAL MODE (Leader: ,)
+  // ============================================================
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      // ================= UI / Layout =================
       ", e": "workspace::ToggleLeftDock",
       ", t": "workspace::ToggleBottomDock",
       ", b": "tab_switcher::ToggleAll",
       ", p": "outline::Toggle",
       ", z": "workspace::ToggleCenteredLayout",
 
+      // ================= LSP =================
       "g d": "editor::GoToDefinition",
       "g D": "editor::GoToDefinitionSplit",
       "g i": "editor::GoToImplementation",
@@ -64,26 +84,33 @@
       "g r": "editor::FindAllReferences",
       "shift-k": "editor::Hover",
 
+      // ================= Diagnostics =================
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPreviousDiagnostic",
 
+      // ================= Git Hunks =================
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPreviousHunk",
 
+      // ================= Buffers =================
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
       ", b d": "pane::CloseActiveItem",
       ", b o": "pane::CloseInactiveItems",
 
+      // ================= Files =================
       ", f f": "file_finder::Toggle",
       ", f s": "pane::DeploySearch",
 
+      // ================= Symbols =================
       ", s s": "outline::Toggle",
       ", s S": "project_symbols::Toggle",
 
+      // ================= Code Actions =================
       ", c a": "editor::ToggleCodeActions",
       ", c r": "editor::Rename",
 
+      // ================= Misc =================
       ", l f": "editor::Format",
       ", l r": "editor::Rename",
       ", d": "editor::GoToTypeDefinition",
@@ -92,6 +119,9 @@
     }
   },
 
+  // ============================================================
+  // VISUAL MODE
+  // ============================================================
   {
     "context": "Editor && vim_mode == visual && !VimWaiting",
     "bindings": {
@@ -101,6 +131,9 @@
     }
   },
 
+  // ============================================================
+  // COMPLETION MENU
+  // ============================================================
   {
     "context": "Editor && showing_completions",
     "bindings": {
@@ -110,6 +143,9 @@
     }
   },
 
+  // ============================================================
+  // CODE ACTIONS MENU
+  // ============================================================
   {
     "context": "Editor && showing_code_actions",
     "bindings": {
@@ -118,6 +154,9 @@
     }
   },
 
+  // ============================================================
+  // PROJECT PANEL
+  // ============================================================
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {

@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "existing_window",
   "language_models": {
     "deepseek": {
       "api_url": "https://api.deepseek.com",
