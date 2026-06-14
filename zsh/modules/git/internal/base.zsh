@@ -1,13 +1,10 @@
 # shellcheck shell=bash
 # shellcheck disable=SC2154 # Variables defined in config/base.zsh
+# shellcheck disable=SC2154 # SCMPUFF_PACKAGE_NAME defined in config/base.zsh
 
 # git::internal::git::install — install git via brew
 function git::internal::git::install {
     message_info "Installing ${GIT_PACKAGE_NAME}"
-    if ! type -p brew > /dev/null; then
-        message_warning "${CORE_MESSAGE_BREW}"
-        return
-    fi
     core::install git
     message_success "Installed ${GIT_PACKAGE_NAME}"
 }
@@ -124,4 +121,16 @@ function git::internal::repository::fork::private {
     echo 0
 }
 
+# scmpuff::internal::install — install scmpuff via package manager
+function scmpuff::internal::install {
+    message_info "Installing ${SCMPUFF_PACKAGE_NAME}"
+    core::install scmpuff
+    message_success "Installed ${SCMPUFF_PACKAGE_NAME}"
+}
 
+# scmpuff::internal::load — initialize scmpuff shell integration
+function scmpuff::internal::load {
+    if core::exists scmpuff; then
+        eval "$(scmpuff init -s)"
+    fi
+}

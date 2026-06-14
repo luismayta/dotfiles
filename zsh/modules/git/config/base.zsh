@@ -2,6 +2,7 @@
 # shellcheck disable=SC2154 # ZSH_GIT_PATH defined in plugin.zsh
 
 export GIT_PACKAGE_NAME=git
+export SCMPUFF_PACKAGE_NAME=scmpuff
 
 export HOME_CONFIG_PATH="${HOME}"/.config
 export GIT_FILE_SETTINGS="${HOME}"/.gitconfig
