@@ -10,6 +10,7 @@ export FNM_VERSION_GLOBAL=24.11.1
 export FNM_PACKAGES=(
     npm
     pnpm
+    pake-cli
     prettier
     localtunnel
     typescript
