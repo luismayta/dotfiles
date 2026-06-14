@@ -14,3 +14,10 @@ case "${OSTYPE}" in
     source "${ZSH_STARSHIP_PATH}/internal/linux.zsh"
     ;;
 esac
+
+starship::internal::main::factory
+
+starship::internal::load
+
+if ! core::exists rsync; then core::install rsync; fi
+if ! core::exists starship; then core::install starship; fi
