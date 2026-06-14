@@ -15,8 +15,6 @@ case "${OSTYPE}" in
     ;;
 esac
 
-starship::internal::main::factory
-
 starship::internal::load
 
 if ! core::exists rsync; then core::install rsync; fi
