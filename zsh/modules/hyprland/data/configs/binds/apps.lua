@@ -24,8 +24,8 @@ function M.register(mainMod)
   local hyper_binds = {
     { key = "bracketleft", exec = dsp.launch_or_focus("android-studio") },
     { key = "bracketright", exec = dsp.launch_or_focus("idea") },
-    { key = "semicolon", exec = dsp.launch_or_focus("dev.zed.Zed", "zed") },
-    { key = "B", exec = dsp.launch_or_focus("Bitwarden", "bitwarden-desktop") },
+    { key = "semicolon", exec = dsp.launch_or_focus("dev.zed.Zed") },
+    { key = "B", exec = dsp.launch_or_focus("Bitwarden") },
     { key = "D", exec = dsp.launch_or_focus("draw.io") },
     { key = "T", exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
     { key = "I", exec = dsp.launch_or_focus("insomnia") },
@@ -37,7 +37,8 @@ function M.register(mainMod)
 
   -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
-    { key = "B", exec = dsp.launch_or_focus("zen", "zen-browser") },
+    { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
+    { key = "B", exec = dsp.launch_or_focus("brave-browser", "braver") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
     { key = "H", exec = dsp.launch_or_focus("whatsapp") },
