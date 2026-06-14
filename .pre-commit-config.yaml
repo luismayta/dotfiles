@@ -131,9 +131,11 @@ repos:
         args:
           - --exclude=SC1072,SC1073,SC2068
       - id: gitleaks
+        name: gitleaks
+        entry: gitleaks git --pre-commit
+        language: system
+        pass_filenames: false
         args:
-          - --path=.
-          - --repo-config-path=.ci/linters/.gitleaks.toml
           - --verbose
       - id: hadolint
         args:
