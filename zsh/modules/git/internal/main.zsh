@@ -3,6 +3,9 @@
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/internal/base.zsh"
 
+# shellcheck source=/dev/null
+source "${ZSH_GIT_PATH}/internal/get-module-path.zsh"
+
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null

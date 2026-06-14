@@ -17,6 +17,9 @@ esac
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/pkg/alias.zsh"
 
+# shellcheck source=/dev/null
+source "${ZSH_GIT_PATH}/pkg/fzf.zsh"
+
 # Auto-initialize git config and check dependencies
 git::pkg::config::setup
 git::dependences::check
