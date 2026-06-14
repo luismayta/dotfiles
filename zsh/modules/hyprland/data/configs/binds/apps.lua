@@ -38,7 +38,7 @@ function M.register(mainMod)
   -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
     { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
-    { key = "B", exec = dsp.launch_or_focus("brave-browser", "braver") },
+    { key = "B", exec = dsp.launch_or_focus("brave-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
     { key = "H", exec = dsp.launch_or_focus("whatsapp") },
