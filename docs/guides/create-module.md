@@ -7,11 +7,11 @@ This guide explains how to create a new ZSH module in the dotfiles repository. M
 - [Three-Layer Architecture](#three-layer-architecture)
 - [Core Reuse (What You Get for Free)](#core-reuse-what-you-get-for-free)
 - [Section 1: Create the Module](#section-1-create-the-module)
-- [Section 2: Entry Point — `plugin.zsh`](#section-2-entry-point---pluginzsh)
+- [Section 2: Entry Point — `plugin.zsh`](#section-2-entry-point--pluginzsh)
 - [Section 3: Config Layer](#section-3-config-layer)
 - [Section 4: Internal Layer](#section-4-internal-layer)
 - [Section 5: Public Layer](#section-5-public-layer)
-- [Section 6: When to Add OS-Specific Files](#section-6-when-to-add-os-specific-files)
+- [Section 6: OS-Specific Files — When They Get Real Content](#section-6-os-specific-files--when-they-get-real-content)
 - [Section 7: Naming Conventions](#section-7-naming-conventions)
 - [Section 8: Testing](#section-8-testing)
 - [Section 9: Commit](#section-9-commit)
@@ -117,7 +117,7 @@ source "${ZSH_<NAME>_PATH}/internal/main.zsh"
 source "${ZSH_<NAME>_PATH}/pkg/main.zsh"
 ```
 
-**Reference — [`zsh/modules/zed/plugin.zsh`](../zsh/modules/zed/plugin.zsh):**
+**Reference — [`zsh/modules/zed/plugin.zsh`](/zsh/modules/zed/plugin.zsh):**
 
 ```zsh
 [[ -n "${__ZSH_ZED_LOADED:-}" ]] && return
@@ -152,7 +152,7 @@ export <NAME>_CONFIG_PATH="${HOME}/.config/<name>"
 export ZSH_<NAME>_DATA_PATH="${ZSH_<NAME>_PATH}/data"
 ```
 
-**Reference — [`zsh/modules/zed/config/base.zsh`](../zsh/modules/zed/config/base.zsh):**
+**Reference — [`zsh/modules/zed/config/base.zsh`](/zsh/modules/zed/config/base.zsh):**
 
 ```zsh
 export ZED_PACKAGE_NAME=zed
@@ -221,7 +221,7 @@ Core implementation logic:
 }
 ```
 
-**Reference — [`zsh/modules/zed/internal/base.zsh`](../zsh/modules/zed/internal/base.zsh):**
+**Reference — [`zsh/modules/zed/internal/base.zsh`](/zsh/modules/zed/internal/base.zsh):**
 
 ```zsh
 zed::internal::install() {
@@ -263,7 +263,7 @@ if ! core::exists <name>; then
 fi
 ```
 
-**Reference — [`zsh/modules/zed/internal/main.zsh`](../zsh/modules/zed/internal/main.zsh):**
+**Reference — [`zsh/modules/zed/internal/main.zsh`](/zsh/modules/zed/internal/main.zsh):**
 
 ```zsh
 source "${ZSH_ZED_PATH}/internal/base.zsh"
@@ -341,7 +341,7 @@ Orchestrators that compose multiple public functions:
 }
 ```
 
-**Reference — [`zsh/modules/zed/pkg/helper.zsh`](../zsh/modules/zed/pkg/helper.zsh):**
+**Reference — [`zsh/modules/zed/pkg/helper.zsh`](/zsh/modules/zed/pkg/helper.zsh):**
 
 ```zsh
 zed::setup() {
@@ -526,4 +526,4 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 
 ---
 
-**Reference implementation:** [`zsh/modules/zed/`](../zsh/modules/zed/) — complete example with install, config sync, and setup orchestration.
+**Reference implementation:** [`zsh/modules/zed/`](/zsh/modules/zed/) — complete example with install, config sync, and setup orchestration.
