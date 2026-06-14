@@ -14,5 +14,3 @@ function hyprland::internal::hyprland::install {
 function hyprland::internal::classes {
     hyprctl clients -j 2>/dev/null | jq -r '.[] | .class' | sort -u
 }
-
-
