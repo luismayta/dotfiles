@@ -12,13 +12,25 @@ open() {
 }
 
 pbcopy() {
-  if type xclip > /dev/null; then xclip -selection clipboard; fi
-  if type xsel > /dev/null; then xsel --clipboard --input; fi
+  if type xclip > /dev/null; then
+    xclip -selection clipboard
+  elif type xsel > /dev/null; then
+    xsel --clipboard --input
+  else
+    echo "pbcopy: no clipboard tool found (install xclip or xsel)" >&2
+    return 1
+  fi
 }
 
 pbpaste() {
-  if type xclip > /dev/null; then xclip -selection clipboard -o; fi
-  if type xsel > /dev/null; then xsel --clipboard --output; fi
+  if type xclip > /dev/null; then
+    xclip -selection clipboard -o
+  elif type xsel > /dev/null; then
+    xsel --clipboard --output
+  else
+    echo "pbpaste: no clipboard tool found (install xclip or xsel)" >&2
+    return 1
+  fi
 }
 
 core::fix::audio() {
