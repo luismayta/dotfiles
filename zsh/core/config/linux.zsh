@@ -17,4 +17,10 @@ CORE_PACKAGES=(
   zsh
   ksh
   fd
+  webkit2gtk-4.1
+  gtk3
+  libsoup3
+  pkgconf
+  base-devel
+  libappindicator-gtk3
 )

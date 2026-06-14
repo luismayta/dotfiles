@@ -73,8 +73,7 @@ env:
   README_INCLUDES: file://
   TERRAFORM_PATH: ./
   PYTHON_PACKAGE_MANAGER: uv
-  SKILL_REPOS:
-    https://github.com/hadenlabs/jasper
+  SKILL_REPOS: https://github.com/hadenlabs/jasper
 
 dotenv:
   - .env
@@ -122,6 +121,7 @@ vars:
     .infobot
     .jasper
     .jira-config.json
+    *.pkg.tar.zst
   AI_IGNORE_CUSTOM: |
     # Block specific paths
     /secrets/**

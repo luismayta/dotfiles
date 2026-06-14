@@ -580,4 +580,5 @@ charts
 .infobot
 .jasper
 .jira-config.json
+*.pkg.tar.zst
 
