@@ -74,6 +74,10 @@ APPS_WEB_APPS=()
 # ==============================================================================
 # Web Apps Build (pake desktop wrappers)
 # ==============================================================================
+APPS_WEB_APPS_BUILD_DIR="${APPS_WEB_APPS_BUILD_DIR:-/tmp/pake-build}"
+export APPS_WEB_APPS_BUILD_DIR
+
 APPS_WEB_APPS_BUILD=(
     "Jira:https://codip.atlassian.net"
+    "Chatgpt:https://chatgpt.com"
 )

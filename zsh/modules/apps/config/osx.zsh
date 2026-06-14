@@ -10,6 +10,7 @@ APPS_DATABASE_CLIENTS=(dbeaver-community datagrip)
 APPS_BROWSER=(brave-browser)
 APPS_MOBILE=(watchman fastlane)
 APPS_WEB_APPS=(pake)
+APPS_WEB_APPS_BUILD_DIR="${APPS_WEB_APPS_BUILD_DIR:-/tmp/pake-build}"
 
 APPS_IDE_TOOLS+=(raycast)
 APPS_DEVOPS+=(unite orbstack)

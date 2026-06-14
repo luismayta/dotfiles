@@ -23,3 +23,6 @@ APPS_MOBILE=(watchman-bin)
 
 # ============ Web Apps (pake via cargo) ============
 APPS_WEB_APPS=()
+
+# ============ Web Apps Build Directory ============
+APPS_WEB_APPS_BUILD_DIR="${APPS_WEB_APPS_BUILD_DIR:-/tmp/pake-build}"
