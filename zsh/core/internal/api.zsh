@@ -28,30 +28,6 @@ core::internal::core::exists() {
   command -v "${1}" > /dev/null
 }
 
-core::internal::multiplatform::install() {
-  case "${OSTYPE}" in
-    darwin*)
-      if core::internal::core::exists brew; then
-        brew bundle --file="${DOTFILES_CORE_PATH}/Brewfile" 2>/dev/null || true
-      else
-        core::internal::message::warning "${CORE_MESSAGE_BREW}"
-      fi
-      ;;
-    linux*)
-      if core::internal::core::exists paru; then
-        paru -Syu --noconfirm
-        core::internal::packages::install "${CORE_LINUX_PACKAGES[@]}"
-      else
-        core::internal::message::warning "${CORE_MESSAGE_PARU}"
-      fi
-      ;;
-    *)
-      core::internal::message::error "multiplatform::install not supported for ${OSTYPE}"
-      return 1
-      ;;
-  esac
-}
-
 core::internal::message::info() {
   printf "\033[0m\033[1;32m[INFO]: %s \033[0m\n" "${1}"
 }

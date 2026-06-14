@@ -13,3 +13,11 @@ core::internal::core::install() {
   fi
   brew install "${@}"
 }
+
+core::internal::packages::install() {
+  if ! core::internal::core::exists brew; then
+    core::internal::message::warning "${CORE_MESSAGE_BREW}"
+  fi
+
+  core::internal::core::install "${CORE_PACKAGES[@]}"
+}

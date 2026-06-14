@@ -10,6 +10,10 @@ core::internal::core::install() {
 }
 
 core::internal::packages::install() {
-  core::internal::message::info "Installing packages: ${*}"
-  core::internal::core::install "${@}"
+  if ! core::internal::core::exists paru; then
+    core::internal::message::warning "${CORE_MESSAGE_PARU}"
+  fi
+
+  paru -Syu --noconfirm
+  core::internal::core::install "${CORE_PACKAGES[@]}"
 }
