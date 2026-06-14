@@ -2,7 +2,7 @@
 
 # create cache and reload settings
 function reload {
-    exec "${SHELL}" -l
+  exec "${SHELL}" -l
 }
 
 # Homebrew install override
