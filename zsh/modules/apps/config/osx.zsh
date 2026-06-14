@@ -1,6 +1,7 @@
 # shellcheck shell=bash
 # shellcheck disable=SC2034
 # macOS-specific apps config
+export APPS_APPLICATION_PATH="/Applications"
 
 APPS_JETBRAINS=(intellij-idea-ce)
 APPS_KNOWLEDGE=(obsidian drawio)

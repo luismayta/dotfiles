@@ -8,7 +8,6 @@
 # shellcheck disable=SC2034
 
 export APPS_PACKAGE_NAME=apps
-export APPS_APPLICATION_PATH="/Applications"
 APPS_ARCHITECTURE_NAME="${OSTYPE}-$(uname -m)"
 export APPS_ARCHITECTURE_NAME
 
@@ -71,3 +70,10 @@ APPS_PROJECT_MANAGEMENT=(jira-cli)
 # Web Apps
 # ==============================================================================
 APPS_WEB_APPS=()
+
+# ==============================================================================
+# Web Apps Build (pake desktop wrappers)
+# ==============================================================================
+APPS_WEB_APPS_BUILD=(
+    "Jira:https://codip.atlassian.net"
+)
