@@ -16,22 +16,22 @@ The system SHALL provide `core::backup::snapshot()` in `zsh/core/internal/backup
 
 ### Requirement: Git module path extraction
 
-The system SHALL provide `core::git::get_module_path()` in `zsh/core/internal/git.zsh` that extracts the organization/repo path from the git remote origin URL.
+The system SHALL provide `git::internal::get_module_path()` in `zsh/modules/git/internal/get-module-path.zsh` that extracts the organization/repo path from the git remote origin URL.
 
 #### Scenario: Extracts path from SSH remote
 
 - **WHEN** the git remote origin is `git@github.com:luismayta/dotfiles.git`
-- **THEN** `core::git::get_module_path` SHALL return `luismayta/dotfiles`
+- **THEN** `git::internal::get_module_path` SHALL return `luismayta/dotfiles`
 
 #### Scenario: Extracts path from HTTPS remote
 
 - **WHEN** the git remote origin is `https://github.com/luismayta/dotfiles.git`
-- **THEN** `core::git::get_module_path` SHALL return `luismayta/dotfiles`
+- **THEN** `git::internal::get_module_path` SHALL return `luismayta/dotfiles`
 
 #### Scenario: Falls back on missing remote
 
 - **WHEN** there is no git remote origin configured
-- **THEN** `core::git::get_module_path` SHALL return `unknown/unknown/${PWD}`
+- **THEN** `git::internal::get_module_path` SHALL return `unknown/unknown/${PWD}`
 
 ### Requirement: Public backup wrapper
 

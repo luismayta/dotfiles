@@ -47,16 +47,6 @@ The system SHALL provide FZF-based interactive helper functions.
 - **WHEN** `fa` is called
 - **THEN** the system SHALL show directories via `fd --type d --hidden --follow --exclude .git | fzf +m` and `cd` into the selection
 
-#### Scenario: fcs selects and copies git commit hash
-
-- **WHEN** `fcs` is called in a git repository
-- **THEN** the system SHALL show `git log --oneline --reverse` via fzf and copy the selected commit hash to clipboard
-
-#### Scenario: fgb switches git branches
-
-- **WHEN** `fgb` is called in a git repository
-- **THEN** the system SHALL show the 30 most recent branches via `git for-each-ref` and fzf-tmux and `git checkout` the selection
-
 #### Scenario: ftm switches tmux sessions
 
 - **WHEN** `ftm` is called inside tmux
