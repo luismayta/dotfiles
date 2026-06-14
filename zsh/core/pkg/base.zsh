@@ -46,3 +46,6 @@ message_warning() {
 message_success() {
   core::internal::message::success "${@}"
 }
+
+# Ensure shellcheck is available (used by pre-commit hooks in task validate)
+core::ensure shellcheck
