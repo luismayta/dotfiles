@@ -31,7 +31,7 @@ function M.register(mainMod)
     { key = "I", exec = dsp.launch_or_focus("insomnia") },
     { key = "S", exec = dsp.launch_or_focus("datagrip") },
     { key = "K", exec = dsp.launch_or_focus("keybase") },
-    { key = "J", exec = dsp.launch_or_focus("jira") },
+    { key = "J", exec = dsp.launch_or_focus("pake-jira") },
     { key = "O", exec = dsp.launch_or_focus("obsidian") },
   }
 
