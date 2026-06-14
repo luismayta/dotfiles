@@ -3,6 +3,7 @@
   "scopes": [
     "ai",
     "aliases",
+    "apps",
     "bitwarden",
     "brew",
     "ci",
