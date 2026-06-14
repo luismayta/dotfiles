@@ -6,7 +6,7 @@ local colors = require("configs.colors")
 
 -- DP-3: Monitor externo izquierdo
 hl.monitor({
-  output = "DP-3",
+  output = "DP-1",
   mode = "preferred",
   position = "0x0",
   scale = "1",
@@ -33,4 +33,3 @@ hl.monitor({
 ---------------
 ---- INPUT ----
 ---------------
-
