@@ -80,6 +80,8 @@ repos:
         exclude: >
           (?x)^(
             .zed/tasks.json$|
+            zsh/modules/zed/data/keymap.json$|
+            zsh/modules/zed/data/settings.json$|
           )$
       - id: check-xml
       - id: check-yaml
