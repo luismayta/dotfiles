@@ -1,0 +1,177 @@
+[
+  // ============================================================
+  // GLOBAL WORKSPACE (no solo editor)
+  // ============================================================
+  {
+    "context": "Editor || ProjectPanel || EmptyPane",
+    "bindings": {
+      "ctrl-e": "project_panel::ToggleFocus",
+      "ctrl-f": "file_finder::Toggle",
+      "ctrl-b": "tab_switcher::ToggleAll",
+      ", f f": "file_finder::Toggle",
+      ", f p": "projects::OpenRecent"
+    }
+  },
+
+  // ============================================================
+  // PANE NAVIGATION (Editor + Dock)
+  // ============================================================
+  {
+    "context": "Editor || Dock",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+
+  // ============================================================
+  // PANE MANAGEMENT (Vim style splits)
+  // ============================================================
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      "ctrl-x 1": "pane::CloseOtherItems",
+      "ctrl-x 2": "pane::SplitHorizontal",
+      "ctrl-x 3": "pane::SplitVertical"
+    }
+  },
+
+  // ============================================================
+  // EDITOR - NORMAL & VISUAL
+  // ============================================================
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // -------- Scroll centrado --------
+      "ctrl-shift-u": "vim::ScrollUp",
+      "ctrl-shift-d": "vim::ScrollDown",
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-shift-u z z"],
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-shift-d z z"],
+
+      // -------- Búsqueda centrada --------
+      "ctrl-shift-n": "vim::MoveToNextMatch",
+      "n": ["workspace::SendKeystrokes", "ctrl-shift-n z z"],
+
+      // -------- Folding --------
+      "z f": "editor::ToggleFold",
+      "z a": "editor::FoldAll",
+      "z u": "editor::UnfoldAll"
+    }
+  },
+
+  // ============================================================
+  // EDITOR - NORMAL MODE (Leader: ,)
+  // ============================================================
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // ================= UI / Layout =================
+      ", e": "workspace::ToggleLeftDock",
+      ", t": "workspace::ToggleBottomDock",
+      ", b": "tab_switcher::ToggleAll",
+      ", p": "outline::Toggle",
+      ", z": "workspace::ToggleCenteredLayout",
+
+      // ================= LSP =================
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "shift-k": "editor::Hover",
+
+      // ================= Diagnostics =================
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+
+      // ================= Git Hunks =================
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+
+      // ================= Buffers =================
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      ", b d": "pane::CloseActiveItem",
+      ", b o": "pane::CloseInactiveItems",
+
+      // ================= Files =================
+      ", f f": "file_finder::Toggle",
+      ", f s": "pane::DeploySearch",
+
+      // ================= Symbols =================
+      ", s s": "outline::Toggle",
+      ", s S": "project_symbols::Toggle",
+
+      // ================= Code Actions =================
+      ", c a": "editor::ToggleCodeActions",
+      ", c r": "editor::Rename",
+
+      // ================= Misc =================
+      ", l f": "editor::Format",
+      ", l r": "editor::Rename",
+      ", d": "editor::GoToTypeDefinition",
+      ", s a": "pane::DeploySearch",
+      "ctrl-s": "workspace::Save"
+    }
+  },
+
+  // ============================================================
+  // VISUAL MODE
+  // ============================================================
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting",
+    "bindings": {
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      "g c": "editor::ToggleComments"
+    }
+  },
+
+  // ============================================================
+  // COMPLETION MENU
+  // ============================================================
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "enter": null,
+      "tab": null,
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+
+  // ============================================================
+  // CODE ACTIONS MENU
+  // ============================================================
+  {
+    "context": "Editor && showing_code_actions",
+    "bindings": {
+      "enter": null,
+      "ctrl-y": "editor::ConfirmCodeAction"
+    }
+  },
+
+  // ============================================================
+  // PROJECT PANEL
+  // ============================================================
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "q": "project_panel::ToggleFocus",
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "o": "project_panel::OpenPermanent",
+      "h": "project_panel::CollapseSelectedEntry",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious"
+    }
+  }
+]

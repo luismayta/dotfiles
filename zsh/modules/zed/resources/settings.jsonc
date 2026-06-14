@@ -1,0 +1,297 @@
+{
+  "language_models": {
+    "deepseek": {
+      "api_url": "https://api.deepseek.com",
+      "available_models": [
+        {
+          "name": "deepseek-chat",
+          "display_name": "DeepSeek Chat",
+          "max_tokens": 64000
+        },
+        {
+          "name": "deepseek-reasoner",
+          "display_name": "DeepSeek Reasoner",
+          "max_tokens": 64000,
+          "max_output_tokens": 4096
+        }
+      ]
+    },
+    "google": {
+      "available_models": [
+        {
+          "name": "gemini-2.5-flash-lite",
+          "display_name": "Gemini 2.5 Flash Lite",
+          "max_tokens": 50000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+
+        {
+          "name": "gemini-2.5-flash",
+          "display_name": "gemini-2.5-flash",
+          "max_tokens": 50000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+
+        {
+          "name": "gemini-2.5-pro",
+          "display_name": "gemini-2.5-pro",
+          "max_tokens": 200000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
+          "name": "gemini-3-flash-preview",
+          "display_name": "Gemini 3 Flash preview",
+          "max_tokens": 1000000,
+          "mode": {
+            "type": "thinking",
+            "budget_tokens": 24000
+          }
+        }
+      ]
+    }
+  },
+  "git_panel": {
+    "tree_view": true
+  },
+  "disable_ai": false,
+  "agent": {
+    "default_profile": "write",
+    "default_model": {
+      "provider": "deepseek",
+      "model": "deepseek-chat"
+    },
+    "favorite_models": [
+      {
+        "provider": "deepseek",
+        "model": "deepseek-chat",
+        "enable_thinking": false
+      },
+      {
+        "provider": "deepseek",
+        "model": "deepseek-reasoner",
+        "enable_thinking": false
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "gpt-5-mini",
+        "enable_thinking": false
+      },
+      {
+        "provider": "copilot_chat",
+        "model": "claude-haiku-4.5",
+        "enable_thinking": false
+      },
+      {
+        "provider": "google",
+        "model": "gemini-2.5-flash-lite",
+        "enable_thinking": false
+      },
+      {
+        "provider": "google",
+        "model": "gemini-2.5-flash",
+        "enable_thinking": false
+      }
+    ],
+    "model_parameters": []
+  },
+  "theme": "Catppuccin Macchiato",
+  "base_keymap": "VSCode",
+  "auto_update": false,
+
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  "format_on_save": "on",
+  "vim_mode": true,
+  "relative_line_numbers": "enabled",
+
+  "ui_font_size": 18,
+  "ui_font_family": "FiraCode Nerd Font",
+
+  "buffer_font_features": {
+    "calt": false,
+    "liga": false
+  },
+
+  "buffer_font_size": 18,
+  "buffer_font_family": "FiraCode Nerd Font",
+
+  "tab_size": 4,
+  "projects_online_by_default": false,
+
+  "enable_language_server": true,
+
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+
+  "shell": {
+    "program": "zsh"
+  },
+
+  "file_types": {
+    "HTML": ["hbs", "njk"],
+
+    "Ansible": [
+      "**.ansible.yml",
+      "**.ansible.yaml",
+      "**/defaults/*.yml",
+      "**/defaults/*.yaml",
+      "**/meta/*.yml",
+      "**/meta/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/handlers/*.yml",
+      "**/handlers/*.yaml",
+      "**/group_vars/*.yml",
+      "**/group_vars/*.yaml",
+      "**/playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**playbook*.yaml",
+      "**playbook*.yml"
+    ]
+  },
+  "languages": {
+    "Plain Text": {
+      "soft_wrap": "preferred_line_length"
+    },
+    "Go": {
+      "tab_size": 4,
+      "hard_tabs": true,
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "Markdown": {
+      "tab_size": 2,
+      "soft_wrap": "preferred_line_length"
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "JSON": {
+      "enable_language_server": true
+    },
+
+    "Rust": {
+      "enable_language_server": true
+    },
+    "Python": {
+      "enable_language_server": true,
+      "preferred_line_length": 100,
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": ".venv/bin/ruff",
+          "arguments": ["format", "-"]
+        }
+      },
+      "language_servers": ["pyright"],
+      "tab_size": 4
+    },
+
+    "Terraform": {
+      "formatter": {
+        "external": {
+          "command": "terraform",
+          "arguments": ["fmt", "-"]
+        }
+      },
+      "format_on_save": "on"
+    }
+  },
+
+  "lsp": {
+    "terraform-ls": {
+      "initialization_options": {
+        "experimentalFeatures": {
+          "prefillRequiredFields": true
+        }
+      }
+    },
+
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "compositeLiteralTypes": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
+    },
+
+    "rust-analyzer": {
+      "initialization_options": {
+        "inlayHints": {
+          "maxLength": 90,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          }
+        }
+      }
+    },
+
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "strict"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "includeInlayParameterNameHints": "all",
+          "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+          "includeInlayFunctionParameterTypeHints": true,
+          "includeInlayPropertyDeclarationTypeHints": true,
+          "includeInlayFunctionLikeReturnTypeHints": true,
+          "includeInlayEnumMemberValueHints": true
+        }
+      }
+    },
+
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "keyOrdering": true,
+          "format": {
+            "singleQuote": true
+          }
+        }
+      }
+    }
+  }
+}
