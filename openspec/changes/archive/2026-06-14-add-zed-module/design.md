@@ -50,6 +50,6 @@ El módulo `zsh/core/` ya provee todo el esqueleto que el módulo zed necesita �
 
 | Riesgo | Mitigación |
 |--------|-----------|
-| El path `ZED_PATH` cambia al moverse a dotfiles | Usar `"$(dirname "${0}")"` que es relativo al archivo — funciona igual en cualquier ubicación |
+| El path `ZSH_ZED_PATH` cambia al moverse a dotfiles | Usar `"$(dirname "${0}")"` que es relativo al archivo — funciona igual en cualquier ubicación |
 | Posible conflicto si alguien carga ambos módulos (antiguo + nuevo) | El guard `__ZSH_ZED_LOADED` previene doble carga |
 | Los archivos de configuración pueden quedar desactualizados | Migrar el contenido actual; actualizaciones futuras en `resources/` |
