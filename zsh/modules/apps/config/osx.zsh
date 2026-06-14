@@ -1,14 +1,16 @@
 # shellcheck shell=bash
+# shellcheck disable=SC2034
 # macOS-specific apps config
 
-export APPS_IDE_TOOLS_OSX=(raycast)
-export APPS_DEVOPS_OSX=(unite orbstack)
-export APPS_BROWSER_OSX=(comet)
-export APPS_VPN_CLIENTS_OSX=(tunnelblick)
+APPS_JETBRAINS=(intellij-idea-ce)
+APPS_KNOWLEDGE=(obsidian drawio)
+APPS_DEVOPS=(multipass ngrok)
+APPS_DATABASE_CLIENTS=(dbeaver-community datagrip)
+APPS_BROWSER=(brave-browser)
+APPS_MOBILE=(watchman fastlane)
+APPS_WEB_APPS=(pake)
 
-APPS_PACKAGES+=(
-    "${APPS_IDE_TOOLS_OSX[@]}"
-    "${APPS_DEVOPS_OSX[@]}"
-    "${APPS_BROWSER_OSX[@]}"
-    "${APPS_VPN_CLIENTS_OSX[@]}"
-)
+APPS_IDE_TOOLS+=(raycast)
+APPS_DEVOPS+=(unite orbstack)
+APPS_BROWSER+=(comet)
+APPS_VPN_CLIENTS+=(tunnelblick)
