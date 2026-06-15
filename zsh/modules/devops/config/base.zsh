@@ -76,6 +76,10 @@ export DEVOPS_KUBECTL_GO_INSTALL=(
     golang.stackrox.io/kube-linter/cmd/kube-linter@latest
 )
 
+export DEVOPS_GO_PACKAGES=(
+  github.com/direnv/direnv/v2@latest
+)
+
 # Helm configuration
 export DEVOPS_HELM_PACKAGE_NAME=helm
 

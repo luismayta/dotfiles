@@ -3,6 +3,7 @@
 
 function devops::install {
   devops::internal::packages::install
+  devops::internal::go::packages::install
 }
 
 function devops::post_install {

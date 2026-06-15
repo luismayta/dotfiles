@@ -8,3 +8,17 @@ function devops::internal::packages::install {
     done
     message_success "Installed required devops packages"
 }
+
+function devops::internal::go::packages::install {
+    message_info "Installing required devops packages"
+    for package in "${DEVOPS_GO_PACKAGES[@]}"; do
+        goenv::internal::package::install "${package}"
+    done
+    message_success "Installed required devops packages"
+}
+
+function devops::internal::go::direnv::load {
+    if core::exists direnv; then
+        eval "$(direnv init zsh)"
+    fi
+}
