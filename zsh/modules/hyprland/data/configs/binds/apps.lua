@@ -41,7 +41,7 @@ function M.register(mainMod)
     { key = "B", exec = dsp.launch_or_focus("brave-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
-    { key = "H", exec = dsp.launch_or_focus("whatsapp") },
+    { key = "H", exec = dsp.launch_or_focus("pake-whatsapp") },
     { key = "T", exec = dsp.launch_or_focus("telegram-desktop") },
     { key = "M", exec = dsp.launch_or_focus("spotify") },
     { key = "O", exec = dsp.launch_or_focus("dolphin") },
