@@ -78,6 +78,7 @@ APPS_WEB_APPS_BUILD_DIR="${APPS_WEB_APPS_BUILD_DIR:-/tmp/pake-build}"
 export APPS_WEB_APPS_BUILD_DIR
 
 APPS_WEB_APPS_BUILD=(
-    "Jira:https://codip.atlassian.net"
-    "Chatgpt:https://chatgpt.com"
+    "jira:https://codip.atlassian.net"
+    "chatgpt:https://chat.openai.com"
+    "whatsapp:https://web.whatsapp.com"
 )
