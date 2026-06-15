@@ -89,10 +89,7 @@ export DEVOPS_TFENV_ROOT_BIN="${DEVOPS_TFENV_ROOT}/bin"
 export DEVOPS_TFENV_PACKAGE_NAME=tfenv
 export TF_PLUGIN_CACHE_PATH="${HOME}"/.terraform.d/plugin-cache
 export DEVOPS_TFENV_VERSIONS=(
-    0.13.0
-    0.14.10
-    0.15.0
-    0.15.1
     1.0.1
+    1.11.4
 )
-export DEVOPS_TFENV_VERSION_GLOBAL=1.0.1
+export DEVOPS_TFENV_VERSION_GLOBAL=1.11.4
