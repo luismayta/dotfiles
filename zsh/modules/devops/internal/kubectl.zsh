@@ -68,7 +68,6 @@ function devops::kubectl::internal::main::factory {
     devops::kubectl::internal::krew::load
 
     core::ensure kubectl
-    core::ensure helm
     if ! core::exists kubectl-krew; then devops::kubectl::internal::krew::install; fi
     core::ensure kubectx
     core::ensure kubecolor

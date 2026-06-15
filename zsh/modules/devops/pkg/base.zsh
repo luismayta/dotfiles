@@ -12,7 +12,7 @@ function devops::post_install {
 }
 
 function devops::upgrade {
-  message_warning "method not implement"
+  core::upgrade
 }
 
 function devops::packages::install {

@@ -12,7 +12,7 @@ function devops::k9s::install {
 }
 
 function devops::k9s::upgrade {
-    message_warning "method not implement"
+    core::upgrade k9s
 }
 
 function devops::k9s::post_install {

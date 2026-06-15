@@ -42,8 +42,7 @@ function devops::tfenv::internal::tfenv::upgrade {
     message_info "Upgrade for ${DEVOPS_TFENV_PACKAGE_NAME}"
     local path_tfenv
     path_tfenv=$(tfenv root)
-    # shellcheck disable=SC2164
-    cd "${path_tfenv}" && git pull && cd -
+    git -C "${path_tfenv}" pull
     message_success "Upgraded ${DEVOPS_TFENV_PACKAGE_NAME}"
 }
 
