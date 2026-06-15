@@ -19,6 +19,6 @@ function devops::internal::go::packages::install {
 
 function devops::internal::go::direnv::load {
     if core::exists direnv; then
-        eval "$(direnv init zsh)"
+        eval "$(direnv hook zsh)"
     fi
 }
