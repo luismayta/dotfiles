@@ -15,6 +15,8 @@ export DEVOPS_TOOLS=(
   terraform-docs
   glab
   github-cli
+  yazi
+  zoxide
 )
 
 export DEVOPS_PACKAGES=(
