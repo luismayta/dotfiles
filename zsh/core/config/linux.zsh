@@ -23,4 +23,10 @@ CORE_PACKAGES=(
   pkgconf
   base-devel
   libappindicator-gtk3
+  pipewire
+  wireplumber
+  xdg-desktop-portal
+  xdg-desktop-portal-hyprland
+  grim
+  slurp
 )
