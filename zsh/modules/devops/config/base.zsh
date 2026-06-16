@@ -13,6 +13,8 @@ export DEVOPS_TOOLS=(
   tfenv
   terragrunt
   terraform-docs
+  glab
+  github-cli
 )
 
 export DEVOPS_PACKAGES=(
@@ -27,8 +29,8 @@ export DEVOPS_K9S_FILE_SETTINGS="${DEVOPS_K9S_CONF_PATH}"/config.yml
 # Kubectl configuration
 export DEVOPS_KUBECTL_PACKAGE_NAME=kubectl
 export DEVOPS_KUBECTL_MESSAGE_GO_NOT_FOUND="Please install Go or use antibody bundle hadenlabs/zsh-goenv"
-export DEVOPS_KUBECTL_LOCAL_PATH_BIN="/usr/local/bin"
-export DEVOPS_KUBECTL_KUBE_EDITOR="vim"
+# NOTE: LOCAL_PATH_BIN is provided by zsh/core/config/paths.zsh
+# NOTE: EDITOR is provided by zsh/core/config/env.zsh
 
 export KREW_ROOT="${HOME}/.krew"
 export KREW_ROOT_BIN="${KREW_ROOT}/bin"

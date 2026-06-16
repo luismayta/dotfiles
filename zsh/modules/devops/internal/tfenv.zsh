@@ -9,7 +9,7 @@ function devops::tfenv::internal::tfenv::install {
 }
 
 function devops::tfenv::internal::tfenv::load {
-    [ -e "${DEVOPS_TFENV_ROOT_BIN}" ] && export PATH="${PATH}:${DEVOPS_TFENV_ROOT_BIN}"
+    path::append "${DEVOPS_TFENV_ROOT_BIN}"
 }
 
 function devops::tfenv::internal::version::all::install {
