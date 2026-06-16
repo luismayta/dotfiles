@@ -12,7 +12,7 @@ function devops::internal::packages::install {
 function devops::internal::go::packages::install {
     message_info "Installing required devops packages"
     for package in "${DEVOPS_GO_PACKAGES[@]}"; do
-        goenv::internal::package::install "${package}"
+        goenv::package::install "${package}"
     done
     message_success "Installed required devops packages"
 }
