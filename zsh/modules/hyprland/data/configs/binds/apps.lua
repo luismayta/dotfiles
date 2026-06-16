@@ -41,8 +41,8 @@ function M.register(mainMod)
     { key = "B", exec = dsp.launch_or_focus("brave-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
-    { key = "H", exec = dsp.launch_or_focus("pake-whatsapp") },
-    { key = "T", exec = dsp.launch_or_focus("telegram-desktop") },
+    { key = "H", exec = dsp.launch_or_focus("brave-web.whatsapp.com__-Default", "whatsapp") },
+    { key = "T", exec = dsp.launch_or_focus("brave-tasks.google.com__-Default", "googletasks") },
     { key = "M", exec = dsp.launch_or_focus("spotify") },
     { key = "O", exec = dsp.launch_or_focus("dolphin") },
   }
