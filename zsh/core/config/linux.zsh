@@ -29,4 +29,10 @@ CORE_PACKAGES=(
   xdg-desktop-portal-hyprland
   grim
   slurp
+  ffmpeg
+  p7zip
+  poppler
+  fd
+  ripgrep
+  ueberzugpp
 )
