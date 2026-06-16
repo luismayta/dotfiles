@@ -13,32 +13,33 @@ function M.register(mainMod)
 
   -- Direct apps (SUPER + key, migrated from legacy config)
   local direct_binds = {
-    { key = "E", exec = dsp.launch_or_focus("dolphin") },
+    { key = "E",         exec = dsp.launch_or_focus("dolphin") },
     -- Screenshots
-    { key = "P", exec = "dms screenshot" },
+    { key = "P",         exec = "dms screenshot" },
     { key = "SHIFT + P", exec = "dms screenshot window" },
-    { key = "CTRL + P", exec = "dms screenshot area" },
+    { key = "CTRL + P",  exec = "dms screenshot area" },
   }
 
   -- Hyper tier: development tools (SUPER + ALT + CTRL + key)
   local hyper_binds = {
-    { key = "bracketleft", exec = dsp.launch_or_focus("android-studio") },
+    { key = "bracketleft",  exec = dsp.launch_or_focus("android-studio") },
     { key = "bracketright", exec = dsp.launch_or_focus("idea") },
-    { key = "semicolon", exec = dsp.launch_or_focus("dev.zed.Zed") },
-    { key = "B", exec = dsp.launch_or_focus("Bitwarden") },
-    { key = "D", exec = dsp.launch_or_focus("draw.io") },
-    { key = "T", exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
-    { key = "I", exec = dsp.launch_or_focus("insomnia") },
-    { key = "S", exec = dsp.launch_or_focus("datagrip") },
-    { key = "K", exec = dsp.launch_or_focus("keybase") },
-    { key = "J", exec = dsp.launch_or_focus("pake-jira") },
-    { key = "O", exec = dsp.launch_or_focus("obsidian") },
+    { key = "semicolon",    exec = dsp.launch_or_focus("dev.zed.Zed") },
+    { key = "B",            exec = dsp.launch_or_focus("Bitwarden") },
+    { key = "D",            exec = dsp.launch_or_focus("draw.io") },
+    { key = "T",            exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
+    { key = "I",            exec = dsp.launch_or_focus("insomnia") },
+    { key = "S",            exec = dsp.launch_or_focus("datagrip") },
+    { key = "K",            exec = dsp.launch_or_focus("keybase") },
+    { key = "J",            exec = dsp.launch_or_focus("pake-jira") },
+    { key = "O",            exec = dsp.launch_or_focus("obsidian") },
   }
 
   -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
-    { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
+    { key = "A", exec = dsp.launch_or_focus("brave-chat.openai.com__-Default", "chatgpt") },
     { key = "B", exec = dsp.launch_or_focus("brave-browser") },
+    { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
     { key = "H", exec = dsp.launch_or_focus("brave-web.whatsapp.com__-Default", "whatsapp") },
