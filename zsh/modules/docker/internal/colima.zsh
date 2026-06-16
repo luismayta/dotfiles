@@ -1,12 +1,9 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-function container::internal::container::install {
-  if core::exists colima; then return; fi
-  message_info "Installing ${DOCKER_PACKAGE_NAME}"
-  core::install colima
+function docker::internal::container::install {
+  docker::internal::container::install::provider colima
   if ! core::exists docker; then core::install docker; fi
-  message_success "Installed ${DOCKER_PACKAGE_NAME}"
 }
 
 function check_command {
@@ -17,7 +14,7 @@ function check_command {
   return 0
 }
 
-function container::internal::container::load {
+function docker::internal::container::load {
   check_command jq || return 1
   check_command colima || return 1
 

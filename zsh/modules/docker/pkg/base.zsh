@@ -12,14 +12,11 @@ function docker::clean::dangling {
 function docker::clean::images::all { docker::internal::images::delete::all; }
 function docker::clean::images::dangling { docker::internal::images::delete::dangling; }
 function docker::clean::process::all { docker::internal::process::delete::all; }
-function docker::clean::process::dangling { docker::internal::process::stop::exited; }
+function docker::clean::process::exited { docker::internal::process::stop::exited; }
 function docker::clean::volume::all { docker::internal::volume::delete::all; }
 function docker::clean::volume::dangling { docker::internal::volume::delete::dangling; }
 function docker::clean::network::all { docker::internal::network::delete::all; }
-function docker::clean::network::dangling { docker::internal::network::delete::all; }
-
 function docker::process::list { docker::internal::process::list; }
-function docker::process::stop::all { docker::internal::process::stop::all; }
 function docker::process::stop::exited { docker::internal::process::stop::exited; }
 function docker::process::delete::all { docker::internal::process::delete::all; }
 
@@ -82,6 +79,3 @@ komiser() {
     --name komiser mlabouardy/komiser:2.4.0
 }
 
-# Auto-install: check container app, install if missing, then load
-container::internal::container::install
-container::internal::container::load

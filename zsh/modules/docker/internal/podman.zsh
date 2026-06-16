@@ -1,14 +1,11 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-function container::internal::container::install {
-  if core::exists podman; then return; fi
-  message_info "Installing ${DOCKER_PACKAGE_NAME}"
-  core::install podman
-  message_success "Installed ${DOCKER_PACKAGE_NAME}"
+function docker::internal::container::install {
+  docker::internal::container::install::provider podman
 }
 
-function container::internal::container::load {
+function docker::internal::container::load {
   local machine_name="${DOCKER_PODMAN_MACHINE_NAME:-podman-machine-default}"
 
   if ! command -v jq >/dev/null 2>&1; then

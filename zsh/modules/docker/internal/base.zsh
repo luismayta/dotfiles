@@ -18,11 +18,7 @@ function docker::internal::images::delete::all {
 }
 
 function docker::internal::process::list {
-    docker ps -l "$@"
-}
-
-function docker::internal::process::stop::all {
-    docker ps -q -f "status=running" | xargs docker stop
+    docker ps "$@"
 }
 
 function docker::internal::process::stop::exited {
@@ -54,12 +50,20 @@ function docker::internal::container::delete::all {
     docker container ls -a -q | xargs docker container rm
 }
 
+function docker::internal::container::install::provider {
+    local provider="$1"
+    if core::exists "$provider"; then return; fi
+    message_info "Installing ${DOCKER_PACKAGE_NAME}"
+    core::install "$provider"
+    message_success "Installed ${DOCKER_PACKAGE_NAME}"
+}
+
 function docker::internal::container::stop::all {
     docker ps -q -f "status=running" | xargs docker stop
 }
 
 function docker::internal::container::stop::dangling {
-    docker ps -q -f "dangling=true" | xargs docker stop
+    docker ps -q -f "status=exited" | xargs docker rm
 }
 
 function docker::internal::network::delete::all {

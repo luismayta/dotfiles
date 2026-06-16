@@ -1,13 +1,19 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-function container::internal::container::install {
-  if core::exists docker; then return; fi
-  message_info "Installing ${DOCKER_PACKAGE_NAME}"
-  core::install docker
-  message_success "Installed ${DOCKER_PACKAGE_NAME}"
+function docker::internal::container::install {
+  if [[ "${OSTYPE}" == linux* ]]; then
+    if core::exists docker; then return; fi
+    core::install docker
+    core::install docker-compose
+    sudo systemctl enable --now docker
+    sudo usermod -aG docker "${USER}"
+    docker run hello-world
+  else
+    docker::internal::container::install::provider docker
+  fi
 }
 
-function container::internal::container::load {
+function docker::internal::container::load {
   return
 }
