@@ -24,26 +24,26 @@ function M.register(mainMod)
   local hyper_binds = {
     { key = "bracketleft",  exec = dsp.launch_or_focus("android-studio") },
     { key = "bracketright", exec = dsp.launch_or_focus("idea") },
-    { key = "semicolon",    exec = dsp.launch_or_focus("dev.zed.Zed") },
+    { key = "semicolon",    exec = dsp.launch_or_focus("dev.zed.Zed", "Zed") },
     { key = "B",            exec = dsp.launch_or_focus("Bitwarden") },
     { key = "D",            exec = dsp.launch_or_focus("draw.io") },
     { key = "T",            exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
     { key = "I",            exec = dsp.launch_or_focus("insomnia") },
     { key = "S",            exec = dsp.launch_or_focus("datagrip") },
     { key = "K",            exec = dsp.launch_or_focus("keybase") },
-    { key = "J",            exec = dsp.launch_or_focus("pake-jira") },
+    { key = "J",            exec = dsp.launch_or_focus("brave-codip.atlassian.net__-Default", "jira") },
     { key = "O",            exec = dsp.launch_or_focus("obsidian") },
   }
 
   -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
     { key = "A", exec = dsp.launch_or_focus("brave-chat.openai.com__-Default", "chatgpt") },
-    { key = "B", exec = dsp.launch_or_focus("brave-browser") },
+    { key = "B", exec = dsp.launch_or_focus("ChatGpt", "Brave") },
     { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
-    { key = "H", exec = dsp.launch_or_focus("brave-web.whatsapp.com__-Default", "whatsapp") },
-    { key = "T", exec = dsp.launch_or_focus("brave-tasks.google.com__-Default", "googletasks") },
+    { key = "H", exec = dsp.launch_or_focus("brave-web.whatsapp.com__-Default", "WhatsApp") },
+    { key = "T", exec = dsp.launch_or_focus("brave-tasks.google.com__-Default", "Google Tasks") },
     { key = "M", exec = dsp.launch_or_focus("spotify") },
     { key = "O", exec = dsp.launch_or_focus("dolphin") },
   }
