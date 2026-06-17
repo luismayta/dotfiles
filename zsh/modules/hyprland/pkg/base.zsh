@@ -13,3 +13,7 @@ function hyprland::post_install {
 function hyprland::sync {
     rsync -avzh --progress "${HYPRLAND_PATH}/data/" "${HYPRLAND_CONFIG_PATH}/"
 }
+
+function hyprland::classes {
+    hyprland::internal::classes
+}
