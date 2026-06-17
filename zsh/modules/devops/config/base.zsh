@@ -82,6 +82,7 @@ export DEVOPS_KUBECTL_GO_INSTALL=(
 
 export DEVOPS_GO_PACKAGES=(
   github.com/direnv/direnv/v2@latest
+  github.com/hashicorp/hcl/v2/cmd/hclfmt@latest
 )
 
 # Helm configuration
