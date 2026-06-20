@@ -73,7 +73,7 @@ env:
   README_INCLUDES: file://
   TERRAFORM_PATH: ./
   PYTHON_PACKAGE_MANAGER: uv
-  SKILL_REPOS: https://github.com/hadenlabs/jasper
+  SKILL_REPOS: https://github.com/codiplab/codip-ai
 
 dotenv:
   - .env
@@ -94,7 +94,7 @@ vars:
   GOLANGCI_VERSION: 1.42.0
   TERRAFORM_VERSION: 1.11.4
   README_FILE: README.md
-  # NOTE: Agent workflow conventions live in `jasper.toml`.
+  # NOTE: Agent workflow conventions live in `codi.toml`.
   GIT_IGNORES_CUSTOM: |
     bin
     .project
@@ -119,7 +119,6 @@ vars:
     .DS_Store
     .turbo
     .infobot
-    .jasper
     .jira-config.json
     *.pkg.tar.zst
   AI_IGNORE_CUSTOM: |
