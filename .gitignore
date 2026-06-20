@@ -578,7 +578,6 @@ charts
 .DS_Store
 .turbo
 .infobot
-.jasper
 .jira-config.json
 *.pkg.tar.zst
 
