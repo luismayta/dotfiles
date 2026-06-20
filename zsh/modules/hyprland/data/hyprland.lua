@@ -11,6 +11,7 @@ require("configs.envs")
 require("configs.execs")
 
 require("configs.general")
+require("configs.animations")
 require("configs.rules")
 
 require("configs.binds")

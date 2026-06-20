@@ -50,3 +50,49 @@ hl.config({
         },
     },
 })
+
+------------------
+---- GROUPBAR ----
+------------------
+
+hl.config({
+  group = {
+    groupbar = {
+      font_size = 10,
+      gradients = true,
+      priority = 0,
+      render_titles = true,
+      scrolling = true,
+      text_color = "rgb(ffffff)",
+    },
+  },
+})
+
+-----------------
+---- CURSOR ----
+-----------------
+
+hl.config({
+  cursor = {
+    no_hardware_cursors = false,
+    hide_on_key_press = true,
+    warp_on_workspace_change = true,
+  },
+})
+
+----------------
+---- MISC -----
+----------------
+
+hl.config({
+  misc = {
+    disable_logo = true,
+    disable_splash_rendering = true,
+    focus_on_activate = true,
+    animate_manual_resizes = true,
+    disable_xdg_anr = true,
+    enable_swallow = true,
+    swallow_regex = "^(kitty|Alacritty|ghostty)$",
+    new_window_takes_over_fullscreen = false,
+  },
+})

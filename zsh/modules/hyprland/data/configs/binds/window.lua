@@ -36,7 +36,7 @@ function M.register(mainMod)
 
   -- Window actions
   hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-  hl.bind(mainMod .. " + C", hl.dsp.window.center())
+  hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.center())
   hl.bind(mainMod .. " + T", hl.dsp.window.float())
   hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
@@ -86,6 +86,60 @@ function M.register(mainMod)
   for _, bind in ipairs(media_binds) do
     hl.bind(bind.key, hl.dsp.exec_cmd(bind.exec), bind.opts)
   end
+  --
+  -- Clipboard bindings (omarchy pattern)
+  --
+  -- Work around Hyprland send_shortcut leaving synthetic key state stuck/repeating.
+  -- https://github.com/hyprwm/Hyprland/discussions/14099
+  local function send_shortcut_once(mods, key)
+    return function()
+      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down", window = "activewindow" }))
+      hl.timer(function()
+        hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up", window = "activewindow" }))
+      end, { timeout = 50, type = "oneshot" })
+    end
+  end
+
+  hl.bind(mainMod .. " + C", send_shortcut_once("CTRL", "Insert"))  -- universal copy (overrides old center-window which moved to SHIFT+C)
+  hl.bind(mainMod .. " + V", send_shortcut_once("SHIFT", "Insert"))  -- universal paste
+  hl.bind(mainMod .. " + SHIFT + X", send_shortcut_once("CTRL", "X"))  -- universal cut
+  hl.bind(mainMod .. " + CTRL + V", hl.dsp.exec_cmd("walker -m clipboard"))  -- clipboard manager
+
+  --
+  -- Hardware controls (keyboard backlight, touchpad, precise audio/brightness)
+  --
+  -- Keyboard backlight
+  hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set +33%"), { locked = true, repeating = true })
+  hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 33%-"), { locked = true, repeating = true })
+  hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 100%"), { locked = true })
+  hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 0%"), { locked = true })
+
+  -- Touchpad toggle
+  hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad toggle"), { locked = true })
+  hl.bind(mainMod .. " + SHIFT + CTRL + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad on"), { locked = true })
+  hl.bind(mainMod .. " + SHIFT + ALT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
+
+  -- Precise volume (±1%)
+  hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 1"), { locked = true, repeating = true })
+  hl.bind("ALT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 1"), { locked = true, repeating = true })
+
+  -- Precise brightness (±1%)
+  hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 1"), { locked = true, repeating = true })
+  hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("dms ipc call brightness increment 1"), { locked = true, repeating = true })
+
+  -- Enhanced group management
+  hl.bind(mainMod .. " + ALT + H", hl.dsp.window.move({ into_group = "l" }))
+  hl.bind(mainMod .. " + ALT + J", hl.dsp.window.move({ into_group = "d" }))
+  hl.bind(mainMod .. " + ALT + K", hl.dsp.window.move({ into_group = "u" }))
+  hl.bind(mainMod .. " + ALT + L", hl.dsp.window.move({ into_group = "r" }))
+
+  hl.bind(mainMod .. " + ALT + 1", hl.dsp.group.active({ index = 1 }))
+  hl.bind(mainMod .. " + ALT + 2", hl.dsp.group.active({ index = 2 }))
+  hl.bind(mainMod .. " + ALT + 3", hl.dsp.group.active({ index = 3 }))
+  hl.bind(mainMod .. " + ALT + 4", hl.dsp.group.active({ index = 4 }))
+  hl.bind(mainMod .. " + ALT + 5", hl.dsp.group.active({ index = 5 }))
+
+  hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.move({ out_of_group = true }))
 end
 
 return M
