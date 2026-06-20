@@ -35,4 +35,7 @@ CORE_PACKAGES=(
   fd
   ripgrep
   ueberzugpp
+  dolphin
+  udisks2
+  udiskie
 )

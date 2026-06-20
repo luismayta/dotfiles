@@ -31,6 +31,8 @@ export FNM_PACKAGES=(
     nativefier
     @vscode/vsce
     vercel
+    turbo
+    @changesets/cli
     @fission-ai/openspec@latest
 )
 
