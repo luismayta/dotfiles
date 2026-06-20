@@ -38,7 +38,7 @@ function M.register(mainMod)
   -- Secondary tier: system applications (CTRL + ALT + key)
   local secondary_binds = {
     { key = "A", exec = dsp.launch_or_focus("brave-chat.openai.com__-Default", "chatgpt") },
-    { key = "B", exec = dsp.launch_or_focus("ChatGpt", "Brave") },
+    { key = "B", exec = dsp.launch_or_focus("brave-browser", "brave") },
     { key = "C", exec = dsp.launch_or_focus("zen", "zen-browser") },
     { key = "D", exec = dsp.launch_or_focus("discord") },
     { key = "F", exec = dsp.launch_or_focus("figma") },
