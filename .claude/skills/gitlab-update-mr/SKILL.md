@@ -7,8 +7,8 @@ triggers:
   - "Update the MR body to match the latest diff"
 license: Proprietary
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
 ---
 
 ## What I do

@@ -1,11 +1,11 @@
 name: jira-start-task
-description: Skill para listar issues no terminadas asignadas al usuario en Jira usando `jasper.toml`, elegir una y crear un branch `feature/<ISSUE-KEY>`.
+description: Skill para listar issues no terminadas asignadas al usuario en Jira usando `codi.toml`, elegir una y crear un branch `feature/<ISSUE-KEY>`.
 triggers:
   - "Usa el skill `jira-start-task`"
   - "Quiero empezar una tarea de Jira y crear el branch automáticamente"
   - "Lista las tareas pendientes del proyecto configurado y crea un feature branch"
 what_i_do:
-  - "Read `jasper.toml` to fetch the configured Jira project key."
+  - "Read `codi.toml` to fetch the configured Jira project key."
   - "Query Jira for issues assigned to the current user that are not done."
   - "Show a numbered list, let the user pick one, and build `feature/<ISSUE-KEY>`."
   - "Create the branch if it does not already exist and warn if it does."

@@ -1,0 +1,18 @@
+name: jira-task-generator
+description: Generate Jira Task definitions from context using templates. Creates markdown artifacts under .codi/jira/issues/ with unique identifiers.
+triggers:
+  - "create task"
+  - "generate task"
+  - "jira task"
+  - "crear task"
+  - "generar task"
+what_i_do:
+  - "Parse free-form context into structured Task definition."
+  - "Resolve PROJECT_KEY dynamically from Jira via MCP (getVisibleJiraProjects)."
+  - "Generate unique filenames with slug + shortuuid under .codi/jira/issues/."
+  - "Render Task markdown artifacts using TASK.md.tpl template."
+  - "Ensure idempotent generation — regenerate shortuuid if file already exists."
+  - "Include git repository URL as automatic source."
+usage_examples:
+  - "Crear una task para implementar autenticación OAuth con pruebas unitarias."
+  - "Generate a task for the database migration with acceptance criteria and link to epic PE-97."

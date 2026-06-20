@@ -3,8 +3,8 @@ name: markdown-to-jira
 description: Skill para crear issues de tipo epic y/o task en Jira Cloud a partir de un archivo Markdown y luego completar componentes, labels y issue keys.
 license: Proprietary
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
   opencode:
     emoji: 🧩
     tags:

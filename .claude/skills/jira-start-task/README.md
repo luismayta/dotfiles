@@ -11,7 +11,7 @@
 # jira-start-task
 
 
-Skill para listar issues no terminadas asignadas al usuario en Jira usando `jasper.toml`, elegir una y crear un branch `feature/<ISSUE-KEY>`.
+Skill para listar issues no terminadas asignadas al usuario en Jira usando `codi.toml`, elegir una y crear un branch `feature/<ISSUE-KEY>`.
 
 
 
@@ -28,7 +28,7 @@ Skill para listar issues no terminadas asignadas al usuario en Jira usando `jasp
 
 ## What I do
 
-- Read `jasper.toml` to fetch the configured Jira project key.
+- Read `codi.toml` to fetch the configured Jira project key.
 
 - Query Jira for issues assigned to the current user that are not done.
 

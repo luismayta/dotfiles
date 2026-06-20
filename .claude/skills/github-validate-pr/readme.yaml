@@ -1,4 +1,3 @@
----
 name: github-validate-pr
 description: Find vulnerabilities or errors in a pull request (checks, scans, merge blockers) and propose fixes.
 triggers:

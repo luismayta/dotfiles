@@ -11,7 +11,7 @@
 # agents-bootstrap-sync
 
 
-Bootstrap agent configuration and generate AGENTS.md from docs using a template-based, idempotent approach without external templating engines.
+Bootstrap agent configuration and generate AGENTS.md from project config (codi.toml), SCM flow, monorepo structure, MCP ecosystem, and docs/ — template-based and idempotent.
 
 
 
@@ -27,14 +27,24 @@ Bootstrap agent configuration and generate AGENTS.md from docs using a template-
 
 - agent bootstrap
 
+- codi config
+
 
 
 
 ## What I do
 
-- Bootstrap de jasper.toml y .goji.json
+- Bootstrap de codi.toml y .goji.json
 
-- Generación de AGENTS.md como entrypoint para agentes
+- Detección de SCM provider y workflow (github-flow, gitlab-flow)
+
+- Detección de monorepo (turborepo, nx, pnpm)
+
+- Detección de MCP servers configurados
+
+- Lectura de scopes y tipos de commit desde .goji.json
+
+- Generación de AGENTS.md como entrypoint enriquecido para agentes
 
 - Enfoque idempotente y seguro
 

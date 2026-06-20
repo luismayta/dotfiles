@@ -6,13 +6,6 @@ This file is the entrypoint for agents and automation tools.
 
 ---
 
-## Configuration
-
-- Commit format → jasper.toml
-- Commit types → .goji.json
-
----
-
 ## 🚀 Getting Started
 
 {{USAGE}}
@@ -32,6 +25,30 @@ This file is the entrypoint for agents and automation tools.
 ## ⚙️ Operations
 
 {{RUNBOOKS}}
+
+---
+
+## 🏗️ Project Structure
+
+{{PROJECT_STRUCTURE}}
+
+---
+
+## 🔧 SCM & Workflow
+
+{{SCM_WORKFLOW}}
+
+---
+
+## 🤖 MCP Ecosystem
+
+{{MCP_ECOSYSTEM}}
+
+---
+
+## 📦 Commit Convention
+
+{{COMMIT_CONVENTION}}
 
 ---
 

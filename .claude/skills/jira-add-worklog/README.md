@@ -28,7 +28,7 @@ Skill para registrar worklogs en Jira usando el issue key derivado del branch ac
 
 ## What I do
 
-- Read `jasper.toml` and confirm Jira is configured.
+- Read `codi.toml` and confirm Jira is configured.
 
 - Derive the issue key from the current branch using the project key or a regex override.
 

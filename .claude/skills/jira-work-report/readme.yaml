@@ -5,8 +5,8 @@ triggers:
   - "Genera un reporte de implementacion para la tarea Jira actual y publcalo como comentario"
   - "Completa el template de reporte Jira usando los commits del branch y subelo al issue"
 what_i_do:
-  - "Confirm that Jira is enabled in `jasper.toml` and derive the issue key from the branch."
-  - "Read `.jira/issue_templates/jira-work-report.md` and summarize recent commits."
+  - "Confirm that Jira is enabled in `codi.toml` and derive the issue key from the branch."
+  - "Read `.codi/jira/issue_templates/jira-work-report.md` and summarize recent commits."
   - "Fill every template section (changes, type, checklist, notes, references) with evidence from commits."
   - "Post the completed report as a Jira comment via the MCP `jira` tool."
 usage_examples:

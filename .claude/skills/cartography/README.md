@@ -55,4 +55,4 @@ Empty templates created in each folder for explorers to fill with:
 
 ## Installation
 
-Installed automatically via jasper installer when custom skills are enabled.
+Installed automatically via codi installer when custom skills are enabled.

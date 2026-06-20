@@ -3,8 +3,8 @@ name: markdown-to-gcal
 description: Create and update Google Calendar events from structured markdown files using MCP. Supports idempotent sync - running multiple times on the same markdown produces the same result.
 license: Proprietary
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
   opencode:
     emoji: 📅
     tags:

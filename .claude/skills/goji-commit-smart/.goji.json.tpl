@@ -1,6 +1,6 @@
 {
   "noemoji": false,
-  "scopes": ["core", "accounts", "ci"],
+  "scopes": ["core", "ci", "skills", "opencode"],
   "signoff": true,
   "skipquestions": null,
   "subjectmaxlength": 100,

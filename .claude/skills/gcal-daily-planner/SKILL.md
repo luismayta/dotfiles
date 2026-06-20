@@ -2,8 +2,8 @@
 name: gcal-daily-planner
 description: Generate a daily planning Markdown file combining Google Calendar events and Jira tasks. Creates an executable daily agenda with configurable parameters, dynamic emoji detection, and timezone support.
 metadata:
-  author: "hadenlabs"
-  version: "0.1.0"
+  author: "codiplab"
+  version: "0.4.1"
   generatedBy: "openspec"
   opencode:
     emoji: 📋
@@ -270,7 +270,7 @@ ORDER BY priority DESC, updated DESC
 Save to:
 
 ```
-.jasper/build/skills/gcal-daily-planner/YYYY-MM-DD.json
+.codi/build/skills/gcal-daily-planner/YYYY-MM-DD.json
 ```
 
 Rules:

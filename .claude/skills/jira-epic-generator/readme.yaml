@@ -1,0 +1,17 @@
+name: jira-epic-generator
+description: Generate Jira Epic and Task definitions from context using templates. Creates markdown artifacts under .codi/jira/issues/ with unique identifiers.
+triggers:
+  - "create epic"
+  - "generate epic"
+  - "jira epic"
+  - "crear epic"
+  - "generar epic"
+what_i_do:
+  - "Parse free-form context into structured Epic + Tasks definition."
+  - "Resolve PROJECT_KEY dynamically from Jira via MCP (getVisibleJiraProjects)."
+  - "Generate unique filenames with slug + shortuuid under .codi/jira/issues/."
+  - "Render Epic and Task markdown artifacts using EPIC.md.tpl and TASK.md.tpl templates."
+  - "Ensure idempotent generation — regenerate shortuuid if file already exists."
+usage_examples:
+  - "Crear un epic para migrar a Rust con tareas: crear repositorio, implementar test automation, crear un MCP con Rust."
+  - "Generate an epic for the database migration project with all subtasks."

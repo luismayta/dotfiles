@@ -7,8 +7,8 @@ triggers:
   - "Open a PR and push the current branch"
 license: Proprietary
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
 ---
 
 ## What I do

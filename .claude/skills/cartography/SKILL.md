@@ -103,7 +103,7 @@ Defines agent personalities and manages their configuration lifecycle.
 Each agent is a prompt + permission set. Config system uses:
 
 - Default prompts (orchestrator.ts, explorer.ts, etc.)
-- User overrides from ~/.config/opencode/jasper-opencode.json
+- User overrides from ~/.config/opencode/codi-opencode.json
 - Permission wildcards for skill/MCP access control
 
 ## Flow
@@ -123,7 +123,7 @@ Each agent is a prompt + permission set. Config system uses:
 Example **Root Codemap (Atlas)**:
 
 ```markdown
-# Repository Atlas: jasper
+# Repository Atlas: codi
 
 ## Project Responsibility
 
@@ -133,7 +133,7 @@ A high-performance, low-latency agent orchestration plugin for OpenCode, focusin
 
 - `src/index.ts`: Plugin initialization and OpenCode integration.
 - `package.json`: Dependency manifest and build scripts.
-- `jasper.json`: User configuration schema.
+- `codi.json`: User configuration schema.
 
 ## Directory Map (Aggregated)
 

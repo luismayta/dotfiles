@@ -1,10 +1,11 @@
 ---
 name: goji-commit-smart
-description: Deterministic multi-commit generator from git working tree. Uses jasper.toml (policy) and .goji.json (domain). Single validation gate + fast commit execution.
+description: Multi-commit planner from git working tree. LLM groups changed files into logical commits using codi CLI context and executes them via codi commit.
 license: Proprietary
+compatibility: Requires codi CLI (codi commit context, codi commit --file).
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
   opencode:
     emoji: 🧠
     triggers:
@@ -16,58 +17,47 @@ metadata:
       - git
       - commits
       - grouping
-      - deterministic
-      - policy-driven
-    mcp:
-      preferredServer: git
+      - llm-orchestrated
+      - codi
 ---
 
-# goji-commit-smart
+LLM-orchestrated commit planner — analyzes your git working tree, groups files into logical commits, and executes them via `codi commit`.
 
-Deterministic semantic commit partitioning engine.
-
----
-
-# Inputs
-
-- No inputs
-- Input = git working tree
+I'll:
+- Load your project's commit taxonomy (types, scopes, format policy)
+- Analyze changed files and group them by logical concern
+- Assign conventional-commit type, scope, and subject per group
+- Write a plan to `.codi/build/<name>.json`
+- Execute the plan with `codi commit --file`
 
 ---
 
-# Contract
+**Input**: No input required if the working tree has changes. The skill automatically reads the git diff, `.goji.json` (taxonomy), and `codi.toml` (format policy).
+
+If the working tree is clean or has too many changes, I may ask:
+> "What do you want to commit? Describe the logical groups you have in mind."
+
+---
+
+**Contract**
 
 - `task validate` executes exactly once at start
 - If validation fails → abort immediately
-- Only sources of truth:
-  - `jasper.toml`
-  - `.goji.json`
-- No external configuration allowed
 
 ---
 
-# STEP 0 — Dependency validation
+### STEP 0 — Dependency validation
 
 ```bash
 command -v task >/dev/null 2>&1 || {
   echo "ERROR: task not installed (https://taskfile.dev)"
   exit 1
 }
-
-command -v jq >/dev/null 2>&1 || {
-  echo "ERROR: jq not installed (https://stedolan.github.io/jq/)"
-  exit 1
-}
-
-command -v yq >/dev/null 2>&1 || {
-  echo "ERROR: yq not installed (https://mikefarah.gitbook.io/yq)"
-  exit 1
-}
 ```
 
 ---
 
-# STEP 1 — Validate Task system (single execution gate)
+### STEP 1 — Validate Task system (single execution gate)
 
 ```bash
 if [ ! -f Taskfile.yml ] && [ ! -f Taskfile.yaml ]; then
@@ -93,195 +83,107 @@ echo "Validation passed"
 
 ---
 
-# STEP 2 — Load configuration (jasper.toml)
+**Steps**
 
-```bash
-FORMAT=$(yq -p toml '.commit.format' jasper.toml)
-STYLE=$(yq -p toml '.commit.style' jasper.toml)
+2. **Run `codi commit context` to load project context**
+   ```bash
+   codi commit context
+   ```
+   This returns JSON with:
+   - `taxonomy.types`: allowed commit types from `.goji.json` (feat, fix, docs, chore, test, etc.) with their emoji and description
+   - `taxonomy.scopes`: allowed scopes (cli, core, opencode, skills, mcp, config, etc.)
+   - `taxonomy.typeDetails`: array of `{ name, emoji, code, description }` for each type
+   - `files[]`: list of changed files with paths
 
-PROJECT_KEY=$(yq -p toml '.issueTracking.projectKey' jasper.toml)
+3. **Analyze context and group files into logical commits**
 
-if [ "$FORMAT" = "null" ] || [ "$STYLE" = "null" ]; then
-  echo "ERROR: invalid jasper.toml commit config"
-  exit 1
-fi
-```
+   Group files that belong to the same logical change. For each group:
 
----
+   - **type**: Pick from `context.taxonomy.types` (feat=new feature, fix=bug fix, docs=documentation, chore=maintenance, test=tests, refactor=restructure, perf=performance, etc.)
+   - **scope**: Pick from `context.taxonomy.scopes` that best matches the files' location
+   - **subject**: Write a concise conventional-commit subject (max 100 chars). Do NOT include the issue key — `codi commit` handles issue key rendering automatically via its internal renderer (e.g., write `add user login`, not `PE-123 add user login`).
+   - **emoji**: The emoji is handled by `codi commit` automatically — do NOT include it in the plan.
 
-# STEP 3 — Load domain model (.goji.json)
+   **Grouping heuristics**:
+   - Files in the same package/app directory → likely same commit
+   - Configuration files (`.json`, `.toml`, `.yaml`) → `chore(config)` or separate commit
+   - Test files matching a source change → group with that source change
+   - Unrelated changes in different domains → separate commits
 
-```bash
-[ ! -f .goji.json ] && cp <skill_root>/goji.json.tpl .goji.json
+4. **Write the plan to `.codi/build/<name>.json`**
 
-jq empty .goji.json || {
-  echo "ERROR: invalid .goji.json"
-  exit 1
-}
-```
+   Derive a kebab-case name from the primary intent of the changes (e.g., `add-login`, `skill-reinstall`).
 
----
+   Do NOT include the issue key in the plan filename — the issue key is `codi`'s responsibility.
 
-# STEP 4 — Detect git state
+   Plan JSON structure (subjects are plain — no issue key prefix):
+   ```json
+   {
+     "commits": [
+       {
+         "type": "feat",
+         "scope": "core",
+         "subject": "add user authentication middleware",
+         "files": ["src/auth/middleware.ts", "src/auth/types.ts"]
+       },
+       {
+         "type": "chore",
+         "scope": "config",
+         "subject": "update dependencies",
+         "files": ["package.json", "pnpm-lock.yaml"]
+       }
+     ]
+   }
+   ```
 
-```bash
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-git status --porcelain
-git diff --name-only
-```
+   Ensure the `.codi/build/` directory exists:
+   ```bash
+   mkdir -p .codi/build
+   ```
 
----
+5. **Present the plan to the user for review**
 
-# STEP 5 — Load domain types
+   Show a summary of the planned commits and ask:
+   > "Here's the commit plan. Shall I execute it?"
 
-```bash
-declare -A TYPE_EMOJI
+   If the user wants changes, modify the plan JSON and re-present.
 
-while read -r name emoji; do
-  TYPE_EMOJI[$name]=$emoji
-done < <(jq -r '.types[] | "\(.name) \(.emoji)"' .goji.json)
+6. **Execute the plan**
+   ```bash
+   codi commit --file .codi/build/<name>.json
+   ```
 
-SCOPES=$(jq -r '.scopes[]' .goji.json)
-```
+   This stages files, builds commit messages using the configured format (`<type> <emoji>(<scope>): <issueId> <subject>`), and commits with optional sign-off.
 
----
+   If `codi commit --file` is not available (e.g., `error: unknown option '--file'`):
+   - This is a **blocker**. Do NOT manually execute commits.
+   - The agent does not handle issue keys, emojis, or commit format rendering — those are `codi`'s responsibility.
+   - Report the error and stop.
 
-# STEP 6 — Issue extraction (infobot-driven)
+**Output**
 
-```bash
-case "$STYLE" in
-  jira)
-    ISSUE=$(echo "$BRANCH" | grep -oE "${PROJECT_KEY}-[0-9]+" | head -1)
-    ;;
-  github|gitlab)
-    ISSUE="#$(echo "$BRANCH" | grep -oE '[0-9]+' | head -1)"
-    ;;
-esac
-```
+After execution, summarize:
+- Branch name
+- Number of commits created
+- For each commit: type, scope, subject, and files
+- Any warnings (e.g., untracked files not included)
 
----
+**Plan JSON Structure Reference**
 
-# STEP 7 — Detect Git signing capability
+| Field | Type | Description |
+|-------|------|-------------|
+| `commits[].type` | string | Conventional commit type from `.goji.json` types list |
+| `commits[].scope` | string | Scope from `.goji.json` scopes list |
+| `commits[].subject` | string | Commit subject (max 100 chars), plain — no issue key prefix |
+| `commits[].files` | string[] | File paths to include in this commit |
 
-```bash
-GIT_SIGNING_KEY=$(git config --get user.signingkey)
-
-if [ -n "$GIT_SIGNING_KEY" ]; then
-  ENABLE_SIGN=true
-else
-  ENABLE_SIGN=false
-fi
-```
-
----
-
-# STEP 8 — Semantic grouping engine
-
-* group by `(scope, type, intent)`
-* enforce `.goji.json`
-* no orphan atoms
-* fail-fast on ambiguity
-
----
-
-# STEP 9 — Build commit message
-
-```bash
-build_message() {
-  TYPE=$1
-  SCOPE=$2
-  SUBJECT=$3
-
-  EMOJI=${TYPE_EMOJI[$TYPE]}
-
-  case "$STYLE" in
-    jira)
-      SUBJECT="$ISSUE $SUBJECT"
-      ;;
-    github|gitlab)
-      SUBJECT="$SUBJECT ($ISSUE)"
-      ;;
-  esac
-
-  echo "$TYPE $EMOJI ($SCOPE): $SUBJECT"
-}
-```
-
----
-
-# STEP 10 — Validate commit format
-
-```bash
-validate_commit() {
-  local msg="$1"
-
-  case "$STYLE" in
-    jira)
-      PATTERN="^[a-z]+ .+ \\([a-z]+\\): [A-Z]+-[0-9]+ .+"
-      ;;
-    github|gitlab)
-      PATTERN="^[a-z]+ .+ \\([a-z]+\\): .+ \\(#[0-9]+\\)$"
-      ;;
-  esac
-
-  echo "$msg" | grep -Eq "$PATTERN" || {
-    echo "ERROR: invalid commit format"
-    exit 1
-  }
-}
-```
-
----
-
-# STEP 11 — Execution loop
-
-```bash
-COUNT=0
-
-for each group:
-
-  MESSAGE=$(build_message "$TYPE" "$SCOPE" "$SUBJECT")
-
-  validate_commit "$MESSAGE"
-
-  git add <files>
-
-  if [ "$ENABLE_SIGN" = true ]; then
-    git commit -m "$MESSAGE" --no-verify -S
-  else
-    git commit -m "$MESSAGE" --no-verify
-  fi
-
-  COUNT=$((COUNT+1))
-done
-```
-
----
-
-# STEP 12 — Report
-
-```bash
-echo ""
-echo "Commit Summary"
-echo "===================="
-
-i=1
-for each group:
-  echo "$i. $TYPE ($SCOPE)"
-  echo "   -> $SUBJECT"
-  i=$((i+1))
-done
-
-echo ""
-echo "Total commits: $COUNT"
-```
-
----
-
-# Safety rules
-
-- Never commit secrets
-- Fail-fast on invalid config
-- `.goji.json` = domain authority
-- `jasper.toml` = policy authority
-- `task validate` runs once and is mandatory
+**Guardrails**
+- Never include secrets, tokens, or credentials in commit subjects or plan files
+- Never create empty commits (a commit must have at least one file)
+- Never modify files outside the git working tree
+- Validate each commit has: type (from taxonomy), scope (from taxonomy), subject, and at least 1 file
+- A file must appear in exactly one commit — no duplicate file entries across commits
+- If the plan file already exists, confirm with the user before overwriting
+- Never derive, include, or reference the issue key. The issue key is solely `codi`'s responsibility and is resolved internally by `codi commit`
+- If `codi commit` reports errors (e.g., dirty tree, invalid config), show the error and stop — do not force-commit
+- Prefer splitting unrelated changes into separate commits over lumping everything into one

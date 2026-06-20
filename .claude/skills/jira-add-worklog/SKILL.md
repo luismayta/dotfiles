@@ -7,8 +7,8 @@ triggers:
   - "Registra tiempo en Jira usando el issue del branch actual"
   - "Agrega un worklog a la tarea de Jira actual tomando la descripcion de los commits"
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
   opencode:
     emoji: "🧾"
     tags:
@@ -22,11 +22,11 @@ metadata:
 
 # Jira Add Worklog
 
-Usa este skill cuando quieras registrar tiempo en Jira sin escribir manualmente el issue key. El skill detecta si el proyecto usa Jira desde `jasper.toml`, obtiene el `projectKey`, deriva el issue key desde el branch actual, pide al usuario una duracion en minutos u horas y agrega un worklog con una descripcion resumida a partir de los commits recientes del branch.
+Usa este skill cuando quieras registrar tiempo en Jira sin escribir manualmente el issue key. El skill detecta si el proyecto usa Jira desde `codi.toml`, obtiene el `projectKey`, deriva el issue key desde el branch actual, pide al usuario una duracion en minutos u horas y agrega un worklog con una descripcion resumida a partir de los commits recientes del branch.
 
 ## Overview
 
-1. Lee `jasper.toml` y valida que `issueTracking.provider = "jira"`.
+1. Lee `codi.toml` y valida que `issueTracking.provider = "jira"`.
 2. Obtiene `issueTracking.projectKey` y las reglas de `[issueTracking.branch]`.
 3. Lee el branch actual y deriva el issue key de Jira usando el `projectKey` o el regex override configurado.
 4. Pide al usuario el tiempo a registrar en un formato valido de Jira, por ejemplo `30m`, `2h` o `1h 30m`.
@@ -47,7 +47,7 @@ AR-3589
 
 ## Implementacion esperada
 
-- Lee `jasper.toml` antes de cualquier otra accion. Si `issueTracking.provider` no es `jira`, detente y explicalo.
+- Lee `codi.toml` antes de cualquier otra accion. Si `issueTracking.provider` no es `jira`, detente y explicalo.
 - Si falta `issueTracking.projectKey`, detente y explicalo.
 - Usa el branch actual con una forma equivalente a:
 
@@ -72,8 +72,8 @@ git rev-parse --abbrev-ref HEAD
 
 ## Reglas de comportamiento
 
-- No inventes si el proyecto usa Jira; siempre validalo desde `jasper.toml`.
-- No inventes el `projectKey`; siempre leelo desde `jasper.toml`.
+- No inventes si el proyecto usa Jira; siempre validalo desde `codi.toml`.
+- No inventes el `projectKey`; siempre leelo desde `codi.toml`.
 - No inventes el issue key; siempre derivalo desde el branch actual o pide aclaracion si falla.
 - No registres un worklog sin una duracion confirmada por el usuario.
 - No inventes la descripcion del trabajo si no hay commits suficientes para resumirla; en ese caso pide una descripcion manual.

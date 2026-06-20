@@ -1,4 +1,3 @@
----
 name: gitlab-update-mr
 description: Push branch commits and update the existing PR body safely (prefer REST API)
 triggers:

@@ -1,8 +1,8 @@
-# packages/jasper-opencode/src/skills/cartography/scripts/
+# packages/codi-opencode/src/skills/cartography/scripts/
 
 ## Responsibility
 
-- Scope tracks 2 file(s) in packages/jasper-opencode/src/skills/cartography/scripts.
+- Scope tracks 2 file(s) in packages/codi-opencode/src/skills/cartography/scripts.
 - Primary stack: Python.
 - Representative files: cartographer.py, test_cartographer.py.
 
@@ -13,7 +13,7 @@
 
 ## Flow
 
-- Tracked files are ordered deterministically from packages/jasper-opencode/src/skills/cartography/scripts/cartographer.py to packages/jasper-opencode/src/skills/cartography/scripts/test_cartographer.py.
+- Tracked files are ordered deterministically from packages/codi-opencode/src/skills/cartography/scripts/cartographer.py to packages/codi-opencode/src/skills/cartography/scripts/test_cartographer.py.
 
 ## Integration
 

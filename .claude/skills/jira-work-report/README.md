@@ -28,9 +28,9 @@ Skill para generar un reporte de implementacion para el issue de Jira derivado d
 
 ## What I do
 
-- Confirm that Jira is enabled in `jasper.toml` and derive the issue key from the branch.
+- Confirm that Jira is enabled in `codi.toml` and derive the issue key from the branch.
 
-- Read `.jira/issue_templates/jira-work-report.md` and summarize recent commits.
+- Read `.codi/jira/issue_templates/jira-work-report.md` and summarize recent commits.
 
 - Fill every template section (changes, type, checklist, notes, references) with evidence from commits.
 

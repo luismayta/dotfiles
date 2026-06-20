@@ -3,8 +3,8 @@ name: jira-start-task
 description: Resolve a Jira issue, ensure the correct branch, generate an OpenSpec prompt, and optionally enrich context using obsidian MCP.
 license: Proprietary
 metadata:
-  author: "hadenlabs"
-  version: "0.0.0"
+  author: "codiplab"
+  version: "0.4.1"
   opencode:
     emoji: 🎯
     triggers:
@@ -56,13 +56,13 @@ Rules:
 
 ### If NOT provided
 
-- Read `jasper.toml`
+- Read `codi.toml`
 - Get `issueTracking.projectKey`
 
 If missing:
 
 ```text
-jasper.toml not found. Provide issueKey or configure projectKey.
+codi.toml not found. Provide issueKey or configure projectKey.
 ```
 
 Run JQL:

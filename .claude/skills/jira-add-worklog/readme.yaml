@@ -5,7 +5,7 @@ triggers:
   - "Registra tiempo en Jira usando el issue del branch actual"
   - "Agrega un worklog a la tarea de Jira actual tomando la descripcion de los commits"
 what_i_do:
-  - "Read `jasper.toml` and confirm Jira is configured."
+  - "Read `codi.toml` and confirm Jira is configured."
   - "Derive the issue key from the current branch using the project key or a regex override."
   - "Ask for the time to log in Jira-friendly formats such as `30m` or `1h 30m`."
   - "Summarize the latest commits into a concise description."
