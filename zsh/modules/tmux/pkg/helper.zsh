@@ -12,73 +12,34 @@ function edittmux {
 # tx::project [name project].
 # Description: Select a tmuxinator template interactively with fzf and start a new project session.
 function tx::project {
-  local selected_template project_name sanitized_name preview_cmd template
-
   if ! core::exists tmuxinator; then
     message_error "tmuxinator is not installed."
     return 1
   fi
 
-  # Validate template directory exists
   if [[ ! -d "${TMUXINATOR_TEMPLATE_PATH}" ]]; then
     message_error "Templates directory not found: ${TMUXINATOR_TEMPLATE_PATH}"
     return 1
   fi
 
-  # List all yml templates
-  local templates=()
-  if core::exists fd; then
-    while IFS= read -r template; do
-      templates+=("$(basename -s .yml "${template}")")
-    done < <(fd -e yml . "${TMUXINATOR_TEMPLATE_PATH}" --max-depth 1)
-  else
-    for template in "${TMUXINATOR_TEMPLATE_PATH}"/*.yml; do
-      [[ -f "${template}" ]] && templates+=("$(basename -s .yml "${template}")")
-    done
-  fi
+  local selected_template
+  selected_template="$(tx::internal::select_template)"
 
-  if (( ${#templates[@]} == 0 )); then
-    message_warning "No templates found in ${TMUXINATOR_TEMPLATE_PATH}"
-    return 1
-  fi
+  local project_name
+  project_name="$(tx::internal::derive_project_name "${1:-}")"
 
-  # Determine preview command
-  if core::exists bat; then
-    preview_cmd="bat --language=yaml --color=always '${TMUXINATOR_TEMPLATE_PATH}/{}.yml'"
-  else
-    preview_cmd="cat -n '${TMUXINATOR_TEMPLATE_PATH}/{}.yml'"
-  fi
-
-  selected_template=$(printf '%s\n' "${templates[@]}" \
-    | fzf --prompt="Select tmuxinator template: " \
-          --preview "${preview_cmd}") || selected_template="${TMUXINATOR_DEFAULT_TEMPLATE}"
-
-  # Sanitize project name
-  project_name=${1:-$(basename "$PWD")}
-  sanitized_name=$(echo "${project_name}" \
-    | sed 's/[^a-zA-Z0-9_-]/_/g; s/__*/_/g; s/^_//; s/_$//')
-
-  if [[ -z "${sanitized_name}" ]]; then
+  if [[ -z "${project_name}" ]]; then
     message_error "Could not determine a valid project name."
     return 1
   fi
 
-  # Check if session already exists
-  if tmux has-session -t "${sanitized_name}" 2>/dev/null; then
-    message_warning "Session '${sanitized_name}' already exists."
-    echo -n "Attach to existing session? [Y/n]: "
-    read -r reply
-    if [[ "${reply}" =~ ^[Yy]?$ ]]; then
-      tmux attach-session -t "${sanitized_name}"
-    fi
-    return 0
-  fi
+  tx::internal::attach_if_exists "${project_name}" && return
 
-  message_info "Launching tmuxinator project '${sanitized_name}' with template '${selected_template}'..."
-  if tmuxinator start "${selected_template}" "${sanitized_name}"; then
-    message_info "Project '${sanitized_name}' started successfully."
+  message_info "Launching tmuxinator project '${project_name}' with template '${selected_template}'..."
+  if tmuxinator start "${selected_template}" "${project_name}"; then
+    message_info "Project '${project_name}' started successfully."
   else
-    message_error "Failed to start project '${sanitized_name}' with template '${selected_template}'."
+    message_error "Failed to start project '${project_name}' with template '${selected_template}'."
     return 1
   fi
 }
