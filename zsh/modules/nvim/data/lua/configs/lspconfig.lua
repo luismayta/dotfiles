@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Simple servers (no extra config needed)
-vim.lsp.enable({ "html", "cssls", "clangd", "pyright", "yamlls", "dockerls", "clojure_lsp", "cmake", "vimls" })
+vim.lsp.enable({ "html", "cssls", "clangd", "pyright", "yamlls", "dockerls", "clojure_lsp", "cmake", "vimls", "ansiblels", "tflint", "bashls", "ruff", "texlab", "marksman", "solidity", "taplo", "sqls", "sqlls", "intelephense" })
 
 -- Go
 vim.lsp.config("gopls", {
