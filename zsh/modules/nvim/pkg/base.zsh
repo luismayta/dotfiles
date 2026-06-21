@@ -15,6 +15,10 @@ function nvim::upgrade {
     nvim::internal::upgrade "$@"
 }
 
+function nvim::backup {
+    nvim::internal::backup "$@"
+}
+
 function nvim::clean {
     nvim::internal::clean "$@"
 }
