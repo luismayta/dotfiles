@@ -13,7 +13,7 @@ return {
       css = { "prettier" },
       scss = { "prettier" },
       gleam = { "gleam" },
-      go = { "gofmt" },
+      go = { "gofmt", "goimports_reviser", "golines" },
       html = { "prettier" },
       javascript = { "prettier" },
       javascriptreact = { "prettier" },

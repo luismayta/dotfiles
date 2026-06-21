@@ -1,51 +1,4 @@
 local M = {}
---
---
--- M.dap = {
---   plugin = true,
---   n = {
---     ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>" },
---     ["<leader>dus"] = {
---       function ()
---         local widgets = require('dap.ui.widgets');
---         local sidebar = widgets.sidebar(widgets.scopes);
---         sidebar.open();
---       end,
---       "Open debugging sidebar"
---     }
---   }
--- }
---
--- M.dap_python = {
---   plugin = true,
---   n = {
---     ["<leader>dpr"] = {
---       function()
---         require('dap-python').test_method()
---       end
---     }
---   }
--- }
---
--- M.dap_go = {
---   plugin = true,
---   n = {
---     ["<leader>dgr"] = {
---       function()
---         require('dap-go').debug_test()
---       end,
---       "Debug go test"
---     },
---     ["<leader>dgl"] = {
---       function()
---         require('dap-go').debug_last()
---       end,
---       "Debug last go test"
---     }
---   }
--- }
-
--- return M
 
 ---
 require "nvchad.mappings"
@@ -114,9 +67,9 @@ map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic locli
 -- focus
 map("n", "<leader>h", ":FocusSplitLeft<CR>", { desc = "move buffer left" })
 map("n", "<leader>j", ":FocusSplitDown<CR>", { desc = "move buffer down" })
-map("n", "<leader>j", ":FocusSplitUP<CR>", { desc = "move buffer up" })
+
 map("n", "<leader>k", ":FocusSplitRight<CR>", { desc = "move buffer right" })
-map("n", "<leader>l", ":FocusSplitLeft<CR>", { desc = "move buffer left" })
+map("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Open Lazy plugin manager" })
 
 map("n", "<C-x>1", ":FocusMaximise<CR>", { desc = "FocusMaximise" })
 map("n", "<C-x>2", ":FocusSplitDown<CR>", { desc = "FocusSplitDown" })
@@ -165,18 +118,15 @@ map("n", "<leader>rn", function()
 end, { desc = "   lsp rename" })
 
 -- Mappings for Trouble
-map("n", "<leader>dd", "<cmd>TroubleToggle<CR>", opts)
-map("n", "<leader>dw", "<cmd>Trouble workspace_diagnostics<CR>", opts)
-map("n", "<leader>df", "<cmd>Trouble document_diagnostics<CR>", opts)
-map("n", "<leader>dl", "<cmd>Trouble loclist<CR>", opts)
-map("n", "<leader>dq", "<cmd>Trouble quickfix<CR>", opts)
-map("n", "<leader>dr", "<cmd>Trouble lsp_references<CR>", opts)
+map("n", "<leader>dd", "<cmd>Trouble toggle<CR>", opts)
+map("n", "<leader>dw", "<cmd>Trouble diagnostics toggle<CR>", opts)
+map("n", "<leader>df", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", opts)
+map("n", "<leader>dl", "<cmd>Trouble loclist toggle<CR>", opts)
+map("n", "<leader>dq", "<cmd>Trouble qflist toggle<CR>", opts)
+map("n", "<leader>dr", "<cmd>Trouble lsp_references toggle<CR>", opts)
 
 -- Gitsigns
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Gitsigns blame line" })
 map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Gitsigns toggle deleted" })
-
--- Disable mappings
-local nomap = vim.keymap.del
 
 return M

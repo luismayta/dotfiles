@@ -1,3 +1,4 @@
+--- AI plugin configuration
 return {
   {
     "Exafunction/codeium.nvim",

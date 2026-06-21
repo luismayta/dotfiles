@@ -2,8 +2,6 @@
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
 -- Please read that file to know all available options :(
 
-local mason = require "configs.mason"
-
 ---@type ChadrcConfig
 local M = {}
 
@@ -114,7 +112,48 @@ M.term = {
 }
 
 M.mason = {
-  pkgs = mason.ensure_installed,
+  ensure_installed = {
+    -- DevOps / SRE
+    "ansiblels",
+    -- Terraform
+    "terraformls",
+    "tflint",
+    -- Docker
+    "dockerls",
+
+    -- shell
+    "bashls",
+
+    -- Python
+    "ruff",
+    "pyright",
+
+    -- Markdown / Text
+    "texlab", -- testing
+    "marksman",
+
+    -- solidity
+    "solidity",
+
+    -- C++
+    "clangd",
+
+    -- TOML
+    "taplo",
+
+    -- Go
+    "gopls",
+
+    -- sql
+    "sqls",
+    "sqlls",
+
+    -- Additional
+    "intelephense",
+
+    -- Others
+    "vls",
+  },
 }
 
 M.lspconfig = {

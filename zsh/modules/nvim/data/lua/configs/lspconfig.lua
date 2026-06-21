@@ -4,10 +4,6 @@ local lspconfig = require "lspconfig"
 local util = require("lspconfig/util")
 local nvlsp = require "nvchad.configs.lspconfig"
 
--- Safe null-ls require
-local ok, null_ls = pcall(require, "null-ls")
-if not ok then return end
-
 -- Safe formatter
 local function format()
   if vim.lsp.buf.format then
@@ -24,7 +20,7 @@ end
 
 -- LSP servers
 local servers = {
-  "html", "cssls", "tsserver", "clangd",
+  "html", "cssls", "ts_ls", "clangd",
   "pyright", "yamlls", "dockerls",
   "clojure_lsp", "cmake", "vimls",
 }
@@ -74,7 +70,7 @@ lspconfig.terraformls.setup {
 }
 
 -- TS
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -84,11 +80,4 @@ lspconfig.tsserver.setup {
   capabilities = nvlsp.capabilities,
 }
 
--- null-ls setup
-null_ls.setup({
-  sources = {
-    null_ls.builtins.diagnostics.ruff,
-    -- null_ls.builtins.formatting.black,
-  },
-  on_attach = on_attach,
-})
+

@@ -1,3 +1,4 @@
+--- Custom color scheme (Matugen/material-you inspired)
 return {
 	{
 		"RRethy/base16-nvim",
