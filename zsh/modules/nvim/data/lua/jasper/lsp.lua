@@ -3,25 +3,7 @@ local M = {}
 -- Default capabilities (merge with nvchad defaults)
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
--- Feature: LSP keymaps
-local function setup_keymaps(bufnr)
-  local map = require("jasper.utils").nnoremap
-  local opts = { buffer = bufnr }
 
-  map("gd", vim.lsp.buf.definition, "Go to definition", opts)
-  map("gD", vim.lsp.buf.declaration, "Go to declaration", opts)
-  map("gr", vim.lsp.buf.references, "Find references", opts)
-  map("gi", vim.lsp.buf.implementation, "Go to implementation", opts)
-  map("K", vim.lsp.buf.hover, "Hover documentation", opts)
-  map("gK", vim.lsp.buf.signature_help, "Signature help", opts)
-  map("<leader>rn", function()
-    require("nvchad.ui.renamer").open()
-  end, "LSP rename", opts)
-  map("<leader>ca", vim.lsp.buf.code_action, "Code action", opts)
-  map("<leader>fm", function()
-    vim.lsp.buf.format({ async = true, bufnr = bufnr })
-  end, "Format buffer", opts)
-end
 
 -- Feature: Diagnostic signs
 local function setup_diagnostics()
@@ -60,17 +42,7 @@ function M.on_attach(features)
 
     -- Feature: keymaps
     if features.keymaps then
-      setup_keymaps(bufnr)
-    end
-
-    -- Feature: formatting on save
-    if features.formatting and client.server_capabilities.documentFormattingProvider then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ async = false, bufnr = bufnr })
-        end,
-      })
+      require("jasper.keymaps").lsp(bufnr)
     end
   end
 end

@@ -16,10 +16,28 @@ return {
     },
     config = function()
       local mason_lspconfig = require("mason-lspconfig")
-      local overrides = require "configs.mason-lspconfig"
+
+      local ensure_installed = {
+        "ansiblels",
+        "terraformls",
+        "tflint",
+        "dockerls",
+        "bashls",
+        "ruff",
+        "pyright",
+        "texlab",
+        "marksman",
+        "solidity",
+        "clangd",
+        "taplo",
+        "gopls",
+        "sqls",
+        "sqlls",
+        "intelephense",
+      }
 
       mason_lspconfig.setup({
-        ensure_installed = overrides.ensure_installed,
+        ensure_installed = ensure_installed,
         automatic_installation = true,
       })
 
@@ -31,7 +49,7 @@ return {
       local lspconfig_available, lspconfig_configs = pcall(require, "lspconfig.configs")
       local available_servers = lspconfig_available and vim.tbl_keys(lspconfig_configs) or {}
 
-      for _, server in ipairs(overrides.ensure_installed) do
+      for _, server in ipairs(ensure_installed) do
         if vim.tbl_contains(available_servers, server) then
           vim.lsp.enable(server)
         else

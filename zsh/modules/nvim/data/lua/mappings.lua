@@ -89,13 +89,6 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-map("n", "<C-Up>", function()
-  require("colorify.tools").lighten(2)
-end)
-
-map("n", "<C-Down>", function()
-  require("colorify.tools").lighten(-2)
-end)
 
 -- Define mappings for Telescope
 local tele = require("jasper.telescope")

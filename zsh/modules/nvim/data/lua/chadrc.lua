@@ -171,13 +171,6 @@ M.lspconfig = {
       "lsp definition",
     },
 
-    ["K"] = {
-      function()
-        vim.cmd [[Lspsaga hover_doc]]
-      end,
-      "lsp hover",
-    },
-
     ["gi"] = {
       function()
         vim.lsp.buf.implementation()
@@ -201,23 +194,9 @@ M.lspconfig = {
 
     ["<leader>ra"] = {
       function()
-        require("nvchad_ui.renamer").open()
+        require("nvchad.ui.renamer").open()
       end,
       "lsp rename",
-    },
-
-    ["<leader>ca"] = {
-      function()
-        vim.cmd [[Lspsaga code_action]]
-      end,
-      "lsp code_action",
-    },
-
-    ["gr"] = {
-      function()
-        vim.cmd [[Lspsaga lsp_finder]]
-      end,
-      "lsp references",
     },
 
     ["<leader>f"] = {
@@ -225,20 +204,6 @@ M.lspconfig = {
         vim.diagnostic.open_float()
       end,
       "floating diagnostic",
-    },
-
-    ["<leader>ld"] = {
-      function()
-        vim.cmd [[Lspsaga show_line_diagnostics]]
-      end,
-      "show line diagnostics",
-    },
-
-    ["<leader>cd"] = {
-      function()
-        vim.cmd [[Lspsaga show_cursor_diagnostics]]
-      end,
-      "show line diagnostics",
     },
 
     ["[d"] = {
