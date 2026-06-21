@@ -15,7 +15,7 @@
 : "${NVIM_ROOT_PATH:=${HOME}/.config/nvim}"
 
 # Neovim file settings path (used by editnvim)
-: "${NVIM_FILE_SETTINGS:=${NVIM_CONFIG_PATH}/lua/config/options.lua}"
+: "${NVIM_FILE_SETTINGS:=${NVIM_CONFIG_PATH}/lua/options.lua}"
 
 # XDG base directories for data, cache, and state
 # (overridden on Linux by config/linux.zsh to use XDG_*_HOME)
