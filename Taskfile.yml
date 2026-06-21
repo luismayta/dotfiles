@@ -227,6 +227,11 @@ tasks:
       - task: nvim:lint
       - task: pre-commit:lint
 
+  build:
+    desc: "Build project artifacts"
+    cmds:
+      - task: nvim:build
+
   help:
     cmds:
       - cmd: |
