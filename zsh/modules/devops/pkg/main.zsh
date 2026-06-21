@@ -4,6 +4,17 @@
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/base.zsh"
 
+case "${OSTYPE}" in
+  darwin*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/pkg/osx.zsh"
+    ;;
+  linux*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/pkg/linux.zsh"
+    ;;
+esac
+
 # Tool package layers
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/k9s.zsh"
