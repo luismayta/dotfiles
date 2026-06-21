@@ -42,8 +42,8 @@ function M.register(mainMod, C)
   -- Workspace navigation enhancements
   --
   hl.bind(C.SUPER_SHIFT .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
-  hl.bind(C.SUPER_CTRL .. " + BRIGHTNESSDOWN", hl.dsp.focus({ workspace = "e-1" }))
-  hl.bind(C.SUPER_CTRL .. " + BRIGHTNESSUP", hl.dsp.focus({ workspace = "e+1" }))
+  hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessDown", hl.dsp.focus({ workspace = "e-1" }))
+  hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessUp", hl.dsp.focus({ workspace = "e+1" }))
 
   -- Focus adjacent monitors
   hl.bind(C.SECONDARY .. " + TAB", hl.dsp.focus({ monitor = "+1" }))

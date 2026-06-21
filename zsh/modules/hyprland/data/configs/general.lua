@@ -76,7 +76,7 @@ hl.config({
   cursor = {
     no_hardware_cursors = false,
     hide_on_key_press = true,
-    warp_on_workspace_change = true,
+    warp_on_change_workspace = true,
   },
 })
 
@@ -86,13 +86,14 @@ hl.config({
 
 hl.config({
   misc = {
-    disable_logo = true,
+    disable_hyprland_logo = true,
     disable_splash_rendering = true,
     focus_on_activate = true,
     animate_manual_resizes = true,
-    disable_xdg_anr = true,
+    disable_xdg_env_checks = true,
+    enable_anr_dialog = false,
     enable_swallow = true,
     swallow_regex = "^(kitty|Alacritty|ghostty)$",
-    new_window_takes_over_fullscreen = false,
+    on_focus_under_fullscreen = 2,
   },
 })
