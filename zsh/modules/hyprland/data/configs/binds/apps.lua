@@ -7,10 +7,7 @@ local dsp = require("custom.dispatcher")
 
 local M = {}
 
-function M.register(mainMod)
-  local hyper = mainMod .. " + ALT + CTRL"
-  local secondary = "CTRL + ALT"
-
+function M.register(mainMod, C)
   -- Direct apps (SUPER + key, migrated from legacy config)
   local direct_binds = {
     { key = "E",         exec = dsp.launch_or_focus("dolphin") },
@@ -48,18 +45,16 @@ function M.register(mainMod)
     { key = "O", exec = dsp.launch_or_focus("dolphin") },
   }
 
+  local function register_binds(tier_prefix, binds)
+    for _, bind in ipairs(binds) do
+      hl.bind(tier_prefix .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
+    end
+  end
+
   -- Register all tiers
-  for _, bind in ipairs(direct_binds) do
-    hl.bind(mainMod .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
-  end
-
-  for _, bind in ipairs(hyper_binds) do
-    hl.bind(hyper .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
-  end
-
-  for _, bind in ipairs(secondary_binds) do
-    hl.bind(secondary .. " + " .. bind.key, type(bind.exec) == "string" and hl.dsp.exec_cmd(bind.exec) or bind.exec)
-  end
+  register_binds(C.DIRECT, direct_binds)
+  register_binds(C.HYPER, hyper_binds)
+  register_binds(C.SECONDARY, secondary_binds)
 end
 
 return M

@@ -1,0 +1,11 @@
+---
+version: "3"
+
+tasks:
+  lint:
+    run: once
+    dir: "{{.TASKFILE_DIR}}"
+    desc: "Check Lua syntax with luac -p"
+    cmds:
+      - find data -name '*.lua' -exec luac -p {} +
+    silent: true

@@ -2,7 +2,7 @@ local custom = require("custom")
 
 local M = {}
 
-function M.register(mainMod)
+function M.register(mainMod, C)
   -- HJKL focus navigation: focus, move, swap
   local hjkl_binds = {
     { key = "H", direction = "left" },
@@ -12,10 +12,10 @@ function M.register(mainMod)
   }
 
   for _, bind in ipairs(hjkl_binds) do
-    hl.bind(mainMod .. " + " .. bind.key, hl.dsp.focus({ direction = bind.direction }))
-    hl.bind(mainMod .. " + SHIFT + " .. bind.key, hl.dsp.window.move({ direction = bind.direction }))
+    hl.bind(C.DIRECT .. " + " .. bind.key, hl.dsp.focus({ direction = bind.direction }))
+    hl.bind(C.SUPER_SHIFT .. " + " .. bind.key, hl.dsp.window.move({ direction = bind.direction }))
     hl.bind(
-      mainMod .. " + CTRL + " .. bind.key,
+      C.SUPER_CTRL .. " + " .. bind.key,
       custom.helper.by_layout({
         { layout = "dwindle", dispatcher = hl.dsp.window.swap({ direction = bind.direction }) },
         {
@@ -35,18 +35,18 @@ function M.register(mainMod)
   end
 
   -- Window actions
-  hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-  hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.center())
-  hl.bind(mainMod .. " + T", hl.dsp.window.float())
-  hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+  hl.bind(C.DIRECT .. " + Q", hl.dsp.window.close())
+  hl.bind(C.SUPER_SHIFT .. " + C", hl.dsp.window.center())
+  hl.bind(C.DIRECT .. " + T", hl.dsp.window.float())
+  hl.bind(C.DIRECT .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 
   -- Mouse drag/resize
-  hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-  hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+  hl.bind(C.DIRECT .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+  hl.bind(C.DIRECT .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
   -- Resize binds (repeating)
   hl.bind(
-    mainMod .. " + equal",
+    C.DIRECT .. " + equal",
     custom.helper.by_layout({
       { layout = "dwindle", dispatcher = custom.dsp.resize_window(5, 0) },
       { layout = "scrolling", dispatcher = hl.dsp.layout("colresize +conf") },
@@ -54,20 +54,20 @@ function M.register(mainMod)
     { repeating = true }
   )
   hl.bind(
-    mainMod .. " + minus",
+    C.DIRECT .. " + minus",
     custom.helper.by_layout({
       { layout = "dwindle", dispatcher = custom.dsp.resize_window(-5, 0) },
       { layout = "scrolling", dispatcher = hl.dsp.layout("colresize -conf") },
     }),
     { repeating = true }
   )
-  hl.bind(mainMod .. " + SHIFT + equal", custom.dsp.resize_window(0, 5), { repeating = true })
-  hl.bind(mainMod .. " + SHIFT + minus", custom.dsp.resize_window(0, -5), { repeating = true })
+  hl.bind(C.SUPER_SHIFT .. " + equal", custom.dsp.resize_window(0, 5), { repeating = true })
+  hl.bind(C.SUPER_SHIFT .. " + minus", custom.dsp.resize_window(0, -5), { repeating = true })
 
   -- Group management
-  hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
-  hl.bind(mainMod .. " + BracketLeft", hl.dsp.group.prev())
-  hl.bind(mainMod .. " + BracketRight", hl.dsp.group.next())
+  hl.bind(C.DIRECT .. " + W", hl.dsp.group.toggle())
+  hl.bind(C.DIRECT .. " + BracketLeft", hl.dsp.group.prev())
+  hl.bind(C.DIRECT .. " + BracketRight", hl.dsp.group.next())
 
   -- Multimedia keys (no mainMod prefix)
   local media_binds = {
@@ -100,10 +100,10 @@ function M.register(mainMod)
     end
   end
 
-  hl.bind(mainMod .. " + C", send_shortcut_once("CTRL", "Insert"))  -- universal copy (overrides old center-window which moved to SHIFT+C)
-  hl.bind(mainMod .. " + V", send_shortcut_once("SHIFT", "Insert"))  -- universal paste
-  hl.bind(mainMod .. " + SHIFT + X", send_shortcut_once("CTRL", "X"))  -- universal cut
-  hl.bind(mainMod .. " + CTRL + V", hl.dsp.exec_cmd("walker -m clipboard"))  -- clipboard manager
+  hl.bind(C.DIRECT .. " + C", send_shortcut_once("CTRL", "Insert"))  -- universal copy (overrides old center-window which moved to SHIFT+C)
+  hl.bind(C.DIRECT .. " + V", send_shortcut_once("SHIFT", "Insert"))  -- universal paste
+  hl.bind(C.SUPER_SHIFT .. " + X", send_shortcut_once("CTRL", "X"))  -- universal cut
+  hl.bind(C.SUPER_CTRL .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))  -- clipboard manager
 
   --
   -- Hardware controls (keyboard backlight, touchpad, precise audio/brightness)
@@ -111,13 +111,13 @@ function M.register(mainMod)
   -- Keyboard backlight
   hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set +33%"), { locked = true, repeating = true })
   hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 33%-"), { locked = true, repeating = true })
-  hl.bind(mainMod .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 100%"), { locked = true })
-  hl.bind(mainMod .. " + SHIFT + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 0%"), { locked = true })
+  hl.bind(C.DIRECT .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 100%"), { locked = true })
+  hl.bind(C.SUPER_SHIFT .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 0%"), { locked = true })
 
   -- Touchpad toggle
-  hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad toggle"), { locked = true })
-  hl.bind(mainMod .. " + SHIFT + CTRL + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad on"), { locked = true })
-  hl.bind(mainMod .. " + SHIFT + ALT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
+  hl.bind(C.SUPER_SHIFT .. " + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad toggle"), { locked = true })
+  hl.bind(C.SUPER_SHIFT .. " + CTRL + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad on"), { locked = true })
+  hl.bind(C.SUPER_SHIFT .. " + ALT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
 
   -- Precise volume (±1%)
   hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 1"), { locked = true, repeating = true })
@@ -128,18 +128,16 @@ function M.register(mainMod)
   hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("dms ipc call brightness increment 1"), { locked = true, repeating = true })
 
   -- Enhanced group management
-  hl.bind(mainMod .. " + ALT + H", hl.dsp.window.move({ into_group = "l" }))
-  hl.bind(mainMod .. " + ALT + J", hl.dsp.window.move({ into_group = "d" }))
-  hl.bind(mainMod .. " + ALT + K", hl.dsp.window.move({ into_group = "u" }))
-  hl.bind(mainMod .. " + ALT + L", hl.dsp.window.move({ into_group = "r" }))
+  local group_dir_map = { H = "l", J = "d", K = "u", L = "r" }
+  for key, dir in pairs(group_dir_map) do
+    hl.bind(C.SUPER_ALT .. " + " .. key, hl.dsp.window.move({ into_group = dir }))
+  end
 
-  hl.bind(mainMod .. " + ALT + 1", hl.dsp.group.active({ index = 1 }))
-  hl.bind(mainMod .. " + ALT + 2", hl.dsp.group.active({ index = 2 }))
-  hl.bind(mainMod .. " + ALT + 3", hl.dsp.group.active({ index = 3 }))
-  hl.bind(mainMod .. " + ALT + 4", hl.dsp.group.active({ index = 4 }))
-  hl.bind(mainMod .. " + ALT + 5", hl.dsp.group.active({ index = 5 }))
+  for i = 1, 5 do
+    hl.bind(C.SUPER_ALT .. " + " .. i, hl.dsp.group.active({ index = i }))
+  end
 
-  hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.move({ out_of_group = true }))
+  hl.bind(C.SUPER_SHIFT .. " + F", hl.dsp.window.move({ out_of_group = true }))
 end
 
 return M

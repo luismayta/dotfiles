@@ -6,7 +6,7 @@ local M = {}
 -- Modifier constants
 local ALT = "ALT"
 
-function M.register(mainMod)
+function M.register(mainMod, C)
   -- Toggle window between monitors: ALT + O
   -- Cycles forward (1→2→3→1) with 3+ monitors; toggles 1↔2 with 2 monitors
   hl.bind(ALT .. " + O", hl.dsp.window.move({ monitor = "+1" }))
@@ -18,11 +18,11 @@ function M.register(mainMod)
   -- Monitor scaling cycle: SUPER + period to cycle forward, SUPER + ALT + equal backward
   -- (SUPER + equal is reserved for window resize)
   --
-  hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle"))
-  hl.bind(mainMod .. " + ALT + equal", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle --reverse"))
+  hl.bind(C.DIRECT .. " + period", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle"))
+  hl.bind(C.SUPER_ALT .. " + equal", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle --reverse"))
 
   -- Toggle internal display (eDP-1) with safety check: SUPER + CTRL + Delete
-  hl.bind(mainMod .. " + CTRL + Delete", hl.dsp.exec_cmd([[
+  hl.bind(C.SUPER_CTRL .. " + Delete", hl.dsp.exec_cmd([[
     state=$(hyprctl monitors -j | jq -r '.[] | select(.name == "eDP-1") | .disabled // false')
     if [ "$state" = "true" ]; then
       hyprctl eval 'hl.monitor({ output="eDP-1", mode="preferred", position="auto", scale=1 })'
@@ -36,7 +36,7 @@ function M.register(mainMod)
   ]]))
 
   -- Mirror internal display: SUPER + CTRL + ALT + Delete
-  hl.bind(mainMod .. " + CTRL + ALT + Delete", hl.dsp.exec_cmd([[
+  hl.bind(C.HYPER .. " + Delete", hl.dsp.exec_cmd([[
     state=$(hyprctl monitors -j | jq -r '.[] | select(.name == "eDP-1") | .disabled // false')
     if [ "$state" = "true" ]; then
       external=$(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | .name' | head -1)

@@ -86,7 +86,7 @@
 ## Clipboard
 
 Implement a workaround for Hyprland's `send_shortcut` leaving synthetic key states
-stuck (see [hyprwm/Hyprland#14099](https://github.com/hyprwm/Hyprland/discussions/14099)).
+stuck (see hyprwm/Hyprland/discussions/14099).
 
 | Key | Action | Defined in |
 |---|---|---|
