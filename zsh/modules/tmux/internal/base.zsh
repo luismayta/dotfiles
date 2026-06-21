@@ -52,12 +52,13 @@ tx::internal::derive_project_name() {
     fi
   fi
 
-  # Sanitize: replace non-alphanumeric (except hyphen/underscore) with underscore,
-  # collapse consecutive underscores, strip leading/trailing underscores.
-  name="${name//[^a-zA-Z0-9_-]/_}"
-  while [[ "$name" == *__* ]]; do name="${name//__/_}"; done
-  name="${name#_}"
-  name="${name%_}"
+  # Slug: replace any run of non-alphanumeric chars with a single hyphen,
+  # strip leading/trailing hyphens, then lowercase.
+  name="${name//[^a-zA-Z0-9]/-}"
+  while [[ "$name" == *--* ]]; do name="${name//--/-}"; done
+  name="${name#-}"
+  name="${name%-}"
+  name="${name:l}"
 
   printf '%s\n' "$name"
 }
