@@ -1,52 +1,51 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-local util = require("lspconfig/util")
-local jasper = require("jasper.lsp")
+-- Jasper diagnostic signs
+require("jasper.lsp").setup_diagnostics()
+
+-- LspAttach handler: jasper keymaps + ts_ls formatting disable
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then return end
+
+    -- Disable formatting for ts_ls (use conform instead)
+    if client.name == "ts_ls" then
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+    end
+
+    -- Jasper LSP keymaps
+    require("jasper.keymaps").lsp(ev.buf)
+  end,
+})
 
 -- Simple servers (no extra config needed)
-local servers = {
-  "html", "cssls", "clangd",
-  "pyright", "yamlls", "dockerls",
-  "clojure_lsp", "cmake", "vimls",
-}
-
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup(jasper.server(lsp))
-end
+vim.lsp.enable({ "html", "cssls", "clangd", "pyright", "yamlls", "dockerls", "clojure_lsp", "cmake", "vimls" })
 
 -- Go
-lspconfig.gopls.setup(jasper.server("gopls", {
-  cmd_env = {
-    GOFLAGS = "-tags=test,e2e_test,integration_test,acceptance_test",
-  },
+vim.lsp.config("gopls", {
+  cmd_env = { GOFLAGS = "-tags=test,e2e_test,integration_test,acceptance_test" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  root_markers = { "go.work", "go.mod", ".git" },
   settings = {
     gopls = {
       completeUnimported = true,
       usePlaceholders = true,
       staticcheck = true,
-      analyses = {
-        unusedparams = true,
-      },
-      codelenses = {
-        generate = true,
-        tidy = true,
-      },
+      analyses = { unusedparams = true },
+      codelenses = { generate = true, tidy = true },
     },
   },
-}))
+})
+vim.lsp.enable("gopls")
 
 -- Terraform
-lspconfig.terraformls.setup(jasper.server("terraformls", {
+vim.lsp.config("terraformls", {
   cmd = { "terraform-ls", "serve" },
-  root_dir = util.root_pattern(".terraform", ".git"),
-}))
+  root_markers = { ".terraform", ".git" },
+})
+vim.lsp.enable("terraformls")
 
--- TypeScript (disable formatting - handled by conform)
-lspconfig.ts_ls.setup(jasper.server("ts_ls", {
-  features = { keymaps = true, diagnostics = true, formatting = false },
-}))
-
-
+-- TypeScript (formatting disabled in LspAttach handler)
+vim.lsp.enable("ts_ls")
