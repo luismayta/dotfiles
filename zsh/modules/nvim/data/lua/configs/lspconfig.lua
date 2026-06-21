@@ -2,43 +2,21 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 local util = require("lspconfig/util")
-local nvlsp = require "nvchad.configs.lspconfig"
+local jasper = require("jasper.lsp")
 
--- Safe formatter
-local function format()
-  if vim.lsp.buf.format then
-    vim.lsp.buf.format({ async = true })
-  else
-    vim.lsp.buf.formatting()
-  end
-end
-
-local function on_attach(client, bufnr)
-  nvlsp.on_attach(client, bufnr)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua format()<CR>", { noremap = true, silent = true })
-end
-
--- LSP servers
+-- Simple servers (no extra config needed)
 local servers = {
-  "html", "cssls", "ts_ls", "clangd",
+  "html", "cssls", "clangd",
   "pyright", "yamlls", "dockerls",
   "clojure_lsp", "cmake", "vimls",
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+  lspconfig[lsp].setup(jasper.server(lsp))
 end
 
 -- Go
-lspconfig.gopls.setup {
-  on_attach = on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-  cmd = { "gopls" },
+lspconfig.gopls.setup(jasper.server("gopls", {
   cmd_env = {
     GOFLAGS = "-tags=test,e2e_test,integration_test,acceptance_test",
   },
@@ -58,26 +36,17 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+}))
 
 -- Terraform
-lspconfig.terraformls.setup {
-  on_attach = on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
+lspconfig.terraformls.setup(jasper.server("terraformls", {
   cmd = { "terraform-ls", "serve" },
   root_dir = util.root_pattern(".terraform", ".git"),
-}
+}))
 
--- TS
-lspconfig.ts_ls.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    client.server_capabilities.documentRangeFormattingProvider = false
-    on_attach(client, bufnr)
-  end,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-}
+-- TypeScript (disable formatting - handled by conform)
+lspconfig.ts_ls.setup(jasper.server("ts_ls", {
+  features = { keymaps = true, diagnostics = true, formatting = false },
+}))
 
 

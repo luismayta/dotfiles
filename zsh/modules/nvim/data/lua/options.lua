@@ -49,6 +49,7 @@ local opt = {
   ignorecase = true,
   updatetime = 100,
   lazyredraw = false,
+  mousemoveevent = true,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
   path = vim.opt.path:append { "**", "lua", "src" },
 }
@@ -57,34 +58,11 @@ for k, v in pairs(g) do
   vim.g[k] = v
 end
 
-vim.o.encoding = "utf-8"
-vim.o.fileencoding = "utf-8"
-vim.o.clipboard = "unnamedplus"
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldcolumn = "0"
-vim.o.foldtext = ""
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 1
-vim.o.foldnestmax = 1
-vim.o.backup = false
-vim.o.swapfile = false
-vim.o.scrolloff = 10
-vim.o.backspace = "indent,eol,start"
-vim.o.termguicolors = true
-vim.o.emoji = false
-vim.o.relativenumber = true
-vim.o.wrap = true
-vim.o.linebreak = true
-vim.o.textwidth = 0
-vim.o.wrapmargin = 0
-vim.o.tabstop = tabSize
-vim.o.shiftwidth = tabSize
-vim.o.expandtab = true
-vim.o.autoindent = true
-vim.o.cursorline = true
-vim.o.cursorlineopt = "both"
-vim.o.inccommand = "split"
-vim.o.ignorecase = true
-vim.o.updatetime = 100
-vim.o.lazyredraw = false
+for k, v in pairs(opt) do
+  local ok, err = pcall(function()
+    vim.o[k] = v
+  end)
+  if not ok then
+    vim.notify(string.format("Failed to set option %s: %s", k, err), vim.log.levels.WARN)
+  end
+end

@@ -14,7 +14,6 @@ map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
-map("n", "<leader>cs", "<cmd><CR>", { desc = "Clear statusline" })
 map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "Clear messages" })
 
 -- https://github.com/neovim/neovim/issues/2048
@@ -99,15 +98,14 @@ map("n", "<C-Down>", function()
 end)
 
 -- Define mappings for Telescope
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", opts)
-map("n", "<leader>fr", "<cmd>Telescope resume<CR>", opts)
-map("n", "<leader>fc", "<cmd>Telescope commands<CR>", opts)
-map("n", "<leader>fs", "<cmd>Telescope treesitter<CR>", opts)
-map("n", "<leader>fl", "<cmd>Telescope<CR>", opts)
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", opts)
-map("n", "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
+local tele = require("jasper.telescope")
+map("n", "<leader>ff", tele.ff, opts)
+map("n", "<leader>fg", tele.fg, opts)
+map("n", "<leader>fb", tele.fb, opts)
+map("n", "<leader>fw", tele.fw, opts)
+map("n", "<leader>fo", tele.fo, opts)
+map("n", "<leader>fr", tele.fr, opts)
+map("n", "<leader>fh", tele.fh, opts)
 
 -- Mappings for nvim-tree
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", opts)
