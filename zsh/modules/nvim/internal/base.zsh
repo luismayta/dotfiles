@@ -24,9 +24,9 @@ function nvim::internal::upgrade {
 function nvim::internal::clean {
     message_info "Cleaning nvim caches..."
     command rm -rf \
-        "${HOME}/.local/share/nvim" \
-        "${HOME}/.cache/nvim" \
-        "${HOME}/.local/state/nvim" \
+        "${NVIM_DATA_HOME}" \
+        "${NVIM_CACHE_HOME}" \
+        "${NVIM_STATE_HOME}" \
         2>/dev/null || true
     message_success "Cleaned nvim caches"
 }
