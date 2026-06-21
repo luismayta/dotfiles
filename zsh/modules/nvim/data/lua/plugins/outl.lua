@@ -1,0 +1,63 @@
+return {
+  "hedyhli/outline.nvim",
+  keys = { { "<leader>cs", "<cmd>Outline<cr>", desc = "Toggle Outline" } },
+  cmd = "Outline",
+  opts = function()
+    local kind = require("config.utils").kind_icons
+    local opts = {
+      outline_window = {
+        position = "right",
+        width = 20,
+        relative_width = true,
+        auto_close = false,
+        auto_jump = false,
+        jump_highlight_duration = 300,
+        center_on_jump = true,
+        show_numbers = false,
+        show_relative_numbers = false,
+        wrap = false,
+        show_cursorline = true,
+        hide_cursor = false,
+        focus_on_open = true,
+      },
+      outline_items = {
+        show_symbol_details = false,
+        show_symbol_lineno = false,
+      },
+      symbols = {
+        icons = {
+          Array = { icon = kind.Array, hl = "@constant" },
+          Boolean = { icon = kind.Boolean, hl = "@boolean" },
+          Class = { icon = kind.Class, hl = "@type" },
+          Constant = { icon = kind.Constant, hl = "@constant" },
+          Constructor = { icon = kind.Constructor, hl = "@constructor" },
+          Enum = { icon = kind.Enum, hl = "@type" },
+          EnumMember = { icon = kind.EnumMember, hl = "@field" },
+          Event = { icon = kind.Event, hl = "@type" },
+          Field = { icon = kind.Field, hl = "@field" },
+          File = { icon = kind.File, hl = "@text.uri" },
+          Function = { icon = kind.Function, hl = "@function" },
+          Interface = { icon = kind.Interface, hl = "@type" },
+          Key = { icon = kind.Key, hl = "@type" },
+          Method = { icon = kind.Method, hl = "@method" },
+          Module = { icon = kind.Module, hl = "@namespace" },
+          Namespace = { icon = kind.Namespace, hl = "@namespace" },
+          Null = { icon = kind.Null, hl = "@type" },
+          Number = { icon = kind.Number, hl = "@number" },
+          Object = { icon = kind.Object, hl = "@type" },
+          Operator = { icon = kind.Operator, hl = "@operator" },
+          Package = { icon = kind.Package, hl = "@namespace" },
+          Parameter = { icon = kind.Parameter, hl = 'Identifier' },
+          Property = { icon = kind.Property, hl = "@method" },
+          StaticMethod = { icon = kind.StaticMethod, hl = 'Function' },
+          String = { icon = kind.String, hl = "@string" },
+          Struct = { icon = kind.Struct, hl = "@type" },
+          TypeAlias = { icon = kind.TypeAlias, hl = 'Type' },
+          TypeParameter = { icon = kind.TypeParameter, hl = "@parameter" },
+          Variable = { icon = kind.Variable, hl = "@constant" },
+        },
+      },
+    }
+    return opts
+  end,
+}

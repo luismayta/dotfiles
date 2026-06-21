@@ -22,3 +22,8 @@ message_info "Loading module: nvim"
 source "${ZSH_NVIM_PATH}/config/main.zsh"
 source "${ZSH_NVIM_PATH}/internal/main.zsh"
 source "${ZSH_NVIM_PATH}/pkg/main.zsh"
+
+# Auto-sync guards (must be after pkg/main.zsh so nvim::sync exists)
+if ! core::exists rsync; then core::install rsync; fi
+if ! core::exists nvim; then core::install nvim; fi
+if [[ ! -d "${NVIM_CONFIG_PATH}" ]]; then nvim::sync; fi

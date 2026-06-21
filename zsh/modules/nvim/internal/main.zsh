@@ -1,8 +1,10 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1091
 #
-# Internal layer - OS dispatch + auto-install.
-# Sources OS-specific overrides, ensures dependencies, and auto-installs nvimrc.
+# Internal layer - OS dispatch.
+# Sources OS-specific overrides after the core logic.
+
+source "${ZSH_NVIM_PATH}/internal/base.zsh"
 
 case "${OSTYPE}" in
   darwin*)
@@ -12,14 +14,3 @@ case "${OSTYPE}" in
     source "${ZSH_NVIM_PATH}/internal/linux.zsh"
     ;;
 esac
-
-source "${ZSH_NVIM_PATH}/internal/base.zsh"
-
-# Ensure required tools are installed
-core::ensure "${NVIM_PACKAGE_NAME}"
-core::ensure "rsync"
-
-# Auto-install nvimrc configuration
-if [[ ! -d "${NVIM_CONFIG_PATH}" ]]; then
-  nvim::internal::install
-fi

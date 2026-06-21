@@ -57,6 +57,11 @@ includes:
   terraform:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
 
+  hyprland:
+    taskfile: ./zsh/modules/hyprland/Taskfile.yml
+  nvim:
+    taskfile: ./zsh/modules/nvim/Taskfile.yml
+
 env:
   DOCKER:
     sh: docker --version 2> /dev/null || echo "not exist"
@@ -218,6 +223,8 @@ tasks:
   validate:
     desc: "Run validate on all files"
     cmds:
+      - task: hyprland:lint
+      - task: nvim:lint
       - task: pre-commit:lint
 
   help:
