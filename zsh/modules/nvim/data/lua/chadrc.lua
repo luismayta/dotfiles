@@ -150,9 +150,6 @@ M.mason = {
 
     -- Additional
     "intelephense",
-
-    -- Others
-    "vls",
   },
 }
 
