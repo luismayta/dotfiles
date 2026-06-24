@@ -28,9 +28,9 @@ local function platform()
       os = os,
       is_win = is_win,
       is_linux = is_linux,
-       is_mac = is_mac,
-       is_wsl = is_wsl,
-    }
+      is_mac = is_mac,
+      is_wsl = is_wsl,
+   }
 end
 
 local _platform = platform()
