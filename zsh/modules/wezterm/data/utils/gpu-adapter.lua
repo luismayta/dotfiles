@@ -32,12 +32,19 @@ GpuAdapters.AVAILABLE_BACKENDS = {
    mac = { 'Metal' },
 }
 
----@type WeztermGPUAdapter[]
-GpuAdapters.ENUMERATED_GPUS = wezterm.gui.enumerate_gpus()
-
 ---@return GpuAdapters
 ---@private
 function GpuAdapters:init()
+   -- Lazy eval to support headless/mux contexts (no GUI)
+   local gpus = {}
+   if wezterm.gui then
+      local ok, result = pcall(wezterm.gui.enumerate_gpus)
+      gpus = ok and result or {}
+   else
+      wezterm.log_info('No GUI available — GPU enumeration skipped')
+   end
+   local enumerated = gpus
+
    local initial = {
       __backends = self.AVAILABLE_BACKENDS[platform.os],
       __preferred_backend = self.AVAILABLE_BACKENDS[platform.os][1],
@@ -48,7 +55,7 @@ function GpuAdapters:init()
    }
 
    -- iterate over the enumerated GPUs and create a lookup table (`AdapterMap`)
-   for _, adapter in ipairs(self.ENUMERATED_GPUS) do
+   for _, adapter in ipairs(enumerated) do
       if not initial[adapter.device_type] then
          initial[adapter.device_type] = {}
       end

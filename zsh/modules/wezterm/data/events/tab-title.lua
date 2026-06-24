@@ -47,8 +47,7 @@ local GLYPH_CIRCLE = nf.fa_circle --[[  ]]
 local GLYPH_ADMIN = nf.md_shield_half_full --[[ 󰞀 ]]
 local GLYPH_LINUX = nf.cod_terminal_linux --[[  ]]
 local GLYPH_DEBUG = nf.fa_bug --[[  ]]
--- local GLYPH_SEARCH = nf.fa_search --[[  ]]
-local GLYPH_SEARCH = '🔭'
+local GLYPH_SEARCH = nf.fa_search --[[  ]]
 
 local GLYPH_UNSEEN_NUMBERED_BOX = {
    [1] = nf.md_numeric_1_box_multiple, --[[ 󰼏 ]]
@@ -352,7 +351,21 @@ M.setup = function(opts)
    end)
 
    -- BUILTIN EVENT
-   wezterm.on('format-tab-title', function(tab, _tabs, _panes, _config, hover, max_width)
+   wezterm.on('format-tab-title', function(tab, tabs, _panes, _config, hover, max_width)
+      -- Prune stale entries (tabs that have been closed)
+      for id in pairs(tab_list) do
+         local active = false
+         for _, t in ipairs(tabs) do
+            if t.tab_id == id then
+               active = true
+               break
+            end
+         end
+         if not active then
+            tab_list[id] = nil
+         end
+      end
+
       if not tab_list[tab.tab_id] then
          tab_list[tab.tab_id] = Tab:new()
          tab_list[tab.tab_id]:set_info(valid_opts, tab, max_width)

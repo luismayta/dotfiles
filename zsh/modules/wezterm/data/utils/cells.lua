@@ -93,7 +93,7 @@ function Cells:add_segment(segment_id, text, color, attributes)
       table.insert(items, { Background = { Color = color.bg } })
    end
    if color.fg then
-      assert(color.bg ~= 'UNSET', 'Cannot use UNSET when adding new segment')
+      assert(color.fg ~= 'UNSET', 'Cannot use UNSET when adding new segment')
       table.insert(items, { Foreground = { Color = color.fg } })
    end
    if attributes and #attributes > 0 then
