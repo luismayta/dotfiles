@@ -20,7 +20,7 @@ flow = "github-flow"
 
 [issueTracking]
 provider = "jira"
-projectKey= "HAD"
+projectKey = "HAD"
 
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
 # keyRegexOverride = "^AR-[0-9]+$"
@@ -52,7 +52,7 @@ signoff = true
 # LLM agents must calculate available subject length as:
 #   available = subjectMaxLength - len(<type> <emoji> (<scope>): <issueKey> )
 # Example: "chore 🧹 (skills): PE-100 " = 25 chars → subject max = 80 - 25 = 55 chars
-subjectMaxLength = 80
+subjectMaxLength = 100
 defaultScope = "other"
 
 [commit.providers.github]
