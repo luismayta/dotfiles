@@ -1,11 +1,4 @@
-# {{issue.title}}
-
-## Contexto del Issue
-
-- Key: {{issue.key}}
-- Title: {{issue.title}}
-
----
+# {{issue.key}}: {{issue.title}}
 
 ## Contenido Fuente
 
@@ -35,7 +28,7 @@
 
 ---
 
-## Contexto Relevante (Enrichment)
+## Enriquecimiento
 
 {{#if enrichment.status}}
 
@@ -57,40 +50,29 @@ Error: {{this.error}}
 
 {{/if}}
 
----
+{{#if codegraph_enrichment.status}}
 
-## Instrucción
+### CodeGraph Enrichment
+Status: {{codegraph_enrichment.status}}
+{{#each codegraph_enrichment.mcp}}
 
-Generar una especificación OpenSpec usando ÚNICAMENTE el contenido proporcionado.
-
----
-
-## Reglas
-
-- Usar SOLO la información proporcionada
-- NO inventar información
-- Convertir acceptance tests en requerimientos
-- Usar:
-  - MUST
-  - SHOULD
-  - MAY
-
----
-
-## Salida
-
-- Especificación en markdown
-- Requerimientos en inglés
-- Trazabilidad con {{issue.key}}
-
----
-
-## Artifacts
-
-### tasks.md
-
-Debe incluir:
-
-```bash
-task validate
+#### {{this.tool}}: `{{this.query}}`
+{{#if this.result}}
+```{{#if this.language}}{{this.language}}{{/if}}
+{{this.result}}
 ```
+{{/if}}
+{{#if this.error}}Error: {{this.error}}{{/if}}
+{{/each}}
+{{/if}}
+
+---
+
+## Instrucciones
+
+Genera una especificación OpenSpec en markdown, en inglés, con trazabilidad a {{issue.key}}.
+
+Rules:
+- Usa SOLO la información proporcionada — NO inventes información
+- Convierte acceptance tests en requerimientos usando MUST / SHOULD / MAY
+- Incluye file paths del enrichment como contexto de código relevante
