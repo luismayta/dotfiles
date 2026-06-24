@@ -5,7 +5,7 @@ function wezterm::internal::install {
         return 0
     fi
     message_info "Installing ${WEZTERM_PACKAGE_NAME}..."
-    core::install wezterm
+    core::install wezterm-git
     message_success "${WEZTERM_PACKAGE_NAME} installed successfully."
 }
 
