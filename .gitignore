@@ -581,3 +581,6 @@ charts
 .jira-config.json
 *.pkg.tar.zst
 
+# Large backdrops excluded from repo (synced from external drive at install time)
+zsh/modules/wezterm/data/backdrops/*
+
