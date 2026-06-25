@@ -1,0 +1,40 @@
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[env]
+TERM = "xterm-256color"
+TMUX_SOCKET = "alacritty"
+
+[font]
+size = 18.0
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
+[font.bold]
+family = "FiraCode Nerd Font"
+
+[font.italic]
+family = "FiraCode Nerd Font"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+
+[scrolling]
+history = 10000
+
+[window]
+opacity = 0.8
+padding.x = 4
+padding.y = 4
+decorations_theme_variant = "Dark"
+dynamic_padding = true
+blur = true
+
+[cursor]
+style = "Block"
+vi_mode_style = "Beam"
+
+[terminal]
+osc52 = "OnlyCopy"

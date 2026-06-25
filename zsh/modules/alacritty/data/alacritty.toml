@@ -1,0 +1,6 @@
+[general]
+import = [
+  "~/.config/alacritty/core.toml",
+  "~/.config/alacritty/themes/catppuccin/catppuccin-mocha.toml",
+]
+live_config_reload = true
