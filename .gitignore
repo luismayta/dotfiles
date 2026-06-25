@@ -581,3 +581,6 @@ charts
 .jira-config.json
 *.pkg.tar.zst
 
+# Runtime SQLite databases (generated, not source)
+*.db
+
