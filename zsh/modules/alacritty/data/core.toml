@@ -23,6 +23,7 @@ family = "FiraCode Nerd Font"
 
 [scrolling]
 history = 10000
+multiplier = 5
 
 [window]
 opacity = 0.8
@@ -30,7 +31,6 @@ padding.x = 4
 padding.y = 4
 decorations_theme_variant = "Dark"
 dynamic_padding = true
-blur = true
 
 [cursor]
 style = "Block"
@@ -38,3 +38,9 @@ vi_mode_style = "Beam"
 
 [terminal]
 osc52 = "OnlyCopy"
+
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Shift", chars = "\n" },
+  { key = "Return", mods = "Control", chars = "\n" },
+]
