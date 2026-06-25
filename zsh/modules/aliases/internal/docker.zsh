@@ -24,5 +24,3 @@ function youtube-dl {
 function pandoc {
     docker run --rm -v "${PWD}":/source jagregory/pandoc "$@"
 }
-
-function komiser { devops::komiser; }
