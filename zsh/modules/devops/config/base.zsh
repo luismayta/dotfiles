@@ -5,6 +5,7 @@ export DEVOPS_PACKAGE_NAME=devops
 
 # Komiser configuration
 export DEVOPS_KOMISER_PORT=9090
+export DEVOPS_KOMISER_CONF_PATH="${HOME}/.config/komiser"
 
 export DEVOPS_TOOLS=(
   sops

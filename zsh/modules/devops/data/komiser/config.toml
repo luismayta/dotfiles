@@ -1,0 +1,6 @@
+[[aws]]
+name = "default"
+source = "ENVIRONMENT_VARIABLES"
+
+[sqlite]
+file = "/data/komiser.db"
