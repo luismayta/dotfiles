@@ -44,31 +44,41 @@ function tx::project {
   fi
 }
 
+# Use TMUX_SOCKET when outside tmux (e.g., ghostty/wezterm terminal-specific sockets)
+_tmux() {
+  if [[ -z "${TMUX}" && -n "${TMUX_SOCKET:-}" ]]; then
+    command tmux -L "${TMUX_SOCKET}" "$@"
+  else
+    command tmux "$@"
+  fi
+}
+
 # ftm — create or switch tmux session via fzf
 ftm() {
   local change="attach-session"
   [[ -n "${TMUX}" ]] && change="switch-client"
+
   if [ -n "${1}" ]; then
-    tmux "${change}" -t "${1}" 2>/dev/null \
-      || (tmux new-session -d -s "${1}" && tmux "${change}" -t "${1}")
+    _tmux "${change}" -t "${1}" 2>/dev/null \
+      || (_tmux new-session -d -s "${1}" && _tmux "${change}" -t "${1}")
     return
   fi
   local session
-  session="$(tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --exit-0)" \
-    && tmux "${change}" -t "${session}" \
+  session="$(_tmux list-sessions -F '#{session_name}' 2>/dev/null | fzf --exit-0)" \
+    && _tmux "${change}" -t "${session}" \
     || echo "No sessions found."
 }
 
 # ftmk — kill a tmux session via fzf
 ftmk() {
   if [ -n "${1}" ]; then
-    tmux kill-session -t "${1}"
+    _tmux kill-session -t "${1}"
     return
   fi
   local session
-  session="$(tmux list-sessions -F '#{session_name}' 2>/dev/null \
+  session="$(_tmux list-sessions -F '#{session_name}' 2>/dev/null \
     | fzf --exit-0)" \
-    && tmux kill-session -t "${session}" \
+    && _tmux kill-session -t "${session}" \
     || echo "No session found to delete."
 }
 

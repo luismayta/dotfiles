@@ -139,13 +139,21 @@ tx::internal::select_template() {
 tx::internal::attach_if_exists() {
   local session_name="$1"
 
-  if tmux has-session -t "$session_name" 2>/dev/null; then
+  _tmux() {
+    if [[ -z "${TMUX}" && -n "${TMUX_SOCKET:-}" ]]; then
+      command tmux -L "${TMUX_SOCKET}" "$@"
+    else
+      command tmux "$@"
+    fi
+  }
+
+  if _tmux has-session -t "$session_name" 2>/dev/null; then
     printf 'A tmux session "%s" already exists. ' "$session_name"
     # shellcheck disable=SC2162
     read -q "?Attach? (Y/n) "
     printf '\n'
     if [[ "$REPLY" =~ ^[Yy]$ ]] || [[ -z "$REPLY" ]]; then
-      tmux attach-session -t "$session_name"
+      _tmux attach-session -t "$session_name"
     fi
     return 0
   fi

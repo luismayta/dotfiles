@@ -58,10 +58,6 @@ cat "${DOTFILES_ZSH_DIR}/zsh_plugins.txt" ~/.custom_zsh_plugins.txt > ~/.zsh_plu
 
 antidote load ~/.zsh_plugins.txt
 
-if type -p tmux > /dev/null; then
-    [ -z "${TMUX}" ] && tmux new-session -A -s "${USER}"
-fi
-
 setopt share_history
 setopt hist_ignore_dups
 setopt hist_ignore_space

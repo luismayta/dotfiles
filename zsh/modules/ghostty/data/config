@@ -40,6 +40,9 @@ working-directory = inherit
 # Other
 confirm-close-surface = false
 
+# Environment
+env = TMUX_SOCKET=ghostty
+
 # Keybinds
 keybind = shift+enter=text:\n
 keybind = ctrl+enter=text:\n
