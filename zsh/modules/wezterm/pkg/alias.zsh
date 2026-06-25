@@ -2,5 +2,5 @@
 
 function editwezterm {
     message_info "Editing wezterm configuration"
-    code "${WEZTERM_PATH}"
+    "${EDITOR}" "${WEZTERM_PATH}"
 }
