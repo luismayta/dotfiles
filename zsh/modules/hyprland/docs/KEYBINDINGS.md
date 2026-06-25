@@ -231,7 +231,7 @@ Development tools and power-user applications.
 | `SUPER + ALT + CTRL + ;` | Zed (code editor) | `binds/apps.lua` |
 | `SUPER + ALT + CTRL + B` | Bitwarden (password manager) | `binds/apps.lua` |
 | `SUPER + ALT + CTRL + D` | draw.io (diagrams) | `binds/apps.lua` |
-| `SUPER + ALT + CTRL + T` | Ghostty (terminal) | `binds/apps.lua` |
+| `SUPER + ALT + CTRL + T` | Alacritty (terminal) | `binds/apps.lua` |
 | `SUPER + ALT + CTRL + I` | Insomnia (API client) | `binds/apps.lua` |
 | `SUPER + ALT + CTRL + S` | DataGrip (database IDE) | `binds/apps.lua` |
 | `SUPER + ALT + CTRL + K` | Keybase | `binds/apps.lua` |

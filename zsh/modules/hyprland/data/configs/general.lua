@@ -93,7 +93,7 @@ hl.config({
     disable_xdg_env_checks = true,
     enable_anr_dialog = false,
     enable_swallow = true,
-    swallow_regex = "^(kitty|Alacritty|ghostty)$",
+    swallow_regex = "^(kitty|Alacritty)$",
     on_focus_under_fullscreen = 2,
   },
 })

@@ -24,7 +24,7 @@ function M.register(mainMod, C)
     { key = "semicolon", exec = dsp.launch_or_focus("dev.zed.Zed", "Zed") },
     { key = "B", exec = dsp.launch_or_focus("Bitwarden") },
     { key = "D", exec = dsp.launch_or_focus("draw.io") },
-    { key = "T", exec = dsp.launch_or_focus("com.mitchellh.ghostty", "ghostty") },
+    { key = "T", exec = dsp.launch_or_focus("Alacritty") },
     { key = "W", exec = dsp.launch_or_focus("org.wezfurlong.wezterm", "wezterm") },
     { key = "I", exec = dsp.launch_or_focus("insomnia") },
     { key = "S", exec = dsp.launch_or_focus("datagrip") },
