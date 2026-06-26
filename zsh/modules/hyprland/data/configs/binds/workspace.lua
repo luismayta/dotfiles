@@ -45,15 +45,23 @@ function M.register(mainMod, C)
   hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessDown", hl.dsp.focus({ workspace = "e-1" }))
   hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessUp", hl.dsp.focus({ workspace = "e+1" }))
 
+  -- HYPER tier workspace navigation
+  hl.bind(C.HYPER .. " + TAB", hl.dsp.focus({ workspace = "e-1" }))
+  hl.bind(C.HYPER .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "e+1" }))
+
   -- Focus adjacent monitors
   hl.bind(C.SECONDARY .. " + TAB", hl.dsp.focus({ monitor = "+1" }))
   hl.bind(C.SECONDARY .. " + SHIFT + TAB", hl.dsp.focus({ monitor = "-1" }))
 
+  -- Focus adjacent monitors with HJKL
+  hl.bind(C.SUPER_SHIFT_ALT .. " + H", hl.dsp.focus({ monitor = "l" }))
+  hl.bind(C.SUPER_SHIFT_ALT .. " + L", hl.dsp.focus({ monitor = "r" }))
+
   -- Move workspace to adjacent monitor
-  hl.bind(C.SUPER_SHIFT .. " + ALT + LEFT", hl.dsp.workspace.move({ monitor = "l" }))
-  hl.bind(C.SUPER_SHIFT .. " + ALT + RIGHT", hl.dsp.workspace.move({ monitor = "r" }))
-  hl.bind(C.SUPER_SHIFT .. " + ALT + UP", hl.dsp.workspace.move({ monitor = "u" }))
-  hl.bind(C.SUPER_SHIFT .. " + ALT + DOWN", hl.dsp.workspace.move({ monitor = "d" }))
+  hl.bind(C.SUPER_SHIFT_ALT .. " + LEFT", hl.dsp.workspace.move({ monitor = "l" }))
+  hl.bind(C.SUPER_SHIFT_ALT .. " + RIGHT", hl.dsp.workspace.move({ monitor = "r" }))
+  hl.bind(C.SUPER_SHIFT_ALT .. " + UP", hl.dsp.workspace.move({ monitor = "u" }))
+  hl.bind(C.SUPER_SHIFT_ALT .. " + DOWN", hl.dsp.workspace.move({ monitor = "d" }))
 
   --
   -- Utility binds

@@ -34,6 +34,12 @@ function M.register(mainMod, C)
     )
   end
 
+  -- HYPER tier directional focus (alternative to SUPER + HJKL)
+  for _, bind in ipairs(hjkl_binds) do
+    hl.bind(C.HYPER .. " + " .. bind.key, hl.dsp.focus({ direction = bind.direction }))
+    hl.bind(C.HYPER .. " + SHIFT + " .. bind.key, hl.dsp.window.move({ direction = bind.direction }))
+  end
+
   -- Window actions
   hl.bind(C.DIRECT .. " + Q", hl.dsp.window.close())
   hl.bind(C.SUPER_SHIFT .. " + C", hl.dsp.window.center())
@@ -117,7 +123,7 @@ function M.register(mainMod, C)
   -- Touchpad toggle
   hl.bind(C.SUPER_SHIFT .. " + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad toggle"), { locked = true })
   hl.bind(C.SUPER_SHIFT .. " + CTRL + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad on"), { locked = true })
-  hl.bind(C.SUPER_SHIFT .. " + ALT + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
+  hl.bind(C.SUPER_SHIFT_ALT .. " + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
 
   -- Precise volume (±1%)
   hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 1"), { locked = true, repeating = true })
