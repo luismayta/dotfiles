@@ -1,3 +1,4 @@
 # shellcheck shell=bash
+ZSH_TEMPLATES_ENABLED="${ZSH_TEMPLATES_ENABLED:-true}"
 export TEMPLATES_PACKAGE_NAME=templates
 export TEMPLATES_TEMPLATES_PATH="${TEMPLATES_PATH}/templates"

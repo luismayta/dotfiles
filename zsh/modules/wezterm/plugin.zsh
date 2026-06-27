@@ -19,6 +19,8 @@ message_info "Loading module: wezterm"
 
 # shellcheck source=/dev/null
 source "${WEZTERM_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_WEZTERM_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${WEZTERM_PATH}/internal/main.zsh"

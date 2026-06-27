@@ -13,6 +13,7 @@ message_info "Loading module: ${DOCKER_PACKAGE_NAME}"
 
 # shellcheck source=/dev/null
 source "${DOCKER_PATH}/config/main.zsh"
+$ZSH_DOCKER_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${DOCKER_PATH}/internal/main.zsh"

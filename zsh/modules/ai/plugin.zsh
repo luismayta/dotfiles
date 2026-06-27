@@ -21,6 +21,7 @@ message_info "Loading module: ai"
 
 # shellcheck source=/dev/null
 source "${AI_PATH}/config/main.zsh"
+$ZSH_AI_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${AI_PATH}/internal/main.zsh"

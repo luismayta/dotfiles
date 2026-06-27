@@ -20,6 +20,8 @@ message_info "Loading module: scmbreeze"
 
 # shellcheck source=/dev/null
 source "${ZSH_SCMBREEZE_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_SCMBREEZE_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_SCMBREEZE_PATH}/internal/main.zsh"

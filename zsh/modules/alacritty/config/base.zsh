@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_ALACRITTY_ENABLED="${ZSH_ALACRITTY_ENABLED:-true}"
 export ALACRITTY_PACKAGE_NAME=alacritty
 export ALACRITTY_DATA_PATH="${ALACRITTY_PATH}/data"
 export ALACRITTY_FILE_SETTINGS="${ALACRITTY_DATA_PATH}/alacritty.toml"

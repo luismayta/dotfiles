@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_SSH_ENABLED="${ZSH_SSH_ENABLED:-true}"
 export SSH_CONFIG_FILE="${HOME}/.ssh/config"
 export ASSH_FILE_SETTINGS="${HOME}/.ssh/assh.yml"
 export SSH_DATA_PATH="${SSH_PATH}/data"

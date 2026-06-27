@@ -11,6 +11,7 @@ ZSH_DEVBOX_PATH="$(dirname "${0}")"
 
 # shellcheck source=/dev/null
 source "${ZSH_DEVBOX_PATH}"/config/main.zsh
+$ZSH_DEVBOX_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_DEVBOX_PATH}"/internal/main.zsh

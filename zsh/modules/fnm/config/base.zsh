@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_FNM_ENABLED="${ZSH_FNM_ENABLED:-true}"
 export FNM_PACKAGE_NAME=fnm
 export BUN_PATH="${HOME}/.bun"
 export FNM_PATH="${HOME}/.local/share/fnm"

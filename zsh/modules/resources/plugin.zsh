@@ -6,6 +6,8 @@ if [[ -z "${__ZSH_RESOURCES_LOADED}" ]]; then
   __ZSH_RESOURCES_LOADED="true"
   # shellcheck source=/dev/null
   source "${RESOURCES_PATH}/config/main.zsh"
+  # enabled guard
+  $ZSH_RESOURCES_ENABLED || return
   # shellcheck source=/dev/null
   source "${RESOURCES_PATH}/internal/main.zsh"
   # shellcheck source=/dev/null

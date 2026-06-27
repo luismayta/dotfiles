@@ -13,6 +13,7 @@ message_info "Loading module: pazi"
 
 # shellcheck source=/dev/null
 source "${PAZI_PATH}/config/main.zsh"
+$ZSH_PAZI_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${PAZI_PATH}/internal/main.zsh"

@@ -20,6 +20,8 @@ message_info "Loading module: rust"
 
 # shellcheck source=/dev/null
 source "${RUST_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_RUST_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${RUST_PATH}/internal/main.zsh"

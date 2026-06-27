@@ -20,6 +20,7 @@ message_info "Loading module: issues"
 
 # shellcheck source=/dev/null
 source "${ISSUES_PATH}/config/main.zsh"
+$ZSH_ISSUES_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ISSUES_PATH}/internal/main.zsh"

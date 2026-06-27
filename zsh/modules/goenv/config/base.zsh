@@ -6,6 +6,8 @@
 # ==============================================================================
 # shellcheck shell=bash
 
+ZSH_GOENV_ENABLED="${ZSH_GOENV_ENABLED:-true}"
+
 export GO111MODULES=auto
 export GOENV_ROOT="${HOME}/.goenv"
 export GOENV_ROOT_BIN="${GOENV_ROOT}/bin"

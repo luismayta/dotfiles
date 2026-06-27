@@ -11,6 +11,7 @@ ZSH_NIX_PATH="$(dirname "${0}")"
 
 # shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/config/main.zsh
+$ZSH_NIX_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/internal/main.zsh

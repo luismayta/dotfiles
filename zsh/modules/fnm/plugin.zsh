@@ -20,6 +20,7 @@ message_info "Loading module: fnm"
 
 # shellcheck source=/dev/null
 source "${ZSH_FNM_PATH}/config/main.zsh"
+$ZSH_FNM_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_FNM_PATH}/internal/main.zsh"

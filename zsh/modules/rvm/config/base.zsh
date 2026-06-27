@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_RVM_ENABLED="${ZSH_RVM_ENABLED:-true}"
 export RVM_PACKAGE_NAME=rvm
 export RVM_ROOT="${HOME}"/.rvm
 export RVM_CACHE_PATH="${HOME}/.cache/rvm"

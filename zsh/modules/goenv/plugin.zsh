@@ -14,6 +14,7 @@ message_info "Loading module: goenv"
 
 # shellcheck source=/dev/null
 source "${GOENV_PATH}/config/main.zsh"
+$ZSH_GOENV_ENABLED || return
 # shellcheck source=/dev/null
 source "${GOENV_PATH}/internal/main.zsh"
 # shellcheck source=/dev/null

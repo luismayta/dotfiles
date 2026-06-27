@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_AI_ENABLED="${ZSH_AI_ENABLED:-true}"
 
 ARCH_NAME="$(uname -m)"
 export ARCH_NAME

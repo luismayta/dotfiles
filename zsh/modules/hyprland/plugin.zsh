@@ -18,6 +18,7 @@ message_info "Loading module: hyprland"
 
 # shellcheck source=/dev/null
 source "${HYPRLAND_PATH}/config/main.zsh"
+$ZSH_HYPRLAND_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${HYPRLAND_PATH}/internal/main.zsh"

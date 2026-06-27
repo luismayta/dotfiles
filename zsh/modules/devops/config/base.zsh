@@ -1,5 +1,6 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
+ZSH_DEVOPS_ENABLED="${ZSH_DEVOPS_ENABLED:-true}"
 
 export DEVOPS_PACKAGE_NAME=devops
 

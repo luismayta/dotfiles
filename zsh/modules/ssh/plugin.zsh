@@ -11,6 +11,8 @@ if [[ -z "${__ZSH_SSH_LOADED}" ]]; then
   __ZSH_SSH_LOADED="true"
   # shellcheck source=/dev/null
   source "${SSH_PATH}/config/main.zsh"
+  # enabled guard
+  $ZSH_SSH_ENABLED || return
   # shellcheck source=/dev/null
   source "${SSH_PATH}/internal/main.zsh"
   # shellcheck source=/dev/null

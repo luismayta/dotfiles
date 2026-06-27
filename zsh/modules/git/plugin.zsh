@@ -20,6 +20,7 @@ message_info "Loading module: git"
 
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/config/main.zsh"
+$ZSH_GIT_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/internal/main.zsh"

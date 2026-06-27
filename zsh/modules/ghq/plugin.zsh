@@ -18,6 +18,7 @@ message_info "Loading module: ghq"
 
 # shellcheck source=/dev/null
 source "${ZSH_GHQ_PATH}/config/main.zsh"
+$ZSH_GHQ_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_GHQ_PATH}/internal/main.zsh"

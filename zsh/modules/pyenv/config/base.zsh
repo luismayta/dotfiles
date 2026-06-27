@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_PYENV_ENABLED="${ZSH_PYENV_ENABLED:-true}"
 
 export PYENV_ROOT="${HOME}/.pyenv"
 export PYENV_ROOT_BIN="${HOME}/.pyenv/bin"

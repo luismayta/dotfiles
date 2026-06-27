@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_ZED_ENABLED="${ZSH_ZED_ENABLED:-true}"
 
 export ZED_PACKAGE_NAME=zed
 export ZED_INSTALL_URL="https://zed.dev/install.sh"

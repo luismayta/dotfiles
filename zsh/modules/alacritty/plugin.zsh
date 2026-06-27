@@ -19,6 +19,7 @@ message_info "Loading module: alacritty"
 
 # shellcheck source=/dev/null
 source "${ALACRITTY_PATH}/config/main.zsh"
+$ZSH_ALACRITTY_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ALACRITTY_PATH}/internal/main.zsh"

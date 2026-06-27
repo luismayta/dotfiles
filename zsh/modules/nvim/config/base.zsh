@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_NVIM_ENABLED="${ZSH_NVIM_ENABLED:-true}"
 #
 # Configuration variables for the nvim module.
 

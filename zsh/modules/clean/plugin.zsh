@@ -13,6 +13,7 @@ message_info "Loading module: clean"
 
 # shellcheck source=/dev/null
 source "${CLEAN_PATH}/config/main.zsh"
+$ZSH_CLEAN_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${CLEAN_PATH}/internal/main.zsh"

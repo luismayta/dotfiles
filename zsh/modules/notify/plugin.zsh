@@ -16,6 +16,7 @@ message_info "Loading module: notify"
 
 # shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/config/main.zsh"
+$ZSH_NOTIFY_ENABLED || return
 # shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/internal/main.zsh"
 # shellcheck source=/dev/null

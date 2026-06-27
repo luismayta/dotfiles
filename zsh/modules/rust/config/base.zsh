@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_RUST_ENABLED="${ZSH_RUST_ENABLED:-true}"
 export RUST_CARGO_BIN="${HOME}/.cargo/bin"
 export RUST_CARGO_ENV="${HOME}/.cargo/env"
 export RUST_PACKAGE_NAME=rust

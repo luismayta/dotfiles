@@ -11,6 +11,7 @@ message_info "Loading module: ${ZED_PACKAGE_NAME}"
 
 # shellcheck source=/dev/null
 source "${ZSH_ZED_PATH}/config/main.zsh"
+$ZSH_ZED_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_ZED_PATH}/internal/main.zsh"

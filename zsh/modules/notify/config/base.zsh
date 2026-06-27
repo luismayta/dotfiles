@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_NOTIFY_ENABLED="${ZSH_NOTIFY_ENABLED:-true}"
 # Base notify configuration variables
 
 export NOTIFY_PACKAGE_NAME=notify

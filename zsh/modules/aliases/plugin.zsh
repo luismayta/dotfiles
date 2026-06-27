@@ -15,6 +15,7 @@ message_info "Loading module: aliases"
 
 # shellcheck source=/dev/null
 source "${ALIASES_PATH}/config/main.zsh"
+$ZSH_ALIASES_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ALIASES_PATH}/internal/main.zsh"

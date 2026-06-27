@@ -21,6 +21,7 @@ message_info "Loading module: pyenv"
 
 # shellcheck source=/dev/null
 source "${ZSH_PYENV_PATH}/config/main.zsh"
+$ZSH_PYENV_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_PYENV_PATH}/internal/main.zsh"

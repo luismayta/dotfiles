@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_TMUX_ENABLED="${ZSH_TMUX_ENABLED:-true}"
 
 export HOME_CONFIG_PATH="${HOME}"/.config
 export TMUX_FILE_SETTINGS="${HOME}"/.tmux.conf

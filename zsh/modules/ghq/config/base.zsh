@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_GHQ_ENABLED="${ZSH_GHQ_ENABLED:-true}"
 # Base ghq configuration
 
 export GHQ_PACKAGE_NAME=ghq

@@ -1,5 +1,6 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
+ZSH_STARSHIP_ENABLED="${ZSH_STARSHIP_ENABLED:-true}"
 
 export ZSH_HOME_CONF_PATH="${HOME}/.config"
 export STARSHIP_PACKAGE_NAME=starship

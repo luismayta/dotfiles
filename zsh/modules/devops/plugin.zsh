@@ -18,6 +18,7 @@ message_info "Loading module: devops"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/main.zsh"
+$ZSH_DEVOPS_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/main.zsh"

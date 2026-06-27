@@ -6,6 +6,7 @@
 # ==============================================================================
 # shellcheck shell=bash
 # shellcheck disable=SC2034
+ZSH_APPS_ENABLED="${ZSH_APPS_ENABLED:-true}"
 
 export APPS_PACKAGE_NAME=apps
 APPS_ARCHITECTURE_NAME="${OSTYPE}-$(uname -m)"

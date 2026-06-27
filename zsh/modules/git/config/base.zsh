@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_GIT_ENABLED="${ZSH_GIT_ENABLED:-true}"
 # shellcheck disable=SC2154 # ZSH_GIT_PATH defined in plugin.zsh
 
 export GIT_PACKAGE_NAME=git

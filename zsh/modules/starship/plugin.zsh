@@ -25,6 +25,8 @@ message_info "Loading module: starship"
 
 # shellcheck source=/dev/null
 source "${ZSH_STARSHIP_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_STARSHIP_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_STARSHIP_PATH}/internal/main.zsh"

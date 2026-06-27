@@ -18,6 +18,8 @@ message_info "Loading module: templates"
 
 # shellcheck source=/dev/null
 source "${TEMPLATES_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_TEMPLATES_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${TEMPLATES_PATH}/internal/main.zsh"

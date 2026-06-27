@@ -20,6 +20,8 @@ message_info "Loading module: rvm"
 
 # shellcheck source=/dev/null
 source "${ZSH_RVM_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_RVM_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${ZSH_RVM_PATH}/internal/main.zsh"

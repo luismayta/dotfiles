@@ -19,6 +19,7 @@ message_info "Loading module: ghostty"
 
 # shellcheck source=/dev/null
 source "${GHOSTTY_PATH}/config/main.zsh"
+$ZSH_GHOSTTY_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${GHOSTTY_PATH}/internal/main.zsh"

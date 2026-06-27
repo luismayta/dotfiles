@@ -20,6 +20,7 @@ message_info "Loading module: nvim"
 
 # Source layers in order: config → internal → pkg
 source "${ZSH_NVIM_PATH}/config/main.zsh"
+$ZSH_NVIM_ENABLED || return
 source "${ZSH_NVIM_PATH}/internal/main.zsh"
 source "${ZSH_NVIM_PATH}/pkg/main.zsh"
 

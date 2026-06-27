@@ -18,6 +18,7 @@ message_info "Loading module: bitwarden"
 
 # shellcheck source=/dev/null
 source "${BITWARDEN_PATH}/config/main.zsh"
+$ZSH_BITWARDEN_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${BITWARDEN_PATH}/internal/main.zsh"

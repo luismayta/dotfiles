@@ -1,3 +1,4 @@
 # shellcheck shell=bash
+ZSH_RESOURCES_ENABLED="${ZSH_RESOURCES_ENABLED:-true}"
 export RESOURCES_PACKAGE_NAME=resources
 export RESOURCES_DATA_PATH="${RESOURCES_PATH}/data"

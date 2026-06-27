@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+ZSH_GHOSTTY_ENABLED="${ZSH_GHOSTTY_ENABLED:-true}"
 export GHOSTTY_PACKAGE_NAME=ghostty
 export GHOSTTY_DATA_PATH="${GHOSTTY_PATH}/data"
 export GHOSTTY_FILE_SETTINGS="${GHOSTTY_DATA_PATH}/config"

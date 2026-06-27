@@ -21,6 +21,8 @@ message_info "Loading module: tmux"
 
 # shellcheck source=/dev/null
 source "${TMUX_PATH}/config/main.zsh"
+# enabled guard
+$ZSH_TMUX_ENABLED || return
 
 # shellcheck source=/dev/null
 source "${TMUX_PATH}/internal/main.zsh"
