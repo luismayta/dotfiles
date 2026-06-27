@@ -11,7 +11,7 @@ This guide explains how to create a new ZSH module in the dotfiles repository. M
 - [Section 3: Config Layer](#section-3-config-layer)
 - [Section 4: Internal Layer](#section-4-internal-layer)
 - [Section 5: Public Layer](#section-5-public-layer)
-- [Section 6: OS-Specific Files — When They Get Real Content](#section-6-os-specific-files--when-they-get-real-content)
+- [Section 6: OS-Specific Files](#section-6-os-specific-files)
 - [Section 7: Naming Conventions](#section-7-naming-conventions)
 - [Section 8: Testing](#section-8-testing)
 - [Section 9: Commit](#section-9-commit)
@@ -169,7 +169,7 @@ export ZSH_ZED_DATA_PATH="${ZSH_ZED_PATH}/data"
 
 ### `config/main.zsh`
 
-Sources `base.zsh` then dispatches by OS. OS files exist as placeholders even when empty — they make the platform contract explicit.
+Sources `base.zsh`, then dispatches to the OS-specific config. This makes the platform contract explicit — even when OS files are empty stubs today, the structure is ready when platform-specific variables are needed.
 
 ```zsh
 # shellcheck shell=bash
@@ -183,18 +183,11 @@ linux*)
 esac
 ```
 
-### `config/osx.zsh` and `config/linux.zsh`
-
-Placeholder files are mandatory — they document the OS contract even when currently unused:
+If your module has no OS-specific config at all (unlikely), you can omit the dispatch:
 
 ```zsh
 # shellcheck shell=bash
-# macOS-specific <name> config (currently unused)
-```
-
-```zsh
-# shellcheck shell=bash
-# Linux-specific <name> config (currently unused)
+source "${ZSH_<NAME>_PATH}/config/base.zsh"
 ```
 
 ---
@@ -244,7 +237,7 @@ zed::internal::config::sync() {
 
 ### `internal/main.zsh`
 
-Sources the layer, dispatches by OS, then runs auto-install:
+Sources the layer, dispatches OS-specific internals, ensures dependencies, and auto-installs if missing:
 
 ```zsh
 source "${ZSH_<NAME>_PATH}/internal/base.zsh"
@@ -255,6 +248,18 @@ darwin*)
 linux*)
   source "${ZSH_<NAME>_PATH}/internal/linux.zsh" ;;
 esac
+
+core::ensure curl
+
+if ! core::exists <name>; then
+    <name>::internal::install
+fi
+```
+
+If your module has no OS-specific internal logic, you can omit the dispatch:
+
+```zsh
+source "${ZSH_<NAME>_PATH}/internal/base.zsh"
 
 core::ensure curl
 
@@ -280,18 +285,6 @@ core::ensure curl
 if ! core::exists zed; then
     zed::internal::install
 fi
-```
-
-### `internal/osx.zsh` and `internal/linux.zsh`
-
-```zsh
-# shellcheck shell=bash
-# macOS-specific <name> internal functions (currently unused)
-```
-
-```zsh
-# shellcheck shell=bash
-# Linux-specific <name> internal functions (currently unused)
 ```
 
 ---
@@ -404,21 +397,25 @@ source "${ZSH_<NAME>_PATH}/pkg/alias.zsh"
 
 ---
 
-## Section 6: OS-Specific Files — When They Get Real Content
+## Section 6: OS-Specific Files
 
-The OS files exist as placeholders from the start — the scaffold creates them all. But they stay as stubs until platform-specific code is needed.
+OS-specific files (`osx.zsh` / `linux.zsh`) exist in the `config/`, `internal/`, and `pkg/` layers. The scaffold creates them from the start as placeholders — they make the platform contract explicit.
 
-`zsh/core/` already handles cross-platform package management (`core::install` works on both macOS and Linux via `paru` / `brew`), so most modules may never need to fill these files.
+### Do create empty placeholders
 
-### When they get real content
+Even when empty, OS files serve a purpose: they document that the module supports both platforms and future developers know where to add platform-specific code. The dispatch in `main.zsh` is already wired up, so adding an `osx.zsh` or `linux.zsh` implementation later is a single-file change — no structural refactor needed.
 
-Replace the placeholder comment with actual code when you need platform-specific:
+### When they become non-empty
+
+Most modules start with empty stubs. They gain real content when you need platform-specific:
 
 | Need | macOS (`osx.zsh`) | Linux (`linux.zsh`) |
 |------|-------------------|---------------------|
 | Config paths | `~/Library/Application Support/` | `~/.config/` |
 | Install commands | `brew install` | `paru -S` |
 | Clipboard | `pbcopy` / `pbpaste` (built-in) | `wl-copy` / `xclip` |
+
+Start with placeholders, fill them in as the module grows.
 
 ---
 
@@ -495,16 +492,16 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 - [ ] `plugin.zsh` — idempotent guard, dynamic path, 3-layer chain
 - [ ] `config/base.zsh` — env vars exported with defaults
 - [ ] `config/main.zsh` — sources `base.zsh` + OS dispatch
-- [ ] `config/osx.zsh` — placeholder file (stub or real)
-- [ ] `config/linux.zsh` — placeholder file (stub or real)
+- [ ] `config/osx.zsh` — OS-specific config (optional, only if needed)
+- [ ] `config/linux.zsh` — OS-specific config (optional, only if needed)
 - [ ] `internal/base.zsh` — install + sync logic
 - [ ] `internal/main.zsh` — sources layer + OS dispatch, `core::ensure`, auto-install
-- [ ] `internal/osx.zsh` — placeholder file (stub or real)
-- [ ] `internal/linux.zsh` — placeholder file (stub or real)
+- [ ] `internal/osx.zsh` — OS-specific internals (optional, only if needed)
+- [ ] `internal/linux.zsh` — OS-specific internals (optional, only if needed)
 - [ ] `pkg/base.zsh` — public wrappers (`install`, `sync`, `post_install`)
 - [ ] `pkg/main.zsh` — sources layer + OS dispatch + helper + alias
-- [ ] `pkg/osx.zsh` — placeholder file (stub or real)
-- [ ] `pkg/linux.zsh` — placeholder file (stub or real)
+- [ ] `pkg/osx.zsh` — OS-specific public functions (optional, only if needed)
+- [ ] `pkg/linux.zsh` — OS-specific public functions (optional, only if needed)
 - [ ] `pkg/helper.zsh` — `setup` orchestrator
 - [ ] `pkg/alias.zsh` — user aliases (empty placeholder allowed)
 - [ ] `data/` — directory for rsync config files
