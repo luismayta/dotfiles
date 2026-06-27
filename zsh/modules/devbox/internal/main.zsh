@@ -14,6 +14,5 @@ case "${OSTYPE}" in
     ;;
 esac
 
-# Ensure Devbox is available
 core::nix::ensure
-devbox::internal::devbox::install
+if ! core::exists devbox; then devbox::internal::install; fi

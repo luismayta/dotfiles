@@ -1,2 +1,2 @@
 # shellcheck shell=bash
-# Linux Devbox internals (placeholder)
+# Devbox Linux-specific internals — currently unused, reserved for platform-specific install logic

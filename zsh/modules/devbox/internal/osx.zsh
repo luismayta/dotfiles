@@ -1,2 +1,2 @@
 # shellcheck shell=bash
-# macOS Devbox internals (placeholder)
+# Devbox macOS-specific internals — currently unused, reserved for platform-specific install logic
