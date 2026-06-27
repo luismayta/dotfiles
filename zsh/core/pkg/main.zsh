@@ -6,6 +6,9 @@
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/pkg/base.zsh
 
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/pkg/nix.zsh
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null

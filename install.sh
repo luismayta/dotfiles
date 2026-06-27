@@ -48,6 +48,17 @@ function setup::factory {
   esac
 }
 
+function setup::nix {
+  # Install Nix (single-user, no-daemon) — OS-agnostic
+  if ! type -p nix >/dev/null; then
+    message::info "Installing Nix (single-user)..."
+    sh <(curl -L https://nixos.org/nix/install) --no-daemon
+    # Source Nix for the current session
+    # shellcheck source=/dev/null
+    [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+  fi
+}
+
 function setup::mac {
   if ! type -p brew >/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -73,6 +84,8 @@ function setup::mac {
     jq ag fd ripgrep cmake ksh
 
   brew install --cask font-source-code-pro
+
+  setup::nix
 
   sudo chsh -s /bin/zsh "$USER"
 }
@@ -111,6 +124,8 @@ function setup::linux {
   for package in "${packages[@]}"; do
     paru -S --noconfirm "${package}"
   done
+
+  setup::nix
 
   sudo chsh -s /usr/bin/zsh "$USER"
 

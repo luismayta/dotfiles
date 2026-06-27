@@ -1,0 +1,10 @@
+{
+  "packages": [],
+  "shell": {
+    "init_hook": "",
+    "scripts": {}
+  },
+  "nixpkgs": {
+    "commit": ""
+  }
+}

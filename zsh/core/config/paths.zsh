@@ -15,3 +15,7 @@ export PATH="${DOTFILES_BIN}:${PATH}"
 [ -e "${HOME}/local/bin" ] && export PATH="${HOME}/local/bin:${PATH}"
 [ -e "/usr/local/sbin" ] && export PATH="/usr/local/sbin:${PATH}"
 [ -e "/usr/local/opt/qt/bin" ] && export PATH="/usr/local/opt/qt/bin:${PATH}"
+
+# Nix
+[ -e "${HOME}/.nix-profile/bin" ] && export PATH="${HOME}/.nix-profile/bin:${PATH}"
+[ -e "/nix/var/nix/profiles/default/bin" ] && export PATH="/nix/var/nix/profiles/default/bin:${PATH}"
