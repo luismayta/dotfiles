@@ -29,3 +29,11 @@ function gunwipall {
 alias gf='git flow'
 alias gfr='git flow release'
 alias gfh='git flow hotfix'
+
+# SCM Breeze standard aliases (migrated from scmbreeze module)
+alias gst='git stash'
+alias gfa='git fetch --all'
+alias gm='git merge'
+alias grm='git rm'
+alias gcp='git cherry-pick'
+alias gbl='git blame'
