@@ -45,10 +45,6 @@ function M.register(mainMod, C)
   hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessDown", hl.dsp.focus({ workspace = "e-1" }))
   hl.bind(C.SUPER_CTRL .. " + XF86MonBrightnessUp", hl.dsp.focus({ workspace = "e+1" }))
 
-  -- HYPER tier workspace navigation
-  hl.bind(C.HYPER .. " + TAB", hl.dsp.focus({ workspace = "e-1" }))
-  hl.bind(C.HYPER .. " + SHIFT + TAB", hl.dsp.focus({ workspace = "e+1" }))
-
   -- Focus adjacent monitors
   hl.bind(C.SECONDARY .. " + TAB", hl.dsp.focus({ monitor = "+1" }))
   hl.bind(C.SECONDARY .. " + SHIFT + TAB", hl.dsp.focus({ monitor = "-1" }))

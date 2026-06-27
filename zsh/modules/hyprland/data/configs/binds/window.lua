@@ -34,10 +34,10 @@ function M.register(mainMod, C)
     )
   end
 
-  -- HYPER tier directional focus (alternative to SUPER + HJKL)
+  -- SHIFT+CTRL+ALT tier directional focus (alternative to SUPER + HJKL)
   for _, bind in ipairs(hjkl_binds) do
-    hl.bind(C.HYPER .. " + " .. bind.key, hl.dsp.focus({ direction = bind.direction }))
-    hl.bind(C.HYPER .. " + SHIFT + " .. bind.key, hl.dsp.window.move({ direction = bind.direction }))
+    hl.bind(C.SHIFT_CTRL_ALT .. " + " .. bind.key, hl.dsp.focus({ direction = bind.direction }))
+    hl.bind(C.SHIFT_CTRL_ALT .. " + SHIFT + " .. bind.key, hl.dsp.window.move({ direction = bind.direction }))
   end
 
   -- Window actions

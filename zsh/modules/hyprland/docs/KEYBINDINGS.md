@@ -44,8 +44,6 @@
 | `SUPER + SHIFT + TAB` | Previous workspace | `binds/workspace.lua` |
 | `SUPER + CTRL + BRIGHTNESS_DOWN` | Focus workspace e-1 | `binds/workspace.lua` |
 | `SUPER + CTRL + BRIGHTNESS_UP` | Focus workspace e+1 | `binds/workspace.lua` |
-| `SUPER + ALT + CTRL + TAB` | Focus previous workspace (HYPER tier) | `binds/workspace.lua` |
-| `SUPER + ALT + CTRL + SHIFT + TAB` | Focus next workspace (HYPER tier) | `binds/workspace.lua` |
 | `CTRL + ALT + TAB` | Focus next monitor | `binds/workspace.lua` |
 | `CTRL + ALT + SHIFT + TAB` | Focus previous monitor | `binds/workspace.lua` |
 | `SUPER + SHIFT + ALT + {LEFT,RIGHT,UP,DOWN}` | Move workspace to adjacent monitor | `binds/workspace.lua` |
@@ -61,8 +59,8 @@
 | `SUPER + {H,J,K,L}` | Focus direction (left, down, up, right) | `binds/window.lua` |
 | `SUPER + SHIFT + {H,J,K,L}` | Move window in direction | `binds/window.lua` |
 | `SUPER + CTRL + {H,J,K,L}` | Swap window (dwindle-aware; scrolling: swapcol) | `binds/window.lua` |
-| `SUPER + ALT + CTRL + {H,J,K,L}` | Focus direction (HYPER tier alternative) | `binds/window.lua` |
-| `SUPER + ALT + CTRL + SHIFT + {H,J,K,L}` | Move window in direction (HYPER tier alternative) | `binds/window.lua` |
+| `SHIFT + CTRL + ALT + {H,J,K,L}` | Focus direction (SHIFT+CTRL+ALT tier alternative) | `binds/window.lua` |
+| `SHIFT + CTRL + ALT + SHIFT + {H,J,K,L}` | Move window in direction (SHIFT+CTRL+ALT tier alternative) | `binds/window.lua` |
 | `SUPER + Q` | Close active window | `binds/window.lua` |
 | `SUPER + SHIFT + C` | Center window on screen | `binds/window.lua` |
 | `SUPER + T` | Toggle floating window | `binds/window.lua` |

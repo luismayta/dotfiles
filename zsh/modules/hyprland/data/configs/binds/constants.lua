@@ -8,6 +8,7 @@
 --   SUPER_SHIFT = SUPER + SHIFT              (extended actions)
 --   SUPER_SHIFT_ALT = SUPER + SHIFT + ALT    (monitor operations)
 --   SUPER_CTRL  = SUPER + CTRL               (power user actions)
+--   SHIFT_CTRL_ALT = SHIFT + CTRL + ALT          (focus tier for HJKL + TAB)
 
 local M = {}
 
@@ -19,6 +20,7 @@ function M.register(mainMod)
   M.SUPER_SHIFT = mainMod .. " + SHIFT"
   M.SUPER_SHIFT_ALT = mainMod .. " + SHIFT + ALT"
   M.SUPER_CTRL = mainMod .. " + CTRL"
+  M.SHIFT_CTRL_ALT = "SHIFT + CTRL + ALT"
 end
 
 return M
