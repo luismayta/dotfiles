@@ -3,9 +3,11 @@
 
 set -euo pipefail
 
-[ -r "provision/script/bootstrap.sh" ] || { echo "[ERROR]: bootstrap.sh not found at provision/script/bootstrap.sh"; exit 1; }
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BOOTSTRAP="${ROOT_DIR}/provision/script/bootstrap.sh"
+[ -r "${BOOTSTRAP}" ] || { echo "[ERROR]: bootstrap.sh not found at ${BOOTSTRAP}"; exit 1; }
 # shellcheck source=/dev/null
-source "provision/script/bootstrap.sh"
+source "${BOOTSTRAP}"
 
 if [[ "${TEST:-}" = 'true' ]]; then
     initialize

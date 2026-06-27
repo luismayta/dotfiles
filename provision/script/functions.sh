@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
+# shellcheck disable=SC2034 # ret is used by callers for flow control
 
-function initialize() {
+function initialize_prereqs() {
   for app in {zsh,git,rsync}; do
     program_exists "$app"
   done
   unset app
+}
 
-  dotfiles_install_factory
+function install_apps() {
+  dotfiles_install_apps
+}
 
+function deploy_configs() {
   for path_key in "${CONF_DIR}"/{shell,app}; do
     for file_path in "${path_key}/"*; do
       local file
@@ -23,27 +28,18 @@ function initialize() {
 
   cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
   cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
+}
 
+function sync_extras() {
   rsync -avzh --progress "${ROOT_DIR}/config/" "${HOME}/.config/"
   rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
 }
 
-function die() {
-  echo "${@}"
-  exit 1
-}
-
-function program_exists() {
-  local app=$1
-  local message="Need to install $app."
-  local ret='0'
-  type -p "${1}" >>/dev/null 2>&1 || { local ret='1'; }
-
-  # throw error on non-zero return value
-  if [[ ! "$ret" -eq '0' ]]; then
-    error "$message"
-    exit 1
-  fi
+function initialize() {
+  initialize_prereqs
+  install_apps
+  deploy_configs
+  sync_extras
 }
 
 function do_backup() {
@@ -59,8 +55,7 @@ function do_backup() {
   if [ -r "$1" ]; then
     mv "$1" "$file_backup"
     ret="$?"
-    success "$message $file_backup"
-    debug
+    msg::success "$message $file_backup"
   fi
 }
 
@@ -71,13 +66,8 @@ function cp_file() {
   if [ -r "$1" ]; then
     cp "$1" "$2"
     ret="$?"
-    success "$message $1 to $2"
-    debug
+    msg::success "$message $1 to $2"
   fi
-}
-
-function dotfiles_install_factory {
-  dotfiles_install_apps
 }
 
 function dotfiles_install_apps() {

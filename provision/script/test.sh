@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 # shellcheck source=/dev/null
-[ -r "script/bootstrap.sh" ] && source "script/bootstrap.sh"
+[ -r "${ROOT_DIR}/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
+source "${ROOT_DIR}/common/colors.sh"
+
+# shellcheck source=/dev/null
+[ -r "${ROOT_DIR}/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
+source "${ROOT_DIR}/common/messages.sh"
 
 cat <<EOF
 
@@ -13,9 +22,9 @@ cat <<EOF
 EOF
 
 if [ ! -e "$HOME/.dotfiles/.git" ]; then
-    error "Error in Install"
+    msg::error "Error in Install"
 else
-    success "Yeah Install Done"
+    msg::success "Yeah Install Done"
 fi
 
 cat <<EOF
@@ -32,9 +41,9 @@ for path in ${!PATH_@}; do
     fi
     path="${!path}"
     if [[ ! -r $path ]]; then
-        error "${path}"
+        msg::error "${path}"
     else
-        success "${path}"
+        msg::success "${path}"
     fi
 done
 unset path

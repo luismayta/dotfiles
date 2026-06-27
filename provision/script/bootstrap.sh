@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-export HOME=~
 export PROJECT_NAME=dotfiles
 export PYENV_NAME="${PROJECT_NAME}"
 
 # Vars Dir application
 export ROOT_DIR
-ROOT_DIR=$(pwd)
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 export EXTRAS_DIR="${ROOT_DIR}/provision"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
 export SCRIPT_DIR="${PATH_REPO}/provision/script"
@@ -26,24 +25,35 @@ export LOCAL_PATH_BIN="${HOME}/.local/bin"
 
 mkdir -p "${LOCAL_PATH_BIN}"
 
-# shellcheck source=/dev/null
-[ -r "${FILE_CONFIG_BASE}" ] && source "${FILE_CONFIG_BASE}"
+[ -r "${FILE_CONFIG_BASE}" ] || { echo "FATAL: ${FILE_CONFIG_BASE} not found" >&2; exit 1; }
+# shellcheck disable=SC1090
+source "${FILE_CONFIG_BASE}"
 
-function detect::os {
-    uname
-}
+# shellcheck source=/dev/null
+[ -r "${ROOT_DIR}/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
+source "${ROOT_DIR}/common/colors.sh"
+
+# shellcheck source=/dev/null
+[ -r "${ROOT_DIR}/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
+source "${ROOT_DIR}/common/messages.sh"
+
+# shellcheck source=/dev/null
+[ -r "${ROOT_DIR}/common/common.sh" ] || { echo "FATAL: lib/common.sh not found" >&2; exit 1; }
+source "${ROOT_DIR}/common/common.sh"
 
 function config::factory {
     local os_name
     os_name=$(detect::os)
     case "$os_name" in
         "Darwin")
-            # shellcheck source=/dev/null
-            [ -r "${FILE_CONFIG_OSX}" ] && source "${FILE_CONFIG_OSX}"
+            [ -r "${FILE_CONFIG_OSX}" ] || { echo "FATAL: ${FILE_CONFIG_OSX} not found" >&2; exit 1; }
+            # shellcheck disable=SC1090
+            source "${FILE_CONFIG_OSX}"
             ;;
         "Linux")
-            # shellcheck source=/dev/null
-            [ -r "${FILE_CONFIG_LINUX}" ] && source "${FILE_CONFIG_LINUX}"
+            [ -r "${FILE_CONFIG_LINUX}" ] || { echo "FATAL: ${FILE_CONFIG_LINUX} not found" >&2; exit 1; }
+            # shellcheck disable=SC1090
+            source "${FILE_CONFIG_LINUX}"
             ;;
         *)
             echo "Unsupported OS: $os_name"
@@ -54,8 +64,8 @@ function config::factory {
 
 config::factory
 
-for file in "${SCRIPT_DIR}/"{messages,functions}.sh; do
-    # shellcheck source=/dev/null
-    [ -e "${file}" ] && source "${file}"
-done
+file="${SCRIPT_DIR}/functions.sh"
+[ -r "${file}" ] || { echo "FATAL: ${file} not found" >&2; exit 1; }
+# shellcheck disable=SC1090
+source "${file}"
 unset file
