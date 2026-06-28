@@ -63,20 +63,6 @@ tx::internal::derive_project_name() {
   printf '%s\n' "$name"
 }
 
-#
-# Returns a command string for fzf --preview to render a template YAML file.
-#
-# Uses bat if available, falls back to cat -n.
-#
-# Returns: writes the preview command string to stdout; exit code always 0.
-#
-tx::internal::preview_command() {
-  if (( ${+commands[bat]} )); then
-    printf '%s\n' 'bat --language=yaml --color=always {}'
-  else
-    printf '%s\n' 'cat -n {}'
-  fi
-}
 
 #
 # Lists tmuxinator template names (without .yml extension) from
@@ -87,7 +73,7 @@ tx::internal::preview_command() {
 # Returns: writes template names to stdout (one per line); exit code always 0.
 #
 tx::internal::list_templates() {
-  local template_dir="${TMUXINATOR_TEMPLATE_PATH:-$HOME/.tmuxinator}"
+  local template_dir="${TMUXINATOR_TEMPLATE_PATH:-$HOME/.config/tmuxinator}"
   local files
 
   if (( ${+commands[fd]} )); then
@@ -111,14 +97,15 @@ tx::internal::list_templates() {
 # Returns: writes selected template name to stdout; exit code always 0.
 #
 tx::internal::select_template() {
-  local preview_cmd
-  preview_cmd="$(tx::internal::preview_command)"
+  local template_dir="${TMUXINATOR_TEMPLATE_PATH:-$HOME/.config/tmuxinator}"
 
   local selection
   selection="$(
     tx::internal::list_templates \
-      | fzf --preview "$preview_cmd" --preview-window=right:60% \
-            --prompt='Select tmuxinator template: '
+      | fzf \
+          --preview "bat --language=yaml --color=always $template_dir/{}.yml 2>/dev/null || cat -n $template_dir/{}.yml" \
+          --preview-window=right:60% \
+          --prompt='Select tmuxinator template: '
   )"
 
   if [[ -z "$selection" ]]; then
