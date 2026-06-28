@@ -113,6 +113,7 @@ __ZSH_<NAME>_LOADED=1
 ZSH_<NAME>_PATH="${0:A:h}"
 
 source "${ZSH_<NAME>_PATH}/config/main.zsh"
+$ZSH_<NAME>_ENABLED || return
 source "${ZSH_<NAME>_PATH}/internal/main.zsh"
 source "${ZSH_<NAME>_PATH}/pkg/main.zsh"
 ```
@@ -126,6 +127,7 @@ __ZSH_ZED_LOADED=1
 ZSH_ZED_PATH="${0:A:h}"
 
 source "${ZSH_ZED_PATH}/config/main.zsh"
+$ZSH_ZED_ENABLED || return
 source "${ZSH_ZED_PATH}/internal/main.zsh"
 source "${ZSH_ZED_PATH}/pkg/main.zsh"
 ```
@@ -134,6 +136,7 @@ source "${ZSH_ZED_PATH}/pkg/main.zsh"
 - Guard: `__ZSH_<NAME>_LOADED` prevents double-loading
 - Path: `ZSH_<NAME>_PATH="${0:A:h}"` (zsh's `:A` modifier resolves symlinks; more robust than `dirname`)
 - Chain order: config → internal → pkg (dependencies flow inward)
+- Toggle: `$ZSH_<NAME>_ENABLED || return` — if `ZSH_<NAME>_ENABLED` is `false`, the module exits before loading internal or pkg, letting users disable modules from `~/.zshrc`
 
 ---
 
@@ -146,15 +149,19 @@ Export all environment variables a module needs. Use the module name (uppercased
 ```zsh
 # shellcheck shell=bash
 
+ZSH_<NAME>_ENABLED="${ZSH_<NAME>_ENABLED:-true}"
+
 export <NAME>_PACKAGE_NAME=<name>
 export <NAME>_INSTALL_URL="https://example.com/install.sh"
 export <NAME>_CONFIG_PATH="${HOME}/.config/<name>"
 export ZSH_<NAME>_DATA_PATH="${ZSH_<NAME>_PATH}/data"
 ```
 
-**Reference — [`zsh/modules/zed/config/base.zsh`](/zsh/modules/zed/config/base.zsh):**
+**Reference — [`zsh/modules/zed/config/base.zsh`](/zsh/modules/zed/config/base.zsh):
 
 ```zsh
+ZSH_ZED_ENABLED="${ZSH_ZED_ENABLED:-true}"
+
 export ZED_PACKAGE_NAME=zed
 export ZED_INSTALL_URL="https://zed.dev/install.sh"
 export ZED_CONFIG_PATH="${HOME}/.config/zed"
