@@ -15,6 +15,8 @@ esac
 
 # shellcheck source=/dev/null
 source "${WEZTERM_PATH}/pkg/helper.zsh"
+# shellcheck source=/dev/null
+source "${WEZTERM_PATH}/pkg/setup.zsh"
 
 # shellcheck source=/dev/null
 source "${WEZTERM_PATH}/pkg/alias.zsh"

@@ -13,4 +13,6 @@ esac
 # shellcheck source=/dev/null
 source "${ZSH_MOBILE_PATH}/pkg/helper.zsh"
 # shellcheck source=/dev/null
+source "${ZSH_MOBILE_PATH}/pkg/setup.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_MOBILE_PATH}/pkg/alias.zsh"
