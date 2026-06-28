@@ -43,7 +43,7 @@ dotfiles is installed by running one of the following commands in your terminal.
 This is a list of applications that need to be installed previously to enjoy all the goodies of this configuration.
 
 - [Curl](https://github.com/bagder/curl)
-- [Wget](https://ftp.gnu.org/gnu/wget/)
+- [Wget](https://www.gnu.org/software/wget/)
 ## Installation
 ### via curl
 
