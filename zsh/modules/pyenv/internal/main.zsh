@@ -17,4 +17,7 @@ esac
 pyenv::internal::pyenv::load
 
 core::ensure curl
+for pkg in "${PYENV_SYSTEM_PACKAGES[@]}"; do
+    core::ensure "${pkg}"
+done
 if ! core::exists pyenv; then pyenv::internal::pyenv::install; fi
