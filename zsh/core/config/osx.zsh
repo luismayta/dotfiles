@@ -13,4 +13,7 @@ CORE_PACKAGES=(
   ripgrep
   cmake
   ksh
+  font-fira-code-nerd-font
+  font-jetbrains-mono-nerd-font
+  font-source-code-pro-nerd-font
 )
