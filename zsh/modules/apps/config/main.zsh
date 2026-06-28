@@ -17,7 +17,6 @@ APPS_PACKAGES=(
     "${APPS_KNOWLEDGE[@]}"
     "${APPS_DEVOPS[@]}"
     "${APPS_BROWSER[@]}"
-    "${APPS_ANDROID[@]}"
     "${APPS_MOBILE[@]}"
     "${APPS_DATABASE_CLIENTS[@]}"
     "${APPS_PROJECT_MANAGEMENT[@]}"
