@@ -64,3 +64,8 @@ function ai::codegraph::install {
 function ai::tmuxai::install {
     ai::internal::tmuxai::install
 }
+
+function ai::sync {
+    ai::opencode::sync
+    ai::fabric::patterns::sync
+}

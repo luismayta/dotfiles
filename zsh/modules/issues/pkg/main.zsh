@@ -2,6 +2,9 @@
 # shellcheck shell=bash
 source "${ISSUES_PATH}/pkg/base.zsh"
 
+# shellcheck source=/dev/null
+source "${ISSUES_PATH}/pkg/setup.zsh"
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null

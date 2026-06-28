@@ -3,6 +3,9 @@
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/pkg/base.zsh"
 
+# shellcheck source=/dev/null
+source "${ZSH_GIT_PATH}/pkg/setup.zsh"
+
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null

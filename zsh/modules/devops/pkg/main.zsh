@@ -32,5 +32,8 @@ source "${DEVOPS_PATH}/pkg/tfenv.zsh"
 source "${DEVOPS_PATH}/pkg/komiser.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/sync.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/aws.zsh"
 
