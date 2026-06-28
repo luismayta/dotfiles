@@ -51,15 +51,11 @@ function mobile::internal::flutter::upgrade {
 }
 
 function mobile::internal::flutter::post_install {
-    case "${OSTYPE}" in
-    darwin*)
-        if core::exists flutter; then
-            message_info "Configuring ${FLUTTER_PACKAGE_NAME} for Android SDK..."
-            if [[ -n "${ANDROID_HOME:-}" ]]; then
-                flutter config --android-sdk "${ANDROID_HOME}" 2>/dev/null || true
-                yes | flutter doctor --android-licenses --sdk_root="${ANDROID_HOME}" 2>/dev/null || true
-            fi
+    if core::exists flutter; then
+        message_info "Configuring ${FLUTTER_PACKAGE_NAME} for Android SDK..."
+        if [[ -n "${ANDROID_HOME:-}" ]]; then
+            flutter config --android-sdk "${ANDROID_HOME}" 2>/dev/null || true
+            yes | flutter doctor --android-licenses --sdk_root="${ANDROID_HOME}" 2>/dev/null || true
         fi
-        ;;
-    esac
+    fi
 }
