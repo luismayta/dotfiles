@@ -1,23 +1,23 @@
 # shellcheck shell=bash
 
 # shellcheck source=/dev/null
-source "${ZSH_PYENV_PATH}/internal/base.zsh"
+source "${ZSH_PYTHON_PATH}/internal/base.zsh"
 
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
-    source "${ZSH_PYENV_PATH}/internal/osx.zsh"
+    source "${ZSH_PYTHON_PATH}/internal/osx.zsh"
     ;;
 linux*)
     # shellcheck source=/dev/null
-    source "${ZSH_PYENV_PATH}/internal/linux.zsh"
+    source "${ZSH_PYTHON_PATH}/internal/linux.zsh"
     ;;
 esac
 
-pyenv::internal::pyenv::load
+python::internal::pyenv::load
 
 core::ensure curl
-for pkg in "${PYENV_SYSTEM_PACKAGES[@]}"; do
-    core::ensure "${pkg}"
-done
-if ! core::exists pyenv; then pyenv::internal::pyenv::install; fi
+if [[ "${PYTHON_UV_ENABLED}" == "true" ]]; then
+    core::ensure uv
+fi
+if ! core::exists pyenv; then python::internal::pyenv::install; fi

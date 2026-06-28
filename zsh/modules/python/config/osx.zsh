@@ -1,2 +1,2 @@
 # shellcheck shell=bash
-# macOS-specific pyenv config
+# macOS-specific python config

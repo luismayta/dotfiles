@@ -31,13 +31,12 @@ export LC_ALL=en_US.UTF-8
 export PIPENV_SHELL_FANCY=true
 
 if ! type -p pyenv > /dev/null; then
-    [ -e "${HOME}/.pyenv" ] && export PYENV_ROOT="${HOME}/.pyenv"
+    [ -e "${HOME}/.pyenv" ] && export PYTHON_ROOT="${HOME}/.pyenv"
     [ -e "${HOME}/.pyenv/bin" ] && export PATH="${PATH}:${HOME}/.pyenv/bin"
 fi
 
 if type -p pyenv > /dev/null; then
-    export PIPENV_PYTHON="${PYENV_ROOT}/shims/python"
-    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+    export PIPENV_PYTHON="${PYTHON_ROOT}/shims/python"
 fi
 
 . "$HOME/.cargo/env"

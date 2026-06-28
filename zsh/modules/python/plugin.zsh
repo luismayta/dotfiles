@@ -1,9 +1,9 @@
 #
 # shellcheck shell=bash
-# pyenv ZSH module
+# python ZSH module
 #
 # Port of luismayta/zsh-pyenv into the modules/ convention.
-# Provides pyenv (Python version manager) installation, PATH management,
+# Provides python (Python version manager) installation, PATH management,
 # and Python version setup with OS-specific dispatch (macOS/Linux).
 #
 # This is the only file the zshrc sources — it internally chains:
@@ -11,20 +11,20 @@
 #
 
 # Idempotency guard
-[[ -n "${__ZSH_PYENV_LOADED:-}" ]] && return
-__ZSH_PYENV_LOADED=1
+[[ -n "${__ZSH_PYTHON_LOADED:-}" ]] && return
+__ZSH_PYTHON_LOADED=1
 
 # Module root path — used by all sourced sub-files
-ZSH_PYENV_PATH="$(dirname "${0}")"
+ZSH_PYTHON_PATH="$(dirname "${0}")"
 
-message_info "Loading module: pyenv"
-
-# shellcheck source=/dev/null
-source "${ZSH_PYENV_PATH}/config/main.zsh"
-$ZSH_PYENV_ENABLED || return
+message_info "Loading module: python"
 
 # shellcheck source=/dev/null
-source "${ZSH_PYENV_PATH}/internal/main.zsh"
+source "${ZSH_PYTHON_PATH}/config/main.zsh"
+$ZSH_PYTHON_ENABLED || return
 
 # shellcheck source=/dev/null
-source "${ZSH_PYENV_PATH}/pkg/main.zsh"
+source "${ZSH_PYTHON_PATH}/internal/main.zsh"
+
+# shellcheck source=/dev/null
+source "${ZSH_PYTHON_PATH}/pkg/main.zsh"

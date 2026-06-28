@@ -1,4 +1,2 @@
 # shellcheck shell=bash
-# Linux-specific pyenv config — system packages via core::ensure (paru)
-
-export PYENV_SYSTEM_PACKAGES=(uv)
+# Linux-specific python config — uv gestionado por python module via PYTHON_UV_ENABLED

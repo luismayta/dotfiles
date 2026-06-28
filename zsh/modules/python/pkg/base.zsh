@@ -1,42 +1,41 @@
 # shellcheck shell=bash
-# shellcheck disable=SC2154 # PYENV_PACKAGE_NAME defined in config/base.zsh
+# shellcheck disable=SC2154 # PYTHON_PACKAGE_NAME defined in config/base.zsh
 
-function pyenv::upgrade {
-    message_info "Upgrade ${PYENV_PACKAGE_NAME}"
-    cd "${PYENV_ROOT}" || exit && git pull && cd - || return
-    message_success "Upgraded ${PYENV_PACKAGE_NAME}"
+function python::upgrade {
+    message_info "Upgrade ${PYTHON_PACKAGE_NAME}"
+    cd "${PYTHON_ROOT}" || exit && git pull && cd - || return
+    message_success "Upgraded ${PYTHON_PACKAGE_NAME}"
 }
 
-function pyenv::install {
-    pyenv::internal::pyenv::install
+function python::install {
+    python::internal::pyenv::install
 }
 
-function pyenv::version::all::install {
-    pyenv::internal::version::all::install
+function python::version::all::install {
+    python::internal::version::all::install
 }
 
-function pyenv::version::global::install {
-    pyenv::internal::version::global::install
+function python::version::global::install {
+    python::internal::version::global::install
 }
 
-function pyenv::modules::install {
-    pyenv::internal::modules::install
+function python::modules::install {
+    python::internal::modules::install
 }
 
-function pyenv::module::install {
-    pyenv::internal::module::install "${@}"
+function python::module::install {
+    python::internal::module::install "${@}"
 }
 
-function pyenv::post_install {
-    pyenv::version::global::install
-    pyenv::modules::install
+function python::post_install {
+    python::version::global::install
+    python::modules::install
 }
 
-function pyenv::load {
-    pyenv::internal::pyenv::load
+function python::load {
+    python::internal::pyenv::load
 }
 
-function pyenv::poetry::install {
-    pyenv::internal::poetry::install
+function python::poetry::install {
+    python::internal::poetry::install
 }
-

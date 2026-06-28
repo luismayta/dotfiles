@@ -12,8 +12,8 @@ function cleanup::all {
     cleanup::gem
     cleanup::docker
     cleanup::pre_commit
-    cleanup::pyenv
-    cleanup::pyenv::virtualenvs
+    cleanup::python::pyenv
+    cleanup::python::virtualenvs
     cleanup::npm
     cleanup::terraform
     cleanup::projects
@@ -60,20 +60,20 @@ function cleanup::tasks {
     message_success "Clean files tasks"
 }
 
-function cleanup::pyenv {
-    if [ -n "${PYENV_VIRTUALENV_CACHE_PATH}" ]; then
+function cleanup::python::pyenv {
+    if [ -n "${PYTHON_VIRTUALENV_CACHE_PATH}" ]; then
         message_info "Removing Pyenv-VirtualEnv Cache..."
-        [ -e "${PYENV_VIRTUALENV_CACHE_PATH}" ] && rm -rfv "${PYENV_VIRTUALENV_CACHE_PATH}" > /dev/null 2>&1
+        [ -e "${PYTHON_VIRTUALENV_CACHE_PATH}" ] && rm -rfv "${PYTHON_VIRTUALENV_CACHE_PATH}" > /dev/null 2>&1
         message_success "Removing Pyenv-VirtualEnv Cache..."
     fi
 }
 
-function cleanup::pyenv::virtualenvs {
-    [ -e "${HOME}/.local/share/virtualenvs" ] && export PYENV_VIRTUALENV_PATH="${HOME}/.local/share/virtualenvs"
-    if [ -n "${PYENV_VIRTUALENV_PATH}" ]; then
-        message_info "Removing pyenv virtualenvs..."
-        rm -rfv "${PYENV_VIRTUALENV_PATH}" > /dev/null 2>&1
-        message_success "Removing Pyenv-VirtualEnv..."
+function cleanup::python::virtualenvs {
+    [ -e "${HOME}/.local/share/virtualenvs" ] && export PYTHON_VIRTUALENV_PATH="${HOME}/.local/share/virtualenvs"
+    if [ -n "${PYTHON_VIRTUALENV_PATH}" ]; then
+        message_info "Removing python virtualenvs..."
+        rm -rfv "${PYTHON_VIRTUALENV_PATH}" > /dev/null 2>&1
+        message_success "Removing Python-VirtualEnv..."
     fi
 }
 
