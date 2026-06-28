@@ -28,6 +28,7 @@ pkgs.mkShell {
     gitleaks
     hadolint
     codespell
+    lychee
     yamllint
 
     # Templating & generation

@@ -580,5 +580,6 @@ charts
 .infobot
 .jira-config.json
 *.pkg.tar.zst
+.lycheecache
 *.db
 

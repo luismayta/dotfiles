@@ -1,0 +1,46 @@
+# Only scan Markdown files
+extensions = ["md"]
+
+# Cache — evita re-verificar URLs en cada ejecución
+cache = true
+max_cache_age = "1d"
+
+# Tiempos reducidos para pre-commit (fail fast)
+timeout = 10
+retry_wait_time = 0
+max_retries = 1
+max_concurrency = 64
+
+# HEAD request (solo headers, más rápido)
+method = "head"
+
+# Omitir chequeos innecesarios (lentos y ruidosos)
+include_mail = false
+include_fragments = "none"
+
+# Códigos de respuesta aceptados
+accept = [200, 201, 202, 206]
+
+# URL exclusion patterns (regex)
+exclude = [
+  '^mailto:.*@hadenlabs\\.com',
+  '^http://localhost',
+  '^\\.\\./data/opencode/commands/',
+]
+
+# URL replacement (pattern replacement)
+remap = [
+  "^/docs https://github.com/luismayta/dotfiles/docs",
+  "^/ https://github.com/luismayta/dotfiles/",
+]
+
+# File path exclusion patterns (regex)
+exclude_path = [
+  'docs/env-vars\.md',
+  '\.docs/env-vars\.md',
+  'docs/include/terraform\.md',
+  'docs/opencode/commands/.*\.md',
+  'data/patterns/.*',
+  'zsh/modules/ai/data/patterns/.*',
+  '.*\.tpl\.md',
+]

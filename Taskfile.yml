@@ -126,6 +126,7 @@ vars:
     .infobot
     .jira-config.json
     *.pkg.tar.zst
+    .lycheecache
     *.db
   AI_IGNORE_CUSTOM: |
     # Block specific paths
