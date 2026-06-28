@@ -25,3 +25,12 @@ source "${DOTFILES_CORE_PATH}"/pkg/helper/main.zsh
 
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/pkg/alias.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/pkg/runner.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/pkg/sync.zsh
+
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/pkg/setup.zsh
