@@ -2,6 +2,7 @@
 # Flutter SDK configuration
 
 export FLUTTER_PACKAGE_NAME=flutter
+export FLUTTER_ENABLED="${FLUTTER_ENABLED:-true}"
 export FLUTTER_ROOT="${HOME}/google/flutter"
 export FLUTTER_ROOT_BIN="${FLUTTER_ROOT}/bin"
 export FLUTTER_DART_SDK="${FLUTTER_ROOT_BIN}/cache/dart-sdk"

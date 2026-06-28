@@ -1,6 +1,7 @@
 # shellcheck shell=bash
 # shellcheck source=/dev/null
 source "${ZSH_MOBILE_PATH}/pkg/base.zsh"
+source "${ZSH_MOBILE_PATH}/pkg/flutter.zsh"
 
 case "${OSTYPE}" in
 darwin*)

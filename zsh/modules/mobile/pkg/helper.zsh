@@ -23,9 +23,26 @@ function flutter::setup {
     message_success "${FLUTTER_PACKAGE_NAME} SDK setup complete."
 }
 
+# --- iOS ---
+
+function ios::setup {
+    case "${OSTYPE}" in
+    darwin*)
+        mobile::internal::ios::install
+        mobile::internal::ios::load
+        ;;
+    *)
+        message_info "iOS setup is only supported on macOS."
+        ;;
+    esac
+}
+
 function mobile::setup {
     message_info "Setting up ${MOBILE_PACKAGE_NAME} development environment..."
     android::setup
-    flutter::setup
+    if [[ "${FLUTTER_ENABLED:-true}" == "true" ]]; then
+        flutter::setup
+    fi
+    ios::setup
     message_success "${MOBILE_PACKAGE_NAME} development environment setup complete."
 }

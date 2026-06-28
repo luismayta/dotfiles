@@ -4,6 +4,9 @@
 export ANDROID_HOME="${ANDROID_HOME:-${HOME}/Android/Sdk}"
 export ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME}}"
 export ANDROID_PLATFORM_TOOLS="${ANDROID_HOME}/platform-tools"
+export ANDROID_PLATFORM_VERSION="${ANDROID_PLATFORM_VERSION:-35}"
+export ANDROID_SDK_VERSION="${ANDROID_SDK_VERSION:-35.0.1}"
+export ANDROID_FILE_REPOSITORIES="${HOME}/.android/repositories.cfg"
 
 # Android packages managed via core::ensure
 # shellcheck disable=SC2034 # referenced from internal/main.zsh
