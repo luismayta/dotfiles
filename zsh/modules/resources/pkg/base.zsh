@@ -6,3 +6,7 @@ function resources::fonts::sync {
         fc-cache -f "${RESOURCES_FONTS_PATH}"
     fi
 }
+
+function resources::sync {
+    resources::fonts::sync
+}

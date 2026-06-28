@@ -115,7 +115,7 @@
   "relative_line_numbers": "enabled",
 
   "ui_font_size": 18,
-  "ui_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font",
 
   "buffer_font_features": {
     "calt": false,
@@ -123,7 +123,7 @@
   },
 
   "buffer_font_size": 18,
-  "buffer_font_family": "FiraCode Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
 
   "tab_size": 4,
   "projects_online_by_default": false,

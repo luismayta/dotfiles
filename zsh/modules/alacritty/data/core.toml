@@ -10,16 +10,16 @@ TMUX_SOCKET = "alacritty"
 size = 16.0
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.bold]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.italic]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.bold_italic]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [scrolling]
 history = 10000

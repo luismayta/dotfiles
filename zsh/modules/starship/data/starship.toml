@@ -7,6 +7,9 @@
 #prompt global settings
 ########################################
 
+## Core Settings
+## -------------
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = "$all"
@@ -17,107 +20,16 @@ add_newline = false
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
 
-[custom.giturl]
-disabled = false
-description = "Display symbol for remote Git server"
-command = """
-GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
-if [[ "$GIT_REMOTE" =~ "github" ]]; then
-    GIT_REMOTE_SYMBOL=""
-elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
-    GIT_REMOTE_SYMBOL=""
-elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
-    GIT_REMOTE_SYMBOL=""
-elif [[ "$GIT_REMOTE" =~ "git" ]]; then
-    GIT_REMOTE_SYMBOL=""
-else
-    GIT_REMOTE_SYMBOL=""
-fi
-echo "$GIT_REMOTE_SYMBOL "
-"""
-when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
-shell = ["bash", "--noprofile", "--norc"]
-format = "$output "
+## Shell & User
+## -------------
 
-[custom.githash]
-disabled = false
-description = "Display git hash"
-command = """
-GIT_HASH=$(git rev-parse --short HEAD)
-echo "$GIT_HASH "
-"""
-when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
-shell = ["bash", "--noprofile", "--norc"]
-format = "$output "
-
-[custom.proxy_is_on]
-command = ""
-when = "proxy is-on"
-symbol = "歷"
-description = "Shows if proxy settings are on"
-format = "[$symbol]($style)"
-style = "fg:green"
-
-[custom.proxy_is_off]
-command = ""
-when = "proxy is-off"
-symbol = "轢"
-description = "Shows if proxy settings are off"
-format = "[$symbol]($style)"
-style = "fg:red"
-
-[sudo]
-disabled = false
-
-[battery]
-disabled = true
-full_symbol = "🔋"
-charging_symbol = "⚡️"
-discharging_symbol = "💀"
-
-[[battery.display]] # "bold red" style when capacity is between 0% and 10%
-threshold = 10
-style = "bold red"
-
-[[battery.display]] # "bold yellow" style when capacity is between 10% and 30%
-threshold = 30
-style = "bold yellow"
-
+# Shell indicator for each shell type
 [shell]
-fish_indicator = ""
+fish_indicator = "🐟"
 zsh_indicator = "🐺"
 bash_indicator = "🐚"
 powershell_indicator = "_"
 disabled = false
-
-[helm]
-style = "bold fg:bright-cyan bg:#5a6374"
-format = "[  ](fg:white bg:#5a6374)[$symbol$version]($style)"
-
-[hostname]
-disabled = true
-format = "@[$hostname]($style) "
-ssh_only = true
-style = "bold green"
-
-[localip]
-disabled = true
-ssh_only = false
-format = '@[$localipv4](bold red) '
-
-[lua]
-format = 'via [🌕 $version](bold blue) '
-
-[dart]
-format = 'via [🔰 $version](bold red) '
-
-[deno]
-format = 'via [🦕 $version](green bold) '
-
-[golang]
-style = "bold cyan"
-symbol = "[](cyan)"
-format = "| Go [$symbol $version]($style) "
 
 [username]
 format = "[$user]($style) in "
@@ -126,26 +38,14 @@ show_always = true
 style_user = "blue bold"
 style_root = "red bold"
 
+# Prompt character and color
 [character]
 format = "$symbol "
 success_symbol = "[->](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 error_symbol = "[🤮 ](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = false
-
-[aws]
-format = "on [$symbol $region $profile]($style) "
-style = "bold blue"
-symbol = "⛅"
-
-[aws.region_aliases]
-ap-southeast-2 = "au"
-us-east-1 = "va"
-
-[docker_context]
-disabled = true
+## Directory
+## ----------
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
@@ -163,7 +63,9 @@ use_logical_path = true
 [directory.substitutions]
 "/Volumes/Data/projects" = "🐺"
 
-# GIT CONFIG
+## Git
+## ---
+
 [git_branch]
 symbol = "🌱 "
 truncation_symbol = ""
@@ -188,10 +90,43 @@ tag_symbol = "🔖 "
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 cherry_pick = "[🍒 PICKING](bold red)"
 
+# Display symbol for remote Git server (GitHub/GitLab/Bitbucket/etc.)
+[custom.giturl]
+disabled = false
+description = "Display symbol for remote Git server"
+command = """
+REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$REMOTE" =~ "github" ]]; then
+    SYMBOL=""
+elif [[ "$REMOTE" =~ "gitlab" ]]; then
+    SYMBOL=""
+elif [[ "$REMOTE" =~ "bitbucket" ]]; then
+    SYMBOL=""
+elif [[ "$REMOTE" =~ "git" ]]; then
+    SYMBOL=""
+else
+    SYMBOL=""
+fi
+echo "$SYMBOL "
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+shell = ["bash", "--noprofile", "--norc"]
+format = "$output "
+
+[custom.githash]
+disabled = false
+description = "Display git hash"
+command = "git rev-parse --short HEAD"
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+shell = ["bash", "--noprofile", "--norc"]
+format = "$output "
+
+## Cloud & Infrastructure
+## ---------------------
+
 [kubernetes]
 disabled = false
 symbol = "⛵ "
-# style = "dim green"
 format = '[$symbol$context( \($namespace\))]($style) '
 
 [kubernetes.context_aliases]
@@ -217,6 +152,58 @@ docker-desktop = "🐳"
 
 "eks:cluster:(?P<cluster_name>.*)" = "eks: $cluster_name"
 
+[aws]
+format = "on [$symbol $region $profile]($style) "
+style = "bold blue"
+symbol = "⛅"
+
+[aws.region_aliases]
+ap-southeast-2 = "au"
+us-east-1 = "va"
+
+[docker_context]
+disabled = true
+
+## Languages & Runtimes
+## --------------------
+
+[golang]
+style = "bold cyan"
+symbol = "[](cyan)"
+format = "[$symbol $version]($style) "
+
+[python]
+pyenv_version_name = true
+detect_extensions = []
+
+[lua]
+format = 'via [🌕 $version](bold blue) '
+
+[dart]
+format = 'via [🔰 $version](bold red) '
+
+[deno]
+format = 'via [🦕 $version](green bold) '
+
+[helm]
+style = "bold fg:bright-cyan bg:#5a6374"
+format = "[  ](fg:white bg:#5a6374)[$symbol$version]($style)"
+
+## Tools
+## -----
+
+[terraform]
+disabled = false
+detect_extensions = ["tf", "tfplan", "tfstate", "hcl"]
+format = " [$symbol$workspace]($style)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+## System
+## ------
+
 ## Memory
 [memory_usage]
 disabled = false
@@ -224,29 +211,20 @@ style = "bold dimmed green"
 threshold = -1
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
-[jobs]
+[cmd_duration]
+min_time = 1_000
+
 # doc: https://starship.rs/config/#jobs
+[jobs]
 symbol = "🏃️"
 threshold = 4
 format = "[$symbol_threshold $number_threshold]($style) "
 
-[python]
-pyenv_version_name = true
-detect_extensions = []
-
-[terraform]
+[sudo]
 disabled = false
-detect_extensions = ["tf", "tfplan", "tfstate", "hcl"]
-format = " [$symbol$workspace]($style)"
 
-[time]
-symbol = "🕙"
-disabled = true
-format = "[$symbol][$time ]($style) "
-style = "bold yellow"
-use_12hr = false
-#time_format = "%Y/%m/%d %T"
-time_range = "-" # always: time_range="00:00:00-23:59:59"
+## Environment
+## -----------
 
 [env_var.AWS_PROFILE_NAME]
 symbol = "⛅"
@@ -267,5 +245,21 @@ default = "nvim"
 format = ""
 default = "nvim"
 
-[cmd_duration]
-min_time = 1_000
+## Custom Indicators
+## -----------------
+
+[custom.proxy_is_on]
+command = ""
+when = "proxy is-on"
+symbol = "歷"
+description = "Shows if proxy settings are on"
+format = "[$symbol]($style)"
+style = "fg:green"
+
+[custom.proxy_is_off]
+command = ""
+when = "proxy is-off"
+symbol = "轢"
+description = "Shows if proxy settings are off"
+format = "[$symbol]($style)"
+style = "fg:red"

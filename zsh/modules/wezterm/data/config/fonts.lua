@@ -1,7 +1,7 @@
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 
-local font_family = 'FiraCode Nerd Font'
+local font_family = 'JetBrainsMono Nerd Font'
 
 local font_size = platform.is_mac and 20 or 16
 

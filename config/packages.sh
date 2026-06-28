@@ -6,6 +6,6 @@
 
 PACKAGES_COMMON=(zsh git rsync ksh fd)
 PACKAGES_MAC=(jq ag ripgrep cmake font-source-code-pro)
-PACKAGES_LINUX=(go npm yarn gcc ttf-sourcecodepro-nerd)
+PACKAGES_LINUX=(go npm yarn gcc ttf-jetbrains-mono-nerd)
 
 readonly PACKAGES_COMMON PACKAGES_MAC PACKAGES_LINUX
