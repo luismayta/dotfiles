@@ -198,13 +198,11 @@ Reglas:
 
 ## STEP 3 — Generate shortuuid
 
-Generar identificador corto:
-
-Ejemplo:
-
+```bash
+ID=$(codi util short-uuid --length 6)
 ```
-v7Kp9x
-```
+
+Ejemplo: `v7Kp9x`
 
 ---
 
@@ -224,7 +222,8 @@ Validar:
 
 ```bash
 if [ -f "$TARGET" ]; then
-  regenerate shortuuid
+  ID=$(codi util short-uuid --length 6)
+  TARGET=".codi/jira/issues/epic-${SLUG}-${ID}.md"
 fi
 ```
 

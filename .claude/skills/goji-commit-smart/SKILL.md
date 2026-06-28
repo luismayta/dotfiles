@@ -27,7 +27,7 @@ I'll:
 - Load your project's commit taxonomy (types, scopes, format policy)
 - Analyze changed files and group them by logical concern
 - Assign conventional-commit type, scope, and subject per group
-- Write a plan to `.codi/build/<name>.json`
+- Write a plan to `.codi/build/<name>-<id>.json` (unique via `codi util short-uuid`)
 - Execute the plan with `codi commit --file`
 
 ---
@@ -41,19 +41,14 @@ If the working tree is clean or has too many changes, I may ask:
 
 **Contract**
 
-- `task validate` executes exactly once at start
+- Dependencies validated at load time via `codi doctor --llm` (requires frontmatter)
 - If validation fails → abort immediately
 
 ---
 
 ### STEP 0 — Dependency validation
 
-```bash
-command -v task >/dev/null 2>&1 || {
-  echo "ERROR: task not installed (https://taskfile.dev)"
-  exit 1
-}
-```
+Run `codi doctor --llm` and review the JSON output. If any critical dependencies are missing, abort.
 
 ---
 
@@ -64,13 +59,6 @@ if [ ! -f Taskfile.yml ] && [ ! -f Taskfile.yaml ]; then
   echo "ERROR: Taskfile not found"
   exit 1
 fi
-
-task --list | grep -q "^validate" || {
-  echo "ERROR: task validate not defined"
-  exit 1
-}
-
-echo "Running task validate..."
 
 task validate
 if [ $? -ne 0 ]; then
@@ -110,9 +98,15 @@ echo "Validation passed"
    - Test files matching a source change → group with that source change
    - Unrelated changes in different domains → separate commits
 
-4. **Write the plan to `.codi/build/<name>.json`**
+4. **Generate plan ID and write the plan**
+
+   ```bash
+   ID=$(codi util short-uuid --length 6)
+   ```
 
    Derive a kebab-case name from the primary intent of the changes (e.g., `add-login`, `skill-reinstall`).
+
+   Combine them: `.codi/build/<name>-<id>.json` (e.g., `add-login-aB3xYz.json`).
 
    Do NOT include the issue key in the plan filename — the issue key is `codi`'s responsibility.
 
@@ -139,6 +133,8 @@ echo "Validation passed"
    Ensure the `.codi/build/` directory exists:
    ```bash
    mkdir -p .codi/build
+   PLAN_FILE=".codi/build/${NAME}-${ID}.json"
+   # write plan to $PLAN_FILE
    ```
 
 5. **Present the plan to the user for review**
@@ -150,7 +146,7 @@ echo "Validation passed"
 
 6. **Execute the plan**
    ```bash
-   codi commit --file .codi/build/<name>.json
+   codi commit --file "$PLAN_FILE"
    ```
 
    This stages files, builds commit messages using the configured format (`<type> <emoji>(<scope>): <issueId> <subject>`), and commits with optional sign-off.
