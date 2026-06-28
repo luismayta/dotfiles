@@ -38,7 +38,8 @@
       "!.skills/*",
       "!.opencode/skills/*",
       "!**/*.md",
-      "!*.md"
+      "!*.md",
+      "!zsh/modules/zed/data/keymap.json"
     ]
   },
   "formatter": {
