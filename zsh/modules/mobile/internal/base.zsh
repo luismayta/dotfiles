@@ -15,9 +15,9 @@ function mobile::internal::android::install {
         if ! core::exists sdk; then
             curl -s "${SDKMAN_INSTALL_URL}" | bash
         fi
-        if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
+        if [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]]; then
             # shellcheck disable=SC1091
-            source "${HOME}/.sdkman/bin/sdkman-init.sh"
+            source "${SDKMAN_DIR}/bin/sdkman-init.sh"
             sdk install java "${SDKMAN_JAVA_VERSION}"
             sdk default java "${SDKMAN_JAVA_VERSION}"
         fi
@@ -35,7 +35,7 @@ function mobile::internal::android::install {
             fi
             ;;
         linux*)
-            local cmdline_url="https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+            local cmdline_url="https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS_VERSION}_latest.zip"
             local tmp_zip
             tmp_zip="$(mktemp).zip"
             mkdir -p "${ANDROID_HOME}/cmdline-tools"
