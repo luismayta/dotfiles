@@ -199,7 +199,7 @@ Reglas:
 ## STEP 3 — Generate shortuuid
 
 ```bash
-ID=$(codi util short-uuid --length 6)
+ID=$(codi util short-uuid)
 ```
 
 Ejemplo: `v7Kp9x`
@@ -222,7 +222,7 @@ Validar:
 
 ```bash
 if [ -f "$TARGET" ]; then
-  ID=$(codi util short-uuid --length 6)
+  ID=$(codi util short-uuid)
   TARGET=".codi/jira/issues/epic-${SLUG}-${ID}.md"
 fi
 ```

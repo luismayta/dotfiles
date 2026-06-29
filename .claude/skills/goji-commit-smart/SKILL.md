@@ -83,25 +83,44 @@ echo "Validation passed"
    - `taxonomy.typeDetails`: array of `{ name, emoji, code, description }` for each type
    - `files[]`: list of changed files with paths
 
-3. **Analyze context and group files into logical commits**
+3. **Validate issue key and classify files by priority tier**
 
-   Group files that belong to the same logical change. For each group:
+   a) **Validate issue key**: Extract the issue key from the current branch name:
+   ```bash
+   BRANCH=$(git rev-parse --abbrev-ref HEAD)
+   ```
+   Derive the issue key using the configured issue tracking pattern from `codi.toml` (e.g., `PE-129` from `feature/PE-129-commit-ordering`). If no valid issue key can be derived, abort with:
+   > "ERROR: No valid issue key found in branch name. Use a branch with a project key (e.g., feature/PE-129-commit-ordering)."
+
+   b) **Classify files by priority tier**: Categorize each changed file from the context:
+
+   | Tier | Name | File Patterns |
+   |------|------|---------------|
+   | 1 | Tool Configuration | `.pre-commit-config.yaml`, `.ci/linters/*`, `codi.toml`, `.commitlintrc.json`, `.goji.json` |
+   | 2 | Infrastructure | `Taskfile.yml`, `Taskfile.yaml`, Nix files, CI/CD configs |
+   | 3 | Source Code & Skills | Source code, `skills/*`, tests |
+   | 4 | Secondary Artifacts | Documentation (`docs/`), changelogs, OpenSpec archives |
+
+   Sort all changed files by tier order (Tier 1 → 2 → 3 → 4). Files in lower-numbered tiers must be grouped into commits before higher-numbered tiers.
+
+   c) **Group files within each priority tier**: Within each tier, group files into logical commits. For each group:
 
    - **type**: Pick from `context.taxonomy.types` (feat=new feature, fix=bug fix, docs=documentation, chore=maintenance, test=tests, refactor=restructure, perf=performance, etc.)
    - **scope**: Pick from `context.taxonomy.scopes` that best matches the files' location
-   - **subject**: Write a concise conventional-commit subject (max 100 chars). Do NOT include the issue key — `codi commit` handles issue key rendering automatically via its internal renderer (e.g., write `add user login`, not `PE-123 add user login`).
+   - **subject**: Write a concise conventional-commit subject (max 100 chars). Do NOT include the issue key — `codi commit` handles issue key rendering automatically via its internal renderer (e.g., write `add user login`, not `PE-129 add user login`).
    - **emoji**: The emoji is handled by `codi commit` automatically — do NOT include it in the plan.
 
-   **Grouping heuristics**:
+   **Grouping heuristics** (applied within each tier):
+   - Tier 1 files must appear first — if `.pre-commit-config.yaml` has changes and any commit triggers pre-commit hooks, it MUST be staged in the first commit
    - Files in the same package/app directory → likely same commit
-   - Configuration files (`.json`, `.toml`, `.yaml`) → `chore(config)` or separate commit
    - Test files matching a source change → group with that source change
-   - Unrelated changes in different domains → separate commits
+   - Unrelated changes in different tiers → separate commits per tier
+   - Configuration-only changes within Tier 1 → `chore(config)` type
 
 4. **Generate plan ID and write the plan**
 
    ```bash
-   ID=$(codi util short-uuid --length 6)
+    ID=$(codi util short-uuid)
    ```
 
    Derive a kebab-case name from the primary intent of the changes (e.g., `add-login`, `skill-reinstall`).
@@ -180,6 +199,6 @@ After execution, summarize:
 - Validate each commit has: type (from taxonomy), scope (from taxonomy), subject, and at least 1 file
 - A file must appear in exactly one commit — no duplicate file entries across commits
 - If the plan file already exists, confirm with the user before overwriting
-- Never derive, include, or reference the issue key. The issue key is solely `codi`'s responsibility and is resolved internally by `codi commit`
+- Never include the issue key in plan subjects or filenames — the issue key is solely `codi`'s responsibility and is resolved internally by `codi commit`. You MAY derive the issue key from the branch name for validation purposes only.
 - If `codi commit` reports errors (e.g., dirty tree, invalid config), show the error and stop — do not force-commit
 - Prefer splitting unrelated changes into separate commits over lumping everything into one

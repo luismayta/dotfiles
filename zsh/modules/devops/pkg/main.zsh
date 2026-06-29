@@ -37,3 +37,6 @@ source "${DEVOPS_PATH}/pkg/sync.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/aws.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/gcloud.zsh"
+

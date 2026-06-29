@@ -19,6 +19,7 @@ export DEVOPS_TOOLS=(
   terragrunt
   terraform-docs
   glab
+  google-cloud-cli
   github-cli
   yazi
   zoxide
@@ -89,6 +90,16 @@ export DEVOPS_GO_PACKAGES=(
   github.com/direnv/direnv/v2@latest
   github.com/hashicorp/hcl/v2/cmd/hclfmt@latest
 )
+
+# Gcloud configuration
+export DEVOPS_GCLOUD_PACKAGE_NAME=gcloud
+export DEVOPS_GCLOUD_CONFIG_ROOT="${HOME}/.config/gcloud"
+export DEVOPS_GCLOUD_MESSAGE_COMPONENT_NOT_FOUND="It's necessary to install gcloud components"
+
+# Optional Cloud SDK defaults (uncomment to override)
+# export CLOUDSDK_CORE_PROJECT=<project-id>
+# export CLOUDSDK_COMPUTE_REGION=<region>
+# export CLOUDSDK_COMPUTE_ZONE=<zone>
 
 # Helm configuration
 export DEVOPS_HELM_PACKAGE_NAME=helm
