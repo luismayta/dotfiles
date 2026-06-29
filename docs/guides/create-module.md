@@ -12,10 +12,11 @@ This guide explains how to create a new ZSH module in the dotfiles repository. M
 - [Section 4: Internal Layer](#section-4-internal-layer)
 - [Section 5: Public Layer](#section-5-public-layer)
 - [Section 6: OS-Specific Files](#section-6-os-specific-files)
-- [Section 7: Naming Conventions](#section-7-naming-conventions)
-- [Section 8: Testing](#section-8-testing)
-- [Section 9: Commit](#section-9-commit)
-- [Section 10: Checklist](#section-10-checklist)
+- [Section 7: Provider Adapter (Strategy) Pattern](#section-7-provider-adapter-strategy-pattern)
+- [Section 8: Naming Conventions](#section-8-naming-conventions)
+- [Section 9: Testing](#section-9-testing)
+- [Section 10: Commit](#section-10-commit)
+- [Section 11: Checklist](#section-11-checklist)
 
 ---
 
@@ -426,7 +427,152 @@ Start with placeholders, fill them in as the module grows.
 
 ---
 
-## Section 7: Naming Conventions
+## Section 7: Provider Adapter (Strategy) Pattern
+
+For modules that support multiple interchangeable backends — such as the Docker module with 5+ container runtimes — the OS dispatch pattern extends naturally into a two-layer dispatch: OS first, then provider/adapter.
+
+This pattern is inspired by the Docker module (see [reference](/zsh/modules/docker/)).
+
+### When to use
+
+Use the `adapter/` subdirectory when:
+
+- Your module supports **3+ interchangeable implementations** of the same abstraction
+- Implementations vary **significantly** in logic (not just configuration)
+- Providers are expected to be **added or removed over time**
+
+Modules with 1–2 providers and simple logic should stay flat. The overhead of `adapter/` is only justified by complexity and provider count.
+
+### Structure
+
+The `adapter/` subdirectory exists in `config/` and `internal/` only — not in `pkg/`, since the public API should be provider-agnostic.
+
+```
+<module>/
+├── config/
+│   ├── adapter/                  ← Provider-specific env vars
+│   │   ├── provider-a.zsh
+│   │   ├── provider-b.zsh
+│   │   └── provider-c.zsh
+│   ├── base.zsh                  ← Platform-agnostic defaults
+│   ├── main.zsh                  ← OS dispatch → adapter dispatch
+│   ├── osx.zsh                   ← Platform config
+│   └── linux.zsh                 ← Platform config
+├── internal/
+│   ├── adapter/                  ← Provider-specific implementation
+│   │   ├── provider-a.zsh
+│   │   ├── provider-b.zsh
+│   │   └── provider-c.zsh
+│   ├── base.zsh                  ← Shared logic
+│   └── main.zsh                  ← OS dispatch → adapter dispatch
+└── pkg/                          ← Provider-agnostic public API
+```
+
+### Dispatch mechanics
+
+Each layer's `main.zsh` dispatches in two stages — OS first, then provider:
+
+```zsh
+# shellcheck shell=bash
+source "${ZSH_<NAME>_PATH}/config/base.zsh"
+
+# Stage 1: OS dispatch (same as standard modules)
+case "${OSTYPE}" in
+  darwin*)
+    source "${ZSH_<NAME>_PATH}/config/osx.zsh" ;;
+  linux*)
+    source "${ZSH_<NAME>_PATH}/config/linux.zsh" ;;
+esac
+
+# Stage 2: Provider dispatch — selects the active adapter
+case "${<NAME>_PROVIDER}" in
+  provider-a*)
+    source "${ZSH_<NAME>_PATH}/config/adapter/provider-a.zsh" ;;
+  provider-b*)
+    source "${ZSH_<NAME>_PATH}/config/adapter/provider-b.zsh" ;;
+esac
+```
+
+### Strategy hook (dynamic dispatch)
+
+For shared logic that varies per provider, use zsh's `${+functions[name]}` to dispatch polymorphically without a hardcoded `case`. The shared `base.zsh` calls an adapter-provided hook function if it exists:
+
+```zsh
+<name>::internal::resolve::something() {
+    # Respect user overrides
+    if [[ -n "${<NAME>_OVERRIDE:-}" ]]; then
+        return 0
+    fi
+
+    # Dynamic dispatch to adapter-level strategy hook.
+    # Each config/adapter/*.zsh defines <name>::adapter::resolve::something
+    # with provider-specific logic.
+    if (( ${+functions[<name>::adapter::resolve::something]} )); then
+        <name>::adapter::resolve::something
+    fi
+
+    # Fallback
+    if [[ -z "${RESULT:-}" && -n "${FALLBACK_PATH:-}" ]]; then
+        export RESULT="${FALLBACK_PATH}"
+    fi
+}
+```
+
+Each adapter file defines its own hook:
+
+```zsh
+# config/adapter/provider-a.zsh
+<name>::adapter::resolve::something() {
+    if [[ -S "/run/provider-a.sock" ]]; then
+        export RESULT="unix:///run/provider-a.sock"
+    fi
+}
+```
+
+This keeps `base.zsh` provider-agnostic — adding a new provider means creating adapter files, not modifying shared logic.
+
+### Adapter contract
+
+Every adapter should document its contract in a header comment:
+
+```zsh
+#
+# Provider A adapter for <name> module
+#
+# Contract:
+#   install — ensure Provider A is installed
+#   load    — ensure Provider A daemon is running and ready
+#
+```
+
+Required functions per adapter:
+
+| Function | Responsibility |
+|----------|---------------|
+| `<name>::adapter::resolve::something` | Resolve provider-specific runtime state |
+| `<name>::internal::install` | Ensure the provider binary is available |
+| `<name>::internal::load` | Ensure the provider daemon is running |
+
+### Adding a new provider
+
+A new provider requires changes to **5 files**:
+
+1. Create `config/adapter/<provider>.zsh` — provider-specific env vars + strategy hooks
+2. Create `internal/adapter/<provider>.zsh` — provider-specific install/load logic
+3. Edit `config/main.zsh` — add case for the new provider
+4. Edit `internal/main.zsh` — add case for the new provider
+5. Edit `config/osx.zsh` and/or `config/linux.zsh` — add provider to auto-detection if needed
+
+### Reference implementation
+
+See the **[Docker module](/zsh/modules/docker/)** for a complete production example:
+- 5 providers: `colima`, `lima`, `orbstack`, `podman`, `docker` (CE)
+- Strategy hook: `docker::adapter::resolve::socket` dispatched from `internal/base.zsh`
+- Each adapter has a documented contract header
+
+---
+
+## Section 8: Naming Conventions
 
 | What | Pattern | Example |
 |------|---------|---------|
@@ -442,7 +588,7 @@ Start with placeholders, fill them in as the module grows.
 
 ---
 
-## Section 8: Testing
+## Section 9: Testing
 
 ### Load the module
 
@@ -474,7 +620,7 @@ If the tool is not on the system, running `source zsh/modules/<name>/plugin.zsh`
 
 ---
 
-## Section 9: Commit
+## Section 10: Commit
 
 This project uses conventional commits with the Goji workflow.
 
@@ -492,7 +638,7 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 
 ---
 
-## Section 10: Checklist
+## Section 11: Checklist
 
 ### Scaffold (all files exist)
 
