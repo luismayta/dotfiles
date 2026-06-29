@@ -21,7 +21,7 @@ mobile::internal::android::load
 
 # Flutter: auto-install if missing, then load into PATH (disabled via FLUTTER_ENABLED=false)
 if [[ "${FLUTTER_ENABLED:-true}" == "true" ]]; then
-    if ! core::exists flutter; then
+    if [[ ! -f "${FLUTTER_ROOT_BIN}/flutter" ]] && ! core::exists flutter; then
         mobile::internal::flutter::install
     fi
     mobile::internal::flutter::load
