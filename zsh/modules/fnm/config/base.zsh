@@ -6,7 +6,7 @@ export FNM_PATH="${HOME}/.local/share/fnm"
 export FNM_VERSIONS=(
   24.11.1
 )
-export FNM_VERSION=0.39.5
+export FNM_VERSION="${JASPER_FNM_VERSION:-0.39.5}"
 export FNM_VERSION_GLOBAL=24.11.1
 export FNM_PACKAGES=(
     npm
