@@ -7,12 +7,17 @@
 # shellcheck disable=SC2034
 typeset -ga DOTFILES_SYNC_MODULES
 DOTFILES_SYNC_MODULES=(
+  core
   ghostty alacritty wezterm zed
   starship tmux
   git ssh nvim ai
   devops hyprland resources
   devbox
 )
+
+function core::sync {
+  rsync -avzh --progress "${CORE_PATH}/data/." "${HOME}/"
+}
 
 function dotfiles::sync {
   _dotfiles::run_modules DOTFILES_SYNC_MODULES "sync" "sync"

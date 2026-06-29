@@ -14,31 +14,24 @@ function install_apps() {
 }
 
 function deploy_configs() {
-  for path_key in "${CONF_DIR}"/{shell,app}; do
-    for file_path in "${path_key}/"*; do
-      local file
-      file="${HOME}/.${file_path##*/}"
-      do_backup "${file}"
-      cp_file "$file_path" "$file"
-      unset file
-    done
-    unset file_path
-  done
-  unset path_key
-
   cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
   cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
 }
 
+function deploy_core_data() {
+  rsync -avzh --progress "${ZSH_DIR}/core/data/." "${HOME}/"
+}
+
 function sync_extras() {
   rsync -avzh --progress "${ROOT_DIR}/config/" "${HOME}/.config/"
-  rsync -avzh --progress "${CONF_DIR}/Library/" "${HOME}/Library/"
+  rsync -avzh --progress "${ZSH_DIR}/core/data/Library/" "${HOME}/Library/"
 }
 
 function initialize() {
   initialize_prereqs
   install_apps
   deploy_configs
+  deploy_core_data
   sync_extras
 }
 

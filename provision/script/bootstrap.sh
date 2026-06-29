@@ -10,7 +10,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 export EXTRAS_DIR="${ROOT_DIR}/provision"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
 export SCRIPT_DIR="${PATH_REPO}/provision/script"
-export CONF_DIR="${PATH_REPO}/conf"
 export ZSH_DIR="${PATH_REPO}/zsh"
 export TOOLS_DIR="${PATH_REPO}/tools"
 export PATH_BACKUP="${HOME}/backup"
@@ -29,16 +28,16 @@ mkdir -p "${LOCAL_PATH_BIN}"
 # shellcheck disable=SC1090
 source "${FILE_CONFIG_BASE}"
 
-# shellcheck source=/dev/null
 [ -r "${ROOT_DIR}/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "${ROOT_DIR}/common/colors.sh"
 
-# shellcheck source=/dev/null
 [ -r "${ROOT_DIR}/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "${ROOT_DIR}/common/messages.sh"
 
-# shellcheck source=/dev/null
 [ -r "${ROOT_DIR}/common/common.sh" ] || { echo "FATAL: lib/common.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "${ROOT_DIR}/common/common.sh"
 
 function config::factory {

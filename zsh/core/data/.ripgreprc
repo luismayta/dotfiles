@@ -1,0 +1,5 @@
+# Show hidden files by default
+--hidden
+# But exclude .git directory
+--glob
+!.git/**
