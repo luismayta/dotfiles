@@ -117,12 +117,22 @@ local function clean_process_name(proc)
    return a:gsub('%.exe$', '')
 end
 
+---Strip ASCII control characters (0x00-0x1F and 0x7F) from text
+---to avoid "No fonts contain glyphs for these codepoints" rendering errors
+---when pane titles contain newlines, escape sequences, etc.
+---@param text string
+---@return string
+local function sanitize_text(text)
+   return text:gsub('[\000-\031\127]', '')
+end
+
 ---@param process_name string
 ---@param base_title string
 ---@param max_width number
 ---@param inset number
 local function create_title(process_name, base_title, max_width, inset)
    local title
+   base_title = sanitize_text(base_title)
 
    if process_name:len() > 0 then
       title = process_name .. ' ~ ' .. base_title
