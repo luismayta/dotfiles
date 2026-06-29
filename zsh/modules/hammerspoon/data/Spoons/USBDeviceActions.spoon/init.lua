@@ -27,22 +27,20 @@
 --- )
 --- ```
 
-
 -----------------------
 -- Setup Environment --
 -----------------------
 -- Create locals for all needed globals so we have access to them
 local type = type
-local hs   = {
+local hs = {
   application = hs.application,
-  fnutils     = hs.fnutils,
-  usb         = hs.usb,
-  inspect     = hs.inspect
+  fnutils = hs.fnutils,
+  usb = hs.usb,
+  inspect = hs.inspect,
 }
 
 -- Empty environment in this scope, this prevents module from polluting global scope
 local _ENV = {}
-
 
 -------------
 -- Private --
@@ -52,25 +50,39 @@ local watcher = nil
 local function takeAction(appOrFn, eventType)
   local isFn = type(appOrFn) == "function"
   if eventType == "added" then
-    if isFn then appOrFn(true); else hs.application.open(appOrFn) end
+    if isFn then
+      appOrFn(true)
+    else
+      hs.application.open(appOrFn)
+    end
   elseif eventType == "removed" then
-    if isFn then appOrFn(false)
+    if isFn then
+      appOrFn(false)
     else
       local app = hs.application.get(appOrFn)
-      if app then app:kill() end
+      if app then
+        app:kill()
+      end
     end
   end
 end
 
 local function usbEventCallback(devices, eventData)
   local deviceActions = devices[eventData.productName]
-  if not deviceActions then return end
+  if not deviceActions then
+    return
+  end
 
-  local actionFn = function(x) takeAction(x, eventData.eventType) end
-  if deviceActions.apps then hs.fnutils.ieach(deviceActions.apps, actionFn) end
-  if deviceActions.fn then actionFn(deviceActions.fn) end
+  local actionFn = function(x)
+    takeAction(x, eventData.eventType)
+  end
+  if deviceActions.apps then
+    hs.fnutils.ieach(deviceActions.apps, actionFn)
+  end
+  if deviceActions.fn then
+    actionFn(deviceActions.fn)
+  end
 end
-
 
 ------------
 -- Public --
@@ -78,10 +90,10 @@ end
 -- luacheck: no global
 
 -- Spoon metadata
-name     = "USBDeviceActions"
-version  = "1.0" -- obj.version = "1.0"
-author   = "Malo Bourgon"
-license  = "MIT - https://opensource.org/licenses/MIT"
+name = "USBDeviceActions"
+version = "1.0" -- obj.version = "1.0"
+author = "Malo Bourgon"
+license = "MIT - https://opensource.org/licenses/MIT"
 homepage = "https://github.com/malob/USBDeviceActions.spoon"
 
 --- USBDeviceActions.devices (Table)
@@ -107,7 +119,9 @@ devices = {}
 --- Returns:
 ---  * Self
 function init(self)
-  local callback = function(x) usbEventCallback(devices, x) end
+  local callback = function(x)
+    usbEventCallback(devices, x)
+  end
   watcher = hs.usb.watcher.new(callback)
   return self
 end

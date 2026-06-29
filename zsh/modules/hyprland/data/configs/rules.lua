@@ -5,8 +5,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
-local tiled_classes = {
-}
+local tiled_classes = {}
 
 local floating_classes = {
   "steam",
@@ -80,33 +79,48 @@ hl.workspace_rule({
 -- Tag-based window rules
 -- +terminal: subtle opacity for terminal emulators
 tag_window("+terminal", {
-  "Alacritty", "kitty", "foot", "gnome-terminal",
+  "Alacritty",
+  "kitty",
+  "foot",
+  "gnome-terminal",
 }, {
   opacity = 0.97,
 })
 
 -- +chromium-based-browser: opacity + tiling for Chromium-derived browsers
 tag_window("+chromium-based-browser", {
-  "chrome", "chromium", "brave", "Brave-browser",
-  "Microsoft-edge", "vivaldi", "opera",
+  "chrome",
+  "chromium",
+  "brave",
+  "Brave-browser",
+  "Microsoft-edge",
+  "vivaldi",
+  "opera",
 }, {
   opacity = 0.97,
 })
 
 -- +firefox-browser: opacity + tiling for Firefox
 tag_window("+firefox-browser", {
-  "firefox", "Firefox", "firefoxdeveloperedition",
-  "zen", "Zen",
+  "firefox",
+  "Firefox",
+  "firefoxdeveloperedition",
+  "zen",
+  "Zen",
 }, {
   opacity = 0.97,
 })
 
 -- +floating-window: centered 60x60 for tool windows, dialogs, launchers
 tag_window("+floating-window", {
-  "wofi", "rofi", "dmenu",
-  "pavucontrol", "blueman-manager",
+  "wofi",
+  "rofi",
+  "dmenu",
+  "pavucontrol",
+  "blueman-manager",
   "nm-connection-editor",
-  "xdg-desktop-portal", "xdg-desktop-portal-gtk",
+  "xdg-desktop-portal",
+  "xdg-desktop-portal-gtk",
   "org.quickshell",
 }, {
   float = true,
@@ -114,7 +128,9 @@ tag_window("+floating-window", {
 
 -- +jetbrains: disable follow mouse for JetBrains IDEs
 tag_window("+jetbrains", {
-  "jetbrains-idea", "jetbrains-studio", "jetbrains-datagrip",
+  "jetbrains-idea",
+  "jetbrains-studio",
+  "jetbrains-datagrip",
 }, {
   no_follow_mouse = true,
 })
@@ -128,8 +144,12 @@ tag_window("+bitwarden", {
 
 -- +media: opacity for media players and streaming apps
 tag_window("+media", {
-  "vlc", "mpv", "imv",
-  "wireshark", "zoom", "discord",
+  "vlc",
+  "mpv",
+  "imv",
+  "wireshark",
+  "zoom",
+  "discord",
 }, {
   opacity = 0.95,
 })

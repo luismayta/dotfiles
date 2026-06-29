@@ -1,3 +1,10 @@
+--[[
+File:    core/config/schema.lua
+Purpose: Schema validation for the merged configuration — validates browsers,
+         display settings, browser policies, and hotkey bindings.
+Author:  Hammerspoon Config Team
+--]]
+
 local M = {}
 
 local function assertType(value, expected, path)

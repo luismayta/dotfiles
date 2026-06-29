@@ -1,12 +1,12 @@
 local M = {}
 
 function M.new(spoonInstall)
-  local self = {
+  local instance = {
     spoonInstall = spoonInstall,
     loaded = {},
   }
 
-  function self:use(name, settings)
+  function instance:use(name, settings)
     if self.loaded[name] then
       return spoon[name]
     end
@@ -21,7 +21,7 @@ function M.new(spoonInstall)
     return spoon[name]
   end
 
-  return self
+  return instance
 end
 
 return M

@@ -2,7 +2,9 @@ local hotkey = require("core.hotkey")
 local log = require("hs.logger").new("Apps")
 
 return function(config)
-  if not config then return end
+  if not config then
+    return
+  end
 
   hotkey.setApps(config.apps.apps or {})
   hotkey.setDevs(config.apps.devs or {})

@@ -1,28 +1,36 @@
+--[[
+File:    mod/system/notification.lua
+Purpose: System notification module — consolidated notification center integration
+         with Do Not Disturb toggling, pomodoro working mode, and Caffeine control.
+Author:  Hammerspoon Config Team
+--]]
+
 -- luacheck: globals hs spoon
 local mod = {}
 mod.namespace = "notification"
-local pomodor = require('mod.pomodoor')
+local pomodoro = require("mod.pomodoro")
 local logger = require("hs.logger")
 local fn = require("core.functions")
+local hotkey = require("core.hotkey")
 local caffeine = hs.loadSpoon("Caffeine")
 
-mod.icon = hs.image.imageFromPath('assets/notification/success.png'):setSize({ w = 20, h = 20 })
+mod.icon = hs.image.imageFromPath("assets/notification/success.png"):setSize({ w = 20, h = 20 })
 
 -- debugging
 local log = logger.new("notification", "debug")
 
 mod.vars = {
-  afterTime= 2,
+  afterTime = 2,
   messageEnabled = {
-      title        = 'Start Working with Not Disturb',
-      subTitle     = 'Enabled',
-      contentImage = mod.icon,
+    title = "Start Working with Not Disturb",
+    subTitle = "Enabled",
+    contentImage = mod.icon,
   },
   messageDisabled = {
-      title        = 'Do Not Disturb',
-      subTitle     = 'Disabled',
-      contentImage = mod.icon,
-  }
+    title = "Do Not Disturb",
+    subTitle = "Disabled",
+    contentImage = mod.icon,
+  },
 }
 
 function mod.isEnabled()
@@ -38,7 +46,7 @@ function mod.isEnabled()
     end tell
   ]])
 
-  local isEnabled = string.match(res[1], 'Do Not Disturb')
+  local isEnabled = string.match(res[1], "Do Not Disturb")
   return isEnabled
 end
 
@@ -51,38 +59,38 @@ function mod.enable()
 end
 
 function mod.startWorking()
-  pomodor.enable()
+  pomodoro.enable()
   caffeine:start()
   mod.enable()
 end
 
 function mod.stopWorking()
-  pomodor.disable()
+  pomodoro.disable()
   caffeine:stop()
   mod.disable()
 end
 
 function mod.toggleDoNotDisturb()
   -- check if enabled
-  local isEnabled = mod.isEnabled()
-  local isPomododorEnabled = pomodor.isEnabled()
+  local _ = mod.isEnabled()
+  local isPomodoroEnabled = pomodoro.isEnabled()
 
-  if isPomododorEnabled == true then
+  if isPomodoroEnabled == true then
     log:d("disabled working!")
-    hs.notify.new(notification.vars.messageDisabled):send()
-    notification.stopWorking()
+    hs.notify.new(mod.vars.messageDisabled):send()
+    mod.stopWorking()
   else
     log:d("active working!")
-    hs.notify.new(notification.vars.messageEnabled):send()
-    notification.startWorking()
+    hs.notify.new(mod.vars.messageEnabled):send()
+    mod.startWorking()
   end
 end
 
 function mod.init()
   mod.toggleDoNotDisturb()
+  hotkey.bindWithCtrlAlt("w", "Toggle Work", mod.toggleDoNotDisturb)
 end
 
-function mod.unload()
-end
+function mod.unload() end
 
 return mod

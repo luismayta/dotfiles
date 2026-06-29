@@ -33,12 +33,8 @@
         "file": "Source/WiFiTransitions.spoon//init.lua",
         "lineno": "101",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The WiFiTransitions spoon object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The WiFiTransitions spoon object"],
         "signature": "WiFiTransitions:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -141,12 +137,8 @@
         "file": "Source/WiFiTransitions.spoon//init.lua",
         "lineno": "101",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The WiFiTransitions spoon object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The WiFiTransitions spoon object"],
         "signature": "WiFiTransitions:start()",
         "stripped_doc": "",
         "type": "Method"

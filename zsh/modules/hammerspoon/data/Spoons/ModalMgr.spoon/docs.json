@@ -35,9 +35,7 @@
         "lineno": "205",
         "name": "deactivate",
         "notes": [],
-        "parameters": [
-          " * idList - An table specifying IDs of modal environments"
-        ],
+        "parameters": [" * idList - An table specifying IDs of modal environments"],
         "returns": [],
         "signature": "ModalMgr:deactivate(idList)",
         "stripped_doc": "",
@@ -52,9 +50,7 @@
         "lineno": "224",
         "name": "deactivateAll",
         "notes": [],
-        "parameters": [
-          " * None"
-        ],
+        "parameters": [" * None"],
         "returns": [],
         "signature": "ModalMgr:deactivateAll()",
         "stripped_doc": "",
@@ -69,9 +65,7 @@
         "lineno": "57",
         "name": "new",
         "notes": [],
-        "parameters": [
-          " * id - A string specifying ID of new modal keybindings"
-        ],
+        "parameters": [" * id - A string specifying ID of new modal keybindings"],
         "returns": [],
         "signature": "ModalMgr:new(id)",
         "stripped_doc": "",
@@ -128,9 +122,7 @@
         "lineno": "205",
         "name": "deactivate",
         "notes": [],
-        "parameters": [
-          " * idList - An table specifying IDs of modal environments"
-        ],
+        "parameters": [" * idList - An table specifying IDs of modal environments"],
         "returns": [],
         "signature": "ModalMgr:deactivate(idList)",
         "stripped_doc": "",
@@ -145,9 +137,7 @@
         "lineno": "224",
         "name": "deactivateAll",
         "notes": [],
-        "parameters": [
-          " * None"
-        ],
+        "parameters": [" * None"],
         "returns": [],
         "signature": "ModalMgr:deactivateAll()",
         "stripped_doc": "",
@@ -162,9 +152,7 @@
         "lineno": "57",
         "name": "new",
         "notes": [],
-        "parameters": [
-          " * id - A string specifying ID of new modal keybindings"
-        ],
+        "parameters": [" * id - A string specifying ID of new modal keybindings"],
         "returns": [],
         "signature": "ModalMgr:new(id)",
         "stripped_doc": "",

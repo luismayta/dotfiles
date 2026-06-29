@@ -4,7 +4,7 @@
 ---
 --- Download: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/WiFiTransitions.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/WiFiTransitions.spoon.zip)
 
-local obj={}
+local obj = {}
 obj.__index = obj
 
 -- Metadata
@@ -17,7 +17,7 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- WiFiTransitions.logger
 --- Variable
 --- Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.
-obj.logger = hs.logger.new('WiFiTransitions')
+obj.logger = hs.logger.new("WiFiTransitions")
 
 --- WiFiTransitions.actions
 --- Variable
@@ -44,11 +44,11 @@ obj.wifiwatcher = nil
 
 -- Internal function to match SSIDs against a pattern
 function obj.ssid_match(ssid, spec)
-   return
-      -- No spec ssid given, or
-      (spec == nil) or
+  return
+    -- No spec ssid given, or
+    (spec == nil)
       -- ...spec ssid and given ssid match
-      ((ssid ~= nil) and (spec ~= nil) and (string.find(ssid, spec) ~= nil))
+      or ((ssid ~= nil) and (spec ~= nil) and (string.find(ssid, spec) ~= nil))
 end
 
 --- WiFiTransitions:processTransition(new_ssid, prev_ssid, interface)
@@ -63,39 +63,43 @@ end
 --- Notes:
 ---  * This method is called internally by the `hs.wifi.watcher` object when WiFi transitions happen. It does not get any system information nor does it set any Spoon state information, so it can also be used to "trigger" transitions manually, either for testing or if the automated processing fails for any reason.
 function obj:processTransition(new_ssid, prev_ssid, interface)
-   self.logger.df("Processing transition new_ssid=%s, prev_ssid=%s, interface=%s", new_ssid, prev_ssid, interface)
-   if self.actOnNilTransitions or new_ssid ~= nil then
-      for _,a in ipairs(self.actions) do
-         self.logger.df("  Evaluating spec %s", hs.inspect(a))
-         if self.ssid_match(prev_ssid, a.from) and self.ssid_match(new_ssid, a.to) and (new_ssid ~= prev_ssid) then
-            self.logger.df("    Match!")
-            if a.fn then
-               local fns=a.fn
-               if type(fns) == "function" then fns = {fns} end
-               for _,f in ipairs(fns) do
-                  f(event, interface, prev_ssid, new_ssid)
-               end
-            elseif a.cmd then
-               local cmds=a.cmd
-               if type(cmds) == "string" then cmds = {cmds} end
-               for _,c in ipairs(cmds) do
-                  hs.execute(c)
-               end
-            else
-               self.logger.ef("No fn/cmd action defined in spec %s", hs.inspect(a))
-            end
-         end
+  self.logger.df("Processing transition new_ssid=%s, prev_ssid=%s, interface=%s", new_ssid, prev_ssid, interface)
+  if self.actOnNilTransitions or new_ssid ~= nil then
+    for _, a in ipairs(self.actions) do
+      self.logger.df("  Evaluating spec %s", hs.inspect(a))
+      if self.ssid_match(prev_ssid, a.from) and self.ssid_match(new_ssid, a.to) and (new_ssid ~= prev_ssid) then
+        self.logger.df("    Match!")
+        if a.fn then
+          local fns = a.fn
+          if type(fns) == "function" then
+            fns = { fns }
+          end
+          for _, f in ipairs(fns) do
+            f(event, interface, prev_ssid, new_ssid)
+          end
+        elseif a.cmd then
+          local cmds = a.cmd
+          if type(cmds) == "string" then
+            cmds = { cmds }
+          end
+          for _, c in ipairs(cmds) do
+            hs.execute(c)
+          end
+        else
+          self.logger.ef("No fn/cmd action defined in spec %s", hs.inspect(a))
+        end
       end
-   end
+    end
+  end
 end
 
 -- Internal hs.wifi.watcher callback function
 function obj:wifiwatcher(watcher, event, interface)
-   local new_ssid = hs.wifi.currentNetwork()
-   local prev_ssid = self.previous_ssid
-   self.logger.df("New WiFi event %s, interface=%s", event, interface)
-   self:processTransition(new_ssid, prev_ssid, interface)
-   self.previous_ssid = new_ssid
+  local new_ssid = hs.wifi.currentNetwork()
+  local prev_ssid = self.previous_ssid
+  self.logger.df("New WiFi event %s, interface=%s", event, interface)
+  self:processTransition(new_ssid, prev_ssid, interface)
+  self.previous_ssid = new_ssid
 end
 
 --- WiFiTransitions:start()
@@ -108,9 +112,9 @@ end
 --- Returns:
 ---  * The WiFiTransitions spoon object
 function obj:start()
-   self.previous_ssid = hs.wifi.currentNetwork()
-   self.wifiwatcher=hs.wifi.watcher.new(hs.fnutils.partial(self.wifiwatcher, self)):start()
-   return self
+  self.previous_ssid = hs.wifi.currentNetwork()
+  self.wifiwatcher = hs.wifi.watcher.new(hs.fnutils.partial(self.wifiwatcher, self)):start()
+  return self
 end
 
 return obj

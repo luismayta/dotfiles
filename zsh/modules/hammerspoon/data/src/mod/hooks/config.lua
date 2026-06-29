@@ -12,26 +12,25 @@ local function getSpoons(hotkey, handlers)
   return {
     {
       name = "USBDeviceActions",
- {
+      {
         config = {
-            devices = {
-                MrRobot = { fn = handlers.notifyUsb },
-            },
+          devices = {
+            MrRobot = { fn = handlers.notifyUsb },
+          },
         },
         start = true,
-    }
+      },
     },
     {
       name = "BluetoothDeviceActions",
- {
+      {
         config = {
-            devices = {
-                AirPods = { fn = handlers.notifyBluetooth },
-            },
+          devices = {
+            AirPods = { fn = handlers.notifyBluetooth },
+          },
         },
         start = true,
-    }
-
+      },
     },
   }
 end

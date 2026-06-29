@@ -30,6 +30,8 @@ pkgs.mkShell {
     codespell
     lychee
     yamllint
+    luaPackages.luacheck
+    stylua
 
     # Templating & generation
     gomplate

@@ -191,6 +191,7 @@ tasks:
     cmds:
       - task: biome:fmt
       - task: uv:fmt
+      - cmd: stylua --allow-hidden .
 
   upgrade:
     desc: Execute upgrade packages

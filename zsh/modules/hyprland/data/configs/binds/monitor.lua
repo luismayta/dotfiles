@@ -18,11 +18,19 @@ function M.register(mainMod, C)
   -- Monitor scaling cycle: SUPER + period to cycle forward, SUPER + ALT + equal backward
   -- (SUPER + equal is reserved for window resize)
   --
-  hl.bind(C.DIRECT .. " + period", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle"))
-  hl.bind(C.SUPER_ALT .. " + equal", hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle --reverse"))
+  hl.bind(
+    C.DIRECT .. " + period",
+    hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle")
+  )
+  hl.bind(
+    C.SUPER_ALT .. " + equal",
+    hl.dsp.exec_cmd("$HOME/.dotfiles/zsh/modules/hyprland/data/bin/monitor-scaling-cycle --reverse")
+  )
 
   -- Toggle internal display (eDP-1) with safety check: SUPER + CTRL + Delete
-  hl.bind(C.SUPER_CTRL .. " + Delete", hl.dsp.exec_cmd([[
+  hl.bind(
+    C.SUPER_CTRL .. " + Delete",
+    hl.dsp.exec_cmd([[
     state=$(hyprctl monitors -j | jq -r '.[] | select(.name == "eDP-1") | .disabled // false')
     if [ "$state" = "true" ]; then
       hyprctl eval 'hl.monitor({ output="eDP-1", mode="preferred", position="auto", scale=1 })'
@@ -33,10 +41,13 @@ function M.register(mainMod, C)
       while read ws; do hyprctl dispatch moveworkspacetomonitor "$ws" "$other"; done
       hyprctl eval 'hl.monitor({ output="eDP-1", disabled=true })'
     fi
-  ]]))
+  ]])
+  )
 
   -- Mirror internal display: SUPER + CTRL + ALT + Delete
-  hl.bind(C.HYPER .. " + Delete", hl.dsp.exec_cmd([[
+  hl.bind(
+    C.HYPER .. " + Delete",
+    hl.dsp.exec_cmd([[
     state=$(hyprctl monitors -j | jq -r '.[] | select(.name == "eDP-1") | .disabled // false')
     if [ "$state" = "true" ]; then
       external=$(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | .name' | head -1)
@@ -45,18 +56,27 @@ function M.register(mainMod, C)
     else
       hyprctl eval 'hl.monitor({ output="eDP-1", disabled=true })'
     fi
-  ]]))
+  ]])
+  )
 
   -- Lid Switch: disable internal when external connected, re-enable when opened
-  hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd([[
+  hl.bind(
+    "switch:on:Lid Switch",
+    hl.dsp.exec_cmd([[
     external=$(hyprctl monitors -j | jq -r '.[] | select(.name != "eDP-1") | .name' | head -1)
     if [ -n "$external" ]; then
       hyprctl workspaces -j | jq -r '.[] | select(.monitor == "eDP-1") | .id' |
       while read ws; do hyprctl dispatch moveworkspacetomonitor "$ws" "$external"; done
       hyprctl eval 'hl.monitor({ output="eDP-1", disabled=true })'
     fi
-  ]]), { locked = true })
-  hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd("hyprctl eval 'hl.monitor({ output=\"eDP-1\", mode=\"preferred\", position=\"auto\", scale=1 })'"), { locked = true })
+  ]]),
+    { locked = true }
+  )
+  hl.bind(
+    "switch:off:Lid Switch",
+    hl.dsp.exec_cmd('hyprctl eval \'hl.monitor({ output="eDP-1", mode="preferred", position="auto", scale=1 })\''),
+    { locked = true }
+  )
 end
 
 return M

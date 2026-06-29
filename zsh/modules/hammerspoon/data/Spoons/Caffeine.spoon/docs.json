@@ -16,9 +16,7 @@
           " * mapping - A table containing hotkey modifier/key details for the following items:",
           "  * toggle - This will toggle the state of display sleep prevention, and update the menubar graphic"
         ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:bindHotkeys(mapping)",
         "stripped_doc": "",
         "type": "Method"
@@ -31,9 +29,7 @@
         "parameters": [
           " * on - A boolean, true if screens should be kept awake, false to let macOS send them to sleep"
         ],
-        "returns": [
-          " * None"
-        ],
+        "returns": [" * None"],
         "signature": "Caffeine:setState(on)",
         "stripped_doc": "",
         "type": "Method"
@@ -43,12 +39,8 @@
         "desc": "Starts Caffeine",
         "doc": "Starts Caffeine\n\nParameters:\n * None\n\nReturns:\n * The Caffeine object",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -58,12 +50,8 @@
         "desc": "Stops Caffeine",
         "doc": "Stops Caffeine\n\nParameters:\n * None\n\nReturns:\n * The Caffeine object",
         "name": "stop",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:stop()",
         "stripped_doc": "",
         "type": "Method"
@@ -82,9 +70,7 @@
           " * mapping - A table containing hotkey modifier/key details for the following items:",
           "  * toggle - This will toggle the state of display sleep prevention, and update the menubar graphic"
         ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:bindHotkeys(mapping)",
         "stripped_doc": "",
         "type": "Method"
@@ -97,9 +83,7 @@
         "parameters": [
           " * on - A boolean, true if screens should be kept awake, false to let macOS send them to sleep"
         ],
-        "returns": [
-          " * None"
-        ],
+        "returns": [" * None"],
         "signature": "Caffeine:setState(on)",
         "stripped_doc": "",
         "type": "Method"
@@ -109,12 +93,8 @@
         "desc": "Starts Caffeine",
         "doc": "Starts Caffeine\n\nParameters:\n * None\n\nReturns:\n * The Caffeine object",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -124,12 +104,8 @@
         "desc": "Stops Caffeine",
         "doc": "Stops Caffeine\n\nParameters:\n * None\n\nReturns:\n * The Caffeine object",
         "name": "stop",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * The Caffeine object"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * The Caffeine object"],
         "signature": "Caffeine:stop()",
         "stripped_doc": "",
         "type": "Method"

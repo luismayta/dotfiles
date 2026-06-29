@@ -76,8 +76,14 @@ local function launch_or_focus(class, cmd)
 
     -- 3. Window not found — launch it
     local active_class = "nil"
-    if active ~= nil then active_class = active.class end
-    hl.dispatch(hl.dsp.exec_cmd("notify-send 'launch_or_focus' 'not found, active=" .. active_class .. ", launching " .. (cmd or class) .. "'"))
+    if active ~= nil then
+      active_class = active.class
+    end
+    hl.dispatch(
+      hl.dsp.exec_cmd(
+        "notify-send 'launch_or_focus' 'not found, active=" .. active_class .. ", launching " .. (cmd or class) .. "'"
+      )
+    )
 
     hl.dispatch(hl.dsp.exec_cmd(cmd or class))
   end

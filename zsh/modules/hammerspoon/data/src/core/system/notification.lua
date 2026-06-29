@@ -39,7 +39,7 @@ function M.setStatusNotification(status)
     script = "do-not-disturb on"
   end
 
-  local _, _, _, code = hs.execute(script, true)
+  local _, _, _, _ = hs.execute(script, true)
   return status
 end
 

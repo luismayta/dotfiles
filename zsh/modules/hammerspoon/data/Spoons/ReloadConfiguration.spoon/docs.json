@@ -25,9 +25,7 @@
         "desc": "Start ReloadConfiguration",
         "doc": "Start ReloadConfiguration\n\nParameters:\n * None",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
+        "parameters": [" * None"],
         "signature": "ReloadConfiguration:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -65,9 +63,7 @@
         "desc": "Start ReloadConfiguration",
         "doc": "Start ReloadConfiguration\n\nParameters:\n * None",
         "name": "start",
-        "parameters": [
-          " * None"
-        ],
+        "parameters": [" * None"],
         "signature": "ReloadConfiguration:start()",
         "stripped_doc": "",
         "type": "Method"

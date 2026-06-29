@@ -12,9 +12,7 @@
         "desc": "Initialize the WifiNotifier spoon",
         "doc": "Initialize the WifiNotifier spoon\n\nReturns:\n* The WifiNotifier object",
         "name": "init",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:init()",
         "stripped_doc": "",
         "type": "Method"
@@ -24,9 +22,7 @@
         "desc": "Fires whenever the wifiWatcher detects an SSID change.",
         "doc": "Fires whenever the wifiWatcher detects an SSID change.\n\nReturns:\n* The WifiNotifier object",
         "name": "ssidChangedCallback",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:ssidChangedCallback()",
         "stripped_doc": "",
         "type": "Method"
@@ -36,9 +32,7 @@
         "desc": "Starts the wifiNotifier",
         "doc": "Starts the wifiNotifier\n\nReturns:\n* The WifiNotifier object",
         "name": "start",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -53,9 +47,7 @@
         "desc": "Initialize the WifiNotifier spoon",
         "doc": "Initialize the WifiNotifier spoon\n\nReturns:\n* The WifiNotifier object",
         "name": "init",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:init()",
         "stripped_doc": "",
         "type": "Method"
@@ -65,9 +57,7 @@
         "desc": "Fires whenever the wifiWatcher detects an SSID change.",
         "doc": "Fires whenever the wifiWatcher detects an SSID change.\n\nReturns:\n* The WifiNotifier object",
         "name": "ssidChangedCallback",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:ssidChangedCallback()",
         "stripped_doc": "",
         "type": "Method"
@@ -77,9 +67,7 @@
         "desc": "Starts the wifiNotifier",
         "doc": "Starts the wifiNotifier\n\nReturns:\n* The WifiNotifier object",
         "name": "start",
-        "returns": [
-          "* The WifiNotifier object"
-        ],
+        "returns": ["* The WifiNotifier object"],
         "signature": "WifiNotifier:start()",
         "stripped_doc": "",
         "type": "Method"

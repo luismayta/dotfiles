@@ -77,10 +77,26 @@ function M.register(mainMod, C)
 
   -- Multimedia keys (no mainMod prefix)
   local media_binds = {
-    { key = "XF86AudioRaiseVolume", exec = "dms ipc call audio increment 3", opts = { locked = true, repeating = true } },
-    { key = "XF86AudioLowerVolume", exec = "dms ipc call audio decrement 3", opts = { locked = true, repeating = true } },
-    { key = "XF86MonBrightnessDown", exec = "dms ipc call brightness decrement 5", opts = { locked = true, repeating = true } },
-    { key = "XF86MonBrightnessUp", exec = "dms ipc call brightness increment 5", opts = { locked = true, repeating = true } },
+    {
+      key = "XF86AudioRaiseVolume",
+      exec = "dms ipc call audio increment 3",
+      opts = { locked = true, repeating = true },
+    },
+    {
+      key = "XF86AudioLowerVolume",
+      exec = "dms ipc call audio decrement 3",
+      opts = { locked = true, repeating = true },
+    },
+    {
+      key = "XF86MonBrightnessDown",
+      exec = "dms ipc call brightness decrement 5",
+      opts = { locked = true, repeating = true },
+    },
+    {
+      key = "XF86MonBrightnessUp",
+      exec = "dms ipc call brightness increment 5",
+      opts = { locked = true, repeating = true },
+    },
     { key = "XF86AudioMicMute", exec = "dms ipc call audio micmute", opts = { locked = true } },
     { key = "XF86AudioMute", exec = "dms ipc call audio mute", opts = { locked = true } },
     { key = "XF86AudioNext", exec = "dms ipc call mpris next", opts = { locked = true } },
@@ -106,17 +122,25 @@ function M.register(mainMod, C)
     end
   end
 
-  hl.bind(C.DIRECT .. " + C", send_shortcut_once("CTRL", "Insert"))  -- universal copy (overrides old center-window which moved to SHIFT+C)
-  hl.bind(C.DIRECT .. " + V", send_shortcut_once("SHIFT", "Insert"))  -- universal paste
-  hl.bind(C.SUPER_SHIFT .. " + X", send_shortcut_once("CTRL", "X"))  -- universal cut
-  hl.bind(C.SUPER_CTRL .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))  -- clipboard manager
+  hl.bind(C.DIRECT .. " + C", send_shortcut_once("CTRL", "Insert")) -- universal copy (overrides old center-window which moved to SHIFT+C)
+  hl.bind(C.DIRECT .. " + V", send_shortcut_once("SHIFT", "Insert")) -- universal paste
+  hl.bind(C.SUPER_SHIFT .. " + X", send_shortcut_once("CTRL", "X")) -- universal cut
+  hl.bind(C.SUPER_CTRL .. " + V", hl.dsp.exec_cmd("walker -m clipboard")) -- clipboard manager
 
   --
   -- Hardware controls (keyboard backlight, touchpad, precise audio/brightness)
   --
   -- Keyboard backlight
-  hl.bind("XF86KbdBrightnessUp", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set +33%"), { locked = true, repeating = true })
-  hl.bind("XF86KbdBrightnessDown", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 33%-"), { locked = true, repeating = true })
+  hl.bind(
+    "XF86KbdBrightnessUp",
+    hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set +33%"),
+    { locked = true, repeating = true }
+  )
+  hl.bind(
+    "XF86KbdBrightnessDown",
+    hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 33%-"),
+    { locked = true, repeating = true }
+  )
   hl.bind(C.DIRECT .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 100%"), { locked = true })
   hl.bind(C.SUPER_SHIFT .. " + F12", hl.dsp.exec_cmd("brightnessctl -d '*::kbd_backlight' set 0%"), { locked = true })
 
@@ -126,12 +150,28 @@ function M.register(mainMod, C)
   hl.bind(C.SUPER_SHIFT_ALT .. " + SPACE", hl.dsp.exec_cmd("dms ipc call touchpad off"), { locked = true })
 
   -- Precise volume (±1%)
-  hl.bind("ALT + XF86AudioLowerVolume", hl.dsp.exec_cmd("dms ipc call audio decrement 1"), { locked = true, repeating = true })
-  hl.bind("ALT + XF86AudioRaiseVolume", hl.dsp.exec_cmd("dms ipc call audio increment 1"), { locked = true, repeating = true })
+  hl.bind(
+    "ALT + XF86AudioLowerVolume",
+    hl.dsp.exec_cmd("dms ipc call audio decrement 1"),
+    { locked = true, repeating = true }
+  )
+  hl.bind(
+    "ALT + XF86AudioRaiseVolume",
+    hl.dsp.exec_cmd("dms ipc call audio increment 1"),
+    { locked = true, repeating = true }
+  )
 
   -- Precise brightness (±1%)
-  hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("dms ipc call brightness decrement 1"), { locked = true, repeating = true })
-  hl.bind("ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("dms ipc call brightness increment 1"), { locked = true, repeating = true })
+  hl.bind(
+    "ALT + XF86MonBrightnessDown",
+    hl.dsp.exec_cmd("dms ipc call brightness decrement 1"),
+    { locked = true, repeating = true }
+  )
+  hl.bind(
+    "ALT + XF86MonBrightnessUp",
+    hl.dsp.exec_cmd("dms ipc call brightness increment 1"),
+    { locked = true, repeating = true }
+  )
 
   -- Enhanced group management
   local group_dir_map = { H = "l", J = "d", K = "u", L = "r" }

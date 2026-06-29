@@ -25,12 +25,8 @@
         "desc": "Popup an alert or notification when time is up.",
         "doc": "Popup an alert or notification when time is up.\n\nParameters:\n * None\n\nReturns:\n * None",
         "name": "popup",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * None"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * None"],
         "signature": "Cherry:popup()",
         "stripped_doc": "",
         "type": "Method"
@@ -40,12 +36,8 @@
         "desc": "Starts the timer and displays the countdown in a menubar item",
         "doc": "Starts the timer and displays the countdown in a menubar item\n\nParameters:\n * resume - boolean when true resumes countdown at current value of self.timeLeft\n\nReturns:\n * None",
         "name": "start",
-        "parameters": [
-          " * resume - boolean when true resumes countdown at current value of self.timeLeft"
-        ],
-        "returns": [
-          " * None"
-        ],
+        "parameters": [" * resume - boolean when true resumes countdown at current value of self.timeLeft"],
+        "returns": [" * None"],
         "signature": "Cherry:start()",
         "stripped_doc": "",
         "type": "Method"
@@ -73,12 +65,8 @@
         "desc": "Popup an alert or notification when time is up.",
         "doc": "Popup an alert or notification when time is up.\n\nParameters:\n * None\n\nReturns:\n * None",
         "name": "popup",
-        "parameters": [
-          " * None"
-        ],
-        "returns": [
-          " * None"
-        ],
+        "parameters": [" * None"],
+        "returns": [" * None"],
         "signature": "Cherry:popup()",
         "stripped_doc": "",
         "type": "Method"
@@ -88,12 +76,8 @@
         "desc": "Starts the timer and displays the countdown in a menubar item",
         "doc": "Starts the timer and displays the countdown in a menubar item\n\nParameters:\n * resume - boolean when true resumes countdown at current value of self.timeLeft\n\nReturns:\n * None",
         "name": "start",
-        "parameters": [
-          " * resume - boolean when true resumes countdown at current value of self.timeLeft"
-        ],
-        "returns": [
-          " * None"
-        ],
+        "parameters": [" * resume - boolean when true resumes countdown at current value of self.timeLeft"],
+        "returns": [" * None"],
         "signature": "Cherry:start()",
         "stripped_doc": "",
         "type": "Method"

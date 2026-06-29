@@ -4,7 +4,6 @@
 ---
 --- Download: https://github.com/Hammerspoon/Spoons/raw/master/Spoons/WifiNotifier.spoon.zip
 
-
 local obj = {}
 obj.__index = obj
 
@@ -22,10 +21,12 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- Returns:
 --- * The WifiNotifier object
 function obj:init()
-    self.wifiNotifier = hs.wifi.watcher.new(function() self:ssidChangedCallback() end)
-    self.lastSSID = hs.wifi.currentNetwork()
-    self.newSSID  = nil
-    return self
+  self.wifiNotifier = hs.wifi.watcher.new(function()
+    self:ssidChangedCallback()
+  end)
+  self.lastSSID = hs.wifi.currentNetwork()
+  self.newSSID = nil
+  return self
 end
 
 --- WifiNotifier:start()
@@ -35,8 +36,8 @@ end
 --- Returns:
 --- * The WifiNotifier object
 function obj:start()
-    self.wifiNotifier:start()
-    return self
+  self.wifiNotifier:start()
+  return self
 end
 
 --- WifiNotifier:ssidChangedCallback()
@@ -46,17 +47,19 @@ end
 --- Returns:
 --- * The WifiNotifier object
 function obj:ssidChangedCallback()
-    self.newSSID = hs.wifi.currentNetwork()
+  self.newSSID = hs.wifi.currentNetwork()
 
-    if self.newSSID == nil then
-		hs.notify.new({title="Wifi disconnected", informativeText="Left " .. self.lastSSID}):send()
-	elseif lastSSID == nil then
-		hs.notify.new({title="Wifi connected", informativeText="Joined " .. self.newSSID}):send()
-	else
-		hs.notify.new({title="Network Change", informativeText="Left " .. self.lastSSID .. ". Joined " .. self.newSSID}):send()
-	end
+  if self.newSSID == nil then
+    hs.notify.new({ title = "Wifi disconnected", informativeText = "Left " .. self.lastSSID }):send()
+  elseif lastSSID == nil then
+    hs.notify.new({ title = "Wifi connected", informativeText = "Joined " .. self.newSSID }):send()
+  else
+    hs.notify
+      .new({ title = "Network Change", informativeText = "Left " .. self.lastSSID .. ". Joined " .. self.newSSID })
+      :send()
+  end
 
-    self.lastSSID = self.newSSID
+  self.lastSSID = self.newSSID
 end
 
 return obj

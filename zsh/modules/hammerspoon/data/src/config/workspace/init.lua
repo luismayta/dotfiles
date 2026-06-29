@@ -40,25 +40,25 @@ config.apps = {
   { mods = { "ctrl", "alt", "cmd" }, key = "z", app = "Zoom.us" },
 
   -- Browser Tools
-  { mods = { "ctrl", "alt" },        key = "b", app = "Brave Browser" },
-  { mods = { "ctrl", "alt" },        key = "c", app = "Comet" },
-  { mods = { "ctrl", "alt" },        key = "a", app = "Zen" },
+  { mods = { "ctrl", "alt" }, key = "b", app = "Brave Browser" },
+  { mods = { "ctrl", "alt" }, key = "c", app = "Comet" },
+  { mods = { "ctrl", "alt" }, key = "a", app = "Zen" },
 
   -- Others Tools
 
-  { mods = { "ctrl", "alt" },        key = ",", app = "System Preferences" },
-  { mods = { "ctrl", "alt" },        key = "3", app = "Launchpad" },
-  { mods = { "ctrl", "alt" },        key = "d", app = "Discord" },
-  { mods = { "ctrl", "alt" },        key = "f", app = "Figma" },
-  { mods = { "ctrl", "alt" },        key = "e", app = "Spark" },
-  { mods = { "ctrl", "alt" },        key = "h", app = "WhatsApp" },
-  { mods = { "ctrl", "alt" },        key = "t", app = "Telegram" },
-  { mods = { "ctrl", "alt" },        key = "m", app = "Music" },
-  { mods = { "ctrl", "alt" },        key = "r", app = "Reminders" },
-  { mods = { "ctrl", "alt" },        key = "o", app = "Finder" },
-  { mods = { "ctrl", "alt" },        key = "s", app = "Stocks" },
+  { mods = { "ctrl", "alt" }, key = ",", app = "System Preferences" },
+  { mods = { "ctrl", "alt" }, key = "3", app = "Launchpad" },
+  { mods = { "ctrl", "alt" }, key = "d", app = "Discord" },
+  { mods = { "ctrl", "alt" }, key = "f", app = "Figma" },
+  { mods = { "ctrl", "alt" }, key = "e", app = "Spark" },
+  { mods = { "ctrl", "alt" }, key = "h", app = "WhatsApp" },
+  { mods = { "ctrl", "alt" }, key = "t", app = "Telegram" },
+  { mods = { "ctrl", "alt" }, key = "m", app = "Music" },
+  { mods = { "ctrl", "alt" }, key = "r", app = "Reminders" },
+  { mods = { "ctrl", "alt" }, key = "o", app = "Finder" },
+  { mods = { "ctrl", "alt" }, key = "s", app = "Stocks" },
 
-  { mods = { "shift", "cmd" },       key = "b", app = "Binance" },
+  { mods = { "shift", "cmd" }, key = "b", app = "Binance" },
 }
 
 config.spoons = {

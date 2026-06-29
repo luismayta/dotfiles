@@ -11,14 +11,14 @@ local function setup_diagnostics()
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
 
-  vim.diagnostic.config({
+  vim.diagnostic.config {
     virtual_text = { prefix = "●" },
     signs = true,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
     float = { border = "rounded" },
-  })
+  }
 end
 
 M.setup_diagnostics = setup_diagnostics

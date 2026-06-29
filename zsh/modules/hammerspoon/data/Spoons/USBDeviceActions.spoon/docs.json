@@ -12,9 +12,7 @@
         "desc": "Creates an `hs.usb.watcher` with a callback that will execute the specified actions for the USB devices in `USBDeviceActions.devices` when they are connected/disconnected, but doesn't start the watcher.",
         "doc": "Creates an `hs.usb.watcher` with a callback that will execute the specified actions for the USB devices in `USBDeviceActions.devices` when they are connected/disconnected, but doesn't start the watcher.\n\nReturns:\n * Self",
         "name": "init",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:init() -> Self",
         "stripped_doc": "",
         "type": "Method"
@@ -24,9 +22,7 @@
         "desc": "Starts the `hs.usb.watcher` created by `USBDeviceActions:init()`.",
         "doc": "Starts the `hs.usb.watcher` created by `USBDeviceActions:init()`.\n\nReturns:\n * Self",
         "name": "start",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:start() -> Self",
         "stripped_doc": "",
         "type": "Method"
@@ -36,9 +32,7 @@
         "desc": "Stops the `hs.usb.watcher` created by `USBDeviceActions:init()`.",
         "doc": "Stops the `hs.usb.watcher` created by `USBDeviceActions:init()`.\n\nReturns:\n * Self",
         "name": "stop",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:stop() -> Self",
         "stripped_doc": "",
         "type": "Method"
@@ -72,9 +66,7 @@
         "desc": "Creates an `hs.usb.watcher` with a callback that will execute the specified actions for the USB devices in `USBDeviceActions.devices` when they are connected/disconnected, but doesn't start the watcher.",
         "doc": "Creates an `hs.usb.watcher` with a callback that will execute the specified actions for the USB devices in `USBDeviceActions.devices` when they are connected/disconnected, but doesn't start the watcher.\n\nReturns:\n * Self",
         "name": "init",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:init() -> Self",
         "stripped_doc": "",
         "type": "Method"
@@ -84,9 +76,7 @@
         "desc": "Starts the `hs.usb.watcher` created by `USBDeviceActions:init()`.",
         "doc": "Starts the `hs.usb.watcher` created by `USBDeviceActions:init()`.\n\nReturns:\n * Self",
         "name": "start",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:start() -> Self",
         "stripped_doc": "",
         "type": "Method"
@@ -96,9 +86,7 @@
         "desc": "Stops the `hs.usb.watcher` created by `USBDeviceActions:init()`.",
         "doc": "Stops the `hs.usb.watcher` created by `USBDeviceActions:init()`.\n\nReturns:\n * Self",
         "name": "stop",
-        "returns": [
-          " * Self"
-        ],
+        "returns": [" * Self"],
         "signature": "USBDeviceActions:stop() -> Self",
         "stripped_doc": "",
         "type": "Method"

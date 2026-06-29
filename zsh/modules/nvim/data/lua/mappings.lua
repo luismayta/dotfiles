@@ -89,9 +89,8 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 
-
 -- Define mappings for Telescope
-local tele = require("jasper.telescope")
+local tele = require "jasper.telescope"
 map("n", "<leader>ff", tele.ff, opts)
 map("n", "<leader>fg", tele.fg, opts)
 map("n", "<leader>fb", tele.fb, opts)

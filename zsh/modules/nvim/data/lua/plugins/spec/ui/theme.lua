@@ -5,7 +5,7 @@ return {
     priority = 1000,
     lazy = false,
     config = function()
-      require("catppuccin").setup({
+      require("catppuccin").setup {
         flavour = "mocha",
         transparent_background = false,
         integrations = {
@@ -17,9 +17,9 @@ return {
             enabled = true,
           },
         },
-      })
+      }
 
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
   {

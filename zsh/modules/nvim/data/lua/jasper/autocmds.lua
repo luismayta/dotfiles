@@ -8,10 +8,10 @@ function M.setup()
     group = group,
     pattern = "*",
     callback = function(args)
-      local clients = vim.lsp.get_clients({ bufnr = args.buf })
+      local clients = vim.lsp.get_clients { bufnr = args.buf }
       for _, client in ipairs(clients) do
         if client.server_capabilities.documentFormattingProvider then
-          vim.lsp.buf.format({ bufnr = args.buf })
+          vim.lsp.buf.format { bufnr = args.buf }
           break
         end
       end
@@ -23,7 +23,7 @@ function M.setup()
     group = group,
     pattern = "*",
     callback = function()
-      vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+      vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
     end,
   })
 

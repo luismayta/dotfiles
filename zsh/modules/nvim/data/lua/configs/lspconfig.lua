@@ -7,7 +7,9 @@ require("jasper.lsp").setup_diagnostics()
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client then return end
+    if not client then
+      return
+    end
 
     -- Disable formatting for ts_ls (use conform instead)
     if client.name == "ts_ls" then
@@ -21,7 +23,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Simple servers (no extra config needed)
-vim.lsp.enable({ "html", "cssls", "clangd", "pyright", "yamlls", "dockerls", "clojure_lsp", "cmake", "vimls", "ansiblels", "tflint", "bashls", "ruff", "texlab", "marksman", "solidity", "taplo", "sqls", "sqlls", "intelephense" })
+vim.lsp.enable {
+  "html",
+  "cssls",
+  "clangd",
+  "pyright",
+  "yamlls",
+  "dockerls",
+  "clojure_lsp",
+  "cmake",
+  "vimls",
+  "ansiblels",
+  "tflint",
+  "bashls",
+  "ruff",
+  "texlab",
+  "marksman",
+  "solidity",
+  "taplo",
+  "sqls",
+  "sqlls",
+  "intelephense",
+}
 
 -- Go
 vim.lsp.config("gopls", {
@@ -38,14 +61,14 @@ vim.lsp.config("gopls", {
     },
   },
 })
-vim.lsp.enable("gopls")
+vim.lsp.enable "gopls"
 
 -- Terraform
 vim.lsp.config("terraformls", {
   cmd = { "terraform-ls", "serve" },
   root_markers = { ".terraform", ".git" },
 })
-vim.lsp.enable("terraformls")
+vim.lsp.enable "terraformls"
 
 -- TypeScript (formatting disabled in LspAttach handler)
-vim.lsp.enable("ts_ls")
+vim.lsp.enable "ts_ls"

@@ -1,3 +1,33 @@
+--[[
+File:    mod/work/config.lua
+Purpose: Work module configuration — workspace profiles, app hotkeys, Spoon plugin
+         configs, and pomodoro-related settings.
+Author:  Hammerspoon Config Team
+--]]
+
+--[[
+  Work module configuration — workspace profiles, app hotkeys, and Spoon configs.
+
+  Workspace profiles (config.profiles):
+    Each profile defines which apps launch on mainScreen vs secondScreen:
+      profileName = {
+        mainScreen = { "App1", "App2" },
+        secondScreen = { "App3", "App4" },
+      }
+
+  To add a new profile:
+    1. Add an entry to getProfiles() with the desired app layout
+    2. The profile switch hotkey is defined in getHotkeys()
+
+  To add a new app hotkey:
+    1. Add an entry to getApps() with key + app name
+    2. The key will be bound with the hyper modifier (ctrl+alt)
+
+  Spoon entries in getSpoons() support:
+    - name: The Spoon's folder name in ~/.hammerspoon/Spoons/
+    - settings.hotkeys: Table passed to spoon:bindHotkeys()
+    - settings.start: Boolean, whether to auto-start on load
+--]]
 local M = {}
 
 local function getProfiles()

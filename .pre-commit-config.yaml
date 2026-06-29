@@ -140,6 +140,20 @@ repos:
 
   - repo: local
     hooks:
+      - id: luacheck
+        name: Luacheck lint
+        entry: luacheck
+        language: system
+        args: ["--config", ".ci/linters/.luacheckrc"]
+        files: ^zsh/modules/hammerspoon/data/src/
+
+      - id: stylua
+        name: StyLua format
+        entry: stylua
+        language: system
+        args: ["--check"]
+        files: \.lua$
+
       - id: luac-check
         name: Check Lua syntax
         entry: luac -p

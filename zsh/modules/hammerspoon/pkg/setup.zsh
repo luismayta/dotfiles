@@ -12,3 +12,4 @@ function hammerspoon::setup {
     hammerspoon::sync
     message_success "${HAMMERSPOON_PACK_NAME} setup complete."
 }
+

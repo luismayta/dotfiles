@@ -11,9 +11,13 @@ function M.lsp(bufnr)
   map("gi", vim.lsp.buf.implementation, "Go to implementation", opts)
   map("K", vim.lsp.buf.hover, "Hover documentation", opts)
   map("gK", vim.lsp.buf.signature_help, "Signature help", opts)
-  map("<leader>rn", function() require("nvchad.ui.renamer").open() end, "LSP rename", opts)
+  map("<leader>rn", function()
+    require("nvchad.ui.renamer").open()
+  end, "LSP rename", opts)
   map("<leader>ca", vim.lsp.buf.code_action, "Code action", opts)
-  map("<leader>fm", function() vim.lsp.buf.format({ async = true }) end, "Format buffer", opts)
+  map("<leader>fm", function()
+    vim.lsp.buf.format { async = true }
+  end, "Format buffer", opts)
 end
 
 return M
