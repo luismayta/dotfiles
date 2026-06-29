@@ -1,0 +1,5 @@
+# shellcheck shell=bash
+ZSH_HAMMERSPOON_ENABLED="${ZSH_HAMMERSPOON_ENABLED:-true}"
+export HAMMERSPOON_PACK_NAME=hammerspoon
+export HAMMERSPOON_CONFIG_PATH="${HOME}/.hammerspoon"
+export ZSH_HAMMERSPOON_DATA_PATH="${HAMMERSPOON_PATH}/data"

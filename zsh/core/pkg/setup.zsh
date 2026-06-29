@@ -7,7 +7,7 @@
 # shellcheck disable=SC2034
 typeset -ga DOTFILES_SETUP_MODULES
 DOTFILES_SETUP_MODULES=(
-  wezterm zed mobile
+  wezterm zed hammerspoon mobile
   git issues
 )
 
