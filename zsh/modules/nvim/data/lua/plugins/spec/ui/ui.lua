@@ -125,9 +125,20 @@ return {
     end,
     opts = {
       defaults = {
+        hidden = true,
+        no_ignore = true,
         selection_caret = " ",
         entry_prefix = " ",
         file_ignore_patterns = { "node_modules" },
+        vimgrep_arguments = {
+          "rg",
+          "--hidden",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
       },
       pickers = {
         oldfiles = {

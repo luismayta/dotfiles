@@ -77,7 +77,7 @@ fo() {
 # fgr — grep via rg and open in $EDITOR
 fgr() {
   local file line
-  read -r file line <<< "$(rg --no-heading --line-number "$@" | fzf -0 -1 | awk -F: '{print $1, $2}')"
+  read -r file line <<< "$(rg --no-heading --line-number --hidden "$@" | fzf -0 -1 | awk -F: '{print $1, $2}')"
   if [ -n "${file}" ]; then
     ${EDITOR} "+/${line}" "${file}"
   fi
