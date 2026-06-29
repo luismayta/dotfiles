@@ -26,3 +26,7 @@ nix::build() {
 nix::develop() {
   nix --extra-experimental-features "nix-command flakes" develop --command zsh
 }
+
+nix::sync() {
+    nix::internal::config::sync
+}

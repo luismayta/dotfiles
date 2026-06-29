@@ -16,9 +16,3 @@ function devops::internal::go::packages::install {
     done
     message_success "Installed required devops packages"
 }
-
-function devops::internal::go::direnv::load {
-    if core::exists direnv; then
-        eval "$(direnv hook zsh)"
-    fi
-}

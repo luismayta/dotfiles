@@ -18,6 +18,9 @@ source "${DOTFILES_CORE_PATH}"/internal/nix.zsh
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/internal/reload.zsh
 
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/internal/direnv.zsh
+
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
@@ -28,3 +31,5 @@ linux*)
     source "${DOTFILES_CORE_PATH}"/internal/linux.zsh
   ;;
 esac
+
+core::internal::direnv::load

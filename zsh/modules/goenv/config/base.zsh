@@ -112,7 +112,6 @@ GOENV_INSTALL_PACKAGES+=(
 GOENV_INSTALL_PACKAGES+=(
   github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest
   github.com/sganon/env-secrets@latest
-  github.com/direnv/direnv/v2@latest
 )
 
 # Debugging

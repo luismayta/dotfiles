@@ -31,4 +31,3 @@ source "${DEVOPS_PATH}/internal/tfenv.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/gcloud.zsh"
 
-devops::internal::go::direnv::load

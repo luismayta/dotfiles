@@ -10,7 +10,7 @@ DOTFILES_SYNC_MODULES=(
   core
   ghostty alacritty wezterm zed hammerspoon
   starship tmux
-  git ssh nvim ai
+  git ssh nvim nix ai
   devops hyprland resources
   devbox
 )

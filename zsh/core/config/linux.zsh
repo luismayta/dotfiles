@@ -36,6 +36,7 @@ CORE_PACKAGES=(
   ripgrep
   ueberzugpp
   dolphin
+  direnv
   udisks2
   udiskie
 )
