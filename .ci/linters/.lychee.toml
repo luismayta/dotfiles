@@ -19,7 +19,7 @@ include_mail = false
 include_fragments = "none"
 
 # Códigos de respuesta aceptados
-accept = [200, 201, 202, 206]
+accept = [200, 201, 202, 206, 429]
 
 # URL exclusion patterns (regex)
 exclude = [
@@ -44,3 +44,8 @@ exclude_path = [
   'zsh/modules/ai/data/patterns/.*',
   '.*\.tpl\.md',
 ]
+
+[hosts]
+[hosts."www.gnu.org"]
+concurrency = 1
+request_interval = "5s"
