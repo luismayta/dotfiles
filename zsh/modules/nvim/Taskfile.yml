@@ -10,13 +10,7 @@ tasks:
       - find data -name '*.lua' -exec luac -p {} +
     silent: true
 
-  build:
-    run: once
-    dir: "{{.TASKFILE_DIR}}"
-    desc: "Auto-import plugin specs into plugins/init.lua"
-    cmds:
-      - nvim --headless -c "lua vim.g.autoimport_output='{{.TASKFILE_DIR}}/data/lua/plugins/init.lua'" -c "luafile {{.TASKFILE_DIR}}/data/scripts/auto-import.lua" -c "qa"
-    silent: true
+  # build: removed — LazyVim discovers plugins statically via lazy.nvim import
 
   backup:
     run: once

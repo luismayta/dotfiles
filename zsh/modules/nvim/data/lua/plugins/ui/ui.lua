@@ -1,4 +1,3 @@
-local overrides = require "configs.overrides"
 return {
   {
     enabled = false,
@@ -34,7 +33,10 @@ return {
     "dstein64/nvim-scrollview",
     lazy = true,
     config = function()
-      require "configs.scrollview"
+      local ok, scrollview = pcall(require, "scrollview")
+      if ok then
+        scrollview.setup {}
+      end
     end,
   },
   {
@@ -45,28 +47,40 @@ return {
     end,
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    enabled = false,
+    "nvim-tree/nvim-tree.lua",
     opts = {
-      user_default_options = {
-        RRGGBBAA = true,
-        rgb_fn = true,
-        hsl_fn = true,
-        css = true,
-        css_fn = true,
-        sass = { enable = true, parsers = { "css" } },
-        mode = "virtualtext",
-        virtualtext = "󱓻",
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
       },
     },
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "c",
+        "markdown",
+        "markdown_inline",
+      },
+      indent = {
+        enable = true,
+      },
+    },
   },
   {
     "nvim-tree/nvim-web-devicons",
@@ -112,7 +126,7 @@ return {
       )
 
       map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope terms" })
-      map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope NvChad themes" })
+      map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope themes" })
 
       map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
       map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope find highlights" })

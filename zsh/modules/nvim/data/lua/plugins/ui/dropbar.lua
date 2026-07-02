@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "Bekaboo/dropbar.nvim",
   event = "VeryLazy",
   dependencies = {

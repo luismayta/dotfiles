@@ -8,14 +8,14 @@ return {
       "windwp/nvim-ts-autotag",
     },
     opts = function()
-      local nvlsp = require "nvchad.configs.lspconfig"
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
 
       return {
         on_attach = function(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end,
-        capabilities = nvlsp.capabilities,
+        capabilities = capabilities,
       }
     end,
   },
