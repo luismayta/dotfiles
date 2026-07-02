@@ -1,0 +1,3 @@
+# shellcheck shell=bash
+ZSH_NIX_DARWIN_ENABLED="${ZSH_NIX_DARWIN_ENABLED:-true}"
+export ZSH_NIX_DARWIN_CONFIG_PATH="${NIX_DARWIN_PATH}/data"

@@ -8,16 +8,16 @@ readonly DOTFILES_GIT_URI='https://github.com/luismayta/dotfiles.git'
 readonly DOTFILES_GIT_BRANCH='main'
 PATH_REPO="${HOME}/${DOTFILES_NAME}"
 
-# shellcheck source=/dev/null
 [ -r "$(dirname "${BASH_SOURCE[0]}")/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "$(dirname "${BASH_SOURCE[0]}")/common/colors.sh"
 
-# shellcheck source=/dev/null
 [ -r "$(dirname "${BASH_SOURCE[0]}")/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "$(dirname "${BASH_SOURCE[0]}")/common/messages.sh"
 
-# shellcheck source=/dev/null
 [ -r "$(dirname "${BASH_SOURCE[0]}")/common/common.sh" ] || { echo "FATAL: lib/common.sh not found" >&2; exit 1; }
+# shellcheck source=/dev/null
 source "$(dirname "${BASH_SOURCE[0]}")/common/common.sh"
 
 trap 'msg::error "bootstrap failed at line $LINENO ($(date))"' ERR
@@ -43,8 +43,8 @@ function setup::packages::common {
   local os_name
   os_name=$(detect::os)
 
-  # shellcheck source=/dev/null
   [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
+  # shellcheck source=/dev/null
   source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
 
   case "$os_name" in
@@ -66,13 +66,24 @@ function setup::nix {
     return 0
   fi
 
-  # Install Nix (single-user, no-daemon) — OS-agnostic
+  # Install Nix — daemon mode on macOS, single-user on Linux
   if ! type -p nix >/dev/null; then
-    msg::info "Installing Nix (single-user)..."
-    sh <(curl -L https://nixos.org/nix/install) --no-daemon
+    local os_name
+    os_name=$(detect::os)
+    local install_args="--no-daemon"
+    [[ "$os_name" == "Darwin" ]] && install_args="--daemon"
+
+    msg::info "Installing Nix (${install_args#--})..."
+    sh <(curl -L https://nixos.org/nix/install) "$install_args"
+
     # Source Nix for the current session
-    # shellcheck source=/dev/null
-    [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+      # shellcheck source=/dev/null
+      source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    elif [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+      # shellcheck source=/dev/null
+      source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    fi
   fi
 }
 
@@ -100,6 +111,12 @@ function setup::mac {
   setup::packages::common
 
   setup::nix
+
+  # Bootstrap nix-darwin if the flake is available locally
+  if [[ -f "${PATH_REPO}/nix/darwin/flake.nix" ]] && command -v nix >/dev/null; then
+    msg::info "Bootstrapping nix-darwin system configuration..."
+    nix run nix-darwin -- switch --flake "${PATH_REPO}/nix/darwin"
+  fi
 }
 
 function setup::linux {
