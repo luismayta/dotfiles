@@ -85,18 +85,18 @@ echo "Validation passed"
 
 3. **Validate issue key and classify files by priority tier**
 
-   a) **Validate issue key**: Extract the issue key from the current branch name:
+   a) **Validate issue key**: Run the standardized command to derive the issue key:
    ```bash
-   BRANCH=$(git rev-parse --abbrev-ref HEAD)
+   codi commit issue-key
    ```
-   Derive the issue key using the configured issue tracking pattern from `codi.toml` (e.g., `PE-129` from `feature/PE-129-commit-ordering`). If no valid issue key can be derived, abort with:
-   > "ERROR: No valid issue key found in branch name. Use a branch with a project key (e.g., feature/PE-129-commit-ordering)."
+   If the command fails (issueTracking not configured, invalid branch, etc.), abort with:
+   > "ERROR: No valid issue key could be derived. Run `codi commit issue-key` for details."
 
    b) **Classify files by priority tier**: Categorize each changed file from the context:
 
    | Tier | Name | File Patterns |
    |------|------|---------------|
-   | 1 | Tool Configuration | `.pre-commit-config.yaml`, `.ci/linters/*`, `codi.toml`, `.commitlintrc.json`, `.goji.json` |
+   | 1 | Tool Configuration | `.pre-commit-config.yaml`, `.ci/**`, `codi.toml`, `.commitlintrc.json`, `.goji.json` |
    | 2 | Infrastructure | `Taskfile.yml`, `Taskfile.yaml`, Nix files, CI/CD configs |
    | 3 | Source Code & Skills | Source code, `skills/*`, tests |
    | 4 | Secondary Artifacts | Documentation (`docs/`), changelogs, OpenSpec archives |
@@ -111,7 +111,7 @@ echo "Validation passed"
    - **emoji**: The emoji is handled by `codi commit` automatically — do NOT include it in the plan.
 
    **Grouping heuristics** (applied within each tier):
-   - Tier 1 files must appear first — if `.pre-commit-config.yaml` has changes and any commit triggers pre-commit hooks, it MUST be staged in the first commit
+   - Tier 1 files (`.pre-commit-config.yaml`, `.ci/**`) are ALWAYS the first commit — unconditional priority. They must be staged before any other tier.
    - Files in the same package/app directory → likely same commit
    - Test files matching a source change → group with that source change
    - Unrelated changes in different tiers → separate commits per tier
@@ -163,12 +163,23 @@ echo "Validation passed"
 
    If the user wants changes, modify the plan JSON and re-present.
 
-6. **Execute the plan**
+6. **Validate and execute the plan**
+
+   Run validation gate immediately before execution:
+   ```bash
+   task validate
+   if [ $? -ne 0 ]; then
+     echo "VALIDATION FAILED — aborting execution"
+     exit 1
+   fi
+   ```
+
+   Then execute the plan:
    ```bash
    codi commit --file "$PLAN_FILE"
    ```
 
-   This stages files, builds commit messages using the configured format (`<type> <emoji>(<scope>): <issueId> <subject>`), and commits with optional sign-off.
+   This stages files, builds commit messages using the configured format (`<type> <emoji>(<scope>): <issueKey> <subject>`), and commits with optional sign-off.
 
    If `codi commit --file` is not available (e.g., `error: unknown option '--file'`):
    - This is a **blocker**. Do NOT manually execute commits.

@@ -26,9 +26,7 @@ Usa este skill cuando quieras registrar tiempo en Jira sin escribir manualmente 
 
 ## Overview
 
-1. Lee `codi.toml` y valida que `issueTracking.provider = "jira"`.
-2. Obtiene `issueTracking.projectKey` y las reglas de `[issueTracking.branch]`.
-3. Lee el branch actual y deriva el issue key de Jira usando el `projectKey` o el regex override configurado.
+1. Ejecuta `codi commit issue-key` para obtener el issue key de Jira derivado del branch actual.
 4. Pide al usuario el tiempo a registrar en un formato valido de Jira, por ejemplo `30m`, `2h` o `1h 30m`.
 5. Inspecciona los commits recientes del branch actual para construir una descripcion breve de lo realizado.
 6. Registra el worklog en Jira sobre el issue derivado del branch.
@@ -47,18 +45,8 @@ AR-3589
 
 ## Implementacion esperada
 
-- Lee `codi.toml` antes de cualquier otra accion. Si `issueTracking.provider` no es `jira`, detente y explicalo.
-- Si falta `issueTracking.projectKey`, detente y explicalo.
-- Usa el branch actual con una forma equivalente a:
-
-```bash
-git rev-parse --abbrev-ref HEAD
-```
-
-- Deriva el issue key de Jira desde el branch actual:
-  - si `[issueTracking.branch].jiraKeyRegexOverride` existe, usalo;
-  - en caso contrario, cuando `jiraKeyFromProjectKey = true`, deriva un patron equivalente a `<PROJECTKEY>-<numero>` usando `issueTracking.projectKey`.
-- Si no puedes derivar el issue key desde el branch actual, detente y pide al usuario un branch valido o el issue key exacto.
+- Ejecuta `codi commit issue-key` para obtener el issue key de Jira derivado del branch actual. Si el comando falla (issueTracking no configurado, branch invalido, etc.), detente y explicalo.
+- Si `codi commit issue-key` no devuelve un issue key valido, detente y pide al usuario un branch valido o el issue key exacto.
 - Pide al usuario el tiempo a registrar si no fue provisto todavia. Acepta formatos compatibles con Jira como `15m`, `45m`, `2h`, `1h 30m`.
 - Obtiene el contexto de commits del branch actual usando git. Prioriza commits que aun no estan en la rama base o, si eso no puede resolverse de forma confiable, usa los commits mas recientes del branch actual.
 - Construye una descripcion corta y clara basada en los commits recientes:

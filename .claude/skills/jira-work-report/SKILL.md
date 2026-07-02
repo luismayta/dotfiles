@@ -30,12 +30,11 @@ Importante: para publicar en Jira, usa las tools del servidor MCP `jira` disponi
 ## Overview
 
 1. Lee `codi.toml` y valida que `issueTracking.provider = "jira"`.
-2. Obtiene `issueTracking.projectKey` y las reglas de `[issueTracking.branch]`.
-3. Lee el branch actual y deriva el issue key de Jira usando el `projectKey` o el regex override configurado.
-4. Lee el template `.codi/jira/issue_templates/jira-work-report.md`.
-5. Inspecciona los commits recientes del branch actual para construir un resumen fiel de lo implementado.
-6. Completa el template con la informacion derivada de los commits y cualquier evidencia verificable disponible.
-7. Publica el reporte como comentario en Jira sobre el issue derivado del branch usando MCP `jira`.
+2. Ejecuta `codi commit issue-key` para obtener el issue key de Jira derivado del branch actual.
+3. Lee el template `.codi/jira/issue_templates/jira-work-report.md`.
+4. Inspecciona los commits recientes del branch actual para construir un resumen fiel de lo implementado.
+5. Completa el template con la informacion derivada de los commits y cualquier evidencia verificable disponible.
+6. Publica el reporte como comentario en Jira sobre el issue derivado del branch usando MCP `jira`.
 
 Ejemplo de branch:
 
@@ -51,18 +50,7 @@ AR-3589
 
 ## Implementacion esperada
 
-- Lee `codi.toml` antes de cualquier otra accion. Si `issueTracking.provider` no es `jira`, detente y explicalo.
-- Si falta `issueTracking.projectKey`, detente y explicalo.
-- Usa el branch actual con una forma equivalente a:
-
-```bash
-git rev-parse --abbrev-ref HEAD
-```
-
-- Deriva el issue key de Jira desde el branch actual:
-  - si `[issueTracking.branch].jiraKeyRegexOverride` existe, usalo;
-  - en caso contrario, cuando `jiraKeyFromProjectKey = true`, deriva un patron equivalente a `<PROJECTKEY>-<numero>` usando `issueTracking.projectKey`.
-- Si no puedes derivar el issue key desde el branch actual, detente y pide al usuario un branch valido o el issue key exacto.
+- Ejecuta `codi commit issue-key` para obtener el issue key de Jira derivado del branch actual. Si el comando falla (issueTracking no configurado, branch invalido, etc.), detente y pide al usuario un branch valido o el issue key exacto.
 - Lee el template en `.codi/jira/issue_templates/jira-work-report.md`. Si no existe, detente y explicalo.
 - Obtiene el contexto de commits del branch actual usando git. Prioriza commits que aun no estan en la rama base o, si eso no puede resolverse de forma confiable, usa los commits mas recientes del branch actual.
 - Construye el comentario final usando el template como estructura obligatoria.
@@ -85,8 +73,7 @@ git rev-parse --abbrev-ref HEAD
 
 ## Reglas de comportamiento
 
-- No inventes si el proyecto usa Jira; siempre validalo desde `codi.toml`.
-- No inventes el `projectKey`; siempre leelo desde `codi.toml`.
+- No inventes si el proyecto usa Jira; `codi commit issue-key` valida la configuracion internamente.
 - No inventes el issue key; siempre derivalo desde el branch actual o pide aclaracion si falla.
 - No inventes el contenido del reporte si no hay commits suficientes para resumirlo; en ese caso pide un resumen manual.
 - No marques checks del template sin evidencia verificable.
