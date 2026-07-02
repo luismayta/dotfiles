@@ -24,6 +24,10 @@ function ai::internal::codegraph::load {
     [ -e "${AI_CODEGRAPH_BIN_PATH}/codegraph" ] && export PATH="${AI_CODEGRAPH_BIN_PATH}:${PATH}"
 }
 
+function ai::internal::rtk::load {
+    [ -e "${AI_RTK_BIN_PATH}/rtk" ] && export PATH="${AI_RTK_BIN_PATH}:${PATH}"
+}
+
 # === Batch Install ===
 
 function ai::internal::packages::install {
@@ -53,6 +57,9 @@ function ai::internal::packages::install {
                 ;;
             tmuxai)
                 ai::internal::tmuxai::install
+                ;;
+            rtk)
+                ai::internal::rtk::install
                 ;;
             *)
                 core::install "${package}"
@@ -203,6 +210,20 @@ function ai::internal::tmuxai::install {
         message_success "tmuxai installed successfully"
     else
         message_error "Failed to install tmuxai"
+        return 1
+    fi
+}
+
+function ai::internal::rtk::install {
+    if core::exists rtk; then
+        return 0
+    fi
+
+    message_info "Installing rtk..."
+    if curl -fsSL "${AI_INSTALL_URL_RTK}" | sh; then
+        message_success "rtk installed successfully"
+    else
+        message_error "Failed to install rtk"
         return 1
     fi
 }

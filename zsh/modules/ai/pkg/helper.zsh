@@ -65,6 +65,10 @@ function ai::tmuxai::install {
     ai::internal::tmuxai::install
 }
 
+function ai::rtk::install {
+    ai::internal::rtk::install
+}
+
 function ai::sync {
     ai::opencode::sync
     ai::fabric::patterns::sync
