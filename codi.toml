@@ -48,6 +48,8 @@ tool = "goji"
 format = "<type> <emoji> (<scope>): <issueKey> <subject>"
 style = "jira"
 signoff = true
+# Skip git hooks (pre-commit, commit-msg) via --no-verify
+noVerify = true
 # Maximum total header length: <type> <emoji> (<scope>): <issueKey> <subject>
 # LLM agents must calculate available subject length as:
 #   available = subjectMaxLength - len(<type> <emoji> (<scope>): <issueKey> )
