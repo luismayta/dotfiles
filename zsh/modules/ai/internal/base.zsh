@@ -28,6 +28,10 @@ function ai::internal::rtk::load {
     [ -e "${AI_RTK_BIN_PATH}/rtk" ] && export PATH="${AI_RTK_BIN_PATH}:${PATH}"
 }
 
+function ai::internal::hunk::load {
+    [ -e "${AI_HUNK_BIN_PATH}/hunk" ] && export PATH="${AI_HUNK_BIN_PATH}:${PATH}"
+}
+
 # === Batch Install ===
 
 function ai::internal::packages::install {
@@ -61,6 +65,9 @@ function ai::internal::packages::install {
             rtk)
                 ai::internal::rtk::install
                 ;;
+            hunk)
+                ai::internal::hunk::install
+                ;;
             *)
                 core::install "${package}"
                 ;;
@@ -81,6 +88,25 @@ function ai::internal::opencode::install {
         message_success "opencode installed successfully"
     else
         message_error "Failed to install opencode"
+        return 1
+    fi
+}
+
+function ai::internal::hunk::install {
+    if core::exists hunk; then
+        return 0
+    fi
+
+    if ! core::exists npm; then
+        message_error "npm is not installed"
+        return 1
+    fi
+
+    message_info "Installing hunk..."
+    if npm install -g hunkdiff; then
+        message_success "hunk installed successfully"
+    else
+        message_error "Failed to install hunk"
         return 1
     fi
 }

@@ -20,3 +20,4 @@ ai::internal::opencode::load
 ai::internal::shimmy::load
 ai::internal::codegraph::load
 ai::internal::rtk::load
+ai::internal::hunk::load

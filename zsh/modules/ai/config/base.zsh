@@ -35,6 +35,10 @@ export AI_CODEGRAPH_BIN_PATH="${HOME}/.local/bin"
 # rtk
 export AI_RTK_BIN_PATH="${HOME}/.local/bin"
 
+# hunk
+export AI_HUNK_BIN_PATH="${HOME}/.local/bin"
+export AI_HUNK_CONFIG_PATH="${HOME}/.config/hunk"
+
 # installation urls
 export AI_INSTALL_URL_OPENCODE="https://opencode.ai/install"
 export AI_INSTALL_URL_FABRIC="https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh"
@@ -45,6 +49,7 @@ export AI_INSTALL_URL_OPENCLAW="https://openclaw.ai/install.sh"
 export AI_INSTALL_URL_CODEGRAPH="https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.sh"
 export AI_INSTALL_URL_TMUXAI="https://get.tmuxai.dev"
 export AI_INSTALL_URL_RTK="https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh"
+export AI_INSTALL_URL_HUNK="npm i -g hunkdiff"
 
 export AI_TOOLS=(
   opencode
@@ -55,6 +60,7 @@ export AI_TOOLS=(
   openclaw
   codegraph
   tmuxai
+  hunk
   rtk
 )
 

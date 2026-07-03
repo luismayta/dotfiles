@@ -1,0 +1,25 @@
+# hunk configuration for CodipLabs AI workflow
+# https://github.com/modem-dev/hunk
+
+theme = "catppuccin-macchiato"
+
+[view]
+layout = "auto"
+line_numbers = true
+show_agent_context = true
+wrap = false
+
+[keys]
+quit = "q"
+next_file = "j"
+prev_file = "k"
+next_hunk = "n"
+prev_hunk = "p"
+toggle_layout = "tab"
+toggle_theme = "t"
+search = "/"
+help = "?"
+
+[agent]
+daemon_enabled = true
+daemon_port = 0
