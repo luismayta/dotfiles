@@ -70,3 +70,8 @@ map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Git toggle 
 -- Toggle terminal
 map("n", "<leader>h", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- Window splits (Ctrl-X prefix)
+map("n", "<C-x>1", "<C-w>o", { desc = "Keep only current window" })
+map("n", "<C-x>2", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
+map("n", "<C-x>3", "<cmd>split<CR>", { desc = "Split window horizontally" })
