@@ -50,30 +50,9 @@ If the working tree is clean or has too many changes, I may ask:
 
 Run `codi doctor --llm` and review the JSON output. If any critical dependencies are missing, abort.
 
----
-
-### STEP 1 — Validate Task system (single execution gate)
-
-```bash
-if [ ! -f Taskfile.yml ] && [ ! -f Taskfile.yaml ]; then
-  echo "ERROR: Taskfile not found"
-  exit 1
-fi
-
-task validate
-if [ $? -ne 0 ]; then
-  echo "VALIDATION FAILED"
-  exit 1
-fi
-
-echo "Validation passed"
-```
-
----
-
 **Steps**
 
-2. **Run `codi commit context` to load project context**
+1. **Run `codi commit context` to load project context**
    ```bash
    codi commit context
    ```
@@ -83,7 +62,7 @@ echo "Validation passed"
    - `taxonomy.typeDetails`: array of `{ name, emoji, code, description }` for each type
    - `files[]`: list of changed files with paths
 
-3. **Validate issue key and classify files by priority tier**
+2. **Validate issue key and classify files by priority tier**
 
    a) **Validate issue key**: Run the standardized command to derive the issue key:
    ```bash
@@ -117,7 +96,7 @@ echo "Validation passed"
    - Unrelated changes in different tiers → separate commits per tier
    - Configuration-only changes within Tier 1 → `chore(config)` type
 
-4. **Generate plan ID and write the plan**
+3. **Generate plan ID and write the plan**
 
    ```bash
     ID=$(codi util short-uuid)
@@ -156,14 +135,14 @@ echo "Validation passed"
    # write plan to $PLAN_FILE
    ```
 
-5. **Present the plan to the user for review**
+4. **Present the plan to the user for review**
 
    Show a summary of the planned commits and ask:
    > "Here's the commit plan. Shall I execute it?"
 
    If the user wants changes, modify the plan JSON and re-present.
 
-6. **Validate and execute the plan**
+5. **Validate and execute the plan**
 
    Run validation gate immediately before execution:
    ```bash
