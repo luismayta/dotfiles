@@ -13,7 +13,7 @@ map({ "n", "i", "v", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
 
 -- Stop highlight on Esc (and stop snippets)
 map({ "i", "n", "s" }, "<Esc>", function()
-  vim.cmd("noh")
+  vim.cmd "noh"
   vim.snippet.stop()
   return "<Esc>"
 end, { expr = true, desc = "Escape and clear hlsearch" })
