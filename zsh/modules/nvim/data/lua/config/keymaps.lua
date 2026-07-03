@@ -11,14 +11,15 @@ map("n", ";", ":", { desc = "Enter command mode" })
 -- Save
 map({ "n", "i", "v", "s" }, "<C-s>", "<cmd>w<CR><Esc>", { desc = "Save file" })
 
--- Stop highlight on Esc
-map("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { desc = "Stop search highlight" })
+-- Stop highlight on Esc (and stop snippets)
+map({ "i", "n", "s" }, "<Esc>", function()
+  vim.cmd("noh")
+  vim.snippet.stop()
+  return "<Esc>"
+end, { expr = true, desc = "Escape and clear hlsearch" })
 
 -- Clear messages
 map("n", "<leader>cm", "<cmd>clearjumps<Bar>echomsg 'Cleared'<CR>", { desc = "Clear messages" })
-
--- Yank preserves cursor position
-map("n", "y", "ygv<Esc>", { desc = "Yank (keep cursor)" })
 
 -- Wrapped line navigation
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = "Down (wrapped)" })
@@ -34,23 +35,29 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
--- Window resize
-map("n", "<C-A-h>", "<cmd>vertical resize -2<CR>", { desc = "Decrease window width" })
-map("n", "<C-A-j>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
-map("n", "<C-A-k>", "<cmd>resize -2<CR>", { desc = "Decrease window height" })
-map("n", "<C-A-l>", "<cmd>vertical resize +2<CR>", { desc = "Increase window width" })
+-- Ctrl-X prefix window management (like tmux)
+map("n", "<C-x>h", "<C-w>h", { desc = "Go to left window" })
+map("n", "<C-x>j", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-x>k", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-x>l", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-x>v", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
+map("n", "<C-x>s", "<cmd>split<CR>", { desc = "Split window horizontally" })
+map("n", "<C-x>o", "<C-w>o", { desc = "Keep only current window" })
+map("n", "<C-x>c", "<C-w>c", { desc = "Close window" })
+map("n", "<C-x>1", "<C-w>o", { desc = "Keep only current window" })
+map("n", "<C-x>2", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
+map("n", "<C-x>3", "<cmd>split<CR>", { desc = "Split window horizontally" })
+map("n", "<C-x>q", "<C-w>q", { desc = "Quit window" })
 
 -- Move lines (visual mode)
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<CR>gv=gv", { desc = "Move line down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<CR>gv=gv", { desc = "Move line up" })
 
 -- Move lines (normal mode)
-map("n", "<A-j>", "<cmd>m .+1<CR>==", { desc = "Move line down" })
-map("n", "<A-k>", "<cmd>m .-2<CR>==", { desc = "Move line up" })
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<CR>==", { desc = "Move line down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<CR>==", { desc = "Move line up" })
 
--- Tab navigation
-map("n", "<Tab>", "<cmd>bn<CR>", { desc = "Next buffer" })
-map("n", "<S-Tab>", "<cmd>bp<CR>", { desc = "Previous buffer" })
+-- Buffer navigation
 map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "New buffer" })
 
@@ -70,8 +77,3 @@ map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Git toggle 
 -- Toggle terminal
 map("n", "<leader>h", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- Window splits (Ctrl-X prefix)
-map("n", "<C-x>1", "<C-w>o", { desc = "Keep only current window" })
-map("n", "<C-x>2", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
-map("n", "<C-x>3", "<cmd>split<CR>", { desc = "Split window horizontally" })
