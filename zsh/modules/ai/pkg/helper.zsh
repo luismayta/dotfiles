@@ -73,6 +73,14 @@ function ai::hunk::install {
     ai::internal::hunk::install
 }
 
+function ai::pi::install {
+    ai::internal::pi::install
+}
+
+function ai::pi::config::sync {
+    ai::internal::pi::config::sync
+}
+
 function ai::hunk::review {
     hunk diff "${@}"
 }
@@ -102,4 +110,5 @@ function ai::sync {
     ai::opencode::sync
     ai::fabric::patterns::sync
     ai::hunk::config::sync
+    ai::pi::config::sync
 }

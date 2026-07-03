@@ -32,6 +32,10 @@ function ai::internal::hunk::load {
     [ -e "${AI_HUNK_BIN_PATH}/hunk" ] && export PATH="${AI_HUNK_BIN_PATH}:${PATH}"
 }
 
+function ai::internal::pi::load {
+    [ -e "${AI_PI_BIN_PATH}/pi" ] && export PATH="${AI_PI_BIN_PATH}:${PATH}"
+}
+
 # === Batch Install ===
 
 function ai::internal::packages::install {
@@ -67,6 +71,9 @@ function ai::internal::packages::install {
                 ;;
             hunk)
                 ai::internal::hunk::install
+                ;;
+            pi)
+                ai::internal::pi::install
                 ;;
             *)
                 core::install "${package}"
@@ -250,6 +257,32 @@ function ai::internal::rtk::install {
         message_success "rtk installed successfully"
     else
         message_error "Failed to install rtk"
+        return 1
+    fi
+}
+
+function ai::internal::pi::config::sync {
+    local src="${AI_PI_CONFIG_SOURCE_PATH}"
+    local dst="${AI_PI_CONFIG_PATH}"
+    if [[ -d "$src" ]]; then
+        mkdir -p "$dst"
+        rsync -a "$src/" "$dst/"
+        message_success "pi config synced"
+    else
+        message_warning "no pi config source at ${src}"
+    fi
+}
+
+function ai::internal::pi::install {
+    if core::exists pi; then
+        return 0
+    fi
+
+    message_info "Installing pi (AI coding agent)..."
+    if curl -fsSL "${AI_INSTALL_URL_PI}" | sh; then
+        message_success "pi installed successfully"
+    else
+        message_error "Failed to install pi"
         return 1
     fi
 }

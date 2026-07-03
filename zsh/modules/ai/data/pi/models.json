@@ -1,0 +1,10 @@
+{
+  "providers": {
+    "opencode-zen": {
+      "baseUrl": "https://api.opencode.ai/v1",
+      "api": "openai-completions",
+      "apiKey": "{env:OPENCODE_ZEN_API_KEY}",
+      "models": [{ "id": "opencode/big-pickle" }]
+    }
+  }
+}

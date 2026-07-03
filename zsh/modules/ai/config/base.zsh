@@ -39,6 +39,11 @@ export AI_RTK_BIN_PATH="${HOME}/.local/bin"
 export AI_HUNK_BIN_PATH="${HOME}/.local/bin"
 export AI_HUNK_CONFIG_PATH="${HOME}/.config/hunk"
 
+# pi (AI coding agent)
+export AI_PI_BIN_PATH="${HOME}/.local/bin"
+export AI_PI_CONFIG_PATH="${HOME}/.pi/agent"
+export AI_PI_CONFIG_SOURCE_PATH="${AI_PATH}/data/pi"
+
 # installation urls
 export AI_INSTALL_URL_OPENCODE="https://opencode.ai/install"
 export AI_INSTALL_URL_FABRIC="https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh"
@@ -50,6 +55,7 @@ export AI_INSTALL_URL_CODEGRAPH="https://raw.githubusercontent.com/colbymchenry/
 export AI_INSTALL_URL_TMUXAI="https://get.tmuxai.dev"
 export AI_INSTALL_URL_RTK="https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh"
 export AI_INSTALL_URL_HUNK="npm i -g hunkdiff"
+export AI_INSTALL_URL_PI="https://pi.dev/install.sh"
 
 export AI_TOOLS=(
   opencode
@@ -62,6 +68,7 @@ export AI_TOOLS=(
   tmuxai
   hunk
   rtk
+  pi
 )
 
 export AI_OLLAMA_MODELS=(
