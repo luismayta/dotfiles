@@ -1,0 +1,48 @@
+[tracking]
+enabled = true
+history_days = 90
+
+[display]
+colors = true
+emoji = true
+max_width = 120
+
+[filters]
+ignore_dirs = [
+  ".git",
+  "node_modules",
+  "target",
+  "__pycache__",
+  ".venv",
+  "vendor",
+]
+ignore_files = ["*.lock", "*.min.js", "*.min.css"]
+
+[tee]
+enabled = true
+mode = "failures"
+max_files = 20
+
+[telemetry]
+enabled = true
+
+[hooks]
+exclude_commands = [
+  "task validate",
+  "curl",
+  "playwright",
+  "git rebase",
+  "git cherry-pick",
+  "git merge",
+  "vim",
+  "nvim",
+  "nano",
+  "htop",
+  "btop",
+  "docker exec",
+  "docker attach",
+  "^npm init",
+  "^cargo init",
+  "^cargo new",
+  "task",
+]

@@ -261,6 +261,18 @@ function ai::internal::rtk::install {
     fi
 }
 
+function ai::internal::rtk::config::sync {
+    local src="${AI_RTK_CONFIG_SOURCE_PATH}"
+    local dst="${AI_RTK_CONFIG_PATH}"
+    if [[ -d "$src" ]]; then
+        mkdir -p "$dst"
+        rsync -a "$src/" "$dst/"
+        message_success "rtk config synced"
+    else
+        message_warning "no rtk config source at ${src}"
+    fi
+}
+
 function ai::internal::pi::config::sync {
     local src="${AI_PI_CONFIG_SOURCE_PATH}"
     local dst="${AI_PI_CONFIG_PATH}"
