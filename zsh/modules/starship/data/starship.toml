@@ -12,6 +12,37 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
+[palette.catppuccin_macchiato]
+text = "#cad3f5"
+subtext0 = "#a5adcb"
+subtext1 = "#b8c0e0"
+overlay0 = "#939ab7"
+overlay1 = "#8087a2"
+surface0 = "#363a4f"
+surface1 = "#494d64"
+surface2 = "#5b6078"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
+blue = "#8aadf4"
+green = "#a6da95"
+teal = "#8bd5ca"
+red = "#ed8796"
+yellow = "#eed49f"
+peach = "#f5a97f"
+maroon = "#ee99a0"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+lavender = "#b7bdf8"
+sapphire = "#7dc4e4"
+sky = "#91d7e3"
+flamingo = "#f0c6c6"
+rosewater = "#f4dbd6"
+white = "#ffffff"
+black = "#000000"
+
+palette = "catppuccin_macchiato"
+
 format = "$all"
 
 # Inserts a blank line between shell prompts
@@ -35,14 +66,14 @@ disabled = false
 format = "[$user]($style) in "
 disabled = false
 show_always = true
-style_user = "blue bold"
-style_root = "red bold"
+style_user = "bold $blue"
+style_root = "bold $red"
 
 # Prompt character and color
 [character]
 format = "$symbol "
-success_symbol = "[->](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[🤮 ](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+success_symbol = "[->](bold $green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[🤮 ](bold $red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
 ## Directory
 ## ----------
@@ -51,12 +82,12 @@ error_symbol = "[🤮 ](bold red)"     # The "success_symbol" segment is being s
 format = "[$path]($style)[$read_only]($read_only_style) "
 home_symbol = "🏠"
 read_only = "🔒"
-read_only_style = "red"
-style = "bold cyan"
+read_only_style = "$red"
+style = "bold $teal"
 truncation_length = 2
 truncate_to_repo = true
 truncation_symbol = ".../"
-repo_root_style = "purple"
+repo_root_style = "$mauve"
 fish_style_pwd_dir_length = 1
 use_logical_path = true
 
@@ -78,7 +109,7 @@ diverged = "😵"
 untracked = "🤷"
 stashed = "📦"
 modified = "📝"
-staged = '[++\($count\)](green)'
+staged = '[++\($count\)]($green)'
 renamed = "👅"
 deleted = "🗑"
 
@@ -88,7 +119,7 @@ tag_symbol = "🔖 "
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = "[🍒 PICKING](bold red)"
+cherry_pick = "[🍒 PICKING](bold $red)"
 
 # Display symbol for remote Git server (GitHub/GitLab/Bitbucket/etc.)
 [custom.giturl]
@@ -154,7 +185,7 @@ docker-desktop = "🐳"
 
 [aws]
 format = "on [$symbol $region $profile]($style) "
-style = "bold blue"
+style = "bold $blue"
 symbol = "⛅"
 
 [aws.region_aliases]
@@ -168,8 +199,8 @@ disabled = true
 ## --------------------
 
 [golang]
-style = "bold cyan"
-symbol = "[](cyan)"
+style = "bold $teal"
+symbol = "[]($teal)"
 format = "[$symbol $version]($style) "
 
 [python]
@@ -177,17 +208,17 @@ pyenv_version_name = true
 detect_extensions = []
 
 [lua]
-format = 'via [🌕 $version](bold blue) '
+format = 'via [🌕 $version](bold $blue) '
 
 [dart]
-format = 'via [🔰 $version](bold red) '
+format = 'via [🔰 $version](bold $red) '
 
 [deno]
-format = 'via [🦕 $version](green bold) '
+format = 'via [🦕 $version]($green bold) '
 
 [helm]
-style = "bold fg:bright-cyan bg:#5a6374"
-format = "[  ](fg:white bg:#5a6374)[$symbol$version]($style)"
+style = "bold fg:$teal bg:$surface0"
+format = "[  ](fg:$white bg:$surface0)[$symbol$version]($style)"
 
 ## Tools
 ## -----
@@ -207,7 +238,7 @@ disabled = false
 ## Memory
 [memory_usage]
 disabled = false
-style = "bold dimmed green"
+style = "bold dimmed $green"
 threshold = -1
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
@@ -230,11 +261,11 @@ disabled = false
 symbol = "⛅"
 variable = "AWS_PROFILE_NAME"
 default = "profile name"
-style = "bold blue"
+style = "bold $blue"
 
 [env_var.TMUX]
 default = 'tmux'
-style = 'bold green'
+style = 'bold $green'
 format = '[🥷 ]($style)'
 
 [env_var.VISUAL]
@@ -254,7 +285,7 @@ when = "proxy is-on"
 symbol = "歷"
 description = "Shows if proxy settings are on"
 format = "[$symbol]($style)"
-style = "fg:green"
+style = "fg:$green"
 
 [custom.proxy_is_off]
 command = ""
@@ -262,4 +293,4 @@ when = "proxy is-off"
 symbol = "轢"
 description = "Shows if proxy settings are off"
 format = "[$symbol]($style)"
-style = "fg:red"
+style = "fg:$red"

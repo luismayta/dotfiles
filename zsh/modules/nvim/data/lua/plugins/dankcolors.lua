@@ -1,6 +1,7 @@
 --- Custom color scheme (Matugen/material-you inspired)
 return {
   {
+    enabled = false,
     "RRethy/base16-nvim",
     priority = 1000,
     config = function()
