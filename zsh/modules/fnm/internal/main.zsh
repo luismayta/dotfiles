@@ -14,5 +14,3 @@ esac
 
 # shellcheck source=/dev/null
 source "${ZSH_FNM_PATH}/internal/helper.zsh"
-
-fnm::internal::bunx::load

@@ -37,3 +37,5 @@ core::ensure unzip
 if ! core::exists fnm; then fnm::install; fi
 
 fnm::internal::bun::install
+
+fnm::internal::bunx::load
