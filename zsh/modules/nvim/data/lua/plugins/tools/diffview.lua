@@ -1,5 +1,6 @@
 return {
   "sindrets/diffview.nvim",
+  -- Dep of: tools/git.lua, tools/neogit.lua
   cmd = { "DiffviewOpen", "DiffviewClose" },
   init = function()
     local map = vim.keymap.set

@@ -64,6 +64,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    -- Dep of: ai/ai.lua, lang/go.lua, text/regexplainer.lua, text/ts-autotag.lua
     opts = {
       ensure_installed = {
         "vim",
@@ -84,6 +85,7 @@ return {
   },
   {
     "nvim-tree/nvim-web-devicons",
+    -- Dep of: ai/ai.lua
     opts = {
       override = {
         md = { icon = "󰽛", color = "#ffffff", name = "Markdown" },
@@ -104,6 +106,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    -- Dep of: tools/neogit.lua, ai/ai.lua
     init = function()
       local map = vim.keymap.set
       local builtin = require "telescope.builtin"
