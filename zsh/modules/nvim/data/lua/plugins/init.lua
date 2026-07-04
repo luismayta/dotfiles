@@ -2,11 +2,12 @@
 --- Plugin import manifest (flattened from spec/ structure)
 
 return {
-  -- Custom colorscheme (Matugen/material-you inspired)
-  { import = "plugins.dankcolors" },
+  -- Custom colorschemes (Matugen/material-you inspired)
+  { import = "plugins.ui.catppuccin" },
+  { import = "plugins.ui.dankcolors" },
   { import = "plugins.ai.ai" },
   { import = "plugins.ai.codesnap" },
-  { import = "plugins.completion" },
+  { import = "plugins.tools.completion" },
   { import = "plugins.dap.dap-ui" },
   { import = "plugins.dap.dap-virtual-text" },
   { import = "plugins.lang.gleam" },
@@ -17,6 +18,7 @@ return {
   { import = "plugins.lang.sre" },
   { import = "plugins.lang.typescript" },
   { import = "plugins.lsp.mason-tools" },
+  { import = "plugins.navigation.neo-tree" },
   { import = "plugins.navigation.goto-preview" },
   { import = "plugins.navigation.grug-far" },
   { import = "plugins.navigation.harpoon" },
@@ -51,6 +53,6 @@ return {
   { import = "plugins.ui.ui" },
 
   -- Flattened overrides (formerly in override/ directory)
-  { import = "plugins.conform" },
-  { import = "plugins.luasnip" },
+  { import = "plugins.tools.conform" },
+  { import = "plugins.tools.luasnip" },
 }
