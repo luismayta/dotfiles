@@ -12,7 +12,17 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
-[palette.catppuccin_macchiato]
+palette = "catppuccin_macchiato"
+
+format = "$all"
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+[palettes.catppuccin_macchiato]
 text = "#cad3f5"
 subtext0 = "#a5adcb"
 subtext1 = "#b8c0e0"
@@ -40,16 +50,6 @@ flamingo = "#f0c6c6"
 rosewater = "#f4dbd6"
 white = "#ffffff"
 black = "#000000"
-
-palette = "catppuccin_macchiato"
-
-format = "$all"
-
-# Inserts a blank line between shell prompts
-add_newline = false
-
-# Wait 10 milliseconds for starship to check files under the current directory.
-scan_timeout = 10
 
 ## Shell & User
 ## -------------
