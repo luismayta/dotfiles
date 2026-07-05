@@ -145,16 +145,16 @@ source "${ZSH_ZED_PATH}/pkg/main.zsh"
 
 ### `config/base.zsh`
 
-Export all environment variables a module needs. Use the module name (uppercased) as prefix.
+Export all environment variables a module needs. All variables use the `ZSH_<NAME>_` prefix to namespace them clearly.
 
 ```zsh
 # shellcheck shell=bash
 
 ZSH_<NAME>_ENABLED="${ZSH_<NAME>_ENABLED:-true}"
 
-export <NAME>_PACKAGE_NAME=<name>
-export <NAME>_INSTALL_URL="https://example.com/install.sh"
-export <NAME>_CONFIG_PATH="${HOME}/.config/<name>"
+export ZSH_<NAME>_PACKAGE_NAME=<name>
+export ZSH_<NAME>_INSTALL_URL="https://example.com/install.sh"
+export ZSH_<NAME>_CONFIG_PATH="${HOME}/.config/<name>"
 export ZSH_<NAME>_DATA_PATH="${ZSH_<NAME>_PATH}/data"
 ```
 
@@ -171,9 +171,23 @@ export ZSH_ZED_DATA_PATH="${ZSH_ZED_PATH}/data"
 ```
 
 **Naming rules:**
-- Module env vars: `ZED_PACKAGE_NAME`, `ZED_INSTALL_URL`, `ZED_CONFIG_PATH`
-- Internal paths (vars used only within the module): `ZSH_ZED_PATH`, `ZSH_ZED_DATA_PATH`
+- All module env vars use the `ZSH_<NAME>_` prefix: `ZSH_<NAME>_PACKAGE_NAME`, `ZSH_<NAME>_INSTALL_URL`, `ZSH_<NAME>_CONFIG_PATH`
+- Internal paths (vars used only within the module): `ZSH_<NAME>_PATH`, `ZSH_<NAME>_DATA_PATH`
 - All vars are `export`-ed so user overrides in `~/.customrc` work
+
+**Backward-compatible aliases (for variable renaming):**
+
+When renaming an existing variable, keep the old name as a backward-compatible alias to avoid breaking existing shell sessions. Define the canonical name first, then alias the old name to it:
+
+```zsh
+# Canonical name (new)
+export ZSH_<NAME>_PACKAGE_NAME=<name>
+
+# Backward-compatible alias (old — remove in next cleanup cycle)
+export <NAME>_PACKAGE_NAME="${ZSH_<NAME>_PACKAGE_NAME}"
+```
+
+This pattern was used when the herdr module standardized all its variables — see [`zsh/modules/herdr/config/base.zsh`](/zsh/modules/herdr/config/base.zsh) for a complete example.
 
 ### `config/main.zsh`
 
@@ -212,13 +226,13 @@ Core implementation logic:
 # shellcheck shell=bash
 
 <name>::internal::install() {
-    message_info "Installing ${<NAME>_PACKAGE_NAME}..."
-    curl -fsSL ${<NAME>_INSTALL_URL} | bash
-    message_success "${<NAME>_PACKAGE_NAME} installed."
+    message_info "Installing ${ZSH_<NAME>_PACKAGE_NAME}..."
+    curl -fsSL ${ZSH_<NAME>_INSTALL_URL} | bash
+    message_success "${ZSH_<NAME>_PACKAGE_NAME} installed."
 }
 
 <name>::internal::config::sync() {
-    rsync -avzh "${ZSH_<NAME>_DATA_PATH}/" "${<NAME>_CONFIG_PATH}/"
+    rsync -avzh "${ZSH_<NAME>_DATA_PATH}/" "${ZSH_<NAME>_CONFIG_PATH}/"
 }
 ```
 
@@ -315,9 +329,9 @@ Thin wrappers that expose module functionality as user-callable commands.
 }
 
 <name>::post_install() {
-    message_info "Post Install ${<NAME>_PACKAGE_NAME}"
+    message_info "Post Install ${ZSH_<NAME>_PACKAGE_NAME}"
     <name>::sync
-    message_success "Post Install ${<NAME>_PACKAGE_NAME}"
+    message_success "Post Install ${ZSH_<NAME>_PACKAGE_NAME}"
 }
 ```
 
@@ -329,16 +343,16 @@ Orchestrators that compose multiple public functions:
 # shellcheck shell=bash
 
 <name>::setup() {
-    message_info "Setting up ${<NAME>_PACKAGE_NAME}..."
+    message_info "Setting up ${ZSH_<NAME>_PACKAGE_NAME}..."
 
     if ! core::exists <name>; then
         <name>::install
     else
-        message_info "${<NAME>_PACKAGE_NAME} is already installed."
+        message_info "${ZSH_<NAME>_PACKAGE_NAME} is already installed."
     fi
 
     <name>::sync
-    message_success "${<NAME>_PACKAGE_NAME} setup complete."
+    message_success "${ZSH_<NAME>_PACKAGE_NAME} setup complete."
 }
 ```
 
@@ -579,12 +593,19 @@ See the **[Docker module](/zsh/modules/docker/)** for a complete production exam
 | Guard variable | `__ZSH_<NAME>_LOADED` | `__ZSH_ZED_LOADED` |
 | Module path | `ZSH_<NAME>_PATH` | `ZSH_ZED_PATH` |
 | Data path | `ZSH_<NAME>_DATA_PATH` | `ZSH_ZED_DATA_PATH` |
-| Package name | `<NAME>_PACKAGE_NAME` | `ZED_PACKAGE_NAME` |
-| Install URL | `<NAME>_INSTALL_URL` | `ZED_INSTALL_URL` |
-| Config path | `<NAME>_CONFIG_PATH` | `ZED_CONFIG_PATH` |
+| Package name | `ZSH_<NAME>_PACKAGE_NAME` | `ZSH_HERDR_PACKAGE_NAME` |
+| Install URL | `ZSH_<NAME>_INSTALL_URL` | `ZSH_HERDR_INSTALL_URL` |
+| Config path | `ZSH_<NAME>_CONFIG_PATH` | `ZSH_HERDR_CONFIG_DIR` |
+| Backward-compat alias | `<NAME>_PACKAGE_NAME="${ZSH_<NAME>_PACKAGE_NAME}"` | `HERDR_PACKAGE_NAME="${ZSH_HERDR_PACKAGE_NAME}"` |
+| Clipboard copy | `ZSH_<NAME>_CLIPBOARD_COPY_CMD` | `ZSH_HERDR_CLIPBOARD_COPY_CMD` |
+| Clipboard paste | `ZSH_<NAME>_CLIPBOARD_PASTE_CMD` | `ZSH_HERDR_CLIPBOARD_PASTE_CMD` |
 | Public functions | `<name>::<verb>` | `zed::install`, `zed::sync` |
 | Internal functions | `<name>::internal::<verb>` | `zed::internal::install` |
 | Sub-functions | `<name>::internal::<area>::<verb>` | `zed::internal::config::sync` |
+
+**Why `ZSH_<NAME>_` prefix for all env vars:** The `ZSH_` prefix namespaces variables to the module system, preventing collisions with external tools or user scripts. The herdr module was standardized to this convention — see [`zsh/modules/herdr/config/base.zsh`](/zsh/modules/herdr/config/base.zsh).
+
+**Backward-compatible aliases:** When renaming variables, keep the old name as a `export OLD_NAME="${NEW_NAME}"` alias. This prevents breaking existing shell sessions that already have the old name expanded in loaded functions. Aliases are temporary and can be removed in the next cleanup cycle. See the [herdr module](#backward-compatible-aliases-for-variable-renaming) for a complete example.
 
 ---
 
@@ -661,7 +682,7 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 
 ### Quality (all modules)
 
-- [ ] All strings use `${<NAME>_PACKAGE_NAME}` interpolation (no hardcoded names)
+- [ ] All strings use `${ZSH_<NAME>_PACKAGE_NAME}` interpolation (no hardcoded names)
 - [ ] All output uses `message_*` functions (no `echo`, no `printf`)
 - [ ] Uses `core::exists` / `core::ensure` (no `which`, no `command -v`)
 - [ ] Module loads: `source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh`
