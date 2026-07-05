@@ -1,4 +1,4 @@
 name = "📜 update nvim nightly" 
-description = "Update Nvim Nightly Confg"
+description = "Update Nvim Nightly Config"
 command = "~/scripts/update-nvim-nightly.sh"
 
