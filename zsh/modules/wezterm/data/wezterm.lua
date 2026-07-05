@@ -11,6 +11,9 @@ require("events.tab-title").setup { hide_active_tab_unseen = false, unseen_icon 
 require("events.new-tab-button").setup()
 require("events.gui-startup").setup()
 
+-- TMUX_SOCKET is used by tmux module's _tmux() helper for socket routing.
+-- IMPORTANT: Terminal detection in zsh/zshrc uses TERM_PROGRAM, NOT this var,
+-- because TMUX_SOCKET leaks to child processes (e.g., alacritty launched from WezTerm).
 wezterm.set_environment_variables = {
   TMUX_SOCKET = "wezterm",
 }

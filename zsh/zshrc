@@ -6,8 +6,6 @@ unset ZSH_DEBUG
 [ -e /usr/share/zsh ] && fpath=(/usr/share/zsh/site-functions:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/VCS_Info/Backends:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle $fpath)
 #
 
-export ZSH_TMUX_AUTOSTART=false
-
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
@@ -16,6 +14,9 @@ export DOTFILES_ZSH_DIR="${DOTFILES_DIR}/zsh"
 export DOTFILES_CORE_PATH="${DOTFILES_ZSH_DIR}/core"
 
 autoload -Uz compinit add-zsh-hook is-at-least
+
+# shellcheck source=/dev/null
+[ -e "${DOTFILES_ZSH_DIR}/detect/terminal.zsh" ] && source "${DOTFILES_ZSH_DIR}/detect/terminal.zsh"
 
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_CORE_PATH}/main.zsh" ] && source "${DOTFILES_CORE_PATH}/main.zsh"
@@ -27,6 +28,7 @@ fi
 
 # shellcheck source=/dev/null
 [ -s "${CUSTOMRC:-${HOME}/.customrc}" ] && source "${CUSTOMRC:-${HOME}/.customrc}"
+
 
 # Load modules from modules/ directory
 # To disable a module, set ZSH_DISABLED_MODULES in ~/.customrc:
@@ -43,7 +45,7 @@ for __module_dir in "${DOTFILES_ZSH_DIR}"/modules/*(/N); do
     source "${__module_dir}/plugin.zsh"
   fi
 done
-unset __module_name __module_dir
+unset __module_name __module_dir __ZSH_TMUX_AUTOSTART
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
@@ -87,17 +89,4 @@ esac
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zprof
-fi
-
-# Auto-start herdr terminal multiplexer in Alacritty.
-# Only activates when:
-#   - Running inside Alacritty (detected via $ALACRITTY_WINDOW_ID)
-#   - Interactive shell
-#   - herdr binary is installed
-# Disable by setting ZSH_HERDR_ENABLED=false in ~/.customrc
-if [[ -o interactive ]] \
-  && [[ -n "${ALACRITTY_WINDOW_ID:-}" ]] \
-  && command -v herdr >/dev/null 2>&1 \
-  && [[ "${ZSH_HERDR_ENABLED:-true}" == "true" ]]; then
-  command herdr
 fi

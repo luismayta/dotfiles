@@ -8,9 +8,13 @@
 #
 # Falls back to "default" (original tmux behavior) when TMUX_SOCKET is unset.
 #
+# Guard: __ZSH_TMUX_AUTOSTART is set by zsh/detect/terminal.zsh (parent-process
+# detection). WezTerm, Alacritty, and other terminals each get their own policy
+# so the auto-start respects the terminal multiplexer and doesn't leak sockets.
+#
 
 if type -p tmux > /dev/null; then
-    if [[ -z "${TMUX}" ]]; then
+    if [[ -z "${TMUX}" ]] && [[ "${__ZSH_TMUX_AUTOSTART:-true}" != "false" ]]; then
         tmux -L "${TMUX_SOCKET:-default}" new-session -A -s allsafe
     fi
 fi
