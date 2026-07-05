@@ -9,7 +9,7 @@ typeset -ga DOTFILES_SYNC_MODULES
 DOTFILES_SYNC_MODULES=(
   core
   ghostty alacritty wezterm zed hammerspoon
-  starship tmux
+  starship tmux herdr
   git ssh nvim nix ai
   devops hyprland resources
   devbox

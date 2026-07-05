@@ -67,26 +67,11 @@ function hrdk {
 # Project launcher
 # ──────────────────────────────────────────────
 
-# hrd::project — launch a new herdr project from a template.
+# hrd::project — create a herdr workspace with 3-pane IDE layout.
 # Port of tx::project from the tmux module.
-# Without arguments: interactive fzf template selection + name derivation.
+# Without arguments: derives project name from directory context.
 # With argument: use provided project name.
 function hrd::project {
-  if [[ ! -d "${ZSH_HRD_PROJECT_TEMPLATE_PATH}" ]]; then
-    message_error "Project templates directory not found: ${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
-    return 1
-  fi
-
-  local template_count
-  template_count="$(hrd::internal::list_templates | wc -l | tr -d ' ')"
-  if [[ "$template_count" -eq 0 ]]; then
-    message_error "No project templates found in ${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
-    return 1
-  fi
-
-  local selected_template
-  selected_template="$(hrd::internal::select_template)"
-
   local project_name
   project_name="$(hrd::internal::derive_project_name "${1:-}")"
 
@@ -95,15 +80,40 @@ function hrd::project {
     return 1
   fi
 
-  hrd::internal::workspace_attach_or_create "${project_name}" && return
+  # If workspace already exists, prompt to attach (or decline)
+  if hrd::internal::workspace_attach_or_create "$project_name"; then
+    return 0
+  fi
 
-  message_info "Creating workspace '${project_name}'..."
-  if herdr workspace create --label "${project_name}" --focus 2>/dev/null; then
-    message_success "Workspace '${project_name}' created from template '${selected_template}'."
-  else
+  # Create workspace with focus in pane 1; capture workspace_id for rename
+  local ws_json ws_id
+  ws_json="$(herdr workspace create --label "$project_name" --cwd "$PWD" --focus 2>/dev/null)" || {
     message_error "Failed to create workspace '${project_name}'."
     return 1
-  fi
+  }
+  ws_id="$(printf '%s\n' "$ws_json" | jq -r '.result.workspace.workspace_id')"
+
+  # Layout: 3 panes — editor (left 60%) | log (right-top) / shell (right-bottom)
+  # ┌─────────────────┬──────────────┐
+  # │                 │  pane 2      │
+  # │   pane 1        │  (shell)     │
+  # │   (editor)      ├──────────────┤
+  # │                 │  pane 3      │
+  # │                 │  (agent)     │
+  # └─────────────────┴──────────────┘
+
+  # Split pane 1 right at 60%; focus moves to the new right pane
+  herdr pane split --current --direction right --ratio 0.6
+
+  # Split right pane down at 50%; focus moves to new bottom-right pane
+  herdr pane split --current --direction down --ratio 0.5
+
+  # Name the panes for visual clarity (pane_id format: <workspace_id>:p<N>)
+  herdr pane rename "${ws_id}:p1" "editor"
+  herdr pane rename "${ws_id}:p2" "shell"
+  herdr pane rename "${ws_id}:p3" "agent"
+
+  message_success "Project workspace '${project_name}' created."
 }
 
 # ──────────────────────────────────────────────
@@ -118,7 +128,7 @@ function edit-herdr-config {
         return 1
     fi
 
-    local config_file="${HERDR_CONFIG_PATH}/config.toml"
+    local config_file="${ZSH_HERDR_CONFIG_DIR}/config.toml"
 
     if [[ ! -f "$config_file" ]]; then
         message_warning "Config file not found: $config_file"
@@ -135,7 +145,7 @@ function edit-herdr-plugins {
         return 1
     fi
 
-    local plugins_dir="${HERDR_CONFIG_PATH}/plugins"
+    local plugins_dir="${ZSH_HERDR_CONFIG_DIR}/plugins"
 
     if [[ ! -d "$plugins_dir" ]]; then
         message_warning "Plugins directory not found: $plugins_dir"

@@ -15,7 +15,7 @@ __ZSH_HERDR_LOADED=1
 # Module root path — used by all sourced sub-files
 ZSH_HERDR_PATH="$(dirname "${0}")"
 
-message_info "Loading module: ${HERDR_PACKAGE_NAME:-herdr}"
+message_info "Loading module: ${ZSH_HERDR_PACKAGE_NAME:-herdr}"
 
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/config/main.zsh"

@@ -9,7 +9,7 @@ function herdr::sync {
 }
 
 function herdr::post_install {
-  message_info "Post Install ${HERDR_PACKAGE_NAME}"
+  message_info "Post Install ${ZSH_HERDR_PACKAGE_NAME}"
   herdr::sync
-  message_success "Success Install ${HERDR_PACKAGE_NAME}"
+  message_success "Success Install ${ZSH_HERDR_PACKAGE_NAME}"
 }

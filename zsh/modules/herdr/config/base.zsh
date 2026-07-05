@@ -1,13 +1,20 @@
 # shellcheck shell=bash
 ZSH_HERDR_ENABLED="${ZSH_HERDR_ENABLED:-true}"
 
-export HERDR_PACKAGE_NAME=herdr
-export HERDR_INSTALL_URL="https://herdr.dev/install.sh"
-export HERDR_CONFIG_PATH="${HOME}/.config/herdr"
+# Canonical names
+export ZSH_HERDR_PACKAGE_NAME=herdr
+export ZSH_HERDR_INSTALL_URL="https://herdr.dev/install.sh"
+export ZSH_HERDR_CONFIG_DIR="${HOME}/.config/herdr"
 export ZSH_HERDR_DATA_PATH="${ZSH_HERDR_PATH}/data"
 
 # Workspace management
-export HERDR_WORKSPACE_PREFIX="${HERDR_WORKSPACE_PREFIX:-}"
+export ZSH_HERDR_WORKSPACE_PREFIX="${ZSH_HERDR_WORKSPACE_PREFIX:-}"
 
 # Project template path
-export ZSH_HRD_PROJECT_TEMPLATE_PATH="${ZSH_HERDR_DATA_PATH}/plugins/config/cloudmanic.herdr-plus/projects"
+export ZSH_HERDR_PROJECT_TEMPLATE_PATH="${ZSH_HERDR_DATA_PATH}/plugins/config/cloudmanic.herdr-plus/projects"
+
+# Backward-compatible aliases (temporary — for existing shell sessions)
+export HERDR_PACKAGE_NAME="${ZSH_HERDR_PACKAGE_NAME}"
+export HERDR_INSTALL_URL="${ZSH_HERDR_INSTALL_URL}"
+export HERDR_WORKSPACE_PREFIX="${ZSH_HERDR_WORKSPACE_PREFIX}"
+export ZSH_HRD_PROJECT_TEMPLATE_PATH="${ZSH_HERDR_PROJECT_TEMPLATE_PATH}"

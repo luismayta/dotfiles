@@ -6,41 +6,41 @@
 
 function herdr::internal::install {
     if core::exists herdr; then
-        message_info "${HERDR_PACKAGE_NAME} is already installed."
+        message_info "${ZSH_HERDR_PACKAGE_NAME} is already installed."
         return 0
     fi
 
     core::ensure curl
 
-    message_info "Installing ${HERDR_PACKAGE_NAME}..."
-    if curl -fsSL "${HERDR_INSTALL_URL}" | sh; then
+    message_info "Installing ${ZSH_HERDR_PACKAGE_NAME}..."
+    if curl -fsSL "${ZSH_HERDR_INSTALL_URL}" | sh; then
         if core::exists herdr; then
-            message_success "${HERDR_PACKAGE_NAME} installed successfully"
+            message_success "${ZSH_HERDR_PACKAGE_NAME} installed successfully"
             return 0
         fi
-        message_warning "${HERDR_PACKAGE_NAME} install script ran but binary not found in PATH"
+        message_warning "${ZSH_HERDR_PACKAGE_NAME} install script ran but binary not found in PATH"
     fi
 
-    message_error "Failed to install ${HERDR_PACKAGE_NAME}"
+    message_error "Failed to install ${ZSH_HERDR_PACKAGE_NAME}"
     return 1
 }
 
 function herdr::internal::config::sync {
     local src="${ZSH_HERDR_DATA_PATH}"
-    local dst="${HERDR_CONFIG_PATH}"
+    local dst="${ZSH_HERDR_CONFIG_DIR}"
 
     if [[ ! -d "$src" ]] || [[ -z "$(ls -A "$src" 2>/dev/null)" ]]; then
-        message_info "No ${HERDR_PACKAGE_NAME} config found in data path"
+        message_info "No ${ZSH_HERDR_PACKAGE_NAME} config found in data path"
         return 0
     fi
 
     mkdir -p "$dst"
-    message_info "Syncing ${HERDR_PACKAGE_NAME} config..."
+    message_info "Syncing ${ZSH_HERDR_PACKAGE_NAME} config..."
 
     if rsync -avzh "$src/" "$dst/"; then
-        message_success "${HERDR_PACKAGE_NAME} config synced successfully"
+        message_success "${ZSH_HERDR_PACKAGE_NAME} config synced successfully"
     else
-        message_error "Failed to sync ${HERDR_PACKAGE_NAME} config"
+        message_error "Failed to sync ${ZSH_HERDR_PACKAGE_NAME} config"
         return 1
     fi
 }
@@ -54,20 +54,7 @@ function herdr::internal::config::sync {
 # Returns: writes workspace names to stdout, one per line.
 # Returns 0 if at least one workspace found, 1 if none or error.
 function hrd::internal::list_workspaces {
-    local output
-    output="$(herdr workspace list 2>/dev/null)" || return 1
-
-    if [[ -z "$output" ]]; then
-        return 1
-    fi
-
-    # Parse lines like "Workspace: <name> (id: ...)" or similar
-    printf '%s\n' "$output" | sed -n 's/^Workspace: \(.*\) (id:.*)$/\1/p'
-
-    # If nothing parsed with that pattern, fall back to raw output
-    local count
-    count="$(printf '%s\n' "$output" | wc -l | tr -d ' ')"
-    [[ "$count" -gt 0 ]] && return 0 || return 1
+    herdr workspace list 2>/dev/null | jq -r '.result.workspaces[]?.label // empty'
 }
 
 # Check if a herdr workspace exists by name.
@@ -89,7 +76,13 @@ function hrd::internal::switch_workspace {
     [[ -z "$name" ]] && return 1
 
     if hrd::internal::workspace_exists "$name"; then
-        herdr workspace focus "$name" 2>/dev/null && return 0
+        # Resolve workspace_id from label
+        local workspace_id
+        workspace_id="$(herdr workspace list 2>/dev/null | jq -r --arg label "$name" '.result.workspaces[] | select(.label == $label) | .workspace_id // empty')" || return 1
+
+        if [[ -n "$workspace_id" ]]; then
+            herdr workspace focus "$workspace_id" 2>/dev/null && return 0
+        fi
     fi
 
     # If workspace doesn't exist, create and optionally switch
@@ -105,7 +98,15 @@ function hrd::internal::kill_workspace {
     local name="$1"
     [[ -z "$name" ]] && return 1
 
-    herdr workspace close "$name" 2>/dev/null && return 0
+    local workspace_id
+    workspace_id="$(herdr workspace list 2>/dev/null | jq -r --arg label "$name" '.result.workspaces[] | select(.label == $label) | .workspace_id // empty')" || return 1
+
+    if [[ -z "$workspace_id" ]]; then
+        message_error "Workspace '${name}' not found."
+        return 1
+    fi
+
+    herdr workspace close "$workspace_id" 2>/dev/null && return 0
     return 1
 }
 
@@ -180,11 +181,11 @@ function hrd::internal::derive_project_name {
 }
 
 # List project template names (without .toml extension) from
-# ZSH_HRD_PROJECT_TEMPLATE_PATH, one per line.
+# ZSH_HERDR_PROJECT_TEMPLATE_PATH, one per line.
 # Uses fd if available, falls back to zsh glob.
 # Returns: writes template names to stdout, one per line.
 function hrd::internal::list_templates {
-  local template_dir="${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
+  local template_dir="${ZSH_HERDR_PROJECT_TEMPLATE_PATH}"
 
   if [[ ! -d "$template_dir" ]]; then
     return 1
@@ -209,7 +210,7 @@ function hrd::internal::list_templates {
 # Falls back to "default" on cancel.
 # Returns: writes selected template name to stdout.
 function hrd::internal::select_template {
-  local template_dir="${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
+  local template_dir="${ZSH_HERDR_PROJECT_TEMPLATE_PATH}"
 
   if [[ ! -d "$template_dir" ]]; then
     message_error "Template directory not found: $template_dir"
