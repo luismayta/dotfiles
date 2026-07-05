@@ -47,7 +47,7 @@ name = "catppuccin"
 # Named punctuation such as minus, comma, ampersand, plus, and backtick is also accepted.
 # Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
-# prefix = "ctrl+b"
+prefix = "ctrl+a"
 
 # Prefix-mode actions
 # help = "prefix+?"
@@ -69,7 +69,7 @@ rename_workspace = "prefix+$"
 # previous_agent = ""     # optional, unset by default
 # next_agent = ""         # optional, unset by default
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
-# new_tab = "prefix+c"
+new_tab = "prefix+c"
 rename_tab = "prefix+,"
 # previous_tab = "prefix+p"
 # next_tab = "prefix+n"
@@ -86,7 +86,7 @@ rename_tab = "prefix+,"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
 split_vertical = "prefix+|"
-# split_horizontal = "prefix+minus"
+split_horizontal = "prefix+minus"
 # close_pane = "prefix+x"
 zoom = "prefix+m"
 resize_mode = "prefix+R"
