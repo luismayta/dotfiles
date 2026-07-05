@@ -6,6 +6,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     init = function()
       local map = vim.keymap.set
 
@@ -27,6 +28,7 @@ return {
   },
   {
     "goolord/alpha-nvim",
+    enabled = false,
     lazy = false,
   },
   {
