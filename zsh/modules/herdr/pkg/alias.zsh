@@ -1,2 +1,4 @@
 # shellcheck shell=bash
-# herdr aliases (currently unused)
+
+# Alias for herdr command
+alias hrd=herdr

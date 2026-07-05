@@ -26,3 +26,7 @@ source "${ZSH_HERDR_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/pkg/main.zsh"
+
+# Auto-install guards (must be after pkg/main.zsh so functions exist)
+if ! core::exists rsync; then core::install rsync; fi
+if ! core::exists fzf; then core::install fzf; fi

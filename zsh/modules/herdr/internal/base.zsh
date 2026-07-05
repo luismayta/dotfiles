@@ -1,5 +1,9 @@
 # shellcheck shell=bash
 
+# ──────────────────────────────────────────────
+# Install helpers
+# ──────────────────────────────────────────────
+
 function herdr::internal::install {
     if core::exists herdr; then
         message_info "${HERDR_PACKAGE_NAME} is already installed."
@@ -39,4 +43,213 @@ function herdr::internal::config::sync {
         message_error "Failed to sync ${HERDR_PACKAGE_NAME} config"
         return 1
     fi
+}
+
+# ──────────────────────────────────────────────
+# Workspace helpers
+# ──────────────────────────────────────────────
+
+# List all herdr workspaces by name.
+# Runs herdr workspace list and parses the output.
+# Returns: writes workspace names to stdout, one per line.
+# Returns 0 if at least one workspace found, 1 if none or error.
+function hrd::internal::list_workspaces {
+    local output
+    output="$(herdr workspace list 2>/dev/null)" || return 1
+
+    if [[ -z "$output" ]]; then
+        return 1
+    fi
+
+    # Parse lines like "Workspace: <name> (id: ...)" or similar
+    printf '%s\n' "$output" | sed -n 's/^Workspace: \(.*\) (id:.*)$/\1/p'
+
+    # If nothing parsed with that pattern, fall back to raw output
+    local count
+    count="$(printf '%s\n' "$output" | wc -l | tr -d ' ')"
+    [[ "$count" -gt 0 ]] && return 0 || return 1
+}
+
+# Check if a herdr workspace exists by name.
+# Arguments:
+#   $1 - workspace name
+# Returns: 0 if exists, 1 otherwise.
+function hrd::internal::workspace_exists {
+    local name="$1"
+    [[ -z "$name" ]] && return 1
+    hrd::internal::list_workspaces | grep -qFx "$name"
+}
+
+# Switch to a herdr workspace by name.
+# Arguments:
+#   $1 - workspace name
+# Returns: 0 on success, 1 on failure.
+function hrd::internal::switch_workspace {
+    local name="$1"
+    [[ -z "$name" ]] && return 1
+
+    if hrd::internal::workspace_exists "$name"; then
+        herdr workspace focus "$name" 2>/dev/null && return 0
+    fi
+
+    # If workspace doesn't exist, create and optionally switch
+    herdr workspace create --label "$name" --focus 2>/dev/null && return 0
+    return 1
+}
+
+# Kill (close) a herdr workspace by name.
+# Arguments:
+#   $1 - workspace name
+# Returns: 0 on success, 1 on failure.
+function hrd::internal::kill_workspace {
+    local name="$1"
+    [[ -z "$name" ]] && return 1
+
+    herdr workspace close "$name" 2>/dev/null && return 0
+    return 1
+}
+
+# ──────────────────────────────────────────────
+# FZF helpers
+# ──────────────────────────────────────────────
+
+# Generic fzf selector with preview.
+# Arguments:
+#   $1 - prompt text (e.g., "Select workspace: ")
+#   $2 - preview command (optional)
+# STDIN: list of items to filter
+# Returns: writes selected item to stdout, exits 1 if cancelled.
+function hrd::internal::fzf_select {
+    local prompt="${1:-Select: }"
+    local preview="${2:-}"
+
+    local fzf_opts=()
+    fzf_opts+=(--prompt="$prompt")
+    fzf_opts+=(--exit-0)
+
+    if [[ -n "$preview" ]]; then
+        fzf_opts+=(--preview "$preview")
+        fzf_opts+=(--preview-window=right:60%)
+    fi
+
+    if ! core::exists fzf; then
+        message_error "fzf is required but not installed."
+        return 1
+    fi
+
+    fzf "${fzf_opts[@]}"
+}
+
+# ──────────────────────────────────────────────
+# Project / Template helpers
+# ──────────────────────────────────────────────
+
+# Derive a project name from an argument or directory context.
+# If $1 is given, it is used as the project name (sanitized).
+# If $1 is omitted, derives from $PWD and $HOME:
+#   $PWD == $HOME           -> "core"
+#   parent == $HOME         -> "core-{current_dir}"
+#   otherwise               -> "{parent_dir}-{current_dir}"
+# Returns: writes project name to stdout.
+function hrd::internal::derive_project_name {
+  local name
+
+  if [[ -n "$1" ]]; then
+    name="$1"
+  else
+    local current_dir="${PWD:t}"
+    local parent_dir="${PWD:h:t}"
+
+    if [[ "$PWD" == "$HOME" ]]; then
+      name="core"
+    elif [[ "${PWD:h}" == "$HOME" ]]; then
+      name="core-${current_dir}"
+    else
+      name="${parent_dir}-${current_dir}"
+    fi
+  fi
+
+  # Slug: replace non-alphanumeric chars with hyphen, collapse, lowercase
+  name="${name//[^a-zA-Z0-9]/-}"
+  while [[ "$name" == *--* ]]; do name="${name//--/-}"; done
+  name="${name#-}"
+  name="${name%-}"
+  name="${name:l}"
+
+  printf '%s\n' "$name"
+}
+
+# List project template names (without .toml extension) from
+# ZSH_HRD_PROJECT_TEMPLATE_PATH, one per line.
+# Uses fd if available, falls back to zsh glob.
+# Returns: writes template names to stdout, one per line.
+function hrd::internal::list_templates {
+  local template_dir="${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
+
+  if [[ ! -d "$template_dir" ]]; then
+    return 1
+  fi
+
+  local files
+  if (( ${+commands[fd]} )); then
+    # shellcheck disable=SC2296
+    files=("${(@f)$(fd -e toml --max-depth 1 . "$template_dir" 2>/dev/null)}")
+  else
+    # shellcheck disable=SC1036
+    files=("$template_dir"/*.toml(N))
+  fi
+
+  local f
+  for f in "${files[@]}"; do
+    printf '%s\n' "${f:r:t}"
+  done
+}
+
+# Interactively select a project template using fzf with preview.
+# Falls back to "default" on cancel.
+# Returns: writes selected template name to stdout.
+function hrd::internal::select_template {
+  local template_dir="${ZSH_HRD_PROJECT_TEMPLATE_PATH}"
+
+  if [[ ! -d "$template_dir" ]]; then
+    message_error "Template directory not found: $template_dir"
+    return 1
+  fi
+
+  local selection
+  selection="$(
+    hrd::internal::list_templates \
+      | hrd::internal::fzf_select \
+          "Select project template: " \
+          "bat --language=toml --color=always $template_dir/{}.toml 2>/dev/null || cat -n $template_dir/{}.toml"
+  )"
+
+  if [[ -z "$selection" ]]; then
+    printf '%s\n' "default"
+  else
+    printf '%s\n' "$selection"
+  fi
+}
+
+# Check if a workspace already exists. If yes, prompt to attach.
+# Arguments:
+#   $1 - workspace name
+# Returns:
+#   0 if workspace exists (attached or declined; caller should stop)
+#   1 if workspace does not exist (caller should continue to create)
+function hrd::internal::workspace_attach_or_create {
+  local workspace_name="$1"
+
+  if hrd::internal::workspace_exists "$workspace_name"; then
+    printf 'A herdr workspace "%s" already exists. ' "$workspace_name"
+    # shellcheck disable=SC2162
+    read -q "?Attach? (Y/n) "
+    printf '\n'
+    if [[ "$REPLY" =~ ^[Yy]$ ]] || [[ -z "$REPLY" ]]; then
+      hrd::internal::switch_workspace "$workspace_name"
+    fi
+    return 0
+  fi
+
+  return 1
 }
