@@ -1,0 +1,15 @@
+name = "Default"
+description = "Default development workspace with editor, AI agent, and shell"
+working_dir = "."
+group = "Development"
+
+[[tabs]]
+name = "workspace"
+[[tabs.panes]]
+command = "$EDITOR ."
+[[tabs.panes]]
+command = "opencode"
+split = "down"
+[[tabs.panes]]
+command = ""
+split = "right"

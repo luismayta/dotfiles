@@ -1,0 +1,18 @@
+name = "Go"
+description = "Go development workspace with editor, app server, AI agent, and shell"
+working_dir = "."
+group = "Development"
+
+[[tabs]]
+name = "workspace"
+[[tabs.panes]]
+command = "$EDITOR ."
+[[tabs.panes]]
+command = ""
+split = "down"
+[[tabs.panes]]
+command = "opencode"
+split = "right"
+[[tabs.panes]]
+command = ""
+split = "down"

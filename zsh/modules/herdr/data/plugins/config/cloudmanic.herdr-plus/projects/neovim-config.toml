@@ -1,7 +1,0 @@
-name = "nvim conf"
-description = "Go to nvim config (New Workspace)"
-working_dir = "~/.config/nvim"
-
-[[tabs]]
-name = "nvim conf"
-command = "nvim ."

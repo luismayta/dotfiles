@@ -1,3 +1,0 @@
-name = "📜 nlof" 
-description = "List Recent File Fzf"
-command = "~/scripts/fzf_listoldfiles.sh"

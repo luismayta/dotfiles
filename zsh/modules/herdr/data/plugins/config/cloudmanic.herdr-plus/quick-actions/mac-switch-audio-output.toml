@@ -1,3 +1,0 @@
-name = "📜 output audio switch" 
-description = "Switch output audio device"
-command = "~/scripts/macSys/fzf-switch-audio.sh"
