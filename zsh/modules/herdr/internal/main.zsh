@@ -19,3 +19,8 @@ core::ensure curl
 if ! core::exists herdr; then
     herdr::internal::install
 fi
+
+# Auto-install herdr plugins if enabled
+if [[ "${ZSH_HERDR_PLUGIN_ENABLED:-true}" == true ]]; then
+    herdr::internal::plugin::install::all
+fi
