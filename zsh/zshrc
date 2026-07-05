@@ -88,3 +88,16 @@ esac
 if [ -n "${ZSH_DEBUG}" ]; then
     zprof
 fi
+
+# Auto-start herdr terminal multiplexer in Alacritty.
+# Only activates when:
+#   - Running inside Alacritty (detected via $ALACRITTY_WINDOW_ID)
+#   - Interactive shell
+#   - herdr binary is installed
+# Disable by setting ZSH_HERDR_ENABLED=false in ~/.customrc
+if [[ -o interactive ]] \
+  && [[ -n "${ALACRITTY_WINDOW_ID:-}" ]] \
+  && command -v herdr >/dev/null 2>&1 \
+  && [[ "${ZSH_HERDR_ENABLED:-true}" == "true" ]]; then
+  command herdr
+fi
