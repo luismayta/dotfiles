@@ -153,6 +153,7 @@ repos:
         language: system
         args: ["--check"]
         files: \.lua$
+        exclude: ^zsh/modules/wezterm/data/utils/(opts-validator|cells)\.lua$
 
       - id: luac-check
         name: Check Lua syntax
