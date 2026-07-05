@@ -28,26 +28,13 @@ export ZSH_HRD_PLUGIN_ENABLED="${ZSH_HERDR_PLUGIN_ENABLED}"
 
 # Orchestrate & Run — agent coordination, factories, pipelines
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  razajamil/herdr-factory
   0x5c0f/herdr-insight
   rohanthewiz/herdr-todo
-  tomoasleep/herdr-symphony
-  machine-machine/herdr-factory-loop-skill
-  machine-machine/ask-fable-skill
-  bakescakes/claude-orchestration
   carze/herdr-smolmachine
-  noor-latif/herd
 )
 
 # Connect — socket API, MCP, notifications, bridges
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  54rt1n/herdr-python-client
-  eugeneb50/herdr-mcp
-  runchr-works/herdr-mesh
-  ogulcancelik/herdr-plugin-examples
-  gaijinjoe/herdres
-  54rt1n/herdr-simple-mcp
-  lib-x/herdr-sock-go
   codybontecou/herdr-telemetry-bridge
   dcolinmorgan/herdr-push
   vaclavik-xyz/herdwatch
@@ -56,19 +43,12 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
 
 # Editor integrations — Neovim, Vim, Obsidian
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  devxplay/herdr.nvim
-  momepp/herd.nvim
   paulbkim-dev/vim-herdr-navigation
   lmilojevicc/herdr-splits.nvim
-  luiarthur/herdr.vim
-  daniel-steinberger/obsidian-herdr
 )
 
 # Sessions — switch, restore, pick, project layouts
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  ridho9/switchr
-  j0urneyk/herdrctx
-  nickmaglowsch/herdr-session-restore
   thanhdat77/herdr-picker-plus
   andrewchng/herdr-sessionizer
   alon-z/herdr-command-palette
@@ -77,16 +57,10 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
 
 # Worktrees & terminal UX — git, layouts, navigation, overlays
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  noamsiegel/git-wt-herdr
-  sirtenzin/superherd
-  justcyl/pi-herdr-tab-sync
-  taeyoung96/herdr-dotfiles
-  mattarau/wt-herdr
   qdentity/herdr-worktree-lifecycle
   razajamil/herdr-plugin-workspace-manager
   alon-z/herdr-devup
   persiyanov/herdr-reviewr
-  x0d7x/herdr-fzf-url
   rmarganti/herdr-pluck
   smarzban/herdr-file-viewer
   beomjungil/herdr-lazygit-overlay
@@ -94,16 +68,4 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
   kamaaina/herdr_sync
   wyattjoh/herdr-plugin-renamer
   alexjsp/herdr-scrollback-capture
-)
-
-# Desktop & packaging — menu bar, web UI, remote
-ZSH_HERDR_INSTALL_PLUGINS+=(
-  hmu332233/herdr-menu-bar
-  alecuba16/herdr-webui
-  dcolinmorgan/herdr-remote
-  kcosr/herdr-web
-  lachieh/vfox-herdr
-  re2zero/deepin-herdr
-  aodhanhayter/herdr-nix
-  timvdhoorn/stream-deck-herdr-plugin
 )
