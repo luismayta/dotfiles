@@ -87,8 +87,8 @@ rename_tab = "prefix+,"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
 split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
-# close_pane = "prefix+x"
-zoom = "prefix+m"
+close_pane = "prefix+x"
+zoom = "prefix+z"
 resize_mode = "prefix+R"
 # toggle_sidebar = "prefix+b"
 
@@ -151,7 +151,7 @@ description = "herdr-plus: projects"
 # agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
 
 # [worktrees]
-# directory = "~/.herdr/worktrees"
+directory = "~/.codi/worktrees"
 
 [ui]
 # Sidebar width (auto-scaled based on workspace names, this sets the default)
