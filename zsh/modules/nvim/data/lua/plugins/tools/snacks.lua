@@ -4,7 +4,6 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- enabled modules (Fase 1 — low risk, replacing standalone plugins)
     indent = { enabled = true },
     dashboard = { enabled = true },
     input = { enabled = true },
