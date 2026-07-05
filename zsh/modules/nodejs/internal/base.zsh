@@ -1,14 +1,14 @@
 # shellcheck shell=bash
-# shellcheck disable=SC2154 # FNM_PACKAGE_NAME defined in config/base.zsh
+# shellcheck disable=SC2154 # NODEJS_TOOL_NAME defined in config/base.zsh
 
-function fnm::internal::fnm::install {
-    message_info "Installing ${FNM_PACKAGE_NAME}"
+function nodejs::internal::fnm::install {
+    message_info "Installing ${NODEJS_TOOL_NAME}"
     curl -fsSL "${FNM_INSTALL_URL}" | bash
-    fnm::internal::fnm::load
-    message_success "Installed ${FNM_PACKAGE_NAME}"
+    nodejs::internal::fnm::load
+    message_success "Installed ${NODEJS_TOOL_NAME}"
 }
 
-function fnm::internal::fnm::load {
+function nodejs::internal::fnm::load {
   if [ -d "${FNM_PATH}" ]; then
     export PATH="${FNM_PATH}:${PATH}"
     eval "$(fnm env)"
@@ -16,18 +16,18 @@ function fnm::internal::fnm::load {
   fi
 }
 
-function fnm::internal::packages::install {
+function nodejs::internal::packages::install {
     message_info "Installing required bun packages"
-    bun install -g "${FNM_PACKAGES[@]}"
+    bun install -g "${NODEJS_PACKAGES[@]}"
     message_success "Installed required bun packages"
 }
 
-function fnm::internal::bunx::load {
+function nodejs::internal::bunx::load {
     local bun_bin="${HOME}/.bun/bin"
     [ -e "${bun_bin}/bun" ] && export PATH="${bun_bin}:${PATH}"
 }
 
-function fnm::internal::bun::install {
+function nodejs::internal::bun::install {
     if core::exists bun; then
         return 0
     fi
@@ -41,33 +41,33 @@ function fnm::internal::bun::install {
     fi
 }
 
-function fnm::internal::version::all::install {
+function nodejs::internal::version::all::install {
     if ! core::exists fnm; then
         message_warning "not found fnm"
         return
     fi
 
-    for version in "${FNM_VERSIONS[@]}"; do
-        message_info "Install version of fnm ${version}"
+    for version in "${NODEJS_VERSIONS[@]}"; do
+        message_info "Install version of nodejs ${version}"
         fnm install "${version}"
-        message_success "Installed version of fnm ${version}"
+        message_success "Installed version of nodejs ${version}"
     done
-    fnm use "${FNM_VERSION_GLOBAL}"
-    message_success "Installed versions of fnm"
+    fnm use "${NODEJS_VERSION_GLOBAL}"
+    message_success "Installed versions of nodejs"
 
 }
 
-function fnm::internal::version::global::install {
+function nodejs::internal::version::global::install {
     if ! core::exists fnm; then
         message_warning "not found fnm"
         return
     fi
-    message_info "Installing version global of fnm ${FNM_VERSION_GLOBAL}"
-    fnm install "${FNM_VERSION_GLOBAL}"
-    fnm alias default "${FNM_VERSION_GLOBAL}"
-    message_success "Installed version global of fnm ${FNM_VERSION_GLOBAL}"
+    message_info "Installing version global of nodejs ${NODEJS_VERSION_GLOBAL}"
+    fnm install "${NODEJS_VERSION_GLOBAL}"
+    fnm alias default "${NODEJS_VERSION_GLOBAL}"
+    message_success "Installed version global of nodejs ${NODEJS_VERSION_GLOBAL}"
 }
 
-function fnm::internal::fnm::upgrade {
-    message_info "command not implemented ${FNM_PACKAGE_NAME}"
+function nodejs::internal::fnm::upgrade {
+    message_info "command not implemented ${NODEJS_TOOL_NAME}"
 }

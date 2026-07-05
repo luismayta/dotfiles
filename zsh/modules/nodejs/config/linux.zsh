@@ -1,2 +1,2 @@
-# Linux-specific fnm config
+# Linux-specific nodejs config
 # shellcheck shell=bash

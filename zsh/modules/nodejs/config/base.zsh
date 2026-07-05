@@ -1,14 +1,14 @@
 # shellcheck shell=bash
-ZSH_FNM_ENABLED="${ZSH_FNM_ENABLED:-true}"
-export FNM_PACKAGE_NAME=fnm
+ZSH_NODEJS_ENABLED="${ZSH_NODEJS_ENABLED:-true}"
+export NODEJS_TOOL_NAME=fnm
 export BUN_PATH="${HOME}/.bun"
 export FNM_PATH="${HOME}/.local/share/fnm"
-export FNM_VERSIONS=(
+export NODEJS_VERSIONS=(
   24.11.1
 )
 export FNM_VERSION="${JASPER_FNM_VERSION:-0.39.5}"
-export FNM_VERSION_GLOBAL=24.11.1
-export FNM_PACKAGES=(
+export NODEJS_VERSION_GLOBAL=24.11.1
+export NODEJS_PACKAGES=(
     npm
     pnpm
     pake-cli

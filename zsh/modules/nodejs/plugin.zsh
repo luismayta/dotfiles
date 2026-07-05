@@ -1,9 +1,9 @@
 #
 # shellcheck shell=bash
-# fnm ZSH module
+# Node.js ZSH module
 #
 # Port of hadenlabs/zsh-fnm into the modules/ convention.
-# Provides fnm (Fast Node Manager) installation, PATH management,
+# Provides Node.js toolchain management: fnm installation, PATH management,
 # and Node.js version setup with OS-specific dispatch (macOS/Linux).
 #
 # This is the only file the zshrc sources — it internally chains:
@@ -11,19 +11,19 @@
 #
 
 # Idempotency guard
-[[ -n "${__ZSH_FNM_LOADED:-}" ]] && return
-__ZSH_FNM_LOADED=1
+[[ -n "${__ZSH_NODEJS_LOADED:-}" ]] && return
+__ZSH_NODEJS_LOADED=1
 
 # Module root path — used by all sourced sub-files
-ZSH_FNM_PATH="$(dirname "${0}")"
-message_info "Loading module: fnm"
+ZSH_NODEJS_PATH="$(dirname "${0}")"
+message_info "Loading module: nodejs"
 
 # shellcheck source=/dev/null
-source "${ZSH_FNM_PATH}/config/main.zsh"
-$ZSH_FNM_ENABLED || return
+source "${ZSH_NODEJS_PATH}/config/main.zsh"
+$ZSH_NODEJS_ENABLED || return
 
 # shellcheck source=/dev/null
-source "${ZSH_FNM_PATH}/internal/main.zsh"
+source "${ZSH_NODEJS_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
-source "${ZSH_FNM_PATH}/pkg/main.zsh"
+source "${ZSH_NODEJS_PATH}/pkg/main.zsh"

@@ -8,7 +8,7 @@
 typeset -ga DOTFILES_SETUP_MODULES
 DOTFILES_SETUP_MODULES=(
   wezterm zed hammerspoon mobile
-  git issues
+  git issues nodejs
 )
 
 function dotfiles::setup {

@@ -1,41 +1,41 @@
 # shellcheck shell=bash
-# shellcheck disable=SC2154 # FNM_PACKAGE_NAME defined in config/base.zsh
+# shellcheck disable=SC2154 # NODEJS_TOOL_NAME defined in config/base.zsh
 
-function fnm::install {
-    fnm::internal::fnm::install
+function nodejs::install {
+    nodejs::internal::fnm::install
 }
 
-function fnm::load {
-    fnm::internal::fnm::load
+function nodejs::load {
+    nodejs::internal::fnm::load
 }
 
-function fnm::post_install {
-    message_info "Installing ${FNM_PACKAGE_NAME}"
-    message_success "Installed ${FNM_PACKAGE_NAME}"
+function nodejs::post_install {
+    message_info "Installing ${NODEJS_TOOL_NAME}"
+    message_success "Installed ${NODEJS_TOOL_NAME}"
 }
 
-function fnm::upgrade {
-    fnm::internal::fnm::upgrade
+function nodejs::upgrade {
+    nodejs::internal::fnm::upgrade
 }
 
-function fnm::package::all::install {
-    fnm::internal::packages::install
+function nodejs::package::all::install {
+    nodejs::internal::packages::install
 }
 
-function fnm::install::versions {
-    fnm::internal::version::all::install
+function nodejs::install::versions {
+    nodejs::internal::version::all::install
 }
 
-function fnm::install::version::global {
-    fnm::internal::version::global::install
+function nodejs::install::version::global {
+    nodejs::internal::version::global::install
 }
 
-# Auto-invoke: load fnm and auto-install if missing
-fnm::load
+# Auto-invoke: load nodejs and auto-install if missing
+nodejs::load
 core::ensure curl
 core::ensure unzip
-if ! core::exists fnm; then fnm::install; fi
+if ! core::exists fnm; then nodejs::install; fi
 
-fnm::internal::bun::install
+nodejs::internal::bun::install
 
-fnm::internal::bunx::load
+nodejs::internal::bunx::load
