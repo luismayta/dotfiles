@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-ZSH_TMUX_ENABLED="${ZSH_TMUX_ENABLED:-true}"
+export ZSH_TMUX_ENABLED="${ZSH_TMUX_ENABLED:-false}"
 
 export HOME_CONFIG_PATH="${HOME}"/.config
 export TMUX_FILE_SETTINGS="${HOME}"/.tmux.conf
@@ -11,4 +11,3 @@ export TMUXINATOR_TEMPLATE_PATH="${HOME_CONFIG_PATH}/tmuxinator"
 export TMUXINATOR_DEFAULT_TEMPLATE="default"
 
 export TMUX_INSTALL_URL_TPM="https://github.com/tmux-plugins/tpm"
-

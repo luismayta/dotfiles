@@ -13,6 +13,11 @@
 # so the auto-start respects the terminal multiplexer and doesn't leak sockets.
 #
 
+# Skip if tmux module is disabled (consistent with ZSH_DISABLED_MODULES in zshrc)
+if [[ -n "${ZSH_DISABLED_MODULES:-}" ]] && [[ ",${ZSH_DISABLED_MODULES// /,}," == *",tmux,"* ]]; then
+    return
+fi
+
 if type -p tmux > /dev/null; then
     if [[ -z "${TMUX}" ]] && [[ "${__ZSH_TMUX_AUTOSTART:-true}" != "false" ]]; then
         tmux -L "${TMUX_SOCKET:-default}" new-session -A -s allsafe
