@@ -29,17 +29,3 @@ function nodejs::install::versions {
 function nodejs::install::version::global {
     nodejs::internal::version::global::install
 }
-
-# Auto-invoke: load nodejs and auto-install if missing
-nodejs::load
-core::ensure curl
-core::ensure unzip
-if ! core::exists fnm; then nodejs::install; fi
-
-nodejs::internal::bun::install
-
-nodejs::internal::bunx::load
-
-# bun completions
-# shellcheck disable=SC1091
-[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"

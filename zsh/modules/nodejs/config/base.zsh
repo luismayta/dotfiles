@@ -38,5 +38,6 @@ export NODEJS_PACKAGES=(
 )
 
 export FNM_INSTALL_URL="https://fnm.vercel.app/install"
+export BUN_INSTALL_URL="https://bun.sh/install"
 
 export BUN_INSTALL="${HOME}/.bun"

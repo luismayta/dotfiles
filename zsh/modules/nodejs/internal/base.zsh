@@ -33,12 +33,16 @@ function nodejs::internal::bun::install {
     fi
 
     message_info "Installing bun..."
-    if curl -fsSL "https://bun.com/install" | bash; then
-        message_success "bun installed successfully"
-    else
-        message_error "Failed to install bun"
-        return 1
+    if curl -fsSL "${BUN_INSTALL_URL}" | bash; then
+        if core::exists bun; then
+            message_success "bun installed successfully"
+            return 0
+        fi
+        message_warning "bun install script ran but binary not found in PATH"
     fi
+
+    message_error "Failed to install bun"
+    return 1
 }
 
 function nodejs::internal::version::all::install {
