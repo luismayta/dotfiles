@@ -20,7 +20,7 @@ defaults:
   # Regenerate keys after a while
   RekeyLimit: 100M 3600
   # Ask to verify server fingerprint
-  StrictHostKeyChecking: no
+  StrictHostKeyChecking: ask
   # Send keep-alive signals to avoid connection timeout
   TCPKeepAlive: yes
   # https://security.stackexchange.com/questions/110639/how-exploitable-is-the-recent-useroaming-ssh-problem
