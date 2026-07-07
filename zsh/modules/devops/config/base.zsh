@@ -21,7 +21,6 @@ export DEVOPS_TOOLS=(
   glab
   google-cloud-cli
   github-cli
-  yazi
   zoxide
 )
 

@@ -22,7 +22,6 @@ export RUST_CARGO_PACKAGES_SIMPLE=(
 export RUST_CARGO_PACKAGES_LOCKED=(
   zoxide
   create-tauri-app
-  "yazi-fm yazi-cli"
 )
 
 export RUST_CARGO_PACKAGES_FEATURES=(
