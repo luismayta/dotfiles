@@ -16,8 +16,7 @@ esac
 # shellcheck source=/dev/null
 source "${SSH_PATH}/internal/helper.zsh"
 
-if ! core::exists curl; then core::install curl; fi
-if ! core::exists fzf; then core::install fzf; fi
-if ! core::exists jq; then core::install jq; fi
-if ! core::exists less; then core::install less; fi
-if ! core::exists assh; then core::install assh; fi
+core::ensure curl
+core::ensure fzf
+core::ensure jq
+core::ensure assh
