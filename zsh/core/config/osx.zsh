@@ -2,19 +2,36 @@
 
 export PATH="${PATH}:${HOMEBREW_BIN_PATH}"
 
-# shellcheck disable=SC2034 # Used in internal/api.zsh via multiplatform::install
-CORE_PACKAGES=(
+# Shell & Core
+CORE_PACKAGES+=(
   zsh
   git
   rsync
+  ksh
+)
+
+# CLI Utilities
+CORE_PACKAGES+=(
   jq
   ag
   fd
   ripgrep
+)
+
+# Build & Dev Tools
+CORE_PACKAGES+=(
   cmake
   direnv
-  ksh
+)
+
+# Fonts
+CORE_PACKAGES+=(
   font-fira-code-nerd-font
   font-jetbrains-mono-nerd-font
   font-source-code-pro-nerd-font
+)
+
+# Document Conversion
+CORE_PACKAGES+=(
+  pandoc
 )
