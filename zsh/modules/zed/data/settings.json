@@ -1,4 +1,7 @@
 {
+  "project_panel": {
+    "dock": "left"
+  },
   "cli_default_open_behavior": "existing_window",
   "language_models": {
     "deepseek": {
@@ -62,6 +65,8 @@
   },
   "disable_ai": false,
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "default_profile": "write",
     "default_model": {
       "provider": "deepseek",
