@@ -4,25 +4,6 @@
 # Shell wrapper — directory-preserving yazi launcher
 # ──────────────────────────────────────────────
 
-# y() — launch yazi with --cwd-file support.
-# On exit, changes shell directory to the last-browsed path.
-# Arguments are forwarded to yazi (e.g., y /some/path).
-function y {
-    local tmp
-    tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-
-    command yazi "${@}" --cwd-file="$tmp"
-
-    if [[ -f "$tmp" ]]; then
-        local cwd
-        cwd="$(<"$tmp")"
-        if [[ -n "$cwd" ]] && [[ "$cwd" != "$PWD" ]]; then
-            builtin cd "$cwd" || true
-        fi
-        rm -f "$tmp"
-    fi
-}
-
 # ──────────────────────────────────────────────
 # Config editor — open yazi config in $EDITOR
 # ──────────────────────────────────────────────

@@ -17,7 +17,10 @@ function yazi::internal::theme::download {
 
 function yazi::internal::config::sync {
     yazi::internal::theme::download
-    rsync -avzh "${ZSH_YAZI_DATA_PATH}/" "${ZSH_YAZI_CONFIG_DIR}/"
+    rsync -avzh --delete \
+        --exclude=plugins/ \
+        --exclude=flavors/ \
+        "${ZSH_YAZI_DATA_PATH}/" "${ZSH_YAZI_CONFIG_DIR}/"
 }
 
 
