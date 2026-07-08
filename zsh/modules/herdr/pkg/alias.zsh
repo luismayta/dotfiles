@@ -1,4 +1,2 @@
 # shellcheck shell=bash
-
-# Alias for herdr command
-alias hrd=herdr
+# Alias file is intentionally empty — `hrd` is now a function in helper.zsh

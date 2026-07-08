@@ -12,28 +12,37 @@ _hrd() {
 # hrd — switch or create herdr workspace via fzf.
 # Port of ftm (fuzzy tmux) from the tmux module.
 # Without arguments: list workspaces via fzf, switch to selected.
-# With argument: switch to named workspace (create if missing).
+# With argument that matches a known subcommand: forward to _hrd.
+# With other argument: switch to named workspace (create if missing).
 function hrd {
-  if [[ -n "${1}" ]]; then
-    hrd::internal::switch_workspace "${1}"
+  if [[ $# -eq 0 ]]; then
+    local workspaces
+    workspaces="$(hrd::internal::list_workspaces 2>/dev/null)" || {
+      message_info "No herdr workspaces found. Create one with: herdr workspace create --label <name>"
+      return 1
+    }
+
+    local selection
+    selection="$(
+      printf '%s\n' "$workspaces" \
+        | hrd::internal::fzf_select "Switch workspace: "
+    )"
+
+    if [[ -n "$selection" ]]; then
+      hrd::internal::switch_workspace "$selection"
+    fi
     return
   fi
 
-  local workspaces
-  workspaces="$(hrd::internal::list_workspaces 2>/dev/null)" || {
-    message_info "No herdr workspaces found. Create one with: herdr workspace create --label <name>"
-    return 1
-  }
-
-  local selection
-  selection="$(
-    printf '%s\n' "$workspaces" \
-      | hrd::internal::fzf_select "Switch workspace: "
-  )"
-
-  if [[ -n "$selection" ]]; then
-    hrd::internal::switch_workspace "$selection"
-  fi
+  # Known herdr subcommands — forward to _hrd()
+  case "$1" in
+    workspace|session|server|plugin|worktree|completion|update|status|api|tab|pane|agent|wait|notification|integration|terminal)
+      _hrd "$@"
+      ;;
+    *)
+      hrd::internal::switch_workspace "$1"
+      ;;
+  esac
 }
 
 # hrdk — kill a herdr workspace via fzf.
@@ -216,4 +225,158 @@ function hrd::plugin {
             return 1
             ;;
     esac
+}
+
+# ──────────────────────────────────────────────
+# Worktree helpers (hrdw::*)
+# ──────────────────────────────────────────────
+
+# hrdw::list — list all worktrees for the current repo.
+function hrdw::list {
+  if ! hrd::internal::worktree::is_git_repo; then
+    message_error "Not a git repository: ${PWD}"
+    return 1
+  fi
+
+  hrd::internal::worktree::list
+}
+
+# hrdw::create — create a git worktree from current directory.
+# Usage: hrdw::create <branch-name>
+#   If branch-name has no known prefix (feature/, fix/, bugfix/, hotfix/, chore/),
+#   auto-prepend feature/.
+# Examples:
+#   hrdw::create RD-21     -> feature/RD-21
+#   hrdw::create hotfix/x  -> hotfix/x (no prefix added)
+function hrdw::create {
+  if ! hrd::internal::worktree::is_git_repo; then
+    message_error "Not a git repository: ${PWD}"
+    return 1
+  fi
+
+  local name="${1:-}"
+  if [[ -z "$name" ]]; then
+    message_error "Usage: hrdw::create <branch-name>"
+    return 1
+  fi
+
+  # Auto-prepend feature/ if no known prefix
+  if [[ "$name" != feature/* ]] \
+    && [[ "$name" != fix/* ]] \
+    && [[ "$name" != bugfix/* ]] \
+    && [[ "$name" != hotfix/* ]] \
+    && [[ "$name" != chore/* ]]; then
+    name="feature/${name}"
+  fi
+
+  # Derive workspace label: <project-context>/<branch-name>
+  local project_context
+  project_context="$(hrd::internal::derive_project_name)" || project_context="${PWD:t}"
+  local branch_part="${name##*/}"
+  local label="${project_context}/${branch_part}"
+
+  # Check if worktree already exists for this branch
+  if hrd::internal::worktree::branch_exists "$name"; then
+    local existing_path
+    existing_path="$(herdr worktree list --cwd . --json 2>/dev/null \
+      | jq -r --arg branch "$name" '.result.worktrees[] | select(.branch == $branch) | .path // empty' 2>/dev/null)"
+    message_info "Worktree '${label}' already exists at: ${existing_path}"
+    printf 'Open it? (Y/n) '
+    # shellcheck disable=SC2162
+    read -q reply
+    printf '\n'
+    if [[ "$reply" =~ ^[Yy]$ ]] || [[ -z "$reply" ]]; then
+      hrd::internal::worktree::open "$name"
+    fi
+    return 0
+  fi
+
+  hrd::internal::worktree::create "$name" "$label"
+}
+
+# hrdw::open — open an existing worktree via fzf or by branch name.
+# Usage:
+#   hrdw::open         -> fzf selector
+#   hrdw::open RD-21   -> resolves feature/RD-21 and opens it
+function hrdw::open {
+  if ! hrd::internal::worktree::is_git_repo; then
+    message_error "Not a git repository: ${PWD}"
+    return 1
+  fi
+
+  local target="${1:-}"
+
+  if [[ -z "$target" ]]; then
+    # fzf selector
+    local selection
+    selection="$(hrd::internal::worktree::fzf_select "Open worktree: ")" || return 1
+    # Extract path (second field in "branch | path | status" format)
+    local path
+    path="$(printf '%s\n' "$selection" | awk -F ' \\| ' '{print $2}')"
+    if [[ -n "$path" ]]; then
+      hrd::internal::worktree::open "$path"
+    fi
+    return
+  fi
+
+  # Auto-prefix same as create
+  if [[ "$target" != feature/* ]] \
+    && [[ "$target" != fix/* ]] \
+    && [[ "$target" != bugfix/* ]] \
+    && [[ "$target" != hotfix/* ]] \
+    && [[ "$target" != chore/* ]]; then
+    target="feature/${target}"
+  fi
+
+  # Derive context for display
+  local project_context
+  project_context="$(hrd::internal::derive_project_name 2>/dev/null || printf '%s\n' "${PWD:t}")"
+  local branch_part="${target##*/}"
+  message_info "Opening worktree: ${project_context}/${branch_part}"
+  hrd::internal::worktree::open "$target"
+}
+
+# hrdw::remove — remove a worktree by workspace ID or via fzf.
+# Usage:
+#   hrdw::remove <workspace-id>   -> remove by ID
+#   hrdw::remove                  -> fzf selector, then confirm, then remove
+#   hrdw::remove <id> --force     -> force remove
+function hrdw::remove {
+  if ! hrd::internal::worktree::is_git_repo; then
+    message_error "Not a git repository: ${PWD}"
+    return 1
+  fi
+
+  local id="${1:-}"
+  local force="${2:-}"
+
+  if [[ -z "$id" ]]; then
+    # fzf selector
+    local selection
+    selection="$(hrd::internal::worktree::fzf_select "Remove worktree: ")" || return 1
+    # Extract branch (first field)
+    local branch
+    branch="$(printf '%s\n' "$selection" | awk -F ' \\| ' '{print $1}')"
+    # Resolve workspace ID from branch
+    local ws_id
+    ws_id="$(herdr worktree list --cwd . --json 2>/dev/null \
+      | jq -r --arg branch "$branch" '.result.worktrees[] | select(.branch == $branch) | .open_workspace_id // empty' 2>/dev/null)"
+    if [[ -z "$ws_id" ]]; then
+      message_error "Could not resolve workspace ID for branch: ${branch}"
+      return 1
+    fi
+    local project_context
+    project_context="$(hrd::internal::derive_project_name 2>/dev/null || printf '%s\n' "${PWD:t}")"
+    local branch_part="${branch##*/}"
+    printf 'Remove worktree "%s/%s" (workspace: %s)? (y/N) ' "$project_context" "$branch_part" "$ws_id"
+    # shellcheck disable=SC2162
+    read -q reply
+    printf '\n'
+    if [[ "$reply" =~ ^[Yy]$ ]]; then
+      hrd::internal::worktree::remove "$ws_id" "$force"
+    fi
+    return
+  fi
+
+  hrd::internal::worktree::remove "$id" "$force"
 }
