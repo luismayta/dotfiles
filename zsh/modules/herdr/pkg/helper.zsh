@@ -102,25 +102,8 @@ function hrd::project {
   }
   ws_id="$(printf '%s\n' "$ws_json" | jq -r '.result.workspace.workspace_id')"
 
-  # Layout: 3 panes — editor (left 60%) | log (right-top) / shell (right-bottom)
-  # ┌─────────────────┬──────────────┐
-  # │                 │  pane 2      │
-  # │   pane 1        │  (shell)     │
-  # │   (editor)      ├──────────────┤
-  # │                 │  pane 3      │
-  # │                 │  (agent)     │
-  # └─────────────────┴──────────────┘
-
-  # Split pane 1 right at 60%; focus moves to the new right pane
-  herdr pane split --current --direction right --ratio 0.6
-
-  # Split right pane down at 50%; focus moves to new bottom-right pane
-  herdr pane split --current --direction down --ratio 0.5
-
-  # Name the panes for visual clarity (pane_id format: <workspace_id>:p<N>)
-  herdr pane rename "${ws_id}:p1" "editor"
-  herdr pane rename "${ws_id}:p2" "shell"
-  herdr pane rename "${ws_id}:p3" "agent"
+  # Set up 3-pane IDE layout via shared helper
+  hrd::internal::pane::setup_3_pane_layout "$ws_id"
 
   message_success "Project workspace '${project_name}' created."
 }
@@ -290,7 +273,14 @@ function hrdw::create {
     return 0
   fi
 
-  hrd::internal::worktree::create "$name" "$label"
+  if hrd::internal::worktree::create "$name" "$label"; then
+    # Set up 3-pane IDE layout after successful worktree creation
+    local ws_id
+    ws_id="$(hrd::internal::resolve_workspace_id "$label")" || true
+    if [[ -n "$ws_id" ]]; then
+      hrd::internal::pane::setup_3_pane_layout "$ws_id" || true
+    fi
+  fi
 }
 
 # hrdw::open — open an existing worktree via fzf or by branch name.
