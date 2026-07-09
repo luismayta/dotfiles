@@ -78,7 +78,7 @@ function hrd::internal::switch_workspace {
     if hrd::internal::workspace_exists "$name"; then
         # Resolve workspace_id from label
         local workspace_id
-        workspace_id="$(herdr workspace list 2>/dev/null | jq -r --arg label "$name" '.result.workspaces[] | select(.label == $label) | .workspace_id // empty')" || return 1
+        workspace_id="$(hrd::internal::resolve_workspace_id "$name")" || return 1
 
         if [[ -n "$workspace_id" ]]; then
             herdr workspace focus "$workspace_id" 2>/dev/null && return 0
@@ -99,7 +99,7 @@ function hrd::internal::kill_workspace {
     [[ -z "$name" ]] && return 1
 
     local workspace_id
-    workspace_id="$(herdr workspace list 2>/dev/null | jq -r --arg label "$name" '.result.workspaces[] | select(.label == $label) | .workspace_id // empty')" || return 1
+    workspace_id="$(hrd::internal::resolve_workspace_id "$name")" || return 1
 
     if [[ -z "$workspace_id" ]]; then
         message_error "Workspace '${name}' not found."
@@ -450,8 +450,7 @@ function hrd::internal::worktree::open {
   # If it looks like a branch (no leading / or ~), resolve to path
   if [[ "$target" != /* ]] && [[ "$target" != ~* ]]; then
     local resolved
-    resolved="$(herdr worktree list --cwd . --json 2>/dev/null \
-      | jq -r --arg branch "$target" '.result.worktrees[] | select(.branch == $branch) | .path // empty' 2>/dev/null)"
+    resolved="$(hrd::internal::worktree::resolve_path "$target")"
     if [[ -n "$resolved" ]]; then
       target="$resolved"
     fi
@@ -510,4 +509,37 @@ function hrd::internal::worktree::fzf_select {
   )"
 
   [[ -n "$selection" ]] && printf '%s\n' "$selection"
+}
+
+# Resolve workspace ID from a workspace label.
+# Arguments:
+#   $1 - workspace label
+# Returns: writes workspace_id to stdout, returns 1 if not found.
+function hrd::internal::resolve_workspace_id {
+  local label="$1"
+  [[ -z "$label" ]] && return 1
+  herdr workspace list 2>/dev/null \
+    | jq -r --arg label "$label" '.result.workspaces[] | select(.label == $label) | .workspace_id // empty'
+}
+
+# Resolve worktree path from a branch name.
+# Arguments:
+#   $1 - branch name
+# Returns: writes path to stdout, empty if not found.
+function hrd::internal::worktree::resolve_path {
+  local branch="$1"
+  [[ -z "$branch" ]] && return 1
+  herdr worktree list --cwd . --json 2>/dev/null \
+    | jq -r --arg branch "$branch" '.result.worktrees[] | select(.branch == $branch) | .path // empty'
+}
+
+# Resolve open workspace ID from a branch name.
+# Arguments:
+#   $1 - branch name
+# Returns: writes open_workspace_id to stdout, empty if not found.
+function hrd::internal::worktree::resolve_workspace_id {
+  local branch="$1"
+  [[ -z "$branch" ]] && return 1
+  herdr worktree list --cwd . --json 2>/dev/null \
+    | jq -r --arg branch "$branch" '.result.worktrees[] | select(.branch == $branch) | .open_workspace_id // empty'
 }

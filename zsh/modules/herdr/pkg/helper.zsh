@@ -278,8 +278,7 @@ function hrdw::create {
   # Check if worktree already exists for this branch
   if hrd::internal::worktree::branch_exists "$name"; then
     local existing_path
-    existing_path="$(herdr worktree list --cwd . --json 2>/dev/null \
-      | jq -r --arg branch "$name" '.result.worktrees[] | select(.branch == $branch) | .path // empty' 2>/dev/null)"
+    existing_path="$(hrd::internal::worktree::resolve_path "$name")"
     message_info "Worktree '${label}' already exists at: ${existing_path}"
     printf 'Open it? (Y/n) '
     # shellcheck disable=SC2162
@@ -359,8 +358,7 @@ function hrdw::remove {
     branch="$(printf '%s\n' "$selection" | awk -F ' \\| ' '{print $1}')"
     # Resolve workspace ID from branch
     local ws_id
-    ws_id="$(herdr worktree list --cwd . --json 2>/dev/null \
-      | jq -r --arg branch "$branch" '.result.worktrees[] | select(.branch == $branch) | .open_workspace_id // empty' 2>/dev/null)"
+    ws_id="$(hrd::internal::worktree::resolve_workspace_id "$branch")"
     if [[ -z "$ws_id" ]]; then
       message_error "Could not resolve workspace ID for branch: ${branch}"
       return 1
