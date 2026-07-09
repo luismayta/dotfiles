@@ -27,32 +27,44 @@ repos:
           - --ignore-words=.ci/linters/.codespell-ignores
         exclude: >
           (?x)^(
+
           AGENTS.md|
           CHANGELOG.md|
-          skills/.*/SKILL\.md$|
-          skills/.*/README\.md$|
-          app/components/sections\/.*$|
+
+          ^\.opencode/.* |
+          ^\.agents/.* |
+          ^\.claude/.* |
+          ^\.codi/.* |
+          (^|/)skills/.* |
+
           .claude/skills\/.*$|
           .agents/skills\/.*$|
           .opencode/skills\/.*$|
-          zsh/modules/ai/data/patterns\/.*$|
-          app/data\/.*$|
-          app/ia/datasets\/.*$|
-          app/routes\/.*$|
+
+          skills/.*/SKILL\.md$|
+          skills/.*/README\.md$|
+          app/components/sections\/.*$|
+
           data/patterns\/.*$|
+
+          docs/prompts\/.*$|
+          docs/prompts/openspec\/.*$|
+
           openspec\/.*$|
           go.mod|
           go.sum|
           openapi.yaml|
           provision/prompts\/.*$|
           openspec\/.*$|
-          docs/prompts/openspec\/.*$|
+
+          zsh/modules/yazi/data/theme.toml$|
+          zsh/modules/ai/data/patterns\/.*$|
+
           .+\.lock$|
           .+\.mdx$|
           .+\.node_modules\/.*$|
           .+\.sops.*$|
           .+\.vendor\/.*$|
-          src/context/humans\.md$|
           )$
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.24.0
