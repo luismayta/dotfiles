@@ -134,7 +134,7 @@ function hrd::internal::worktree::fzf_select {
   local selection
   selection="$(
     printf '%s\n' "$worktrees" \
-      | hrd::internal::fzf_select "$prompt" "echo {2} | xargs ls -la"
+      | hrd::internal::fzf_select "$prompt" "ls -la {3}"
   )"
 
   [[ -n "$selection" ]] && printf '%s\n' "$selection"
