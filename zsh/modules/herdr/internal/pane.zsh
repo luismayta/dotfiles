@@ -39,8 +39,8 @@ function hrd::internal::pane::setup_3_pane_layout {
   # Name the panes for visual clarity (pane_id format: <workspace_id>:p<N>)
   # Layout after splits: p1 (top-left, 50%) = editor, p2 (bottom-left, 50%) = shell, p3 (right, 100%) = agent
   herdr pane rename "${ws_id}:p1" "editor"  2>/dev/null || true
-  herdr pane rename "${ws_id}:p2" "shell"   2>/dev/null || true
-  herdr pane rename "${ws_id}:p3" "agent"   2>/dev/null || true
+  herdr pane rename "${ws_id}:p2" "agent"   2>/dev/null || true
+  herdr pane rename "${ws_id}:p3" "shell"   2>/dev/null || true
 
   return 0
 }
