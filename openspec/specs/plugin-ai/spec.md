@@ -1,15 +1,12 @@
 ## ADDED Requirements
 
-### Requirement: Configure codeium.nvim
-The system SHALL configure codeium.nvim for AI-powered code completion.
+### Requirement: Configure graphify knowledge graph tool
+The system SHALL integrate graphify as a knowledge graph tool for codebase analysis.
 
-#### Scenario: Codeium suggests completions
-- **WHEN** user types code in insert mode
-- **THEN** codeium SHALL suggest AI-powered completions asynchronously
+#### Scenario: Graphify available in AI toolkit
+- **WHEN** user sources the AI module
+- **THEN** graphify commands SHALL be available for codebase mapping and querying
 
-### Requirement: Configure codesnap.nvim
-The system SHALL configure codesnap.nvim for creating beautiful code snippet images.
-
-#### Scenario: Code snapshot is generated
-- **WHEN** user invokes the codesnap command
-- **THEN** a PNG image of the selected code SHALL be generated with a styled background
+#### Scenario: Graphify skill registered with OpenCode
+- **WHEN** graphify is installed via the AI module
+- **THEN** the graphify skill SHALL be registered with OpenCode for automatic graph queries

@@ -1,17 +1,17 @@
-## ADDED Requirements
+## MODIFIED Requirements
 
-### Requirement: FNM module loads on shell start
-The `zsh/modules/fnm/plugin.zsh` file SHALL be sourced automatically when the shell starts via the existing modules loader in `zshrc`.
+### Requirement: Node.js module loads on shell start
+The `zsh/modules/nodejs/plugin.zsh` file SHALL be sourced automatically when the shell starts via the existing modules loader in `zshrc`.
 
-#### Scenario: Module loads with fnm functions available
+#### Scenario: Module loads with nodejs functions available
 - **WHEN** a shell starts
-- **THEN** all `fnm::*` functions SHALL be available in the shell
+- **THEN** all `nodejs::*` functions SHALL be available in the shell
 
 ### Requirement: Idempotent loading
-The module SHALL guard against double-sourcing using `__ZSH_FNM_LOADED`.
+The module SHALL guard against double-sourcing using `__ZSH_NODEJS_LOADED`.
 
 #### Scenario: Double source skipped
-- **WHEN** `fnm/plugin.zsh` is sourced a second time
+- **WHEN** `nodejs/plugin.zsh` is sourced a second time
 - **THEN** it SHALL return immediately without re-executing
 
 ### Requirement: FNM binary auto-install
@@ -32,19 +32,19 @@ The module SHALL add `~/.local/share/fnm` to `PATH` and evaluate `fnm env` when 
 The module SHALL install specified Node.js versions via `fnm install` and set a default alias.
 
 #### Scenario: Version all install
-- **WHEN** `fnm::internal::version::all::install` is called
-- **THEN** each version in `FNM_VERSIONS` SHALL be installed via `fnm install` and `fnm use` SHALL switch to `FNM_VERSION_GLOBAL`
+- **WHEN** `nodejs::internal::version::all::install` is called
+- **THEN** each version in `NODEJS_VERSIONS` SHALL be installed via `fnm install` and `fnm use` SHALL switch to `NODEJS_VERSION_GLOBAL`
 
 #### Scenario: Version global install
-- **WHEN** `fnm::internal::version::global::install` is called
-- **THEN** `FNM_VERSION_GLOBAL` SHALL be installed and aliased as default
+- **WHEN** `nodejs::internal::version::global::install` is called
+- **THEN** `NODEJS_VERSION_GLOBAL` SHALL be installed and aliased as default
 
 ### Requirement: NPM package manager
-The module SHALL install npm packages defined in `FNM_PACKAGES` array via `yarn global add` (after installing yarn through npm if missing).
+The module SHALL install npm packages defined in `NODEJS_PACKAGES` array via `yarn global add` (after installing yarn through npm if missing).
 
 #### Scenario: NPM packages install
-- **WHEN** `fnm::internal::packages::install` is called
-- **THEN** yarn SHALL be installed globally if missing, then all packages in `FNM_PACKAGES` SHALL be installed via `yarn global add`
+- **WHEN** `nodejs::internal::packages::install` is called
+- **THEN** yarn SHALL be installed globally if missing, then all packages in `NODEJS_PACKAGES` SHALL be installed via `yarn global add`
 
 ### Requirement: Dependency check before install
 The module SHALL verify `curl` and `unzip` are available before attempting fnm installation, installing them via `core::install` if missing.
@@ -58,8 +58,8 @@ The module SHALL verify `curl` and `unzip` are available before attempting fnm i
 - **THEN** it SHALL be installed via `core::install unzip` first
 
 ### Requirement: Post-install hook
-The module SHALL provide `fnm::post_install` for post-installation setup.
+The module SHALL provide `nodejs::post_install` for post-installation setup.
 
 #### Scenario: Post-install runs
-- **WHEN** `fnm::post_install` is called
-- **THEN** it SHALL print success message for `FNM_PACKAGE_NAME`
+- **WHEN** `nodejs::post_install` is called
+- **THEN** it SHALL print success message for `NODEJS_TOOL_NAME`
