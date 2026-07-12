@@ -141,6 +141,9 @@ return {
       map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
       map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
       map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope help tags" })
+      map("n", "<leader>/", function()
+        builtin.live_grep { prompt_title = "Live Grep" }
+      end, { desc = "Telescope live grep" })
     end,
     opts = {
       defaults = {

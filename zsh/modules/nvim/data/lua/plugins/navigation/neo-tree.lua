@@ -15,7 +15,17 @@ return {
       end,
       desc = "Explorer NeoTree (cwd)",
     },
-    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+    {
+      "<leader>e",
+      function()
+        local dir = vim.fn.expand "%:p:h"
+        if dir == "" then
+          dir = LazyVim.root()
+        end
+        require("neo-tree.command").execute { toggle = true, dir = dir }
+      end,
+      desc = "Explorer NeoTree (File Dir)",
+    },
     { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
   },
   opts = {
