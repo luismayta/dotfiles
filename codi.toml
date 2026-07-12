@@ -20,7 +20,7 @@ flow = "github-flow"
 
 [issueTracking]
 provider = "jira"
-projectKey = "HAD"
+projectKey = "RD"
 
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
 # keyRegexOverride = "^AR-[0-9]+$"
