@@ -46,6 +46,9 @@ export AI_PI_BIN_PATH="${HOME}/.local/bin"
 export AI_PI_CONFIG_PATH="${HOME}/.pi/agent"
 export AI_PI_CONFIG_SOURCE_PATH="${AI_PATH}/data/pi"
 
+# graphify (knowledge graph for codebases)
+export AI_GRAPHIFY_BIN_PATH="${HOME}/.local/bin"
+
 # installation urls
 export AI_INSTALL_URL_OPENCODE="https://opencode.ai/install"
 export AI_INSTALL_URL_FABRIC="https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh"

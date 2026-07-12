@@ -36,6 +36,10 @@ function ai::internal::pi::load {
     [ -e "${AI_PI_BIN_PATH}/pi" ] && export PATH="${AI_PI_BIN_PATH}:${PATH}"
 }
 
+function ai::internal::graphify::load {
+    [ -e "${AI_GRAPHIFY_BIN_PATH}/graphify" ] && export PATH="${AI_GRAPHIFY_BIN_PATH}:${PATH}"
+}
+
 # === Batch Install ===
 
 function ai::internal::packages::install {
@@ -74,6 +78,9 @@ function ai::internal::packages::install {
                 ;;
             pi)
                 ai::internal::pi::install
+                ;;
+            graphify)
+                ai::internal::graphify::install
                 ;;
             *)
                 core::install "${package}"
@@ -296,5 +303,52 @@ function ai::internal::pi::install {
     else
         message_error "Failed to install pi"
         return 1
+    fi
+}
+
+function ai::internal::graphify::install {
+    if core::exists graphify; then
+        return 0
+    fi
+
+    if ! core::exists uv; then
+        message_error "uv is not installed. Please install uv first: curl -LsSf https://astral.sh/uv/install.sh | sh"
+        return 1
+    fi
+
+    message_info "Installing graphify..."
+    if uv tool install "graphifyy[all]" --force; then
+        message_success "graphify installed successfully"
+        ai::internal::graphify::register_skill
+    else
+        message_error "Failed to install graphify"
+        return 1
+    fi
+}
+
+function ai::internal::graphify::upgrade {
+    if ! core::exists uv; then
+        message_error "uv is not installed. Please install uv first: curl -LsSf https://astral.sh/uv/install.sh | sh"
+        return 1
+    fi
+
+    message_info "Upgrading graphify..."
+    if uv tool install "graphifyy[all]" --force; then
+        message_success "graphify upgraded successfully"
+        ai::internal::graphify::register_skill
+    else
+        message_error "Failed to upgrade graphify"
+        return 1
+    fi
+}
+
+function ai::internal::graphify::register_skill {
+    if core::exists graphify; then
+        message_info "Registering graphify skill with OpenCode..."
+        if graphify install --platform opencode; then
+            message_success "graphify skill registered"
+        else
+            message_warning "Failed to register graphify skill (graphify is still installed)"
+        fi
     fi
 }
