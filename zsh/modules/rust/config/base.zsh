@@ -26,6 +26,7 @@ export RUST_CARGO_PACKAGES_LOCKED=(
 
 export RUST_CARGO_PACKAGES_FEATURES=(
   "nu --features=dataframe"
+  "stylua --features=lua52"
 )
 
 export RUST_RUSTUP_PACKAGES=(

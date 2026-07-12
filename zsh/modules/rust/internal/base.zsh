@@ -28,9 +28,17 @@ function rust::internal::package::install::locked {
 }
 
 function rust::internal::package::install::features {
-    local pkg
-    for pkg in "$@"; do
-        cargo install "${pkg}"
+    [[ ${#@} -eq 0 ]] && return
+    local entry pkg features
+    for entry in "$@"; do
+        pkg="${entry%% *}"
+        features="${entry#* }"
+        if [[ "${features}" == "${pkg}" ]]; then
+            cargo install "${pkg}"
+        else
+            # shellcheck disable=SC2086
+            cargo install "${pkg}" ${features}
+        fi
     done
 }
 
