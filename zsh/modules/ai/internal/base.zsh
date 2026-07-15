@@ -352,3 +352,17 @@ function ai::internal::graphify::register_skill {
         fi
     fi
 }
+
+function ai::internal::graphify::setup {
+    if ! core::exists graphify; then
+        message_error "graphify is not installed. Run ai::graphify::install first."
+        return 1
+    fi
+    message_info "Setting up graphify for current project..."
+    if graphify install --platform opencode --project; then
+        message_success "graphify project setup complete"
+    else
+        message_error "Failed to set up graphify for project"
+        return 1
+    fi
+}

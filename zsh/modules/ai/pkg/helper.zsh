@@ -114,6 +114,10 @@ function ai::graphify::upgrade {
     ai::internal::graphify::upgrade
 }
 
+function ai::graphify::setup {
+    ai::internal::graphify::setup
+}
+
 function ai::sync {
     ai::opencode::sync
     ai::fabric::patterns::sync
