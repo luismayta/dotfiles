@@ -399,19 +399,74 @@ function ai::internal::skills::update {
     fi
 }
 
+# Resolve the variable name for a repo's skills
+# e.g., "vercel-labs/agent-skills" -> "AI_SKILLS_VERCEL"
+# shellcheck disable=SC2034,SC2296 # zsh parameter flags (U) not supported by shellcheck
+function ai::internal::skills::_repo_var {
+    local repo="$1"
+    local short="${repo##*/}"
+    echo "AI_SKILLS_${(U)short}"
+}
+
+# Install all skills from a single repo in one CLI call
+# shellcheck disable=SC2034,SC2296 # zsh parameter flags (P) not supported by shellcheck
+function ai::internal::skills::_install_repo {
+    local repo="$1"
+    local var_name
+    var_name="$(ai::internal::skills::_repo_var "$repo")"
+    local -a skills=("${(@P)var_name}")
+
+    if [[ ${#skills[@]} -eq 0 ]]; then
+        message_warning "No skills defined for ${repo}, skipping"
+        return 1
+    fi
+
+    local -a cmd=(bunx skills add "$repo" -g -a opencode -a pi -y)
+
+    if [[ "${skills[1]}" == "*" ]]; then
+        cmd+=(--all)
+        message_info "Installing all skills from ${repo}..."
+    else
+        for skill in "${skills[@]}"; do
+            cmd+=(-s "$skill")
+        done
+        message_info "Installing ${#skills[@]} skills from ${repo}..."
+    fi
+
+    if "${cmd[@]}"; then
+        message_success "Installed skills from ${repo}"
+        return 0
+    else
+        message_warning "Failed to install skills from ${repo}"
+        return 1
+    fi
+}
+
 function ai::internal::skills::setup {
-    local skills_list=("${AI_SKILLS_DEFAULT[@]}")
+    local -i success=0 fail=0
+    local -a failed_repos=()
 
     message_info "Installing default skills globally for opencode and pi..."
-    for skill in "${skills_list[@]}"; do
-        message_info "Adding skill: ${skill}"
-        if bunx skills add "${skill}" -g -a opencode -a pi -y; then
-            message_success "Added skill: ${skill}"
+
+    for repo in "${AI_SKILLS_REPOS[@]}"; do
+        if ai::internal::skills::_install_repo "$repo"; then
+            ((success++))
         else
-            message_warning "Failed to add skill: ${skill}"
+            ((fail++))
+            failed_repos+=("$repo")
         fi
     done
-    message_success "Default skills installation complete"
+
+    if (( fail > 0 )); then
+        message_warning "Skills setup completed with ${fail} failure(s):"
+        for r in "${failed_repos[@]}"; do
+            message_warning "  Failed: ${r}"
+        done
+        return 1
+    fi
+
+    message_success "All ${success} skill repos installed successfully"
+    return 0
 }
 
 function ai::internal::skills::search {

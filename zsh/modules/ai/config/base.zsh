@@ -56,60 +56,51 @@ export AI_SKILLS_BIN_PATH="${HOME}/.local/bin"
 export AI_SKILLS_CONFIG_PATH="${HOME}/.config/skills"
 export AI_SKILLS_DATA_PATH="${AI_PATH}/data/skills"
 
-export AI_SKILLS_DEFAULT=()
+# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
+# Skills repos — one entry per repository
+AI_SKILLS_REPOS=(
+  vercel-labs/agent-skills
+  CodipLab/codip-ai
+)
 
+# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
 # Vercel Labs — platform & framework best practices
-AI_SKILLS_DEFAULT+=(
-  vercel-labs/agent-skills/skills/vercel-optimize
-  vercel-labs/agent-skills/skills/vercel-deploy-claimable
-  vercel-labs/agent-skills/skills/react-best-practices
-  vercel-labs/agent-skills/skills/react-native-guidelines
-  vercel-labs/agent-skills/skills/react-view-transitions
-  vercel-labs/agent-skills/skills/composition-patterns
-  vercel-labs/agent-skills/skills/web-design-guidelines
-  vercel-labs/agent-skills/skills/writing-guidelines
+AI_SKILLS_VERCEL=(
+  vercel-optimize
+  vercel-deploy-claimable
+  react-best-practices
+  react-native-guidelines
+  react-view-transitions
+  composition-patterns
+  web-design-guidelines
+  writing-guidelines
 )
 
+# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
 # CodipLab — Git & PR workflows
-AI_SKILLS_DEFAULT+=(
-  CodipLab/codip-ai/skills/github-create-pr
-  CodipLab/codip-ai/skills/github-update-pr
-  CodipLab/codip-ai/skills/github-validate-pr
-  CodipLab/codip-ai/skills/gitlab-create-mr
-  CodipLab/codip-ai/skills/gitlab-update-mr
-  CodipLab/codip-ai/skills/gitlab-validate-mr
-  CodipLab/codip-ai/skills/goji-commit-smart
-)
-
-# CodipLab — Jira & project management
-AI_SKILLS_DEFAULT+=(
-  CodipLab/codip-ai/skills/jira-add-worklog
-  CodipLab/codip-ai/skills/jira-epic-generator
-  CodipLab/codip-ai/skills/jira-start-task
-  CodipLab/codip-ai/skills/jira-task-generator
-  CodipLab/codip-ai/skills/jira-work-report
-  CodipLab/codip-ai/skills/jpd-epic-generator
-  CodipLab/codip-ai/skills/jpd-task-generator
-  CodipLab/codip-ai/skills/markdown-to-jira
-)
-
-# CodipLab — Calendar & productivity
-AI_SKILLS_DEFAULT+=(
-  CodipLab/codip-ai/skills/gcal-daily-planner
-  CodipLab/codip-ai/skills/markdown-to-gcal
-)
-
-# CodipLab — Ideas & capture
-AI_SKILLS_DEFAULT+=(
-  CodipLab/codip-ai/skills/idea-capture
-  CodipLab/codip-ai/skills/idea-jpd-create
-  CodipLab/codip-ai/skills/idea-jpd-draft
-  CodipLab/codip-ai/skills/idea-jpd-import
-)
-
-# CodipLab — Bootstrap & utilities
-AI_SKILLS_DEFAULT+=(
-  CodipLab/codip-ai/skills/image-compression
+AI_SKILLS_CODIP=(
+  github-create-pr
+  github-update-pr
+  github-validate-pr
+  gitlab-create-mr
+  gitlab-update-mr
+  gitlab-validate-mr
+  goji-commit-smart
+  jira-add-worklog
+  jira-epic-generator
+  jira-start-task
+  jira-task-generator
+  jira-work-report
+  jpd-epic-generator
+  jpd-task-generator
+  markdown-to-jira
+  gcal-daily-planner
+  markdown-to-gcal
+  idea-capture
+  idea-jpd-create
+  idea-jpd-draft
+  idea-jpd-import
+  image-compression
 )
 
 # installation urls
