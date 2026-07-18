@@ -51,6 +51,67 @@ export AI_GRAPHIFY_BIN_PATH="${HOME}/.local/bin"
 
 # openspec (spec-driven development)
 
+# skills (agent-skills ecosystem)
+export AI_SKILLS_BIN_PATH="${HOME}/.local/bin"
+export AI_SKILLS_CONFIG_PATH="${HOME}/.config/skills"
+export AI_SKILLS_DATA_PATH="${AI_PATH}/data/skills"
+
+export AI_SKILLS_DEFAULT=()
+
+# Vercel Labs — platform & framework best practices
+AI_SKILLS_DEFAULT+=(
+  vercel-labs/agent-skills/skills/vercel-optimize
+  vercel-labs/agent-skills/skills/vercel-deploy-claimable
+  vercel-labs/agent-skills/skills/react-best-practices
+  vercel-labs/agent-skills/skills/react-native-guidelines
+  vercel-labs/agent-skills/skills/react-view-transitions
+  vercel-labs/agent-skills/skills/composition-patterns
+  vercel-labs/agent-skills/skills/web-design-guidelines
+  vercel-labs/agent-skills/skills/writing-guidelines
+)
+
+# CodipLab — Git & PR workflows
+AI_SKILLS_DEFAULT+=(
+  CodipLab/codip-ai/skills/github-create-pr
+  CodipLab/codip-ai/skills/github-update-pr
+  CodipLab/codip-ai/skills/github-validate-pr
+  CodipLab/codip-ai/skills/gitlab-create-mr
+  CodipLab/codip-ai/skills/gitlab-update-mr
+  CodipLab/codip-ai/skills/gitlab-validate-mr
+  CodipLab/codip-ai/skills/goji-commit-smart
+)
+
+# CodipLab — Jira & project management
+AI_SKILLS_DEFAULT+=(
+  CodipLab/codip-ai/skills/jira-add-worklog
+  CodipLab/codip-ai/skills/jira-epic-generator
+  CodipLab/codip-ai/skills/jira-start-task
+  CodipLab/codip-ai/skills/jira-task-generator
+  CodipLab/codip-ai/skills/jira-work-report
+  CodipLab/codip-ai/skills/jpd-epic-generator
+  CodipLab/codip-ai/skills/jpd-task-generator
+  CodipLab/codip-ai/skills/markdown-to-jira
+)
+
+# CodipLab — Calendar & productivity
+AI_SKILLS_DEFAULT+=(
+  CodipLab/codip-ai/skills/gcal-daily-planner
+  CodipLab/codip-ai/skills/markdown-to-gcal
+)
+
+# CodipLab — Ideas & capture
+AI_SKILLS_DEFAULT+=(
+  CodipLab/codip-ai/skills/idea-capture
+  CodipLab/codip-ai/skills/idea-jpd-create
+  CodipLab/codip-ai/skills/idea-jpd-draft
+  CodipLab/codip-ai/skills/idea-jpd-import
+)
+
+# CodipLab — Bootstrap & utilities
+AI_SKILLS_DEFAULT+=(
+  CodipLab/codip-ai/skills/image-compression
+)
+
 # installation urls
 export AI_INSTALL_URL_OPENCODE="https://opencode.ai/install"
 export AI_INSTALL_URL_FABRIC="https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh"
@@ -63,6 +124,7 @@ export AI_INSTALL_URL_TMUXAI="https://get.tmuxai.dev"
 export AI_INSTALL_URL_RTK="https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh"
 export AI_INSTALL_URL_HUNK="npm i -g hunkdiff"
 export AI_INSTALL_URL_PI="https://pi.dev/install.sh"
+export AI_INSTALL_URL_SKILLS="https://raw.githubusercontent.com/vercel-labs/skills/main/install.sh"
 
 export AI_TOOLS=(
   opencode
@@ -76,6 +138,7 @@ export AI_TOOLS=(
   hunk
   rtk
   pi
+  skills
 )
 
 export AI_OLLAMA_MODELS=(

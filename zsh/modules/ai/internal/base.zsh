@@ -82,6 +82,9 @@ function ai::internal::packages::install {
             graphify)
                 ai::internal::graphify::install
                 ;;
+            skills)
+                ai::internal::skills::install
+                ;;
             *)
                 core::install "${package}"
                 ;;
@@ -322,6 +325,123 @@ function ai::internal::graphify::install {
         ai::internal::graphify::register_skill
     else
         message_error "Failed to install graphify"
+        return 1
+    fi
+}
+
+function ai::internal::skills::load {
+    [ -e "${AI_SKILLS_BIN_PATH}" ] && export PATH="${AI_SKILLS_BIN_PATH}:${PATH}"
+}
+
+function ai::internal::skills::install {
+    if core::exists skills; then
+        return 0
+    fi
+
+    message_info "Installing skills CLI..."
+    if curl -fsSL "${AI_INSTALL_URL_SKILLS}" | bash; then
+        message_success "skills CLI installed successfully"
+    else
+        message_error "Failed to install skills CLI"
+        return 1
+    fi
+}
+
+function ai::internal::skills::add {
+    local source="${1}"
+    if [[ -z "${source}" ]]; then
+        message_error "Usage: ai::skills::add <source>"
+        return 1
+    fi
+
+    message_info "Adding skill from ${source}..."
+    if npx skills add "${source}"; then
+        message_success "Skill added successfully"
+    else
+        message_error "Failed to add skill"
+        return 1
+    fi
+}
+
+function ai::internal::skills::use {
+    local source="${1}"
+    if [[ -z "${source}" ]]; then
+        message_error "Usage: ai::skills::use <source>"
+        return 1
+    fi
+
+    message_info "Using skill from ${source}..."
+    if npx skills use "${source}"; then
+        message_success "Skill prompt generated"
+    else
+        message_error "Failed to use skill"
+        return 1
+    fi
+}
+
+function ai::internal::skills::list {
+    message_info "Listing installed skills..."
+    if npx skills list; then
+        message_success "Skills listed"
+    else
+        message_error "Failed to list skills"
+        return 1
+    fi
+}
+
+function ai::internal::skills::update {
+    message_info "Updating skills..."
+    if npx skills update; then
+        message_success "Skills updated"
+    else
+        message_error "Failed to update skills"
+        return 1
+    fi
+}
+
+function ai::internal::skills::setup {
+    local skills_list=("${AI_SKILLS_DEFAULT[@]}")
+
+    message_info "Installing default skills..."
+    for skill in "${skills_list[@]}"; do
+        message_info "Adding skill: ${skill}"
+        if npx skills add "${skill}"; then
+            message_success "Added skill: ${skill}"
+        else
+            message_warning "Failed to add skill: ${skill}"
+        fi
+    done
+    message_success "Default skills installation complete"
+}
+
+function ai::internal::skills::search {
+    local query="${1}"
+    if [[ -z "${query}" ]]; then
+        message_error "Usage: ai::skills::search <query>"
+        return 1
+    fi
+
+    message_info "Searching for skills: ${query}"
+    if npx skills search "${query}"; then
+        message_success "Search complete"
+    else
+        message_error "Failed to search skills"
+        return 1
+    fi
+}
+
+function ai::internal::skills::publish {
+    local skill_path="${1}"
+    if [[ -z "${skill_path}" ]]; then
+        message_error "Usage: ai::skills::publish <skill-path>"
+        return 1
+    fi
+
+    message_info "Publishing skill from ${skill_path}..."
+    if npx skills publish "${skill_path}"; then
+        message_success "Skill published"
+    else
+        message_error "Failed to publish skill"
         return 1
     fi
 }

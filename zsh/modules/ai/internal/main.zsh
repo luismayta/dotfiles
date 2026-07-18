@@ -24,3 +24,4 @@ ai::internal::hunk::load
 ai::internal::pi::load
 ai::internal::graphify::load
 ai::internal::openspec::load
+ai::internal::skills::load
