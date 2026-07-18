@@ -1,7 +1,24 @@
 # shellcheck shell=bash
+
+# --- Domain files (dependency order) ---
 # shellcheck source=/dev/null
 source "${AI_PATH}/internal/base.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/tools.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/opencode.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/fabric.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/ollama.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/skills.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/openspec.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/internal/graphify.zsh"
 
+# --- OS-specific ---
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null
@@ -13,9 +30,7 @@ linux*)
   ;;
 esac
 
-# shellcheck source=/dev/null
-source "${AI_PATH}/internal/helper.zsh"
-
+# --- Load paths ---
 ai::internal::opencode::load
 ai::internal::shimmy::load
 ai::internal::codegraph::load

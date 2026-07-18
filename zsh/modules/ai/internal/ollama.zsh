@@ -1,37 +1,22 @@
 # shellcheck shell=bash
 
-# === Fabric Helpers ===
+# === Ollama Install ===
 
-function ai::internal::fabric::patterns::sync {
-    if [[ ! -d "${AI_FABRIC_PATTERNS_SYNC_SOURCE}" ]]; then
-        message_warning "Patterns source directory not found: ${AI_FABRIC_PATTERNS_SYNC_SOURCE}"
-        return 1
+function ai::internal::ollama::install {
+    if core::exists ollama; then
+        return 0
     fi
 
-    message_info "Syncing patterns from ${AI_FABRIC_PATTERNS_SYNC_SOURCE} to ${AI_FABRIC_PATTERNS_PATH}..."
-
-    mkdir -p "${AI_FABRIC_PATTERNS_PATH}"
-
-    if rsync -av --delete "${AI_FABRIC_PATTERNS_SYNC_SOURCE}/" "${AI_FABRIC_PATTERNS_PATH}/"; then
-        message_success "Patterns synced successfully"
+    message_info "Installing ollama..."
+    if curl -fsSL "${AI_INSTALL_URL_OLLAMA}" | sh; then
+        message_success "ollama installed successfully"
     else
-        message_error "Failed to sync patterns"
+        message_error "Failed to install ollama"
         return 1
     fi
 }
 
-function ai::internal::fabric::patterns::pull {
-    if core::exists fabric; then
-        message_info "Updating fabric patterns..."
-        fabric --updatepatterns
-        message_success "Patterns updated"
-    else
-        message_error "fabric is not installed"
-        return 1
-    fi
-}
-
-# === Ollama Helpers ===
+# === Ollama Models ===
 
 function ai::internal::ollama::models::list {
     if ! core::exists ollama; then
