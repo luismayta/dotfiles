@@ -32,4 +32,4 @@ source "${AI_PATH}/pkg/main.zsh"
 # Auto-install guards (must be after pkg/main.zsh so ai::install exists)
 if ! core::exists rsync; then core::install rsync; fi
 if ! core::exists fzf; then core::install fzf; fi
-if ! core::exists npx; then core::install npx; fi
+if ! core::exists bunx; then core::install bunx; fi

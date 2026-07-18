@@ -354,8 +354,8 @@ function ai::internal::skills::add {
         return 1
     fi
 
-    message_info "Adding skill from ${source}..."
-    if npx skills add "${source}"; then
+    message_info "Adding skill from ${source} globally for opencode and pi..."
+    if bunx skills add "${source}" -g -a opencode -a pi -y; then
         message_success "Skill added successfully"
     else
         message_error "Failed to add skill"
@@ -371,7 +371,7 @@ function ai::internal::skills::use {
     fi
 
     message_info "Using skill from ${source}..."
-    if npx skills use "${source}"; then
+    if bunx skills use "${source}"; then
         message_success "Skill prompt generated"
     else
         message_error "Failed to use skill"
@@ -380,8 +380,8 @@ function ai::internal::skills::use {
 }
 
 function ai::internal::skills::list {
-    message_info "Listing installed skills..."
-    if npx skills list; then
+    message_info "Listing installed global skills..."
+    if bunx skills list -g; then
         message_success "Skills listed"
     else
         message_error "Failed to list skills"
@@ -390,8 +390,8 @@ function ai::internal::skills::list {
 }
 
 function ai::internal::skills::update {
-    message_info "Updating skills..."
-    if npx skills update; then
+    message_info "Updating global skills..."
+    if bunx skills update -g -y; then
         message_success "Skills updated"
     else
         message_error "Failed to update skills"
@@ -402,10 +402,10 @@ function ai::internal::skills::update {
 function ai::internal::skills::setup {
     local skills_list=("${AI_SKILLS_DEFAULT[@]}")
 
-    message_info "Installing default skills..."
+    message_info "Installing default skills globally for opencode and pi..."
     for skill in "${skills_list[@]}"; do
         message_info "Adding skill: ${skill}"
-        if npx skills add "${skill}"; then
+        if bunx skills add "${skill}" -g -a opencode -a pi -y; then
             message_success "Added skill: ${skill}"
         else
             message_warning "Failed to add skill: ${skill}"
@@ -422,7 +422,7 @@ function ai::internal::skills::search {
     fi
 
     message_info "Searching for skills: ${query}"
-    if npx skills search "${query}"; then
+    if bunx skills search "${query}"; then
         message_success "Search complete"
     else
         message_error "Failed to search skills"
@@ -438,7 +438,7 @@ function ai::internal::skills::publish {
     fi
 
     message_info "Publishing skill from ${skill_path}..."
-    if npx skills publish "${skill_path}"; then
+    if bunx skills publish "${skill_path}"; then
         message_success "Skill published"
     else
         message_error "Failed to publish skill"
