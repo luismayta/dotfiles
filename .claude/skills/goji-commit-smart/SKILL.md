@@ -2,7 +2,6 @@
 name: goji-commit-smart
 description: Multi-commit planner from git working tree. LLM groups changed files into logical commits using codi CLI context and executes them via codi commit.
 license: Proprietary
-compatibility: Requires codi CLI (codi commit context, codi commit --file).
 metadata:
   author: "codiplab"
   version: "0.4.1"

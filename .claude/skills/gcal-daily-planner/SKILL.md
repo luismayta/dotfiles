@@ -64,6 +64,8 @@ The LLM must return ONLY valid JSON:
       "start": "YYYY-MM-DDTHH:MM:SS",
       "end": "YYYY-MM-DDTHH:MM:SS",
       "timezone": "string",
+      "status": "string",
+      "jira_key": "string | empty",
       "attendees": ["string"],
       "recurrence": "string",
       "description": "string",
@@ -106,6 +108,8 @@ The LLM must return ONLY valid JSON:
 - Title construction (emoji + type)
 - Initial location detection
 - date (YYYY-MM-DD)
+- status (e.g., "confirmed" for calendar events, Jira status for tasks)
+- jira_key (Jira issue key for Jira tasks, empty string for calendar events)
 
 ### Timezone Rules
 
@@ -125,6 +129,8 @@ The LLM MUST NOT modify:
 - timezone
 - attendees
 - recurrence
+- status
+- jira_key
 
 The LLM may ONLY modify:
 
@@ -283,7 +289,7 @@ Rules:
 ## Step 8: Render Markdown
 
 ```
-gomplate -f <skill_root>/event.md.tpl -d data=<json-file>
+gomplate -f <skill_root>/event.md.tpl -c data=<json-file>
 ```
 
 - Template is the ONLY formatting source
@@ -315,7 +321,7 @@ Identity:
 
 | Parameter    | Default |
 | ------------ | ------- |
-| taskDuration | 2h      |
+| taskDuration | 1h 30m      |
 | bufferTime   | 10m     |
 | workStart    | 09:00   |
 | workEnd      | 18:00   |

@@ -1,17 +1,16 @@
 name: goji-commit-smart
-description: Create git commits using goji rules from .goji.json (type/scope/emoji/signoff) with path-based heuristics.
+description: Multi-commit planner from git working tree. LLM groups changed files into logical commits using codi CLI context and executes them via codi commit.
 triggers:
-  - "Usa el skill `goji-commit-smart`"
-  - "Haz un commit goji"
-  - "Commit smart"
-  - "Crea commits con goji"
+  - "goji commit"
+  - "commit smart"
+  - "create commits"
+  - "organize commits"
 what_i_do:
-  - "Run `task validate` before creating any commit."
-  - "Inspect working tree and staged changes."
-  - "Group changes into 1..N commits using path heuristics."
-  - "Create commits following goji conventions: `<type> <emoji> (<scope>): <subject>`."
-  - "Derive issue key/id from the current branch name."
-  - "Create commits with `--signoff` when required."
+  - "Load project commit taxonomy (types, scopes, format policy) from .goji.json and codi.toml"
+  - "Analyze changed files and group them by logical concern and priority tier"
+  - "Assign conventional-commit type, scope, and subject per group"
+  - "Write the commit plan to .codi/build/ and present for user review"
+  - "Run task validate and execute the plan via codi commit --file"
 usage_examples:
-  - "Create conventional commits following goji rules"
-  - "Auto-detect type/scope from changed files and derive Jira/GitLab issue key"
+  - "Create logical commits from working tree changes using goji conventions"
+  - "Organiza los cambios en commits con tipo, scope y subject automáticos"

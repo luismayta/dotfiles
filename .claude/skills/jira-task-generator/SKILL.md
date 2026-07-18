@@ -2,17 +2,17 @@
 name: jira-task-generator
 description: Generate Jira Task definitions from context using templates. Creates markdown artifacts under .codi/jira/issues/ with unique identifiers.
 license: Proprietary
-triggers:
-  - "create task"
-  - "generate task"
-  - "jira task"
-  - "crear task"
-  - "generar task"
 metadata:
   author: "codiplab"
   version: "0.4.1"
   opencode:
     emoji: "🧩"
+    triggers:
+      - "create task"
+      - "generate task"
+      - "jira task"
+      - "crear task"
+      - "generar task"
     tags:
       - jira
       - task

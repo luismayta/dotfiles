@@ -1,0 +1,26 @@
+name: idea-capture
+description: Investigate a topic using web search, codegraph, and codebase analysis — shows findings, classifies by PARA destination, saves with metadata for downstream consumption. When invoked without input, lists existing researched drafts for review and promotion.
+triggers:
+  - "investigar"
+  - "research"
+  - "buscar"
+  - "investiga esto"
+  - "buscar sobre"
+  - "investigados"
+  - "researched"
+  - "listar investigados"
+  - "mostrar investigados"
+  - "drafts investigados"
+  - "pick draft"
+  - "elegir draft"
+  - "promover draft"
+  - "validar draft"
+what_i_do:
+  - "Investigate a topic using web search, GitHub search, codegraph, codebase analysis, graphify, and Context7 documentation"
+  - "Create research drafts with metadata (PARA destination, status, tags) in Obsidian vault"
+  - "List existing researched drafts for review, enrichment, and promotion"
+  - "Promote drafts from researched to validated, or demote back to raw"
+usage_examples:
+  - "Investigar un tema nuevo y guardar el resultado como draft"
+  - "Listar drafts investigados y promoverlos a validated"
+  - "Research a topic using web search and codebase analysis"

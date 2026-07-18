@@ -2,17 +2,17 @@
 name: jira-epic-generator
 description: Generate Jira Epic and Task definitions from context using templates. Creates markdown artifacts under .codi/jira/issues/ with unique identifiers.
 license: Proprietary
-triggers:
-  - "create epic"
-  - "generate epic"
-  - "jira epic"
-  - "crear epic"
-  - "generar epic"
 metadata:
   author: "codiplab"
   version: "0.4.1"
   opencode:
     emoji: "🧩"
+    triggers:
+      - "create epic"
+      - "generate epic"
+      - "jira epic"
+      - "crear epic"
+      - "generar epic"
     tags:
       - jira
       - epic

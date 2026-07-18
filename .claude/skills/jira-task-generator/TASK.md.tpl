@@ -18,7 +18,7 @@
 
 {{TASK_ACCEPTANCE_TESTS}}
 
-### Sources:
+### Sources
 
 {{TASK_SOURCES}}
 {{GIT_REPO_URL}}

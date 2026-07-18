@@ -1,0 +1,18 @@
+name: jpd-task-generator
+description: Generar artefactos Task en 10-Projects/{PROJECT}/jira/{jpd_issue_key}/draft/ desde contexto natural, usando template TASK.md.tpl con substitución {{VAR}}.
+triggers:
+  - "generar task desde jpd"
+  - "jpd task"
+  - "task spec"
+  - "crear task jpd"
+what_i_do:
+  - "Accept natural language context via {{args}} and classify input structure"
+  - "Transform unstructured context into structured Task fields (title, summary, scenario, tests)"
+  - "Resolve PROJECT_KEY dynamically from Jira via MCP"
+  - "Infer Jira component from context keywords"
+  - "Render Task markdown artifact using TASK.md.tpl template with string substitution"
+  - "Write the output to 10-Projects/{PROJECT}/jira/{jpd_issue_key}/draft/"
+usage_examples:
+  - "Generar una task standalone desde contexto natural"
+  - "Crear un artefacto Task Jira desde una descripción simple"
+  - "Generar una task JPD con escenario y criterios de aceptación"

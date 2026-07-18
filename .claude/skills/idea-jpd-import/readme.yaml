@@ -1,0 +1,17 @@
+name: idea-jpd-import
+description: Listar ideas de JPD sin delivery y migrar su contenido a jpd/ideas/ del proyecto para que jpd-epic-generator las consuma
+triggers:
+  - "promover idea"
+  - "listar ideas jpd"
+  - "promote idea"
+  - "ideas sin delivery"
+what_i_do:
+  - "List JPD ideas without delivery using JQL query"
+  - "Display ideas in a table for user selection"
+  - "Fetch full idea content from JPD and build local markdown file"
+  - "Write the idea to 10-Projects/{PROJECT}/jpd/ideas/{key}-{slug}.md"
+  - "Optionally update JPD with tracking label and comment"
+usage_examples:
+  - "Listar ideas de JPD sin delivery y migrar una a la estructura local"
+  - "Promover una idea de JPD a jpd/ideas/ para generar Epic"
+  - "Migrar ideas de Jira Product Discovery a la estructura del proyecto"

@@ -17,7 +17,7 @@
 
 {{ACCEPTANCE_TESTS}}
 
-### Sources:
+### Sources
 
 {{SOURCES}}
 

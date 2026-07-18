@@ -1,14 +1,18 @@
 name: jira-start-task
-description: Skill para listar issues no terminadas asignadas al usuario en Jira usando `codi.toml`, elegir una y crear un branch `feature/<ISSUE-KEY>`.
+description: Resolve a Jira issue, ensure the correct branch, generate an OpenSpec prompt, and enrich context using Obsidian MCP for documentation and CodeGraph MCP for structural code analysis.
 triggers:
-  - "Usa el skill `jira-start-task`"
-  - "Quiero empezar una tarea de Jira y crear el branch automáticamente"
-  - "Lista las tareas pendientes del proyecto configurado y crea un feature branch"
+  - "usa el skill jira-start-task"
+  - "empezar tarea jira"
+  - "trabajar en issue"
+  - "generar prompt openspec"
 what_i_do:
-  - "Read `codi.toml` to fetch the configured Jira project key."
-  - "Query Jira for issues assigned to the current user that are not done."
-  - "Show a numbered list, let the user pick one, and build `feature/<ISSUE-KEY>`."
-  - "Create the branch if it does not already exist and warn if it does."
+  - "Resolve the Jira issue from a provided issueKey or by listing open assigned issues"
+  - "Fetch issue details (key, title, description) via Jira MCP"
+  - "Parse content into structured sections (scenario, acceptance tests, sources, symbols)"
+  - "Enrich context with Obsidian MCP documentation search from the vault"
+  - "Enrich context with CodeGraph MCP structural code analysis from extracted symbols"
+  - "Render and save an OpenSpec prompt ready for execution"
 usage_examples:
-  - "Ask the agent to start a Jira task without manually finding the ticket or typing the branch name."
-  - "Tell the agent to create the feature branch for the issue you pick from Jira."
+  - "Empezar una tarea de Jira y generar un prompt OpenSpec con contexto enriquecido"
+  - "Trabajar en un issue de Jira con análisis estructural del codebase"
+  - "Generar un prompt OpenSpec para un issue de Jira con contexto de Obsidian y CodeGraph"

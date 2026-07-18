@@ -7,21 +7,21 @@ metadata:
   version: "0.4.1"
   opencode:
     emoji: 🔄
-triggers:
-  - "bootstrap sync"
-  - "sync agents"
-  - "bootstrap agentes"
-  - "agent config"
-  - "agent bootstrap"
-  - "codi config"
-tags:
-  - bootstrap
-  - configuration
-  - sync
-  - agents
-  - idempotent
-  - detection
-  - codi
+    triggers:
+      - "bootstrap sync"
+      - "sync agents"
+      - "bootstrap agentes"
+      - "agent config"
+      - "agent bootstrap"
+      - "codi config"
+    tags:
+      - bootstrap
+      - configuration
+      - sync
+      - agents
+      - idempotent
+      - detection
+      - codi
 ---
 
 # agents-bootstrap-sync
