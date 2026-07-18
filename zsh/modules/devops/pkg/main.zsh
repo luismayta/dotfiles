@@ -40,3 +40,6 @@ source "${DEVOPS_PATH}/pkg/aws.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/gcloud.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/atuin.zsh"
+

@@ -22,6 +22,7 @@ export DEVOPS_TOOLS=(
   google-cloud-cli
   github-cli
   zoxide
+  atuin
 )
 
 export DEVOPS_PACKAGES=(
