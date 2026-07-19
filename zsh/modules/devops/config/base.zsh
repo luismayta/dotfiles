@@ -31,7 +31,7 @@ export DEVOPS_PACKAGES=(
 
 # K9S configuration
 export DEVOPS_K9S_PACKAGE_NAME=k9s
-export DEVOPS_K9S_CONF_PATH=${HOME}/Library/Application\ Support/k9s
+export DEVOPS_K9S_CONF_PATH="${HOME}/Library/Application\ Support/k9s"
 export DEVOPS_K9S_FILE_SETTINGS="${DEVOPS_K9S_CONF_PATH}"/config.yml
 
 # Kubectl configuration

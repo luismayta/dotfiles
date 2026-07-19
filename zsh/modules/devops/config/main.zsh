@@ -4,6 +4,12 @@
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/base.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/tfenv.zsh"
+
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/atuin.zsh"
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null

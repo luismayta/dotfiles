@@ -33,4 +33,3 @@ source "${DEVOPS_PATH}/internal/gcloud.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/atuin.zsh"
-
