@@ -14,8 +14,7 @@ case "${OSTYPE}" in
     ;;
 esac
 
-# Install if not present
-mpd::internal::install
+if ! core::exists mpd; then mpd::internal::install; fi
 
 # Load (start service) if binary exists
 if core::exists mpd; then
