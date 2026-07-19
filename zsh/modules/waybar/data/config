@@ -1,0 +1,102 @@
+// Waybar configuration file
+// See https://github.com/Alexays/Waybar/wiki/Configuration
+
+{
+    // Bar settings
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+
+    // Module layout
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["custom/is_in_playlist", "custom/mpd", "pulseaudio", "network", "battery", "clock", "tray"],
+
+    // ---- Module configs ----
+
+    // Workspace indicators (Hyprland)
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "urgent": "!"
+        }
+    },
+
+    // Active window title
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50
+    },
+
+    // Clock
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%Y-%m-%d}"
+    },
+
+    // System tray
+    "tray": {
+        "spacing": 10
+    },
+
+    // PulseAudio volume
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-icons": {
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    // Network
+    "network": {
+        "format-wifi": "WiFi {signalStrength}%",
+        "format-ethernet": "Ethernet",
+        "format-disconnected": "Disconnected"
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": {
+            "charging": ["\uf1e6"],
+            "default": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+        }
+    },
+
+    // MPD player — scrolling song title, event-driven
+    "custom/mpd": {
+        "exec": "$HOME/.config/waybar/scripts/mpd-waybar.sh",
+        "tail": true,
+        "markup": false,
+        "align": 0,
+        "max-length": 30,
+        "return-type": "text",
+        "format": "{} |",
+        "on-scroll-up": "mpc next",
+        "on-scroll-down": "mpc prev",
+        "on-click": "mpc toggle"
+    },
+
+    // MPD heart — favorite status, event-driven
+    "custom/is_in_playlist": {
+        "exec": "$HOME/.config/waybar/scripts/is_in_playlist.sh",
+        "format": "{}",
+        "on-click": "$HOME/.config/waybar/scripts/mpd-heart-toggle.sh"
+    }
+}
