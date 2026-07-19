@@ -5,7 +5,6 @@ function hyprland::internal::hyprland::install {
     core::install hypridle
     core::install hyprlock
     core::install hyprpaper
-    core::install waybar
     core::install dunst
     message_success "Installed ${HYPRLAND_PACKAGE_NAME}"
     hyprland::post_install

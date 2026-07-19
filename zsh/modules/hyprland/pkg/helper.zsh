@@ -91,11 +91,6 @@ function hypr::check {
     else
         message_error "hyprpaper: not installed"
     fi
-    if core::exists waybar; then
-        message_success "waybar: installed"
-    else
-        message_error "waybar: not installed"
-    fi
     if core::exists dunst; then
         message_success "dunst: installed"
     else
