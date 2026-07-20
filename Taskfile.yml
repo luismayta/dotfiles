@@ -78,7 +78,6 @@ env:
   README_INCLUDES: file://
   TERRAFORM_PATH: ./
   PYTHON_PACKAGE_MANAGER: uv
-  SKILL_REPOS: https://github.com/codiplab/codip-ai
 
 dotenv:
   - .env
