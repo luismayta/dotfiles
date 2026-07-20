@@ -15,13 +15,11 @@ STOP_TEXT="Music Off"
 
 WIDTH_PLAY=$((WIDTH + ${#PREFIX_PLAY}))
 WIDTH_PAUSE=$((WIDTH + ${#PREFIX_PAUSE}))
-WIDTH_STOP=$((WIDTH + ${#PREFIX_STOP}))
 
 animation() {
     local current_song="$1"
     local prefix="$2"
     local idle_pid="$3"
-    local total_width="$4"
 
     slice_loop() {
         local str="$1"

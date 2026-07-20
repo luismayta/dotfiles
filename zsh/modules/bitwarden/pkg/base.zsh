@@ -1,33 +1,39 @@
 # shellcheck shell=bash
 
 function bw::value::factory {
-    local item="${1}"
+    local item
+    item=$(cat)
     local type
     type=$(echo "${item}" | jq -r '.type')
     case "${type}" in
-    1) bw::value::login "${item}" ;;
-    2) bw::value::notes "${item}" ;;
-    3) bw::value::cards "${item}" ;;
+    1) bw::value::login <<< "${item}" ;;
+    2) bw::value::notes <<< "${item}" ;;
+    3) bw::value::cards <<< "${item}" ;;
     esac
 }
 
 function bw::value::login {
-    echo "${1}" | jq -r '.login.password // empty'
+    local item
+    item=$(cat)
+    echo "${item}" | jq -r '.login.password // empty'
 }
 
 function bw::value::notes {
-    echo "${1}" | jq -r '.notes // empty'
+    local item
+    item=$(cat)
+    echo "${item}" | jq -r '.notes // empty'
 }
 
 function bw::value::cards {
-    echo "${1}" | jq -r '.card.number // empty'
+    local item
+    item=$(cat)
+    echo "${item}" | jq -r '.card.number // empty'
 }
 
 function bw::search::login {
     bw::load::env
     local items
-    items=$(bw list items)
-    if [[ $? -ne 0 ]]; then
+    if ! items=$(bw list items); then
         message_warning "Failed to list Bitwarden items. Are you logged in?"
         return 1
     fi
@@ -37,8 +43,7 @@ function bw::search::login {
 function bw::search::notes {
     bw::load::env
     local items
-    items=$(bw list items)
-    if [[ $? -ne 0 ]]; then
+    if ! items=$(bw list items); then
         message_warning "Failed to list Bitwarden items. Are you logged in?"
         return 1
     fi
@@ -48,8 +53,7 @@ function bw::search::notes {
 function bw::search::cards {
     bw::load::env
     local items
-    items=$(bw list items)
-    if [[ $? -ne 0 ]]; then
+    if ! items=$(bw list items); then
         message_warning "Failed to list Bitwarden items. Are you logged in?"
         return 1
     fi
@@ -59,8 +63,7 @@ function bw::search::cards {
 function bw::search::all {
     bw::load::env
     local items
-    items=$(bw list items)
-    if [[ $? -ne 0 ]]; then
+    if ! items=$(bw list items); then
         message_warning "Failed to list Bitwarden items. Are you logged in?"
         return 1
     fi
@@ -70,8 +73,7 @@ function bw::search::all {
 function bw::search {
     bw::load::env
     local items selected value
-    items=$(bw list items)
-    if [[ $? -ne 0 ]]; then
+    if ! items=$(bw list items); then
         message_warning "Failed to list Bitwarden items. Are you logged in?"
         return 1
     fi
