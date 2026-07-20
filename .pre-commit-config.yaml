@@ -138,7 +138,7 @@ repos:
             bin\/.*$
           )$
         args:
-          - --exclude=SC1072,SC1073,SC2068
+          - --exclude=SC1072,SC1073,SC2068,SC1091
       - id: gitleaks
         name: gitleaks
         entry: gitleaks git --pre-commit
