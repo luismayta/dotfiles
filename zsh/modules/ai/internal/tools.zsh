@@ -142,6 +142,62 @@ function ai::internal::codegraph::install {
     fi
 }
 
+function ai::internal::codegraph::init {
+    if ! core::exists codegraph; then
+        message_error "codegraph is not installed. Run ai::codegraph::install first."
+        return 1
+    fi
+    message_info "Initializing codegraph..."
+    if codegraph init; then
+        message_success "codegraph initialized successfully"
+    else
+        message_error "Failed to initialize codegraph"
+        return 1
+    fi
+}
+
+function ai::internal::codegraph::setup {
+    if ! core::exists codegraph; then
+        message_error "codegraph is not installed. Run ai::codegraph::install first."
+        return 1
+    fi
+    message_info "Setting up codegraph for current project..."
+    if codegraph init; then
+        message_success "codegraph project setup complete"
+    else
+        message_error "Failed to set up codegraph for project"
+        return 1
+    fi
+}
+
+function ai::internal::codegraph::update {
+    if ! core::exists codegraph; then
+        message_error "codegraph is not installed. Run ai::codegraph::install first."
+        return 1
+    fi
+    message_info "Updating codegraph..."
+    if curl -fsSL "${AI_INSTALL_URL_CODEGRAPH}" | sh; then
+        message_success "codegraph updated successfully"
+    else
+        message_error "Failed to update codegraph"
+        return 1
+    fi
+}
+
+function ai::internal::codegraph::upgrade {
+    if ! core::exists codegraph; then
+        message_error "codegraph is not installed. Run ai::codegraph::install first."
+        return 1
+    fi
+    message_info "Upgrading codegraph..."
+    if curl -fsSL "${AI_INSTALL_URL_CODEGRAPH}" | sh; then
+        message_success "codegraph upgraded successfully"
+    else
+        message_error "Failed to upgrade codegraph"
+        return 1
+    fi
+}
+
 function ai::internal::tmuxai::install {
     if core::exists tmuxai; then
         return 0

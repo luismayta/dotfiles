@@ -55,6 +55,34 @@ function ai::internal::graphify::register_skill {
     fi
 }
 
+function ai::internal::graphify::init {
+    if ! core::exists graphify; then
+        message_error "graphify is not installed. Run ai::graphify::install first."
+        return 1
+    fi
+    message_info "Initializing graphify..."
+    if graphify init; then
+        message_success "graphify initialized successfully"
+    else
+        message_error "Failed to initialize graphify"
+        return 1
+    fi
+}
+
+function ai::internal::graphify::update {
+    if ! core::exists graphify; then
+        message_error "graphify is not installed. Run ai::graphify::install first."
+        return 1
+    fi
+    message_info "Updating graphify..."
+    if graphify update; then
+        message_success "graphify updated successfully"
+    else
+        message_error "Failed to update graphify"
+        return 1
+    fi
+}
+
 function ai::internal::graphify::setup {
     if ! core::exists graphify; then
         message_error "graphify is not installed. Run ai::graphify::install first."
