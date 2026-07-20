@@ -40,6 +40,10 @@ The system SHALL expose public functions for graphify operations.
 - **WHEN** user sources the AI module
 - **THEN** `ai::graphify::upgrade` function SHALL be available (alias for install with force)
 
+#### Scenario: Setup function available
+- **WHEN** user sources the AI module
+- **THEN** `ai::graphify::setup` function SHALL be available for project-scoped registration
+
 ### Requirement: Idempotent installation
 The system SHALL skip installation if graphify is already present and up-to-date.
 
