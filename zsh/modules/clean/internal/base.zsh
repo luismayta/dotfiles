@@ -148,13 +148,13 @@ function _cleanup::unnecessary {
     local combined_dir="${CLEAN_BASE_DIR_PATTERNS}|${extra_dirs}"
 
     # Remove directories matching patterns
-    IFS='|' read -ra dir_patterns <<< "${combined_dir}"
+    IFS='|' read -A dir_patterns <<< "${combined_dir}"
     for pattern in "${dir_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_remove "." "${pattern}" "d"
     done
 
     # Remove files matching patterns
-    IFS='|' read -ra file_patterns <<< "${CLEAN_BASE_FILE_PATTERNS}"
+    IFS='|' read -A file_patterns <<< "${CLEAN_BASE_FILE_PATTERNS}"
     for pattern in "${file_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_delete "." "${pattern}"
     done
