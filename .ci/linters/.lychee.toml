@@ -25,6 +25,7 @@ accept = [200, 201, 202, 206, 429]
 exclude = [
   '^mailto:.*@hadenlabs\\.com',
   '^http://localhost',
+  '^https://www.gnu.org/software/',
   '^\\.\\./data/opencode/commands/',
 ]
 

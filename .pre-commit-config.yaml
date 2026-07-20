@@ -123,6 +123,13 @@ repos:
           - --no-progress
           - --root-dir
           - .
+        exclude: >
+          (?x)^(
+            .codi/jira/issues\/.*$|
+            .codi/reports\/.*$|
+            .+\.tpl.sh$|
+            .+\.tpl\.md$
+          )$
 
   - repo: https://github.com/hadenlabs/pre-commit-hooks
     rev: 0.6.0
