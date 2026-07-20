@@ -1,0 +1,23 @@
+# ncmpcpp configuration for MPD module
+# Docs: https://github.com/ncmpcpp/ncmpcpp/blob/master/doc/ncmpcpp.1.asciidoc
+
+# Connection
+mpd_host = "localhost"
+mpd_port = "6600"
+mpd_connection_timeout = "60"
+
+# Music paths
+mpd_music_dir = "~/Music"
+
+# Visualizer
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_look = "●▮"
+visualizer_type = "spectrum"
+
+# Interface
+user_interface = "alternative"
+startup_screen = "playlist"
+
+# Alternative header format
+#alternative_header_first_line_format = "$b$1]$track$9$/b$1|$tag artist$9$R$/b$9$4$album$9$/b$9$3[%tag date$9$]$3$4$at$9$3$time$9$/b"
+#alternative_header_second_line_format = "$b$aqqu$/a$9$/b$1$crqs$/b$9$3 $4$at$9$3$time$9$/b$9$1 $queue-length$9$4 songs$9$3 playlist$9$3$4$4$9$]$R$9$/b"

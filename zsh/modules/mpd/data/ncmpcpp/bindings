@@ -1,0 +1,58 @@
+# ncmpcpp key bindings for MPD module
+
+# Navigation
+# 1-9: Switch screens
+# Up/Down: Navigate list
+# Enter: Select item
+# Space: Add/Remove from playlist
+# a: Add item
+# A: Add all items
+# d: Delete item
+# s: Save playlist
+# f: Find
+# n: Next search result
+# N: Previous search result
+
+# Playback
+# Space: Pause/Resume
+# s: Stop
+# f: Next track
+# b: Previous track
+# r: Repeat
+# z: Random
+# v: Volume up
+# c: Volume down
+
+# Default screen switching bindings
+def_key "1"
+  show_playlist
+
+def_key "2"
+  show_browser
+
+def_key "2"
+  change_browse_mode
+
+def_key "3"
+  show_search_engine
+
+def_key "3"
+  reset_search_engine
+
+def_key "4"
+  show_media_library
+
+def_key "4"
+  toggle_media_library_columns_mode
+
+def_key "5"
+  show_playlist_editor
+
+def_key "6"
+  show_tag_editor
+
+def_key "7"
+  show_outputs
+
+def_key "8"
+  show_visualizer

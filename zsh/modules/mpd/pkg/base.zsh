@@ -52,3 +52,7 @@ mpd::playlist() {
 mpd::volume() {
   mpc volume "$@"
 }
+
+mpd::ncmpcpp() {
+  ncmpcpp "$@"
+}
