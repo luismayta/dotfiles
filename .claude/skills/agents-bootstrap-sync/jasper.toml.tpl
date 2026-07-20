@@ -1,6 +1,6 @@
 [scm]
-provider = "github"
-flow = "github-flow"
+provider = "auto"
+flow = "auto"
 
 # Examples (derive issue id from branch name)
 #
@@ -20,7 +20,7 @@ flow = "github-flow"
 
 [issueTracking]
 provider = "jira"
-projectKey = "RD"
+projectKey = "AR"
 
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
 # keyRegexOverride = "^AR-[0-9]+$"
@@ -45,29 +45,19 @@ gitlabIssueNumberRegex = "(?:^|/)([0-9]+)(?:-|$)"
 
 [commit]
 tool = "goji"
-format = "<type> <emoji> (<scope>): <issueKey> <subject>"
+format = "<type> <emoji> (<scope>): <subject>"
 style = "jira"
 signoff = true
-# Skip git hooks (pre-commit, commit-msg) via --no-verify
-noVerify = true
-# Maximum total header length: <type> <emoji> (<scope>): <issueKey> <subject>
-# LLM agents must calculate available subject length as:
-#   available = subjectMaxLength - len(<type> <emoji> (<scope>): <issueKey> )
-# Example: "chore 🧹 (skills): PE-100 " = 25 chars → subject max = 80 - 25 = 55 chars
 subjectMaxLength = 100
-defaultScope = "other"
 
 [commit.providers.github]
-format = "<type> <emoji> (<scope>): <subject> (#<issueKey>)"
 issueRegex = "\\(#[0-9]+\\)$"
 closingBodyLine = "Fixes #<number>"
 
 [commit.providers.gitlab]
-format = "<type> <emoji> (<scope>): <subject> (#<issueKey>)"
 issueRegex = "\\(#[0-9]+\\)$"
 closingBodyLine = "Closes #<number>"
 
 [commit.providers.jira]
-format = "<type> <emoji> (<scope>): <issueKey> <subject>"
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
-# keyRegexOverride = "^HAD-[0-9]+$"
+# keyRegexOverride = "^AR-[0-9]+$"

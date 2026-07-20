@@ -1,0 +1,15 @@
+name: "cartography"
+description: "Repository understanding and hierarchical codemap generation"
+triggers:
+  - "User asks to understand/map a repository"
+  - "User wants codebase documentation"
+  - "Starting work on an unfamiliar codebase"
+what_i_do:
+  - "Checks whether `.slim/cartography.json` exists to decide between initialize and incremental update workflows."
+  - "Infers include/exclude patterns for core source and config files while excluding tests, docs, and build artifacts."
+  - "Runs `cartographer.py init`, `changes`, and `update` to generate and maintain codemap state."
+  - "Guides codemap updates for affected folders and consolidates a root atlas codemap for repository entry."
+  - "Documents each mapped directory with responsibility, design, flow, and integration details."
+usage_examples:
+  - "Create an initial repository atlas for an unfamiliar codebase."
+  - "Update codemaps incrementally after modified files are detected."

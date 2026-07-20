@@ -1,0 +1,15 @@
+name: jira-sync-components
+description: Skill para sincronizar componentes de Jira con un archivo markdown. Crea, actualiza y reconcilia componentes (incluyendo description).
+triggers:
+  - "Usa el skill `jira-sync-components`"
+  - "Sincroniza componentes de Jira con este archivo"
+  - "Crea componentes desde markdown"
+what_i_do:
+  - "Resolve `filePath` from `{{args}}`"
+  - "Validate file access and parse markdown"
+  - "Get components from Jira via MCP"
+  - "Compare and reconcile: create, update, add from Jira"
+  - "Write updated file preserving format"
+usage_examples:
+  - "Sync Jira components with a markdown file"
+  - "Create components from markdown and update descriptions"

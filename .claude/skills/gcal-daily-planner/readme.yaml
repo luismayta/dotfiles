@@ -1,0 +1,14 @@
+name: "gcal-daily-planner"
+description: "Generate a daily planning Markdown file combining Google Calendar events and Jira tasks."
+triggers:
+  - "generate daily planning"
+  - "create daily agenda from calendar and tasks"
+  - "plan their day automatically"
+what_i_do:
+  - "Fetch today's Google Calendar events and Jira tasks in progress"
+  - "Schedule tasks around existing events using configurable work windows and buffers"
+  - "Generate a daily markdown agenda at 00-Calendar/Events/YYYY/YYYY-MM-DD.md"
+usage_examples:
+  - "Use the gcal-daily-planner skill"
+  - "Generate my daily plan"
+  - "Create my daily agenda"

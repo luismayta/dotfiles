@@ -1,0 +1,11 @@
+name: "update-pr"
+description: "Push branch commits and update the existing MR body safely (prefer REST API)"
+triggers:
+what_i_do:
+  - "Validate changes locally."
+  - "Push the current branch (handles unset upstream)."
+  - "Detect the MR for the current branch."
+  - "Regenerate the MR body from `.gitlab/merge_request_templates/MERGE_REQUEST_TEMPLATE.md` using the current `main...HEAD` diff."
+  - "Update the MR body using `glab mr update` (fallback to `glab api`)."
+usage_examples:
+  - "Use this when you already have an MR open and need to refresh its description to match the latest branch changes."
