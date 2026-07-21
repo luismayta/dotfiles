@@ -10,6 +10,9 @@ source "${DEVOPS_PATH}/config/tfenv.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/atuin.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/bruno.zsh"
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null

@@ -1,0 +1,11 @@
+{
+  "version": "1",
+  "name": "bruno",
+  "scripts": {
+    "test": "bun test"
+  },
+  "ignore": {
+    "node_modules": true,
+    ".git": true
+  }
+}

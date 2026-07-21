@@ -26,7 +26,7 @@ function M.register(mainMod, C)
     { key = "D", exec = dsp.launch_or_focus("draw.io") },
     { key = "T", exec = dsp.launch_or_focus("Alacritty") },
     { key = "W", exec = dsp.launch_or_focus("org.wezfurlong.wezterm", "wezterm") },
-    { key = "I", exec = dsp.launch_or_focus("insomnia") },
+    { key = "I", exec = dsp.launch_or_focus("bruno", "bruno") },
     { key = "S", exec = dsp.launch_or_focus("datagrip") },
     { key = "K", exec = dsp.launch_or_focus("keybase") },
     { key = "J", exec = dsp.launch_or_focus("brave-codip.atlassian.net__-Default", "jira") },
