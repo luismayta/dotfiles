@@ -16,7 +16,7 @@ function ssh::internal::ssh::build {
     fi
     # Backup existing config before overwriting
     if [[ -f "${SSH_CONFIG_FILE}" ]]; then
-        backup "${SSH_CONFIG_FILE}"
+        core::internal::backup "${SSH_CONFIG_FILE}"
     fi
     assh config build > "${SSH_CONFIG_FILE}"
 }

@@ -16,7 +16,7 @@ function devops::kubectl::internal::krew::install {
 
 function devops::kubectl::internal::krew::load {
     if core::exists kubectl; then
-        path::prepend "${KREW_ROOT_BIN}"
+        core::path::prepend "${KREW_ROOT_BIN}"
     fi
 }
 

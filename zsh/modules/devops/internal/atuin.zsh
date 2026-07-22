@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 function devops::atuin::internal::load {
-    path::prepend "${DEVOPS_ATUIN_ROOT_BIN}"
+    core::path::prepend "${DEVOPS_ATUIN_ROOT_BIN}"
 
     if core::exists atuin; then
       # Shell integration — eval atuin init zsh with configurable flags
