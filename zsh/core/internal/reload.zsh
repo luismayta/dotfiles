@@ -1,5 +1,9 @@
 # shellcheck shell=bash
 
-function reload {
-    exec "${SHELL}"
+function core::reload {
+    if [[ "${OSTYPE}" == darwin* ]]; then
+        exec "${SHELL}" -l
+    else
+        exec "${SHELL}"
+    fi
 }

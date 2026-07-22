@@ -1,13 +1,13 @@
 # shellcheck shell=bash
 
-function path::append {
+function core::path::append {
     [ -e "${1}" ] && export PATH="${PATH}:${1}"
 }
 
-function path::prepend {
+function core::path::prepend {
     [ -e "${1}" ] && export PATH="${1}:${PATH}"
 }
 
-function path::clean {
+function core::path::clean {
     echo "${1}" | tr ':' '\n' | uniq | xargs | tr ' ' ':'
 }

@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 
-function editrc {
+function core::editrc {
     if [ -z "${1}" ]; then
         "${EDITOR}" "${HOME}"/.zshrc
         return
@@ -8,7 +8,7 @@ function editrc {
     "${EDITOR}" "${DOTFILES_CORE_PATH}"/"${1}".zsh
 }
 
-function editprivaterc {
+function core::editprivaterc {
     if [ -z "${PRIVATERC}" ]; then
         message_info "not exist file privaterc"
         return
@@ -16,7 +16,7 @@ function editprivaterc {
     "${EDITOR}" "${PRIVATERC}"
 }
 
-function editcustomrc {
+function core::editcustomrc {
     if [ -z "${CUSTOMRC}" ]; then
         message_info "not exist file customrc"
         return

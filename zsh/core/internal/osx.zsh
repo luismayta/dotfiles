@@ -1,10 +1,5 @@
 # shellcheck shell=bash
 
-# create cache and reload settings
-function reload {
-  exec "${SHELL}" -l
-}
-
 # Homebrew install override
 core::internal::core::install() {
   if ! core::internal::core::exists brew; then

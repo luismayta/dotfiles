@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+core::path::prepend "${1}"

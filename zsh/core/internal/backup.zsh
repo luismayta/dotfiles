@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 
-function backup {
+function core::internal::backup {
     typeset today
     typeset path_today
     typeset file_backup
