@@ -23,8 +23,7 @@ function nodejs::internal::packages::install {
 }
 
 function nodejs::internal::bunx::load {
-    local bun_bin="${HOME}/.bun/bin"
-    [ -e "${bun_bin}/bun" ] && export PATH="${bun_bin}:${PATH}"
+    [ -e "${BUN_BIN_PATH}" ] && export PATH="${BUN_BIN_PATH}:${PATH}"
 }
 
 function nodejs::internal::bun::install {
