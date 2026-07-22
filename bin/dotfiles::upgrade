@@ -7,9 +7,9 @@ message_success "Upgraded dotfiles"
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_MOD_DIR}/main.zsh" ] && source "${DOTFILES_MOD_DIR}/main.zsh"
 
-backup "${HOME}/.bashrc"
-backup "${HOME}/.zshrc"
-backup "${HOME}/.zshenv"
+core::internal::backup "${HOME}/.bashrc"
+core::internal::backup "${HOME}/.zshrc"
+core::internal::backup "${HOME}/.zshenv"
 
 cp -rf "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
 cp -rf "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
