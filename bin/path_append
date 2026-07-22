@@ -1,3 +1,7 @@
 #!/usr/bin/env zsh
 
+# Source core framework to make core::path::append available
+DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/.dotfiles}"
+source "${DOTFILES_DIR}/zsh/core/main.zsh"
+
 core::path::append "${1}"
