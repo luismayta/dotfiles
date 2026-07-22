@@ -2,22 +2,12 @@
 # -*- coding: utf-8 -*-
 
 function devops::atuin::internal::load {
-    if ! core::exists atuin; then
-      return
-    fi
-
     path::prepend "${DEVOPS_ATUIN_ROOT_BIN}"
-    devops::atuin::internal::load::completion
-}
 
-function devops::atuin::internal::load::completion {
-
-    if ! core::exists atuin; then
-      return
+    if core::exists atuin; then
+      # Shell integration — eval atuin init zsh with configurable flags
+      eval "$(atuin init zsh ${DEVOPS_ATUIN_INIT_FLAGS[@]})"
     fi
-
-    # Shell integration — eval atuin init zsh with configurable flags
-    eval "$(atuin init zsh ${DEVOPS_ATUIN_INIT_FLAGS[@]})"
 }
 
 function devops::atuin::internal::install {

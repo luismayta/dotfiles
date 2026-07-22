@@ -15,7 +15,7 @@ function devops::bruno::internal::bru::install {
         return 1
     fi
     message_info "Installing ${DEVOPS_BRUNO_PACKAGE_NAME} CLI"
-    ${DEVOPS_BRUNO_INSTALL_CMD} ${DEVOPS_BRUNO_CLI_PACKAGE}
+    ${DEVOPS_BRUNO_INSTALL_CMD} "${DEVOPS_BRUNO_CLI_PACKAGE}"
     message_success "Installed ${DEVOPS_BRUNO_PACKAGE_NAME} CLI"
 }
 
@@ -30,4 +30,4 @@ devops::bruno::internal::load
 
 if ! core::exists bru; then devops::bruno::internal::bru::install; fi
 
-core::ensure bruno
+# core::ensure bruno
