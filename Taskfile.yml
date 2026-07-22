@@ -125,8 +125,17 @@ vars:
     .infobot
     .jira-config.json
     *.pkg.tar.zst
-    .lycheecache
     *.db
+
+    graphify-out/*
+
+    .codi/build
+
+    !flake.lock
+    .direnv/*
+
+    .lycheecache
+
   AI_IGNORE_CUSTOM: |
     # Block specific paths
     /secrets/**
