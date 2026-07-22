@@ -19,3 +19,6 @@ export PATH="${DOTFILES_BIN}:${PATH}"
 # Nix
 [ -e "${HOME}/.nix-profile/bin" ] && export PATH="${HOME}/.nix-profile/bin:${PATH}"
 [ -e "/nix/var/nix/profiles/default/bin" ] && export PATH="/nix/var/nix/profiles/default/bin:${PATH}"
+
+# bun
+[ -e "${HOME}/.bun/bin" ] && export PATH="${PATH}:${HOME}/.bun/bin"

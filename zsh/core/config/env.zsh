@@ -12,6 +12,7 @@ export CORE_MESSAGE_NIX="Please install nix or use the nix module at zsh/modules
 export CORE_MESSAGE_PYTHON="Please install pyenv or use the python module at zsh/modules/python"
 export CORE_PROJECTS_BACKUP_PATH="${HOME}/backup"
 
+
 export ANDROID_HOME="${HOME}/Library/Android/sdk"
 export ANDROID_PLATFORM_VERSION="${JASPER_ANDROID_PLATFORM_VERSION:-35}"
 export ANDROID_SDK_VERSION="${JASPER_ANDROID_SDK_VERSION:-35.0.1}"
@@ -22,5 +23,9 @@ export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
 # Default editor
 : "${EDITOR:=nvim}"
 
+
+# Nix
 export NIX_CONF_DIR="${HOME}/.config/nix"
 export NIXPKGS_ALLOW_UNFREE=1
+
+export TMPDIR="${HOME}/tmp"
