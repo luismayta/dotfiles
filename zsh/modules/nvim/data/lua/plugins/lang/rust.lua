@@ -5,10 +5,6 @@ return {
     ft = { "rust" },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      {
-        "lvimuser/lsp-inlayhints.nvim",
-        opts = {},
-      },
     },
     config = function()
       vim.g.rustaceanvim = {
@@ -22,7 +18,7 @@ return {
         },
         server = {
           on_attach = function(client, bufnr)
-            require("lsp-inlayhints").on_attach(client, bufnr)
+            vim.lsp.inlayhints.enable(client, bufnr)
           end,
         },
       }

@@ -28,7 +28,7 @@ opt.foldlevelstart = 99
 -- Line wrapping
 opt.wrap = true
 opt.linebreak = true
-opt.textwidth = 0
+opt.textwidth = 80
 opt.wrapmargin = 0
 
 -- Keywords and paths

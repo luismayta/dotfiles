@@ -77,3 +77,8 @@ map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Git toggle 
 -- Toggle terminal
 map("n", "<leader>h", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- LSP inlay hints toggle
+map("n", "<leader>uh", function()
+  vim.lsp.inlayhints.enable(not vim.lsp.inlayhints.is_enabled())
+end, { desc = "Toggle inlay hints" })
