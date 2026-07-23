@@ -4,7 +4,19 @@ return {
   keys = {
     { "<leader>/", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
     { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
-    { "<leader>fa", function() require("telescope.builtin").find_files({ follow = true, no_ignore = true, hidden = true, prompt_prefix = " 󱡴  ", prompt_title = "All Files" }) end, desc = "Find All Files" },
+    {
+      "<leader>fa",
+      function()
+        require("telescope.builtin").find_files {
+          follow = true,
+          no_ignore = true,
+          hidden = true,
+          prompt_prefix = " 󱡴  ",
+          prompt_title = "All Files",
+        }
+      end,
+      desc = "Find All Files",
+    },
     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
     { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help Tags" },
     { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent Files" },
@@ -21,14 +33,32 @@ return {
   },
   opts = {
     defaults = {
+      prompt_prefix = "   ",
+      selection_caret = "  ",
+      entry_prefix = "  ",
+      sorting_strategy = "ascending",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+        },
+        width = 0.87,
+        height = 0.80,
+      },
+      mappings = {
+        n = { ["q"] = require("telescope.actions").close },
+      },
       hidden = true,
       no_ignore = true,
-      selection_caret = " ",
-      entry_prefix = " ",
       file_ignore_patterns = { "node_modules" },
       vimgrep_arguments = {
-        "rg", "--hidden", "--no-heading", "--with-filename",
-        "--line-number", "--column", "--smart-case",
+        "rg",
+        "--hidden",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
       },
     },
     pickers = {
@@ -36,5 +66,6 @@ return {
       find_files = { prompt_title = "Files" },
       builtin = { prompt_title = "Builtin Pickers" },
     },
+    extensions_list = { "themes", "terms" },
   },
 }

@@ -18,12 +18,35 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch" },
-        lualine_c = { "diagnostics" },
-        lualine_x = { "filetype" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = {
+          {
+            "filetype",
+            icon_only = true,
+            separator = "",
+            padding = { left = 1, right = 0 },
+          },
+          { "filename", path = 1 },
+        },
+        lualine_x = {
+          {
+            "diff",
+            symbols = { added = " ", modified = " ", removed = " " },
+          },
+          {
+            "diagnostics",
+            symbols = {
+              error = " ",
+              warn = " ",
+              info = " ",
+              hint = " ",
+            },
+          },
+        },
         lualine_y = { "location" },
         lualine_z = { "progress" },
       },
+      extensions = { "neo-tree", "lazy" },
     }
   end,
 }

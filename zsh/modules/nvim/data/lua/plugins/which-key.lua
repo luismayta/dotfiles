@@ -1,9 +1,28 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {},
-  keys = {
-    { "<leader>wK", "<cmd>WhichKey <CR>", desc = "WhichKey show all keymaps" },
-    { "<leader>wk", function() vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ") end, desc = "WhichKey query lookup" },
+  opts = {
+    plugins = { spelling = true },
+    defaults = {
+      mode = { "n", "v" },
+      ["g"] = { name = "+goto" },
+      ["gs"] = { name = "+surround" },
+      ["]"] = { name = "+next" },
+      ["["] = { name = "+prev" },
+      ["<leader>b"] = { name = "+buffer" },
+      ["<leader>c"] = { name = "+code" },
+      ["<leader>f"] = { name = "+file/find" },
+      ["<leader>g"] = { name = "+git" },
+      ["<leader>q"] = { name = "+quit/session" },
+      ["<leader>s"] = { name = "+search" },
+      ["<leader>u"] = { name = "+ui" },
+      ["<leader>w"] = { name = "+windows" },
+      ["<leader>x"] = { name = "+diagnostics/quickfix" },
+    },
   },
+  config = function(_, opts)
+    local wk = require "which-key"
+    wk.setup(opts)
+    wk.register(opts.defaults)
+  end,
 }
