@@ -13,6 +13,9 @@ source "${DEVOPS_PATH}/config/atuin.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/bruno.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/worktrunk.zsh"
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null
