@@ -17,10 +17,6 @@ return {
         mini = false,
         -- LazyVim integrations
         which_key = true,
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = false,
-        },
         native_lsp = {
           enabled = true,
           virtual_text = true,
