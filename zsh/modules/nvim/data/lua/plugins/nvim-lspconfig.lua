@@ -4,6 +4,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "saghen/blink.cmp",
   },
   config = function()
     -- Keymaps on LSP attach
@@ -72,8 +73,12 @@ return {
       eslint = {},
     }
 
+    -- Get blink.cmp capabilities for LSP completion
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+
     -- Configure and enable each server
     for server, config in pairs(servers) do
+      config.capabilities = vim.tbl_deep_extend("force", capabilities, config.capabilities or {})
       vim.lsp.config(server, config)
       vim.lsp.enable(server)
     end
