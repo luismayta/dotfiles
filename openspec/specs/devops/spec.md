@@ -4,7 +4,7 @@
 TBD - created by archiving change migrate-zsh-modules. Update Purpose after archive.
 ## Requirements
 ### Requirement: Module provides DevOps tooling aliases and helpers
-The devops module SHALL provide ZSH aliases and helper functions for common DevOps tooling, including platform-specific configuration for Linux and macOS. The `DEVOPS_TOOLS` array SHALL include Atuin for lifecycle management.
+The devops module SHALL provide ZSH aliases and helper functions for common DevOps tooling, including platform-specific configuration for Linux and macOS. The `DEVOPS_TOOLS` array SHALL include Atuin and Worktrunk for lifecycle management.
 
 #### Scenario: DevOps aliases available
 - **WHEN** the module is loaded
@@ -19,6 +19,10 @@ The devops module SHALL provide ZSH aliases and helper functions for common DevO
 #### Scenario: Atuin in DEVOPS_TOOLS
 - **WHEN** the `DEVOPS_TOOLS` array is inspected
 - **THEN** `atuin` SHALL be present in the array
+
+#### Scenario: Worktrunk in DEVOPS_TOOLS
+- **WHEN** the `DEVOPS_TOOLS` array is inspected
+- **THEN** `worktrunk` SHALL be present in the array
 
 ### Requirement: Module follows existing dotfiles convention
 The devops module SHALL be self-contained within `zsh/modules/devops/` with `plugin.zsh` as the entry point and `config/`, `internal/`, `pkg/` subdirectories.
