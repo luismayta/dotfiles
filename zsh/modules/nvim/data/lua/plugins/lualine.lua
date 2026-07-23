@@ -18,7 +18,7 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_b = { "branch" },
         lualine_c = {
           {
             "filetype",
@@ -26,7 +26,7 @@ return {
             separator = "",
             padding = { left = 1, right = 0 },
           },
-          { "filename", path = 1 },
+          { "filename", path = 1, symbols = { modified = " ●", readonly = " ", unnamed = "[No Name]" } },
         },
         lualine_x = {
           {
@@ -42,9 +42,11 @@ return {
               hint = " ",
             },
           },
+          "encoding",
+          "fileformat",
         },
-        lualine_y = { "location" },
-        lualine_z = { "progress" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
       },
       extensions = { "neo-tree", "lazy" },
     }
