@@ -9,20 +9,21 @@ export DEVOPS_KOMISER_PORT=9090
 export DEVOPS_KOMISER_CONF_PATH="${HOME}/.config/komiser"
 
 export DEVOPS_TOOLS=(
-  sops
-  packer
-  telepresenceio/telepresence/telepresence-oss
-  k9s
-  kubectl
-  helm
-  tfenv
-  terragrunt
-  terraform-docs
+  atuin
+  github-cli
   glab
   google-cloud-cli
-  github-cli
+  helm
+  k9s
+  kubectl
+  packer
+  sops
+  telepresenceio/telepresence/telepresence-oss
+  terraform-docs
+  terragrunt
+  tfenv
+  worktrunk
   zoxide
-  atuin
 )
 
 export DEVOPS_PACKAGES=(
