@@ -28,7 +28,7 @@ map("n", "<C-c>", "<cmd>nohlsearch<CR><C-c>", { desc = "Clear search highlight" 
 
 -- Format buffer
 map("n", "<leader>f", function()
-  vim.lsp.buf.format()
+  require("conform").format { timeout_ms = 500, lsp_fallback = true }
 end, { desc = "Format buffer" })
 
 -- Global replace (replace word under cursor)
@@ -42,7 +42,7 @@ map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Copy file path
 map("n", "<leader>fp", function()
-  vim.fn.setreg("+", vim.fn.expand("%:p"))
+  vim.fn.setreg("+", vim.fn.expand "%:p")
 end, { desc = "Copy file path" })
 
 -- Restart (reload config)
@@ -53,5 +53,5 @@ map("n", "<leader>lr", function()
   for _, client in ipairs(vim.lsp.get_clients()) do
     vim.lsp.stop_client(client.id)
   end
-  vim.cmd("edit")
+  vim.cmd "edit"
 end, { desc = "Restart LSP" })

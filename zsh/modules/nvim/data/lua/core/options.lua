@@ -33,8 +33,8 @@ opt.splitbelow = true
 -- Backup / Swap / Undo
 opt.swapfile = false
 opt.backup = false
-vim.fn.system({ "mkdir", "-p", vim.fn.stdpath("data") .. "/undo" })
-opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.fn.system { "mkdir", "-p", vim.fn.stdpath "data" .. "/undo" }
+opt.undodir = vim.fn.stdpath "data" .. "/undo"
 opt.undofile = true
 
 -- Folding
@@ -54,3 +54,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.hl.on_yank()
   end,
 })
+
+-- Enable native UI (cmdline + messages) — nvim 0.12
+vim.o.cmdheight = 0
+require("vim._core.ui2").enable {
+  msg = {
+    targets = "cmd",
+    cmd = { height = 0.5 },
+    dialog = { height = 0.5 },
+  },
+}

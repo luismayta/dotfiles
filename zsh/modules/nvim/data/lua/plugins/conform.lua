@@ -3,14 +3,21 @@ return {
   event = "BufReadPre",
   cmd = "ConformInfo",
   keys = {
-    { "<leader>lf", function() require("conform").format({ timeout_ms = 500, lsp_fallback = true }) end, mode = { "n", "v" }, desc = "Format" },
+    {
+      "<leader>lf",
+      function()
+        require("conform").format { timeout_ms = 500, lsp_fallback = true }
+      end,
+      mode = { "n", "v" },
+      desc = "Format",
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*",
       callback = function(args)
         if vim.g.autoformat ~= false then
-          require("conform").format({ bufnr = args.buf, timeout_ms = 500, lsp_fallback = true })
+          require("conform").format { bufnr = args.buf, timeout_ms = 500, lsp_fallback = true }
         end
       end,
     })
