@@ -75,7 +75,8 @@ env:
     sh: git describe --tags $(git rev-list --tags --max-count=1) 2> /dev/null || echo "0.0.0"
   README_YAML: provision/generators/README.yaml
   README_TEMPLATE: provision/templates/README.tpl.md
-  README_INCLUDES: file://
+  README_INCLUDES:
+    sh: echo "file://$(pwd)/"
   TERRAFORM_PATH: ./
   PYTHON_PACKAGE_MANAGER: uv
 

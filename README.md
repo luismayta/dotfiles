@@ -1,6 +1,5 @@
 
 
-
 <!--
 
 
@@ -14,7 +13,6 @@
 
 
   -->
-
 
  [![Latest Release](https://img.shields.io/github/release/luismayta/dotfiles)](https://github.com/luismayta/dotfiles/releases) [![Version](https://img.shields.io/badge/version-0.0.0-df5e88)](https://img.shields.io/github/release/luismayta/dotfiles) [![Lint](https://img.shields.io/github/workflow/status/luismayta/dotfiles/lint-code)](https://github.com/luismayta/dotfiles/actions?workflow=lint-code) [![CI](https://img.shields.io/github/workflow/status/luismayta/dotfiles/ci)](https://github.com/luismayta/dotfiles/actions?workflow=ci) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)](https://conventionalcommits.org) [![KeepAChangelog](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange)](https://keepachangelog.com)
 
@@ -44,6 +42,7 @@ This is a list of applications that need to be installed previously to enjoy all
 
 - [Curl](https://github.com/bagder/curl)
 - [Wget](https://www.gnu.org/software/wget/)
+
 ## Installation
 ### via curl
 
@@ -128,17 +127,14 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 
 
 
-
 ## Copyright
 
 Copyright © 2018-2026 [Hadenlabs](https://hadenlabs.com)
 
 
-
 ## Trademarks
 
 All other trademarks referenced herein are the property of their respective owners.
-
 
 
 

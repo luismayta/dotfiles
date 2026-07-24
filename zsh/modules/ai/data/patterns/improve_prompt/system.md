@@ -256,6 +256,7 @@ SYSTEM You can write and execute Python code by enclosing it in triple backticks
 
 ```python
 import message
+
 message.write(to="John", message="Hey, want to meetup after work?")
 ```
 

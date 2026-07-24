@@ -5,11 +5,12 @@
 {{ if has $confluence "title" -}} <!-- Title: {{ $confluence.title }} --> {{ end }}
 {{ if has $confluence "images" -}}
 {{ range $image := $confluence.images -}}
+
 <!-- Attachment: {{ $image }} -->
+
 {{ end }}
 {{ end }}
 {{- end }}
-
 
 <!--
 
@@ -24,7 +25,6 @@
 
 
   -->
-
 
 {{ if has (ds "config") "badges" }}{{- range $badge := (ds "config").badges -}}{{ printf " [![%s](%s)](%s)" $badge.name $badge.image $badge.url }}{{ end }}{{ end }}
 
@@ -78,6 +78,7 @@
 {{ (ds "config").requirements -}} {{ end }}
 
 {{- if has (ds "config") "installation" }}
+
 ## Installation
 
 {{- range $file := (datasource "config").installation }}
@@ -165,7 +166,6 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 - In the context of pre-release, backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is
   increased. (Pre-release)
 
-
 {{ if has (ds "config") "copyrights" }}
 
 ## Copyrights
@@ -178,7 +178,6 @@ Using the given version number of `MAJOR.MINOR.PATCH`, we apply the following co
 
 Copyright © 2018-{{ time.Now.Year }} [Hadenlabs](https://hadenlabs.com)
 {{ end}}
-
 
 ## Trademarks
 
@@ -205,7 +204,6 @@ All other trademarks referenced herein are the property of their respective owne
 {{ end }}
 
 {{ end }}
-
 
 {{ if has (ds "config") "license" }}
 
