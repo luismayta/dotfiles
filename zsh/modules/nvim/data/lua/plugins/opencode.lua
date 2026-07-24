@@ -12,7 +12,7 @@ return {
       desc = "OpenCode: Ask",
     },
     {
-      "<C-x>",
+      "<C-z>",
       function()
         require("opencode").select()
       end,
