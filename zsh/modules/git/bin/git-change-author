@@ -2,8 +2,16 @@
 # Author: Michael Demmer https://github.com/demmer
 # License: MIT
 # Original source: https://github.com/jut-io/git-scripts/blob/master/bin/git-change-author
+# Modified: Modernized to prefer git-filter-repo over git-filter-branch
 
 prog=$(basename "$0")
+
+# Check for git-filter-repo availability
+if command -v git-filter-repo >/dev/null 2>&1; then
+  HAS_FILTER_REPO=true
+else
+  HAS_FILTER_REPO=false
+fi
 
 force=
 if [ "$1" == "-f" ] ; then
@@ -24,12 +32,46 @@ fi
 
 echo "Rewriting commits for $old_email to $new_author <$new_email>"
 
-export old_email
-export new_author
-export new_email
+if [[ "$HAS_FILTER_REPO" == true ]]; then
+  # Use git-filter-repo (modern, faster, safer)
+  echo "Using git-filter-repo..."
+  
+  # Create a temporary email-change script for git-filter-repo
+  TEMP_SCRIPT=$(mktemp)
+  cat > "$TEMP_SCRIPT" << EOF
+def commit_authored_by_email(commit):
+    return commit.author_email == b"$old_email"
 
-# shellcheck disable=SC2016,SC2048,SC2086
-git filter-branch $force --env-filter '
+def commit_committed_by_email(commit):
+    return commit.committer_email == b"$old_email"
+
+if commit_authored_by_email(commit):
+    commit.author_name = b"$new_author"
+    commit.author_email = b"$new_email"
+if commit_committed_by_email(commit):
+    commit.committer_name = b"$new_author"
+    commit.committer_email = b"$new_email"
+EOF
+
+  if [[ "$force" == "-f" ]]; then
+    git-filter-repo --force --replace-refs delete-no-add --commit-callback-file "$TEMP_SCRIPT"
+  else
+    git-filter-repo --replace-refs delete-no-add --commit-callback-file "$TEMP_SCRIPT"
+  fi
+  
+  rm -f "$TEMP_SCRIPT"
+else
+  # Fallback to git-filter-branch with deprecation warning
+  echo "WARNING: git-filter-repo not found. Falling back to git-filter-branch (deprecated)." >&2
+  echo "Install git-filter-repo for better performance: pip install git-filter-repo" >&2
+  echo "" >&2
+  
+  export old_email
+  export new_author
+  export new_email
+
+  # shellcheck disable=SC2016,SC2048,SC2086
+  git filter-branch $force --env-filter '
 an="$GIT_AUTHOR_NAME"
 am="$GIT_AUTHOR_EMAIL"
 cn="$GIT_COMMITTER_NAME"
@@ -51,3 +93,4 @@ export GIT_AUTHOR_EMAIL="$am"
 export GIT_COMMITTER_NAME="$cn"
 export GIT_COMMITTER_EMAIL="$cm"
 ' $*
+fi

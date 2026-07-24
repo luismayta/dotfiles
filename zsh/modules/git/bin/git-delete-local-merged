@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # git-delete-local-merged
 # Author: Carlos Alexandro Becker
 # Created: 2020

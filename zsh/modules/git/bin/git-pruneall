@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
 # Usage: git-pruneall [<remote>...]
 # Prune branches from specified remotes, or all remotes when
 # <remote> not specified.

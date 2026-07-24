@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # git-sync
 # Author: Carlos Alexandro Becker
 # Created: 2020
