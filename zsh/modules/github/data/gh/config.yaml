@@ -1,9 +1,0 @@
-prSections:
-  - title: My Pull Requests
-    filters: "author:@me state:open"
-issuesSections:
-  - title: My Issues
-    filters: "author:@me state:open"
-reposSections:
-  - title: My Repositories
-    filters: "owner:@me"

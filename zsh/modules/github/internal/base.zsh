@@ -13,10 +13,22 @@ function github::internal::install_completions {
     message_success "Installed ${ZSH_GITHUB_PACKAGE_NAME} completions"
 }
 
-function github::internal::install_dash {
-    message_info "Installing gh-dash extension"
-    gh extension install dlvhdr/gh-dash
-    message_success "Installed gh-dash extension"
+function github::internal::extension::install {
+    local ext="${1}"
+    if ! gh extension list 2>/dev/null | grep -q "${ext}"; then
+        message_info "Installing gh extension ${ext}"
+        gh extension install "${ext}"
+        message_success "Installed gh extension ${ext}"
+    fi
+}
+
+function github::internal::extensions::install {
+    if ! core::exists gh; then return; fi
+    message_info "Installing required gh extensions"
+    for ext in "${ZSH_GITHUB_EXTENSIONS[@]}"; do
+        github::internal::extension::install "${ext}"
+    done
+    message_success "Installed required gh extensions"
 }
 
 function github::internal::load {
@@ -30,8 +42,6 @@ github::internal::main::factory
 
 if core::exists gh; then
     github::internal::install_completions
-    if ! gh extension list 2>/dev/null | grep -q dlvhdr/gh-dash; then
-        github::internal::install_dash
-    fi
+    github::internal::extensions::install
     github::internal::load
 fi

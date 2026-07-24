@@ -1,30 +1,19 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
-# Guard variable to prevent double-loading
-if [[ -n "${__ZSH_GITHUB_LOADED}" ]]; then
-    return 0
-fi
+[[ -n "${__ZSH_GITHUB_LOADED:-}" ]] && return
+__ZSH_GITHUB_LOADED=1
 
-# Module enable/disable toggle
-if [[ "${ZSH_GITHUB_ENABLED}" == "false" || "${ZSH_GITHUB_ENABLED}" == "0" ]]; then
-    return 0
-fi
+ZSH_GITHUB_PATH="${ZSH_MODULES_PATH}/github"
 
-# Set module path
-typeset -gr ZSH_GITHUB_PATH="${ZSH_MODULES_PATH}/github"
+message_info "Loading module: github"
 
-# Source config layer
 # shellcheck source=/dev/null
-source "${ZSH_GITHUB_PATH}/config/gh.zsh"
+source "${ZSH_GITHUB_PATH}/config/main.zsh"
+$ZSH_GITHUB_ENABLED || return
 
-# Source internal layer
 # shellcheck source=/dev/null
-source "${ZSH_GITHUB_PATH}/internal/gh.zsh"
+source "${ZSH_GITHUB_PATH}/internal/main.zsh"
 
-# Source pkg layer
 # shellcheck source=/dev/null
-source "${ZSH_GITHUB_PATH}/pkg/gh.zsh"
-
-# Set guard variable
-typeset -gr __ZSH_GITHUB_LOADED=1
+source "${ZSH_GITHUB_PATH}/pkg/main.zsh"
