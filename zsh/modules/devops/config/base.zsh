@@ -10,7 +10,6 @@ export DEVOPS_KOMISER_CONF_PATH="${HOME}/.config/komiser"
 
 export DEVOPS_TOOLS=(
   atuin
-  github-cli
   glab
   google-cloud-cli
   helm
