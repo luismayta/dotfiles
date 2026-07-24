@@ -7,7 +7,7 @@ return {
       "shfmt",
       "black",
       "isort",
-      "prettier",
+      "biome",
       "jq",
       "taplo",
       "xmlformat",
