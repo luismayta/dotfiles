@@ -4,7 +4,7 @@
 [[ -n "${__ZSH_GITHUB_LOADED:-}" ]] && return
 __ZSH_GITHUB_LOADED=1
 
-ZSH_GITHUB_PATH="${ZSH_MODULES_PATH}/github"
+ZSH_GITHUB_PATH="$(dirname "${0}")"
 
 message_info "Loading module: github"
 
