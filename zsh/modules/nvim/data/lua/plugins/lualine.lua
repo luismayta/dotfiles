@@ -2,13 +2,13 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     { "echasnovski/mini.icons", opts = {} },
-    { "catppuccin/nvim", name = "catppuccin" },
+    "folke/tokyonight.nvim",
   },
   event = "VeryLazy",
   opts = function()
     return {
       options = {
-        theme = "catppuccin",
+        theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         globalstatus = true,
