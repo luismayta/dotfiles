@@ -57,7 +57,7 @@ test -n "$ref" ||
 die "you're not on a branch"
 
 # just the branch name please
-branch=$(echo "$ref" | sed 's@^refs/heads/@@')
+branch=${ref#refs/heads/}
 test -n "$branch" ||
 die "you're in a weird place; get on a local branch"
 
@@ -78,7 +78,8 @@ die "you're not tracking a remote branch"
 # the relative path to file.
 # shellcheck disable=SC2086
 remote_url=$(git config --get remote.$remote.url)
-repo=$(echo "$remote_url" | sed 's/^.*:\(.*\)\.git/\1/')
+repo=${remote_url##*:}
+repo=${repo%.git}
 url="http://github.com/$repo/blob/$branch/$path"
 
 # debugging

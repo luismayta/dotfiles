@@ -5,7 +5,7 @@
 setup_git_repo() {
   local test_dir
   test_dir=$(mktemp -d)
-  cd "$test_dir"
+  cd "$test_dir" || return 1
   git init
   git config user.email "test@example.com"
   git config user.name "Test User"
@@ -29,7 +29,7 @@ add_test_remote() {
   local remote_name="${2:-origin}"
   local remote_url="${3:-/tmp/fake-remote.git}"
   
-  cd "$test_dir"
+  cd "$test_dir" || return 1
   git remote add "$remote_name" "$remote_url"
 }
 

@@ -1,3 +1,4 @@
+# shellcheck shell=bash disable=SC1087,SC2154,SC2193
 #compdef gh
 compdef _gh gh
 
@@ -40,9 +41,9 @@ _gh()
     # For zsh, when completing a flag with an = (e.g., gh -n=<TAB>)
     # completions must be prefixed with the flag
     setopt local_options BASH_REMATCH
-    if [[ "${lastParam}" =~ '-.*=' ]]; then
+    if [[ "${lastParam}" =~ -.*= ]]; then
         # We are dealing with a flag with an =
-        flagPrefix="-P ${BASH_REMATCH}"
+        flagPrefix="-P ${BASH_REMATCH[0]}"
     fi
 
     # Prepare the command to obtain completions
@@ -57,12 +58,12 @@ _gh()
     __gh_debug "About to call: eval ${requestComp}"
 
     # Use eval to handle any environment variables and such
-    out=$(eval ${requestComp} 2>/dev/null)
+    out=$(eval "${requestComp}" 2>/dev/null)
     __gh_debug "completion output: ${out}"
 
     # Extract the directive integer following a : from the last line
     local lastLine
-    while IFS='\n' read -r line; do
+    while IFS=$'\n' read -r line; do
         lastLine=${line}
     done < <(printf "%s\n" "${out[@]}")
     __gh_debug "last line: ${lastLine}"
@@ -92,7 +93,7 @@ _gh()
     local endIndex=${#activeHelpMarker}
     local startIndex=$((${#activeHelpMarker}+1))
     local hasActiveHelp=0
-    while IFS='\n' read -r comp; do
+    while IFS=$'\n' read -r comp; do
         # Check if this is an activeHelp statement (i.e., prefixed with $activeHelpMarker)
         if [ "${comp[1,$endIndex]}" = "$activeHelpMarker" ];then
             __gh_debug "ActiveHelp found: $comp"
@@ -113,11 +114,13 @@ _gh()
             # We first need to escape any : as part of the completion itself.
             comp=${comp//:/\\:}
 
-            local tab="$(printf '\t')"
+            local tab
+            tab="$(printf '\t')"
             comp=${comp//$tab/:}
 
             __gh_debug "Adding completion: ${comp}"
             completions+=${comp}
+            # shellcheck disable=SC2034
             lastComp=$comp
         fi
     done < <(printf "%s\n" "${out[@]}")
@@ -147,8 +150,8 @@ _gh()
         # File extension filtering
         local filteringCmd
         filteringCmd='_files'
-        for filter in ${completions[@]}; do
-            if [ ${filter[1]} != '*' ]; then
+        for filter in "${completions[@]}"; do
+            if [ "${filter[1]}" != '*' ]; then
                 # zsh requires a glob pattern to do file filtering
                 filter="\*.$filter"
             fi
@@ -164,7 +167,7 @@ _gh()
         subdir="${completions[1]}"
         if [ -n "$subdir" ]; then
             __gh_debug "Listing directories in $subdir"
-            pushd "${subdir}" >/dev/null 2>&1
+            pushd "${subdir}" >/dev/null 2>&1 || return 1
         else
             __gh_debug "Listing directories in ."
         fi
@@ -173,12 +176,12 @@ _gh()
         _arguments '*:dirname:_files -/'" ${flagPrefix}"
         result=$?
         if [ -n "$subdir" ]; then
-            popd >/dev/null 2>&1
+            popd >/dev/null 2>&1 || return 1
         fi
         return $result
     else
         __gh_debug "Calling _describe"
-        if eval _describe $keepOrder "completions" completions $flagPrefix $noSpace; then
+        if eval _describe $keepOrder "completions" completions "$flagPrefix" "$noSpace"; then
             __gh_debug "_describe found some completions"
 
             # Return the success of having called _describe
