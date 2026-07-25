@@ -27,4 +27,6 @@ source "${ZSH_NVIM_PATH}/pkg/main.zsh"
 # Auto-sync guards (must be after pkg/main.zsh so nvim::sync exists)
 if ! core::exists rsync; then core::install rsync; fi
 if ! core::exists nvim; then core::install nvim; fi
+if ! core::exists tree-sitter; then core::install tree-sitter-cli; fi
+if ! core::exists hadolint; then core::install hadolint-bin; fi
 if [[ ! -d "${NVIM_CONFIG_PATH}" ]]; then nvim::sync; fi

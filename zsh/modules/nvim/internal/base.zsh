@@ -31,7 +31,7 @@ function nvim::internal::sync {
 
 function nvim::internal::install {
     nvim::internal::sync "$@"
-    nvim --headless -c "lua require('mason').setup() require('mason-lspconfig').setup({ automatic_installation = true })" -c "MasonInstallAll" -c "qa"
+    nvim --headless "+Lazy! sync" +qa
     message_success "nvim: plugin installed/updated"
 }
 
