@@ -12,6 +12,7 @@ return {
       "taplo",
       "xmlformat",
       "sqlfmt",
+      "hadolint",
     },
   },
   config = function(_, opts)

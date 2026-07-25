@@ -42,9 +42,15 @@ return {
       sql = { "sqlfmt" },
       gleam = { "gleam" },
       rust = { "rustfmt" },
+      dockerfile = { "hadolint" },
+      hcl = { "terraform" },
+      tf = { "terraform" },
+      ["terraform-vars"] = { "terraform" },
     },
     formatters = {
       sqlfmt = { command = "sqlfmt", args = { "-" } },
+      terraform = { command = "terraform", args = { "fmt", "-" } },
+      hadolint = { command = "hadolint" },
     },
     format_on_save = function(bufnr)
       if vim.g.autoformat ~= false then
