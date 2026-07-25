@@ -1,5 +1,5 @@
 -- Filetype detection (must come before plugins)
-vim.filetype.add({ extension = { bru = "bru" } })
+vim.filetype.add { extension = { bru = "bru" } }
 
 return {
   -- LSP: completion, diagnostics, snippets
@@ -18,13 +18,13 @@ return {
     },
     ft = "bru",
     config = function()
-      require("bruno").setup({
+      require("bruno").setup {
         collection_paths = {
-          { name = "Main", path = vim.fn.expand("~/Documents/Bruno") },
+          { name = "Main", path = vim.fn.expand "~/Documents/Bruno" },
         },
         picker = "telescope",
         show_formatted_output = true,
-      })
+      }
     end,
   },
 
