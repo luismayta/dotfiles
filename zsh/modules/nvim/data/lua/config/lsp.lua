@@ -30,6 +30,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Server configurations using vim.lsp.config (nvim 0.12 native)
 local servers = {
   lua_ls = {
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { ".luarc.json", ".luarc.jsonc", ".stylua.toml", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
     settings = {
       Lua = {
         runtime = { version = "LuaJIT" },
@@ -43,8 +51,25 @@ local servers = {
       },
     },
   },
-  vtsls = {},
+  vtsls = {
+    cmd = { "vtsls", "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "tsconfig.json", "package.json", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
   gopls = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "go.work", "go.mod", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
     settings = {
       gopls = {
         analyses = { unusedparams = true, shadow = true },
@@ -63,15 +88,74 @@ local servers = {
     },
   },
   rust_analyzer = {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "Cargo.toml", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
     settings = {
       ["rust-analyzer"] = {
         checkOnSave = { command = "clippy" },
       },
     },
   },
-  pyright = {},
-  basedpyright = {},
-  eslint = {},
+  pyright = {
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
+  yamlls = {
+    cmd = { "yaml-language-server", "--stdio" },
+    filetypes = { "yaml", "yml" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+    settings = {
+      yaml = {
+        validate = true,
+        schemaStore = {
+          enable = true,
+          url = "https://www.schemastore.org/api/json/catalog.json",
+        },
+        schemas = {
+          ["https://raw.githubusercontent.com/compose-spec/compose-spec/main/compose-spec.json"] = "docker-compose*.{yml,yaml}",
+          ["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.{yml,yaml}",
+          ["https://json.schemastore.org/gitlab-ci.json"] = ".gitlab-ci.yml",
+        },
+      },
+    },
+  },
+  dockerls = {
+    cmd = { "docker-langserver", "--stdio" },
+    filetypes = { "dockerfile" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { "Dockerfile", ".dockerignore", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
+  terraformls = {
+    cmd = { "terraform-ls", "serve" },
+    filetypes = { "tf", "terraform-vars", "hcl" },
+    root_dir = function(bufnr, on_dir)
+      local root = vim.fs.root(bufnr, { ".terraform", ".git" })
+      if root then
+        on_dir(root)
+      end
+    end,
+  },
 }
 
 -- Get blink.cmp capabilities for LSP completion
@@ -83,3 +167,16 @@ for server, config in pairs(servers) do
   vim.lsp.config(server, config)
   vim.lsp.enable(server)
 end
+
+-- Bruno LSP (filetype-based, not in main servers loop)
+vim.lsp.config("bruno_ls", {
+  cmd = { "bruno-language-server", "--stdio" },
+  filetypes = { "bru" },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "bru",
+  callback = function()
+    vim.lsp.enable "bruno_ls"
+  end,
+})
