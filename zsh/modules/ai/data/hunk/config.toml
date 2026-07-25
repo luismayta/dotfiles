@@ -1,7 +1,7 @@
 # hunk configuration for CodipLabs AI workflow
 # https://github.com/modem-dev/hunk
 
-theme = "catppuccin-macchiato"
+theme = "tokyonight"
 
 [view]
 layout = "auto"

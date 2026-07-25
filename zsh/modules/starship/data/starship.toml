@@ -12,7 +12,7 @@
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
-palette = "catppuccin_macchiato"
+palette = "tokyonight"
 
 format = "$all"
 
@@ -22,34 +22,24 @@ add_newline = false
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
 
-[palettes.catppuccin_macchiato]
-text = "#cad3f5"
-subtext0 = "#a5adcb"
-subtext1 = "#b8c0e0"
-overlay0 = "#939ab7"
-overlay1 = "#8087a2"
-surface0 = "#363a4f"
-surface1 = "#494d64"
-surface2 = "#5b6078"
-base = "#24273a"
-mantle = "#1e2030"
-crust = "#181926"
-blue = "#8aadf4"
-green = "#a6da95"
-teal = "#8bd5ca"
-red = "#ed8796"
-yellow = "#eed49f"
-peach = "#f5a97f"
-maroon = "#ee99a0"
-pink = "#f5bde6"
-mauve = "#c6a0f6"
-lavender = "#b7bdf8"
-sapphire = "#7dc4e4"
-sky = "#91d7e3"
-flamingo = "#f0c6c6"
-rosewater = "#f4dbd6"
-white = "#ffffff"
-black = "#000000"
+[palettes.tokyonight]
+# Colors from TokyoNight Storm palette
+color_red = "#f7768e"
+color_green = "#9ece6a"
+color_blue = "#7aa2f7"
+color_cyan = "#7dcfff"
+color_magenta = "#bb9af7"
+color_orange = "#ff9e64"
+color_yellow = "#e0af68"
+color_surface0 = "#414868"
+color_surface1 = "#494d64"
+color_surface2 = "#565f89"
+color_overlay0 = "#565f89"
+color_text = "#c0caf5"
+color_lavender = "#b4f9f8"
+color_subtext0 = "#a9b1d6"
+color_lilac = "#c0caf5"
+color_crust = "#1a1b26"
 
 ## Shell & User
 ## -------------

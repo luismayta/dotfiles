@@ -20,7 +20,7 @@ mouse-shift-capture = true
 scrollback-limit = 100000
 
 # Theme
-theme = Catppuccin Macchiato
+theme = tokyonight
 background-opacity = 0.92
 cursor-invert-fg-bg = true
 

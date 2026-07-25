@@ -9,8 +9,7 @@ function yazi::internal::install {
 }
 
 function yazi::internal::theme::download {
-    local flavor="${ZSH_YAZI_THEME%%-*}"
-    local url="https://raw.githubusercontent.com/catppuccin/yazi/main/themes/${flavor}/catppuccin-${ZSH_YAZI_THEME}.toml"
+    local url="https://raw.githubusercontent.com/BriBian08/tokyonight-yazi/main/themes/tokyonight-storm.toml"
     mkdir -p "${ZSH_YAZI_DATA_PATH}"
     curl -fsSL "$url" -o "${ZSH_YAZI_DATA_PATH}/theme.toml"
 }

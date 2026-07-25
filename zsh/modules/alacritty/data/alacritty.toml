@@ -1,6 +1,6 @@
 [general]
 import = [
   "~/.config/alacritty/core.toml",
-  "~/.config/alacritty/themes/catppuccin/catppuccin-macchiato.toml",
+  "~/.config/alacritty/themes/tokyonight/tokyonight.toml",
 ]
 live_config_reload = true
