@@ -18,7 +18,7 @@ linux*)
 esac
 
 # Export bin directory to PATH
-export PATH="${ZSH_GIT_PATH}/bin:${PATH}"
+core::path::prepend "${ZSH_GIT_PATH}/bin"
 
 # Ensure core dependencies are installed
 core::ensure git

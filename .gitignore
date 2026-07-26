@@ -590,4 +590,6 @@ graphify-out/*
 .direnv/*
 
 .lycheecache
+!zsh/modules/git/bin
+!zsh/modules/herdr/bin
 

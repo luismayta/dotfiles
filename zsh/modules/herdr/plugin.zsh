@@ -24,6 +24,8 @@ ${ZSH_HERDR_ENABLED:-false} || return
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/internal/main.zsh"
 
+core::path::prepend "${ZSH_HERDR_PATH}/bin"
+
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/pkg/main.zsh"
 

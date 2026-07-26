@@ -25,7 +25,7 @@ $ZSH_GIT_ENABLED || return
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/internal/main.zsh"
 
-export PATH="${ZSH_GIT_PATH}/bin:${PATH}"
+core::path::prepend "${ZSH_GIT_PATH}/bin"
 
 # shellcheck source=/dev/null
 source "${ZSH_GIT_PATH}/pkg/main.zsh"
