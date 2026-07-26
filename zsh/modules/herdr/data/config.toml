@@ -136,12 +136,12 @@ type = "plugin_action"
 command = "cloudmanic.herdr-plus.quick-actions"
 description = "herdr-plus: quick actions"
 
-## Plugin Herdr Plus - Projects Dir
+## Plugin Recent Navigator - Agent Focus
 [[keys.command]]
-key = "prefix+O"
+key = "prefix+o"
 type = "plugin_action"
-command = "cloudmanic.herdr-plus.projects"
-description = "herdr-plus: projects"
+command = "herdr-navigator.open"
+description = "jump to anything"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
@@ -194,6 +194,9 @@ prompt_new_tab_name = false
 # Show detected/reported agent labels in split pane borders when no manual pane name is set.
 show_agent_labels_on_pane_borders = true
 
+# Agent panel sort order: "priority", "name", or "recent"
+agent_panel_sort = "priority"
+
 # Agent panel scope: "current" or "all". Toggling it in the sidebar saves this setting.
 # agent_panel_scope = "all"
 
@@ -211,10 +214,10 @@ show_agent_labels_on_pane_borders = true
 
 # Play sounds when agents change state in background workspaces
 [ui.sound]
-# enabled = true
+enabled = true
 # Optional custom mp3 sound files. Relative paths are resolved from this config file's directory.
 # path = "sounds/notification.mp3"   # one mp3 file for all sound notifications
-# done_path = "sounds/done.mp3"      # overrides only finished notifications
+done_path = "sounds/done.mp3"      # overrides only finished notifications
 # request_path = "sounds/request.mp3" # overrides only needs-attention notifications
 
 # Per-agent overrides: default | on | off

@@ -55,6 +55,11 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
   third774/herdr-last-workspace
 )
 
+# Navigation — agent focus, recent nav
+ZSH_HERDR_INSTALL_PLUGINS+=(
+  beyondlex/herdr-recent-navigator
+)
+
 # Worktrees & terminal UX — git, layouts, navigation, overlays
 ZSH_HERDR_INSTALL_PLUGINS+=(
   qdentity/herdr-worktree-lifecycle
