@@ -1,0 +1,195 @@
+#!/usr/bin/env bash
+# git-status-enhanced
+# Bash-native replacement for git-wtf
+# Shows branch state visualization with ahead/behind counts
+
+set -e
+
+# Default values
+SHOW_ALL=false
+SHOW_SHORT=false
+INTEGRATION_BRANCH=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --all|-a)
+      SHOW_ALL=true
+      shift
+      ;;
+    --short|-s)
+      SHOW_SHORT=true
+      shift
+      ;;
+    --help|-h)
+      echo "Usage: git-status-enhanced [--all|--short]"
+      echo ""
+      echo "Options:"
+      echo "  --all, -a     Show status of all local branches"
+      echo "  --short, -s   Compact output suitable for scripting"
+      echo "  --help, -h    Show this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Colors (disabled if not a terminal)
+if [[ -t 1 ]]; then
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  BLUE='\033[0;34m'
+  CYAN='\033[0;36m'
+  BOLD='\033[1m'
+  NC='\033[0m'
+else
+  RED=''
+  GREEN=''
+  YELLOW=''
+  BLUE=''
+  CYAN=''
+  BOLD=''
+  NC=''
+fi
+
+# Helper functions
+_log() {
+  if [[ "$SHOW_SHORT" == false ]]; then
+    echo "$@"
+  fi
+}
+
+_get_integration_branch() {
+  # Try to find main or master
+  if git rev-parse --verify main >/dev/null 2>&1; then
+    echo "main"
+  elif git rev-parse --verify master >/dev/null 2>&1; then
+    echo "master"
+  else
+    # Fallback to default branch
+    git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "main"
+  fi
+}
+
+_get_branch_status() {
+  local branch="$1"
+  local upstream
+  upstream=$(git rev-parse --abbrev-ref "$branch@{upstream}" 2>/dev/null) || return 1
+  
+  local ahead behind diverged
+  ahead=$(git rev-list --count "$upstream..HEAD" 2>/dev/null || echo "0")
+  behind=$(git rev-list --count "HEAD..${upstream}" 2>/dev/null || echo "0")
+  
+  # Check if branch has diverged (both ahead and behind)
+  if [[ "$ahead" != "0" && "$behind" != "0" ]]; then
+    diverged=true
+  else
+    diverged=false
+  fi
+  
+  echo "$ahead $behind $diverged"
+}
+
+_check_remote_deleted() {
+  local branch="$1"
+  local upstream
+  upstream=$(git rev-parse --abbrev-ref "$branch@{upstream}" 2>/dev/null) || return 0
+  
+  # Check if the remote tracking branch still exists
+  git rev-parse --verify "$upstream" >/dev/null 2>&1 || return 1
+  return 0
+}
+
+# Main logic
+INTEGRATION_BRANCH=$(_get_integration_branch)
+
+if [[ "$SHOW_ALL" == true ]]; then
+  echo -e "${BOLD}Branch Status:${NC}"
+  echo ""
+  
+  git for-each-ref --format='%(refname:short)' refs/heads/ | while read -r branch; do
+    status=$(_get_branch_status "$branch") || continue
+    read -r ahead behind diverged <<< "$status"
+    
+    # Check if remote has been deleted
+    remote_deleted=false
+    if ! _check_remote_deleted "$branch"; then
+      remote_deleted=true
+    fi
+    
+    if [[ "$branch" == "$(git branch --show-current)" ]]; then
+      prefix="* "
+    else
+      prefix="  "
+    fi
+    
+    if [[ "$SHOW_SHORT" == true ]]; then
+      if [[ "$ahead" == "0" && "$behind" == "0" ]]; then
+        echo "${prefix}${branch}"
+      else
+        echo "${prefix}${branch} (+${ahead}/-${behind})"
+      fi
+    else
+      echo -e "${prefix}${BOLD}${branch}${NC}"
+      
+      if [[ "$remote_deleted" == true ]]; then
+        echo -e "    ${RED}⚠ remote deleted${NC}"
+      elif [[ "$diverged" == true ]]; then
+        echo -e "    ${YELLOW}⚠ diverged (+${ahead}/-${behind})${NC}"
+      elif [[ "$ahead" == "0" && "$behind" == "0" ]]; then
+        echo -e "    ${GREEN}✓ synced${NC}"
+      else
+        [[ "$ahead" != "0" ]] && echo -e "    ${GREEN}↑ ${ahead} ahead${NC}"
+        [[ "$behind" != "0" ]] && echo -e "    ${YELLOW}↓ ${behind} behind${NC}"
+      fi
+    fi
+  done
+else
+  # Current branch only
+  current_branch=$(git branch --show-current) || {
+    echo "Not on a branch" >&2
+    exit 1
+  }
+  
+  status=$(_get_branch_status "$current_branch") || {
+    if [[ "$SHOW_SHORT" == true ]]; then
+      echo "$current_branch (no upstream)"
+    else
+      echo -e "${BOLD}${current_branch}${NC} (no upstream)"
+    fi
+    exit 0
+  }
+  
+  read -r ahead behind diverged <<< "$status"
+  
+  # Check if remote has been deleted
+  remote_deleted=false
+  if ! _check_remote_deleted "$current_branch"; then
+    remote_deleted=true
+  fi
+  
+  if [[ "$SHOW_SHORT" == true ]]; then
+    if [[ "$ahead" == "0" && "$behind" == "0" ]]; then
+      echo "$current_branch"
+    else
+      echo "${current_branch} (+${ahead}/-${behind})"
+    fi
+  else
+    echo -e "${BOLD}${current_branch}${NC}"
+    
+    if [[ "$remote_deleted" == true ]]; then
+      echo -e "${RED}⚠ remote deleted${NC}"
+    elif [[ "$diverged" == true ]]; then
+      echo -e "${YELLOW}⚠ diverged (+${ahead}/-${behind})${NC}"
+    elif [[ "$ahead" == "0" && "$behind" == "0" ]]; then
+      echo -e "${GREEN}✓ synced${NC}"
+    else
+      [[ "$ahead" != "0" ]] && echo -e "${GREEN}↑ ${ahead} ahead${NC}"
+      [[ "$behind" != "0" ]] && echo -e "${YELLOW}↓ ${behind} behind${NC}"
+    fi
+  fi
+fi
