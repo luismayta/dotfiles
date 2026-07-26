@@ -136,6 +136,8 @@ vars:
     .direnv/*
 
     .lycheecache
+    !zsh/modules/git/bin
+    !zsh/modules/herdr/bin
 
   AI_IGNORE_CUSTOM: |
     # Block specific paths
