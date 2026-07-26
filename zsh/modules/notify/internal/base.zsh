@@ -47,13 +47,13 @@ function notify::internal::play {
 # Show success notification
 function notify::internal::success {
     notify::internal::popup "${1}" "The command succeeded after ${2} seconds" success.jpg
-    notify::internal::play "${ZSH_NOTIFY_ASSETS_SOUND_PATH}/r2d2/success.mp3"
+    notify::internal::play "${ZSH_NOTIFY_ASSETS_SOUND_PATH}/${ZSH_NOTIFY_SOUND_THEME}/success.mp3"
 }
 
 # Show error notification
 function notify::internal::error {
     notify::internal::popup "${1}" "The command failed after ${2} seconds with code: ${3}" error.png
-    notify::internal::play "${ZSH_NOTIFY_ASSETS_SOUND_PATH}/r2d2/error.mp3"
+    notify::internal::play "${ZSH_NOTIFY_ASSETS_SOUND_PATH}/${ZSH_NOTIFY_SOUND_THEME}/error.mp3"
 }
 
 # Default popup stub (overridden by OS-specific implementation)
