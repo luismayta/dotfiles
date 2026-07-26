@@ -10,5 +10,5 @@ function editghdash {
         message_warning "EDITOR is not set. Please set EDITOR to edit gh-dash config."
         return 1
     fi
-    "${EDITOR}" "${ZSH_GITHUB_DASH_CONF_PATH}/config.yaml"
+    "${EDITOR}" "${ZSH_GITHUB_DASH_CONF_FILE}"
 }

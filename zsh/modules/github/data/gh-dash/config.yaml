@@ -86,7 +86,7 @@ keybindings:
     - key: C
       name: code review
       command: >
-        hrdw::create "{{.PrNumber}}"
+        hrdw-create "{{.PrNumber}}"
 
 theme:
   colors:

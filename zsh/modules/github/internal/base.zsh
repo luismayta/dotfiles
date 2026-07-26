@@ -42,6 +42,5 @@ github::internal::main::factory
 
 if core::exists gh; then
     github::internal::install_completions
-    github::internal::extensions::install
     github::internal::load
 fi
