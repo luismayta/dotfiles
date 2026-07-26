@@ -6,12 +6,6 @@ function ai::internal::opencode::load {
     [ -e "${AI_OPENCODE_BIN_PATH}" ] && export PATH="${AI_OPENCODE_BIN_PATH}:${PATH}"
 }
 
-function ai::internal::opencode::sync_quiet {
-    mkdir -p "${AI_OPENCODE_CONFIG_PATH}" "${AI_OPENCODE_RUNTIME_CONFIG_PATH}"
-    rsync -a "${AI_OPENCODE_CONFIG_SOURCE_PATH}/" "${AI_OPENCODE_CONFIG_PATH}/" \
-        && rsync -a --exclude "node_modules" "${AI_OPENCODE_RUNTIME_SOURCE_PATH}/" "${AI_OPENCODE_RUNTIME_CONFIG_PATH}/"
-}
-
 # === Tool Install ===
 
 function ai::internal::opencode::install {
@@ -36,10 +30,8 @@ function ai::internal::opencode::sync {
 
     message_info "Syncing opencode config from ${AI_OPENCODE_CONFIG_SOURCE_PATH} to ${AI_OPENCODE_CONFIG_PATH}..."
 
-    if ai::internal::opencode::sync_quiet; then
-        message_success "opencode config synced successfully"
-    else
-        message_error "Failed to sync opencode config"
-        return 1
-    fi
+    mkdir -p "${AI_OPENCODE_CONFIG_PATH}"
+
+    rsync -avzh --progress "${AI_OPENCODE_CONFIG_SOURCE_PATH}/" "${AI_OPENCODE_CONFIG_PATH}/"
+
 }
