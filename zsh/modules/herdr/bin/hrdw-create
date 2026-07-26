@@ -1,0 +1,164 @@
+#!/usr/bin/env bash
+# hrdw-create — create a git worktree from current directory
+# Standalone CLI wrapper for hrdw::create functionality
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+_log() {
+  echo -e "${GREEN}==>${NC} $*"
+}
+
+_error() {
+  echo -e "${RED}==> Error:${NC} $*" >&2
+}
+
+_info() {
+  echo -e "${BLUE}==>${NC} $*"
+}
+
+_warn() {
+  echo -e "${YELLOW}==> Warning:${NC} $*"
+}
+
+# Check if we're in a git repository
+_is_git_repo() {
+  git rev-parse --is-inside-work-tree &>/dev/null
+}
+
+# Get the root of the git repository
+_git_root() {
+  git rev-parse --show-toplevel
+}
+
+# Check if a branch exists
+_branch_exists() {
+  local branch="$1"
+  git show-ref --verify --quiet "refs/heads/$branch" 2>/dev/null
+}
+
+# Resolve the path for a branch
+_resolve_path() {
+  local branch="$1"
+  local git_root
+  git_root="$(_git_root)"
+  
+  # For worktrees, we need to find the path
+  local worktree_path
+  worktree_path="$(git worktree list | grep "$branch" | awk '{print $1}' | head -1)"
+  
+  if [[ -n "$worktree_path" ]]; then
+    echo "$worktree_path"
+    return 0
+  fi
+  
+  # If not found in worktree list, try to derive from branch name
+  # This is a fallback and may not be accurate
+  local branch_part="${branch##*/}"
+  local project_context
+  project_context="$(basename "$git_root")"
+  echo "${git_root}/../${project_context}/${branch_part}"
+}
+
+# Derive project name from current directory or git root
+_derive_project_name() {
+  local git_root
+  git_root="$(_git_root 2>/dev/null)" || git_root="$PWD"
+  basename "$git_root"
+}
+
+# Show usage information
+_usage() {
+  cat << EOF
+Usage: hrdw-create <branch-name>
+
+Create a git worktree with the specified branch name.
+
+Arguments:
+  branch-name    Name of the branch to create
+
+Examples:
+  hrdw-create RD-21          -> creates feature/RD-21
+  hrdw-create hotfix/x       -> creates hotfix/x (no prefix added)
+  hrdw-create feature/my-branch -> creates feature/my-branch
+
+Auto-prefix behavior:
+  If no known prefix is provided, 'feature/' is automatically prepended.
+  Known prefixes: feature/, fix/, bugfix/, hotfix/, chore/
+
+EOF
+}
+
+# Main function
+_main() {
+  # Check if we're in a git repository
+  if ! _is_git_repo; then
+    _error "Not a git repository: ${PWD}"
+    exit 1
+  fi
+
+  # Check for arguments
+  if [[ $# -eq 0 ]]; then
+    _usage
+    exit 0
+  fi
+
+  local name="$1"
+  
+  # Auto-prepend feature/ if no known prefix
+  if [[ "$name" != feature/* ]] \
+    && [[ "$name" != fix/* ]] \
+    && [[ "$name" != bugfix/* ]] \
+    && [[ "$name" != hotfix/* ]] \
+    && [[ "$name" != chore/* ]]; then
+    name="feature/${name}"
+  fi
+
+  # Derive workspace label
+  local project_context
+  project_context="$(_derive_project_name)" || project_context="${PWD:t}"
+  local branch_part="${name##*/}"
+  local label="${project_context}/${branch_part}"
+
+  _info "Creating worktree: ${label}"
+
+  # Check if worktree already exists for this branch
+  if _branch_exists "$name"; then
+    local existing_path
+    existing_path="$(_resolve_path "$name")"
+    _warn "Worktree '${label}' already exists at: ${existing_path}"
+    printf 'Open it? (Y/n) '
+    # shellcheck disable=SC2162
+    read -q reply
+    printf '\n'
+    if [[ "$reply" =~ ^[Yy]$ ]] || [[ -z "$reply" ]]; then
+      _log "Opening existing worktree..."
+      cd "$existing_path" || exit 1
+      exec "$SHELL"
+    fi
+    exit 0
+  fi
+
+  # Create the worktree
+  local worktree_dir
+  worktree_dir="$(dirname "$(_git_root)")/${label}"
+  
+  _log "Creating worktree at: ${worktree_dir}"
+  if git worktree add -b "$name" "$worktree_dir"; then
+    _log "Worktree created successfully!"
+    _info "Branch: ${name}"
+    _info "Path: ${worktree_dir}"
+  else
+    _error "Failed to create worktree"
+    exit 1
+  fi
+}
+
+# Run the main function
+_main "$@"
