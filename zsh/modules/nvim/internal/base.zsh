@@ -21,9 +21,17 @@ function nvim::internal::backup {
 }
 
 function nvim::internal::sync {
+    local exclude_opts=(
+        --exclude="lazy/"
+        --exclude="lazy-lock.json"
+        --exclude=".git/"
+        --exclude="node_modules/"
+        --exclude=".lazy/"
+        --exclude=".cache/"
+    )
     message_info "Syncing nvimrc configuration..."
     command mkdir -p "${NVIM_CONFIG_PATH}"
-    command rsync -avzh --progress \
+    command rsync -avzh --progress --delete "${exclude_opts[@]}" \
         "${NVIM_PATH}/data/" \
         "${NVIM_CONFIG_PATH}/"
     message_success "Synced nvimrc configuration"
