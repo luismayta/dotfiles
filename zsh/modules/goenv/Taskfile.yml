@@ -1,0 +1,13 @@
+---
+version: "3"
+
+tasks:
+  readme:
+    desc: Generate module README.md
+    silent: true
+    cmds:
+      - >-
+        gomplate --file {{.README_MODULE_TEMPLATE}}
+        --out zsh/modules/goenv/README.md
+        --datasource config=zsh/modules/goenv/README.yaml
+        --datasource includes={{.README_INCLUDES}}
