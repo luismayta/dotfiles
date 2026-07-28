@@ -719,4 +719,4 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 
 **Reference implementation:** [`zsh/modules/zed/`](/zsh/modules/zed/) — complete example with install, config sync, and setup orchestration.
 **AI module pattern:** [`zsh/modules/ai/`](/zsh/modules/ai/) — aggregate sync via `ai::sync`
-**noti integration:** [`zsh/modules/notify/internal/noti.zsh`](/zsh/modules/notify/internal/noti.zsh) — gomplate render + sync patterns
+**noti integration:** [`zsh/modules/notify/internal/adapter/noti.zsh`](/zsh/modules/notify/internal/adapter/noti.zsh) — gomplate render + sync patterns

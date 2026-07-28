@@ -505,7 +505,7 @@ source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
 
 - **Atuin implementation**: `zsh/modules/devops/config/atuin.zsh`, `internal/atuin.zsh`, `pkg/atuin.zsh`
 - **Bruno implementation**: `zsh/modules/devops/config/bruno.zsh`, `internal/bruno.zsh`, `pkg/bruno.zsh`
-- **noti implementation**: `zsh/modules/notify/config/noti.zsh`, `internal/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
+- **noti implementation**: `zsh/modules/notify/config/adapter/noti.zsh`, `internal/adapter/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
 - **AI module**: `zsh/modules/ai/` (aggregate sync example via `ai::sync`)
 - **Existing guide**: `docs/guides/create-module.md` (for creating new modules)
 - **Core utilities**: `zsh/core/` (message_*, core::exists, path::prepend)
