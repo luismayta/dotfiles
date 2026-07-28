@@ -84,5 +84,33 @@ function notify::noti::internal::send {
 
     # $1 command that was executed
     # $2 message to display
-    noti -t "${1}" -m "${2}" 2>/dev/null
+    # $3 icon filename (optional)
+    local icon
+    if [[ -n "${3:-}" ]] && [[ -f "${ZSH_NOTIFY_ASSETS_PATH}/${3}" ]]; then
+        icon="${ZSH_NOTIFY_ASSETS_PATH}/${3}"
+    fi
+
+    if [[ -n "$icon" ]]; then
+        noti -t "${1}" -m "${2}" --icon "$icon" 2>/dev/null
+    else
+        noti -t "${1}" -m "${2}" 2>/dev/null
+    fi
+}
+
+# === Adapter Contract ===
+
+function notify::adapter::send {
+    notify::noti::internal::send "${1}" "${2}" "${3}"
+}
+
+function notify::adapter::install {
+    notify::noti::internal::install
+}
+
+function notify::adapter::render {
+    notify::noti::internal::render
+}
+
+function notify::adapter::sync {
+    notify::noti::internal::sync
 }

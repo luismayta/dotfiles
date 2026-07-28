@@ -14,5 +14,5 @@ function notify::noti::sync {
 }
 
 function notify::noti::send {
-    notify::noti::internal::send "${1}" "${2}"
+    notify::noti::internal::send "${1}" "${2}" "${3}"
 }

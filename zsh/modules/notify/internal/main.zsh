@@ -1,21 +1,15 @@
 # shellcheck shell=bash
-# Notify internal OS dispatch
+# Notify internal OS dispatch + provider adapter dispatch
 #
 # Sources all internal function files, then runs runtime initialization:
 #   - mpg123 availability
-#   - noti auto-install + render
+#   - gomplate if needed
 #   - preexec/precmd hook registration
 
 zmodload zsh/regex
 
 # shellcheck source=/dev/null
 source "${ZSH_NOTIFY_PATH}/internal/base.zsh"
-
-# shellcheck source=/dev/null
-source "${ZSH_NOTIFY_PATH}/internal/noti.zsh"
-
-# shellcheck source=/dev/null
-source "${ZSH_NOTIFY_PATH}/internal/notify-send.zsh"
 
 case "${OSTYPE}" in
 darwin*)
@@ -28,15 +22,31 @@ linux*)
     ;;
 esac
 
+# Provider-level dispatch — sources the active adapter internal
+case "${ZSH_NOTIFY_PROVIDER}" in
+noti)
+    # shellcheck source=/dev/null
+    source "${ZSH_NOTIFY_PATH}/internal/adapter/noti.zsh"
+    ;;
+notify-send)
+    # shellcheck source=/dev/null
+    source "${ZSH_NOTIFY_PATH}/internal/adapter/notify-send.zsh"
+    ;;
+auto)
+    # Auto-detect: load both adapters, first available wins
+    # shellcheck source=/dev/null
+    source "${ZSH_NOTIFY_PATH}/internal/adapter/noti.zsh"
+    if ! core::exists noti; then
+        # shellcheck source=/dev/null
+        source "${ZSH_NOTIFY_PATH}/internal/adapter/notify-send.zsh"
+    fi
+    ;;
+esac
+
 # === Runtime initialization ===
 
 # Ensure mpg123 is available for sound playback
 core::ensure mpg123
-
-# Ensure gomplate for config template rendering (only if noti is available)
-core::ensure gomplate
-
-if ! core::exists noti; then notify::noti::internal::install; fi
 
 # Register hooks for automatic notifications
 autoload -Uz add-zsh-hook

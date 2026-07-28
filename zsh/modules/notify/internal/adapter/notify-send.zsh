@@ -31,3 +31,22 @@ function notify::notify-send::internal::send {
     notify-send --urgency=low -i "${ZSH_NOTIFY_NOTIFY_SEND_ICON_PATH}/${3}" \
         "Long running command: ${1}" "${2}"
 }
+
+# === Adapter Contract ===
+
+function notify::adapter::send {
+    notify::notify-send::internal::send "${1}" "${2}" "${3}"
+}
+
+function notify::adapter::install {
+    notify::notify-send::internal::install
+}
+
+# notify-send has no config files — no-op stubs
+function notify::adapter::render {
+    return 0
+}
+
+function notify::adapter::sync {
+    return 0
+}
