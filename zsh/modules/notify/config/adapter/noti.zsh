@@ -13,4 +13,4 @@ export ZSH_NOTIFY_NOTI_DATA_PATH="${ZSH_NOTIFY_PATH}/data/noti"
 
 # Config paths (OS-specific, but same for both)
 ZSH_NOTIFY_NOTI_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/noti"
-ZSH_NOTIFY_NOTI_CONFIG_FILE="${ZSH_NOTIFY_NOTI_CONFIG_DIR}/noti.yaml"
+export ZSH_NOTIFY_NOTI_CONFIG_FILE="${ZSH_NOTIFY_NOTI_CONFIG_DIR}/noti.yaml"
