@@ -34,6 +34,6 @@ export const RtkOpenCodePlugin: Plugin = async ({ $ }) => {
       } catch {
         // rtk rewrite failed — pass through unchanged
       }
-    },
+    }
   }
 }

@@ -46,11 +46,9 @@ export default (app: any) => {
   app.on("tool.execute.before", async (ctx: any) => {
     try {
       const input = ctx?.input ?? ctx?.params ?? {}
-      const cmd =
-        input.command ?? input.cmd ?? input.content ?? ""
+      const cmd = input.command ?? input.cmd ?? input.content ?? ""
       if (typeof cmd === "string" && /^git\s+commit/i.test(cmd)) {
-        const result =
-          await ctx.$`code-review-graph detect-changes --brief`.quiet()
+        const result = await ctx.$`code-review-graph detect-changes --brief`.quiet()
         const output = result.stdout?.toString().trim()
         if (output) {
           console.log("[code-review-graph] Pre-commit analysis:\n" + output)

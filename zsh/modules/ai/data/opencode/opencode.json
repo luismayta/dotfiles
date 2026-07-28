@@ -1,9 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
-  "instructions": [
-    "AGENTS.md"
-  ],
+  "instructions": ["AGENTS.md"],
   "agent": {
     "explore": {
       "disable": true
@@ -79,20 +77,12 @@
     "playwright": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@playwright/mcp"
-      ]
+      "command": ["bunx", "-y", "@playwright/mcp"]
     },
     "google-calendar": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@cocal/google-calendar-mcp"
-      ],
+      "command": ["bunx", "-y", "@cocal/google-calendar-mcp"],
       "environment": {
         "GOOGLE_OAUTH_CREDENTIALS": "/home/lucho/.local/secure/google/mcp-luismayta4k-oauth.json"
       }
@@ -105,11 +95,7 @@
     "bitbucket": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "bitbucket-mcp@latest"
-      ],
+      "command": ["bunx", "-y", "bitbucket-mcp@latest"],
       "environment": {
         "BITBUCKET_URL": "https://api.bitbucket.org/2.0",
         "BITBUCKET_WORKSPACE": "{env:BITBUCKET_WORKSPACE}",
@@ -121,14 +107,7 @@
     "chrome-devtools": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--no-usage-statistics",
-        "--headless",
-        "true"
-      ]
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--headless", "true"]
     },
     "memglobal": {
       "enabled": false,
@@ -144,38 +123,22 @@
     "mcp-pandoc": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "uvx",
-        "mcp-pandoc"
-      ]
+      "command": ["uvx", "mcp-pandoc"]
     },
     "markitdown": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "uvx",
-        "markitdown-mcp"
-      ]
+      "command": ["uvx", "markitdown-mcp"]
     },
     "context7": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@upstash/context7-mcp",
-        "--api-key",
-        "{env:CONTEXT7_API_KEY}"
-      ]
+      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "{env:CONTEXT7_API_KEY}"]
     },
     "docker": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "docker-mcp"
-      ],
+      "command": ["bunx", "-y", "docker-mcp"],
       "environment": {
         "DOCKER_MCP_LOCAL": "true",
         "DOCKER_MCP_HOST": "{env:DOCKER_MCP_HOST}",
@@ -188,20 +151,12 @@
     "engram": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "/opt/homebrew/Cellar/engram/1.15.8/bin/engram",
-        "mcp",
-        "--tools=agent"
-      ]
+      "command": ["/opt/homebrew/Cellar/engram/1.15.8/bin/engram", "mcp", "--tools=agent"]
     },
     "filesystem": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@modelcontextprotocol/server-filesystem"
-      ],
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-filesystem"],
       "environment": {
         "ROOT": "."
       }
@@ -209,11 +164,7 @@
     "github": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-github"],
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
@@ -221,11 +172,7 @@
     "gitlab": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@modelcontextprotocol/server-gitlab"
-      ],
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-gitlab"],
       "environment": {
         "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_PERSONAL_ACCESS_TOKEN}",
         "GITLAB_API_URL": "https://gitlab.com/api/v4"
@@ -234,10 +181,7 @@
     "grafana": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "uvx",
-        "mcp-grafana"
-      ],
+      "command": ["uvx", "mcp-grafana"],
       "environment": {
         "GRAFANA_URL": "{env:GRAFANA_URL}",
         "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_SERVICE_ACCOUNT_TOKEN}"
@@ -251,22 +195,12 @@
     "hashicorp.terraform": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "docker",
-        "run",
-        "-i",
-        "--rm",
-        "hashicorp/terraform-mcp-server:latest"
-      ]
+      "command": ["docker", "run", "-i", "--rm", "hashicorp/terraform-mcp-server:latest"]
     },
     "image-compression": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@inhiblab-core/mcp-image-compression"
-      ],
+      "command": ["bunx", "-y", "@inhiblab-core/mcp-image-compression"],
       "environment": {
         "IMAGE_COMPRESSION_DOWNLOAD_DIR": "assets/images"
       }
@@ -280,11 +214,7 @@
     "kubernetes": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "mcp-server-kubernetes"
-      ],
+      "command": ["bunx", "-y", "mcp-server-kubernetes"],
       "environment": {
         "ALLOW_ONLY_NON_DESTRUCTIVE_TOOLS": "true"
       }
@@ -292,20 +222,12 @@
     "notebooklm": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "notebooklm-mcp@latest"
-      ]
+      "command": ["npx", "-y", "notebooklm-mcp@latest"]
     },
     "notion": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@notionhq/notion-mcp-server"
-      ],
+      "command": ["bunx", "-y", "@notionhq/notion-mcp-server"],
       "environment": {
         "NOTION_TOKEN": "{env:NOTION_TOKEN}"
       }
@@ -313,10 +235,7 @@
     "obsidian": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "uvx",
-        "mcp-obsidian"
-      ],
+      "command": ["uvx", "mcp-obsidian"],
       "environment": {
         "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
       }
@@ -324,10 +243,7 @@
     "sentry": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "uvx",
-        "mcp-server-sentry"
-      ],
+      "command": ["uvx", "mcp-server-sentry"],
       "environment": {
         "SENTRY_AUTH_TOKEN": "{env:SENTRY_AUTH_TOKEN}"
       }
@@ -335,32 +251,17 @@
     "sequential-thinking": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
+      "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
     "serena": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "uvx",
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server"
-      ]
+      "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
     },
     "supabase": {
       "enabled": false,
       "type": "local",
-      "command": [
-        "bunx",
-        "-y",
-        "supabase-mcp@latest",
-        "supabase-mcp-claude"
-      ],
+      "command": ["bunx", "-y", "supabase-mcp@latest", "supabase-mcp-claude"],
       "environment": {
         "SUPABASE_URL": "{env:SUPABASE_URL}",
         "SUPABASE_ANON_KEY": "{env:SUPABASE_ANON_KEY}",
@@ -371,11 +272,7 @@
     "graphify": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "graphify-mcp",
-        "--graph",
-        "/home/lucho/drive/codip/graphify-out/graph.json"
-      ]
+      "command": ["graphify-mcp", "--graph", "/home/lucho/drive/codip/graphify-out/graph.json"]
     },
     "codip": {
       "enabled": true,
@@ -389,11 +286,7 @@
     "codegraph": {
       "enabled": true,
       "type": "local",
-      "command": [
-        "codegraph",
-        "serve",
-        "--mcp"
-      ]
+      "command": ["codegraph", "serve", "--mcp"]
     },
     "crawl4ai": {
       "enabled": true,
@@ -460,14 +353,8 @@
             "output": 65535
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           },
           "variants": {
             "low": {
@@ -485,14 +372,8 @@
             "output": 65536
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           },
           "variants": {
             "minimal": {
@@ -516,14 +397,8 @@
             "output": 64000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           }
         },
         "antigravity-claude-sonnet-4-5-thinking": {
@@ -533,14 +408,8 @@
             "output": 64000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           },
           "variants": {
             "low": {
@@ -562,14 +431,8 @@
             "output": 64000
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           },
           "variants": {
             "low": {
@@ -591,14 +454,8 @@
             "output": 65536
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           }
         },
         "gemini-2.5-pro": {
@@ -608,14 +465,8 @@
             "output": 65536
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           }
         },
         "gemini-3-flash-preview": {
@@ -625,14 +476,8 @@
             "output": 65536
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           }
         },
         "gemini-3.1-pro-preview": {
@@ -642,14 +487,8 @@
             "output": 65535
           },
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           }
         }
       }
