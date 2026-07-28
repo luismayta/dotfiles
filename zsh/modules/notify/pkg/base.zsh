@@ -29,3 +29,8 @@ function notify::command::completed {
 function notify::command::store {
     notify::internal::command::store "${@}"
 }
+
+function notify::sync {
+    notify::noti::sync
+    # notify-send has no data to sync (uses direct CLI flags)
+}

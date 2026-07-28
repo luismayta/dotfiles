@@ -1,0 +1,8 @@
+# noti configuration example
+# Copy to ~/.config/noti/noti.yaml and fill in your values
+# Or set ZSH_NOTIFY_NOTI_TELEGRAM_TOKEN and ZSH_NOTIFY_NOTI_TELEGRAM_CHATID env vars
+
+telegram:
+  token: "YOUR_BOTFATHER_TOKEN"
+  chatId: "YOUR_CHAT_ID"
+  # topic: ""  # optional thread ID
