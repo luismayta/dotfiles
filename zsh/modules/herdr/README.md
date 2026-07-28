@@ -14,19 +14,20 @@
 
 
 
-# starship
+# herdr
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+HERDR ZSH module providing task runner and environment management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Command runner with YAML-based task definitions
+- Worktree helper for git branch management
+- Plugin installer for modular extensions
+- Clipboard integration across platforms
 
 
 

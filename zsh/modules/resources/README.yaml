@@ -1,0 +1,15 @@
+---
+name: resources
+tags:
+  - resources
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Resources ZSH module providing system resource management and monitoring
+features:
+  - "CPU and memory usage monitoring"
+  - "Disk space analysis"
+  - "System resource tracking"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

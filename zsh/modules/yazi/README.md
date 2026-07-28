@@ -14,19 +14,19 @@
 
 
 
-# starship
+# yazi
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Yazi ZSH module providing terminal file manager integration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Yazi file manager installation
+- Plugin and theme management
+- Shell integration and keybindings
 
 
 

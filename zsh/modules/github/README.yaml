@@ -1,0 +1,15 @@
+---
+name: github
+tags:
+  - github
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  GitHub ZSH module providing GitHub CLI integration and workflow helpers
+features:
+  - "GitHub CLI (gh) installation and setup"
+  - "Repository and issue management helpers"
+  - "Git authentication configuration"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

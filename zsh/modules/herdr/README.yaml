@@ -1,0 +1,16 @@
+---
+name: herdr
+tags:
+  - herdr
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  HERDR ZSH module providing task runner and environment management
+features:
+  - "Command runner with YAML-based task definitions"
+  - "Worktree helper for git branch management"
+  - "Plugin installer for modular extensions"
+  - "Clipboard integration across platforms"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

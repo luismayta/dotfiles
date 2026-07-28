@@ -1,0 +1,16 @@
+---
+name: apps
+tags:
+  - apps
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Apps module providing desktop application installation and configuration
+features:
+  - "Cross-platform application install"
+  - "Webapp builder integration"
+  - "Desktop entry management"
+  - "Category-based organization"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

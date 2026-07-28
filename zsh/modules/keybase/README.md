@@ -14,19 +14,19 @@
 
 
 
-# starship
+# keybase
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Keybase ZSH module providing Keybase client integration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Keybase installation and configuration
+- Key management and identity verification
+- Encrypted file system integration
 
 
 

@@ -14,19 +14,20 @@
 
 
 
-# starship
+# tmux
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Tmux ZSH module providing terminal multiplexer session management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Tmux session creation and management
+- Custom window and pane layouts
+- Project-based session launcher
+- Tmuxinator integration
 
 
 

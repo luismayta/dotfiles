@@ -1,0 +1,15 @@
+---
+name: bitwarden
+tags:
+  - bitwarden
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Bitwarden ZSH module providing password manager CLI integration
+features:
+  - "Bitwarden CLI installation and session management"
+  - "Environment variable injection from vault"
+  - "Secure credential access workflows"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

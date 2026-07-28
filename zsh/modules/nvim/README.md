@@ -14,19 +14,20 @@
 
 
 
-# starship
+# nvim
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Neovim ZSH module providing Neovim editor integration and configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Neovim installation via package manager
+- Plugin management via lazy.nvim
+- Configuration synchronization
+- LSP and tooling setup
 
 
 

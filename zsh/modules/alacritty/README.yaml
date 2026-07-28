@@ -1,0 +1,15 @@
+---
+name: alacritty
+tags:
+  - alacritty
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Alacritty ZSH module providing terminal emulator configuration and management
+features:
+  - "Terminal configuration via gomplate templates"
+  - "Theme management and synchronization"
+  - "Cross-platform config paths"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

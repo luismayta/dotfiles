@@ -1,0 +1,16 @@
+---
+name: hyprland
+tags:
+  - hyprland
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Hyprland ZSH module providing Wayland compositor installation and configuration
+features:
+  - "Hyprland installation via packages"
+  - "Configuration management and keybinding setup"
+  - "Workspace management helpers"
+  - "Monitor and display configuration"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

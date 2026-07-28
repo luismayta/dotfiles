@@ -1,0 +1,16 @@
+---
+name: notify
+tags:
+  - notify
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Notify ZSH module providing notification services for desktop and Telegram
+features:
+  - "Desktop notifications via notify-send"
+  - "Telegram notification integration via noti"
+  - "Adapter-based provider pattern for interchangeable backends"
+  - "Configurable notification channels"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

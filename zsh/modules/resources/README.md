@@ -14,19 +14,19 @@
 
 
 
-# starship
+# resources
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Resources ZSH module providing system resource management and monitoring 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- CPU and memory usage monitoring
+- Disk space analysis
+- System resource tracking
 
 
 

@@ -14,19 +14,19 @@
 
 
 
-# starship
+# pazi
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Pazi ZSH module providing fast directory navigation via pazi 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Instant directory jumping via frecency
+- Shell integration and completion
+- Cross-session directory history
 
 
 

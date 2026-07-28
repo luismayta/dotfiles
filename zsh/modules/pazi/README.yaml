@@ -1,0 +1,15 @@
+---
+name: pazi
+tags:
+  - pazi
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Pazi ZSH module providing fast directory navigation via pazi
+features:
+  - "Instant directory jumping via frecency"
+  - "Shell integration and completion"
+  - "Cross-session directory history"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

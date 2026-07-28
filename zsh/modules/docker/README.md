@@ -14,19 +14,20 @@
 
 
 
-# starship
+# docker
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Docker ZSH module providing container runtime management with provider adapter pattern 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Multi-provider support (colima, lima, orbstack, podman, docker)
+- Adapter-based architecture for interchangeable backends
+- Socket resolution and daemon management
+- Docker Compose integration
 
 
 

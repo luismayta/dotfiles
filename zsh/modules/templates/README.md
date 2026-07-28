@@ -14,19 +14,19 @@
 
 
 
-# starship
+# templates
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Templates ZSH module providing file and project template management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Template rendering with variable substitution
+- Project scaffolding from templates
+- Custom template definition
 
 
 

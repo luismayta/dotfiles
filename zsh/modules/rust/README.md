@@ -14,19 +14,19 @@
 
 
 
-# starship
+# rust
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Rust ZSH module providing Rust toolchain management via rustup 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Rust toolchain installation via rustup
+- Cargo plugin management
+- Cross-compilation support
 
 
 

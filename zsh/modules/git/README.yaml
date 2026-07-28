@@ -1,0 +1,17 @@
+---
+name: git
+tags:
+  - git
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Git ZSH module providing aliases, functions, and workflow helpers for version control
+features:
+  - "Git aliases for common commands (gst, gco, gbr, glg)"
+  - "Branch management helpers (create, delete, rename, sync)"
+  - "Interactive rebase and merge workflow support"
+  - "Git status and log enhancements"
+  - "Upstream remote management"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

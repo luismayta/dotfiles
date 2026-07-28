@@ -14,19 +14,19 @@
 
 
 
-# starship
+# ghostty
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Ghostty ZSH module providing terminal emulator configuration and management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Terminal configuration and theme management
+- Cross-platform config path support
+- Keybinding customization
 
 
 

@@ -14,19 +14,19 @@
 
 
 
-# starship
+# hammerspoon
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Hammerspoon ZSH module providing macOS automation and window management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Hammerspoon configuration management
+- Window management shortcuts
+- App launcher and automation integration
 
 
 

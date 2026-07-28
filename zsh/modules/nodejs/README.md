@@ -14,19 +14,19 @@
 
 
 
-# starship
+# nodejs
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Node.js ZSH module providing Node.js version management via fnm 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Fast Node.js version switching via fnm
+- Automatic version detection (.nvmrc, .node-version)
+- Multiple Node.js version support
 
 
 

@@ -1,0 +1,15 @@
+---
+name: devops
+tags:
+  - devops
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Devops ZSH module providing DevOps tooling aliases and utilities
+features:
+  - "Kubernetes tool integration (kubectl, k9s)"
+  - "Infrastructure as code helpers"
+  - "Cloud provider CLI wrappers"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

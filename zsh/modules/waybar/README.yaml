@@ -1,0 +1,15 @@
+---
+name: waybar
+tags:
+  - waybar
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Waybar module providing Wayland status bar configuration
+features:
+  - "Waybar installation and configuration"
+  - "Custom module definition"
+  - "Theme and style management"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

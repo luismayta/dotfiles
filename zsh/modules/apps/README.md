@@ -14,19 +14,20 @@
 
 
 
-# starship
+# apps
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Apps module providing desktop application installation and configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Cross-platform application install
+- Webapp builder integration
+- Desktop entry management
+- Category-based organization
 
 
 

@@ -14,19 +14,19 @@
 
 
 
-# starship
+# nix
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Nix module providing single-user Nix package manager integration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Nix package manager installation
+- Nix shell environment integration
+- Development shell support via nix flakes
 
 
 

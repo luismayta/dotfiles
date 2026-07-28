@@ -14,19 +14,19 @@
 
 
 
-# starship
+# aliases
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Aliases ZSH module providing organized alias definitions and management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Domain-specific alias groups
+- Easy alias creation and discovery
+- Shell completion support
 
 
 

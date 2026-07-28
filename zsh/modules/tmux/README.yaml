@@ -1,0 +1,16 @@
+---
+name: tmux
+tags:
+  - tmux
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Tmux ZSH module providing terminal multiplexer session management
+features:
+  - "Tmux session creation and management"
+  - "Custom window and pane layouts"
+  - "Project-based session launcher"
+  - "Tmuxinator integration"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

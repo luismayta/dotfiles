@@ -1,0 +1,15 @@
+---
+name: rvm
+tags:
+  - rvm
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  rvm ZSH module providing Ruby version management via rvm
+features:
+  - "Ruby version installation and switching"
+  - "Gemset management"
+  - "Automatic version detection"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

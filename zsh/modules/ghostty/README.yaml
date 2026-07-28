@@ -1,0 +1,15 @@
+---
+name: ghostty
+tags:
+  - ghostty
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Ghostty ZSH module providing terminal emulator configuration and management
+features:
+  - "Terminal configuration and theme management"
+  - "Cross-platform config path support"
+  - "Keybinding customization"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

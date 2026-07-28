@@ -14,19 +14,19 @@
 
 
 
-# starship
+# mobile
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Mobile module providing mobile development environment configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Android SDK and tooling management
+- Mobile platform configuration
+- Cross-platform development helpers
 
 
 

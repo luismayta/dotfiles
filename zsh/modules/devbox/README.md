@@ -14,19 +14,19 @@
 
 
 
-# starship
+# devbox
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Devbox module providing Jetify Devbox isolated development environment management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Devbox shell integration
+- Environment-aware tool loading
+- Cross-platform package access
 
 
 

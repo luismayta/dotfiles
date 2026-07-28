@@ -1,0 +1,15 @@
+---
+name: mobile
+tags:
+  - mobile
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Mobile module providing mobile development environment configuration
+features:
+  - "Android SDK and tooling management"
+  - "Mobile platform configuration"
+  - "Cross-platform development helpers"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

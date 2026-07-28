@@ -14,19 +14,19 @@
 
 
 
-# starship
+# bitwarden
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Bitwarden ZSH module providing password manager CLI integration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Bitwarden CLI installation and session management
+- Environment variable injection from vault
+- Secure credential access workflows
 
 
 

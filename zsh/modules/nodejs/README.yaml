@@ -1,0 +1,15 @@
+---
+name: nodejs
+tags:
+  - nodejs
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Node.js ZSH module providing Node.js version management via fnm
+features:
+  - "Fast Node.js version switching via fnm"
+  - "Automatic version detection (.nvmrc, .node-version)"
+  - "Multiple Node.js version support"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

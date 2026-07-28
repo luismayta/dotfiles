@@ -14,19 +14,19 @@
 
 
 
-# starship
+# clean
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Clean ZSH module providing cleanup and housekeeping utilities 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- System cache and temporary file cleanup
+- Package manager cache management
+- Disk usage reporting
 
 
 

@@ -1,0 +1,15 @@
+---
+name: rust
+tags:
+  - rust
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Rust ZSH module providing Rust toolchain management via rustup
+features:
+  - "Rust toolchain installation via rustup"
+  - "Cargo plugin management"
+  - "Cross-compilation support"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

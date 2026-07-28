@@ -14,19 +14,20 @@
 
 
 
-# starship
+# hyprland
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Hyprland ZSH module providing Wayland compositor installation and configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Hyprland installation via packages
+- Configuration management and keybinding setup
+- Workspace management helpers
+- Monitor and display configuration
 
 
 

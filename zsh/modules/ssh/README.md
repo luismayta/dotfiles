@@ -14,19 +14,19 @@
 
 
 
-# starship
+# ssh
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+SSH ZSH module providing SSH key management and agent configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- SSH agent management and key loading
+- SSH key generation and configuration
+- Rsync data directory management
 
 
 

@@ -1,0 +1,15 @@
+---
+name: devbox
+tags:
+  - devbox
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Devbox module providing Jetify Devbox isolated development environment management
+features:
+  - "Devbox shell integration"
+  - "Environment-aware tool loading"
+  - "Cross-platform package access"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

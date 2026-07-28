@@ -14,19 +14,19 @@
 
 
 
-# starship
+# alacritty
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Alacritty ZSH module providing terminal emulator configuration and management 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Terminal configuration via gomplate templates
+- Theme management and synchronization
+- Cross-platform config paths
 
 
 

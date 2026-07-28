@@ -14,19 +14,19 @@
 
 
 
-# starship
+# rvm
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+rvm ZSH module providing Ruby version management via rvm 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Ruby version installation and switching
+- Gemset management
+- Automatic version detection
 
 
 

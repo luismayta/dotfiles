@@ -14,19 +14,19 @@
 
 
 
-# starship
+# wezterm
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Wezterm ZSH module providing terminal emulator configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Wezterm configuration management
+- Keybinding and appearance settings
+- Cross-platform config paths
 
 
 

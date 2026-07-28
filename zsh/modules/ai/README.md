@@ -14,19 +14,20 @@
 
 
 
-# starship
+# ai
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+AI ZSH module providing AI tool installation (opencode) and model configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- AI tool installation via opencode
+- Model configuration and provider management
+- Plugin system for extensibility
+- Integration with AI configuration files
 
 
 

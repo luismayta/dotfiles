@@ -1,0 +1,16 @@
+---
+name: ai
+tags:
+  - ai
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  AI ZSH module providing AI tool installation (opencode) and model configuration
+features:
+  - "AI tool installation via opencode"
+  - "Model configuration and provider management"
+  - "Plugin system for extensibility"
+  - "Integration with AI configuration files"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

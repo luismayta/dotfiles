@@ -14,19 +14,19 @@
 
 
 
-# starship
+# nix-darwin
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+nix-darwin ZSH module providing macOS Nix configuration helpers 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Nix Darwin configuration management
+- System and service management helpers
+- macOS-specific Nix optimizations
 
 
 

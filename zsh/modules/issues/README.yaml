@@ -1,0 +1,15 @@
+---
+name: issues
+tags:
+  - issues
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Issues ZSH module providing issue tracking workflow helpers
+features:
+  - "Issue creation and management from the command line"
+  - "Integration with project management tools"
+  - "Workflow automation helpers"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

@@ -1,0 +1,15 @@
+---
+name: aliases
+tags:
+  - aliases
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Aliases ZSH module providing organized alias definitions and management
+features:
+  - "Domain-specific alias groups"
+  - "Easy alias creation and discovery"
+  - "Shell completion support"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

@@ -1,0 +1,16 @@
+---
+name: docker
+tags:
+  - docker
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Docker ZSH module providing container runtime management with provider adapter pattern
+features:
+  - "Multi-provider support (colima, lima, orbstack, podman, docker)"
+  - "Adapter-based architecture for interchangeable backends"
+  - "Socket resolution and daemon management"
+  - "Docker Compose integration"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

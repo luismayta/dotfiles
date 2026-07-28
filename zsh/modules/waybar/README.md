@@ -14,19 +14,19 @@
 
 
 
-# starship
+# waybar
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Waybar module providing Wayland status bar configuration 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Waybar installation and configuration
+- Custom module definition
+- Theme and style management
 
 
 

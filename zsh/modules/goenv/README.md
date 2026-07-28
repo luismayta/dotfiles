@@ -14,19 +14,19 @@
 
 
 
-# starship
+# goenv
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+goenv ZSH module providing Go version management via goenv 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Go version installation and switching
+- Automatic version detection (go.mod)
+- Multiple Go version support
 
 
 

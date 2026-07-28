@@ -1,0 +1,15 @@
+---
+name: mpd
+tags:
+  - mpd
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  MPD ZSH module providing Music Player Daemon client integration with mpc
+features:
+  - "MPD client controls via mpc CLI"
+  - "Music playback management"
+  - "Playlist and library navigation"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

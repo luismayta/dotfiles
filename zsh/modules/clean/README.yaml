@@ -1,0 +1,15 @@
+---
+name: clean
+tags:
+  - clean
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Clean ZSH module providing cleanup and housekeeping utilities
+features:
+  - "System cache and temporary file cleanup"
+  - "Package manager cache management"
+  - "Disk usage reporting"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

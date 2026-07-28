@@ -1,0 +1,15 @@
+---
+name: goenv
+tags:
+  - goenv
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  goenv ZSH module providing Go version management via goenv
+features:
+  - "Go version installation and switching"
+  - "Automatic version detection (go.mod)"
+  - "Multiple Go version support"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

@@ -14,19 +14,19 @@
 
 
 
-# starship
+# devops
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Devops ZSH module providing DevOps tooling aliases and utilities 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Kubernetes tool integration (kubectl, k9s)
+- Infrastructure as code helpers
+- Cloud provider CLI wrappers
 
 
 

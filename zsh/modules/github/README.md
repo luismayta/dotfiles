@@ -14,19 +14,19 @@
 
 
 
-# starship
+# github
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+GitHub ZSH module providing GitHub CLI integration and workflow helpers 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- GitHub CLI (gh) installation and setup
+- Repository and issue management helpers
+- Git authentication configuration
 
 
 

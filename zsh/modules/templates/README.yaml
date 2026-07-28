@@ -1,0 +1,15 @@
+---
+name: templates
+tags:
+  - templates
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Templates ZSH module providing file and project template management
+features:
+  - "Template rendering with variable substitution"
+  - "Project scaffolding from templates"
+  - "Custom template definition"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

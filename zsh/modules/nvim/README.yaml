@@ -1,0 +1,16 @@
+---
+name: nvim
+tags:
+  - nvim
+  - zsh
+license: "LGPL-3.0"
+github_repo: luismayta/dotfiles
+description: |-
+  Neovim ZSH module providing Neovim editor integration and configuration
+features:
+  - "Neovim installation via package manager"
+  - "Plugin management via lazy.nvim"
+  - "Configuration synchronization"
+  - "LSP and tooling setup"
+requirements: |-
+  - zsh (loaded as part of dotfiles zsh modules)

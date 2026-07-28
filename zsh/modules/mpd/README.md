@@ -14,19 +14,19 @@
 
 
 
-# starship
+# mpd
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+MPD ZSH module providing Music Player Daemon client integration with mpc 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- MPD client controls via mpc CLI
+- Music playback management
+- Playlist and library navigation
 
 
 

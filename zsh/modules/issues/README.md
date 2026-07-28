@@ -14,19 +14,19 @@
 
 
 
-# starship
+# issues
 
 
 
-Starship ZSH module providing cross-shell prompt customization 
+Issues ZSH module providing issue tracking workflow helpers 
 
 
 
 ## Features
 
-- Starship prompt installation and configuration
-- Custom prompt modules and themes
-- Cross-platform config management
+- Issue creation and management from the command line
+- Integration with project management tools
+- Workflow automation helpers
 
 
 
