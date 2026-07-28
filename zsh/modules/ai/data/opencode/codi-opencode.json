@@ -16,25 +16,25 @@
   "modelSelect": {
     "orchestrator": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/big-pickle"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "opencodeOpenai": ["openai/gpt-5.4", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/minimax-m2.7"],
-        "opencode": ["opencode/big-pickle", "opencode/nemotron-3-super-free"],
+        "opencode": ["opencode/big-pickle", "opencode/nemotron-3-ultra-free"],
         "openrouter": ["openrouter/minimax/minimax-m2.5"],
         "openai": ["openai/gpt-5.4"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5",
-          "google/antigravity-gemini-3-flash"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "oracle": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/mimo-v2.5-free"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/mimo-v2.5-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/minimax-m2.5"],
         "opencode": ["opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free", "opencode/deepseek-v4-flash-free"],
@@ -42,58 +42,58 @@
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openai": ["openai/gpt-5.3-codex"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5",
-          "google/antigravity-gemini-3-flash"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "librarian": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/big-pickle"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/qwen3.5-plus"],
         "opencode": [
+          "opencode/ling-3.0-flash-free",
           "opencode/big-pickle",
           "opencode/mimo-v2.5-free",
-          "opencode/nemotron-3-super-free",
           "opencode/deepseek-v4-flash-free"
         ],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.4"],
         "google": [
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "explorer": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3-flash", "opencode/big-pickle"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"],
         "opencodeGo": ["opencode-go/minimax-m2.7", "opencode-go/glm-5"],
-        "opencode": ["opencode/big-pickle", "opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
+        "opencode": ["opencode/big-pickle", "opencode/north-mini-code-free", "opencode/nemotron-3-super-free"],
         "opencodeOpenai": ["openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-r1"],
         "openai": ["openai/gpt-5.4"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "designer": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/mimo-v2.5-free"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/mimo-v2.5-free"],
         "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"],
         "opencodeGo": ["opencode-go/minimax-m2.5"],
         "opencode": ["opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
@@ -101,35 +101,35 @@
         "openrouter": ["openrouter/minimax/minimax-m2.5"],
         "openai": ["openai/gpt-5.3-codex"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "auditor": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/deepseek-v4-flash-free"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/deepseek-v4-flash-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
-        "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
+        "opencode": ["opencode/big-pickle", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "fixer": {
       "byProvider": {
-        "custom": ["google/antigravity-gemini-3.1-pro", "opencode/deepseek-v4-flash-free"],
+        "custom": ["google/gemini-3-flash-preview", "opencode/deepseek-v4-flash-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
         "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
@@ -137,29 +137,29 @@
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
         "google": [
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     },
     "quick": {
       "byProvider": {
-        "custom": ["opencode/deepseek-v4-flash-free", "google/antigravity-gemini-3-flash"],
+        "custom": ["opencode/deepseek-v4-flash-free", "google/gemini-3-flash-preview"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.5-plus", "opencode-go/minimax-m2.5"],
-        "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
+        "opencode": ["opencode/big-pickle", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
         "google": [
-          "google/antigravity-gemini-3-flash",
-          "google/antigravity-gemini-3.1-pro",
-          "google/antigravity-claude-opus-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5-thinking",
-          "google/antigravity-claude-sonnet-4-5"
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview",
+          "google/gemini-3-flash-preview"
         ]
       }
     }
