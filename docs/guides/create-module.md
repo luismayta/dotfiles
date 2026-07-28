@@ -27,7 +27,7 @@ Every module follows a strict chain:
 ```
 plugin.zsh
   └─ config/   → environment variables and user-facing settings
-  └─ internal/ → private implementation (install, sync, helpers)
+  └─ internal/ → private implementation (install, sync, render, helpers)
   └─ pkg/      → public API functions (install, sync, setup, aliases)
 ```
 
@@ -38,10 +38,12 @@ plugin.zsh
 | `config/` | `export` env vars with defaults | Shell config, user overrides |
 | `internal/` | Functions prefixed `<name>::internal::` | Only `pkg/` functions |
 | `pkg/` | Functions prefixed `<name>::` | End user |
+| `data/` | Rsync templates and gomplate source files | `internal/` and `render` |
 
 - Each layer has a `main.zsh` that sources its files.
 - One layer never calls into another's `internal/` across module boundaries.
 - The `pkg/` layer calls `internal/` within the same module.
+- The `data/` directory holds rsync source files and gomplate templates used by `internal/` and `render`.
 
 ## Core Reuse (What You Get for Free)
 
@@ -216,7 +218,7 @@ source "${ZSH_<NAME>_PATH}/config/base.zsh"
 
 ## Section 4: Internal Layer
 
-This is where the actual work happens — installation, config sync, and helpers. All functions are prefixed `<name>::internal::` to keep them private.
+This is where the actual work happens — installation, sync, and helpers. All functions are prefixed `<name>::internal::` to keep them private.
 
 ### `internal/base.zsh`
 
@@ -231,7 +233,7 @@ Core implementation logic:
     message_success "${ZSH_<NAME>_PACKAGE_NAME} installed."
 }
 
-<name>::internal::config::sync() {
+<name>::internal::sync() {
     rsync -avzh "${ZSH_<NAME>_DATA_PATH}/" "${ZSH_<NAME>_CONFIG_PATH}/"
 }
 ```
@@ -252,7 +254,7 @@ zed::internal::install() {
     fi
 }
 
-zed::internal::config::sync() {
+zed::internal::sync() {
     rsync -avzh "${ZSH_ZED_DATA_PATH}/" "${ZED_CONFIG_PATH}/"
 }
 ```
@@ -311,6 +313,22 @@ fi
 
 ---
 
+### Config Generation with Gomplate
+
+For config files containing sensitive values (tokens, API keys), use **gomplate** templates instead of shell heredoc:
+
+```bash
+# Template at data/<name>/<name>.yaml.tpl (versioned in git)
+# Uses {{ getenv "VAR_NAME" }} syntax — no shell interpolation
+
+# Render at load time:
+gomplate -f "${ZSH_<NAME>_DATA_PATH}/<name>.yaml.tpl" -o "${ZSH_<NAME>_CONFIG_PATH}/config.yaml"
+```
+
+The template is stored in `data/` and rendered by `<name>::internal::render`. This keeps secrets out of shell history and avoids escaping issues.
+
+---
+
 ## Section 5: Public Layer
 
 Thin wrappers that expose module functionality as user-callable commands.
@@ -325,7 +343,7 @@ Thin wrappers that expose module functionality as user-callable commands.
 }
 
 <name>::sync() {
-    <name>::internal::config::sync
+    <name>::internal::sync
 }
 
 <name>::post_install() {
@@ -601,7 +619,8 @@ See the **[Docker module](/zsh/modules/docker/)** for a complete production exam
 | Clipboard paste | `ZSH_<NAME>_CLIPBOARD_PASTE_CMD` | `ZSH_HERDR_CLIPBOARD_PASTE_CMD` |
 | Public functions | `<name>::<verb>` | `zed::install`, `zed::sync` |
 | Internal functions | `<name>::internal::<verb>` | `zed::internal::install` |
-| Sub-functions | `<name>::internal::<area>::<verb>` | `zed::internal::config::sync` |
+| Sub-functions | `<name>::internal::<area>::<verb>` | `zed::internal::sync` |
+| Render function | `<name>::internal::render` | Generates config from gomplate template |
 
 **Why `ZSH_<NAME>_` prefix for all env vars:** The `ZSH_` prefix namespaces variables to the module system, preventing collisions with external tools or user scripts. The herdr module was standardized to this convention — see [`zsh/modules/herdr/config/base.zsh`](/zsh/modules/herdr/config/base.zsh).
 
@@ -678,7 +697,7 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 - [ ] `pkg/linux.zsh` — OS-specific public functions (optional, only if needed)
 - [ ] `pkg/helper.zsh` — `setup` orchestrator
 - [ ] `pkg/alias.zsh` — user aliases (empty placeholder allowed)
-- [ ] `data/` — directory for rsync config files
+- [ ] `data/` — directory for rsync config files and gomplate templates
 
 ### Quality (all modules)
 
@@ -688,6 +707,7 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 - [ ] Module loads: `source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh`
 - [ ] Guard prevents double-loading
 - [ ] Public API responds: `type <name>::install`, `type <name>::setup`
+- [ ] `render` function for gomplate-based config generation (if config has secrets)
 
 ### Never
 
@@ -698,3 +718,5 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 ---
 
 **Reference implementation:** [`zsh/modules/zed/`](/zsh/modules/zed/) — complete example with install, config sync, and setup orchestration.
+**AI module pattern:** [`zsh/modules/ai/`](/zsh/modules/ai/) — aggregate sync via `ai::sync`
+**noti integration:** [`zsh/modules/notify/internal/noti.zsh`](/zsh/modules/notify/internal/noti.zsh) — gomplate render + sync patterns

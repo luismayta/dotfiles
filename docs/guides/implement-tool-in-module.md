@@ -1,6 +1,6 @@
-# How to Implement a Tool in the Devops Module
+# How to Implement a Tool in a Module
 
-This guide explains how to add a new tool to the existing devops module following the established three-layer architecture pattern. Each tool integrates through config variables, internal logic, and a public API — all following consistent conventions.
+This guide explains how to add a new tool to any module following the established three-layer architecture pattern. Each tool integrates through config variables, internal logic, and a public API — all following consistent conventions. The devops module and notify module serve as reference implementations.
 
 ## Table of Contents
 
@@ -33,6 +33,7 @@ pkg/      → public API functions (install, upgrade, post_install)
 | Layer | Contains | Who calls it |
 |-------|----------|-------------|
 | `config/` | `export` env vars with `DEVOPS_<TOOL>_` prefix | Shell config, user overrides |
+| `data/` | Templates and config files for rsync | internal/ sync functions |
 | `internal/` | Functions prefixed `devops::<tool>::internal::` | Only `pkg/` functions |
 | `pkg/` | Functions prefixed `devops::<tool>::` | End user |
 
@@ -53,6 +54,26 @@ Does your tool provide shell hooks? (init zsh, completions, keybindings)
 └─ No  → Use PATH-only pattern (see bruno example)
 ```
 
+### Template Rendering Pattern
+
+For tools with config files containing sensitive values (tokens, keys), use **gomplate** instead of shell heredoc:
+
+```
+Template (data/noti/noti.yaml.tpl)  →  gomplate  →  Output file
+```
+
+```zsh
+# ❌ Don't — shell interpolates secrets
+cat > config.yaml <<EOF
+token: "${TOKEN}"
+EOF
+
+# ✅ Do — gomplate reads env vars safely
+gomplate -f data/<tool>/<tool>.yaml.tpl -o ~/.config/<tool>/config.yaml
+```
+
+Variables referenced in templates use `{{ getenv "VAR_NAME" }}` syntax.
+
 ---
 
 ## File Structure
@@ -64,6 +85,8 @@ zsh/modules/devops/
 ├── config/
 │   ├── base.zsh          ← DEVOPS_TOOLS registration
 │   └── <tool>.zsh        ← Tool-specific variables
+├── data/
+│   └── <tool>/           ← Templates and config files for rsync/sync
 ├── internal/
 │   └── <tool>.zsh        ← Private implementation
 └── pkg/
@@ -158,6 +181,8 @@ Every tool needs these functions:
 |----------|---------|
 | `devops::<tool>::internal::load` | Load tool into shell (PATH, hooks) |
 | `devops::<tool>::internal::install` | Install the tool |
+| `devops::<tool>::internal::render` | Generate config from gomplate template |
+| `devops::<tool>::internal::sync` | Rsync data/ config to ~/.config/ |
 | `devops::<tool>::internal::upgrade` | Upgrade the tool |
 | `devops::<tool>::internal::main::factory` | Auto-install if missing |
 
@@ -287,6 +312,14 @@ function devops::<tool>::install {
 
 function devops::<tool>::upgrade {
     devops::<tool>::internal::upgrade
+}
+
+function devops::<tool>::render {
+    devops::<tool>::internal::render
+}
+
+function devops::<tool>::sync {
+    devops::<tool>::internal::sync
 }
 
 function devops::<tool>::post_install {
@@ -424,6 +457,8 @@ source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
 - [ ] `config/<tool>.zsh` — Tool-specific variables with `DEVOPS_<TOOL>_` prefix
 - [ ] `internal/<tool>.zsh` — Private implementation functions
 - [ ] `pkg/<tool>.zsh` — Public API functions
+- [ ] `data/<tool>/` — Templates and config files
+- [ ] `data/<tool>/<tool>.yaml.tpl` — Gomplate template (if config has secrets)
 - [ ] Added to `DEVOPS_TOOLS` in `config/base.zsh`
 
 ### Code Quality
@@ -434,6 +469,8 @@ source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
 - [ ] `core::exists <tool>` guard in load function
 - [ ] `message_info` / `message_success` for user feedback
 - [ ] `main::factory` for auto-install
+- [ ] `render` function for gomplate-based config generation
+- [ ] `sync` function for rsync data/ → ~/.config/
 
 ### Shell Integration (if applicable)
 
@@ -468,5 +505,7 @@ source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
 
 - **Atuin implementation**: `zsh/modules/devops/config/atuin.zsh`, `internal/atuin.zsh`, `pkg/atuin.zsh`
 - **Bruno implementation**: `zsh/modules/devops/config/bruno.zsh`, `internal/bruno.zsh`, `pkg/bruno.zsh`
+- **noti implementation**: `zsh/modules/notify/config/noti.zsh`, `internal/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
+- **AI module**: `zsh/modules/ai/` (aggregate sync example via `ai::sync`)
 - **Existing guide**: `docs/guides/create-module.md` (for creating new modules)
 - **Core utilities**: `zsh/core/` (message_*, core::exists, path::prepend)
