@@ -107,6 +107,54 @@ Running example (reference module — `zed`):
 mkdir -p zed/{config,internal,pkg,data}
 ```
 
+### Module README
+
+Each module should have a `README.md` generated from a per-module `README.yaml` using the shared `provision/templates/README.module.tpl.md` template.
+
+Create `README.yaml` with module metadata:
+
+```yaml
+name: <name>
+description: |-
+  Brief description of the module's purpose.
+features:
+  - "Key feature 1"
+  - "Key feature 2"
+requirements: |-
+  - Dependency A
+  - Dependency B
+```
+
+Add a `readme` task to the module's `Taskfile.yml`:
+
+```yaml
+tasks:
+  readme:
+    desc: Generate module README.md
+    silent: true
+    cmds:
+      - >-
+        gomplate --file {{.README_MODULE_TEMPLATE}}
+        --out zsh/modules/<name>/README.md
+        --datasource config=zsh/modules/<name>/README.yaml
+        --datasource includes={{.README_INCLUDES}}
+```
+
+Then register the module in root `Taskfile.yml`:
+
+```yaml
+module-<name>:
+  taskfile: ./zsh/modules/<name>/Taskfile.yml
+```
+
+Generate the README from the root:
+
+```bash
+task module-<name>:readme
+```
+
+See `zsh/modules/git/README.yaml` and `zsh/modules/git/Taskfile.yml` for a working example.
+
 ---
 
 ## Section 2: Entry Point — `plugin.zsh`
@@ -689,6 +737,8 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 
 ### Scaffold (all files exist)
 
+- [ ] `README.yaml` — module metadata for README generation
+- [ ] `Taskfile.yml` — includes `readme` task referencing `{{.README_MODULE_TEMPLATE}}`
 - [ ] `plugin.zsh` — idempotent guard, dynamic path, 3-layer chain
 - [ ] `config/base.zsh` — env vars exported with defaults
 - [ ] `config/main.zsh` — sources `base.zsh` + OS dispatch
