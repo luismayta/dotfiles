@@ -21,7 +21,6 @@ function ai::internal::graphify::install {
     message_info "Installing graphify..."
     if uv tool install "graphifyy[all]" --force; then
         message_success "graphify installed successfully"
-        ai::internal::graphify::register_skill
     else
         message_error "Failed to install graphify"
         return 1
@@ -37,21 +36,9 @@ function ai::internal::graphify::upgrade {
     message_info "Upgrading graphify..."
     if uv tool install "graphifyy[all]" --force; then
         message_success "graphify upgraded successfully"
-        ai::internal::graphify::register_skill
     else
         message_error "Failed to upgrade graphify"
         return 1
-    fi
-}
-
-function ai::internal::graphify::register_skill {
-    if core::exists graphify; then
-        message_info "Registering graphify skill with OpenCode..."
-        if graphify install --platform opencode; then
-            message_success "graphify skill registered"
-        else
-            message_warning "Failed to register graphify skill (graphify is still installed)"
-        fi
     fi
 }
 
@@ -61,7 +48,8 @@ function ai::internal::graphify::init {
         return 1
     fi
     message_info "Initializing graphify..."
-    if graphify init; then
+
+    if graphify install --platform opencode --project; then
         message_success "graphify initialized successfully"
     else
         message_error "Failed to initialize graphify"
@@ -88,11 +76,13 @@ function ai::internal::graphify::setup {
         message_error "graphify is not installed. Run ai::graphify::install first."
         return 1
     fi
+
     message_info "Setting up graphify for current project..."
-    if graphify install --platform opencode --project; then
-        message_success "graphify project setup complete"
-    else
-        message_error "Failed to set up graphify for project"
-        return 1
+
+    if [[ ! -d "graphify-out" ]]; then
+        ai::internal::graphify::init
+        return
     fi
+
+    ai::internal::graphify::update
 }

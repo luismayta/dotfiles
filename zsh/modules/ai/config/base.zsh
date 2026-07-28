@@ -1,4 +1,9 @@
 # shellcheck shell=bash
+#
+# AI module configuration — thin dispatcher.
+# Domain-specific variables live in their own files (opencode.zsh, fabric.zsh, etc.).
+# This file only contains cross-cutting concerns shared across multiple domains.
+
 ZSH_AI_ENABLED="${ZSH_AI_ENABLED:-true}"
 
 ARCH_NAME="$(uname -m)"
@@ -6,104 +11,23 @@ export ARCH_NAME
 
 export AI_PACKAGE_NAME=ai
 
-# opencode
-export AI_OPENCODE_ROOT_PATH="${HOME}/.opencode"
-export AI_OPENCODE_BIN_PATH="${AI_OPENCODE_ROOT_PATH}/bin"
-export AI_OPENCODE_CONFIG_PATH="${HOME}/.config/opencode"
-export AI_OPENCODE_CONFIG_FILE="opencode.json"
-export AI_OPENCODE_CONFIG_SOURCE_PATH="${AI_PATH}/data/opencode"
-export AI_OPENCODE_RUNTIME_SOURCE_PATH="${AI_PATH}/.opencode"
-export AI_OPENCODE_RUNTIME_CONFIG_PATH="${AI_OPENCODE_CONFIG_PATH}/.opencode"
-export AI_OPENCODE_CONFIG_FILE_PATH="${AI_OPENCODE_CONFIG_PATH}/${AI_OPENCODE_CONFIG_FILE}"
+# --- Domain configs (dependency order: tools first, then specific domains) ---
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/tools.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/opencode.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/fabric.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/ollama.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/graphify.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/openspec.zsh"
+# shellcheck source=/dev/null
+source "${AI_PATH}/config/skills.zsh"
 
-# fabric
-export AI_FABRIC_PATTERNS_PATH="${HOME}/.config/fabric/patterns"
-export AI_FABRIC_PATTERNS_SYNC_SOURCE="${AI_PATH}/data/patterns"
-
-# ollama
-export AI_OLLAMA_MODELS_PATH="${HOME}/.ollama/models"
-
-# shimmy
-export AI_SHIMMY_BIN_PATH="${HOME}/.local/bin"
-
-# openclaw
-export AI_OPENCLAW_BIN_PATH="${HOME}/.local/bin"
-
-# codegraph
-export AI_CODEGRAPH_BIN_PATH="${HOME}/.local/bin"
-
-# rtk
-export AI_RTK_BIN_PATH="${HOME}/.local/bin"
-export AI_RTK_CONFIG_PATH="${HOME}/.config/rtk"
-export AI_RTK_CONFIG_SOURCE_PATH="${AI_PATH}/data/rtk"
-
-# hunk
-export AI_HUNK_BIN_PATH="${HOME}/.local/bin"
-export AI_HUNK_CONFIG_PATH="${HOME}/.config/hunk"
-
-# pi (AI coding agent)
-export AI_PI_BIN_PATH="${HOME}/.local/bin"
-export AI_PI_CONFIG_PATH="${HOME}/.pi/agent"
-export AI_PI_CONFIG_SOURCE_PATH="${AI_PATH}/data/pi"
-
-# graphify (knowledge graph for codebases)
-export AI_GRAPHIFY_BIN_PATH="${HOME}/.local/bin"
-
-# openspec (spec-driven development)
-
-# skills (agent-skills ecosystem)
-export AI_SKILLS_BIN_PATH="${HOME}/.local/bin"
-export AI_SKILLS_CONFIG_PATH="${HOME}/.config/skills"
-export AI_SKILLS_DATA_PATH="${AI_PATH}/data/skills"
-
-# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
-# Skills repos — one entry per repository
-AI_SKILLS_REPOS=(
-  vercel-labs/agent-skills
-  CodipLab/codip-ai
-)
-
-# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
-# Vercel Labs — platform & framework best practices
-AI_SKILLS_VERCEL=(
-  vercel-optimize
-  vercel-deploy-claimable
-  react-best-practices
-  react-native-guidelines
-  react-view-transitions
-  composition-patterns
-  web-design-guidelines
-  writing-guidelines
-)
-
-# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/base.zsh
-# CodipLab — Git & PR workflows
-AI_SKILLS_CODIP=(
-  github-create-pr
-  github-update-pr
-  github-validate-pr
-  gitlab-create-mr
-  gitlab-update-mr
-  gitlab-validate-mr
-  goji-commit-smart
-  jira-add-worklog
-  jira-epic-generator
-  jira-start-task
-  jira-task-generator
-  jira-work-report
-  jpd-epic-generator
-  jpd-task-generator
-  markdown-to-jira
-  gcal-daily-planner
-  markdown-to-gcal
-  idea-capture
-  idea-jpd-create
-  idea-jpd-draft
-  idea-jpd-import
-  image-compression
-)
-
-# installation urls
+# --- Installation URLs (used by internal/tools.zsh for installs) ---
 export AI_INSTALL_URL_OPENCODE="https://opencode.ai/install"
 export AI_INSTALL_URL_FABRIC="https://raw.githubusercontent.com/danielmiessler/fabric/main/scripts/installer/install.sh"
 export AI_INSTALL_URL_OLLAMA="https://ollama.com/install.sh"
@@ -117,6 +41,7 @@ export AI_INSTALL_URL_HUNK="npm i -g hunkdiff"
 export AI_INSTALL_URL_PI="https://pi.dev/install.sh"
 export AI_INSTALL_URL_SKILLS="https://raw.githubusercontent.com/vercel-labs/skills/main/install.sh"
 
+# --- Tool registry (used by internal/tools.zsh::packages::install) ---
 export AI_TOOLS=(
   opencode
   fabric
@@ -132,6 +57,7 @@ export AI_TOOLS=(
   skills
 )
 
+# --- Ollama models (used by internal/ollama.zsh) ---
 export AI_OLLAMA_MODELS=(
   deepseek-coder:6.7b
   qwen2.5-coder:7b
