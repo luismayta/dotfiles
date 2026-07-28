@@ -57,10 +57,84 @@ includes:
   terraform:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
 
-  hyprland:
+  module-ai:
+    taskfile: ./zsh/modules/ai/Taskfile.yml
+  module-alacritty:
+    taskfile: ./zsh/modules/alacritty/Taskfile.yml
+  module-aliases:
+    taskfile: ./zsh/modules/aliases/Taskfile.yml
+  module-apps:
+    taskfile: ./zsh/modules/apps/Taskfile.yml
+  module-bitwarden:
+    taskfile: ./zsh/modules/bitwarden/Taskfile.yml
+  module-clean:
+    taskfile: ./zsh/modules/clean/Taskfile.yml
+  module-devbox:
+    taskfile: ./zsh/modules/devbox/Taskfile.yml
+  module-devops:
+    taskfile: ./zsh/modules/devops/Taskfile.yml
+  module-docker:
+    taskfile: ./zsh/modules/docker/Taskfile.yml
+  module-ghostty:
+    taskfile: ./zsh/modules/ghostty/Taskfile.yml
+  module-ghq:
+    taskfile: ./zsh/modules/ghq/Taskfile.yml
+  module-git:
+    taskfile: ./zsh/modules/git/Taskfile.yml
+  module-github:
+    taskfile: ./zsh/modules/github/Taskfile.yml
+  module-goenv:
+    taskfile: ./zsh/modules/goenv/Taskfile.yml
+  module-hammerspoon:
+    taskfile: ./zsh/modules/hammerspoon/Taskfile.yml
+  module-herdr:
+    taskfile: ./zsh/modules/herdr/Taskfile.yml
+  module-hyprland:
     taskfile: ./zsh/modules/hyprland/Taskfile.yml
-  nvim:
+  module-issues:
+    taskfile: ./zsh/modules/issues/Taskfile.yml
+  module-keybase:
+    taskfile: ./zsh/modules/keybase/Taskfile.yml
+  module-mobile:
+    taskfile: ./zsh/modules/mobile/Taskfile.yml
+  module-mpd:
+    taskfile: ./zsh/modules/mpd/Taskfile.yml
+  module-nix:
+    taskfile: ./zsh/modules/nix/Taskfile.yml
+  module-nix-darwin:
+    taskfile: ./zsh/modules/nix-darwin/Taskfile.yml
+  module-nodejs:
+    taskfile: ./zsh/modules/nodejs/Taskfile.yml
+  module-notify:
+    taskfile: ./zsh/modules/notify/Taskfile.yml
+  module-nvim:
     taskfile: ./zsh/modules/nvim/Taskfile.yml
+  module-pazi:
+    taskfile: ./zsh/modules/pazi/Taskfile.yml
+  module-python:
+    taskfile: ./zsh/modules/python/Taskfile.yml
+  module-resources:
+    taskfile: ./zsh/modules/resources/Taskfile.yml
+  module-rust:
+    taskfile: ./zsh/modules/rust/Taskfile.yml
+  module-rvm:
+    taskfile: ./zsh/modules/rvm/Taskfile.yml
+  module-ssh:
+    taskfile: ./zsh/modules/ssh/Taskfile.yml
+  module-starship:
+    taskfile: ./zsh/modules/starship/Taskfile.yml
+  module-templates:
+    taskfile: ./zsh/modules/templates/Taskfile.yml
+  module-tmux:
+    taskfile: ./zsh/modules/tmux/Taskfile.yml
+  module-waybar:
+    taskfile: ./zsh/modules/waybar/Taskfile.yml
+  module-wezterm:
+    taskfile: ./zsh/modules/wezterm/Taskfile.yml
+  module-yazi:
+    taskfile: ./zsh/modules/yazi/Taskfile.yml
+  module-zed:
+    taskfile: ./zsh/modules/zed/Taskfile.yml
 
 env:
   DOCKER:
@@ -75,6 +149,7 @@ env:
     sh: git describe --tags $(git rev-list --tags --max-count=1) 2> /dev/null || echo "0.0.0"
   README_YAML: provision/generators/README.yaml
   README_TEMPLATE: provision/templates/README.tpl.md
+  README_MODULE_TEMPLATE: provision/templates/README.module.tpl.md
   README_INCLUDES:
     sh: echo "file://$(pwd)/"
   TERRAFORM_PATH: ./
@@ -187,8 +262,10 @@ tasks:
       - skills:check
 
   readme:
-    desc: Generate Readme
+    desc: Generate all READMEs (root + all modules)
     silent: true
+    deps:
+      - task: readme:modules
     cmds:
       - >-
         gomplate --file {{.README_TEMPLATE}}
@@ -196,6 +273,50 @@ tasks:
         --datasource config={{.README_YAML}}
         --datasource includes={{.README_INCLUDES}}
       - task: format
+
+  readme:modules:
+    desc: Generate all module READMEs
+    silent: true
+    deps:
+      - task: module-ai:readme
+      - task: module-alacritty:readme
+      - task: module-aliases:readme
+      - task: module-apps:readme
+      - task: module-bitwarden:readme
+      - task: module-clean:readme
+      - task: module-devbox:readme
+      - task: module-devops:readme
+      - task: module-docker:readme
+      - task: module-ghostty:readme
+      - task: module-ghq:readme
+      - task: module-git:readme
+      - task: module-github:readme
+      - task: module-goenv:readme
+      - task: module-hammerspoon:readme
+      - task: module-herdr:readme
+      - task: module-hyprland:readme
+      - task: module-issues:readme
+      - task: module-keybase:readme
+      - task: module-mobile:readme
+      - task: module-mpd:readme
+      - task: module-nix:readme
+      - task: module-nix-darwin:readme
+      - task: module-nodejs:readme
+      - task: module-notify:readme
+      - task: module-nvim:readme
+      - task: module-pazi:readme
+      - task: module-python:readme
+      - task: module-resources:readme
+      - task: module-rust:readme
+      - task: module-rvm:readme
+      - task: module-ssh:readme
+      - task: module-starship:readme
+      - task: module-templates:readme
+      - task: module-tmux:readme
+      - task: module-waybar:readme
+      - task: module-wezterm:readme
+      - task: module-yazi:readme
+      - task: module-zed:readme
 
   format:
     desc: Execute format files
@@ -237,8 +358,8 @@ tasks:
   validate:
     desc: "Run validate on all files"
     cmds:
-      - task: hyprland:lint
-      - task: nvim:lint
+      - task: module-hyprland:lint
+      - task: module-nvim:lint
       - task: pre-commit:lint
 
   build:
