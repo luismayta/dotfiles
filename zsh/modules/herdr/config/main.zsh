@@ -1,6 +1,8 @@
 # shellcheck shell=bash
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/config/base.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_HERDR_PATH}/config/plugins.zsh"
 
 case "${OSTYPE}" in
 darwin*)
