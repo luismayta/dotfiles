@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Releasing
+description: Release process and versioning
+tags: [release, guide]
+---
+
 # Releasing
 
 ## Bump a new version

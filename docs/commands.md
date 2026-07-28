@@ -1,3 +1,10 @@
+---
+type: Reference
+title: Commands
+description: Available commands and task definitions
+tags: [commands, reference]
+---
+
 # Commands
 
 ## Taskfile

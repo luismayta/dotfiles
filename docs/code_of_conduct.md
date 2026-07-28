@@ -1,3 +1,10 @@
+---
+type: Reference
+title: Code of Conduct
+description: Code of conduct for contributors
+tags: [code-of-conduct]
+---
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

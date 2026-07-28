@@ -1,5 +1,3 @@
-
-
 <!--
 
 
@@ -44,11 +42,25 @@ This is a list of applications that need to be installed previously to enjoy all
 - [Wget](https://www.gnu.org/software/wget/)
 
 ## Installation
+---
+type: Guide
+title: Installation via Curl
+description: Install dotfiles using curl
+tags: [installation, curl]
+---
+
 ### via curl
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh | bash
 ```
+---
+type: Guide
+title: Installation via Wget
+description: Install dotfiles using wget
+tags: [installation, wget]
+---
+
 ### via wget
 
 ```bash
@@ -58,6 +70,13 @@ wget -qO- https://raw.githubusercontent.com/luismayta/dotfiles/main/install.sh |
 
 
 ## Usage
+
+---
+type: Guide
+title: Usage
+description: How to use the dotfiles project
+tags: [usage, guide]
+---
 
 # How to use this project
 
@@ -72,6 +91,13 @@ task setup
 
 ## Examples
 
+---
+type: Example
+title: Common Examples
+description: Common usage examples for dotfiles
+tags: [examples]
+---
+
 ## Common
 
 ### Install Dependencies
@@ -81,12 +107,12 @@ task setup
 ```
 
 
- <!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Functions Dotfiles -->
-<!-- Label: Functions -->
-<!-- Include: docs/disclaimer.md -->
-<!-- Include: ac:toc -->
+ ---
+type: Reference
+title: Functions
+description: Available shell functions
+tags: [functions, reference]
+---
 
 ## Functions
 
@@ -150,4 +176,3 @@ The code and styles are licensed under the LGPL-3.0 license [See project license
 
 
 [Your feedback is appreciated](https://github.com/luismayta/dotfiles/issues)
-

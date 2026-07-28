@@ -1,9 +1,9 @@
-<!-- Space: Projects -->
-<!-- Parent: Dotfiles -->
-<!-- Title: Functions Dotfiles -->
-<!-- Label: Functions -->
-<!-- Include: docs/disclaimer.md -->
-<!-- Include: ac:toc -->
+---
+type: Reference
+title: Functions
+description: Available shell functions
+tags: [functions, reference]
+---
 
 ## Functions
 

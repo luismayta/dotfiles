@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Testing
+description: Testing procedures and commands
+tags: [testing, guide]
+---
+
 # Testing
 
 ## Running all tests

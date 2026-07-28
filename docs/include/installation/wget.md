@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Installation via Wget
+description: Install dotfiles using wget
+tags: [installation, wget]
+---
+
 ### via wget
 
 ```bash

@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Troubleshooting
+description: Common issues and solutions
+tags: [troubleshooting, guide]
+---
+
 # Troubleshooting
 
 ## Environment

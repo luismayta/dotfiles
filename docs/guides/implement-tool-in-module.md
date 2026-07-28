@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Implement Tool in Module
+description: Guide for implementing tools within modules
+tags: [guide, tool, module]
+---
+
 # How to Implement a Tool in a Module
 
 This guide explains how to add a new tool to any module following the established three-layer architecture pattern. Each tool integrates through config variables, internal logic, and a public API — all following consistent conventions. The devops module and notify module serve as reference implementations.

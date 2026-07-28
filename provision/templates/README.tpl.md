@@ -1,16 +1,4 @@
 {{ defineDatasource "config" .Env.README_YAML | regexp.Replace ".*" "" -}} {{ defineDatasource "includes" .Env.README_INCLUDES | regexp.Replace ".*" "" -}}
-{{ if has (ds "config") "confluence" }}{{ $confluence := (ds "config").confluence -}}
-{{- if has $confluence "space" }} <!-- Space: {{ $confluence.space }} --> {{ end }}
-{{ if has $confluence "parent" }} <!-- Parent: {{ $confluence.parent }} --> {{- end -}}
-{{ if has $confluence "title" -}} <!-- Title: {{ $confluence.title }} --> {{ end }}
-{{ if has $confluence "images" -}}
-{{ range $image := $confluence.images -}}
-
-<!-- Attachment: {{ $image }} -->
-
-{{ end }}
-{{ end }}
-{{- end }}
 
 <!--
 

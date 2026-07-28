@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Create Module
+description: Guide for creating new dotfiles modules
+tags: [guide, module]
+---
+
 # How to Create a ZSH Module
 
 This guide explains how to create a new ZSH module in the dotfiles repository. Modules extend the shell with environment variables, auto-install logic, and public commands — all following a consistent three-layer architecture.

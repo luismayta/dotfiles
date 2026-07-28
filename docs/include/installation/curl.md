@@ -1,3 +1,10 @@
+---
+type: Guide
+title: Installation via Curl
+description: Install dotfiles using curl
+tags: [installation, curl]
+---
+
 ### via curl
 
 ```bash

@@ -1,3 +1,10 @@
+---
+type: Contributing
+title: Contributing
+description: How to contribute to the dotfiles project
+tags: [contributing]
+---
+
 # How To Contribute
 
 Contributions to dotfiles are welcome.
