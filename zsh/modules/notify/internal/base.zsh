@@ -60,3 +60,15 @@ function notify::internal::error {
 function notify::internal::popup {
     return
 }
+
+function notify::internal::sync {
+    local src="${ZSH_NOTIFY_DATA_SHARE_PATH}"
+    local dst="${ZSH_NOTIFY_CONFIG_PATH}"
+    if [[ -d "$src" ]]; then
+        mkdir -p "$dst"
+        rsync -a "$src/" "$dst/"
+        message_success "notify config synced"
+    else
+        message_warning "no notify config source at ${src}"
+    fi
+}

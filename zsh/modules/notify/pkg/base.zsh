@@ -31,6 +31,7 @@ function notify::command::store {
 }
 
 function notify::sync {
+    notify::internal::sync
     notify::noti::sync
     # notify-send has no data to sync (uses direct CLI flags)
 }

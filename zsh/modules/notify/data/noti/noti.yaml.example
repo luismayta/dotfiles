@@ -6,3 +6,7 @@ telegram:
   token: "YOUR_BOTFATHER_TOKEN"
   chatId: "YOUR_CHAT_ID"
   # topic: ""  # optional thread ID
+
+# Banner icon for notifications (supports PNG, JPEG)
+banner:
+  icon: "~/.dotfiles/zsh/modules/notify/data/assets/success.jpg"
