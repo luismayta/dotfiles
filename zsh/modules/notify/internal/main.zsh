@@ -33,10 +33,11 @@ notify-send)
     source "${ZSH_NOTIFY_PATH}/internal/adapter/notify-send.zsh"
     ;;
 auto)
-    # Auto-detect: load both adapters, first available wins
+    # Auto-detect: load only the first available adapter
     # shellcheck source=/dev/null
-    source "${ZSH_NOTIFY_PATH}/internal/adapter/noti.zsh"
-    if ! core::exists noti; then
+    if core::exists noti; then
+        source "${ZSH_NOTIFY_PATH}/internal/adapter/noti.zsh"
+    else
         # shellcheck source=/dev/null
         source "${ZSH_NOTIFY_PATH}/internal/adapter/notify-send.zsh"
     fi

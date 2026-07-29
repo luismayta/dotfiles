@@ -9,7 +9,7 @@ ZSH_NOTIFY_NOTI_TELEGRAM_CHATID="${ZSH_NOTIFY_NOTI_TELEGRAM_CHATID:-}"
 export ZSH_NOTIFY_NOTI_PACKAGE_NAME="noti"
 
 # Data path (templates)
-export ZSH_NOTIFY_NOTI_DATA_PATH="${ZSH_NOTIFY_PATH}/data/noti"
+export ZSH_NOTIFY_NOTI_DATA_PATH="${ZSH_NOTIFY_DATA_PATH}/noti"
 
 # Config paths (OS-specific, but same for both)
 ZSH_NOTIFY_NOTI_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/noti"

@@ -18,7 +18,7 @@
 
 
 
-Notify ZSH module providing notification services for desktop and Telegram 
+Notify ZSH module providing notification services for desktop and Telegram
 
 
 
@@ -51,5 +51,4 @@ Notify ZSH module providing notification services for desktop and Telegram
 ## License
 
 The code and styles are licensed under the LGPL-3.0 license [See project license.](/LICENSE).
-
 
