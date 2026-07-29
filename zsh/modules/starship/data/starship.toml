@@ -14,7 +14,27 @@
 
 palette = "tokyonight"
 
-format = "$all"
+# Custom format with explicit section ordering
+format = """\
+$username\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$custom\
+$kubernetes\
+$aws\
+$container\
+$nix_shell\
+$all\
+"""
+
+right_format = """\
+$cmd_duration \
+$status \
+$jobs \
+$memory_usage \
+"""
 
 # Inserts a blank line between shell prompts
 add_newline = false
@@ -82,7 +102,7 @@ fish_style_pwd_dir_length = 1
 use_logical_path = true
 
 [directory.substitutions]
-"/Volumes/Data/projects" = "🐺"
+"~/Projects/" = "🐺"
 
 ## Git
 ## ---
@@ -104,8 +124,10 @@ renamed = "👅"
 deleted = "🗑"
 
 [git_commit]
-commit_hash_length = 4
+disabled = false
+commit_hash_length = 8
 tag_symbol = "🔖 "
+format = "[\\($hash\\)]($style) "
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
@@ -116,17 +138,17 @@ cherry_pick = "[🍒 PICKING](bold $red)"
 disabled = false
 description = "Display symbol for remote Git server"
 command = """
-REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+REMOTE=$(git remote get-url origin 2> /dev/null)
 if [[ "$REMOTE" =~ "github" ]]; then
-    SYMBOL=""
+    SYMBOL="🐙 "
 elif [[ "$REMOTE" =~ "gitlab" ]]; then
-    SYMBOL=""
+    SYMBOL="🦊 "
 elif [[ "$REMOTE" =~ "bitbucket" ]]; then
-    SYMBOL=""
+    SYMBOL="💧 "
 elif [[ "$REMOTE" =~ "git" ]]; then
-    SYMBOL=""
+    SYMBOL="🔀 "
 else
-    SYMBOL=""
+    SYMBOL="🔗 "
 fi
 echo "$SYMBOL "
 """
@@ -134,13 +156,7 @@ when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
 shell = ["bash", "--noprofile", "--norc"]
 format = "$output "
 
-[custom.githash]
-disabled = false
-description = "Display git hash"
-command = "git rev-parse --short HEAD"
-when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
-shell = ["bash", "--noprofile", "--norc"]
-format = "$output "
+# custom.githash removed — redundant with [git_commit] built-in module
 
 ## Cloud & Infrastructure
 ## ---------------------
@@ -150,28 +166,37 @@ disabled = false
 symbol = "⛵ "
 format = '[$symbol$context( \($namespace\))]($style) '
 
-[kubernetes.context_aliases]
-docker-desktop = "🐳"
-# OpenShift contexts carry the namespace and user in the kube context: `namespace/name/user`:
-".*/openshift-cluster/.*" = "openshift"
+[[kubernetes.contexts]]
+context_pattern = "docker-desktop"
+context_alias = "🐳"
 
-# Or better, to rename every OpenShift cluster at once:
-".*/(?P<cluster>[\\w-]+)/.*" = "$cluster"
+[[kubernetes.contexts]]
+context_pattern = ".*/openshift-cluster/.*"
+context_alias = "openshift"
 
-"k8s:(?P<cluster_name>.*)" = "k8s: $cluster_name"
+[[kubernetes.contexts]]
+context_pattern = ".*/(?P<cluster>[\\w-]+)/.*"
+context_alias = "$cluster"
 
-# talos
-".*@talos-(?P<cluster_name>.*)" = "talos: $cluster_name"
+[[kubernetes.contexts]]
+context_pattern = "k8s:(?P<cluster_name>.*)"
+context_alias = "k8s: $cluster_name"
 
-# infosis
+[[kubernetes.contexts]]
+context_pattern = ".*@talos-(?P<cluster_name>.*)"
+context_alias = "talos: $cluster_name"
 
-"infosis:k8s:(?P<cluster_name>.*)" = "infosis: $cluster_name"
+[[kubernetes.contexts]]
+context_pattern = "infosis:k8s:(?P<cluster_name>.*)"
+context_alias = "infosis: $cluster_name"
 
-# aws
+[[kubernetes.contexts]]
+context_pattern = "arn:aws:.*:cluster/(?P<cluster_name>.*)"
+context_alias = "AWS: $cluster_name"
 
-"arn:aws:.*:cluster/(?P<cluster_name>.*)" = "AWS: $cluster_name"
-
-"eks:cluster:(?P<cluster_name>.*)" = "eks: $cluster_name"
+[[kubernetes.contexts]]
+context_pattern = "eks:cluster:(?P<cluster_name>.*)"
+context_alias = "eks: $cluster_name"
 
 [aws]
 format = "on [$symbol $region $profile]($style) "
@@ -190,8 +215,8 @@ disabled = true
 
 [golang]
 style = "bold $teal"
-symbol = "[]($teal)"
-format = "[$symbol $version]($style) "
+symbol = "🐹 "
+format = "via [$symbol$version]($style) "
 
 [python]
 pyenv_version_name = true
@@ -218,9 +243,9 @@ disabled = false
 detect_extensions = ["tf", "tfplan", "tfstate", "hcl"]
 format = " [$symbol$workspace]($style)"
 
-# Disable the package module, hiding it from the prompt completely
 [package]
 disabled = false
+format = "[$symbol$version]($style) "
 
 ## System
 ## ------
@@ -229,7 +254,7 @@ disabled = false
 [memory_usage]
 disabled = false
 style = "bold dimmed $green"
-threshold = -1
+threshold = 75
 format = '\[$symbol[$ram( | $swap)]($style)\]'
 
 [cmd_duration]
@@ -244,6 +269,42 @@ format = "[$symbol_threshold $number_threshold]($style) "
 [sudo]
 disabled = false
 
+# Exit code of previous command
+[status]
+disabled = false
+symbol = "💀 "
+success_symbol = ""
+format = "[$symbol$status]($style) "
+map_symbol = true
+recognize_signal_code = true
+pipestatus = true
+pipestatus_separator = "|"
+
+# Container environment detection
+[container]
+disabled = false
+symbol = "📦 "
+format = "[$symbol$name]($style) "
+style = "bold $blue"
+
+# Node.js runtime
+[nodejs]
+format = "via [⬢ $version](bold green) "
+style = "bold green"
+
+# Rust runtime
+[rust]
+format = "via [🦀 $version]($style) "
+style = "bold $red"
+
+# Nix shell environment
+[nix_shell]
+disabled = false
+impure_msg = "impure"
+pure_msg = "pure"
+unknown_msg = ""
+format = 'via [❄️ $state( \($name\))](bold $blue) '
+
 ## Environment
 ## -----------
 
@@ -257,30 +318,3 @@ style = "bold $blue"
 default = 'tmux'
 style = 'bold $green'
 format = '[🥷 ]($style)'
-
-[env_var.VISUAL]
-format = ""
-default = "nvim"
-
-[env_var.EDITOR]
-format = ""
-default = "nvim"
-
-## Custom Indicators
-## -----------------
-
-[custom.proxy_is_on]
-command = ""
-when = "proxy is-on"
-symbol = "歷"
-description = "Shows if proxy settings are on"
-format = "[$symbol]($style)"
-style = "fg:$green"
-
-[custom.proxy_is_off]
-command = ""
-when = "proxy is-off"
-symbol = "轢"
-description = "Shows if proxy settings are off"
-format = "[$symbol]($style)"
-style = "fg:$red"
