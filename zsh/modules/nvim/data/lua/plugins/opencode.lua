@@ -4,7 +4,7 @@ return {
   cmd = { "OpenCode" },
   keys = {
     {
-      "<C-a>",
+      "<leader>oa",
       function()
         require("opencode").ask "@this: "
       end,
@@ -12,7 +12,7 @@ return {
       desc = "OpenCode: Ask",
     },
     {
-      "<C-z>",
+      "<leader>oz",
       function()
         require("opencode").select()
       end,

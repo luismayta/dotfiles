@@ -17,7 +17,7 @@ return {
       { "<leader>s", group = "+search" },
       { "<leader>u", group = "+ui" },
       { "<leader>w", group = "+windows" },
-      { "<leader>x", group = "+diagnostics/quickfix" },
+      { "<leader>x", group = "+buffer/close" },
       { "g", group = "+goto" },
       { "gs", group = "+surround" },
       { "]", group = "+next" },

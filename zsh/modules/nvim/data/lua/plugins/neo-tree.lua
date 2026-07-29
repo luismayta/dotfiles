@@ -30,7 +30,13 @@ return {
       end,
       desc = "Explorer NeoTree (File Dir)",
     },
-    { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
+    {
+      "<leader>E",
+      function()
+        require("neo-tree.command").execute { toggle = true, dir = vim.uv.cwd() }
+      end,
+      desc = "Explorer NeoTree (cwd)",
+    },
   },
   opts = {
     filesystem = {

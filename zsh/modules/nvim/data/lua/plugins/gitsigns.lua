@@ -31,9 +31,9 @@ return {
       map("n", "[h", gs.prev_hunk, "Prev Hunk")
 
       -- Actions
-      map("n", "<leader>gp", gs.preview_hunk, "Preview Hunk")
-      map("n", "<leader>gr", gs.reset_hunk, "Reset Hunk")
-      map("v", "<leader>gr", function()
+      map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
+      map("n", "<leader>ghr", gs.reset_hunk, "Reset Hunk")
+      map("v", "<leader>ghr", function()
         gs.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
       end, "Reset Hunk")
       map("n", "<leader>gR", gs.reset_buffer, "Reset Buffer")
