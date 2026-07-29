@@ -43,7 +43,7 @@ map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<CR>==", { desc = "Mov
 
 -- === Paste without losing yank ===
 map("n", "x", '"_x', { desc = "Delete without yanking" })
-map({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete without yanking" })
+map({ "n", "v" }, "<leader>dd", '"_d', { desc = "Delete without yanking" })
 
 -- === Window navigation (C-h/j/k/l) ===
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -60,9 +60,6 @@ map("n", "<C-x>v", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
 map("n", "<C-x>s", "<cmd>split<CR>", { desc = "Split window horizontally" })
 map("n", "<C-x>o", "<C-w>o", { desc = "Keep only current window" })
 map("n", "<C-x>c", "<C-w>c", { desc = "Close window" })
-map("n", "<C-x>1", "<C-w>o", { desc = "Keep only current window" })
-map("n", "<C-x>2", "<cmd>vsplit<CR>", { desc = "Split window vertically" })
-map("n", "<C-x>3", "<cmd>split<CR>", { desc = "Split window horizontally" })
 map("n", "<C-x>q", "<C-w>q", { desc = "Quit window" })
 
 -- === Window splits (leader-based) ===
@@ -78,16 +75,11 @@ map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "New buffer" })
 -- === Go to middle of line ===
 map("n", "<leader>gm", "<cmd>normal! zz<CR>", { desc = "Go to middle" })
 
--- === Format buffer ===
-map("n", "<leader>f", function()
-  require("conform").format { timeout_ms = 500, lsp_fallback = true }
-end, { desc = "Format buffer" })
-
 -- === Global replace ===
-map("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Global replace word" })
+map("n", "<leader>sr", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Global replace word" })
 
 -- === Copy file path ===
-map("n", "<leader>fp", function()
+map("n", "<leader>fy", function()
   vim.fn.setreg("+", vim.fn.expand "%:p")
 end, { desc = "Copy file path" })
 
@@ -102,7 +94,7 @@ map("n", "<leader>bl", "<cmd>Gitsigns blame<CR>", { desc = "Git blame" })
 map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>", { desc = "Git toggle deleted" })
 
 -- === Toggle terminal ===
-map("n", "<leader>h", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+map("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- === Restart (reload config) ===

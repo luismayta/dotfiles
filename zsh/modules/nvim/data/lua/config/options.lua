@@ -30,6 +30,7 @@ opt.hlsearch = true
 
 -- UI
 opt.scrolloff = 8
+opt.timeoutlen = 300
 opt.updatetime = 50
 opt.mouse = "a"
 opt.mousemoveevent = true
