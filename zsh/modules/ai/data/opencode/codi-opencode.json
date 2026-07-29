@@ -55,12 +55,7 @@
         "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/qwen3.5-plus"],
-        "opencode": [
-          "opencode/ling-3.0-flash-free",
-          "opencode/big-pickle",
-          "opencode/mimo-v2.5-free",
-          "opencode/deepseek-v4-flash-free"
-        ],
+        "opencode": ["opencode/big-pickle", "opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.4"],
@@ -150,7 +145,7 @@
         "custom": ["opencode/deepseek-v4-flash-free", "google/gemini-3-flash-preview"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.5-plus", "opencode-go/minimax-m2.5"],
-        "opencode": ["opencode/big-pickle", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
+        "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
