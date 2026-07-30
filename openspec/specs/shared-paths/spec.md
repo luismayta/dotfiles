@@ -20,8 +20,8 @@ The shared paths layer SHALL provide functions for appending, prepending, and cl
 - **THEN** the output SHALL be `/usr/bin:/usr/local/bin` (duplicates removed)
 
 ### Requirement: Standard directory variables
-The shared paths layer SHALL export standard directory environment variables in `zsh/core/config/paths.zsh`:
-- `DOTFILES_CORE_DIR` set to `${DOTFILES_ZSH_DIR}/core`
+The shared paths layer SHALL export standard directory environment variables in `zsh/system/core/config/paths.zsh`:
+- `DOTFILES_CORE_DIR` set to `${DOTFILES_ZSH_DIR}/system/core`
 - `DOTFILES_MOD_DIR` set to `${DOTFILES_CORE_DIR}` (backward compat alias)
 - `DOTFILES_BACKUP_DIR` set to `${HOME}/.backup`
 - `DOTFILES_CACHE_DIR` set to `${HOME}/.cache/dotfiles`

@@ -1,18 +1,18 @@
 ## ADDED Requirements
 
 ### Requirement: Dotfiles core system loads correctly
-The zshrc SHALL source `zsh/core/main.zsh` via `DOTFILES_CORE_DIR` environment variable. The core system SHALL be available before any plugin or module loads.
+The zshrc SHALL source `zsh/system/core/main.zsh` via `DOTFILES_CORE_DIR` environment variable. The core system SHALL be available before any plugin or module loads.
 
 #### Scenario: Core is sourced from correct directory
 - **WHEN** `zsh/zshrc` is sourced
-- **THEN** it SHALL source `${DOTFILES_CORE_DIR}/main.zsh` where `DOTFILES_CORE_DIR="${DOTFILES_ZSH_DIR}/core"`
+- **THEN** it SHALL source `${DOTFILES_CORE_DIR}/main.zsh` where `DOTFILES_CORE_DIR="${DOTFILES_ZSH_DIR}/system/core"`
 - **AND** `DOTFILES_MOD_DIR` SHALL be exported as a backward-compatible alias for `DOTFILES_CORE_DIR`
 
 ### Requirement: path::clean detection uses zsh function syntax
 The zshrc SHALL use `(( $+functions[path::clean] ))` to detect if the `path::clean` function is loaded, instead of `type -p`.
 
 #### Scenario: path::clean detected after core loads
-- **WHEN** `zsh/core/main.zsh` has been sourced
+- **WHEN** `zsh/system/core/main.zsh` has been sourced
 - **THEN** `(( $+functions[path::clean] ))` SHALL return true
 
 #### Scenario: FPATH is cleaned, not PATH
@@ -39,3 +39,22 @@ The `zsh/zshrc` file SHALL use `#!/usr/bin/env zsh` as its shebang.
 #### Scenario: File starts with correct shebang
 - **WHEN** the first line of `zsh/zshrc` is read
 - **THEN** it SHALL equal `#!/usr/bin/env zsh`
+
+### Requirement: DOTFILES_SYSTEM_DIR is exported
+The zshrc SHALL export `DOTFILES_SYSTEM_DIR` pointing to `zsh/system/` so that system modules can be loaded before regular modules.
+
+#### Scenario: Variable available for system modules
+- **WHEN** `zshrc` finishes loading
+- **THEN** `DOTFILES_SYSTEM_DIR` SHALL equal `"${DOTFILES_ZSH_DIR}/system"`
+
+### Requirement: System modules load before regular modules
+The zshrc SHALL iterate `zsh/system/*/plugin.zsh` (excluding `core/`) after core and before `zsh/modules/*/plugin.zsh`, respecting `ZSH_DISABLED_MODULES`.
+
+#### Scenario: System plugins load after core
+- **WHEN** `zshrc` finishes loading core
+- **THEN** it SHALL iterate `zsh/system/*/plugin.zsh` (excluding `core/`)
+- **AND** only THEN iterate `zsh/modules/*/plugin.zsh`
+
+#### Scenario: Disabled system module skipped
+- **WHEN** `ZSH_DISABLED_MODULES` contains "nix"
+- **THEN** `zsh/system/nix/plugin.zsh` SHALL NOT be sourced

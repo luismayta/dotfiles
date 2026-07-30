@@ -2,7 +2,7 @@
 
 ### Requirement: Public API functions for system tool management
 
-The system SHALL provide a set of public API functions in `zsh/core/pkg/base.zsh` that delegate to internal implementations for installing, loading, and checking the existence of system tools.
+The system SHALL provide a set of public API functions in `zsh/system/core/pkg/base.zsh` that delegate to internal implementations for installing, loading, and checking the existence of system tools.
 
 #### Scenario: core::exists returns true for installed tool
 
@@ -21,7 +21,7 @@ The system SHALL provide a set of public API functions in `zsh/core/pkg/base.zsh
 
 ### Requirement: Message helper functions
 
-The system SHALL provide message helper functions in `zsh/core/pkg/base.zsh` that print colored output.
+The system SHALL provide message helper functions in `zsh/system/core/pkg/base.zsh` that print colored output.
 
 #### Scenario: message_info prints green info
 
@@ -54,7 +54,7 @@ The system SHALL provide `core::cargo::install` to install Rust-based tools.
 
 ### Requirement: Environment variable definitions
 
-The system SHALL define environment variables in `zsh/core/config/env.zsh` for android SDK paths and backup paths.
+The system SHALL define environment variables in `zsh/system/core/config/env.zsh` for android SDK paths, backup paths, and the `DOTFILES_CORE_PATH` location.
 
 #### Scenario: ANDROID_HOME is set
 
@@ -68,14 +68,29 @@ The system SHALL define environment variables in `zsh/core/config/env.zsh` for a
 
 ### Requirement: fd auto-install in core
 
-The `zsh/core/pkg/helper/core.zsh` SHALL auto-install `fd` via `core::install fd` if not already present, since `fd` is used by `FZF_CTRL_T_COMMAND`, `fa`, and `fo` functions.
+The `zsh/system/core/pkg/helper/core.zsh` SHALL auto-install `fd` via `core::install fd` if not already present, since `fd` is used by `FZF_CTRL_T_COMMAND`, `fa`, and `fo` functions.
 
 #### Scenario: fd auto-install on macOS
-- **WHEN** `zsh/core/pkg/helper/core.zsh` loads on macOS and `fd` is not installed
+- **WHEN** `zsh/system/core/pkg/helper/core.zsh` loads on macOS and `fd` is not installed
 - **THEN** `core::exists fd` returns false
 - **AND** `core::install fd` is invoked, which runs `brew install fd`
 
 #### Scenario: fd auto-install on Linux
-- **WHEN** `zsh/core/pkg/helper/core.zsh` loads on Linux (CachyOS/Arch) and `fd` is not installed
+- **WHEN** `zsh/system/core/pkg/helper/core.zsh` loads on Linux (CachyOS/Arch) and `fd` is not installed
 - **THEN** `core::exists fd` returns false
 - **AND** `core::install fd` is invoked, which runs `paru -S --noconfirm fd`
+
+### Requirement: Core API functions survive relocation
+All public API functions in `zsh/system/core/pkg/` SHALL remain at the same relative paths after the move to `zsh/system/`. The `core::*` and `message_*` function signatures SHALL NOT change.
+
+#### Scenario: Core functions available from new location
+- **WHEN** `zsh/system/core/main.zsh` is sourced from `zsh/system/core/`
+- **THEN** `core::exists`, `core::install`, `core::ensure`, `message_info`, `message_error`, `message_warning`, `message_success` SHALL all be available
+- **AND** their behavior SHALL be identical to before the move
+
+### Requirement: DOTFILES_CORE_PATH points to system/core
+The system SHALL define `DOTFILES_CORE_PATH` pointing to `zsh/system/core/`.
+
+#### Scenario: Variable reflects new location
+- **WHEN** `zshrc` is sourced
+- **THEN** `DOTFILES_CORE_PATH` SHALL equal `"${DOTFILES_ZSH_DIR}/system/core"`
