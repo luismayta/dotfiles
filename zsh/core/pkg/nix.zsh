@@ -12,5 +12,10 @@ core::nix::exists() {
 }
 
 core::nix::ensure() {
-  core::nix::exists || core::nix::install
+  if ! core::nix::exists; then
+    core::nix::install || {
+      core::message::error "Failed to ensure Nix installation"
+      return 1
+    }
+  fi
 }

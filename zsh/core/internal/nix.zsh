@@ -26,4 +26,10 @@ core::internal::nix::install() {
       return 1
       ;;
   esac
+
+  # Verify installation succeeded
+  if ! core::internal::nix::exists; then
+    core::internal::message::error "Nix installation failed. Please install manually: https://nixos.org/download"
+    return 1
+  fi
 }
