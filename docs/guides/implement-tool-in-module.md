@@ -429,7 +429,7 @@ export DEVOPS_TOOLS=(
 ### Load the Module
 
 ```zsh
-source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
+source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 ```
 
 Expected: No errors, tool loads silently.
@@ -451,7 +451,7 @@ If the tool is not installed, loading the module should trigger installation:
 ```zsh
 # Remove tool temporarily (if safe)
 # Then reload:
-source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
+source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 # → Should see: [INFO]: Installing <tool>
 ```
 
@@ -515,4 +515,4 @@ source zsh/core/main.zsh && source zsh/modules/devops/plugin.zsh
 - **noti implementation**: `zsh/modules/notify/config/adapter/noti.zsh`, `internal/adapter/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
 - **AI module**: `zsh/modules/ai/` (aggregate sync example via `ai::sync`)
 - **Existing guide**: `docs/guides/create-module.md` (for creating new modules)
-- **Core utilities**: `zsh/core/` (message_*, core::exists, path::prepend)
+- **Core utilities**: `zsh/system/core/` (message_*, core::exists, path::prepend)

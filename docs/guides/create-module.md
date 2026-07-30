@@ -54,7 +54,7 @@ plugin.zsh
 
 ## Core Reuse (What You Get for Free)
 
-Before writing any module code, know what `zsh/core/` already provides. **Never reimplement these.**
+Before writing any module code, know what `zsh/system/core/` already provides. **Never reimplement these.**
 
 ### Messaging — no `echo`, no `printf`
 
@@ -76,7 +76,7 @@ core::install ripgrep      # → force install via package manager
 core::cargo::install eza   # → install via cargo
 ```
 
-`core::ensure` is the idiomatic one-liner for "make sure this tool is available". It calls `core::exists` + `core::install` internally. The install mechanism is already handled per-platform by `zsh/core/internal/{linux,osx}.zsh` (uses `paru` on Arch, `brew` on macOS).
+`core::ensure` is the idiomatic one-liner for "make sure this tool is available". It calls `core::exists` + `core::install` internally. The install mechanism is already handled per-platform by `zsh/system/core/internal/{linux,osx}.zsh` (uses `paru` on Arch, `brew` on macOS).
 
 ### Examples
 
@@ -688,7 +688,7 @@ See the **[Docker module](/zsh/modules/docker/)** for a complete production exam
 ### Load the module
 
 ```zsh
-source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh
+source zsh/system/core/main.zsh && source zsh/modules/<name>/plugin.zsh
 ```
 
 Expected: `[INFO]: Loading module: <name>` (once).
@@ -696,7 +696,7 @@ Expected: `[INFO]: Loading module: <name>` (once).
 ### Verify the guard
 
 ```zsh
-source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh && source zsh/modules/<name>/plugin.zsh
+source zsh/system/core/main.zsh && source zsh/modules/<name>/plugin.zsh && source zsh/modules/<name>/plugin.zsh
 ```
 
 The loading message appears only once — the second `source` is a no-op.
@@ -704,7 +704,7 @@ The loading message appears only once — the second `source` is a no-op.
 ### Verify public functions
 
 ```zsh
-source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh
+source zsh/system/core/main.zsh && source zsh/modules/<name>/plugin.zsh
 type <name>::install    # → "function"
 type <name>::setup      # → "function"
 ```
@@ -761,15 +761,15 @@ feat ✨ (zsh): HAD-61 add zed module with install config sync and setup
 - [ ] All strings use `${ZSH_<NAME>_PACKAGE_NAME}` interpolation (no hardcoded names)
 - [ ] All output uses `message_*` functions (no `echo`, no `printf`)
 - [ ] Uses `core::exists` / `core::ensure` (no `which`, no `command -v`)
-- [ ] Module loads: `source zsh/core/main.zsh && source zsh/modules/<name>/plugin.zsh`
+- [ ] Module loads: `source zsh/system/core/main.zsh && source zsh/modules/<name>/plugin.zsh`
 - [ ] Guard prevents double-loading
 - [ ] Public API responds: `type <name>::install`, `type <name>::setup`
 - [ ] `render` function for gomplate-based config generation (if config has secrets)
 
 ### Never
 
-- [ ] No `core::install` reimplementations — `zsh/core/` handles this per-platform
-- [ ] No `message_*` reimplementations — use `zsh/core/pkg/base.zsh`
+- [ ] No `core::install` reimplementations — `zsh/system/core/` handles this per-platform
+- [ ] No `message_*` reimplementations — use `zsh/system/core/pkg/base.zsh`
 - [ ] No `core::exists` wrappers — call `core::exists <name>` directly
 
 ---
