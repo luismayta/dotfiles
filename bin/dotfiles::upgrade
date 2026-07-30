@@ -2,7 +2,8 @@
 
 # Source core framework to make core/message functions available
 DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/.dotfiles}"
-source "${DOTFILES_DIR}/zsh/core/main.zsh"
+DOTFILES_CORE_PATH="${DOTFILES_DIR}/zsh/system/core"
+source "${DOTFILES_CORE_PATH}/main.zsh"
 
 message_info "Upgrade for dotfiles"
 cd "${DOTFILES_DIR}" && git pull origin main && cd - || return
