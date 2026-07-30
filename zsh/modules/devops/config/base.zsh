@@ -38,8 +38,8 @@ export DEVOPS_K9S_FILE_SETTINGS="${DEVOPS_K9S_CONF_PATH}"/config.yml
 # Kubectl configuration
 export DEVOPS_KUBECTL_PACKAGE_NAME=kubectl
 export DEVOPS_KUBECTL_MESSAGE_GO_NOT_FOUND="Please install Go or use antibody bundle hadenlabs/zsh-goenv"
-# NOTE: LOCAL_PATH_BIN is provided by zsh/core/config/paths.zsh
-# NOTE: EDITOR is provided by zsh/core/config/env.zsh
+# NOTE: LOCAL_PATH_BIN is provided by zsh/system/core/config/paths.zsh
+# NOTE: EDITOR is provided by zsh/system/core/config/env.zsh
 
 export KREW_ROOT="${HOME}/.krew"
 export KREW_ROOT_BIN="${KREW_ROOT}/bin"
