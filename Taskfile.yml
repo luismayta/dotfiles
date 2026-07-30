@@ -14,8 +14,8 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/python/Taskfile.yml"
   uv:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/uv/Taskfile.yml"
-  pnpm:
-    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/pnpm/Taskfile.yml"
+  bun:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/bun/Taskfile.yml"
   go:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/go/Taskfile.yml"
   gradle:
@@ -36,8 +36,6 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/ai/Taskfile.yml"
   biome:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/biomejs/Taskfile.yml"
-  bun:
-    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/bun/Taskfile.yml"
   skills:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/skills/Taskfile.yml"
   plantuml:
@@ -163,16 +161,16 @@ vars:
   ORGANIZATION: luismayta
   DOCKER_PLATFORM: linux/amd64
   REVIEWERS: luismayta
-  PYTHON_VERSION: 3.11
-  NODE_VERSION: v24
+  PYTHON_VERSION: 3.11.5
+  NODE_VERSION: v24.18.1
   GRADLE_VERSION: 8.4.0
-  GOLANG_VERSION: 1.24
+  GOLANG_VERSION: 1.25
   GIT_IGNORES: python,node,go,zsh,sonar,java,maven,intellij+all,terraform,linux
   COMMIT: $(git rev-parse HEAD)
   RELEASE_DIR: ./release
   DATE: $(date +%s)
   GOLANGCI_VERSION: 1.42.0
-  TERRAFORM_VERSION: 1.11
+  TERRAFORM_VERSION: 1.15.8
   README_FILE: README.md
   # NOTE: Agent workflow conventions live in `codi.toml`.
   GIT_IGNORES_CUSTOM: |

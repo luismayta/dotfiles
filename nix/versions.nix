@@ -13,11 +13,11 @@ rec {
   pythonVersion = "3.11";
 
   nodejs = pkgs.nodejs_24;
-  nodeVersion = "24";
+  nodeVersion = "24.18.1";
 
   go = pkgs.go;
-  goVersion = "1.24";
+  goVersion = "1.25";
 
   terraform = pkgs.terraform;
-  terraformVersion = "1.11";
+  terraformVersion = "1.15.8";
 }
