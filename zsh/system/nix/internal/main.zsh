@@ -17,6 +17,3 @@ esac
 # Ensure Nix is available
 nix::internal::nix::install
 
-# shellcheck source=/dev/null
-source "${ZSH_NIX_PATH}"/internal/direnv.zsh
-nix::internal::direnv::setup

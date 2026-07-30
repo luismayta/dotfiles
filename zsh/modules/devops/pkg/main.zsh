@@ -48,3 +48,6 @@ source "${DEVOPS_PATH}/pkg/bruno.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/worktrunk.zsh"
+
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/direnv.zsh"
