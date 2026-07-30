@@ -19,6 +19,3 @@ source "${ZSH_NIX_PATH}"/pkg/alias.zsh
 
 # shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/pkg/helper.zsh
-
-# shellcheck source=/dev/null
-source "${ZSH_NIX_PATH}"/pkg/scaffold.zsh

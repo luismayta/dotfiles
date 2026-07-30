@@ -1,21 +1,21 @@
 # shellcheck shell=bash
 # Public API: Nix module
 
-nix::install() {
+function nix::install {
   core::nix::ensure
 }
 
-nix::channel::set() {
+function nix::channel::set {
   local channel="${1:-nixpkgs}"
   nix-channel --add "https://nixos.org/channels/${channel}" "${channel}"
   nix-channel --update
 }
 
-nix::channel::list() {
+function nix::channel::list {
   nix-channel --list
 }
 
-nix::gc() {
+function nix::gc {
   message_info "This will remove ALL unused nix store items (garbage collect)"
   message_warning "Are you sure? (y/N): "
   read -r confirmation
@@ -27,14 +27,14 @@ nix::gc() {
   fi
 }
 
-nix::build() {
+function nix::build {
   nix develop --command true
 }
 
-nix::develop() {
+function nix::develop {
   nix develop --command zsh
 }
 
-nix::sync() {
+function nix::sync {
     nix::internal::config::sync
 }
