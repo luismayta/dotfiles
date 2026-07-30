@@ -8,6 +8,3 @@ nix::internal::linux::sync::nix_conf() {
 
   rsync -avzh --quiet "${NIX_CONF_SOURCE}" "${NIX_CONF_TARGET}"
 }
-
-# Auto-sync at load time
-nix::internal::linux::sync::nix_conf
