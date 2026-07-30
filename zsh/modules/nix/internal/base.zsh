@@ -7,5 +7,5 @@ nix::internal::nix::install() {
 
 # nix::internal::config::sync — sync config files to home
 nix::internal::config::sync() {
-    rsync -avzh --progress "${NIX_DATA_PATH}/sync/" "${HOME}/"
+    rsync -avzh --quiet "${NIX_DATA_PATH}/sync/" "${HOME}/"
 }

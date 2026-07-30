@@ -1,2 +1,13 @@
 # shellcheck shell=bash
-# Linux-specific Nix internals (placeholder)
+# Linux-specific Nix internals — nix.conf sync
+
+nix::internal::linux::sync::nix_conf() {
+  if [[ ! -d "${NIX_CONF_DIR}" ]]; then
+    mkdir -p "${NIX_CONF_DIR}"
+  fi
+
+  rsync -avzh --quiet "${NIX_CONF_SOURCE}" "${NIX_CONF_TARGET}"
+}
+
+# Auto-sync at load time
+nix::internal::linux::sync::nix_conf

@@ -16,15 +16,23 @@ nix::channel::list() {
 }
 
 nix::gc() {
-  nix-collect-garbage -d
+  message_info "This will remove ALL unused nix store items (garbage collect)"
+  message_warning "Are you sure? (y/N): "
+  read -r confirmation
+  if [[ "${confirmation}" =~ ^[Yy]$ ]]; then
+    nix-collect-garbage -d
+    message_success "Garbage collection completed"
+  else
+    message_info "Garbage collection cancelled"
+  fi
 }
 
 nix::build() {
-  nix --extra-experimental-features "nix-command flakes" develop --command true
+  nix develop --command true
 }
 
 nix::develop() {
-  nix --extra-experimental-features "nix-command flakes" develop --command zsh
+  nix develop --command zsh
 }
 
 nix::sync() {
