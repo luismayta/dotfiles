@@ -98,9 +98,9 @@ includes:
   module-mpd:
     taskfile: ./zsh/modules/mpd/Taskfile.yml
   module-nix:
-    taskfile: ./zsh/modules/nix/Taskfile.yml
+    taskfile: ./zsh/system/nix/Taskfile.yml
   module-nix-darwin:
-    taskfile: ./zsh/modules/nix-darwin/Taskfile.yml
+    taskfile: ./zsh/system/nix-darwin/Taskfile.yml
   module-nodejs:
     taskfile: ./zsh/modules/nodejs/Taskfile.yml
   module-notify:

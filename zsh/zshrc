@@ -11,7 +11,8 @@ export DOTFILES="${HOME}/.dotfiles"
 export DOTFILES_DIR="${DOTFILES}"
 export DOTFILES_BIN="${DOTFILES}/bin"
 export DOTFILES_ZSH_DIR="${DOTFILES_DIR}/zsh"
-export DOTFILES_CORE_PATH="${DOTFILES_ZSH_DIR}/core"
+export DOTFILES_CORE_PATH="${DOTFILES_ZSH_DIR}/system/core"
+export DOTFILES_SYSTEM_DIR="${DOTFILES_ZSH_DIR}/system"
 
 autoload -Uz compinit add-zsh-hook is-at-least
 
@@ -20,6 +21,24 @@ autoload -Uz compinit add-zsh-hook is-at-least
 
 # shellcheck source=/dev/null
 [ -e "${DOTFILES_CORE_PATH}/main.zsh" ] && source "${DOTFILES_CORE_PATH}/main.zsh"
+
+# Load system modules from system/ directory (excluding core — loaded via main.zsh)
+# To disable a system module, set ZSH_DISABLED_MODULES in ~/.customrc
+for __module_dir in "${DOTFILES_SYSTEM_DIR}"/*(/N); do
+  __module_name="${__module_dir:t}"
+  # Skip core (loaded via main.zsh above)
+  if [[ "${__module_name}" == "core" ]]; then
+    continue
+  fi
+  if [ -e "${__module_dir}/plugin.zsh" ]; then
+    # Respect ZSH_DISABLED_MODULES (space or comma separated)
+    if [[ -n "${ZSH_DISABLED_MODULES:-}" ]] && [[ ",${ZSH_DISABLED_MODULES// /,}," == *",${__module_name},"* ]]; then
+      continue
+    fi
+    source "${__module_dir}/plugin.zsh"
+  fi
+done
+unset __module_name __module_dir
 
 # Bootstrap customrc from example template if not present
 if [[ ! -e "${CUSTOMRC:-${HOME}/.customrc}" ]] && [[ -e "${DOTFILES_DIR}/.customrc.example" ]]; then

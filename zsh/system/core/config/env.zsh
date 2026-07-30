@@ -8,7 +8,7 @@ export CORE_MESSAGE_PARU="Please install paru or use the paru module at zsh/modu
 export CORE_MESSAGE_RUST="Please install rust or use the rust module at zsh/modules/rust"
 export CORE_MESSAGE_CARGO="Please install cargo or use the rust module at zsh/modules/rust"
 export CORE_MESSAGE_RVM="Please install rvm or use the rvm module at zsh/modules/rvm"
-export CORE_MESSAGE_NIX="Please install nix or use the nix module at zsh/modules/nix"
+export CORE_MESSAGE_NIX="Please install nix or use the nix module at zsh/system/nix"
 export CORE_MESSAGE_PYTHON="Please install pyenv or use the python module at zsh/modules/python"
 export CORE_PROJECTS_BACKUP_PATH="${HOME}/backup"
 
