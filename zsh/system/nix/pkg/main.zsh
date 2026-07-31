@@ -15,6 +15,9 @@ case "${OSTYPE}" in
 esac
 
 # shellcheck source=/dev/null
+source "${ZSH_NIX_PATH}"/pkg/direnv.zsh
+
+# shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/pkg/alias.zsh
 
 # shellcheck source=/dev/null

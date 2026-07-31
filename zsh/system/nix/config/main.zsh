@@ -3,6 +3,9 @@
 # shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/config/base.zsh
 
+# shellcheck source=/dev/null
+source "${ZSH_NIX_PATH}"/config/direnv.zsh
+
 case "${OSTYPE}" in
   darwin*)
     # shellcheck source=/dev/null

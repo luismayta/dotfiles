@@ -14,6 +14,9 @@ case "${OSTYPE}" in
     ;;
 esac
 
+# shellcheck source=/dev/null
+source "${ZSH_NIX_PATH}"/internal/direnv.zsh
+
 # Ensure Nix is available
 nix::internal::nix::install
 

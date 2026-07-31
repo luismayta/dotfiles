@@ -8,4 +8,5 @@ function nix::internal::nix::install {
 # nix::internal::config::sync — sync config files to home
 function nix::internal::config::sync {
     rsync -avzh --quiet "${NIX_DATA_PATH}/nix/" "${NIX_CONF_DIR}/"
+    nix::direnv::internal::sync
 }
