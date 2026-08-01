@@ -9,7 +9,7 @@ function github::internal::main::factory {
 
 function github::internal::install_completions {
     message_info "Installing ${ZSH_GITHUB_PACKAGE_NAME} completions"
-    gh completion -s zsh > "${ZSH_GITHUB_DATA_PATH}/completions.zsh"
+    gh completion -s zsh > "${ZSH_GITHUB_CONF_PATH}/completions.zsh"
     message_success "Installed ${ZSH_GITHUB_PACKAGE_NAME} completions"
 }
 
@@ -32,9 +32,9 @@ function github::internal::extensions::install {
 }
 
 function github::internal::load {
-    if [[ -f "${ZSH_GITHUB_DATA_PATH}/completions.zsh" ]]; then
+    if [[ -f "${ZSH_GITHUB_CONF_PATH}/completions.zsh" ]]; then
         # shellcheck source=/dev/null
-        source "${ZSH_GITHUB_DATA_PATH}/completions.zsh"
+        source "${ZSH_GITHUB_CONF_PATH}/completions.zsh"
     fi
 }
 
