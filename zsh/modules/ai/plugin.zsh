@@ -15,19 +15,19 @@
 __ZSH_AI_LOADED=1
 
 # Module root path — used by all sourced sub-files
-AI_PATH="$(dirname "${0}")"
+ZSH_AI_PATH="$(dirname "${0}")"
 
 message_info "Loading module: ai"
 
 # shellcheck source=/dev/null
-source "${AI_PATH}/config/main.zsh"
+source "${ZSH_AI_PATH}/config/main.zsh"
 $ZSH_AI_ENABLED || return
 
 # shellcheck source=/dev/null
-source "${AI_PATH}/internal/main.zsh"
+source "${ZSH_AI_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
-source "${AI_PATH}/pkg/main.zsh"
+source "${ZSH_AI_PATH}/pkg/main.zsh"
 
 # Auto-install guards (must be after pkg/main.zsh so ai::install exists)
 if ! core::exists rsync; then core::install rsync; fi

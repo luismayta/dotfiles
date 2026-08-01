@@ -3,7 +3,7 @@
 # === PATH Loading ===
 
 function ai::internal::graphify::load {
-    [ -e "${AI_GRAPHIFY_BIN_PATH}/graphify" ] && export PATH="${AI_GRAPHIFY_BIN_PATH}:${PATH}"
+    [ -e "${ZSH_AI_GRAPHIFY_BIN_PATH}/graphify" ] && export PATH="${ZSH_AI_GRAPHIFY_BIN_PATH}:${PATH}"
 }
 
 # === Tool Install ===

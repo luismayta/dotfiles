@@ -3,7 +3,7 @@
 # === PATH Loading ===
 
 function ai::internal::skills::load {
-    [ -e "${AI_SKILLS_BIN_PATH}" ] && export PATH="${AI_SKILLS_BIN_PATH}:${PATH}"
+    [ -e "${ZSH_AI_SKILLS_BIN_PATH}" ] && export PATH="${ZSH_AI_SKILLS_BIN_PATH}:${PATH}"
 }
 
 # === Skills Install ===
@@ -14,7 +14,7 @@ function ai::internal::skills::install {
     fi
 
     message_info "Installing skills CLI..."
-    if curl -fsSL "${AI_INSTALL_URL_SKILLS}" | bash; then
+    if curl -fsSL "${ZSH_AI_INSTALL_URL_SKILLS}" | bash; then
         message_success "skills CLI installed successfully"
     else
         message_error "Failed to install skills CLI"
@@ -111,12 +111,12 @@ function ai::internal::skills::publish {
 # === Skills Helpers ===
 
 # Resolve the variable name for a repo's skills
-# e.g., "vercel-labs/agent-skills" -> "AI_SKILLS_VERCEL"
+# e.g., "vercel-labs/agent-skills" -> "ZSH_AI_SKILLS_VERCEL"
 # shellcheck disable=SC2034,SC2296 # zsh parameter flags (U) not supported by shellcheck
 function ai::internal::skills::_repo_var {
     local repo="$1"
     local short="${repo##*/}"
-    echo "AI_SKILLS_${(U)short}"
+    echo "ZSH_AI_SKILLS_${(U)short}"
 }
 
 # Install all skills from a single repo in one CLI call
@@ -159,7 +159,7 @@ function ai::internal::skills::setup {
 
     message_info "Installing default skills globally for opencode and pi..."
 
-    for repo in "${AI_SKILLS_REPOS[@]}"; do
+    for repo in "${ZSH_AI_SKILLS_REPOS[@]}"; do
         if ai::internal::skills::_install_repo "$repo"; then
             ((success++))
         else

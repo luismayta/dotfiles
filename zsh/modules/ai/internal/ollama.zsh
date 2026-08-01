@@ -8,7 +8,7 @@ function ai::internal::ollama::install {
     fi
 
     message_info "Installing ollama..."
-    if curl -fsSL "${AI_INSTALL_URL_OLLAMA}" | sh; then
+    if curl -fsSL "${ZSH_AI_INSTALL_URL_OLLAMA}" | sh; then
         message_success "ollama installed successfully"
     else
         message_error "Failed to install ollama"
@@ -51,7 +51,7 @@ function ai::internal::ollama::models::install {
     fi
 
     message_info "Installing default ollama models..."
-    for model in "${AI_OLLAMA_MODELS[@]}"; do
+    for model in "${ZSH_AI_OLLAMA_MODELS[@]}"; do
         message_info "Pulling model: ${model}..."
         ollama pull "${model}"
     done

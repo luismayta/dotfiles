@@ -18,8 +18,8 @@ function ai::hunk::daemon::start {
 }
 
 function ai::hunk::config::sync {
-    local src="${AI_PATH}/data/hunk/config.toml"
-    local dst="${AI_HUNK_CONFIG_PATH}/config.toml"
+    local src="${ZSH_AI_PATH}/data/hunk/config.toml"
+    local dst="${ZSH_AI_HUNK_CONFIG_PATH}/config.toml"
     if [[ -f "$src" ]]; then
         mkdir -p "$(dirname "$dst")"
         cp "$src" "$dst"

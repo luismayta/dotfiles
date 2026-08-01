@@ -8,7 +8,7 @@ function ai::internal::fabric::install {
     fi
 
     message_info "Installing fabric..."
-    if curl -fsSL "${AI_INSTALL_URL_FABRIC}" | bash; then
+    if curl -fsSL "${ZSH_AI_INSTALL_URL_FABRIC}" | bash; then
         message_success "fabric installed successfully"
     else
         message_error "Failed to install fabric"
@@ -19,16 +19,16 @@ function ai::internal::fabric::install {
 # === Fabric Patterns ===
 
 function ai::internal::fabric::patterns::sync {
-    if [[ ! -d "${AI_FABRIC_PATTERNS_SYNC_SOURCE}" ]]; then
-        message_warning "Patterns source directory not found: ${AI_FABRIC_PATTERNS_SYNC_SOURCE}"
+    if [[ ! -d "${ZSH_AI_FABRIC_PATTERNS_SYNC_SOURCE}" ]]; then
+        message_warning "Patterns source directory not found: ${ZSH_AI_FABRIC_PATTERNS_SYNC_SOURCE}"
         return 1
     fi
 
-    message_info "Syncing patterns from ${AI_FABRIC_PATTERNS_SYNC_SOURCE} to ${AI_FABRIC_PATTERNS_PATH}..."
+    message_info "Syncing patterns from ${ZSH_AI_FABRIC_PATTERNS_SYNC_SOURCE} to ${ZSH_AI_FABRIC_PATTERNS_PATH}..."
 
-    mkdir -p "${AI_FABRIC_PATTERNS_PATH}"
+    mkdir -p "${ZSH_AI_FABRIC_PATTERNS_PATH}"
 
-    if rsync -av --delete "${AI_FABRIC_PATTERNS_SYNC_SOURCE}/" "${AI_FABRIC_PATTERNS_PATH}/"; then
+    if rsync -av --delete "${ZSH_AI_FABRIC_PATTERNS_SYNC_SOURCE}/" "${ZSH_AI_FABRIC_PATTERNS_PATH}/"; then
         message_success "Patterns synced successfully"
     else
         message_error "Failed to sync patterns"

@@ -5,7 +5,7 @@ function editopencode {
         message_warning "it's necessary the var EDITOR"
         return
     fi
-    "${EDITOR}" "${AI_OPENCODE_CONFIG_FILE_PATH}"
+    "${EDITOR}" "${ZSH_AI_OPENCODE_CONFIG_FILE_PATH}"
 }
 
 function ai::opencode::install {

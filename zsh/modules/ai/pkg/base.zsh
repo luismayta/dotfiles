@@ -5,8 +5,8 @@ function ai::install {
 }
 
 function ai::post_install {
-  message_info "Post Install ${AI_PACKAGE_NAME}"
-  message_success "Success Install ${AI_PACKAGE_NAME}"
+  message_info "Post Install ${ZSH_AI_PACKAGE_NAME}"
+  message_success "Success Install ${ZSH_AI_PACKAGE_NAME}"
 }
 
 function ai::upgrade {
@@ -15,4 +15,11 @@ function ai::upgrade {
 
 function ai::packages::install {
   ai::internal::packages::install
+}
+
+function ai::sync {
+  ai::opencode::sync
+  ai::fabric::patterns::sync
+  ai::hunk::config::sync
+  ai::pi::config::sync
 }
