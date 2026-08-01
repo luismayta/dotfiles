@@ -9,10 +9,6 @@ function initialize_prereqs() {
   unset app
 }
 
-function install_apps() {
-  dotfiles_install_apps
-}
-
 function deploy_configs() {
   cp_file "${ZSH_PATH}/zshrc" "${HOME}/.zshrc"
   cp_file "${ZSH_PATH}/zshenv" "${HOME}/.zshenv"
@@ -29,7 +25,6 @@ function sync_extras() {
 
 function initialize() {
   initialize_prereqs
-  install_apps
   deploy_configs
   deploy_core_data
   sync_extras
@@ -61,13 +56,6 @@ function cp_file() {
     ret="$?"
     msg::success "$message $1 to $2"
   fi
-}
-
-function dotfiles_install_apps() {
-  for app in "${APPS[@]}"; do
-    "${TOOLS_PATH}/${app}/install.sh"
-  done
-  unset app
 }
 
 function replace_files() {

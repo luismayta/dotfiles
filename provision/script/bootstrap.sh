@@ -10,7 +10,6 @@ ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 export PATH_REPO="${HOME}/.${PROJECT_NAME}"
 export SCRIPT_PATH="${PATH_REPO}/provision/script"
 export ZSH_PATH="${PATH_REPO}/zsh"
-export TOOLS_PATH="${PATH_REPO}/tools"
 export PATH_BACKUP="${HOME}/backup"
 
 export PATH_FONTS_REPO="${PATH_REPO}/provision/fonts"

@@ -4,10 +4,6 @@
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
 export GIT_BRANCH='main'
 
-export APPS=(
-    "antidote"
-)
-
 export URL_WAKATIME_BASH="https://raw.githubusercontent.com/API-PLUGIN-RESSOURCES/bash-wakatime/master/bash-wakatime.sh"
 
 export GRIP_PORT=6430
