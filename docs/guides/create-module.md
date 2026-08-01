@@ -668,7 +668,7 @@ See the **[Docker module](/zsh/modules/docker/)** for a complete production exam
 | Data path | `ZSH_<NAME>_DATA_PATH` | `ZSH_ZED_DATA_PATH` |
 | Package name | `ZSH_<NAME>_PACKAGE_NAME` | `ZSH_HERDR_PACKAGE_NAME` |
 | Install URL | `ZSH_<NAME>_INSTALL_URL` | `ZSH_HERDR_INSTALL_URL` |
-| Config path | `ZSH_<NAME>_CONFIG_PATH` | `ZSH_HERDR_CONFIG_DIR` |
+| Config path | `ZSH_<NAME>_CONFIG_PATH` | `ZSH_HERDR_CONFIG_PATH` |
 | Backward-compat alias | `<NAME>_PACKAGE_NAME="${ZSH_<NAME>_PACKAGE_NAME}"` | `HERDR_PACKAGE_NAME="${ZSH_HERDR_PACKAGE_NAME}"` |
 | Clipboard copy | `ZSH_<NAME>_CLIPBOARD_COPY_CMD` | `ZSH_HERDR_CLIPBOARD_COPY_CMD` |
 | Clipboard paste | `ZSH_<NAME>_CLIPBOARD_PASTE_CMD` | `ZSH_HERDR_CLIPBOARD_PASTE_CMD` |

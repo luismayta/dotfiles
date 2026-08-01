@@ -15,7 +15,7 @@ The devops module SHALL provide a sync command that rsyncs bundled k9s YAML conf
 
 #### Scenario: sync k9s configuration
 - **WHEN** user runs devops::k9s::sync
-- **THEN** conf/k9s/ SHALL be rsynced to DEVOPS_K9S_CONF_DIR
+- **THEN** conf/k9s/ SHALL be rsynced to DEVOPS_K9S_CONF_PATH
 
 ### Requirement: k9s configuration files
 The devops module SHALL bundle default k9s configuration files (config.yml, alias.yml, plugin.yml) under conf/k9s/.

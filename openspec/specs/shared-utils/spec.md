@@ -9,7 +9,7 @@ The shared utils layer SHALL provide editor-related helper functions sourced via
 
 #### Scenario: editrc opens core file with argument
 - **WHEN** `editrc aliases` is called
-- **THEN** it SHALL open `${DOTFILES_CORE_DIR}/aliases.zsh` in the current `$EDITOR`
+- **THEN** it SHALL open `${DOTFILES_CORE_PATH}/aliases.zsh` in the current `$EDITOR`
 
 #### Scenario: editprivaterc opens privaterc
 - **WHEN** `editprivaterc` is called and `$PRIVATERC` is set
@@ -34,8 +34,8 @@ The shared utils layer SHALL provide a `reload` function that restarts the shell
 The shared utils layer SHALL provide a `backup` function for timestamped file backups.
 
 #### Scenario: backup creates timestamped copy
-- **WHEN** `backup ~/.zshrc` is called and `$DOTFILES_BACKUP_DIR` exists
-- **THEN** it SHALL create a copy of `~/.zshrc` at `${DOTFILES_BACKUP_DIR}/<YYYYMMDD>/.zshrc`
+- **WHEN** `backup ~/.zshrc` is called and `$DOTFILES_BACKUP_PATH` exists
+- **THEN** it SHALL create a copy of `~/.zshrc` at `${DOTFILES_BACKUP_PATH}/<YYYYMMDD>/.zshrc`
 
 #### Scenario: backup warns if no argument
 - **WHEN** `backup` is called without arguments
