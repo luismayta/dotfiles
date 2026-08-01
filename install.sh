@@ -39,13 +39,104 @@ function setup::factory {
   esac
 }
 
+function is_apt_distro {
+  local id="" id_like=""
+  if [[ -f /etc/os-release ]]; then
+    # shellcheck source=/dev/null
+    . /etc/os-release
+    id="${ID:-}"
+    id_like="${ID_LIKE:-}"
+  fi
+  [[ "${id}" == "ubuntu" || "${id}" == "debian" || "${id_like}" == *"ubuntu"* || "${id_like}" == *"debian"* ]]
+}
+
+function is_paru_distro {
+  local id="" id_like=""
+  if [[ -f /etc/os-release ]]; then
+    # shellcheck source=/dev/null
+    . /etc/os-release
+    id="${ID:-}"
+    id_like="${ID_LIKE:-}"
+  fi
+  [[ "${id}" == "arch" || "${id}" == "cachyos" || "${id_like}" == *"arch"* ]]
+}
+
+function install_paru {
+  if type -p paru >/dev/null 2>&1; then
+    msg::success "paru already installed"
+    return 0
+  fi
+  msg::info "Installing paru from AUR..."
+  sudo pacman -S --needed --noconfirm base-devel git
+  if [[ ! -d "/tmp/paru-build" ]]; then
+    git clone https://aur.archlinux.org/paru.git "/tmp/paru-build"
+  fi
+  (cd "/tmp/paru-build" && makepkg -si --noconfirm)
+}
+
+function install_apt_packages {
+  local pkg=""
+  sudo -v
+  for pkg in "${PACKAGES_COMMON[@]}" "${PACKAGES_APT[@]}"; do
+    if dpkg -s "${pkg}" >/dev/null 2>&1; then
+      msg::success "${pkg} already installed, skipping"
+    else
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${pkg}"
+    fi
+  done
+  unset pkg
+}
+
+function setup::packages::apt_repos {
+  local repo=""
+  local repo_guard=""
+  [[ ${#PACKAGES_APT_REPOS[@]} -eq 0 ]] && return 0
+
+  if ! dpkg -s software-properties-common >/dev/null 2>&1; then
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
+  fi
+
+  for repo in "${PACKAGES_APT_REPOS[@]}"; do
+    repo_guard="${repo}"
+    if [[ "${repo}" == ppa:* ]]; then
+      repo_guard="${repo#ppa:}"
+      repo_guard="${repo_guard//\//-}"
+      # shellcheck disable=SC2010 # glob no maneja filenames con no-alfanuméricos de PPAs
+      if ls /etc/apt/sources.list.d/ 2>/dev/null | grep -q "^${repo_guard}-"; then
+        msg::success "${repo} already configured, skipping"
+        continue
+      fi
+    elif grep -rhqF "${repo}" /etc/apt/sources.list /etc/apt/sources.list.d/ 2>/dev/null; then
+      msg::success "${repo} already configured, skipping"
+      continue
+    fi
+    sudo add-apt-repository -y "${repo}"
+  done
+  unset repo repo_guard
+  sudo apt-get update
+}
+
+function install_paru_packages {
+  local pkg=""
+  for pkg in "${PACKAGES_COMMON[@]}" "${PACKAGES_LINUX[@]}"; do
+    if paru -Q "${pkg}" >/dev/null 2>&1; then
+      msg::success "${pkg} already installed, skipping"
+    else
+      paru -S --noconfirm "${pkg}"
+    fi
+  done
+  unset pkg
+}
+
 function setup::packages::common {
   local os_name
   os_name=$(detect::os)
 
-  [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
-  # shellcheck source=/dev/null
-  source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
+  if [[ ! -v PACKAGES_COMMON ]]; then
+    [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
+    # shellcheck source=/dev/null
+    source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
+  fi
 
   case "$os_name" in
     "Darwin")
@@ -53,8 +144,14 @@ function setup::packages::common {
       brew install --cask "${PACKAGES_MAC[@]}"
       ;;
     "Linux")
-      paru -S --noconfirm "${PACKAGES_COMMON[@]}"
-      paru -S --noconfirm "${PACKAGES_LINUX[@]}"
+      if is_apt_distro; then
+        install_apt_packages
+      elif is_paru_distro; then
+        install_paru_packages
+      else
+        msg::error "Unsupported Linux distribution for package installation."
+        exit 1
+      fi
       ;;
   esac
 }
@@ -120,25 +217,33 @@ function setup::mac {
 }
 
 function setup::linux {
-  # Detect Arch-based distro
+  # Detect Linux distribution
+  local distro_id=""
   if [[ -f /etc/os-release ]]; then
     # shellcheck source=/dev/null
     . /etc/os-release
-    if [[ "${ID:-}" != "arch" && "${ID:-}" != "cachyos" && "${ID_LIKE:-}" != "arch" ]]; then
-      msg::error "Unsupported Linux distribution. Only Arch Linux (CachyOS) is supported."
-      exit 1
-    fi
+    distro_id="${ID:-}"
   else
     msg::error "Cannot detect Linux distribution (/etc/os-release not found)."
     exit 1
   fi
 
-  if ! type -p paru >/dev/null; then
-    sudo pacman -S --noconfirm paru
+  if [[ ! -v PACKAGES_COMMON ]]; then
+    [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
+    # shellcheck source=/dev/null
+    source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
+  fi
+
+  if is_apt_distro; then
+    setup::packages::apt_repos
+  elif is_paru_distro; then
+    install_paru
+  else
+    msg::error "Unsupported Linux distribution '${distro_id}'. Supported: Ubuntu/Debian (apt), Arch/CachyOS (paru)."
+    exit 1
   fi
 
   setup::packages::common
-
   setup::nix
 }
 
