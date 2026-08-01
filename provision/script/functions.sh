@@ -14,17 +14,17 @@ function install_apps() {
 }
 
 function deploy_configs() {
-  cp_file "${ZSH_DIR}/zshrc" "${HOME}/.zshrc"
-  cp_file "${ZSH_DIR}/zshenv" "${HOME}/.zshenv"
+  cp_file "${ZSH_PATH}/zshrc" "${HOME}/.zshrc"
+  cp_file "${ZSH_PATH}/zshenv" "${HOME}/.zshenv"
 }
 
 function deploy_core_data() {
-  rsync -avzh --progress "${ZSH_DIR}/core/data/." "${HOME}/"
+  rsync -avzh --progress "${ZSH_PATH}/core/data/." "${HOME}/"
 }
 
 function sync_extras() {
-  rsync -avzh --progress "${ROOT_DIR}/config/" "${HOME}/.config/"
-  rsync -avzh --progress "${ZSH_DIR}/core/data/Library/" "${HOME}/Library/"
+  rsync -avzh --progress "${ROOT_PATH}/config/" "${HOME}/.config/"
+  rsync -avzh --progress "${ZSH_PATH}/core/data/Library/" "${HOME}/Library/"
 }
 
 function initialize() {
@@ -65,7 +65,7 @@ function cp_file() {
 
 function dotfiles_install_apps() {
   for app in "${APPS[@]}"; do
-    "${TOOLS_DIR}/${app}/install.sh"
+    "${TOOLS_PATH}/${app}/install.sh"
   done
   unset app
 }

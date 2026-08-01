@@ -3,15 +3,15 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # shellcheck source=/dev/null
-[ -r "${ROOT_DIR}/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
-source "${ROOT_DIR}/common/colors.sh"
+[ -r "${ROOT_PATH}/common/colors.sh" ] || { echo "FATAL: lib/colors.sh not found" >&2; exit 1; }
+source "${ROOT_PATH}/common/colors.sh"
 
 # shellcheck source=/dev/null
-[ -r "${ROOT_DIR}/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
-source "${ROOT_DIR}/common/messages.sh"
+[ -r "${ROOT_PATH}/common/messages.sh" ] || { echo "FATAL: lib/messages.sh not found" >&2; exit 1; }
+source "${ROOT_PATH}/common/messages.sh"
 
 cat <<EOF
 

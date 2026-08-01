@@ -14,15 +14,15 @@ cat <<EOF
 EOF
 
 # shellcheck source=/dev/null
-[ -r "${SCRIPT_DIR:-}/bootstrap.sh" ] && source "${SCRIPT_DIR:-}/bootstrap.sh"
+[ -r "${SCRIPT_PATH:-}/bootstrap.sh" ] && source "${SCRIPT_PATH:-}/bootstrap.sh"
 
 readonly ZDOTDIR="${ZDOTDIR:-${HOME}}"
-readonly ANTIDOTE_DIR="${ZDOTDIR}/.antidote"
+readonly ANTIDOTE_PATH="${ZDOTDIR}/.antidote"
 
-if [[ ! -d "${ANTIDOTE_DIR}" ]]; then
-  git clone --depth=1 https://github.com/mattmc3/antidote.git "${ANTIDOTE_DIR}"
+if [[ ! -d "${ANTIDOTE_PATH}" ]]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git "${ANTIDOTE_PATH}"
 else
-  msg "antidote already installed at ${ANTIDOTE_DIR}, skipping"
+  msg "antidote already installed at ${ANTIDOTE_PATH}, skipping"
 fi
 
 cat <<EOF

@@ -3,8 +3,8 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BOOTSTRAP="${ROOT_DIR}/provision/script/bootstrap.sh"
+ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BOOTSTRAP="${ROOT_PATH}/provision/script/bootstrap.sh"
 [ -r "${BOOTSTRAP}" ] || { echo "[ERROR]: bootstrap.sh not found at ${BOOTSTRAP}"; exit 1; }
 # shellcheck source=/dev/null
 source "${BOOTSTRAP}"

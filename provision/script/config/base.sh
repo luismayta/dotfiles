@@ -4,8 +4,6 @@
 export GIT_URI='https://github.com/luismayta/dotfiles.git'
 export GIT_BRANCH='main'
 
-export FONTS_DIR="${HOME}/.fonts"
-
 export APPS=(
     "antidote"
 )
