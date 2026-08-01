@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Antidote - public API
 
 antidote::init() {
@@ -6,6 +8,7 @@ antidote::init() {
     return 1
   fi
 
+  # shellcheck source=/dev/null
   source "${ANTIDOTE_PATH}/antidote.zsh"
 
   touch "${ANTIDOTE_CUSTOM_PLUGINS_FILE}"

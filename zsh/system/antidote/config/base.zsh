@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Antidote - plugin manager configuration
 
 export ZSH_ANTIDOTE_ENABLED="${ZSH_ANTIDOTE_ENABLED:-true}"

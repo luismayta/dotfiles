@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Antidote - internal implementation
 
 antidote::internal::antidote::install() {

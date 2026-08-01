@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Antidote - plugin manager module
 # Load order: config -> internal -> pkg
 
@@ -9,7 +11,12 @@ ZSH_ANTIDOTE_PATH="${0:A:h}"
 
 message_info "Loading module: antidote"
 
+# shellcheck source=/dev/null
 source "${ZSH_ANTIDOTE_PATH}"/config/main.zsh
 $ZSH_ANTIDOTE_ENABLED || return
+
+# shellcheck source=/dev/null
 source "${ZSH_ANTIDOTE_PATH}"/internal/main.zsh
+
+# shellcheck source=/dev/null
 source "${ZSH_ANTIDOTE_PATH}"/pkg/main.zsh
