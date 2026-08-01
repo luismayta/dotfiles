@@ -32,6 +32,7 @@ export PYTHON_MODULES=(
     jupyterlab
     notebook
     voila
+    faster-whisper
 )
 
 # poetry
