@@ -25,7 +25,7 @@ export RIPGREP_CONFIG_PATH="${HOME}/.ripgreprc"
 
 
 # Nix
-export NIX_CONF_DIR="${HOME}/.config/nix"
+export NIX_CONF_PATH="${HOME}/.config/nix"
 export NIXPKGS_ALLOW_UNFREE=1
 
 export TMPDIR="${HOME}/tmp"

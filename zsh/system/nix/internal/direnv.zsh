@@ -14,7 +14,7 @@ function nix::direnv::internal::install {
 function nix::direnv::internal::sync {
     message_info "Syncing ${NIX_DIRENV_PACKAGE_NAME} configuration"
     core::ensure rsync
-    rsync -avzh --quiet "${NIX_DIRENV_DATA_PATH}/" "${NIX_DIRENV_CONFIG_DIR}/"
+    rsync -avzh --quiet "${NIX_DIRENV_DATA_PATH}/" "${NIX_DIRENV_CONFIG_PATH}/"
     message_success "Synced ${NIX_DIRENV_PACKAGE_NAME} configuration"
 }
 

@@ -3,17 +3,17 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TESTS_DIR="$SCRIPT_DIR"
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TESTS_PATH="$SCRIPT_PATH"
 
 echo "Running git scripts tests..."
 echo ""
 
 # Find all test files
-test_files=("$TESTS_DIR"/*.bats)
+test_files=("$TESTS_PATH"/*.bats)
 
 if [[ ${#test_files[@]} -eq 0 ]]; then
-  echo "No test files found in $TESTS_DIR"
+  echo "No test files found in $TESTS_PATH"
   exit 1
 fi
 

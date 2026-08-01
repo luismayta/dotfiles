@@ -17,7 +17,7 @@ nix::darwin::rebuild() {
     echo "nix-darwin: not detected. Cannot rebuild." >&2
     return 1
   fi
-  sudo darwin-rebuild switch --flake "${DOTFILES_DIR}/nix/darwin#$(hostname -s)"
+  sudo darwin-rebuild switch --flake "${DOTFILES_PATH}/nix/darwin#$(hostname -s)"
 }
 
 # nix::darwin::update — update nix-darwin inputs and rebuild
@@ -43,5 +43,5 @@ nix::darwin::status() {
 # Bootstrap hint for macOS without nix-darwin
 if [[ "$ZSH_NIX_DARWIN_AVAILABLE" != "true" ]]; then
   echo "nix-darwin: not detected. To bootstrap, run:"
-  echo "  nix run nix-darwin -- switch --flake ${DOTFILES_DIR}/nix/darwin#$(hostname -s)"
+  echo "  nix run nix-darwin -- switch --flake ${DOTFILES_PATH}/nix/darwin#$(hostname -s)"
 fi

@@ -31,7 +31,7 @@ function notify::noti::internal::install {
 
 function notify::noti::internal::sync {
     local src="${ZSH_NOTIFY_NOTI_DATA_PATH}"
-    local dst="${ZSH_NOTIFY_NOTI_CONFIG_DIR}"
+    local dst="${ZSH_NOTIFY_NOTI_CONFIG_PATH}"
     if [[ -d "$src" ]]; then
         mkdir -p "$dst"
         rsync -a "$src/" "$dst/"
@@ -57,7 +57,7 @@ function notify::noti::internal::render {
         return 1
     fi
 
-    mkdir -p "${ZSH_NOTIFY_NOTI_CONFIG_DIR}"
+    mkdir -p "${ZSH_NOTIFY_NOTI_CONFIG_PATH}"
 
     local template="${ZSH_NOTIFY_NOTI_DATA_PATH}/noti.yaml.tpl"
 

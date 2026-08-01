@@ -4,9 +4,9 @@
 # Runs on-click (one-shot, not long-running)
 
 # Load config (PLAYLIST_NAME and future settings)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=mpd.conf
-source "${SCRIPT_DIR}/mpd.conf"
+source "${SCRIPT_PATH}/mpd.conf"
 
 song=$(mpc --format %file% current)
 [[ -z "$song" ]] && exit 0

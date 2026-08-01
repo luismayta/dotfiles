@@ -11,10 +11,10 @@
 # edityazi — open yazi config dir (default) or a specific file.
 function edityazi {
     if [[ -z "${1}" ]]; then
-        "${EDITOR}" "${ZSH_YAZI_CONFIG_DIR}"
+        "${EDITOR}" "${ZSH_YAZI_CONFIG_PATH}"
         return
     fi
-    "${EDITOR}" "${ZSH_YAZI_CONFIG_DIR}/${1}"
+    "${EDITOR}" "${ZSH_YAZI_CONFIG_PATH}/${1}"
 }
 
 # ──────────────────────────────────────────────

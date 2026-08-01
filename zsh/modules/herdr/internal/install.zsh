@@ -27,7 +27,7 @@ function herdr::internal::install {
 
 function herdr::internal::config::sync {
     local src="${ZSH_HERDR_DATA_PATH}"
-    local dst="${ZSH_HERDR_CONFIG_DIR}"
+    local dst="${ZSH_HERDR_CONFIG_PATH}"
 
     if [[ ! -d "$src" ]] || [[ -z "$(ls -A "$src" 2>/dev/null)" ]]; then
         message_info "No ${ZSH_HERDR_PACKAGE_NAME} config found in data path"

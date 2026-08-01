@@ -120,7 +120,7 @@ function edit-herdr-config {
         return 1
     fi
 
-    local config_file="${ZSH_HERDR_CONFIG_DIR}/config.toml"
+    local config_file="${ZSH_HERDR_CONFIG_PATH}/config.toml"
 
     if [[ ! -f "$config_file" ]]; then
         message_warning "Config file not found: $config_file"
@@ -137,7 +137,7 @@ function edit-herdr-plugins {
         return 1
     fi
 
-    local plugins_dir="${ZSH_HERDR_CONFIG_DIR}/plugins"
+    local plugins_dir="${ZSH_HERDR_CONFIG_PATH}/plugins"
 
     if [[ ! -d "$plugins_dir" ]]; then
         message_warning "Plugins directory not found: $plugins_dir"

@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
 # Source core framework to make core/message functions available
-DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/.dotfiles}"
-DOTFILES_CORE_PATH="${DOTFILES_DIR}/zsh/system/core"
+DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.dotfiles}"
+DOTFILES_CORE_PATH="${DOTFILES_PATH}/zsh/system/core"
 source "${DOTFILES_CORE_PATH}/main.zsh"
 
 message_info "Upgrade for dotfiles"
-cd "${DOTFILES_DIR}" && git pull origin main && cd - || return
+cd "${DOTFILES_PATH}" && git pull origin main && cd - || return
 message_success "Upgraded dotfiles"
 
 # shellcheck source=/dev/null
@@ -16,10 +16,10 @@ core::internal::backup "${HOME}/.bashrc"
 core::internal::backup "${HOME}/.zshrc"
 core::internal::backup "${HOME}/.zshenv"
 
-cp -rf "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
-cp -rf "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
-cp -rf "${DOTFILES_DIR}/conf/shell/bashrc" "${HOME}/.bashrc"
+cp -rf "${DOTFILES_PATH}/zsh/zshrc" "${HOME}/.zshrc"
+cp -rf "${DOTFILES_PATH}/zsh/zshenv" "${HOME}/.zshenv"
+cp -rf "${DOTFILES_PATH}/conf/shell/bashrc" "${HOME}/.bashrc"
 
 message_info "Start Sync config"
-rsync -avzh --progress "${DOTFILES_DIR}/config/" "${HOME}/.config/"
+rsync -avzh --progress "${DOTFILES_PATH}/config/" "${HOME}/.config/"
 message_success "Finish Sync config"

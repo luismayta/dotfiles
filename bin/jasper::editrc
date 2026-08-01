@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 # Source core framework to make core::editrc available
-DOTFILES_DIR="${DOTFILES_DIR:-${HOME}/.dotfiles}"
-DOTFILES_CORE_PATH="${DOTFILES_DIR}/zsh/system/core"
+DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.dotfiles}"
+DOTFILES_CORE_PATH="${DOTFILES_PATH}/zsh/system/core"
 source "${DOTFILES_CORE_PATH}/main.zsh"
 
 core::editrc "${1}"

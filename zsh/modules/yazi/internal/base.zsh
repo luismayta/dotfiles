@@ -19,7 +19,7 @@ function yazi::internal::config::sync {
     rsync -avzh --delete \
         --exclude=plugins/ \
         --exclude=flavors/ \
-        "${ZSH_YAZI_DATA_PATH}/" "${ZSH_YAZI_CONFIG_DIR}/"
+        "${ZSH_YAZI_DATA_PATH}/" "${ZSH_YAZI_CONFIG_PATH}/"
 }
 
 
