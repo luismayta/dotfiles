@@ -70,14 +70,8 @@ if [ -n "${ZSH_DEBUG}" ]; then
     zmodload zsh/zprof
 fi
 
-# source antidote
-source "${HOME}"/.antidote/antidote.zsh
-
-touch ~/.custom_zsh_plugins.txt
-
-cat "${DOTFILES_ZSH_PATH}/zsh_plugins.txt" ~/.custom_zsh_plugins.txt > ~/.zsh_plugins.txt
-
-antidote load ~/.zsh_plugins.txt
+# Load antidote bundles (module installs the manager on demand)
+[[ -n "${__ZSH_ANTIDOTE_LOADED:-}" ]] && antidote::init
 
 setopt share_history
 setopt hist_ignore_dups
