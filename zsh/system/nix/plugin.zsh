@@ -9,6 +9,8 @@ __ZSH_NIX_LOADED=1
 # shellcheck disable=SC2034
 ZSH_NIX_PATH="$(dirname "${0}")"
 
+message_info "Loading module: nix"
+
 # shellcheck source=/dev/null
 source "${ZSH_NIX_PATH}"/config/main.zsh
 $ZSH_NIX_ENABLED || return

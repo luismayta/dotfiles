@@ -12,6 +12,8 @@ __ZSH_CORE_LOADED=1
 # shellcheck disable=SC2034
 CORE_PATH="$(dirname "${0}")"
 
+message_info "Loading module: core"
+
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/config/main.zsh
 
