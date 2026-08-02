@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 # Declarative package lists — edit this file to add/remove packages
-# Sourced by both install.sh (bootstrap) and provision scripts
+# Sourced by install.sh
 # shellcheck disable=SC2034 # consumed by sourcing scripts
 
 PACKAGES_COMMON=(ksh zsh)
