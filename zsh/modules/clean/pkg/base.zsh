@@ -59,7 +59,7 @@ function cleanup {
 
 function cleanup::pip {
     message_info "Cleanup pip cache..."
-    _cleanup::safe_remove "${CLEAN_BASE_CACHE_PIP}"
+    _cleanup::safe_remove "${ZSH_CLEAN_BASE_CACHE_PIP}"
     message_success "Cleanup pip cache..."
 }
 
@@ -93,8 +93,8 @@ function cleanup::docker {
 }
 
 function cleanup::pre_commit {
-    if [[ -n "${CLEAN_BASE_CACHE_PRE_COMMIT}" ]]; then
-        _cleanup::safe_remove "${CLEAN_BASE_CACHE_PRE_COMMIT}"
+    if [[ -n "${ZSH_CLEAN_BASE_CACHE_PRE_COMMIT}" ]]; then
+        _cleanup::safe_remove "${ZSH_CLEAN_BASE_CACHE_PRE_COMMIT}"
     fi
 }
 
@@ -116,8 +116,8 @@ function cleanup::python::pyenv {
             message_warning "No pyenv versions installed"
         fi
         message_warning "Removing Python interpreters (${HOME}/.pyenv/versions) is destructive and irreversible."
-        if [[ "${CLEAN_FORCE}" != "true" ]]; then
-            message_info "Set CLEAN_FORCE=true and run again to remove them."
+        if [[ "${ZSH_CLEAN_FORCE}" != "true" ]]; then
+            message_info "Set ZSH_CLEAN_FORCE=true and run again to remove them."
         elif _cleanup::confirm "Remove all installed pyenv versions?"; then
             _cleanup::safe_remove "${HOME}/.pyenv/versions"
         fi
@@ -127,8 +127,8 @@ function cleanup::python::pyenv {
 }
 
 function cleanup::python::virtualenvs {
-    if [[ -n "${CLEAN_BASE_CACHE_VIRTUALENVS}" ]]; then
-        _cleanup::safe_remove "${CLEAN_BASE_CACHE_VIRTUALENVS}"
+    if [[ -n "${ZSH_CLEAN_BASE_CACHE_VIRTUALENVS}" ]]; then
+        _cleanup::safe_remove "${ZSH_CLEAN_BASE_CACHE_VIRTUALENVS}"
     fi
 }
 
@@ -198,7 +198,7 @@ function cleanup::projects {
 
 function cleanup::cargo {
     if type cargo > /dev/null; then
-        local cache="${CLEAN_BASE_CACHE_CARGO:-${HOME}/.cargo/registry/cache}"
+        local cache="${ZSH_CLEAN_BASE_CACHE_CARGO:-${HOME}/.cargo/registry/cache}"
         if _cleanup::validate_path "${cache}" "Cargo cache"; then
             message_info "Cleanup Cargo registry cache..."
             _cleanup::safe_remove "${cache}"
@@ -225,7 +225,7 @@ function cleanup::go {
 
 function cleanup::bun {
     if type bun > /dev/null; then
-        local cache="${CLEAN_BASE_CACHE_BUN:-${HOME}/.bun/install/cache}"
+        local cache="${ZSH_CLEAN_BASE_CACHE_BUN:-${HOME}/.bun/install/cache}"
         if _cleanup::validate_path "${cache}" "Bun cache"; then
             message_info "Cleanup Bun cache..."
             _cleanup::safe_remove "${cache}"
@@ -243,7 +243,7 @@ function cleanup::pnpm {
         else
             message_info "Cleanup pnpm store..."
             pnpm store prune 2>/dev/null
-            local cache="${CLEAN_BASE_CACHE_PNPM:-${HOME}/.pnpm-store}"
+            local cache="${ZSH_CLEAN_BASE_CACHE_PNPM:-${HOME}/.pnpm-store}"
             if _cleanup::validate_path "${cache}" "pnpm store"; then
                 _cleanup::safe_remove "${cache}"
             fi
@@ -256,7 +256,7 @@ function cleanup::pnpm {
 
 function cleanup::ccache {
     if type ccache > /dev/null; then
-        local cache="${CLEAN_BASE_CACHE_CCACHE:-${HOME}/.ccache}"
+        local cache="${ZSH_CLEAN_BASE_CACHE_CCACHE:-${HOME}/.ccache}"
         if _cleanup::validate_path "${cache}" "ccache"; then
             message_info "Cleanup ccache..."
             _cleanup::safe_remove "${cache}"
@@ -309,7 +309,7 @@ function cleanup::help {
     echo "  cleanup::terraform   - Terraform plugins/cache"
     echo "  cleanup::docker      - Docker build cache"
     echo "  cleanup::docker::volumes - Docker volumes"
-    echo "  cleanup::python::pyenv      - pyenv versions (informative; remove only with CLEAN_FORCE=true)"
+    echo "  cleanup::python::pyenv      - pyenv versions (informative; remove only with ZSH_CLEAN_FORCE=true)"
     echo "  cleanup::python::virtualenvs - virtualenvs"
     echo "  cleanup::tasks       - Task runner files"
     echo ""
@@ -328,22 +328,28 @@ function cleanup::help {
     echo "  cleanup::linux::tmp     - old /tmp files"
     echo ""
     echo "Safety flags:"
-    echo "  export CLEAN_DRY_RUN=true    # Show what would happen"
-    echo "  export CLEAN_CONFIRM=true    # Prompt before each deletion"
-    echo "  export CLEAN_VERBOSE=true    # Show detailed output"
-    echo "  export CLEAN_FORCE=true      # Skip confirmations (also overrides the \$HOME guard)"
+    echo "  export ZSH_CLEAN_DRY_RUN=true    # Show what would happen"
+    echo "  export ZSH_CLEAN_CONFIRM=true    # Prompt before each deletion"
+    echo "  export ZSH_CLEAN_VERBOSE=true    # Show detailed output"
+    echo "  export ZSH_CLEAN_FORCE=true      # Skip confirmations (also overrides the \$HOME guard)"
     echo ""
     echo "Config vars (override before sourcing):"
-    echo "  CLEAN_BASE_DIR_PATTERNS, CLEAN_BASE_FILE_PATTERNS, CLEAN_AGGRESSIVE_PATTERNS"
-    echo "  CLEAN_AGGRESSIVE_PATTERNS   # Opt-in generic dirs (build|dist|tmp|...); empty by default"
-    echo "  CLEAN_BASE_CACHE_NPM, CLEAN_BASE_CACHE_YARN, CLEAN_BASE_CACHE_PIP"
-    echo "  CLEAN_BASE_CACHE_PRE_COMMIT, CLEAN_BASE_CACHE_TERRAFORM, CLEAN_BASE_CACHE_VIRTUALENVS"
-    echo "  CLEAN_BASE_CACHE_BUN, CLEAN_BASE_CACHE_PNPM"
-    echo "  CLEAN_OSX_* (macOS), CLEAN_LINUX_* (Linux)"
+    echo "  ZSH_CLEAN_BASE_DIR_PATTERNS, ZSH_CLEAN_BASE_FILE_PATTERNS, ZSH_CLEAN_AGGRESSIVE_PATTERNS"
+    echo "  ZSH_CLEAN_AGGRESSIVE_PATTERNS   # Opt-in generic dirs (build|dist|tmp|...); empty by default"
+    echo "  ZSH_CLEAN_USER_DIR_PATTERNS     # Extra dir patterns merged with defaults at runtime (anti-stale)"
+    echo "  ZSH_CLEAN_USER_FILE_PATTERNS    # Extra file patterns merged with defaults at runtime (anti-stale)"
+    echo "  # e.g. export ZSH_CLEAN_USER_DIR_PATTERNS=\"my_build|my_tmp\""
+    echo "  # Defaults are re-derived on every load, so no manual unset is needed — except to"
+    echo "  # clear CLEAN_* legacy aliases still exported from pre-migration sessions."
+    echo "  ZSH_CLEAN_BASE_CACHE_NPM, ZSH_CLEAN_BASE_CACHE_YARN, ZSH_CLEAN_BASE_CACHE_PIP"
+    echo "  ZSH_CLEAN_BASE_CACHE_PRE_COMMIT, ZSH_CLEAN_BASE_CACHE_TERRAFORM, ZSH_CLEAN_BASE_CACHE_VIRTUALENVS"
+    echo "  ZSH_CLEAN_BASE_CACHE_CARGO, ZSH_CLEAN_BASE_CACHE_CCACHE, ZSH_CLEAN_BASE_CACHE_BUN, ZSH_CLEAN_BASE_CACHE_PNPM"
+    echo "  ZSH_CLEAN_OSX_* (macOS), ZSH_CLEAN_LINUX_* (Linux)"
+    echo "  Legacy aliases CLEAN_* (CLEAN_DRY_RUN, CLEAN_BASE_DIR_PATTERNS, ...) still work as fallback."
     echo ""
     echo "Guard: 'cleanup' aborts when run from \$HOME — recursive pattern matching"
     echo "  would delete personal caches (~/.cache, ~/.npm, ~/.cargo). Override with"
-    echo "  CLEAN_FORCE=true (a prominent warning is still shown)."
+    echo "  ZSH_CLEAN_FORCE=true (a prominent warning is still shown)."
     echo "File-pattern cleanup (*.log, .DS_Store, ...) prompts for confirmation by"
-    echo "  default; decline with 'n' or skip prompts with CLEAN_FORCE=true."
+    echo "  default; decline with 'n' or skip prompts with ZSH_CLEAN_FORCE=true."
 }

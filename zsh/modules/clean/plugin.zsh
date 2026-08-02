@@ -8,15 +8,15 @@
 [[ -n "${__ZSH_CLEAN_LOADED:-}" ]] && return
 __ZSH_CLEAN_LOADED=1
 
-CLEAN_PATH="$(dirname "${0}")"
+ZSH_CLEAN_PATH="${0:A:h}"
 message_info "Loading module: clean"
 
 # shellcheck source=/dev/null
-source "${CLEAN_PATH}/config/main.zsh"
+source "${ZSH_CLEAN_PATH}/config/main.zsh"
 $ZSH_CLEAN_ENABLED || return
 
 # shellcheck source=/dev/null
-source "${CLEAN_PATH}/internal/main.zsh"
+source "${ZSH_CLEAN_PATH}/internal/main.zsh"
 
 # shellcheck source=/dev/null
-source "${CLEAN_PATH}/pkg/main.zsh"
+source "${ZSH_CLEAN_PATH}/pkg/main.zsh"

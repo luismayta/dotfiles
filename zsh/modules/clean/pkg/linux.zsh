@@ -13,8 +13,8 @@ function cleanup::system::trash {
         fi
     else
         message_warning "trash-cli not found — falling back to manual Trash cleanup"
-        [[ -n "${CLEAN_LINUX_TRASH_FILES}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_TRASH_FILES}"
-        [[ -n "${CLEAN_LINUX_TRASH_INFO}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_TRASH_INFO}"
+        [[ -n "${ZSH_CLEAN_LINUX_TRASH_FILES}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_TRASH_FILES}"
+        [[ -n "${ZSH_CLEAN_LINUX_TRASH_INFO}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_TRASH_INFO}"
     fi
 
     message_success "Empty the Trash via trash-cli or manual cleanup..."
@@ -23,9 +23,9 @@ function cleanup::system::trash {
 function cleanup::system::logs {
     message_info "Clean browser and system caches..."
 
-    [[ -n "${CLEAN_LINUX_CHROME_CACHE}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_CHROME_CACHE}"
-    [[ -n "${CLEAN_LINUX_FIREFOX_CACHE}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_FIREFOX_CACHE}"
-    [[ -n "${CLEAN_LINUX_THUMBNAILS}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_THUMBNAILS}"
+    [[ -n "${ZSH_CLEAN_LINUX_CHROME_CACHE}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_CHROME_CACHE}"
+    [[ -n "${ZSH_CLEAN_LINUX_FIREFOX_CACHE}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_FIREFOX_CACHE}"
+    [[ -n "${ZSH_CLEAN_LINUX_THUMBNAILS}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_THUMBNAILS}"
 
     message_success "Clean browser and system caches..."
 }
@@ -42,7 +42,7 @@ function cleanup::linux::journal {
         fi
     else
         message_warning "journalctl not found — falling back to journal cache cleanup"
-        [[ -n "${CLEAN_LINUX_JOURNAL_CACHE}" ]] && _cleanup::safe_remove "${CLEAN_LINUX_JOURNAL_CACHE}"
+        [[ -n "${ZSH_CLEAN_LINUX_JOURNAL_CACHE}" ]] && _cleanup::safe_remove "${ZSH_CLEAN_LINUX_JOURNAL_CACHE}"
     fi
 
     message_success "Clean systemd journal logs..."
@@ -51,7 +51,7 @@ function cleanup::linux::journal {
 function cleanup::linux::tmp {
     message_info "Clean old temporary files from /tmp..."
 
-    local -a find_args=(find "${CLEAN_LINUX_TMP}" -type f -name "*" -mtime +7)
+    local -a find_args=(find "${ZSH_CLEAN_LINUX_TMP}" -type f -name "*" -mtime +7)
 
     local count
     count=$("${find_args[@]}" 2>/dev/null | wc -l)
@@ -65,7 +65,7 @@ function cleanup::linux::tmp {
         else
             _cleanup::confirm "Remove ${count} old files from /tmp?" "${count}" || return 0
             "${find_args[@]}" -exec rm -rf {} + 2>/dev/null
-            [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} old files from /tmp"
+            [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} old files from /tmp"
         fi
     fi
 

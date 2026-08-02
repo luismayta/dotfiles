@@ -8,73 +8,93 @@
 
 # ── System: Trash ──────────────────────────────────────────────────────────
 # Trash files via FreeDesktop Trash specification
-export CLEAN_LINUX_TRASH_FILES="${HOME}/.local/share/Trash/files"
+export ZSH_CLEAN_LINUX_TRASH_FILES="${HOME}/.local/share/Trash/files"
+export CLEAN_LINUX_TRASH_FILES="${ZSH_CLEAN_LINUX_TRASH_FILES}"  # remove in next cleanup cycle
 
 # Trash metadata (dates, original paths)
-export CLEAN_LINUX_TRASH_INFO="${HOME}/.local/share/Trash/info"
+export ZSH_CLEAN_LINUX_TRASH_INFO="${HOME}/.local/share/Trash/info"
+export CLEAN_LINUX_TRASH_INFO="${ZSH_CLEAN_LINUX_TRASH_INFO}"  # remove in next cleanup cycle
 
 # ── System: Logs ───────────────────────────────────────────────────────────
 # System log files in /var/log
-export CLEAN_LINUX_LOG_VAR="/var/log"
+export ZSH_CLEAN_LINUX_LOG_VAR="/var/log"
+export CLEAN_LINUX_LOG_VAR="${ZSH_CLEAN_LINUX_LOG_VAR}"  # remove in next cleanup cycle
 
 # Nested system logs (per-service directories)
-export CLEAN_LINUX_LOG_SUBDIR="/var/log"
+export ZSH_CLEAN_LINUX_LOG_SUBDIR="/var/log"
+export CLEAN_LINUX_LOG_SUBDIR="${ZSH_CLEAN_LINUX_LOG_SUBDIR}"  # remove in next cleanup cycle
 
 # Temporary files
-export CLEAN_LINUX_TMP="/tmp"
+export ZSH_CLEAN_LINUX_TMP="/tmp"
+export CLEAN_LINUX_TMP="${ZSH_CLEAN_LINUX_TMP}"  # remove in next cleanup cycle
 
 # ── System: Journal / Service Caches ───────────────────────────────────────
 # Per-user systemd journal cache
-export CLEAN_LINUX_JOURNAL_CACHE="${HOME}/.cache/journal"
+export ZSH_CLEAN_LINUX_JOURNAL_CACHE="${HOME}/.cache/journal"
+export CLEAN_LINUX_JOURNAL_CACHE="${ZSH_CLEAN_LINUX_JOURNAL_CACHE}"  # remove in next cleanup cycle
 
 # Systemd core dumps
-export CLEAN_LINUX_COREDUMP="${HOME}/.local/share/systemd/coredump"
+export ZSH_CLEAN_LINUX_COREDUMP="${HOME}/.local/share/systemd/coredump"
+export CLEAN_LINUX_COREDUMP="${ZSH_CLEAN_LINUX_COREDUMP}"  # remove in next cleanup cycle
 
 # ── Package Manager: npm ──────────────────────────────────────────────────
 # npm cache directory (package tarballs and metadata)
-export CLEAN_LINUX_NPM_CACHE="${HOME}/.npm/_cacache"
+export ZSH_CLEAN_LINUX_NPM_CACHE="${HOME}/.npm/_cacache"
+export CLEAN_LINUX_NPM_CACHE="${ZSH_CLEAN_LINUX_NPM_CACHE}"  # remove in next cleanup cycle
 
 # ── Package Manager: yarn ─────────────────────────────────────────────────
 # Yarn cache (Offline mirror of downloaded packages)
-export CLEAN_LINUX_YARN_CACHE="${HOME}/.cache/yarn"
+export ZSH_CLEAN_LINUX_YARN_CACHE="${HOME}/.cache/yarn"
+export CLEAN_LINUX_YARN_CACHE="${ZSH_CLEAN_LINUX_YARN_CACHE}"  # remove in next cleanup cycle
 
 # ── Package Manager: pip ──────────────────────────────────────────────────
 # pip cache directory (downloaded wheels and build artifacts)
-export CLEAN_LINUX_PIP_CACHE="${HOME}/.cache/pip"
+export ZSH_CLEAN_LINUX_PIP_CACHE="${HOME}/.cache/pip"
+export CLEAN_LINUX_PIP_CACHE="${ZSH_CLEAN_LINUX_PIP_CACHE}"  # remove in next cleanup cycle
 
 # ── Package Manager: cargo/rust ──────────────────────────────────────────
 # Cargo registry cache (downloaded crate archives)
-export CLEAN_LINUX_CARGO_REGISTRY="${HOME}/.cargo/registry/cache"
+export ZSH_CLEAN_LINUX_CARGO_REGISTRY="${HOME}/.cargo/registry/cache"
+export CLEAN_LINUX_CARGO_REGISTRY="${ZSH_CLEAN_LINUX_CARGO_REGISTRY}"  # remove in next cleanup cycle
 
 # Cargo installed binaries (can be rebuilt from source)
-export CLEAN_LINUX_CARGO_BIN="${HOME}/.cargo/bin"
+export ZSH_CLEAN_LINUX_CARGO_BIN="${HOME}/.cargo/bin"
+export CLEAN_LINUX_CARGO_BIN="${ZSH_CLEAN_LINUX_CARGO_BIN}"  # remove in next cleanup cycle
 
 # ── Package Manager: go ───────────────────────────────────────────────────
 # Go module download cache
-export CLEAN_LINUX_GO_MODCACHE="${HOME}/go/pkg/mod/cache"
+export ZSH_CLEAN_LINUX_GO_MODCACHE="${HOME}/go/pkg/mod/cache"
+export CLEAN_LINUX_GO_MODCACHE="${ZSH_CLEAN_LINUX_GO_MODCACHE}"  # remove in next cleanup cycle
 
 # ── Development: Pre-commit ───────────────────────────────────────────────
 # Pre-commit hook cache (repositories and environments)
-export CLEAN_LINUX_PRECOMMIT_CACHE="${HOME}/.cache/pre-commit"
+export ZSH_CLEAN_LINUX_PRECOMMIT_CACHE="${HOME}/.cache/pre-commit"
+export CLEAN_LINUX_PRECOMMIT_CACHE="${ZSH_CLEAN_LINUX_PRECOMMIT_CACHE}"  # remove in next cleanup cycle
 
 # ── Development: ccache ──────────────────────────────────────────────────
 # C/C++ compiler cache artifacts
-export CLEAN_LINUX_CCACHE="${HOME}/.ccache"
+export ZSH_CLEAN_LINUX_CCACHE="${HOME}/.ccache"
+export CLEAN_LINUX_CCACHE="${ZSH_CLEAN_LINUX_CCACHE}"  # remove in next cleanup cycle
 
 # ── Development: pytest / mypy ───────────────────────────────────────────
 # pytest cache (previous test results and fixtures)
-export CLEAN_LINUX_PYTEST_CACHE="${HOME}/.cache/pytest"
+export ZSH_CLEAN_LINUX_PYTEST_CACHE="${HOME}/.cache/pytest"
+export CLEAN_LINUX_PYTEST_CACHE="${ZSH_CLEAN_LINUX_PYTEST_CACHE}"  # remove in next cleanup cycle
 
 # mypy cache (type-checking bytecode cache)
-export CLEAN_LINUX_MYPY_CACHE="${HOME}/.cache/mypy"
+export ZSH_CLEAN_LINUX_MYPY_CACHE="${HOME}/.cache/mypy"
+export CLEAN_LINUX_MYPY_CACHE="${ZSH_CLEAN_LINUX_MYPY_CACHE}"  # remove in next cleanup cycle
 
 # ── User Data: Thumbnails ─────────────────────────────────────────────────
 # Freedesktop thumbnail cache (regenerated by file manager on demand)
-export CLEAN_LINUX_THUMBNAILS="${HOME}/.cache/thumbnails"
+export ZSH_CLEAN_LINUX_THUMBNAILS="${HOME}/.cache/thumbnails"
+export CLEAN_LINUX_THUMBNAILS="${ZSH_CLEAN_LINUX_THUMBNAILS}"  # remove in next cleanup cycle
 
 # ── User Data: Browser Caches ─────────────────────────────────────────────
 # Google Chrome browser cache
-export CLEAN_LINUX_CHROME_CACHE="${HOME}/.cache/google-chrome"
+export ZSH_CLEAN_LINUX_CHROME_CACHE="${HOME}/.cache/google-chrome"
+export CLEAN_LINUX_CHROME_CACHE="${ZSH_CLEAN_LINUX_CHROME_CACHE}"  # remove in next cleanup cycle
 
 # Firefox browser cache
-export CLEAN_LINUX_FIREFOX_CACHE="${HOME}/.cache/firefox"
+export ZSH_CLEAN_LINUX_FIREFOX_CACHE="${HOME}/.cache/firefox"
+export CLEAN_LINUX_FIREFOX_CACHE="${ZSH_CLEAN_LINUX_FIREFOX_CACHE}"  # remove in next cleanup cycle

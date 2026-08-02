@@ -2,19 +2,23 @@
 # -*- coding: utf-8 -*-
 #
 # Safety configuration defaults
-export CLEAN_DRY_RUN="${CLEAN_DRY_RUN:-false}"
-export CLEAN_CONFIRM="${CLEAN_CONFIRM:-true}"
-export CLEAN_VERBOSE="${CLEAN_VERBOSE:-true}"
-export CLEAN_FORCE="${CLEAN_FORCE:-false}"
+export ZSH_CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN:-${CLEAN_DRY_RUN:-false}}"
+export CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN}"  # remove in next cleanup cycle
+export ZSH_CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM:-${CLEAN_CONFIRM:-true}}"
+export CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM}"  # remove in next cleanup cycle
+export ZSH_CLEAN_VERBOSE="${ZSH_CLEAN_VERBOSE:-${CLEAN_VERBOSE:-true}}"
+export CLEAN_VERBOSE="${ZSH_CLEAN_VERBOSE}"  # remove in next cleanup cycle
+export ZSH_CLEAN_FORCE="${ZSH_CLEAN_FORCE:-${CLEAN_FORCE:-false}}"
+export CLEAN_FORCE="${ZSH_CLEAN_FORCE}"  # remove in next cleanup cycle
 
 # ── Internal Safety Helpers ───────────────────────────────────────────────
 
 _cleanup::is_dry_run() {
-    [[ "${CLEAN_DRY_RUN}" == "true" ]]
+    [[ "${ZSH_CLEAN_DRY_RUN}" == "true" ]]
 }
 
 _cleanup::needs_confirmation() {
-    [[ "${CLEAN_FORCE}" != "true" && "${CLEAN_CONFIRM}" != "false" ]]
+    [[ "${ZSH_CLEAN_FORCE}" != "true" && "${ZSH_CLEAN_CONFIRM}" != "false" ]]
 }
 
 # Prompt for confirmation — returns 0 if approved, 1 if declined
@@ -39,13 +43,13 @@ _cleanup::confirm() {
 # Refuse to run tree cleanup from $HOME — personal caches live there.
 _cleanup::guard_home() {
     [[ "${PWD}" == "${HOME}" ]] || return 0
-    if [[ "${CLEAN_FORCE:-false}" == "true" ]]; then
+    if [[ "${ZSH_CLEAN_FORCE:-false}" == "true" ]]; then
         message_warning "WARNING: Cleaning from HOME (${HOME}) — caches like ~/.cache, ~/.npm, ~/.cargo may be removed."
         return 0
     fi
     message_warning "Refusing to clean the current directory: it is your HOME (${HOME})."
     message_warning "Personal caches (~/.cache, ~/.npm, ~/.cargo) live here and would be deleted."
-    message_warning "Run from a project directory, use cleanup::all, or set CLEAN_FORCE=true to override."
+    message_warning "Run from a project directory, use cleanup::all, or set ZSH_CLEAN_FORCE=true to override."
     return 1
 }
 
@@ -69,7 +73,7 @@ _cleanup::safe_remove() {
     _cleanup::confirm "Remove: ${target}?" || return 0
 
     rm -rf "${target}"
-    [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Removed: ${target}"
+    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed: ${target}"
 }
 
 # Safe find-and-remove using arrays (no eval) with dry-run support
@@ -99,7 +103,7 @@ _cleanup::safe_find_remove() {
 
     _cleanup::confirm "Remove ${count} items matching '${pattern}'?" "${count}" || return 0
     "${find_args[@]}" -exec rm -rf {} + 2>/dev/null
-    [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} items matching '${pattern}'"
+    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} items matching '${pattern}'"
 }
 
 # Safe find-and-delete for files (uses -delete instead of -exec rm)
@@ -126,7 +130,7 @@ _cleanup::safe_find_delete() {
 
     _cleanup::confirm "Delete ${count} files matching '${pattern}'?" "${count}" || return 0
     "${find_args[@]}" -delete 2>/dev/null
-    [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Deleted ${count} files matching '${pattern}'"
+    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Deleted ${count} files matching '${pattern}'"
 }
 
 # Validate a path exists and is accessible
@@ -140,12 +144,12 @@ function _cleanup::validate_path {
     fi
 
     if [[ ! -e "${target}" ]]; then
-        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} does not exist: ${target}"
+        [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} does not exist: ${target}"
         return 1
     fi
 
     if [[ ! -d "${target}" ]] && [[ ! -f "${target}" ]]; then
-        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} is not a file or directory: ${target}"
+        [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} is not a file or directory: ${target}"
         return 1
     fi
 
@@ -155,15 +159,15 @@ function _cleanup::validate_path {
 # Remove unnecessary directories and files using config patterns (no eval)
 function _cleanup::unnecessary {
     message_info "Clean files unnecessary"
-    # Merge base + opt-in aggressive dir patterns (each pattern processed once,
+    # Merge base + opt-in aggressive + user dir patterns (each pattern processed once,
     # so duplicates never cause double sweeps)
-    local combined="${CLEAN_BASE_DIR_PATTERNS}|${CLEAN_AGGRESSIVE_PATTERNS}"
+    local combined="${ZSH_CLEAN_BASE_DIR_PATTERNS}|${ZSH_CLEAN_AGGRESSIVE_PATTERNS}|${ZSH_CLEAN_USER_DIR_PATTERNS}"
     IFS='|' read -rA dir_patterns <<< "${combined}"
     for pattern in "${dir_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_remove "." "${pattern}" "d"
     done
 
-    IFS='|' read -rA file_patterns <<< "${CLEAN_BASE_FILE_PATTERNS}"
+    IFS='|' read -rA file_patterns <<< "${ZSH_CLEAN_BASE_FILE_PATTERNS}|${ZSH_CLEAN_USER_FILE_PATTERNS}"
     for pattern in "${file_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_delete "." "${pattern}"
     done
