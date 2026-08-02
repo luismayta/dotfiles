@@ -60,7 +60,7 @@ Modules SHALL retain their own `*_MESSAGE_*` variables for messages that are uni
 #### Scenario: Module-specific NOT_IMPLEMENTED is preserved
 
 - **WHEN** `zsh/modules/clean/config/base.zsh` is sourced
-- **THEN** `CLEAN_MESSAGE_NOT_IMPLEMENTED` SHALL remain defined
+- **THEN** `ZSH_CLEAN_MESSAGE_NOT_IMPLEMENTED` SHALL remain defined (legacy alias `CLEAN_MESSAGE_NOT_IMPLEMENTED` still exported for backward compatibility)
 
 #### Scenario: Module-specific NOT_FOUND is preserved
 
