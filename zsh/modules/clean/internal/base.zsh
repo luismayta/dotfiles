@@ -9,17 +9,12 @@ export CLEAN_FORCE="${CLEAN_FORCE:-false}"
 
 # ── Internal Safety Helpers ───────────────────────────────────────────────
 
-# Check if dry-run mode is active
 _cleanup::is_dry_run() {
-    [[ "${CLEAN_DRY_RUN}" == "true" ]] && return 0
-    return 1
+    [[ "${CLEAN_DRY_RUN}" == "true" ]]
 }
 
-# Check if confirmation is required
 _cleanup::needs_confirmation() {
-    [[ "${CLEAN_FORCE}" == "true" ]] && return 1
-    [[ "${CLEAN_CONFIRM}" == "false" ]] && return 1
-    return 0
+    [[ "${CLEAN_FORCE}" != "true" && "${CLEAN_CONFIRM}" != "false" ]]
 }
 
 # Prompt for confirmation — returns 0 if approved, 1 if declined
@@ -41,23 +36,40 @@ _cleanup::confirm() {
     return 1
 }
 
+# Refuse to run tree cleanup from $HOME — personal caches live there.
+_cleanup::guard_home() {
+    [[ "${PWD}" == "${HOME}" ]] || return 0
+    if [[ "${CLEAN_FORCE:-false}" == "true" ]]; then
+        message_warning "WARNING: Cleaning from HOME (${HOME}) — caches like ~/.cache, ~/.npm, ~/.cargo may be removed."
+        return 0
+    fi
+    message_warning "Refusing to clean the current directory: it is your HOME (${HOME})."
+    message_warning "Personal caches (~/.cache, ~/.npm, ~/.cargo) live here and would be deleted."
+    message_warning "Run from a project directory, use cleanup::all, or set CLEAN_FORCE=true to override."
+    return 1
+}
+
 # Safe removal with dry-run + verbose support
+# NOTE: param named `target` — `local path=...` would clobber PATH (path is
+# the tied special array for PATH in zsh) and break `rm` lookup.
 _cleanup::safe_remove() {
-    local path="$1"
+    local target="$1"
 
-    [[ -z "${path}" || "${path}" == "/" ]] && return 0
+    [[ -z "${target}" || "${target}" == "/" ]] && return 0
 
-    if [[ ! -e "${path}" ]]; then
+    if [[ ! -e "${target}" ]]; then
         return 0
     fi
 
     if _cleanup::is_dry_run; then
-        message_info "[DRY RUN] Would remove: ${path}"
+        message_info "[DRY RUN] Would remove: ${target}"
         return 0
     fi
 
-    rm -rf "${path}"
-    [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Removed: ${path}"
+    _cleanup::confirm "Remove: ${target}?" || return 0
+
+    rm -rf "${target}"
+    [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Removed: ${target}"
 }
 
 # Safe find-and-remove using arrays (no eval) with dry-run support
@@ -112,6 +124,7 @@ _cleanup::safe_find_delete() {
         return 0
     fi
 
+    _cleanup::confirm "Delete ${count} files matching '${pattern}'?" "${count}" || return 0
     "${find_args[@]}" -delete 2>/dev/null
     [[ "${CLEAN_VERBOSE}" == "true" ]] && message_success "Deleted ${count} files matching '${pattern}'"
 }
@@ -119,45 +132,40 @@ _cleanup::safe_find_delete() {
 # Validate a path exists and is accessible
 # Usage: _cleanup::validate_path "/path/to/dir" "optional label"
 function _cleanup::validate_path {
-    local path="$1"
+    local target="$1"
     local label="${2:-path}"
 
-    if [[ -z "${path}" ]]; then
+    if [[ -z "${target}" ]]; then
         return 1
     fi
 
-    if [[ ! -e "${path}" ]]; then
-        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} does not exist: ${path}"
+    if [[ ! -e "${target}" ]]; then
+        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} does not exist: ${target}"
         return 1
     fi
 
-    if [[ ! -d "${path}" ]] && [[ ! -f "${path}" ]]; then
-        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} is not a file or directory: ${path}"
+    if [[ ! -d "${target}" ]] && [[ ! -f "${target}" ]]; then
+        [[ "${CLEAN_VERBOSE}" == "true" ]] && message_warning "${label} is not a file or directory: ${target}"
         return 1
     fi
 
     return 0
 }
 
-# Consolidated: remove unnecessary directories and files using config patterns (no eval)
+# Remove unnecessary directories and files using config patterns (no eval)
 function _cleanup::unnecessary {
     message_info "Clean files unnecessary"
-
-    # Extra directory patterns not in config
-    local extra_dirs="__pycache__|vendor|.external_modules"
-    local combined_dir="${CLEAN_BASE_DIR_PATTERNS}|${extra_dirs}"
-
-    # Remove directories matching patterns
-    IFS='|' read -rA dir_patterns <<< "${combined_dir}"
+    # Merge base + opt-in aggressive dir patterns (each pattern processed once,
+    # so duplicates never cause double sweeps)
+    local combined="${CLEAN_BASE_DIR_PATTERNS}|${CLEAN_AGGRESSIVE_PATTERNS}"
+    IFS='|' read -rA dir_patterns <<< "${combined}"
     for pattern in "${dir_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_remove "." "${pattern}" "d"
     done
 
-    # Remove files matching patterns
     IFS='|' read -rA file_patterns <<< "${CLEAN_BASE_FILE_PATTERNS}"
     for pattern in "${file_patterns[@]}"; do
         [[ -n "${pattern}" ]] && _cleanup::safe_find_delete "." "${pattern}"
     done
-
     message_success "Clean files unnecessary"
 }

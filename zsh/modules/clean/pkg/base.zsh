@@ -5,7 +5,11 @@
 
 function cleanup::all {
     message_info "Clean all files"
-    _cleanup::unnecessary
+    if _cleanup::guard_home; then
+        _cleanup::unnecessary
+    else
+        message_warning "Skipping tree cleanup phase — running from HOME."
+    fi
     # Package managers
     cleanup::yarn
     cleanup::npm
@@ -23,7 +27,6 @@ function cleanup::all {
     cleanup::terraform
     cleanup::docker
     cleanup::docker::volumes
-    cleanup::python::pyenv
     cleanup::python::virtualenvs
     cleanup::tasks
     # System
@@ -48,6 +51,7 @@ function cleanup::all {
 
 # Consolidated: cleanup delegates to _cleanup::unnecessary
 function cleanup {
+    _cleanup::guard_home || return 1
     message_info "Clean generated directories..."
     _cleanup::unnecessary
     message_success "Clean complete"
@@ -101,9 +105,24 @@ function cleanup::tasks {
 }
 
 function cleanup::python::pyenv {
-    local pyenv_cache="${HOME}/.pyenv/versions"
-    if [[ -d "${pyenv_cache}" ]]; then
-        _cleanup::safe_remove "${pyenv_cache}"
+    if type pyenv > /dev/null; then
+        message_info "pyenv versions (informative — interpreters are NOT removed by default)"
+        local versions
+        versions="$(pyenv versions 2>/dev/null)"
+        if [[ -n "${versions}" ]]; then
+            message_info "Installed pyenv versions:"
+            message_info "${versions}"
+        else
+            message_warning "No pyenv versions installed"
+        fi
+        message_warning "Removing Python interpreters (${HOME}/.pyenv/versions) is destructive and irreversible."
+        if [[ "${CLEAN_FORCE}" != "true" ]]; then
+            message_info "Set CLEAN_FORCE=true and run again to remove them."
+        elif _cleanup::confirm "Remove all installed pyenv versions?"; then
+            _cleanup::safe_remove "${HOME}/.pyenv/versions"
+        fi
+    else
+        message_warning "pyenv not found, skipping"
     fi
 }
 
@@ -171,6 +190,7 @@ function cleanup::projects {
     message_info "Clean files of ${PROJECTS}"
     local _oldwd="${PWD}"
     cd "${PROJECTS}" || return
+    _cleanup::guard_home || { cd "${_oldwd}" || return; return 1; }
     cleanup
     cd "${_oldwd}" || return
     message_success "Clean files unnecessary"
@@ -289,7 +309,7 @@ function cleanup::help {
     echo "  cleanup::terraform   - Terraform plugins/cache"
     echo "  cleanup::docker      - Docker build cache"
     echo "  cleanup::docker::volumes - Docker volumes"
-    echo "  cleanup::python::pyenv      - pyenv versions"
+    echo "  cleanup::python::pyenv      - pyenv versions (informative; remove only with CLEAN_FORCE=true)"
     echo "  cleanup::python::virtualenvs - virtualenvs"
     echo "  cleanup::tasks       - Task runner files"
     echo ""
@@ -311,11 +331,19 @@ function cleanup::help {
     echo "  export CLEAN_DRY_RUN=true    # Show what would happen"
     echo "  export CLEAN_CONFIRM=true    # Prompt before each deletion"
     echo "  export CLEAN_VERBOSE=true    # Show detailed output"
-    echo "  export CLEAN_FORCE=true      # Skip confirmations"
+    echo "  export CLEAN_FORCE=true      # Skip confirmations (also overrides the \$HOME guard)"
     echo ""
     echo "Config vars (override before sourcing):"
+    echo "  CLEAN_BASE_DIR_PATTERNS, CLEAN_BASE_FILE_PATTERNS, CLEAN_AGGRESSIVE_PATTERNS"
+    echo "  CLEAN_AGGRESSIVE_PATTERNS   # Opt-in generic dirs (build|dist|tmp|...); empty by default"
     echo "  CLEAN_BASE_CACHE_NPM, CLEAN_BASE_CACHE_YARN, CLEAN_BASE_CACHE_PIP"
     echo "  CLEAN_BASE_CACHE_PRE_COMMIT, CLEAN_BASE_CACHE_TERRAFORM, CLEAN_BASE_CACHE_VIRTUALENVS"
     echo "  CLEAN_BASE_CACHE_BUN, CLEAN_BASE_CACHE_PNPM"
     echo "  CLEAN_OSX_* (macOS), CLEAN_LINUX_* (Linux)"
+    echo ""
+    echo "Guard: 'cleanup' aborts when run from \$HOME — recursive pattern matching"
+    echo "  would delete personal caches (~/.cache, ~/.npm, ~/.cargo). Override with"
+    echo "  CLEAN_FORCE=true (a prominent warning is still shown)."
+    echo "File-pattern cleanup (*.log, .DS_Store, ...) prompts for confirmation by"
+    echo "  default; decline with 'n' or skip prompts with CLEAN_FORCE=true."
 }
