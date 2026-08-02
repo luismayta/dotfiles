@@ -2,14 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 # Safety configuration defaults
-export ZSH_CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN:-${CLEAN_DRY_RUN:-false}}"
-export CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN}"  # remove in next cleanup cycle
-export ZSH_CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM:-${CLEAN_CONFIRM:-true}}"
-export CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM}"  # remove in next cleanup cycle
-export ZSH_CLEAN_VERBOSE="${ZSH_CLEAN_VERBOSE:-${CLEAN_VERBOSE:-true}}"
-export CLEAN_VERBOSE="${ZSH_CLEAN_VERBOSE}"  # remove in next cleanup cycle
-export ZSH_CLEAN_FORCE="${ZSH_CLEAN_FORCE:-${CLEAN_FORCE:-false}}"
-export CLEAN_FORCE="${ZSH_CLEAN_FORCE}"  # remove in next cleanup cycle
+export ZSH_CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN:-false}"
+export ZSH_CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM:-true}"
+export ZSH_CLEAN_VERBOSE="${ZSH_CLEAN_VERBOSE:-true}"
+export ZSH_CLEAN_FORCE="${ZSH_CLEAN_FORCE:-false}"
 
 # ── Internal Safety Helpers ───────────────────────────────────────────────
 
