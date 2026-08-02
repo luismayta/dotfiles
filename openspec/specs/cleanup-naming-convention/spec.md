@@ -15,21 +15,10 @@ The system SHALL name all module environment variables with the `ZSH_CLEAN_` pre
 - **WHEN** the module path is resolved
 - **THEN** it is stored as `ZSH_CLEAN_PATH` using the `${0:A:h}` modifier
 
-### Requirement: Backward-compatible aliases preserve CLEAN_*
-The system SHALL keep the old `CLEAN_*` names working as aliases to the new `ZSH_CLEAN_*` variables for the public surface.
-
-#### Scenario: Legacy variable still readable
-- **WHEN** a user or script reads `CLEAN_DRY_RUN` after module load
-- **THEN** it equals the value of `ZSH_CLEAN_DRY_RUN`
-
-#### Scenario: Legacy variable set before module load is honored
-- **WHEN** a user sets `CLEAN_BASE_DIR_PATTERNS` before sourcing the module
-- **THEN** the module reads that value as the effective default (alias maps old → new)
-
-#### Scenario: Aliases marked as temporary
-- **WHEN** aliases are defined
-- **THEN** they are marked with a "remove in next cleanup cycle" comment
-- **AND** they do not appear in the module's canonical documentation as primary names
+#### Scenario: Legacy CLEAN_* variables are not honored
+- **WHEN** a user sets `CLEAN_DRY_RUN=true` before sourcing the module
+- **THEN** dry-run is NOT enabled unless `ZSH_CLEAN_DRY_RUN=true` is also set
+- **AND** no legacy `CLEAN_*` variable is read or exported by the module
 
 ### Requirement: Functions keep cleanup:: prefix
 The system SHALL NOT rename public or internal functions as part of the naming migration.
