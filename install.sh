@@ -266,7 +266,9 @@ function clone_repo {
     export DOTFILES_ROOT="${PATH_REPO}"
     export DOTFILES_OS
     DOTFILES_OS=$(detect::os)
-    exec bash "${PATH_REPO}/provision/script/run.sh"
+    cp "${PATH_REPO}/zsh/zshrc" "${HOME}/.zshrc"
+    cp "${PATH_REPO}/zsh/zshenv" "${HOME}/.zshenv"
+    msg::success "Installed zsh dotfiles to ${HOME}"
   fi
 }
 
