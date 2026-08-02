@@ -1,9 +1,9 @@
 # shellcheck shell=bash
-# shellcheck disable=SC2154 # variables defined in config/base.zsh
+# shellcheck disable=SC2154 # ZSH_GHQ_GITHUB_USER, ZSH_GHQ_CACHE_PROJECT, ZSH_GHQ_CACHE_PATH, ZSH_GHQ_REGEX_IS_REPOSITORY, ZSH_GHQ_ROOT, ZSH_GHQ_PACKAGE_NAME defined in config/base.zsh
 # Public API — all ghq::* functions
 
 function ghq::dependences::check {
-    if [ -z "${GITHUB_USER}" ]; then
+    if [ -z "${ZSH_GHQ_GITHUB_USER}" ]; then
         message_warning "You should set 'git config --global github.user'."
     fi
     if [ -z "${PROJECTS:-}" ]; then
@@ -12,7 +12,7 @@ function ghq::dependences::check {
 }
 
 function ghq::install {
-    ghq::internal::ghq::install
+    ghq::internal::install
 }
 
 function ghq::post_install {
@@ -22,7 +22,7 @@ function ghq::post_install {
 }
 
 function ghq::projects::list {
-    if [ ! -e "${GHQ_CACHE_PROJECT}" ]; then
+    if [ ! -e "${ZSH_GHQ_CACHE_PROJECT}" ]; then
         ghq::cache::create::factory
         ghq::cache::list
         return
@@ -34,7 +34,7 @@ function ghq::projects::list {
 function ghq::new {
     local repository repository_path
     repository="${1}"
-    repository_path="$(ghq root)/github.com/${GITHUB_USER}/${repository}"
+    repository_path="$(ghq root)/github.com/${ZSH_GHQ_GITHUB_USER}/${repository}"
     ghq create "${repository}"
     ghq::cache::clear
     cd "${repository_path}" || cd - && git flow init -d
@@ -42,8 +42,9 @@ function ghq::new {
 
 function ghq::new::template {
     local template repository_path
-    repository_path="$(ghq root)/github.com/${GITHUB_USER}/"
-    template="$(ghq::cookiecutter::find)"
+    repository_path="$(ghq root)/github.com/${ZSH_GHQ_GITHUB_USER}/"
+    ghq::cookiecutter::find
+    template="${ZSH_GHQ_COOKIECUTTER_TEMPLATE:-}"
     if [ -z "${template}" ]; then
         message_warning "Please Select one Project"
         return
@@ -56,7 +57,7 @@ function ghq::new::template {
 function ghq::factory {
     local repository repository_path is_repository
     repository="${1}"
-    is_repository=$(echo "${repository}" | grep -cE "${GHQ_REGEX_IS_REPOSITORY}")
+    is_repository=$(echo "${repository}" | grep -cE "${ZSH_GHQ_REGEX_IS_REPOSITORY}")
 
     if [ -z "${repository}" ]; then
         ghq::new::template
@@ -117,17 +118,17 @@ function ghq::git::get_origin_path {
 }
 
 function ghq::cache::clear {
-    [ -e "${GHQ_CACHE_PROJECT}" ] && rm -rf "${GHQ_CACHE_PROJECT}"
+    [ -e "${ZSH_GHQ_CACHE_PROJECT}" ] && rm -rf "${ZSH_GHQ_CACHE_PROJECT}"
     ghq::cache::create::factory
 }
 
 function ghq::cache::list {
-    [ -e "${GHQ_CACHE_PROJECT}" ] && cat "${GHQ_CACHE_PROJECT}"
+    [ -e "${ZSH_GHQ_CACHE_PROJECT}" ] && cat "${ZSH_GHQ_CACHE_PROJECT}"
 }
 
 function ghq::cache::create {
-    [ -e "${GHQ_CACHE_PATH}" ] || mkdir -p "${GHQ_CACHE_PATH}"
-    ghq list > "${GHQ_CACHE_PROJECT}"
+    [ -e "${ZSH_GHQ_CACHE_PATH}" ] || mkdir -p "${ZSH_GHQ_CACHE_PATH}"
+    ghq list > "${ZSH_GHQ_CACHE_PROJECT}"
 }
 
 function ghq::cache::create::factory {
@@ -141,9 +142,9 @@ function ghq::migrate::move {
     target_dir="${1}"
     remote_path="${2}"
 
-    message_info "move this repository to ${GHQ_ROOT}/${remote_path}"
+    message_info "move this repository to ${ZSH_GHQ_ROOT}/${remote_path}"
 
-    new_repo_dir="${GHQ_ROOT}/${remote_path}"
+    new_repo_dir="${ZSH_GHQ_ROOT}/${remote_path}"
 
     if [ -e "${new_repo_dir}" ]; then
         message_warning "${new_repo_dir} already exists!!!!"
@@ -174,6 +175,10 @@ function ghq::migrate {
     migrate_path="$(ghq::get_remote_path_from_url "${origin_path}")"
 
     ghq::migrate::move "${target_dir}" "${migrate_path}"
+}
+
+function ghq::sync {
+    message_info "No configuration files to sync for ${ZSH_GHQ_PACKAGE_NAME}."
 }
 
 # Auto-load dependencies on module init

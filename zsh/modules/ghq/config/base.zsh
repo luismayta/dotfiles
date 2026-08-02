@@ -2,17 +2,28 @@
 ZSH_GHQ_ENABLED="${ZSH_GHQ_ENABLED:-true}"
 # Base ghq configuration
 
-export GHQ_PACKAGE_NAME=ghq
-GHQ_ROOT=$(ghq root 2>/dev/null || echo "${PROJECTS:-${HOME}/projects}")
-export GHQ_ROOT
+export ZSH_GHQ_DATA_PATH="${ZSH_GHQ_PATH}/data"
 
-export GHQ_FILE_COOKIECUTTER="${ZSH_GHQ_PATH}/resources/data.json"
-export GHQ_CACHE_PATH="${HOME}/.cache/ghq"
-export GHQ_CACHE_NAME="ghq.txt"
-export GHQ_CACHE_PROJECT="${GHQ_CACHE_PATH}/${GHQ_CACHE_NAME}"
+export ZSH_GHQ_PACKAGE_NAME=ghq
+ZSH_GHQ_ROOT="$(ghq root 2>/dev/null || echo "${PROJECTS:-${HOME}/projects}")"
+export ZSH_GHQ_ROOT
 
-export GHQ_REGEX_IS_REPOSITORY="^(git:|git@|ssh://|http://|https://)"
+export ZSH_GHQ_FILE_COOKIECUTTER="${ZSH_GHQ_PATH}/data/data.json"
+export ZSH_GHQ_CACHE_PATH="${HOME}/.cache/ghq"
+export ZSH_GHQ_CACHE_NAME="ghq.txt"
+export ZSH_GHQ_CACHE_PROJECT="${ZSH_GHQ_CACHE_PATH}/${ZSH_GHQ_CACHE_NAME}"
 
-GITHUB_USER="$(git config --global github.user 2>/dev/null || echo "")"
-export GITHUB_USER
+export ZSH_GHQ_REGEX_IS_REPOSITORY="^(git:|git@|ssh://|http://|https://)"
 
+ZSH_GHQ_GITHUB_USER="$(git config --global github.user 2>/dev/null || echo "")"
+export ZSH_GHQ_GITHUB_USER
+
+# Backward-compat aliases (remove in next cleanup cycle)
+export GHQ_PACKAGE_NAME="${ZSH_GHQ_PACKAGE_NAME}"
+export GHQ_ROOT="${ZSH_GHQ_ROOT}"
+export GHQ_FILE_COOKIECUTTER="${ZSH_GHQ_FILE_COOKIECUTTER}"
+export GHQ_CACHE_PATH="${ZSH_GHQ_CACHE_PATH}"
+export GHQ_CACHE_NAME="${ZSH_GHQ_CACHE_NAME}"
+export GHQ_CACHE_PROJECT="${ZSH_GHQ_CACHE_PROJECT}"
+export GHQ_REGEX_IS_REPOSITORY="${ZSH_GHQ_REGEX_IS_REPOSITORY}"
+export GITHUB_USER="${ZSH_GHQ_GITHUB_USER}"

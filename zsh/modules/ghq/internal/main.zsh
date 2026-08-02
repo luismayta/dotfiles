@@ -14,6 +14,6 @@ linux*)
     ;;
 esac
 
-if ! core::exists rsync > /dev/null; then core::install rsync; fi
-if ! core::exists ghq > /dev/null; then ghq::internal::ghq::install; fi
+core::ensure rsync
+core::ensure "${ZSH_GHQ_PACKAGE_NAME}"
 if ! core::exists cookiecutter; then ghq::internal::cookiecutter::install; fi

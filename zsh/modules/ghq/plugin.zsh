@@ -13,12 +13,13 @@
 __ZSH_GHQ_LOADED=1
 
 # Module root path — used by all sourced sub-files
-ZSH_GHQ_PATH="$(dirname "${0}")"
-message_info "Loading module: ghq"
+ZSH_GHQ_PATH="${0:A:h}"
 
 # shellcheck source=/dev/null
 source "${ZSH_GHQ_PATH}/config/main.zsh"
 $ZSH_GHQ_ENABLED || return
+
+message_info "Loading module: ${ZSH_GHQ_PACKAGE_NAME}"
 
 # shellcheck source=/dev/null
 source "${ZSH_GHQ_PATH}/internal/main.zsh"
