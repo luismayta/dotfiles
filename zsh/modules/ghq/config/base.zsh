@@ -5,7 +5,7 @@ ZSH_GHQ_ENABLED="${ZSH_GHQ_ENABLED:-true}"
 export ZSH_GHQ_DATA_PATH="${ZSH_GHQ_PATH}/data"
 
 export ZSH_GHQ_PACKAGE_NAME=ghq
-ZSH_GHQ_ROOT="$(ghq root 2>/dev/null || echo "${PROJECTS:-${HOME}/projects}")"
+ZSH_GHQ_ROOT="${ZSH_GHQ_ROOT:-${GHQ_ROOT:-${HOME}/Projects/src}}"
 export ZSH_GHQ_ROOT
 
 export ZSH_GHQ_FILE_COOKIECUTTER="${ZSH_GHQ_PATH}/data/data.json"

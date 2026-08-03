@@ -17,7 +17,7 @@ function ghq::install {
 
 function ghq::post_install {
     if core::exists git; then
-        git config --global ghq.root "${PROJECTS:-${HOME}/projects}"
+        git config --global ghq.root "${ZSH_GHQ_ROOT}"
     fi
 }
 
