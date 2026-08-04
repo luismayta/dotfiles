@@ -8,6 +8,6 @@ tasks:
     cmds:
       - >-
         gomplate --file {{.README_MODULE_TEMPLATE}}
-        --out zsh/modules/nix-darwin/README.md
-        --datasource config=zsh/modules/nix-darwin/README.yaml
+        --out zsh/system/nix-darwin/README.md
+        --datasource config=zsh/system/nix-darwin/README.yaml
         --datasource includes={{.README_INCLUDES}}
