@@ -29,11 +29,6 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
   third774/herdr-last-workspace
 )
 
-# Navigation — agent focus, recent nav
-ZSH_HERDR_INSTALL_PLUGINS+=(
-  beyondlex/herdr-recent-navigator
-)
-
 # Worktrees & terminal UX — git, layouts, navigation, overlays
 ZSH_HERDR_INSTALL_PLUGINS+=(
   qdentity/herdr-worktree-lifecycle
@@ -42,9 +37,7 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
   persiyanov/herdr-reviewr
   rmarganti/herdr-pluck
   smarzban/herdr-file-viewer
-  beomjungil/herdr-lazygit-overlay
   carsonjones/herdr-plugin-tiles
   kamaaina/herdr_sync
-  wyattjoh/herdr-plugin-renamer
   alexjsp/herdr-scrollback-capture
 )
