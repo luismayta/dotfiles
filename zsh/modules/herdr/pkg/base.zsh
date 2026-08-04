@@ -3,6 +3,10 @@ function herdr::install {
   herdr::internal::install
 }
 
+function herdr::update {
+    herdr::internal::update
+}
+
 function herdr::sync {
   herdr::internal::config::sync
 }
