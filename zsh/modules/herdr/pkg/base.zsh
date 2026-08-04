@@ -1,5 +1,4 @@
 # shellcheck shell=bash
-
 function herdr::install {
   herdr::internal::install
 }
