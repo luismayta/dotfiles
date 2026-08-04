@@ -515,4 +515,5 @@ source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 - **noti implementation**: `zsh/modules/notify/config/adapter/noti.zsh`, `internal/adapter/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
 - **AI module**: `zsh/modules/ai/` (aggregate sync example via `ai::sync`)
 - **Existing guide**: `docs/guides/create-module.md` (for creating new modules)
+- **Existing guide**: `docs/guides/implement-module-update.md` (adding an `update` function to a module)
 - **Core utilities**: `zsh/system/core/` (message_*, core::exists, path::prepend)
