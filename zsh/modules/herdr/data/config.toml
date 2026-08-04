@@ -143,6 +143,13 @@ type = "plugin_action"
 command = "herdr-navigator.open"
 description = "jump to anything"
 
+## Plugin Hadenlabs Projects 
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "hadenlabs.project.select"
+description = "Hadenlabs: open to project"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
@@ -150,7 +157,7 @@ description = "jump to anything"
 # workspaces = "" # e.g. "ctrl+shift" makes ctrl+shift+1..9 switch workspaces directly
 # agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
 
-# [worktrees]
+[worktrees]
 directory = "~/.codi/worktrees"
 
 [ui]
@@ -267,3 +274,17 @@ pane_history = false
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
+
+# >>> smolbox (managed) >>>
+[[keys.command]]
+key = "prefix+m"
+type = "plugin_action"
+command = "smolbox.boxes"
+description = "smolbox: boxes overlay"
+
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "smolbox.new"
+description = "smolbox: new box"
+# <<< smolbox (managed) <<<
