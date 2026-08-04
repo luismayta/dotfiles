@@ -12,6 +12,11 @@ function hyprland::post_install {
 
 function hyprland::sync {
     rsync -avzh --progress "${HYPRLAND_PATH}/data/" "${HYPRLAND_CONFIG_PATH}/"
+
+    if [[ ! -f "${DMS_CONFIG_PATH}/settings.json" ]]; then
+        command mkdir -p "${DMS_CONFIG_PATH}"
+        command cp "${HYPRLAND_PATH}/config/dms-settings.json" "${DMS_CONFIG_PATH}/settings.json"
+    fi
 }
 
 function hyprland::classes {
