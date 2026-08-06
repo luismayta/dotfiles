@@ -1,0 +1,18 @@
+---
+name: smolvm
+tags:
+  - smolvm
+  - zsh
+license: "Apache-2.0"
+github_repo: luismayta/dotfiles
+description: |-
+  ZSH module for smolvm — the Apache-2.0 microVM engine from smol-machines used
+  to run coding agents in ephemeral microVMs (pinned v1.3.2).
+features:
+  - "Pinned install (v1.3.2) with SHA256 checksum verification"
+  - "Binary installation to ~/.local/bin"
+  - "Idempotent module loading with enable/disable toggle"
+requirements: |-
+  - curl
+  - sha256sum (Linux) / shasum (macOS)
+  - KVM support (for running microVMs)

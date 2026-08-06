@@ -117,6 +117,8 @@ includes:
     taskfile: ./zsh/modules/rust/Taskfile.yml
   module-rvm:
     taskfile: ./zsh/modules/rvm/Taskfile.yml
+  module-smolvm:
+    taskfile: ./zsh/modules/smolvm/Taskfile.yml
   module-ssh:
     taskfile: ./zsh/modules/ssh/Taskfile.yml
   module-starship:
@@ -307,6 +309,7 @@ tasks:
       - task: module-resources:readme
       - task: module-rust:readme
       - task: module-rvm:readme
+      - task: module-smolvm:readme
       - task: module-ssh:readme
       - task: module-starship:readme
       - task: module-templates:readme
