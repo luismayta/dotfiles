@@ -27,6 +27,7 @@ Clean ZSH module providing cleanup and housekeeping utilities
 - System cache and temporary file cleanup
 - Package manager cache management
 - Disk usage reporting
+- Consolidated pattern sweep with a single find invocation and single confirmation per sweep
 
 
 

@@ -11,5 +11,6 @@ features:
   - "System cache and temporary file cleanup"
   - "Package manager cache management"
   - "Disk usage reporting"
+  - "Consolidated pattern sweep with a single find invocation and single confirmation per sweep"
 requirements: |-
   - zsh (loaded as part of dotfiles zsh modules)
