@@ -100,7 +100,7 @@ function cleanup::pre_commit {
 
 function cleanup::tasks {
     message_info "Clean tasks files generated"
-    _cleanup::safe_find_remove "." ".task" "d"
+    _cleanup::safe_find_remove "." ".task"
     message_success "Clean files tasks"
 }
 
@@ -178,7 +178,7 @@ function cleanup::brew {
 
 function cleanup::terraform {
     message_info "Clean Terraform files"
-    _cleanup::safe_find_remove "." ".terraform" "d"
+    _cleanup::safe_find_remove "." ".terraform"
     message_success "Clean Terraform files"
 }
 

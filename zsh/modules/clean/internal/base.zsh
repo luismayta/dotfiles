@@ -1,6 +1,7 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 #
+# shellcheck disable=SC2296,SC2053 # zsh-only expansions (${(@f)}, ${(j:)}, ${~}); RHS glob match is intentional
 # Safety configuration defaults
 export ZSH_CLEAN_DRY_RUN="${ZSH_CLEAN_DRY_RUN:-false}"
 export ZSH_CLEAN_CONFIRM="${ZSH_CLEAN_CONFIRM:-true}"
@@ -72,61 +73,186 @@ _cleanup::safe_remove() {
     [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed: ${target}"
 }
 
-# Safe find-and-remove using arrays (no eval) with dry-run support
-_cleanup::safe_find_remove() {
-    local search_path="${1:-.}"
-    local pattern="$2"
-    local type="${3:-}"
-
-    local -a find_args=(find "${search_path}")
-    [[ -n "${type}" ]] && find_args+=(-type "${type}")
-    find_args+=(-name "${pattern}")
-
-    local count
-    count=$("${find_args[@]}" 2>/dev/null | wc -l)
-
-    if [[ "${count}" -eq 0 ]]; then
-        return 0
-    fi
-
-    if _cleanup::is_dry_run; then
-        message_info "[DRY RUN] Would remove ${count} items matching '${pattern}'"
-        "${find_args[@]}" 2>/dev/null | while IFS= read -r item; do
-            message_info "  - ${item}"
-        done
-        return 0
-    fi
-
-    _cleanup::confirm "Remove ${count} items matching '${pattern}'?" "${count}" || return 0
-    "${find_args[@]}" -exec rm -rf {} + 2>/dev/null
-    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} items matching '${pattern}'"
+# Dedupe a pattern list preserving first-seen order and dropping empty entries.
+# Exact-match dedupe (`[(Ie)]`, no globbing) so a pattern repeated across the
+# merged BASE|AGGRESSIVE|USER lists is evaluated only once. Prints one pattern
+# per line for capture with ${(@f)...}.
+_cleanup::dedupe_patterns() {
+    local -a seen=()
+    local p
+    for p in "$@"; do
+        [[ -z "${p}" ]] && continue
+        (( ${seen[(Ie)${p}]} )) && continue
+        seen+=("${p}")
+        print -r -- "${p}"
+    done
 }
 
-# Safe find-and-delete for files (uses -delete instead of -exec rm)
-_cleanup::safe_find_delete() {
+# Print, one per line, the patterns that have at least one match among $items.
+# Usage: _cleanup::affected_groups <item>... -- <pattern>...
+# Unique basenames are derived with ${item:t}; `[(I)pat]` applies native zsh
+# globbing so patterns like `*.log` / `cmake-build-*` match without deps.
+_cleanup::affected_groups() {
+    local -a items=()
+    while (( $# > 0 )); do
+        [[ "$1" == "--" ]] && { shift; break; }
+        items+=("$1")
+        shift
+    done
+    local -a patterns=("$@")
+
+    local -a basenames=()
+    local item base
+    for item in "${items[@]}"; do
+        base="${item:t}"
+        (( ${basenames[(Ie)${base}]} )) || basenames+=("${base}")
+    done
+
+    local pattern
+    for pattern in "${patterns[@]}"; do
+        [[ "${basenames[(I)${pattern}]}" -gt 0 ]] && print -r -- "${pattern}"
+    done
+}
+
+# Build a combined find expression as an array (no eval). Prints one arg per
+# line so callers capture it with ${(@f)...}.
+#   _cleanup::find_expr <path> [<type>] <pattern>...
+# With >1 pattern the -name terms are grouped with escaped parens — required
+# by find precedence: without `\( ... \)` a trailing -exec/-delete would bind
+# only to the last -name and the remaining patterns would be evaluated without
+# any delete action.
+_cleanup::find_expr() {
     local search_path="${1:-.}"
-    local pattern="$2"
+    local type="${2:-}"
+    shift 2
+    local -a patterns=("$@")
 
-    local -a find_args=(find "${search_path}" -name "${pattern}")
+    local -a expr=(find "${search_path}")
+    [[ -n "${type}" ]] && expr+=(-type "${type}")
 
-    local count
-    count=$("${find_args[@]}" 2>/dev/null | wc -l)
+    if (( ${#patterns[@]} > 1 )); then
+        expr+=(\()
+        local first=1 p
+        for p in "${patterns[@]}"; do
+            (( first )) || expr+=(-o)
+            expr+=(-name "${p}")
+            first=0
+        done
+        expr+=(\))
+    elif (( ${#patterns[@]} == 1 )); then
+        expr+=(-name "${patterns[1]}")
+    fi
 
-    if [[ "${count}" -eq 0 ]]; then
+    # -l: one argument per line so ${(@f)...} round-trips the array intact.
+    print -rl -- "${expr[@]}"
+}
+
+# Dry-run report for a consolidated sweep: one summary line (total + affected
+# groups) plus the matched items grouped under each affected pattern. No
+# destructive action is performed.
+_cleanup::report_dry_run() {
+    local label="$1"
+    local count="$2"
+    shift 2
+    local -a items=()
+    while (( $# > 0 )); do
+        [[ "$1" == "--" ]] && { shift; break; }
+        items+=("$1")
+        shift
+    done
+    local -a patterns=("$@")
+
+    local -a groups
+    groups=("${(@f)$(_cleanup::affected_groups "${items[@]}" -- "${patterns[@]}")}")
+
+    message_info "[DRY RUN] Would remove ${count} items (${label}) matching: ${(j:, :)groups}"
+
+    local pattern item
+    for pattern in "${groups[@]}"; do
+        for item in "${items[@]}"; do
+            [[ "${item:t}" == ${~pattern} ]] && message_info "  - ${item}"
+        done
+    done
+}
+
+# Safe find-and-remove over MULTIPLE patterns in ONE find invocation
+# (dirs: `-type d` + `-exec rm -rf {} +`) with a single consolidated prompt.
+# Usage: _cleanup::safe_find_remove <path> <pattern>...
+_cleanup::safe_find_remove() {
+    local search_path="${1:-.}"
+    shift
+    local -a patterns=("$@")
+
+    (( ${#patterns[@]} > 0 )) || return 0
+
+    local -a expr
+    expr=("${(@f)$(_cleanup::find_expr "${search_path}" "d" "${patterns[@]}")}")
+
+    local -a items
+    items=("${(@f)$("${expr[@]}" 2>/dev/null)}")
+    # Drop blank lines: ${(@f)$(cmd)} yields a phantom "" element when the
+    # command outputs nothing, which would fake a 1-item sweep.
+    items=("${(@)items:#}")
+
+    local count=${#items[@]}
+    if (( count == 0 )); then
         return 0
     fi
 
     if _cleanup::is_dry_run; then
-        message_info "[DRY RUN] Would delete ${count} files matching '${pattern}'"
-        "${find_args[@]}" 2>/dev/null | while IFS= read -r item; do
-            message_info "  - ${item}"
-        done
+        _cleanup::report_dry_run "dirs" "${count}" "${items[@]}" -- "${patterns[@]}"
         return 0
     fi
 
-    _cleanup::confirm "Delete ${count} files matching '${pattern}'?" "${count}" || return 0
-    "${find_args[@]}" -delete 2>/dev/null
-    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Deleted ${count} files matching '${pattern}'"
+    local -a groups
+    groups=("${(@f)$(_cleanup::affected_groups "${items[@]}" -- "${patterns[@]}")}")
+
+    # NOTE: the total is already inline in the message — do NOT pass count to
+    # _cleanup::confirm or it would append a duplicate "(N items)".
+    _cleanup::confirm "Remove ${count} items (dirs) matching: ${(j:, :)groups}?" || return 0
+
+    "${expr[@]}" -exec rm -rf {} + 2>/dev/null
+    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} items (dirs) matching: ${(j:, :)groups}"
+}
+
+# Safe find-and-delete over MULTIPLE patterns in ONE find invocation
+# (files: `-delete`, no `-type`) with a single consolidated prompt.
+# Usage: _cleanup::safe_find_delete <path> <pattern>...
+# NOTE (pre-existing quirk, do NOT change): a directory (empty or not) whose
+# name matches a file pattern can be counted or deleted by `-delete`.
+_cleanup::safe_find_delete() {
+    local search_path="${1:-.}"
+    shift
+    local -a patterns=("$@")
+
+    (( ${#patterns[@]} > 0 )) || return 0
+
+    local -a expr
+    expr=("${(@f)$(_cleanup::find_expr "${search_path}" "" "${patterns[@]}")}")
+
+    local -a items
+    items=("${(@f)$("${expr[@]}" 2>/dev/null)}")
+    # Drop blank lines (phantom "" element on empty output — see safe_find_remove).
+    items=("${(@)items:#}")
+
+    local count=${#items[@]}
+    if (( count == 0 )); then
+        return 0
+    fi
+
+    if _cleanup::is_dry_run; then
+        _cleanup::report_dry_run "files" "${count}" "${items[@]}" -- "${patterns[@]}"
+        return 0
+    fi
+
+    local -a groups
+    groups=("${(@f)$(_cleanup::affected_groups "${items[@]}" -- "${patterns[@]}")}")
+
+    # NOTE: same as safe_find_remove — total is inline, no count argument.
+    _cleanup::confirm "Remove ${count} items (files) matching: ${(j:, :)groups}?" || return 0
+
+    "${expr[@]}" -delete 2>/dev/null
+    [[ "${ZSH_CLEAN_VERBOSE}" == "true" ]] && message_success "Removed ${count} items (files) matching: ${(j:, :)groups}"
 }
 
 # Validate a path exists and is accessible
@@ -152,20 +278,24 @@ function _cleanup::validate_path {
     return 0
 }
 
-# Remove unnecessary directories and files using config patterns (no eval)
+# Remove unnecessary directories and files using config patterns (no eval).
+# Each sweep (dirs, files) runs ONE consolidated find (combined -o expression)
+# and ONE consolidated confirmation with total + affected groups.
 function _cleanup::unnecessary {
     message_info "Clean files unnecessary"
-    # Merge base + opt-in aggressive + user dir patterns (each pattern processed once,
-    # so duplicates never cause double sweeps)
-    local combined="${ZSH_CLEAN_BASE_DIR_PATTERNS}|${ZSH_CLEAN_AGGRESSIVE_PATTERNS}|${ZSH_CLEAN_USER_DIR_PATTERNS}"
-    IFS='|' read -rA dir_patterns <<< "${combined}"
-    for pattern in "${dir_patterns[@]}"; do
-        [[ -n "${pattern}" ]] && _cleanup::safe_find_remove "." "${pattern}" "d"
-    done
+    # Merge base + opt-in aggressive + user dir patterns (same merge as before),
+    # then dedupe preserving first-seen order so no pattern is evaluated twice
+    # and the report/prompt are not inflated.
+    local -a dir_patterns file_patterns
+    IFS='|' read -rA dir_patterns <<< "${ZSH_CLEAN_BASE_DIR_PATTERNS}|${ZSH_CLEAN_AGGRESSIVE_PATTERNS}|${ZSH_CLEAN_USER_DIR_PATTERNS}"
+    dir_patterns=("${(@f)$(_cleanup::dedupe_patterns "${dir_patterns[@]}")}")
+    dir_patterns=("${(@)dir_patterns:#}")
 
     IFS='|' read -rA file_patterns <<< "${ZSH_CLEAN_BASE_FILE_PATTERNS}|${ZSH_CLEAN_USER_FILE_PATTERNS}"
-    for pattern in "${file_patterns[@]}"; do
-        [[ -n "${pattern}" ]] && _cleanup::safe_find_delete "." "${pattern}"
-    done
+    file_patterns=("${(@f)$(_cleanup::dedupe_patterns "${file_patterns[@]}")}")
+    file_patterns=("${(@)file_patterns:#}")
+
+    (( ${#dir_patterns[@]} > 0 )) && _cleanup::safe_find_remove "." "${dir_patterns[@]}"
+    (( ${#file_patterns[@]} > 0 )) && _cleanup::safe_find_delete "." "${file_patterns[@]}"
     message_success "Clean files unnecessary"
 }
