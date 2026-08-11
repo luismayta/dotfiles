@@ -1,8 +1,5 @@
-# cleanup-core Specification
+## MODIFIED Requirements
 
-## Purpose
-TBD - created by archiving change improve-zsh-clean-module. Update Purpose after archive.
-## Requirements
 ### Requirement: Consolidated cleanup functions
 The system SHALL consolidate duplicate cleanup logic into unified functions, with all directory/file patterns declared in module configuration rather than hardcoded in implementation, no pattern swept twice, and all patterns swept in a single consolidated `find` invocation.
 
@@ -36,29 +33,3 @@ The system SHALL consolidate duplicate cleanup logic into unified functions, wit
 #### Scenario: Consolidated sweep reports grouped counts
 - **WHEN** the consolidated sweep finds items
 - **THEN** system reports the total item count and the affected pattern groups before removing them
-
-### Requirement: Consistent function naming
-The system SHALL use consistent naming conventions for cleanup functions.
-
-#### Scenario: All functions use cleanup:: prefix
-- **WHEN** cleanup functions are defined
-- **THEN** all public functions use `cleanup::` prefix
-- **AND** internal helpers use `_cleanup::` prefix
-
-#### Scenario: Platform functions follow pattern
-- **WHEN** platform-specific functions are defined
-- **THEN** they use `cleanup::<platform>::` prefix (e.g., `cleanup::osx::trash`)
-
-### Requirement: Improved error messages
-The system SHALL provide clear, actionable error messages.
-
-#### Scenario: Not implemented message is helpful
-- **WHEN** function is not implemented for current platform
-- **THEN** system displays "Function not available for ${OSTYPE}"
-- **AND** suggests checking for updates or contributing implementation
-
-#### Scenario: Tool not found message is helpful
-- **WHEN** required tool is not installed
-- **THEN** system displays "Tool '${tool}' not found"
-- **AND** suggests installation command (e.g., "Install with: brew install ${tool}")
-
