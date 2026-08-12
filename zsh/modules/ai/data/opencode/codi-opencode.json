@@ -2,7 +2,8 @@
   "allowRuntimeOverride": true,
   "log_level": "info",
   "providerPriority": [
-    "opencode",
+    "opencodeHy3",
+    "opencodeZen",
     "custom",
     "google",
     "opencodeGo",
@@ -20,16 +21,11 @@
         "opencodeOpenai": ["openai/gpt-5.4", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/minimax-m2.7"],
-        "opencode": ["opencode/big-pickle", "opencode/nemotron-3-ultra-free"],
+        "opencodeZen": ["opencode/hy3-free", "opencode/mimo-v2.5-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "openrouter": ["openrouter/minimax/minimax-m2.5"],
         "openai": ["openai/gpt-5.4"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "oracle": {
@@ -37,53 +33,38 @@
         "custom": ["google/gemini-3-flash-preview", "opencode/mimo-v2.5-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
         "opencodeGo": ["opencode-go/minimax-m2.5"],
-        "opencode": ["opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free", "opencode/deepseek-v4-flash-free"],
+        "opencodeZen": ["opencode/mimo-v2.5-free", "opencode/hy3-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "openrouter": ["openrouter/minimax/minimax-m2.5"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openai": ["openai/gpt-5.3-codex"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "librarian": {
       "byProvider": {
         "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"],
-        "opencodeGo": ["opencode-go/qwen3.5-plus"],
-        "opencode": ["opencode/big-pickle", "opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free"],
+        "opencodeGo": ["opencode-go/qwen3.6-plus"],
+        "opencodeZen": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.4"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "explorer": {
       "byProvider": {
         "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
         "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"],
-        "opencodeGo": ["opencode-go/minimax-m2.7", "opencode-go/glm-5"],
-        "opencode": ["opencode/big-pickle", "opencode/north-mini-code-free", "opencode/nemotron-3-super-free"],
+        "opencodeGo": ["opencode-go/minimax-m2.7", "opencode-go/glm-5.1"],
+        "opencodeZen": ["opencode/north-mini-code-free", "opencode/deepseek-v4-flash-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-r1"],
         "openai": ["openai/gpt-5.4"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "designer": {
@@ -91,17 +72,12 @@
         "custom": ["google/gemini-3-flash-preview", "opencode/mimo-v2.5-free"],
         "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"],
         "opencodeGo": ["opencode-go/minimax-m2.5"],
-        "opencode": ["opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
+        "opencodeZen": ["opencode/mimo-v2.5-free", "opencode/hy3-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["openai/gpt-5.4"],
         "openrouter": ["openrouter/minimax/minimax-m2.5"],
         "openai": ["openai/gpt-5.3-codex"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "auditor": {
@@ -109,17 +85,12 @@
         "custom": ["google/gemini-3-flash-preview", "opencode/deepseek-v4-flash-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
-        "opencode": ["opencode/big-pickle", "opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
+        "opencodeZen": ["opencode/mimo-v2.5-free", "opencode/deepseek-v4-flash-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "fixer": {
@@ -127,35 +98,25 @@
         "custom": ["google/gemini-3-flash-preview", "opencode/deepseek-v4-flash-free"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
         "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
-        "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free", "opencode/nemotron-3-super-free"],
+        "opencodeZen": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "quick": {
       "byProvider": {
         "custom": ["opencode/deepseek-v4-flash-free", "google/gemini-3-flash-preview"],
         "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"],
-        "opencodeGo": ["opencode-go/qwen3.5-plus", "opencode-go/minimax-m2.5"],
-        "opencode": ["opencode/deepseek-v4-flash-free", "opencode/mimo-v2.5-free"],
+        "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.5"],
+        "opencodeZen": ["opencode/deepseek-v4-flash-free", "opencode/north-mini-code-free"],
+        "opencodeHy3": ["opencode/hy3-free"],
         "opencodeOpenai": ["opencode/deepseek-v4-flash-free", "openai/gpt-5.4"],
         "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
         "openai": ["openai/gpt-5.3-codex"],
-        "google": [
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview",
-          "google/gemini-3-flash-preview"
-        ]
+        "google": ["google/gemini-3-flash-preview"]
       }
     }
   },
