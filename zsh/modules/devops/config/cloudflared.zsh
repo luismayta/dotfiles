@@ -10,3 +10,4 @@ export DEVOPS_CLOUDFLARED_DOWNLOAD_URL="https://github.com/cloudflare/cloudflare
 export DEVOPS_CLOUDFLARED_SHA256=""
 export DEVOPS_CLOUDFLARED_ROOT_BIN="${HOME}/.local/bin"
 export DEVOPS_CLOUDFLARED_BIN="${DEVOPS_CLOUDFLARED_ROOT_BIN}/cloudflared"
+export DEVOPS_CLOUDFLARED_CONFIG_DIR="${HOME}/.cloudflared"
