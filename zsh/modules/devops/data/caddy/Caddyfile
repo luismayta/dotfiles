@@ -1,0 +1,17 @@
+# Caddyfile — managed by dotfiles (devops module)
+# Symlinked to ~/.config/caddy/Caddyfile by `devops::caddy::sync`.
+# Run with:  devops::caddy::run     (caddy run --config ~/.config/caddy/Caddyfile)
+# Reload with: devops::caddy::reload (caddy reload --config ~/.config/caddy/Caddyfile)
+#
+# Uncomment ONE block below and edit to your needs.
+
+# # File server on :8080
+# :8080 {
+#     root * /var/www
+#     file_server
+# }
+
+# # Reverse proxy :8080 -> localhost:9000
+# :8080 {
+#     reverse_proxy localhost:9000
+# }

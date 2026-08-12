@@ -10,6 +10,7 @@ export DEVOPS_KOMISER_CONF_PATH="${HOME}/.config/komiser"
 
 export DEVOPS_TOOLS=(
   atuin
+  caddy
   direnv
   glab
   google-cloud-cli

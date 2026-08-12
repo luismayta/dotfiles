@@ -4,17 +4,6 @@
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/base.zsh"
 
-case "${OSTYPE}" in
-  darwin*)
-    # shellcheck source=/dev/null
-    source "${DEVOPS_PATH}/pkg/osx.zsh"
-    ;;
-  linux*)
-    # shellcheck source=/dev/null
-    source "${DEVOPS_PATH}/pkg/linux.zsh"
-    ;;
-esac
-
 # Tool package layers
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/k9s.zsh"
@@ -50,7 +39,21 @@ source "${DEVOPS_PATH}/pkg/bruno.zsh"
 source "${DEVOPS_PATH}/pkg/cloudflared.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/caddy.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/worktrunk.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/direnv.zsh"
+case "${OSTYPE}" in
+  darwin*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/pkg/osx.zsh"
+    ;;
+  linux*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/pkg/linux.zsh"
+    ;;
+esac
+

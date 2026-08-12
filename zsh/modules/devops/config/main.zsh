@@ -17,6 +17,9 @@ source "${DEVOPS_PATH}/config/bruno.zsh"
 source "${DEVOPS_PATH}/config/cloudflared.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/caddy.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/worktrunk.zsh"
 
 case "${OSTYPE}" in
