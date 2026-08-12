@@ -38,6 +38,9 @@ source "${DEVOPS_PATH}/internal/atuin.zsh"
 source "${DEVOPS_PATH}/internal/bruno.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/internal/cloudflared.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/worktrunk.zsh"
 
 # shellcheck source=/dev/null
