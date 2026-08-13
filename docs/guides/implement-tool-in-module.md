@@ -132,9 +132,10 @@ Create `config/<tool>.zsh` with environment variables.
 
 # <Tool> configuration
 export DEVOPS_<TOOL>_PACKAGE_NAME=<tool>
-export DEVOPS_<TOOL>_INSTALL_CMD="<command>"
 export DEVOPS_<TOOL>_CONFIG_DIR="${HOME}/.config/<tool>"
 ```
+
+> **Installation**: tools installed via the native package manager (apt/paru/brew) use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"` in `internal/` — no `INSTALL_CMD` variable needed. Only custom installers (e.g. bun, curl installers) declare `DEVOPS_<TOOL>_INSTALL_*` variables.
 
 ### Example: Atuin (shell hooks)
 
@@ -163,6 +164,19 @@ export DEVOPS_BRUNO_INSTALL_CMD="bun add -g"
 export DEVOPS_BRUNO_DATA_PATH="${DEVOPS_PATH}/data/bruno"
 ```
 
+### Example: Caddy (PATH-only, native package manager)
+
+```zsh
+#!/usr/bin/env ksh
+# -*- coding: utf-8 -*-
+
+# Caddy configuration
+export DEVOPS_CADDY_PACKAGE_NAME=caddy
+export DEVOPS_CADDY_CONFIG_DIR="${HOME}/.config/caddy"
+export DEVOPS_CADDY_CONFIG_FILE="${DEVOPS_CADDY_CONFIG_DIR}/Caddyfile"
+export DEVOPS_CADDY_DATA_PATH="${DEVOPS_PATH}/data/caddy"
+```
+
 ### Naming Convention
 
 All variables use `DEVOPS_<TOOL>_` prefix:
@@ -170,7 +184,7 @@ All variables use `DEVOPS_<TOOL>_` prefix:
 | Variable | Purpose |
 |----------|---------|
 | `DEVOPS_<TOOL>_PACKAGE_NAME` | Tool name for messages |
-| `DEVOPS_<TOOL>_INSTALL_*` | Installation commands/URLs |
+| `DEVOPS_<TOOL>_INSTALL_*` | Installation commands/URLs (custom installers only — native packages use `core::install`) |
 | `DEVOPS_<TOOL>_CONFIG_*` | Configuration paths |
 | `DEVOPS_<TOOL>_<CUSTOM>`` | Tool-specific settings |
 
@@ -280,6 +294,50 @@ devops::bruno::internal::load
 if ! core::exists bru; then devops::bruno::internal::bru::install; fi
 ```
 
+### Example: Caddy (PATH-only, native package manager)
+
+```zsh
+#!/usr/bin/env ksh
+# -*- coding: utf-8 -*-
+
+function devops::caddy::internal::load {
+    if ! core::exists caddy; then
+        return
+    fi
+
+    # caddy is available on PATH
+}
+
+function devops::caddy::internal::install {
+    if core::exists caddy; then
+        message_info "${DEVOPS_CADDY_PACKAGE_NAME} already installed"
+        return 0
+    fi
+
+    message_info "Installing ${DEVOPS_CADDY_PACKAGE_NAME}"
+    core::install "${DEVOPS_CADDY_PACKAGE_NAME}"
+    message_success "Installed ${DEVOPS_CADDY_PACKAGE_NAME}"
+}
+
+function devops::caddy::internal::upgrade {
+    if ! core::exists caddy; then
+        devops::caddy::internal::install
+        return
+    fi
+
+    message_info "Upgrading ${DEVOPS_CADDY_PACKAGE_NAME}"
+    caddy upgrade
+    message_success "Upgraded ${DEVOPS_CADDY_PACKAGE_NAME}"
+}
+
+function devops::caddy::internal::main::factory {
+    core::ensure caddy
+}
+
+devops::caddy::internal::load
+devops::caddy::internal::main::factory
+```
+
 ### Shell Integration Decision
 
 **Does your tool provide shell hooks?**
@@ -295,11 +353,11 @@ The `main::factory` function runs at source time and auto-installs missing tools
 
 ```zsh
 function devops::<tool>::internal::main::factory {
-    if ! core::exists <tool>; then
-        devops::<tool>::internal::install
-    fi
+    core::ensure <tool>
 }
 ```
+
+`core::ensure <tool>` is shorthand for `core::exists <tool> || core::install <tool>` — it auto-installs missing tools via the native package manager. For tools with a custom installer, call `devops::<tool>::internal::install` inside the guard instead.
 
 ---
 
@@ -335,6 +393,8 @@ function devops::<tool>::post_install {
     message_success "<Tool> installed! <Next steps guidance>."
 }
 ```
+
+> **Note**: `devops::<tool>::install` may call `devops::<tool>::internal::install` directly (caddy pattern) or `devops::<tool>::internal::main::factory` (atuin pattern). Prefer the direct `internal::install` call when the install function already guards with `core::exists`.
 
 ### Example: Atuin
 
@@ -422,6 +482,26 @@ export DEVOPS_TOOLS=(
 )
 ```
 
+### Wiring in main.zsh
+
+Registering in `DEVOPS_TOOLS` is not enough — each layer must be sourced from its `main.zsh` aggregator:
+
+```zsh
+# zsh/modules/devops/config/main.zsh
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/<tool>.zsh"
+
+# zsh/modules/devops/internal/main.zsh
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/internal/<tool>.zsh"
+
+# zsh/modules/devops/pkg/main.zsh
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/<tool>.zsh"
+```
+
+Without these three `source` lines the module never loads the tool — `type devops::<tool>::install` fails.
+
 ---
 
 ## Step 5: Testing
@@ -498,7 +578,7 @@ source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 ### Never Do This (Anti-patterns)
 
 - [ ] ❌ Don't use single underscore `devops_<tool>_` — always double colon `devops::<tool>::`
-- [ ] ❌ Don't hardcode installation commands — use `DEVOPS_<TOOL>_INSTALL_CMD` variables
+- [ ] ❌ Don't hardcode installer commands (e.g. `brew install <tool>`) — use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"`, or `DEVOPS_<TOOL>_INSTALL_*` variables for custom installers
 - [ ] ❌ Don't skip `core::exists` guard — tools may not be installed yet
 - [ ] ❌ Don't put `eval` in config files — shell hooks go in `internal/<tool>.zsh` only
 - [ ] ❌ Don't use `echo` for output — always use `message_info` / `message_success` / `message_error`
@@ -512,6 +592,8 @@ source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 
 - **Atuin implementation**: `zsh/modules/devops/config/atuin.zsh`, `internal/atuin.zsh`, `pkg/atuin.zsh`
 - **Bruno implementation**: `zsh/modules/devops/config/bruno.zsh`, `internal/bruno.zsh`, `pkg/bruno.zsh`
+- **Caddy implementation**: `zsh/modules/devops/config/caddy.zsh`, `internal/caddy.zsh`, `pkg/caddy.zsh` (PATH-only + native package manager via core::install)
+- **Docker Compose implementation**: `zsh/modules/devops/config/docker-compose.zsh`, `internal/docker-compose.zsh`, `pkg/docker-compose.zsh` (PATH-only + core::install)
 - **noti implementation**: `zsh/modules/notify/config/adapter/noti.zsh`, `internal/adapter/noti.zsh`, `pkg/noti.zsh` (gomplate render + sync example)
 - **AI module**: `zsh/modules/ai/` (aggregate sync example via `ai::sync`)
 - **Existing guide**: `docs/guides/create-module.md` (for creating new modules)
