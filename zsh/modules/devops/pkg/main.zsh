@@ -36,6 +36,9 @@ source "${DEVOPS_PATH}/pkg/atuin.zsh"
 source "${DEVOPS_PATH}/pkg/bruno.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/docker-compose.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/cloudflared.zsh"
 
 # shellcheck source=/dev/null

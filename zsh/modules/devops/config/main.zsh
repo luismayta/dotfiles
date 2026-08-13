@@ -14,6 +14,9 @@ source "${DEVOPS_PATH}/config/atuin.zsh"
 source "${DEVOPS_PATH}/config/bruno.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/docker-compose.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/cloudflared.zsh"
 
 # shellcheck source=/dev/null

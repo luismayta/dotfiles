@@ -12,6 +12,7 @@ export DEVOPS_TOOLS=(
   atuin
   caddy
   direnv
+  docker-compose
   glab
   google-cloud-cli
   helm
