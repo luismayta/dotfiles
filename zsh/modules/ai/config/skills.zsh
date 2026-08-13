@@ -51,5 +51,6 @@ ZSH_AI_SKILLS_CODIP=(
   idea-jpd-import
   image-compression
   simplify
+  diagram-design
 )
 export ZSH_AI_INSTALL_URL_SKILLS="https://raw.githubusercontent.com/vercel-labs/skills/main/install.sh"
