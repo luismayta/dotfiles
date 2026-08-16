@@ -127,6 +127,8 @@ repos:
           (?x)^(
             .codi/jira/issues\/.*$|
             .codi/reports\/.*$|
+            .codi/jira/archived\/.*$|
+            openspec\/.*$|
             .+\.tpl.sh$|
             .+\.tpl\.md$
           )$

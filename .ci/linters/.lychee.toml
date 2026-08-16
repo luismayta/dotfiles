@@ -33,6 +33,7 @@ exclude = [
 remap = [
   "^/docs https://github.com/luismayta/dotfiles/docs",
   "^/ https://github.com/luismayta/dotfiles/",
+  "^/ https://github.com/CodipLab/dotfiles/",
 ]
 
 # File path exclusion patterns (regex)
