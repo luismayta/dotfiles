@@ -17,8 +17,6 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
 
 # Editor integrations — Neovim, Vim, Obsidian
 ZSH_HERDR_INSTALL_PLUGINS+=(
-  paulbkim-dev/vim-herdr-navigation
-  lmilojevicc/herdr-splits.nvim
 )
 
 # Sessions — switch, restore, pick, project layouts
