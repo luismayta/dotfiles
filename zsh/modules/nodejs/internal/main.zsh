@@ -17,6 +17,7 @@ source "${ZSH_NODEJS_PATH}/internal/helper.zsh"
 
 core::ensure curl
 core::ensure unzip
+core::ensure rsync
 
 nodejs::internal::fnm::load
 nodejs::internal::bunx::load

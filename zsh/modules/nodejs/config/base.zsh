@@ -47,3 +47,7 @@ export BUN_INSTALL_URL="https://bun.sh/install"
 
 export BUN_PATH="${HOME}/.bun"
 export BUN_BIN_PATH="${BUN_PATH}/bin"
+
+# npmrc sync paths
+export NODEJS_DATA_PATH="${ZSH_NODEJS_PATH}/data"
+export NODEJS_NPMRC_PATH="${HOME}/.npmrc"

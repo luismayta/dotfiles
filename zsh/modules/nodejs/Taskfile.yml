@@ -11,3 +11,9 @@ tasks:
         --out zsh/modules/nodejs/README.md
         --datasource config=zsh/modules/nodejs/README.yaml
         --datasource includes={{.README_INCLUDES}}
+
+  sync:npmrc:
+    desc: Sync npmrc config to home
+    silent: true
+    cmds:
+      - nodejs::sync

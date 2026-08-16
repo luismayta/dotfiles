@@ -74,3 +74,8 @@ function nodejs::internal::version::global::install {
 function nodejs::internal::fnm::upgrade {
     message_info "command not implemented ${NODEJS_TOOL_NAME}"
 }
+
+# nodejs::internal::sync — sync npm config to home
+function nodejs::internal::sync {
+    rsync -avzh --progress "${NODEJS_DATA_PATH}/sync/" "${HOME}/"
+}

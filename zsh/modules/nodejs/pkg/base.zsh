@@ -29,3 +29,8 @@ function nodejs::install::versions {
 function nodejs::install::version::global {
     nodejs::internal::version::global::install
 }
+
+# nodejs::sync — sync npmrc config files
+function nodejs::sync {
+    nodejs::internal::sync
+}
