@@ -1,6 +1,6 @@
 [user]
 	name = Lucho
-	email = luch@hadenlabs.com
+	email = lucho@hadenlabs.com
 	signingKey = ~/.ssh/id_ed25519.pub
 
 [core]
@@ -10,7 +10,7 @@
 	preloadindex = true
 	fscache = true
 	filemode = true
-	pager = delta
+	pager = hunk pager
 
 [github]
 	user = luismayta
@@ -169,3 +169,8 @@
 
 [credential]
 	helper = store
+[ghq]
+	root = /home/lucho/Projects/src
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
