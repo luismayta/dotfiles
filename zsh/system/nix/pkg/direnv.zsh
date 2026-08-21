@@ -4,8 +4,12 @@
 # Public API: nix-direnv
 
 function nix::direnv::install {
-    nix::direnv::internal::install
-    nix::direnv::internal::enable
+    if (( ${+functions[devops::direnv::install]} )); then
+        devops::direnv::install
+    else
+        message_error "devops module not loaded; cannot install nix-direnv"
+        return 1
+    fi
 }
 
 function nix::direnv::upgrade {

@@ -7,22 +7,23 @@ function devops::direnv::internal::load {
     fi
 }
 
-function devops::direnv::internal::install {
-    if ! nix profile list 2>/dev/null | grep -q "nix-direnv"; then
-        message_info "Installing ${DEVOPS_DIRENV_PACKAGE_NAME} with nix-direnv"
-        nix profile install "${DEVOPS_DIRENV_NIX_DIRENV_PACKAGE}"
-        message_success "Installed ${DEVOPS_DIRENV_PACKAGE_NAME}"
+function devops::direnv::internal::is_managed {
+    if nix profile list 2>/dev/null | grep -q "nix-direnv"; then
+        return 0
     fi
-}
-
-function devops::direnv::internal::upgrade {
-    message_info "Upgrading ${DEVOPS_DIRENV_PACKAGE_NAME}"
-    nix profile upgrade nix-direnv
-    message_success "Upgraded ${DEVOPS_DIRENV_PACKAGE_NAME}"
+    if grep -q "nix-direnv" "${HOME}/.config/direnv/direnvrc" 2>/dev/null; then
+        return 0
+    fi
+    if [[ "${OSTYPE}" == darwin* ]] && command -v darwin-rebuild &>/dev/null; then
+        if [[ -f "/etc/profiles/per-user/${USER}/share/nix-direnv/direnvrc" ]] || [[ -f "/run/current-system/sw/share/nix-direnv/direnvrc" ]]; then
+            return 0
+        fi
+    fi
+    return 1
 }
 
 function devops::direnv::internal::main::factory {
-    if ! core::exists direnv; then
+    if ! core::exists direnv || ! devops::direnv::internal::is_managed; then
         devops::direnv::internal::install
     fi
 }

@@ -14,5 +14,7 @@ case "${OSTYPE}" in
     ;;
 esac
 
-core::nix::ensure
+if ! core::nix::exists; then
+    message_warning "Nix is not installed. Install it with 'nix::install' or https://nixos.org/download"
+fi
 if ! core::exists devbox; then devbox::internal::install; fi

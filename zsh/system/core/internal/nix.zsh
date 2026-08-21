@@ -4,7 +4,11 @@
 #
 
 core::internal::nix::exists() {
-  command -v nix > /dev/null
+  command -v nix > /dev/null && return 0
+  [[ -x "${HOME}/.nix-profile/bin/nix" ]] && return 0
+  [[ -x "/run/current-system/sw/bin/nix" ]] && return 0
+  [[ -x "/etc/profiles/per-user/${USER}/bin/nix" ]] && return 0
+  return 1
 }
 
 core::internal::nix::install() {

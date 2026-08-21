@@ -2,7 +2,10 @@
 # Nix internal — delegates installation to core
 
 function nix::internal::nix::install {
-  core::nix::ensure
+  if ! core::nix::exists; then
+    message_warning "Nix is not installed. Install it with 'nix::install' or https://nixos.org/download"
+    return 0
+  fi
 }
 
 # nix::internal::config::sync — sync config files to home
