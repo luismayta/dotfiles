@@ -321,7 +321,7 @@ local key_tables = {
 return {
   disable_default_key_bindings = true,
 
-  enable_kitty_keyboard = true,
+  enable_kitty_keyboard = false,
   enable_csi_u_key_encoding = false,
 
   leader = {

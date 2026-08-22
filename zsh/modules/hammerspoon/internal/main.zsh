@@ -14,7 +14,3 @@ linux*)
 esac
 
 if ! core::exists rsync; then core::install rsync; fi
-
-if ! core::exists hammerspoon; then
-    hammerspoon::internal::install
-fi

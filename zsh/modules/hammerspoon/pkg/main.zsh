@@ -20,8 +20,3 @@ source "${HAMMERSPOON_PATH}/pkg/setup.zsh"
 
 # shellcheck source=/dev/null
 source "${HAMMERSPOON_PATH}/pkg/alias.zsh"
-
-# Auto-install hammerspoon if not present
-if ! core::exists hammerspoon; then
-    hammerspoon::install
-fi
