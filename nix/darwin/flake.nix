@@ -23,7 +23,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.lucho = import ./home.nix;
+            users.luchomayta = import ./home.nix;
           };
         }
       ];
