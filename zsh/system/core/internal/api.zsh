@@ -24,8 +24,18 @@ core::internal::core::load() {
   core::internal::message::warning "Method not implemented for ${CORE_PACKAGE_NAME:-core}"
 }
 
+typeset -gA _CORE_EXISTS_CACHE
+
 core::internal::core::exists() {
-  command -v "${1}" > /dev/null
+  local tool="${1}"
+  # Session cache: only positive results are cached. Missing tools always
+  # re-probe so check->install->re-check flows stay correct after installs.
+  [[ "${_CORE_EXISTS_CACHE[${tool}]+_}" ]] && return 0
+  if command -v "${tool}" >/dev/null 2>&1; then
+    _CORE_EXISTS_CACHE[${tool}]=1
+    return 0
+  fi
+  return 1
 }
 
 core::internal::message::info() {
