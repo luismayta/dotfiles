@@ -17,6 +17,7 @@ nix::darwin::internal::ensure() {
   local profile
   for profile in "${HOME}/.nix-profile/etc/profile.d/nix.sh" "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"; do
     if [[ -f "${profile}" ]]; then
+      # shellcheck source=/dev/null
       source "${profile}"
       command -v nix &>/dev/null && return 0
     fi
