@@ -39,7 +39,7 @@ apps::internal::webapp::build() {
 
     # Rename artifact to canonical lowercase name
     local artifact
-    artifact=$(find "${APPS_WEB_APPS_BUILD_DIR}" -maxdepth 1 -name "${name}*.pkg.tar.zst" -print -quit 2>/dev/null)
+    artifact=$(find "${APPS_WEB_APPS_BUILD_DIR}" -maxdepth 1 -name "${name}*.pkg.tar.zst" | head -n 1)
     if [[ -n "${artifact}" ]]; then
         # shellcheck disable=SC2296
         mv "${artifact}" "${APPS_WEB_APPS_BUILD_DIR}/${(L)name}.pkg.tar.zst"
