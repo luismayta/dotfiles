@@ -27,7 +27,10 @@ function devops::cloudflared::internal::install {
     fi
 
     if [[ -n "${DEVOPS_CLOUDFLARED_SHA256}" ]]; then
-        if ! echo "${DEVOPS_CLOUDFLARED_SHA256}  ${tmp_bin}" | sha256sum -c -; then
+        if ! case "${OSTYPE}" in
+        darwin*) echo "${DEVOPS_CLOUDFLARED_SHA256}  ${tmp_bin}" | shasum -a 256 -c - ;;
+        *) echo "${DEVOPS_CLOUDFLARED_SHA256}  ${tmp_bin}" | sha256sum -c - ;;
+        esac; then
             message_error "SHA256 verification failed for ${DEVOPS_CLOUDFLARED_PACKAGE_NAME}"
             rm -f "${tmp_bin}"
             return 1
