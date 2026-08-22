@@ -2,7 +2,7 @@
 # nix-darwin ZSH module
 #
 # Provides helpers to manage nix-darwin system configuration on macOS:
-# rebuild, update, status, and bootstrap hints.
+# rebuild, update, status, and nix installation.
 #
 
 [[ -n "${__ZSH_NIX_DARWIN_LOADED:-}" ]] && return
@@ -17,3 +17,9 @@ message_info "Loading module: nix-darwin"
 source "${NIX_DARWIN_PATH}/config/main.zsh"
 # enabled guard
 $ZSH_NIX_DARWIN_ENABLED || return
+
+# shellcheck source=/dev/null
+source "${NIX_DARWIN_PATH}/internal/main.zsh"
+
+# shellcheck source=/dev/null
+source "${NIX_DARWIN_PATH}/pkg/main.zsh"
