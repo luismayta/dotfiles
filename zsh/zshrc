@@ -87,11 +87,21 @@ fi
 # Auto completion
 case "$OSTYPE" in
  darwin*)
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-    compinit
-else
-    compinit -d
-fi
+function {
+    local -a mt
+    local today='' dump=''
+    zmodload zsh/stat 2>/dev/null
+    zmodload zsh/datetime 2>/dev/null
+    strftime -s today '%j'
+    if (( $+builtins[zstat] )) && zstat -A mt +mtime ~/.zcompdump 2>/dev/null && (( ${#mt} )); then
+        strftime -s dump '%j' "${mt[1]}"
+    fi
+    if [[ "${today}" != "${dump}" ]]; then
+        compinit
+    else
+        compinit -d
+    fi
+}
 ;;
  linux*)
 if [ -z "${ZSH_DEBUG}" ]; then
