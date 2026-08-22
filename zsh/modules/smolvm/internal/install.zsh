@@ -37,25 +37,35 @@ function smolvm::internal::install {
     return 0
   fi
 
-  # The release is a directory distribution (smolvm-<version>-linux-x86_64/)
+  # The release is a directory distribution (smolvm-<version>-<asset>/)
   # containing the `smolvm` wrapper, `smolvm-bin`, `lib/`, `agent-rootfs/`,
   # `storage-template.ext4`, `overlay-template.ext4`, `checksums.txt` and
   # `README.txt`. The wrapper resolves paths relative to itself, so we extract
   # ALL of the content (--strip-components=1) to ~/.local/bin to keep them
-  # together.
-  if [[ "${OSTYPE}" == darwin* ]]; then
-    message_warning "${ZSH_SMOLVM_PACKAGE_NAME} install on macOS is not supported yet (linux-x86_64 asset only)"
+  # together. This layout applies to all platform archives (linux, darwin).
+
+  if [[ -z "${ZSH_SMOLVM_ASSET:-}" ]]; then
+    message_error "No smolvm asset configured for this OS"
     return 1
   fi
 
   core::ensure curl
+
+  # On macOS, prefer the system bsdtar over GNU tar from Nix/Homebrew.
+  # GNU tar chokes on sparse archives (the upstream .ext4 templates are
+  # stored as sparse entries), producing "Unexpected EOF in archive".
+  # bsdtar handles them correctly.
+  local tar_cmd="tar"
+  if [[ "${OSTYPE}" == darwin* ]] && command -v /usr/bin/tar &>/dev/null; then
+    tar_cmd="/usr/bin/tar"
+  fi
 
   local tmpdir archive
   tmpdir="$(mktemp -d)" || {
     message_error "Failed to create temporary directory"
     return 1
   }
-  archive="${tmpdir}/${ZSH_SMOLVM_PACKAGE_NAME}-${ZSH_SMOLVM_VERSION}-linux-x86_64.tar.gz"
+  archive="${tmpdir}/${ZSH_SMOLVM_PACKAGE_NAME}-${ZSH_SMOLVM_VERSION}-${ZSH_SMOLVM_ASSET}.tar.gz"
 
   message_info "Downloading ${ZSH_SMOLVM_PACKAGE_NAME} ${ZSH_SMOLVM_VERSION}..."
   if ! curl -fsSL "${ZSH_SMOLVM_INSTALL_URL}" -o "$archive"; then
@@ -76,7 +86,7 @@ function smolvm::internal::install {
   # in a single step to ~/.local/bin so we never leave a half-extracted tree.
   local staged="${tmpdir}/staged"
   mkdir -p "$staged"
-  if ! tar -xzf "$archive" -C "$staged" --strip-components=1; then
+  if ! $tar_cmd -xzf "$archive" -C "$staged" --strip-components=1; then
     message_error "Failed to extract ${ZSH_SMOLVM_PACKAGE_NAME} archive"
     rm -rf "$tmpdir"
     return 1
