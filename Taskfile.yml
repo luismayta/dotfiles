@@ -341,6 +341,7 @@ tasks:
       - task: git:setup
       - task: ai:setup
       - task: skills:setup
+      - task: nix:build
 
   environment:
     desc: Setup environment of project
