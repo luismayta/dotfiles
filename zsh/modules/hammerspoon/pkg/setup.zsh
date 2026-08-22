@@ -3,7 +3,7 @@
 function hammerspoon::setup {
     message_info "Setting up ${HAMMERSPOON_PACK_NAME}..."
 
-    if ! core::exists hammerspoon; then
+    if ! hammerspoon::internal::is_installed; then
         hammerspoon::install
     else
         message_info "${HAMMERSPOON_PACK_NAME} is already installed."

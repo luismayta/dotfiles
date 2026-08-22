@@ -1,12 +1,21 @@
 # shellcheck shell=bash
 
+function hammerspoon::internal::is_installed {
+    [[ -d "/Applications/Hammerspoon.app" ]]
+}
+
 function hammerspoon::internal::install {
-    if core::exists hammerspoon; then
+    if hammerspoon::internal::is_installed; then
         return 0
     fi
     message_info "Installing ${HAMMERSPOON_PACK_NAME}..."
-    core::install hammerspoon
-    message_success "${HAMMERSPOON_PACK_NAME} installed successfully."
+    if core::install --cask "${HAMMERSPOON_PACK_NAME}"; then
+        message_success "${HAMMERSPOON_PACK_NAME} installed successfully."
+    else
+        message_error "Failed to install ${HAMMERSPOON_PACK_NAME}."
+        return 1
+    fi
+    return 0
 }
 
 function hammerspoon::internal::config::sync {
