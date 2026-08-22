@@ -4,6 +4,19 @@
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/base.zsh"
 
+# Platform-specific internal functions (loaded BEFORE tool files so that the
+# install functions they define are available when the tool factories run)
+case "${OSTYPE}" in
+  darwin*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/internal/osx.zsh"
+    ;;
+  linux*)
+    # shellcheck source=/dev/null
+    source "${DEVOPS_PATH}/internal/linux.zsh"
+    ;;
+esac
+
 
 # Tool internal layers
 # shellcheck source=/dev/null
@@ -41,14 +54,3 @@ source "${DEVOPS_PATH}/internal/worktrunk.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/direnv.zsh"
-
-case "${OSTYPE}" in
-  darwin*)
-    # shellcheck source=/dev/null
-    source "${DEVOPS_PATH}/internal/osx.zsh"
-    ;;
-  linux*)
-    # shellcheck source=/dev/null
-    source "${DEVOPS_PATH}/internal/linux.zsh"
-    ;;
-esac

@@ -28,6 +28,18 @@ function devops::direnv::internal::install {
         message_success "direnv/nix-direnv already available; skipping install"
         return 0
     fi
+    # Ensure nix is available in PATH
+    if ! command -v nix &>/dev/null; then
+        if [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]]; then
+            source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+        elif [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]]; then
+            source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+        fi
+        if ! command -v nix &>/dev/null; then
+            message_error "nix is not available in PATH. Install nix: https://nixos.org/download"
+            return 1
+        fi
+    fi
     if ! core::exists direnv; then
         message_info "Installing direnv"
         if ! nix profile add "nixpkgs#direnv" --extra-experimental-features 'nix-command flakes'; then

@@ -6,8 +6,12 @@ function devops::gcloud::internal::load::completion {
         # shellcheck source=/dev/null
         source <(gcloud --quiet completion zsh 2>/dev/null)
         # make gsutil and bq completion work
-        command -v gsutil >/dev/null 2>&1 && compdef gsutil=google-cloud-sdk 2>/dev/null || true
-        command -v bq >/dev/null 2>&1 && compdef bq=google-cloud-sdk 2>/dev/null || true
+        if command -v gsutil >/dev/null 2>&1; then
+            compdef gsutil=google-cloud-sdk 2>/dev/null || true
+        fi
+        if command -v bq >/dev/null 2>&1; then
+            compdef bq=google-cloud-sdk 2>/dev/null || true
+        fi
     fi
 }
 
@@ -33,7 +37,7 @@ function devops::gcloud::internal::main::factory {
     devops::gcloud::internal::load::completion
 
     if ! core::exists gcloud; then
-        core::install google-cloud-cli
+        devops::gcloud::internal::install
     fi
 }
 
