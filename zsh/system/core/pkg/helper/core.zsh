@@ -12,8 +12,11 @@ if ! core::exists bat; then core::install bat; fi
 if ! core::exists ghead; then
   if [[ "$(uname -s)" == "Darwin" ]]; then
     core::install coreutils
+    # If coreutils installed real ghead, it's available now.
+    # If install failed/skipped, leave ghead undefined — BSD head lacks -c.
+  else
+    alias ghead="head"
   fi
-  alias ghead="head"
 fi
 if ! core::exists ag; then core::install the_silver_searcher; fi
 if ! core::exists fd; then core::install fd; fi
@@ -123,5 +126,5 @@ localip() {
 
 # net — check internet connectivity
 net() {
-  ping 8.8.8.8 | grep -E --only-match --color=never '[0-9\.]+ ms'
+  ping 8.8.8.8 | grep -Eo '[0-9\.]+ ms'
 }

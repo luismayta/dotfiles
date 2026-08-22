@@ -12,7 +12,7 @@ if type -p tmuxinator > /dev/null; then
 fi
 
 function net {
-    ping 1.1.1.1 | grep -E --only-match --color=never '[0-9\.]+ ms'
+    ping 1.1.1.1 | grep -Eo '[0-9\.]+ ms'
 }
 
 # shellcheck source=/dev/null
