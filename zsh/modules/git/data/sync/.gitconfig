@@ -173,4 +173,4 @@
 	root = /home/lucho/Projects/src
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !gh auth git-credential
