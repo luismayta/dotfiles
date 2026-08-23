@@ -1,4 +1,4 @@
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Python toolchain module manages pip modules
 
@@ -13,26 +13,6 @@ The module SHALL install configured Python packages via `pip`/`pipx`.
 
 - **WHEN** the module initializes and uv is ready
 - **THEN** `poetry` SHALL be installed via `pipx` if not already present
-
-### Requirement: Python toolchain module manages uv installation
-
-The module SHALL manage `uv` (astral-sh/uv) as a first-class Python tool, enabled via `$PYTHON_UV_ENABLED`.
-
-#### Scenario: uv is installed when enabled
-
-- **WHEN** `$PYTHON_UV_ENABLED` is `true` and `uv` is not found
-- **THEN** the module SHALL install `uv` via `core::ensure uv`
-
-#### Scenario: uv installation is skipped when disabled
-
-- **WHEN** `$PYTHON_UV_ENABLED` is `false`
-- **THEN** the module SHALL NOT attempt to install or load `uv`
-
-#### Scenario: uv shell completions are generated
-
-- **WHEN** `$PYTHON_UV_ENABLED` is `true` and `uv` is installed
-- **THEN** the module SHALL generate completions via `uv generate-shell-completion zsh`
-- **AND** source them for the current session
 
 ### Requirement: Python toolchain module exposes public API
 
@@ -54,14 +34,21 @@ The module SHALL expose public functions under the `python::` namespace.
 - **WHEN** `python::info` is called
 - **THEN** it SHALL display the current Python and uv versions, uv status, uv toggle state, and installed modules
 
-### Requirement: Module defines idempotent loading guard
+## REMOVED Requirements
 
-The module SHALL prevent double-loading via an idempotency guard variable.
+### Requirement: Python toolchain module toggles pyenv independently
 
-#### Scenario: Module guard prevents double source
+**Reason**: pyenv is replaced by uv as the sole version manager (Jira HAD-100).
 
-- **WHEN** `plugin.zsh` is sourced more than once
-- **THEN** the second source SHALL exit immediately via `__ZSH_PYTHON_LOADED` guard
+**Migration**: uv manages versions inside the same module, gated by `PYTHON_UV_ENABLED`; users migrate interpreters manually via `uv python install`.
+
+### Requirement: Python toolchain module manages pyenv installation
+
+**Reason**: pyenv is replaced by uv as the sole version manager (Jira HAD-100).
+
+**Migration**: uv manages versions inside the same module, gated by `PYTHON_UV_ENABLED`; users migrate interpreters manually via `uv python install`.
+
+## ADDED Requirements
 
 ### Requirement: Python toolchain module defaults to Python 3.14
 
