@@ -1,18 +1,15 @@
 # shellcheck shell=bash
-# shellcheck disable=SC2154 # PYTHON_PACKAGE_NAME defined in config/base.zsh
 
-function python::internal::pyenv::install {
-    message_info "Installing ${PYTHON_PACKAGE_NAME}"
-    git clone "${PYTHON_INSTALL_URL}" ~/.pyenv
-    message_success "Installed ${PYTHON_PACKAGE_NAME}"
-}
-
-function python::internal::pyenv::load {
-    [ -e "${PYTHON_ROOT_BIN}" ] && export PATH="${PYTHON_ROOT_BIN}:${PATH}"
-
-    # Lazy load pyenv
-    if type -p pyenv > /dev/null; then
-        export PATH="${PYTHON_ROOT}/shims:${PATH}"
+function python::internal::uv::install {
+    if core::exists uv; then
+        return 0
+    fi
+    message_info "Installing ${PYTHON_PACKAGE_NAME}..."
+    if curl -fsSL "${PYTHON_INSTALL_URL}" | sh; then
+        message_success "${PYTHON_PACKAGE_NAME} installed successfully."
+    else
+        message_error "Failed to install ${PYTHON_PACKAGE_NAME}."
+        return 1
     fi
 }
 
@@ -21,7 +18,7 @@ function python::internal::uv::load {
         return
     fi
     if ! core::exists uv; then
-        core::ensure uv
+        python::internal::uv::install
     fi
 }
 
@@ -36,29 +33,28 @@ function python::internal::uv::completions {
 }
 
 function python::internal::version::all::install {
-    if ! core::exists pyenv; then
-        message_warning "not found pyenv"
+    if ! core::exists uv; then
+        message_warning "not found uv"
         return
     fi
 
     for version in "${PYTHON_VERSIONS[@]}"; do
         message_info "Install version of python ${version}"
-        pyenv install "${version}"
+        uv python install "${version}"
         message_success "Installed version of python ${version}"
     done
-    pyenv global "${PYTHON_VERSION_GLOBAL}"
+    uv python install "${PYTHON_VERSION_GLOBAL}" --default
     message_success "Installed versions of Python"
 
 }
 
 function python::internal::version::global::install {
-    if ! core::exists pyenv; then
-        message_warning "not found pyenv"
+    if ! core::exists uv; then
+        message_warning "not found uv"
         return
     fi
     message_info "Installing version global of python ${PYTHON_VERSION_GLOBAL}"
-    pyenv install "${PYTHON_VERSION_GLOBAL}"
-    pyenv global "${PYTHON_VERSION_GLOBAL}"
+    uv python install "${PYTHON_VERSION_GLOBAL}" --default
     message_success "Installed version global of python ${PYTHON_VERSION_GLOBAL}"
 }
 

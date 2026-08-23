@@ -17,16 +17,17 @@
 # python
 
 
-
-Python ZSH module providing Python version management via pyenv 
+Python ZSH module providing Python version management via uv 
 
 
 
 ## Features
 
-- Python version installation and switching
+- Python version installation and switching via uv (`uv python install`)
+- Python 3.14 as default global version
 - Virtual environment management
 - Automatic version detection (.python-version)
+
 
 
 
@@ -36,6 +37,28 @@ Python ZSH module providing Python version management via pyenv
 ## Requirements
 
 - zsh (loaded as part of dotfiles zsh modules)
+- [uv](https://docs.astral.sh/uv/) (auto-installed via the official astral.sh installer script when missing)
+
+
+
+
+
+
+## Usage
+
+Install the default global Python version (managed by uv):
+
+```bash
+uv python install 3.14
+```
+
+Or through the module public API:
+
+```bash
+python::version::global::install   # installs $PYTHON_VERSION_GLOBAL (3.14) and sets it as uv default
+python::version::global            # ensures the global version ($PYTHON_VERSION_GLOBAL) is installed via uv
+python::info                       # shows python/uv versions, uv status and installed modules
+```
 
 
 

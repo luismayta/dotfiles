@@ -14,10 +14,5 @@ linux*)
     ;;
 esac
 
-python::internal::pyenv::load
-
 core::ensure curl
-if [[ "${PYTHON_UV_ENABLED}" == "true" ]]; then
-    core::ensure uv
-fi
-if ! core::exists pyenv; then python::internal::pyenv::install; fi
+python::internal::uv::load
