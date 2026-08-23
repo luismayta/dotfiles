@@ -219,7 +219,6 @@ symbol = "🐹 "
 format = "via [$symbol$version]($style) "
 
 [python]
-pyenv_version_name = true
 detect_extensions = []
 
 [lua]
