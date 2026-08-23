@@ -9,8 +9,8 @@
 #   TERRAFORM_VERSION → terraformVersion
 
 rec {
-  python = pkgs.python311;
-  pythonVersion = "3.11";
+  python = pkgs.python314;
+  pythonVersion = "3.14";
 
   nodejs = pkgs.nodejs_24;
   nodeVersion = "24.18.1";
