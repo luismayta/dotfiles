@@ -1,6 +1,13 @@
 -- luacheck: globals hs spoon
 package.path = hs.configdir .. "/src/?.lua;" .. hs.configdir .. "/src/?/init.lua;" .. package.path
 
+-- User overrides live outside the managed tree and take precedence over
+-- everything else on the search path.
+local home = os.getenv("HOME")
+if home then
+  package.path = home .. "/.config/hammerspoon/?.lua;" .. package.path
+end
+
 --------------------------------------------------
 -- Logger
 --------------------------------------------------
