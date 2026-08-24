@@ -6,3 +6,4 @@ export ZSH_YAZI_PACKAGE_NAME=yazi
 export ZSH_YAZI_THEME="${ZSH_YAZI_THEME:-macchiato-blue}"
 export ZSH_YAZI_CONFIG_PATH="${HOME}/.config/yazi"
 export ZSH_YAZI_DATA_PATH="${ZSH_YAZI_PATH}/data"
+export ZSH_YAZI_THEME_URL="${ZSH_YAZI_THEME_URL:-https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/yazi/tokyonight_storm.toml}"

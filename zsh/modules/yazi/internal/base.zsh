@@ -9,9 +9,11 @@ function yazi::internal::install {
 }
 
 function yazi::internal::theme::download {
-    local url="https://raw.githubusercontent.com/BriBian08/tokyonight-yazi/main/themes/tokyonight-storm.toml"
     mkdir -p "${ZSH_YAZI_DATA_PATH}"
-    curl -fsSL "$url" -o "${ZSH_YAZI_DATA_PATH}/theme.toml"
+    if ! curl -fsSL "${ZSH_YAZI_THEME_URL}" -o "${ZSH_YAZI_DATA_PATH}/theme.toml"; then
+        message_warning "Could not download yazi theme from ${ZSH_YAZI_THEME_URL}; keeping existing vendored theme.toml"
+        return 0
+    fi
 }
 
 function yazi::internal::config::sync {
@@ -21,5 +23,4 @@ function yazi::internal::config::sync {
         --exclude=flavors/ \
         "${ZSH_YAZI_DATA_PATH}/" "${ZSH_YAZI_CONFIG_PATH}/"
 }
-
 
