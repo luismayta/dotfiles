@@ -7,8 +7,6 @@ function devops::cloudflared::internal::load {
     if ! core::exists cloudflared; then
         return
     fi
-
-    # cloudflared is available on PATH
 }
 
 function devops::cloudflared::internal::install {
@@ -56,6 +54,43 @@ function devops::cloudflared::internal::upgrade {
     message_success "Upgraded ${DEVOPS_CLOUDFLARED_PACKAGE_NAME}"
 }
 
+function devops::cloudflared::internal::tunnel::resolve_uuid {
+    local name="${1}"
+
+    if core::exists jq; then
+        cloudflared tunnel list --format json 2>/dev/null \
+            | jq -r --arg n "${name}" '.[] | select(.name == $n) | .id' \
+            | head -n1
+    else
+        message_warning "jq not found — falling back to fragile UUID parsing. Install jq for reliable output."
+        cloudflared tunnel list 2>/dev/null | tail -n +2 | awk -v n="${name}" '$2 == n {print $1; exit}'
+    fi
+}
+
+function devops::cloudflared::internal::tunnel::check_port {
+    local port="${1}"
+
+    if command -v nc >/dev/null 2>&1; then
+        nc -z localhost "${port}" 2>/dev/null
+    elif command -v ss >/dev/null 2>&1; then
+        ss -tln 2>/dev/null | grep -q ":${port} "
+    else
+        return 1
+    fi
+}
+
+function devops::cloudflared::internal::tunnel::is_dns_routed {
+    local name="${1}"
+    local hostname="${2}"
+
+    if command -v dig >/dev/null 2>&1; then
+        local target="${name}.cfargotunnel.com"
+        dig +short "${hostname}" 2>/dev/null | grep -qi "${target}"
+    else
+        return 1
+    fi
+}
+
 function devops::cloudflared::internal::tunnel::create {
     local name="${1}"
     local port="${2}"
@@ -81,8 +116,12 @@ function devops::cloudflared::internal::tunnel::create {
         return 1
     fi
 
+    if devops::cloudflared::internal::tunnel::check_port "${port}"; then
+        message_warning "Port ${port} is already in use — proceeding anyway (service may start later)"
+    fi
+
     local uuid
-    uuid="$(cloudflared tunnel list 2>/dev/null | tail -n +2 | awk -v n="${name}" '$2 == n {print $1; exit}')"
+    uuid="$(devops::cloudflared::internal::tunnel::resolve_uuid "${name}")"
 
     if [[ -z "${uuid}" ]]; then
         message_info "Creating tunnel ${name}"
@@ -90,7 +129,7 @@ function devops::cloudflared::internal::tunnel::create {
             message_error "Failed to create tunnel ${name}"
             return 1
         fi
-        uuid="$(cloudflared tunnel list 2>/dev/null | tail -n +2 | awk -v n="${name}" '$2 == n {print $1; exit}')"
+        uuid="$(devops::cloudflared::internal::tunnel::resolve_uuid "${name}")"
     else
         message_info "Tunnel ${name} already exists (${uuid})"
     fi
@@ -101,17 +140,35 @@ function devops::cloudflared::internal::tunnel::create {
     fi
 
     if [[ -n "${hostname}" ]]; then
-        message_info "Routing DNS ${hostname} -> tunnel ${name}"
-        if ! cloudflared tunnel route dns "${name}" "${hostname}"; then
-            message_error "Failed to route DNS for ${hostname}"
-            return 1
+        if devops::cloudflared::internal::tunnel::is_dns_routed "${name}" "${hostname}"; then
+            message_info "DNS already configured for ${hostname}"
+        else
+            message_info "Routing DNS ${hostname} -> tunnel ${name}"
+            if ! cloudflared tunnel route dns "${name}" "${hostname}"; then
+                message_error "Failed to route DNS for ${hostname}"
+                return 1
+            fi
         fi
     fi
 
     local config_file="${DEVOPS_CLOUDFLARED_CONFIG_DIR}/config.yml"
+
+    local needs_write=false
     if [[ ! -f "${config_file}" ]]; then
-        message_info "Scaffolding ${config_file}"
+        needs_write=true
+    else
+        local existing_host existing_port
+        existing_host="$(sed -n 's/.*hostname:[[:space:]]*//p' "${config_file}" 2>/dev/null | tr -d '[:space:]' || true)"
+        existing_port="$(sed -n 's/.*service:.*localhost:\([0-9]*\).*/\1/p' "${config_file}" 2>/dev/null || true)"
+
+        [[ -z "${existing_host}" && -n "${hostname}" ]] && needs_write=true
+        [[ -n "${existing_host}" && "${existing_host}" != "${hostname}" ]] && needs_write=true
+        [[ "${existing_port}" != "${port}" ]] && needs_write=true
+    fi
+
+    if [[ "${needs_write}" == true ]]; then
         mkdir -p "${DEVOPS_CLOUDFLARED_CONFIG_DIR}"
+        message_info "Writing ${config_file}"
         if [[ -n "${hostname}" ]]; then
             cat > "${config_file}" <<EOF
 tunnel: ${uuid}
@@ -124,11 +181,16 @@ ingress:
 EOF
         else
             cat > "${config_file}" <<EOF
-url: http://localhost:${port}
 tunnel: ${uuid}
 credentials-file: ${DEVOPS_CLOUDFLARED_CONFIG_DIR}/${uuid}.json
+
+ingress:
+  - service: http://localhost:${port}
+  - service: http_status:404
 EOF
         fi
+    else
+        message_info "Config unchanged — skipping rewrite"
     fi
 
     message_success "Created tunnel ${name} (${uuid})"
