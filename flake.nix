@@ -11,7 +11,12 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            (import ./nix/overlays/gomplate.nix)
+          ];
+        };
       in
       {
         devShells.default = import ./nix/devShell.nix { inherit pkgs; };
