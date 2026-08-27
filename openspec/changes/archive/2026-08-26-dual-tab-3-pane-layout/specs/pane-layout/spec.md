@@ -2,7 +2,7 @@
 
 Extends the pane layout capability to support creating multiple tabs with independent 3-pane layouts in a single workspace call.
 
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Reusable multi-tab 3-pane IDE layout
 
