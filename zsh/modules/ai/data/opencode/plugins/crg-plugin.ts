@@ -1,4 +1,4 @@
-import type { Plugin } from "@opencode-ai/plugin"
+
 
 /**
  * code-review-graph plugin for OpenCode.
@@ -10,7 +10,7 @@ import type { Plugin } from "@opencode-ai/plugin"
  */
 
 // Helper: run a shell command quietly, swallowing errors.
-async function run($: any, cmd: string): Promise<string> {
+async function _run($: any, cmd: string): Promise<string> {
   try {
     const result = await $`${cmd}`.quiet()
     return result.stdout?.toString().trim() ?? ""
@@ -51,7 +51,7 @@ export default (app: any) => {
         const result = await ctx.$`code-review-graph detect-changes --brief`.quiet()
         const output = result.stdout?.toString().trim()
         if (output) {
-          console.log("[code-review-graph] Pre-commit analysis:\n" + output)
+          console.log(`[code-review-graph] Pre-commit analysis:\n${output}`)
         }
       }
     } catch {

@@ -35,6 +35,8 @@ source "${ZSH_AI_PATH}/pkg/tmuxai.zsh"
 source "${ZSH_AI_PATH}/pkg/rtk.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/pkg/pi.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/pkg/jcode.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in

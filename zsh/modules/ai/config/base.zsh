@@ -40,6 +40,8 @@ source "${ZSH_AI_PATH}/config/graphify.zsh"
 source "${ZSH_AI_PATH}/config/openspec.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/skills.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/config/jcode.zsh"
 
 # --- Tool registry (used by internal/tools.zsh::packages::install) ---
 export ZSH_AI_TOOLS=(
@@ -56,4 +58,5 @@ export ZSH_AI_TOOLS=(
   rtk
   pi
   skills
+  jcode
 )

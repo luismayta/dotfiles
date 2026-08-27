@@ -35,6 +35,8 @@ source "${ZSH_AI_PATH}/internal/pi.zsh"
 source "${ZSH_AI_PATH}/internal/hf.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/tmuxai.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/internal/jcode.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in
@@ -59,3 +61,4 @@ ai::internal::pi::load
 ai::internal::graphify::load
 ai::internal::openspec::load
 ai::internal::skills::load
+ai::internal::jcode::load
