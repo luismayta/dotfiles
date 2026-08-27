@@ -18,6 +18,9 @@ source "${DOTFILES_CORE_PATH}"/config/autosuggest.zsh
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/config/base.zsh
 
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/config/gomplate.zsh
+
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
