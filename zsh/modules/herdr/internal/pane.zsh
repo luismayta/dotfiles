@@ -69,7 +69,8 @@ function hrd::internal::pane::setup_tab_layout {
     message_warning "Failed to split pane right (tab: ${tab_id})"
     return 1
   }
-  local agent_pane_id="$(printf '%s\n' "$agent_json" | jq -r '.result.pane.pane_id' 2>/dev/null)"
+  local agent_pane_id
+  agent_pane_id="$(printf '%s\n' "$agent_json" | jq -r '.result.pane.pane_id' 2>/dev/null)"
 
   # Split the left pane (base) down at 50% — base becomes top-left (editor), new pane becomes bottom-left (shell)
   local shell_json
@@ -77,7 +78,8 @@ function hrd::internal::pane::setup_tab_layout {
     message_warning "Failed to split pane down (tab: ${tab_id})"
     return 1
   }
-  local shell_pane_id="$(printf '%s\n' "$shell_json" | jq -r '.result.pane.pane_id' 2>/dev/null)"
+  local shell_pane_id
+  shell_pane_id="$(printf '%s\n' "$shell_json" | jq -r '.result.pane.pane_id' 2>/dev/null)"
 
   # Name the panes for visual clarity
   herdr pane rename "$base_pane_id" "editor"  2>/dev/null || true
