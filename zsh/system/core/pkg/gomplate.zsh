@@ -4,15 +4,15 @@
 # Gomplate public API
 
 core::gomplate::exists() {
-  core::internal::gomplate::exists "${@}"
+  core::internal::gomplate::exists
 }
 
 core::gomplate::load() {
-  core::internal::gomplate::load "${@}"
+  core::internal::gomplate::load
 }
 
 core::gomplate::install() {
-  core::internal::gomplate::install "${@}"
+  core::internal::gomplate::install
 }
 
 core::gomplate::ensure() {

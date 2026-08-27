@@ -38,11 +38,7 @@ core::internal::gomplate::install() {
       ;;
   esac
   
-  # Set OS and arch for URL template
-  CORE_GOMPLATE_OS="${os}"
-  CORE_GOMPLATE_ARCH="${arch}"
-  
-  local url="${CORE_GOMPLATE_URL_TEMPLATE}"
+  local url="https://github.com/hairyhenderson/gomplate/releases/download/v${CORE_GOMPLATE_VERSION}/gomplate_${os}-${arch}"
   local install_dir="${CORE_GOMPLATE_INSTALL_DIR}"
   local install_path="${install_dir}/gomplate"
   
