@@ -110,7 +110,6 @@ GOENV_INSTALL_PACKAGES+=(
 
 # Templates & Configuration
 GOENV_INSTALL_PACKAGES+=(
-  github.com/hairyhenderson/gomplate/v3/cmd/gomplate@latest
   github.com/sganon/env-secrets@latest
 )
 
