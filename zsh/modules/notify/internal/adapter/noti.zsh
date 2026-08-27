@@ -53,8 +53,13 @@ function notify::noti::internal::render {
     fi
 
     if ! core::exists gomplate; then
-        message_error "noti: gomplate is not installed"
-        return 1
+        message_info "noti: gomplate is not installed. Installing via core module..."
+        if core::gomplate::install; then
+            message_success "noti: gomplate installed successfully"
+        else
+            message_error "noti: Failed to install gomplate"
+            return 1
+        fi
     fi
 
     mkdir -p "${ZSH_NOTIFY_NOTI_CONFIG_PATH}"

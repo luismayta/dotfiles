@@ -49,6 +49,11 @@ esac
 # Ensure mpg123 is available for sound playback
 core::ensure mpg123
 
+# Ensure gomplate is available for template rendering
+if [[ "${ZSH_NOTIFY_PROVIDER}" == "noti" ]]; then
+    core::ensure gomplate
+fi
+
 # Register hooks for automatic notifications
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec notify::command::store
