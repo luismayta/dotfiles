@@ -73,3 +73,8 @@ CORE_PACKAGES+=(
 CORE_PACKAGES+=(
   pandoc-cli
 )
+
+# Template Rendering
+CORE_PACKAGES+=(
+  gomplate-bin
+)
