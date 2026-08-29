@@ -2,12 +2,12 @@
 # macOS-specific devops internal functions
 
 function devops::gcloud::internal::install {
-    message_info "Installing google-cloud-cli"
-    if ! brew install --cask google-cloud-cli; then
-        message_error "Failed to install google-cloud-cli"
+    message_info "Installing gcloud-cli"
+    if ! brew install --cask gcloud-cli; then
+        message_error "Failed to install gcloud-cli"
         return 1
     fi
-    message_success "Installed google-cloud-cli"
+    message_success "Installed gcloud-cli"
 }
 
 function devops::bruno::internal::bru::install {
