@@ -40,7 +40,7 @@ core::internal::packages::install() {
     if ! core::internal::core::exists paru; then
       core::internal::message::warning "${CORE_MESSAGE_PARU}"
     fi
-    paru -Syu --noconfirm
+    paru -Sy --noconfirm
     core::internal::core::install "${CORE_PACKAGES[@]}"
   fi
 }

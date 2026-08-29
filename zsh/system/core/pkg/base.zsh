@@ -27,6 +27,10 @@ core::packages::install() {
   core::internal::packages::install
 }
 
+core::cask::install() {
+  core::internal::cask::install "${@}"
+}
+
 message_info() {
   core::internal::message::info "${@}"
 }

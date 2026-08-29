@@ -24,11 +24,11 @@ CORE_PACKAGES+=(
   direnv
 )
 
-# Fonts
-CORE_PACKAGES+=(
+# Fonts (casks)
+CORE_CASKS+=(
   font-fira-code-nerd-font
   font-jetbrains-mono-nerd-font
-  font-source-code-pro-nerd-font
+  font-sauce-code-pro-nerd-font
 )
 
 # Document Conversion

@@ -1,3 +1,15 @@
+# Add zsh functions to fpath for autoload
+if [[ -d "/opt/homebrew/share/zsh/functions" ]]; then
+  # macOS (Homebrew)
+  fpath=(/opt/homebrew/share/zsh/functions $fpath)
+elif [[ -d "/usr/share/zsh/5.9/functions" ]]; then
+  # Linux (system zsh)
+  fpath=(/usr/share/zsh/5.9/functions $fpath)
+elif [[ -d "/usr/share/zsh/functions" ]]; then
+  # Linux (alternative path)
+  fpath=(/usr/share/zsh/functions $fpath)
+fi
+
 # autoload
 autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit -u
