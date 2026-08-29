@@ -1,13 +1,30 @@
 # shellcheck shell=bash
 
 function bitwarden::internal::bitwarden::install {
-    message_info "Installing bitwarden cli"
-    if core::exists yarn; then
-        yarn global add @bitwarden/cli
-        message_success "Installed @bitwarden/cli"
-    else
-        message_warning "Please install yarn or npm to install @bitwarden/cli"
+    if core::exists bw; then
+        message_info "${BITWARDEN_PACKAGE_NAME} already installed"
+        return 0
     fi
+
+    if ! core::exists bun; then
+        message_error "bun is required to install ${BITWARDEN_PACKAGE_NAME}"
+        return 1
+    fi
+
+    message_info "Installing ${BITWARDEN_PACKAGE_NAME}"
+    bun install -g @bitwarden/cli
+    message_success "Installed ${BITWARDEN_PACKAGE_NAME}"
+}
+
+function bitwarden::internal::bitwarden::upgrade {
+    if ! core::exists bw; then
+        bitwarden::internal::bitwarden::install
+        return
+    fi
+
+    message_info "Upgrading ${BITWARDEN_PACKAGE_NAME}"
+    bun install -g @bitwarden/cli
+    message_success "Upgraded ${BITWARDEN_PACKAGE_NAME}"
 }
 
 function bitwarden::internal::load::env {
