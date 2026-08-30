@@ -25,6 +25,8 @@ if [[ "${FLUTTER_ENABLED:-true}" == "true" ]]; then
         mobile::internal::flutter::install
     fi
     mobile::internal::flutter::load
+else
+    message_info "Flutter: skipped (FLUTTER_ENABLED=false)"
 fi
 
 # iOS: macOS-only, auto-install if Flutter is present (heuristic for iOS dev intent)

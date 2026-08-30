@@ -13,7 +13,7 @@ function mobile::internal::flutter::install {
     darwin*)
         local tmp_zip
         tmp_zip="$(mktemp).zip"
-        if curl -fsSL "${flutter_url}" -o "${tmp_zip}"; then
+        if curl --progress-bar -L "${flutter_url}" -o "${tmp_zip}"; then
             unzip -q "${tmp_zip}" -d "${flutter_parent}"
             rm -f "${tmp_zip}"
             message_success "${FLUTTER_PACKAGE_NAME} SDK installed at ${FLUTTER_ROOT}."
