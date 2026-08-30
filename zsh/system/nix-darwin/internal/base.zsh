@@ -67,9 +67,38 @@ nix::darwin::internal::status() {
     message_info "nix-darwin: active"
     message_info "profile: /nix/var/nix/profiles/system"
     message_info "hostname: $(scutil --get ComputerName 2>/dev/null || echo 'unknown')"
+    nix::internal::daemon::status
   else
     message_warning "nix-darwin: not detected"
     message_info "To bootstrap, run:"
     message_info "  nix run nix-darwin -- switch --flake ${DOTFILES_PATH}/nix/darwin#$(hostname -s)"
   fi
+}
+
+# --- nix-daemon management ---
+
+nix::internal::daemon::status() {
+  if launchctl list 2>/dev/null | rtk grep -q "org.nixos.nix-daemon"; then
+    message_success "nix-daemon: running"
+    return 0
+  else
+    message_warning "nix-daemon: not running"
+    message_info "Start with: nix::internal::daemon::restart"
+    return 1
+  fi
+}
+
+nix::internal::daemon::load() {
+  message_info "Loading nix-daemon service..."
+  sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2>/dev/null
+  sleep 2
+  nix::internal::daemon::status
+}
+
+nix::internal::daemon::restart() {
+  message_info "Restarting nix-daemon..."
+  sudo launchctl stop org.nixos.nix-daemon 2>/dev/null
+  sudo launchctl start org.nixos.nix-daemon
+  sleep 2
+  nix::internal::daemon::status
 }
