@@ -6,8 +6,8 @@
 // backticks inside the double-quoted echo trigger bash command substitution,
 // which both corrupts tool output and silently executes the very graphify
 // command we are only suggesting. Plain words render fine in opencode's TUI.
-import { existsSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync } from "fs";
+import { join } from "path";
 
 export const GraphifyPlugin = async ({ directory }) => {
   let reminded = false;
