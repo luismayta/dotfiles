@@ -37,6 +37,8 @@ source "${ZSH_AI_PATH}/pkg/rtk.zsh"
 source "${ZSH_AI_PATH}/pkg/pi.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/pkg/jcode.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/pkg/archify.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in

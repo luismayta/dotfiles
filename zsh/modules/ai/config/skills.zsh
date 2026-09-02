@@ -10,6 +10,7 @@ export ZSH_AI_SKILLS_DATA_PATH="${ZSH_AI_PATH}/data/skills"
 ZSH_AI_SKILLS_REPOS=(
   vercel-labs/agent-skills
   CodipLab/codip-ai
+  tt-a1i/archify
 )
 
 # shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh

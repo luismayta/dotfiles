@@ -39,6 +39,8 @@ source "${ZSH_AI_PATH}/config/graphify.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/openspec.zsh"
 # shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/config/archify.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/skills.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/jcode.zsh"
@@ -59,4 +61,5 @@ export ZSH_AI_TOOLS=(
   pi
   skills
   jcode
+  archify
 )
