@@ -14,6 +14,9 @@ fi
 autoload -Uz add-zsh-hook
 autoload -Uz compinit && compinit -u
 
+# Fix CR-to-NL on Enter (prevents ^M in terminal prompts)
+stty icrnl 2>/dev/null
+
 export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 
 export TERM=screen-256color
