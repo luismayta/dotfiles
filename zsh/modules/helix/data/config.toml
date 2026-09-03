@@ -1,0 +1,59 @@
+# Helix editor configuration
+
+[editor]
+theme = "tokyonight_storm"
+line-number = "relative"
+cursorline = true
+color-mode = "true-color"
+scrolloff = 8
+completion-trigger-len = 1
+auto-completion = true
+idle-timeout = 500
+rustfmt = "async"
+auto-format = true
+bufferline = "multiple"
+cursor-shape = { insert = "bar", normal = "block", select = "underline" }
+file-picker = { hidden = false }
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+center = ["diagnostics"]
+right = ["selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "all"
+newline = "none"
+
+[editor.indent-guides]
+render = true
+character = "│"
+skip-levels = 1
+
+[keys.normal]
+# Window navigation
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
+
+# Quick save
+"C-s" = ":write"
+
+[keys.insert]
+"C-s" = ":write"
+
+[keys.select]
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
