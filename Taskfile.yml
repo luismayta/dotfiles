@@ -87,6 +87,8 @@ includes:
     taskfile: ./zsh/modules/hammerspoon/Taskfile.yml
   module-herdr:
     taskfile: ./zsh/modules/herdr/Taskfile.yml
+  module-helix:
+    taskfile: ./zsh/modules/helix/Taskfile.yml
   module-hyprland:
     taskfile: ./zsh/modules/hyprland/Taskfile.yml
   module-issues:
@@ -294,6 +296,7 @@ tasks:
       - task: module-goenv:readme
       - task: module-hammerspoon:readme
       - task: module-herdr:readme
+      - task: module-helix:readme
       - task: module-hyprland:readme
       - task: module-issues:readme
       - task: module-keybase:readme
