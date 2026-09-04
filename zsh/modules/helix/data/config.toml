@@ -1,15 +1,15 @@
 # Helix editor configuration
 
-[editor]
 theme = "tokyonight_storm"
+
+[editor]
 line-number = "relative"
 cursorline = true
-color-mode = "true-color"
+true-color = true
 scrolloff = 8
 completion-trigger-len = 1
 auto-completion = true
 idle-timeout = 500
-rustfmt = "async"
 auto-format = true
 bufferline = "multiple"
 cursor-shape = { insert = "bar", normal = "block", select = "underline" }
