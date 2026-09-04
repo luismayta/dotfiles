@@ -14,3 +14,15 @@ ZSH_HELIX_ENABLED="${ZSH_HELIX_ENABLED:-true}"
 
 # Helix data path (module data directory)
 : "${ZSH_HELIX_DATA_PATH:=${ZSH_HELIX_PATH}/data}"
+
+# Helix root path
+: "${ZSH_HELIX_ROOT_PATH:=${ZSH_HELIX_CONFIG_PATH:-}}"
+
+# Helix data home (XDG)
+: "${ZSH_HELIX_DATA_HOME:=${HOME}/.local/share/helix}"
+
+# Helix cache home (XDG)
+: "${ZSH_HELIX_CACHE_HOME:=${HOME}/.cache/helix}"
+
+# Helix state home (XDG)
+: "${ZSH_HELIX_STATE_HOME:=${HOME}/.local/state/helix}"

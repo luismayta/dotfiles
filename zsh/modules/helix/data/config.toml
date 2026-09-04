@@ -49,11 +49,26 @@ skip-levels = 1
 # Quick save
 "C-s" = ":write"
 
+# Vim-style line operations (macros)
+"dd" = "@x$d"       # Select line then delete (like vim dd)
+"yy" = "@x<y>"      # Select line then yank (like vim yy)
+"p" = "paste_after"   # Paste after cursor (already default, be explicit)
+"P" = "paste_before"  # Paste before cursor (already default, be explicit)
+
 [keys.insert]
 "C-s" = ":write"
+# Vim-style exit insert mode
+"j" = { "j" = "normal_mode", "k" = "normal_mode" }  # jj or jk to exit
 
 [keys.select]
 "C-h" = "jump_view_left"
 "C-j" = "jump_view_down"
 "C-k" = "jump_view_up"
 "C-l" = "jump_view_right"
+
+# Leader key ',' for quick commands
+[keys.normal.","]  # This creates a minor mode on ','
+"w" = ":write"           # ,w to save
+"q" = ":quit"            # ,q to quit
+"e" = "file_picker"      # ,e to open file picker
+"f" = "global_search"    # ,f to find in files

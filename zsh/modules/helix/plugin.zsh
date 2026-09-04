@@ -26,5 +26,5 @@ source "${ZSH_HELIX_PATH}/pkg/main.zsh"
 
 # Auto-sync guards (must be after pkg/main.zsh so helix::sync exists)
 if ! core::exists rsync; then core::install rsync; fi
-if ! core::exists helix; then core::install helix; fi
+if ! core::exists "${ZSH_HELIX_PACKAGE_NAME}"; then core::install "${ZSH_HELIX_PACKAGE_NAME}"; fi
 if [[ ! -d "${ZSH_HELIX_CONFIG_PATH}" ]]; then helix::sync; fi

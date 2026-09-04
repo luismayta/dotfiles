@@ -8,3 +8,9 @@ function helix::setup {
     helix::sync
     helix::post_install
 }
+
+# Upgrade helix: update binary and grammars
+function helix::upgrade_all {
+    helix::upgrade
+    helix::sync
+}

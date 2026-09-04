@@ -150,11 +150,11 @@ rules = [
 	# { mime = "inode/x-empty", fg = "#f7768e" },
 
 	# Special files
-	{ name = "*", mime = "*", is = "orphan", bg = "#f7768e" },
-	{ name = "*", mime = "*", is = "exec"  , fg = "#9ece6a" },
+	{ name = "*", is = "orphan", bg = "#f7768e" },
+	{ name = "*", is = "exec"  , fg = "#9ece6a" },
 
 	# Fallback
-	{ name = "*/", mime = "*", fg = "#7aa2f7" },
-	{ name = "*", mime = "*", fg = "#c0caf5" }
+	{ name = "*/", fg = "#7aa2f7" },
+	{ name = "*", fg = "#c0caf5" }
 ]
     

@@ -14,3 +14,15 @@ function helix::sync {
 function helix::post_install {
     helix::internal::post_install "$@"
 }
+
+function helix::backup {
+    helix::internal::backup "$@"
+}
+
+function helix::upgrade {
+    helix::internal::upgrade "$@"
+}
+
+function helix::clean {
+    helix::internal::clean "$@"
+}
