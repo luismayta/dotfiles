@@ -13,7 +13,7 @@ function helix::internal::sync {
 }
 
 function helix::internal::install {
-    core::ensure hx
+    core::ensure helix
     message_success "helix: installed"
 }
 
