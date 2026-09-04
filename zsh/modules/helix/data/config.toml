@@ -49,11 +49,11 @@ skip-levels = 1
 # Quick save
 "C-s" = ":write"
 
-# Vim-style line operations (macros)
-"dd" = "@x$d"       # Select line then delete (like vim dd)
-"yy" = "@x<y>"      # Select line then yank (like vim yy)
-"p" = "paste_after"   # Paste after cursor (already default, be explicit)
-"P" = "paste_before"  # Paste before cursor (already default, be explicit)
+# Line operations (macros: @ = macro prefix)
+"A-d" = "@xd"         # Alt-d: select line then delete (like vim dd)
+"A-y" = "@xy"         # Alt-y: select line then yank (like vim yy)
+"p" = "paste_after"   # Paste after cursor
+"P" = "paste_before"  # Paste before cursor
 
 [keys.insert]
 "C-s" = ":write"
