@@ -8,7 +8,6 @@ local font_size = platform.is_mac and 20 or 16
 return {
   font = wezterm.font {
     family = font_family,
-    weight = "Light",
   },
   font_size = font_size,
 

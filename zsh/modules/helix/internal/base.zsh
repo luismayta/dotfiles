@@ -38,7 +38,7 @@ function helix::internal::backup {
         message_info "Dry run mode (use --apply to apply)"
     fi
 
-    command rsync ${rsync_opts} \
+    command rsync "${rsync_opts}" \
         "${ZSH_HELIX_CONFIG_PATH}/" \
         "${ZSH_HELIX_DATA_PATH}/"
     message_success "helix: backup complete"
