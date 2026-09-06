@@ -13,3 +13,7 @@ features:
   - "Runtime grammar management"
 requirements: |-
   - zsh (loaded as part of dotfiles zsh modules)
+variable_assignment_pattern: |-
+  - Use `:=` in base.zsh for default values (user-overridable)
+  - Use direct assignment `VAR="value"` in osx.zsh/linux.zsh for platform-specific overrides
+  - Use `:=` inside if blocks for Homebrew path detection

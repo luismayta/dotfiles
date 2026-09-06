@@ -2,6 +2,7 @@
 ZSH_HELIX_ENABLED="${ZSH_HELIX_ENABLED:-true}"
 #
 # Configuration variables for the helix module.
+# Pattern: Use `:=` for defaults (user-overridable), direct assignment for platform overrides
 
 # Module root path (set by plugin.zsh as ZSH_HELIX_PATH)
 : "${ZSH_HELIX_PATH:=${ZSH_HELIX_PATH:-}}"

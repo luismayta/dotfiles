@@ -1,8 +1,9 @@
 #
 # shellcheck shell=bash
+# shellcheck disable=SC2034
 # macOS-specific configuration overrides for helix module.
 #
-: "${ZSH_HELIX_PACKAGE_NAME:=hx}"
+ZSH_HELIX_PACKAGE_NAME="hx"
 
 # Homebrew path detection
 if [[ -x "/opt/homebrew/bin/hx" ]]; then
