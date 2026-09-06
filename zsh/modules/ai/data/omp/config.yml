@@ -1,0 +1,104 @@
+# ============================================================================
+# oh-my-pi (omp) — Source Configuration
+# ============================================================================
+# This file is synced via rsync to ~/.omp/agent/config.yml
+# (see zsh/modules/ai/internal/omp.zsh)
+#
+# Commented sections are reference options.
+# Uncomment and adjust values to activate.
+# ============================================================================
+
+# --- Model Roles ------------------------------------------------------------
+# Roles allow different tasks to use specialized models.
+modelRoles:
+  default: opencode/big-pickle
+  smol: opencode/mimo-v2.5-free
+  slow: opencode/big-pickle
+  vision: opencode/mimo-v2.5-free
+  plan: opencode/big-pickle
+  advisor: opencode/big-pickle
+  commit: opencode/mimo-v2.5-free
+  tiny: opencode/mimo-v2.5-free
+  task: opencode/big-pickle
+
+# Role persistence: "global" shares across projects, "project" is per-project.
+# modelRoleStorage: global
+
+# --- Symbol Preset ----------------------------------------------------------
+symbolPreset: unicode
+
+# --- Composer ---------------------------------------------------------------
+composer:
+  shape: rail
+
+# --- Theme ------------------------------------------------------------------
+theme:
+  # dark: titanium
+  light: light-tokyo-night
+
+# --- Setup ------------------------------------------------------------------
+setupVersion: 2
+
+# --- Thinking Level ---------------------------------------------------------
+# Possible values: minimal|low|medium|high|xhigh|max|auto
+defaultThinkingLevel: auto
+
+# --- Thinking Budgets (tokens per level) ------------------------------------
+# thinkingBudgets:
+#   minimal: 1024
+#   low: 2048
+#   medium: 8192
+#   high: 16384
+#   xhigh: 32768
+#   max: 32768
+
+# --- Temperature and Sampling -----------------------------------------------
+# Negative values (-1) use the provider default.
+# temperature: -1
+# topP: -1
+# topK: -1
+# minP: -1
+# presencePenalty: -1
+# repetitionPenalty: -1
+# textVerbosity: medium  # low|medium|high
+
+# --- Tools and Approval Mode ------------------------------------------------
+# tools:
+#   approvalMode: write    # write|read|all
+#   approval:
+#     bash: prompt         # allow|prompt|deny
+#     read: allow
+#     edit: prompt
+#     write: prompt
+#     eval: prompt
+#     browser: prompt
+#     computer: prompt
+#     glob: allow
+#     grep: allow
+#     lsp: allow
+#     debug: prompt
+#     task: prompt
+#     web_search: allow
+#     github: prompt
+
+# --- Context Compaction -----------------------------------------------------
+# compaction:
+#   methodOrder: [snapcompact, remote, soft]
+#   thresholdPercent: 80
+
+# --- Retries ----------------------------------------------------------------
+# retry:
+#   enabled: true
+#   maxRetries: 10
+#   baseDelayMs: 500
+#   maxDelayMs: 300000
+#   modelFallback: true
+
+# --- Startup ----------------------------------------------------------------
+# startup:
+#   quiet: true
+#   showSplash: false
+
+# --- Memory -----------------------------------------------------------------
+# memory:
+#   backend: local   # local|hindsight|mnemopi
