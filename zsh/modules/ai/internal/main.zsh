@@ -32,6 +32,8 @@ source "${ZSH_AI_PATH}/internal/hunk.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/pi.zsh"
 # shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/internal/omp.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/hf.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/tmuxai.zsh"
@@ -60,6 +62,7 @@ ai::internal::codegraph::load
 ai::internal::rtk::load
 ai::internal::hunk::load
 ai::internal::pi::load
+ai::internal::omp::load
 ai::internal::graphify::load
 ai::internal::openspec::load
 ai::internal::skills::load

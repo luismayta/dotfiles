@@ -25,6 +25,8 @@ source "${ZSH_AI_PATH}/config/hunk.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/pi.zsh"
 # shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/config/omp.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/hf.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/tmuxai.zsh"
@@ -59,6 +61,7 @@ export ZSH_AI_TOOLS=(
   hunk
   rtk
   pi
+  omp
   skills
   jcode
   archify
