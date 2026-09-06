@@ -1,0 +1,30 @@
+---
+name: research-capture
+description: Investigate a topic using web search, codegraph, and codebase analysis — shows findings, saves by state under RESEARCH_ROOT (draft/researched/validated/archived) with metadata for downstream consumption. When invoked without input, lists existing drafts for review and state promotion.
+triggers:
+  - investigar
+  - research
+  - buscar
+  - investiga esto
+  - buscar sobre
+  - investigados
+  - researched
+  - listar investigados
+  - mostrar investigados
+  - drafts investigados
+  - pick draft
+  - elegir draft
+  - promover draft
+  - validar draft
+what_i_do:
+  - "Research topics using web search, GitHub, codegraph, and Context7 in parallel"
+  - "Create structured drafts with findings and sources, stored by state under RESEARCH_ROOT"
+  - "Browse and manage existing drafts across all status states"
+  - "Promote drafts through states (draft → researched → validated) and archive"
+  - "Detect existing content to avoid duplicate research"
+usage_examples:
+  - "Investigar sobre vibe coding y crear un draft"
+  - "Buscar información sobre React Server Components"
+  - "Mostrar todos los drafts investigados"
+  - "Promover el draft de AI adoption a validated"
+---
