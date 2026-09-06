@@ -1,5 +1,3 @@
-
-
 /**
  * code-review-graph plugin for OpenCode.
  *
