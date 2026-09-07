@@ -209,6 +209,7 @@ function setup::mac {
 
   setup::nix
 
+  # TODO: [FIX] Migrate to a path outside the repository.
   # Bootstrap nix-darwin if the flake is available locally
   if [[ -f "${PATH_REPO}/nix/darwin/flake.nix" ]] && command -v nix >/dev/null; then
     msg::info "Bootstrapping nix-darwin system configuration..."
