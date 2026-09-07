@@ -27,6 +27,7 @@ exclude = [
   '^http://localhost',
   '^https://www.gnu.org/software/',
   '^\\.\\./data/opencode/commands/',
+  '^https://www\.npmjs\.com/',
 ]
 
 # URL replacement (pattern replacement)
