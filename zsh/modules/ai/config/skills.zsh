@@ -29,6 +29,7 @@ ZSH_AI_SKILLS_VERCEL=(
 # shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh
 # CodipLab — Git & PR workflows
 ZSH_AI_SKILLS_CODIP=(
+  gcal-daily-planner
   github-create-pr
   github-update-pr
   github-validate-pr
@@ -44,7 +45,6 @@ ZSH_AI_SKILLS_CODIP=(
   jpd-epic-generator
   jpd-task-generator
   markdown-to-jira
-  gcal-daily-planner
   markdown-to-gcal
   idea-capture
   idea-jpd-create
@@ -53,5 +53,6 @@ ZSH_AI_SKILLS_CODIP=(
   image-compression
   simplify
   diagram-design
+  research-capture
 )
 export ZSH_AI_INSTALL_URL_SKILLS="https://raw.githubusercontent.com/vercel-labs/skills/main/install.sh"
