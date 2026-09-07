@@ -6,6 +6,7 @@
   # Set once at first install; never change without reading darwin-rebuild changelog
   system.stateVersion = 7;
 
+  # TODO: [FIX] Migrate to a path outside the repository.
   # Existing macOS account — declared so home-manager can derive username/home
   users.users.luchomayta = {
     name = "luchomayta";
@@ -13,7 +14,9 @@
   };
 
   # Nix settings (daemon and build users are managed by nix-darwin)
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = "nix-command flakes";
+  };
 
   # Host platform for Apple Silicon
   nixpkgs.hostPlatform = "aarch64-darwin";

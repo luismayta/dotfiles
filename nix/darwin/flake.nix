@@ -13,8 +13,9 @@
     };
   };
 
+  # TODO: [FIX] Migrate to a path outside the repository.
   outputs = { self, nixpkgs, nix-darwin, home-manager, ... }: {
-    darwinConfigurations."Lucho-MacBook" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."Osiris" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         ./default.nix
