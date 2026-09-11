@@ -40,11 +40,15 @@ The module SHALL install specified Node.js versions via `fnm install` and set a 
 - **THEN** `NODEJS_VERSION_GLOBAL` SHALL be installed and aliased as default
 
 ### Requirement: NPM package manager
-The module SHALL install npm packages defined in `NODEJS_PACKAGES` array via `yarn global add` (after installing yarn through npm if missing).
+The module SHALL install npm packages defined in `NODEJS_PACKAGES` array via `bun install -g`. The array SHALL include `@mermaid-js/mermaid-cli` (mmdc) as a global package for mermaid diagram rendering.
 
 #### Scenario: NPM packages install
 - **WHEN** `nodejs::internal::packages::install` is called
-- **THEN** yarn SHALL be installed globally if missing, then all packages in `NODEJS_PACKAGES` SHALL be installed via `yarn global add`
+- **THEN** all packages in `NODEJS_PACKAGES` SHALL be installed via `bun install -g`
+
+#### Scenario: mmdc installed as global package
+- **WHEN** `nodejs::internal::packages::install` is called
+- **THEN** `@mermaid-js/mermaid-cli` SHALL be installed globally and `mmdc` SHALL be available in PATH
 
 ### Requirement: Dependency check before install
 The module SHALL verify `curl` and `unzip` are available before attempting fnm installation, installing them via `core::install` if missing.
