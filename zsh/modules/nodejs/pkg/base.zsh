@@ -34,3 +34,13 @@ function nodejs::install::version::global {
 function nodejs::sync {
     nodejs::internal::sync
 }
+
+# nodejs::chrome::install — install chrome-headless-shell persistently
+function nodejs::chrome::install {
+    nodejs::internal::chrome::install
+}
+
+# nodejs::chrome::load — verify chrome-headless-shell availability
+function nodejs::chrome::load {
+    nodejs::internal::chrome::load
+}

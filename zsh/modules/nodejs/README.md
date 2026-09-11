@@ -27,6 +27,8 @@ Node.js ZSH module providing Node.js version management via fnm
 - Fast Node.js version switching via fnm
 - Automatic version detection (.nvmrc, .node-version)
 - Multiple Node.js version support
+- Mermaid diagram rendering via mmdc (chrome-headless-shell persistent install)
+- puppeteer-config.json with executablePath for chrome-headless-shell
 
 
 

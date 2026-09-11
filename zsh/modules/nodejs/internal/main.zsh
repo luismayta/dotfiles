@@ -25,3 +25,5 @@ nodejs::internal::bunx::load
 if ! core::exists fnm; then nodejs::internal::fnm::install; fi
 
 if ! core::exists bun; then nodejs::internal::bun::install; fi
+
+if [ ! -d "${CHROME_HEADLESS_SHELL_PATH}" ]; then nodejs::internal::chrome::install && nodejs::internal::puppeteer::config; fi

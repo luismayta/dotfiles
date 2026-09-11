@@ -11,5 +11,7 @@ features:
   - "Fast Node.js version switching via fnm"
   - "Automatic version detection (.nvmrc, .node-version)"
   - "Multiple Node.js version support"
+  - "Mermaid diagram rendering via mmdc (chrome-headless-shell persistent install)"
+  - "puppeteer-config.json with executablePath for chrome-headless-shell"
 requirements: |-
   - zsh (loaded as part of dotfiles zsh modules)

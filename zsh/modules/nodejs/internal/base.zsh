@@ -79,3 +79,45 @@ function nodejs::internal::fnm::upgrade {
 function nodejs::internal::sync {
     rsync -avzh --progress "${NODEJS_DATA_PATH}/sync/" "${HOME}/"
 }
+
+# chrome-headless-shell — persistent install for mermaid rendering
+function nodejs::internal::chrome::install {
+    if [ -d "${CHROME_HEADLESS_SHELL_PATH}" ]; then
+        message_info "chrome-headless-shell already installed"
+        return 0
+    fi
+
+    message_info "Installing chrome-headless-shell"
+    bunx @puppeteer/browsers install chrome-headless-shell@stable --path "${CHROME_HEADLESS_SHELL_PATH}"
+    message_success "Installed chrome-headless-shell"
+}
+
+function nodejs::internal::chrome::load {
+    if [ -d "${CHROME_HEADLESS_SHELL_PATH}" ]; then
+        message_success "chrome-headless-shell available at ${CHROME_HEADLESS_SHELL_PATH}"
+    else
+        message_warning "chrome-headless-shell not found"
+    fi
+}
+
+function nodejs::internal::puppeteer::config {
+    if [ -f "${PUPPETEER_CONFIG_PATH}" ]; then
+        message_info "puppeteer config already exists"
+        return 0
+    fi
+
+    local executable_path
+    executable_path="$(find "${CHROME_HEADLESS_SHELL_PATH}" -type f -name "chrome-headless-shell" 2>/dev/null | head -1)"
+    if [ -z "${executable_path}" ]; then
+        message_error "chrome-headless-shell binary not found"
+        return 1
+    fi
+
+    message_info "Generating puppeteer config at ${PUPPETEER_CONFIG_PATH}"
+    cat > "${PUPPETEER_CONFIG_PATH}" <<EOF
+{
+  "executablePath": "${executable_path}"
+}
+EOF
+    message_success "Generated puppeteer config"
+}

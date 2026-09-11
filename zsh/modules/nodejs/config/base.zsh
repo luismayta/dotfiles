@@ -37,6 +37,7 @@ export NODEJS_PACKAGES=(
     turbo
     @changesets/cli
     @fission-ai/openspec@latest
+    @mermaid-js/mermaid-cli
 )
 
 # bun
@@ -51,3 +52,7 @@ export BUN_BIN_PATH="${BUN_PATH}/bin"
 # npmrc sync paths
 export NODEJS_DATA_PATH="${ZSH_NODEJS_PATH}/data"
 export NODEJS_NPMRC_PATH="${HOME}/.npmrc"
+
+# chrome-headless-shell (mermaid rendering)
+export CHROME_HEADLESS_SHELL_PATH="${HOME}/.local/share/chrome-headless-shell"
+export PUPPETEER_CONFIG_PATH="${HOME}/.puppeteer-config.json"
