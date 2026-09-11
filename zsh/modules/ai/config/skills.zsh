@@ -46,6 +46,7 @@ ZSH_AI_SKILLS_CODIP=(
   jpd-task-generator
   markdown-to-jira
   markdown-to-gcal
+  markdown-to-gdoc
   idea-capture
   idea-jpd-create
   idea-jpd-draft
