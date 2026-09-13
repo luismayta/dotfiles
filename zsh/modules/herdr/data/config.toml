@@ -232,6 +232,10 @@ done_path = "sounds/done.mp3"      # overrides only finished notifications
 # [ui.sound.agents]
 # droid = "off"
 
+# Agent sidebar rows; $espresso marks panes with espresso monitoring active
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"], ["agent", "$espresso"]]
+
 [session]
 # Resume supported AI-agent panes into their native conversation sessions after
 # a Herdr server restart. Requires official integrations that report session refs.
@@ -288,3 +292,10 @@ type = "plugin_action"
 command = "smolbox.new"
 description = "smolbox: new box"
 # <<< smolbox (managed) <<<
+
+## Plugin herdr-espresso - Keep awake while agent works
+[[keys.command]]
+key = "prefix+/"
+type = "plugin_action"
+command = "espresso.toggle"
+description = "espresso: toggle monitor on focused pane"

@@ -19,6 +19,15 @@ export ZSH_HERDR_PROJECT_TEMPLATE_PATH="${ZSH_HERDR_DATA_PATH}/plugins/config/cl
 typeset -ga ZSH_HERDR_INSTALL_PLUGINS
 export ZSH_HERDR_PLUGIN_ENABLED="${ZSH_HERDR_PLUGIN_ENABLED:-true}"
 
+# Custom CLI dependencies — installed per-OS via internal/{osx,linux}.zsh
+# Each entry maps to herdr::internal::deps::install::<binary>
+typeset -ga ZSH_HERDR_CUSTOM_DEPS
+ZSH_HERDR_CUSTOM_DEPS+=("espresso")
+
+# Espresso CLI (macOS-only, required by herdr-espresso plugin)
+export ZSH_HERDR_ESPRESSO_INSTALL_URL="https://raw.githubusercontent.com/Hanyang-Li/espresso/main/install.sh"
+export ZSH_HERDR_ESPRESSO_ENABLED="${ZSH_HERDR_ESPRESSO_ENABLED:-true}"
+
 # Backward-compatible aliases (temporary — for existing shell sessions)
 export HERDR_PACKAGE_NAME="${ZSH_HERDR_PACKAGE_NAME}"
 export HERDR_INSTALL_URL="${ZSH_HERDR_INSTALL_URL}"

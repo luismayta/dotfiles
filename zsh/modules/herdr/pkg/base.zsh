@@ -40,3 +40,15 @@ function herdr::plugin::update::all {
 function herdr::plugin::uninstall {
     herdr::internal::plugin::uninstall "$@"
 }
+
+# ──────────────────────────────────────────────
+# Espresso wrappers (macOS-only)
+# ──────────────────────────────────────────────
+
+function herdr::espresso::install {
+    herdr::internal::deps::install::espresso
+}
+
+function herdr::espresso::daemon::install {
+    herdr::internal::espresso::daemon::install
+}

@@ -5,6 +5,7 @@ ZSH_HERDR_INSTALL_PLUGINS+=(
   0x5c0f/herdr-insight
   rohanthewiz/herdr-todo
   carze/herdr-smolmachine
+  Hanyang-Li/herdr-espresso
 )
 
 # Connect — socket API, MCP, notifications, bridges

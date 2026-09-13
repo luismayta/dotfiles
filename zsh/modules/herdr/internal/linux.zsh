@@ -25,3 +25,12 @@ function hrd::internal::linux::ensure_clipboard {
 
     message_success "Clipboard tools installed."
 }
+
+# ──────────────────────────────────────────────
+# Custom CLI dependencies — Linux strategy
+# ──────────────────────────────────────────────
+
+function herdr::internal::deps::install::espresso {
+    message_info "espresso CLI is macOS-only, skipping"
+    return 0
+}

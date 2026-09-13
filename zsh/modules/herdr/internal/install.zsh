@@ -161,3 +161,28 @@ function herdr::internal::plugin::uninstall {
     message_error "Failed to uninstall plugin '$plugin'"
   fi
 }
+
+# ──────────────────────────────────────────────
+# Custom CLI dependencies (per-OS strategy)
+# ──────────────────────────────────────────────
+
+function herdr::internal::deps::ensure {
+    if [[ ${#ZSH_HERDR_CUSTOM_DEPS[@]} -eq 0 ]]; then
+        return 0
+    fi
+
+    local dep installer
+    for dep in "${ZSH_HERDR_CUSTOM_DEPS[@]}"; do
+        if core::exists "$dep"; then
+            message_info "Dependency '$dep' already installed, skipping"
+            continue
+        fi
+
+        installer="herdr::internal::deps::install::${dep}"
+        if command -v "$installer" >/dev/null 2>&1; then
+            "$installer"
+        else
+            message_warning "No installer defined for dependency '$dep'"
+        fi
+    done
+}
