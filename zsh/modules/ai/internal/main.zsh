@@ -40,6 +40,8 @@ source "${ZSH_AI_PATH}/internal/tmuxai.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/jcode.zsh"
 # shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/internal/tuicr.zsh"
+# shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/archify.zsh"
 
 # --- OS-specific ---
@@ -67,4 +69,5 @@ ai::internal::graphify::load
 ai::internal::openspec::load
 ai::internal::skills::load
 ai::internal::jcode::load
+ai::internal::tuicr::load
 ai::internal::archify::load

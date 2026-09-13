@@ -11,6 +11,7 @@ ZSH_AI_SKILLS_REPOS=(
   vercel-labs/agent-skills
   CodipLab/codip-ai
   tt-a1i/archify
+  agavra/tuicr
 )
 
 # shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh
@@ -56,4 +57,11 @@ ZSH_AI_SKILLS_CODIP=(
   diagram-design
   research-capture
 )
+
+# shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh
+# Tuicr — TUI code review with AI agent integration
+ZSH_AI_SKILLS_TUICR=(
+  tuicr
+)
+
 export ZSH_AI_INSTALL_URL_SKILLS="https://raw.githubusercontent.com/vercel-labs/skills/main/install.sh"

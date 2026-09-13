@@ -46,6 +46,8 @@ source "${ZSH_AI_PATH}/config/archify.zsh"
 source "${ZSH_AI_PATH}/config/skills.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/jcode.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/config/tuicr.zsh"
 
 # --- Tool registry (used by internal/tools.zsh::packages::install) ---
 export ZSH_AI_TOOLS=(
@@ -65,4 +67,5 @@ export ZSH_AI_TOOLS=(
   skills
   jcode
   archify
+  tuicr
 )

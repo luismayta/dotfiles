@@ -22,6 +22,7 @@ function ai::sync {
   ai::fabric::patterns::sync
   ai::hunk::config::sync
   ai::pi::config::sync
+  ai::tuicr::sync
 }
 
 function ai::setup {
