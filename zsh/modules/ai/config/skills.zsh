@@ -31,6 +31,7 @@ ZSH_AI_SKILLS_VERCEL=(
 # CodipLab — Git & PR workflows
 ZSH_AI_SKILLS_CODIP=(
   gcal-daily-planner
+  gcal-task-suggester
   github-create-pr
   github-update-pr
   github-validate-pr

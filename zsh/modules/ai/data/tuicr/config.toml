@@ -9,9 +9,6 @@ leader = ","
 # Vim modal editing in comment box
 comment_vim = true
 
-# Bare "q" quits in review mode
-q_quits = true
-
 # Vim-like scrolloff
 scroll_offset = 5
 
