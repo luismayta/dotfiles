@@ -73,6 +73,10 @@
 	# Util
 	root = rev-parse --show-toplevel
 
+    review = !tuicr
+    review-work = !tuicr -w
+    review-branch = !tuicr -r main..HEAD
+
 [status]
 	submoduleSummary = true
 
@@ -172,5 +176,4 @@
 [ghq]
 	root = /home/lucho/Projects/src
 [credential "https://github.com"]
-	helper = 
 	helper = !gh auth git-credential
