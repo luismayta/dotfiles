@@ -46,3 +46,8 @@ pbpaste() {
 core::fix::audio() {
   systemctl --user restart wireplumber pipewire pipewire-pulse
 }
+
+# localip — show local IP
+localip() {
+  command ip -4 route get 1.1.1.1 | awk '{for (i=1; i<=NF; i++) if ($i == "src") print $(i+1)}'
+}

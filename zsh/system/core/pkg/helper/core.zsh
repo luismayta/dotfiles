@@ -119,11 +119,6 @@ ip() {
   dig +short myip.opendns.com @resolver1.opendns.com
 }
 
-# localip — show local IP
-localip() {
-  ipconfig getifaddr en0
-}
-
 # net — check internet connectivity
 net() {
   ping 8.8.8.8 | grep -Eo '[0-9\.]+ ms'
