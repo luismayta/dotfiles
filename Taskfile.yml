@@ -54,6 +54,8 @@ includes:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/openssl/Taskfile.yml"
   terraform:
     taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/terraform/Taskfile.yml"
+  review:
+    taskfile: "https://raw.githubusercontent.com/hadenlabs/tasks/refs/heads/main/src/review/Taskfile.yml"
 
   module-ai:
     taskfile: ./zsh/modules/ai/Taskfile.yml
@@ -394,21 +396,3 @@ tasks:
           echo 'There are some more tasks used as dependencies for other tasks.'
           echo 'You can view them with "task --list-all".'
         silent: true
-
-  review:start:
-    desc: Start a code review for current changes
-    cmds:
-      - tuicr -w
-
-  review:sessions:
-    desc: Get available code review sessions as JSON
-    cmds:
-      - tuicr review list --repo .
-
-  review:feedback:
-    desc: Get feedback from the active code review session
-    cmds:
-      - |
-        SESSION=$(tuicr review list --repo . | jq -r '.[] | select(.active == true) | .slug')
-        test -n "$SESSION" || { echo "No active review session found"; exit 1; }
-        tuicr review comments --repo . --session "$SESSION"
