@@ -23,6 +23,7 @@ function ai::sync {
   ai::hunk::config::sync
   ai::pi::config::sync
   ai::tuicr::sync
+  ai::omniroute::sync
 }
 
 function ai::setup {

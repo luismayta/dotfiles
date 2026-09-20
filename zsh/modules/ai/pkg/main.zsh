@@ -43,6 +43,8 @@ source "${ZSH_AI_PATH}/pkg/jcode.zsh"
 source "${ZSH_AI_PATH}/pkg/tuicr.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/pkg/archify.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/pkg/omniroute.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in
