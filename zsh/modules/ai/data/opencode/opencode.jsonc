@@ -2,6 +2,8 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
   "instructions": ["AGENTS.md"],
+
+  // === Agent ===
   "agent": {
     "explore": {
       "disable": true
@@ -10,11 +12,15 @@
       "disable": true
     }
   },
+
+  // === Compaction ===
   "compaction": {
     "auto": false,
     "prune": true,
     "reserved": 8000
   },
+
+  // === MCP Servers ===
   "mcp": {
     "git": {
       "enabled": false,
@@ -129,7 +135,7 @@
       "type": "local",
       "command": ["bunx", "-y", "@modelcontextprotocol/server-github"],
       "environment": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GH_TOKEN}"
       }
     },
     "grafana": {
@@ -250,6 +256,8 @@
       }
     }
   },
+
+  // === Permissions ===
   "permission": {
     "external_directory": {
       "*": "ask",
@@ -260,11 +268,15 @@
       "/tmp/*": "allow"
     }
   },
+
+  // === Plugins ===
   "plugin": [
     "opencode-gemini-auth@latest",
     "@mohak34/opencode-notifier@latest",
-    "file:////home/lucho/.config/opencode/node_modules/@codiplab/codi-opencode"
+    "file:///home/lucho/.config/opencode/node_modules/@codiplab/codi-opencode"
   ],
+
+  // === Providers ===
   "provider": {
     "openai": {
       "name": "OpenAI"
@@ -381,6 +393,28 @@
             "output": 16384
           },
           "name": "qwen3-coder"
+        }
+      }
+    },
+    "omniroute": {
+      "name": "OmniRoute",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:20128/v1",
+        "apiKey": "{env:OMNIROUTE_API_KEY}"
+      },
+      "models": {
+        "auto": {
+          "name": "Auto-Combo"
+        },
+        "auto/coding": {
+          "name": "Auto Coding"
+        },
+        "auto/fast": {
+          "name": "Auto Fast"
+        },
+        "auto/cheap": {
+          "name": "Auto Cheap"
         }
       }
     }
