@@ -24,7 +24,7 @@ function ai::internal::omniroute::install {
     fi
 
     message_info "Installing ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"
-    if ${ZSH_AI_OMNIROUTE_INSTALL_CMD} ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}; then
+    if "${=ZSH_AI_OMNIROUTE_INSTALL_CMD}" "${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"; then
         message_success "${ZSH_AI_OMNIROUTE_PACKAGE_NAME} installed successfully"
     else
         message_error "Failed to install ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"
@@ -46,7 +46,7 @@ function ai::internal::omniroute::upgrade {
     fi
 
     message_info "Upgrading ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"
-    if bun add -g ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}@latest --force; then
+    if bun add -g "${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"@latest --force; then
         message_success "Upgraded ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"
     else
         message_error "Failed to upgrade ${ZSH_AI_OMNIROUTE_PACKAGE_NAME}"
