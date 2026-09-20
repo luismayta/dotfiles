@@ -17,7 +17,7 @@
   },
   "mcp": {
     "git": {
-      "enabled": true,
+      "enabled": false,
       "type": "local",
       "command": ["bunx", "@cyanheads/git-mcp-server@latest"],
       "cwd": ".",
@@ -28,97 +28,16 @@
         "MCP_RESPONSE_VERBOSITY": "minimal"
       }
     },
-    "meta-devtools": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://mcp.facebook.com/devtools",
-      "oauth": {
-        "clientId": "1032452042864289",
-        "scope": "developer_tools_mcp_app_read developer_tools_mcp_app_management"
-      }
-    },
-    "calendar": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://calendarmcp.googleapis.com/mcp/v1",
-      "oauth": {
-        "clientId": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "clientSecret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
-        "scopes": [
-          "https://www.googleapis.com/auth/calendar.calendarlist.readonly",
-          "https://www.googleapis.com/auth/calendar.events.freebusy",
-          "https://www.googleapis.com/auth/calendar.events.readonly"
-        ]
-      }
-    },
-    "chat": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://chatmcp.googleapis.com/mcp/v1",
-      "oauth": {
-        "clientId": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "clientSecret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
-        "scopes": [
-          "https://www.googleapis.com/auth/chat.spaces.readonly",
-          "https://www.googleapis.com/auth/chat.memberships.readonly",
-          "https://www.googleapis.com/auth/chat.messages.readonly",
-          "https://www.googleapis.com/auth/chat.users.readstate.readonly"
-        ]
-      }
-    },
-    "drive": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://drivemcp.googleapis.com/mcp/v1",
-      "oauth": {
-        "clientId": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "clientSecret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
-        "scopes": ["https://www.googleapis.com/auth/drive.readonly", "https://www.googleapis.com/auth/drive.file"]
-      }
-    },
-    "gmail": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1",
-      "oauth": {
-        "clientId": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "clientSecret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
-        "scopes": ["https://www.googleapis.com/auth/gmail.readonly", "https://www.googleapis.com/auth/gmail.compose"]
-      }
-    },
-    "people": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://people.googleapis.com/mcp/v1",
-      "oauth": {
-        "clientId": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "clientSecret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
-        "scopes": [
-          "https://www.googleapis.com/auth/directory.readonly",
-          "https://www.googleapis.com/auth/userinfo.profile",
-          "https://www.googleapis.com/auth/contacts.readonly"
-        ]
-      }
-    },
     "playwright": {
       "enabled": true,
       "type": "local",
       "command": ["bunx", "-y", "@playwright/mcp"]
     },
-    "google-calendar": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "@cocal/google-calendar-mcp"],
-      "environment": {
-        "GOOGLE_OAUTH_CREDENTIALS": "/home/lucho/.local/secure/google/mcp-luismayta4k-oauth.json"
-      }
-    },
-    "google.workspace": {
+    "google_workspace": {
       "enabled": true,
       "type": "local",
       "command": [
-        "uvx",
-        "workspace-mcp",
+        "/home/lucho/.local/bin/workspace-mcp",
         "--single-user",
         "--tools",
         "drive",
@@ -137,7 +56,7 @@
       }
     },
     "awslabs.aws-knowledge": {
-      "enabled": true,
+      "enabled": false,
       "type": "remote",
       "url": "https://knowledge-mcp.global.api.aws"
     },
@@ -168,11 +87,6 @@
         "--file-path",
         "/home/lucho/.config/opencode/memory.json"
       ]
-    },
-    "mcp-pandoc": {
-      "enabled": true,
-      "type": "local",
-      "command": ["uvx", "mcp-pandoc"]
     },
     "markitdown": {
       "enabled": true,
@@ -216,15 +130,6 @@
       "command": ["bunx", "-y", "@modelcontextprotocol/server-github"],
       "environment": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
-      }
-    },
-    "gitlab": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "@modelcontextprotocol/server-gitlab"],
-      "environment": {
-        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_PERSONAL_ACCESS_TOKEN}",
-        "GITLAB_API_URL": "https://gitlab.com/api/v4"
       }
     },
     "grafana": {
@@ -272,14 +177,6 @@
       "enabled": true,
       "type": "local",
       "command": ["npx", "-y", "notebooklm-mcp@latest"]
-    },
-    "notion": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "@notionhq/notion-mcp-server"],
-      "environment": {
-        "NOTION_TOKEN": "{env:NOTION_TOKEN}"
-      }
     },
     "obsidian": {
       "enabled": true,
