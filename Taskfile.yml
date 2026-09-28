@@ -109,6 +109,8 @@ includes:
     taskfile: ./zsh/modules/nodejs/Taskfile.yml
   module-notify:
     taskfile: ./zsh/modules/notify/Taskfile.yml
+  module-osx:
+    taskfile: ./zsh/modules/osx/Taskfile.yml
   module-nvim:
     taskfile: ./zsh/modules/nvim/Taskfile.yml
   module-pazi:
@@ -308,6 +310,7 @@ tasks:
       - task: module-nix-darwin:readme
       - task: module-nodejs:readme
       - task: module-notify:readme
+      - task: module-osx:readme
       - task: module-nvim:readme
       - task: module-pazi:readme
       - task: module-python:readme

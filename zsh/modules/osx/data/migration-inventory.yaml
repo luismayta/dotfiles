@@ -1,0 +1,2909 @@
+# Versioned migration inventory for the osx module.
+#
+# Produced from zsh-osx/internal/base.zsh (588 lines) at commit 79b1243530b3.
+# Consumer: darwin-system-config (the nix-darwin-support change), which owns
+# declarative macOS config. This module keeps only the residual that cannot be
+# expressed declaratively; this file is the handoff record of that analysis.
+#
+# YAML rather than markdown because the reader is a Nix module, not a person.
+# Every `source:` field is a path relative to the luismayta/zsh-osx repo root
+# at the pinned commit. Numbers here are re-derived from the source, not copied
+# from the ticket; where the ticket was wrong the corrected value stands.
+schema_version: 1
+source: luismayta/zsh-osx
+source_commit: 79b1243530b34e5f5f09fb78d38d67c8afbb01d3
+generated_for: darwin-system-config
+scope_exclusions:
+- privileged operations (sudo defaults write, sudo nvram, sudo systemsetup, sudo scutil --set) - not declarable
+  as user defaults
+- the -currentHost domain (per-host, not per-user)
+- non-defaults side effects (lsregister -kill -r, mkdir, killall Finder, killall Dock, git config --global
+  alias.lastchange)
+- the design.md finding that message_error returns 0 - unrelated to this inventory
+metadata:
+  source_path: zsh-osx/internal/base.zsh
+  source_file_lines: 588
+  purpose: Residual the nix-darwin-support change (darwin-system-config) cannot express declaratively,
+    plus the corrections it must not reintroduce.
+  consumer: darwin-system-config (Nix module - machine reader, not human)
+  schema_contract: Top-level schema_version/source/source_commit/generated_for/scope_exclusions must be
+    checked first; a consumer should fail loudly on schema_version != 1.
+  derived_by: grep + shell-aware tokenizer over the whole file; every defaults call anchored to its physical
+    start line
+  domain_normalization:
+  - -g and NSGlobalDomain are the same domain
+  - plist-path targets normalize to their bundle id with a 'path:' prefix
+  - domain case is significant (com.apple.Finder != com.apple.finder) - see dead_keys
+  ticket_corrections:
+  - 'duplicated (domain,key) pairs: 29, not 23 (re-derived and confirmed)'
+  - 'conflicting-value duplicates: 7, not a larger implied count'
+  - 'privileged operations: 12, not 13'
+  - 'write census: 171 = 158 plain + 7 sudo + 6 -currentHost, plus 1 delete'
+write_call_census:
+  total_write_calls: 171
+  plain_defaults_write: 158
+  sudo_defaults_write: 7
+  current_host_defaults_write: 6
+  arithmetic: 158 + 7 + 6 = 171
+  delete:
+    count: 1
+    domain: -g
+    normalized_domain: NSGlobalDomain
+    key: ApplePressAndHoldEnabled
+    source_line: 134
+    source: zsh-osx/internal/base.zsh:134
+    effect: removes the global ApplePressAndHoldEnabled written earlier in the same function; the 13 writes
+      at 106-132 are undone
+  source_lines_by_scope:
+    plain:
+    - 17
+    - 20
+    - 21
+    - 22
+    - 25
+    - 29
+    - 32
+    - 35
+    - 41
+    - 42
+    - 48
+    - 49
+    - 50
+    - 51
+    - 52
+    - 55
+    - 63
+    - 64
+    - 65
+    - 66
+    - 67
+    - 70
+    - 73
+    - 80
+    - 81
+    - 84
+    - 87
+    - 88
+    - 89
+    - 90
+    - 91
+    - 95
+    - 106
+    - 108
+    - 110
+    - 111
+    - 112
+    - 113
+    - 116
+    - 119
+    - 120
+    - 123
+    - 126
+    - 129
+    - 132
+    - 143
+    - 146
+    - 149
+    - 152
+    - 153
+    - 156
+    - 160
+    - 162
+    - 165
+    - 166
+    - 171
+    - 173
+    - 183
+    - 184
+    - 189
+    - 192
+    - 195
+    - 204
+    - 207
+    - 210
+    - 213
+    - 216
+    - 217
+    - 218
+    - 219
+    - 222
+    - 225
+    - 228
+    - 231
+    - 234
+    - 237
+    - 239
+    - 240
+    - 241
+    - 242
+    - 243
+    - 244
+    - 245
+    - 246
+    - 247
+    - 248
+    - 249
+    - 252
+    - 282
+    - 283
+    - 284
+    - 287
+    - 288
+    - 291
+    - 292
+    - 293
+    - 297
+    - 303
+    - 304
+    - 317
+    - 320
+    - 323
+    - 326
+    - 327
+    - 328
+    - 331
+    - 333
+    - 336
+    - 339
+    - 342
+    - 345
+    - 346
+    - 349
+    - 350
+    - 353
+    - 354
+    - 378
+    - 379
+    - 382
+    - 398
+    - 399
+    - 402
+    - 403
+    - 406
+    - 407
+    - 409
+    - 410
+    - 421
+    - 422
+    - 425
+    - 428
+    - 431
+    - 434
+    - 437
+    - 440
+    - 443
+    - 444
+    - 445
+    - 448
+    - 457
+    - 460
+    - 463
+    - 464
+    - 465
+    - 484
+    - 485
+    - 491
+    - 492
+    - 495
+    - 504
+    - 507
+    - 515
+    - 518
+    - 519
+    - 522
+    - 528
+    - 529
+    - 532
+    sudo:
+    - 363
+    - 364
+    - 365
+    - 366
+    - 367
+    - 368
+    - 501
+    current_host:
+    - 45
+    - 161
+    - 167
+    - 168
+    - 172
+    - 510
+  note: sudo and -currentHost writes are NOT counted in plain_defaults_write.
+unassigned_source_variables:
+- name: COMPUTER_NAME
+  reference_count: 4
+  assignment_count: 0
+  assignment_search: repo-wide grep over luismayta/zsh-osx; no export/local/typeset/declare/readonly assignment
+    exists
+  referenced_at:
+  - source_line: 498
+    source: zsh-osx/internal/base.zsh:498
+    call: sudo scutil --set ComputerName "${COMPUTER_NAME}"
+  - source_line: 499
+    source: zsh-osx/internal/base.zsh:499
+    call: sudo scutil --set HostName "${COMPUTER_NAME}"
+  - source_line: 500
+    source: zsh-osx/internal/base.zsh:500
+    call: sudo scutil --set LocalHostName "${COMPUTER_NAME}"
+  - source_line: 501
+    source: zsh-osx/internal/base.zsh:501
+    call: sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
+      -string "${COMPUTER_NAME}"
+  resolved_value: ''
+  is_empty_not_noop: true
+  hazard: 'An empty `scutil --set ComputerName ""` is NOT a no-op: it erases the configured network name,
+    dropping the host off the network (Bonjour/mDNS name and SMB name disappear) until an admin resets
+    it. This is destructive, not cosmetic, and must not be reproduced in the declarative module.'
+  requires_explicit_value: true
+privileged_operations:
+  total: 12
+  method: manually enumerated non-`defaults write`/`sudo defaults write` mutations plus every sudo-scoped
+    defaults write
+  source: zsh-osx/internal/base.zsh:363-368,482,488,498-501
+  groups:
+  - id: system-software-update
+    count: 5
+    mechanism: sudo defaults write
+    target_plist: /Library/Preferences/com.apple.SoftwareUpdate.plist
+    normalized_domain: path:com.apple.SoftwareUpdate
+    sudo_defaults_write_count: 5
+    keys:
+    - key: AutomaticallyInstallMacOSUpdates
+      type: -bool
+      value: 'true'
+      source_line: 363
+      source: zsh-osx/internal/base.zsh:363
+    - key: AutomaticCheckEnabled
+      type: -bool
+      value: 'true'
+      source_line: 364
+      source: zsh-osx/internal/base.zsh:364
+    - key: AutomaticDownload
+      type: -bool
+      value: 'true'
+      source_line: 365
+      source: zsh-osx/internal/base.zsh:365
+    - key: ConfigDataInstall
+      type: -bool
+      value: 'true'
+      source_line: 366
+      source: zsh-osx/internal/base.zsh:366
+    - key: CriticalUpdateInstall
+      type: -bool
+      value: 'true'
+      source_line: 367
+      source: zsh-osx/internal/base.zsh:367
+  - id: system-commerce
+    count: 1
+    mechanism: sudo defaults write
+    target_plist: /Library/Preferences/com.apple.commerce.plist
+    normalized_domain: path:com.apple.commerce
+    sudo_defaults_write_count: 1
+    keys:
+    - key: AutoUpdate
+      type: -bool
+      value: 'true'
+      source_line: 368
+      source: zsh-osx/internal/base.zsh:368
+  - id: boot-chime
+    count: 1
+    mechanism: sudo nvram
+    command: nvram SystemAudioVolume=" "
+    source_line: 482
+    source: zsh-osx/internal/base.zsh:482
+    keys:
+    - key: SystemAudioVolume
+      type: raw
+      value: ' '
+      source_line: 482
+      source: zsh-osx/internal/base.zsh:482
+  - id: auto-restart-on-freeze
+    count: 1
+    mechanism: sudo systemsetup
+    command: systemsetup -setrestartfreeze on
+    source_line: 488
+    source: zsh-osx/internal/base.zsh:488
+    keys:
+    - key: setrestartfreeze
+      type: flag
+      value: 'on'
+      source_line: 488
+      source: zsh-osx/internal/base.zsh:488
+  - id: hostname-scutil
+    count: 3
+    mechanism: sudo scutil --set
+    source_lines:
+    - 498
+    - 499
+    - 500
+    sources:
+    - zsh-osx/internal/base.zsh:498
+    - zsh-osx/internal/base.zsh:499
+    - zsh-osx/internal/base.zsh:500
+    keys:
+    - key: ComputerName
+      source_line: 498
+      source: zsh-osx/internal/base.zsh:498
+    - key: HostName
+      source_line: 499
+      source: zsh-osx/internal/base.zsh:499
+    - key: LocalHostName
+      source_line: 500
+      source: zsh-osx/internal/base.zsh:500
+    value_source: unassigned:COMPUTER_NAME
+    hazard: resolves to an empty string; see unassigned_source_variables
+  - id: netbios-name
+    count: 1
+    mechanism: sudo defaults write
+    target_plist: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    normalized_domain: path:com.apple.smb.server
+    sudo_defaults_write_count: 1
+    source_line: 501
+    source: zsh-osx/internal/base.zsh:501
+    keys:
+    - key: NetBIOSName
+      type: -string
+      value: ${COMPUTER_NAME}
+      resolves_to_empty: true
+      source_line: 501
+      source: zsh-osx/internal/base.zsh:501
+  sudo_defaults_write_total: 7
+  sudo_defaults_write_lines:
+  - 363
+  - 364
+  - 365
+  - 366
+  - 367
+  - 368
+  - 501
+  arithmetic: 5 + 1 + 1 + 1 + 3 + 1 = 12
+duplicated_keys:
+  total_pairs: 29
+  conflicting_count: 7
+  same_value_count: 22
+  arithmetic: 7 conflicting + 22 same-value = 29
+  conflict_resolution: last write wins; `osx::sync` order decides which - see source_sync_order
+  value_signature_rule: 'value_signatures collapse add-ops to their effective value: for -dict-add/-array-add
+    the middle token is the sub-key, not the value, so `-dict-add <subkey> -bool false` repeated 4x is
+    ONE repeated value, not a conflict. Trust is_value_conflict rather than re-deriving from `values`.'
+  conflicting:
+  - domain: NSGlobalDomain
+    key: ApplePressAndHoldEnabled
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:106
+    source_lines:
+    - 106
+    - 108
+    sources:
+    - zsh-osx/internal/base.zsh:106
+    - zsh-osx/internal/base.zsh:108
+    values:
+    - -bool true
+    - -bool false
+    value_signatures:
+    - -bool false
+    - -bool true
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:108
+    effective_value: -bool false
+  - domain: com.apple.dock
+    key: wvous-br-corner
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:349
+    source_lines:
+    - 349
+    - 409
+    sources:
+    - zsh-osx/internal/base.zsh:349
+    - zsh-osx/internal/base.zsh:409
+    values:
+    - -int 6
+    - -int 4
+    value_signatures:
+    - -int 4
+    - -int 6
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:409
+    effective_value: -int 4
+  - domain: com.apple.dock
+    key: wvous-br-modifier
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:350
+    source_lines:
+    - 350
+    - 410
+    sources:
+    - zsh-osx/internal/base.zsh:350
+    - zsh-osx/internal/base.zsh:410
+    values:
+    - -int 1048576
+    - -int 0
+    value_signatures:
+    - -int 0
+    - -int 1048576
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:410
+    effective_value: -int 0
+  - domain: com.apple.dock
+    key: wvous-tr-corner
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:345
+    source_lines:
+    - 345
+    - 402
+    sources:
+    - zsh-osx/internal/base.zsh:345
+    - zsh-osx/internal/base.zsh:402
+    values:
+    - -int 5
+    - -int 2
+    value_signatures:
+    - -int 2
+    - -int 5
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:402
+    effective_value: -int 2
+  - domain: com.apple.dock
+    key: wvous-tr-modifier
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:346
+    source_lines:
+    - 346
+    - 403
+    sources:
+    - zsh-osx/internal/base.zsh:346
+    - zsh-osx/internal/base.zsh:403
+    values:
+    - -int 1048576
+    - -int 0
+    value_signatures:
+    - -int 0
+    - -int 1048576
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:403
+    effective_value: -int 0
+  - domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: -string
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:207
+    source_lines:
+    - 207
+    - 242
+    sources:
+    - zsh-osx/internal/base.zsh:207
+    - zsh-osx/internal/base.zsh:242
+    values:
+    - -string Nlsv
+    - -string clmv
+    value_signatures:
+    - -string Nlsv
+    - -string clmv
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:242
+    effective_value: -string clmv
+  - domain: com.apple.screensaver
+    key: askForPasswordDelay
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:184
+    source_lines:
+    - 184
+    - 354
+    sources:
+    - zsh-osx/internal/base.zsh:184
+    - zsh-osx/internal/base.zsh:354
+    values:
+    - -int 0
+    - -int 5
+    value_signatures:
+    - -int 0
+    - -int 5
+    is_value_conflict: true
+    effective_winner: zsh-osx/internal/base.zsh:354
+    effective_value: -int 5
+  same_value:
+  - domain: NSGlobalDomain
+    key: AppleKeyboardUIMode
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:95
+    source_lines:
+    - 95
+    - 146
+    sources:
+    - zsh-osx/internal/base.zsh:95
+    - zsh-osx/internal/base.zsh:146
+    values:
+    - -int 3
+    - -int 3
+    value_signatures:
+    - -int 3
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:146
+    effective_value: -int 3
+  - domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:225
+    source_lines:
+    - 225
+    - 240
+    sources:
+    - zsh-osx/internal/base.zsh:225
+    - zsh-osx/internal/base.zsh:240
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:240
+    effective_value: -bool true
+  - domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:48
+    source_lines:
+    - 48
+    - 87
+    sources:
+    - zsh-osx/internal/base.zsh:48
+    - zsh-osx/internal/base.zsh:87
+    values:
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:87
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSAutomaticDashSubstitutionEnabled
+    type: -bool
+    occurrences: 3
+    source: zsh-osx/internal/base.zsh:42
+    source_lines:
+    - 42
+    - 49
+    - 88
+    sources:
+    - zsh-osx/internal/base.zsh:42
+    - zsh-osx/internal/base.zsh:49
+    - zsh-osx/internal/base.zsh:88
+    values:
+    - -bool false
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:88
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:50
+    source_lines:
+    - 50
+    - 89
+    sources:
+    - zsh-osx/internal/base.zsh:50
+    - zsh-osx/internal/base.zsh:89
+    values:
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:89
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSAutomaticQuoteSubstitutionEnabled
+    type: -bool
+    occurrences: 3
+    source: zsh-osx/internal/base.zsh:41
+    source_lines:
+    - 41
+    - 51
+    - 90
+    sources:
+    - zsh-osx/internal/base.zsh:41
+    - zsh-osx/internal/base.zsh:51
+    - zsh-osx/internal/base.zsh:90
+    values:
+    - -bool false
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:90
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: -bool
+    occurrences: 3
+    source: zsh-osx/internal/base.zsh:52
+    source_lines:
+    - 52
+    - 91
+    - 149
+    sources:
+    - zsh-osx/internal/base.zsh:52
+    - zsh-osx/internal/base.zsh:91
+    - zsh-osx/internal/base.zsh:149
+    values:
+    - -bool false
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:149
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSDocumentSaveNewDocumentsToCloud
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:32
+    source_lines:
+    - 32
+    - 282
+    sources:
+    - zsh-osx/internal/base.zsh:32
+    - zsh-osx/internal/base.zsh:282
+    values:
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:282
+    effective_value: -bool false
+  - domain: NSGlobalDomain
+    key: NSNavPanelExpandedStateForSaveMode
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:20
+    source_lines:
+    - 20
+    - 283
+    sources:
+    - zsh-osx/internal/base.zsh:20
+    - zsh-osx/internal/base.zsh:283
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:283
+    effective_value: -bool true
+  - domain: NSGlobalDomain
+    key: com.apple.mouse.tapBehavior
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:161
+    source_lines:
+    - 161
+    - 162
+    sources:
+    - zsh-osx/internal/base.zsh:161
+    - zsh-osx/internal/base.zsh:162
+    values:
+    - -int 1
+    - -int 1
+    value_signatures:
+    - -int 1
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:162
+    effective_value: -int 1
+  - domain: com.apple.ImageCapture
+    key: disableHotPlug
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:45
+    source_lines:
+    - 45
+    - 510
+    sources:
+    - zsh-osx/internal/base.zsh:45
+    - zsh-osx/internal/base.zsh:510
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:510
+    effective_value: -bool true
+  - domain: com.apple.SoftwareUpdate
+    key: ScheduleFrequency
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:35
+    source_lines:
+    - 35
+    - 70
+    sources:
+    - zsh-osx/internal/base.zsh:35
+    - zsh-osx/internal/base.zsh:70
+    values:
+    - -int 1
+    - -int 1
+    value_signatures:
+    - -int 1
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:70
+    effective_value: -int 1
+  - domain: com.apple.dashboard
+    key: mcx-disabled
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:336
+    source_lines:
+    - 336
+    - 379
+    sources:
+    - zsh-osx/internal/base.zsh:336
+    - zsh-osx/internal/base.zsh:379
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:379
+    effective_value: -bool true
+  - domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:234
+    source_lines:
+    - 234
+    - 491
+    sources:
+    - zsh-osx/internal/base.zsh:234
+    - zsh-osx/internal/base.zsh:491
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:491
+    effective_value: -bool true
+  - domain: com.apple.dock
+    key: expose-animation-duration
+    type: -float
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:331
+    source_lines:
+    - 331
+    - 378
+    sources:
+    - zsh-osx/internal/base.zsh:331
+    - zsh-osx/internal/base.zsh:378
+    values:
+    - -float 0.1
+    - -float 0.1
+    value_signatures:
+    - -float 0.1
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:378
+    effective_value: -float 0.1
+  - domain: com.apple.dock
+    key: mru-spaces
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:342
+    source_lines:
+    - 342
+    - 382
+    sources:
+    - zsh-osx/internal/base.zsh:342
+    - zsh-osx/internal/base.zsh:382
+    values:
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:382
+    effective_value: -bool false
+  - domain: com.apple.finder
+    key: ShowRecentTags
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:204
+    source_lines:
+    - 204
+    - 304
+    sources:
+    - zsh-osx/internal/base.zsh:204
+    - zsh-osx/internal/base.zsh:304
+    values:
+    - -bool false
+    - -bool false
+    value_signatures:
+    - -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:304
+    effective_value: -bool false
+  - domain: com.apple.finder
+    key: ShowStatusBar
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:228
+    source_lines:
+    - 228
+    - 246
+    sources:
+    - zsh-osx/internal/base.zsh:228
+    - zsh-osx/internal/base.zsh:246
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:246
+    effective_value: -bool true
+  - domain: com.apple.finder
+    key: _FXShowPosixPathInTitle
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:231
+    source_lines:
+    - 231
+    - 248
+    sources:
+    - zsh-osx/internal/base.zsh:231
+    - zsh-osx/internal/base.zsh:248
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:248
+    effective_value: -bool true
+  - domain: com.apple.finder
+    key: _FXSortFoldersFirst
+    type: -bool
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:210
+    source_lines:
+    - 210
+    - 249
+    sources:
+    - zsh-osx/internal/base.zsh:210
+    - zsh-osx/internal/base.zsh:249
+    values:
+    - -bool true
+    - -bool true
+    value_signatures:
+    - -bool true
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:249
+    effective_value: -bool true
+  - domain: com.apple.messageshelper.MessageController
+    key: SOInputLineSettings
+    type: -dict-add
+    occurrences: 4
+    source: zsh-osx/internal/base.zsh:457
+    source_lines:
+    - 457
+    - 463
+    - 464
+    - 465
+    sources:
+    - zsh-osx/internal/base.zsh:457
+    - zsh-osx/internal/base.zsh:463
+    - zsh-osx/internal/base.zsh:464
+    - zsh-osx/internal/base.zsh:465
+    values:
+    - -dict-add automaticQuoteSubstitutionEnabled -bool false
+    - -dict-add automaticEmojiSubstitutionEnablediMessage -bool false
+    - -dict-add automaticQuoteSubstitutionEnabled -bool false
+    - -dict-add continuousSpellCheckingEnabled -bool false
+    value_signatures:
+    - -dict-add -bool false
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:465
+    effective_value: -dict-add continuousSpellCheckingEnabled -bool false
+  - domain: com.apple.screensaver
+    key: askForPassword
+    type: -int
+    occurrences: 2
+    source: zsh-osx/internal/base.zsh:183
+    source_lines:
+    - 183
+    - 353
+    sources:
+    - zsh-osx/internal/base.zsh:183
+    - zsh-osx/internal/base.zsh:353
+    values:
+    - -int 1
+    - -int 1
+    value_signatures:
+    - -int 1
+    is_value_conflict: false
+    effective_winner: zsh-osx/internal/base.zsh:353
+    effective_value: -int 1
+dead_keys:
+- domain: com.apple.menuextra.battery
+  key: ShowPercent
+  source_line: 17
+  source: zsh-osx/internal/base.zsh:17
+  type: -string
+  value: 'YES'
+  dead_since: macOS 11 Big Sur
+  replacement: defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
+  detail: Battery percentage moved to Control Center; the menuextra domain is no longer read.
+- domain: com.apple.Finder
+  key: AppleShowAllFiles
+  source_line: 222
+  source: zsh-osx/internal/base.zsh:222
+  type: -bool
+  value: 'true'
+  dead_since: pre-Mavericks legacy domain
+  correct_domain: com.apple.finder
+  detail: 'Capital F is a different domain from com.apple.finder and is not read on modern macOS. Note
+    the intent is left unfulfilled: the source never writes AppleShowAllFiles to the lowercase domain,
+    so hidden files are not actually shown.'
+- domain: com.apple.dashboard
+  key: mcx-disabled
+  source_lines:
+  - 336
+  - 379
+  sources:
+  - zsh-osx/internal/base.zsh:336
+  - zsh-osx/internal/base.zsh:379
+  type: -bool
+  value: 'true'
+  dead_since: macOS 10.15 Catalina (Dashboard removed)
+  detail: Also duplicated - see duplicated_keys.same_value.
+- domain: com.apple.dock
+  key: dashboard-in-overlay
+  source_line: 339
+  source: zsh-osx/internal/base.zsh:339
+  type: -bool
+  value: 'true'
+  dead_since: macOS 10.15 Catalina (Dashboard removed)
+  detail: Domain is com.apple.dock, NOT com.apple.dashboard - easy to misfile when re-expressing; the
+    key is dead for the same reason (Dashboard is gone).
+- domain: com.apple.BezelServices
+  key: kDimTime
+  source_line: 156
+  source: zsh-osx/internal/base.zsh:156
+  type: -int
+  value: '300'
+  dead_since: pre-2016 keyboard backlight; inoperative on Apple Silicon
+  detail: No backlight to dim on Apple Silicon hardware.
+dead_keys_count: 5
+changed_mechanism_keys:
+- domain: com.apple.Safari
+  key: IncludeDevelopMenu
+  source_line: 443
+  source: zsh-osx/internal/base.zsh:443
+  type: -bool
+  value: 'true'
+  since: Safari 15 / macOS 12
+  also_required:
+  - com.apple.Safari.SandboxBroker ShowDevelopMenu -bool true
+  - Full Disk Access for the terminal app driving the write
+  detail: The bare key is no longer sufficient; Safari gates Develop-menu and Web Inspector access behind
+    a separate SandboxBroker key plus the FDA entitlement.
+  do_not_confuse:
+    key: IncludeInternalDebugMenu
+    source_line: 434
+    source: zsh-osx/internal/base.zsh:434
+    detail: A DIFFERENT key. The anchor for the Develop-menu setting is 443, never this line; do not merge
+      the two records.
+changed_mechanism_keys_count: 1
+source_sync_order:
+- ux
+- appStore
+- keyboard
+- trackpad
+- screen
+- finder
+- dock
+- mail
+- spotlight
+- automaticUpdates
+- missioncontrol
+- browser
+- messages
+- extras
+- others
+source_sync_order_caller: osx::sync
+source_sync_order_source: zsh-osx/internal/base.zsh:573-589
+source_sync_order_notes:
+- 'Spellings are exact: appStore (capital S), automaticUpdates (camelCase), missioncontrol (all lowercase).'
+- osx::sync calls osx::keyboard, which calls osx::vim::keyboard - so the ApplePressAndHoldEnabled write/delete
+  block runs inside position 3.
+- osx::mail and osx::spotlight are defined late in the file but invoked early (positions 8 and 9); definition
+  order is not invocation order.
+- 'Order decides the 7 conflicting duplicates: e.g. dock (7) runs after screen (5), so askForPasswordDelay
+  ends at 5; missioncontrol (11) runs after dock (7), so the hot corners end at the missioncontrol values.'
+deferred_to_darwin_system_config:
+  total_unique_keys: 130
+  total_write_calls: 164
+  total_plain_calls: 158
+  total_current_host_calls: 6
+  definition: Every non-privileged `defaults write` call in the source, collapsed to unique (domain, key)
+    pairs. This is the set darwin-system-config owns.
+  domain_count: 36
+  domains_present_in_source: 36
+  ticket_domain_list_discrepancy: 'The ticket''s suggested domain grouping names com.apple.automator,
+    com.apple.Accessibility, com.apple.sound, com.apple.siri, com.apple.universalaccess, com.apple.AppleMultitouchMouse,
+    com.apple.LaunchServices, com.apple.PowerManagement, com.apple.loginwindow, com.apple.CrashReporter,
+    com.apple.bluetooth, com.apple.ScreenSaver, com.apple.Terminal and iterm2. None of those domains appear
+    in internal/base.zsh; the list was derived from the source instead. Domains that do appear: NSGlobalDomain,
+    com.apple.BezelServices, com.apple.BluetoothAudioAgent, com.apple.Finder, com.apple.ImageCapture,
+    com.apple.QuickTimePlayerX, com.apple.Safari, com.apple.SoftwareUpdate, com.apple.TimeMachine, com.apple.appstore,
+    com.apple.commerce, com.apple.dashboard, com.apple.desktopservices, com.apple.dock, com.apple.driver.AppleBluetoothMultitouch.trackpad,
+    com.apple.finder, com.apple.frameworks.diskimages, com.apple.mail, com.apple.menuextra.battery, com.apple.messageshelper.AlertsController,
+    com.apple.messageshelper.MessageController, com.apple.print.PrintingPrefs, com.apple.screencapture,
+    com.apple.screensaver, com.apple.spotlight, com.brave.Browser, com.google.android.studio, com.googlecode.iterm2,
+    com.insomnia.app, com.jetbrains.WebStorm, com.jetbrains.intellij, com.jetbrains.intellij.ce, com.microsoft.VSCode,
+    com.microsoft.VSCodeExploration, com.microsoft.VSCodeInsiders, com.visualstudio.code.oss'
+  by_domain:
+    NSGlobalDomain:
+    - domain: NSGlobalDomain
+      key: AppleEnableSwipeNavigateWithScrolls
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:171
+      source_lines:
+      - 171
+      sources:
+      - zsh-osx/internal/base.zsh:171
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: AppleFontSmoothing
+      type: -int
+      value: '2'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:195
+      source_lines:
+      - 195
+      sources:
+      - zsh-osx/internal/base.zsh:195
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: AppleInterfaceStyle
+      type: -string
+      value: Dark
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:55
+      source_lines:
+      - 55
+      sources:
+      - zsh-osx/internal/base.zsh:55
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: AppleKeyboardUIMode
+      type: -int
+      value: '3'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:95
+      source_lines:
+      - 95
+      - 146
+      sources:
+      - zsh-osx/internal/base.zsh:95
+      - zsh-osx/internal/base.zsh:146
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:106
+      source_lines:
+      - 106
+      - 108
+      sources:
+      - zsh-osx/internal/base.zsh:106
+      - zsh-osx/internal/base.zsh:108
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    - domain: NSGlobalDomain
+      key: AppleShowAllExtensions
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:225
+      source_lines:
+      - 225
+      - 240
+      sources:
+      - zsh-osx/internal/base.zsh:225
+      - zsh-osx/internal/base.zsh:240
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: AppleShowScrollBars
+      type: -string
+      value: WhenScrolling
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:484
+      source_lines:
+      - 484
+      sources:
+      - zsh-osx/internal/base.zsh:484
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: CGFontRenderingFontSmoothingDisabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:495
+      source_lines:
+      - 495
+      sources:
+      - zsh-osx/internal/base.zsh:495
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: InitialKeyRepeat
+      type: -int
+      value: '15'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:81
+      source_lines:
+      - 81
+      sources:
+      - zsh-osx/internal/base.zsh:81
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: KeyRepeat
+      type: -int
+      value: '3'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:80
+      source_lines:
+      - 80
+      sources:
+      - zsh-osx/internal/base.zsh:80
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: NSAutomaticCapitalizationEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:48
+      source_lines:
+      - 48
+      - 87
+      sources:
+      - zsh-osx/internal/base.zsh:48
+      - zsh-osx/internal/base.zsh:87
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSAutomaticDashSubstitutionEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 3
+      source: zsh-osx/internal/base.zsh:42
+      source_lines:
+      - 42
+      - 49
+      - 88
+      sources:
+      - zsh-osx/internal/base.zsh:42
+      - zsh-osx/internal/base.zsh:49
+      - zsh-osx/internal/base.zsh:88
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSAutomaticPeriodSubstitutionEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:50
+      source_lines:
+      - 50
+      - 89
+      sources:
+      - zsh-osx/internal/base.zsh:50
+      - zsh-osx/internal/base.zsh:89
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSAutomaticQuoteSubstitutionEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 3
+      source: zsh-osx/internal/base.zsh:41
+      source_lines:
+      - 41
+      - 51
+      - 90
+      sources:
+      - zsh-osx/internal/base.zsh:41
+      - zsh-osx/internal/base.zsh:51
+      - zsh-osx/internal/base.zsh:90
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSAutomaticSpellingCorrectionEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 3
+      source: zsh-osx/internal/base.zsh:52
+      source_lines:
+      - 52
+      - 91
+      - 149
+      sources:
+      - zsh-osx/internal/base.zsh:52
+      - zsh-osx/internal/base.zsh:91
+      - zsh-osx/internal/base.zsh:149
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSDocumentSaveNewDocumentsToCloud
+      type: -bool
+      value: 'false'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:32
+      source_lines:
+      - 32
+      - 282
+      sources:
+      - zsh-osx/internal/base.zsh:32
+      - zsh-osx/internal/base.zsh:282
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSNavPanelExpandedStateForSaveMode
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:20
+      source_lines:
+      - 20
+      - 283
+      sources:
+      - zsh-osx/internal/base.zsh:20
+      - zsh-osx/internal/base.zsh:283
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: NSNavPanelExpandedStateForSaveMode2
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:284
+      source_lines:
+      - 284
+      sources:
+      - zsh-osx/internal/base.zsh:284
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: NSTextShowsControlCharacters
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:29
+      source_lines:
+      - 29
+      sources:
+      - zsh-osx/internal/base.zsh:29
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: NSUserKeyEquivalents
+      type: -dict-add
+      value: Zoom -string @~^f
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:84
+      source_lines:
+      - 84
+      sources:
+      - zsh-osx/internal/base.zsh:84
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: NSWindowResizeTime
+      type: -float
+      value: '0.001'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:485
+      source_lines:
+      - 485
+      sources:
+      - zsh-osx/internal/base.zsh:485
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: PMPrintingExpandedStateForPrint
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:21
+      source_lines:
+      - 21
+      sources:
+      - zsh-osx/internal/base.zsh:21
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: PMPrintingExpandedStateForPrint2
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:22
+      source_lines:
+      - 22
+      sources:
+      - zsh-osx/internal/base.zsh:22
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: WebKitDeveloperExtras
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:448
+      source_lines:
+      - 448
+      sources:
+      - zsh-osx/internal/base.zsh:448
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.mouse.scaling
+      type: null
+      value: '2.5'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:153
+      source_lines:
+      - 153
+      sources:
+      - zsh-osx/internal/base.zsh:153
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.mouse.tapBehavior
+      type: -int
+      value: '1'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:161
+      source_lines:
+      - 161
+      - 162
+      sources:
+      - zsh-osx/internal/base.zsh:161
+      - zsh-osx/internal/base.zsh:162
+      scopes:
+      - currentHost
+      - plain
+      status: redundant_duplicate
+    - domain: NSGlobalDomain
+      key: com.apple.springing.delay
+      type: -float
+      value: '0'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:288
+      source_lines:
+      - 288
+      sources:
+      - zsh-osx/internal/base.zsh:288
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.springing.enabled
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:287
+      source_lines:
+      - 287
+      sources:
+      - zsh-osx/internal/base.zsh:287
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.trackpad.enableSecondaryClick
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:168
+      source_lines:
+      - 168
+      sources:
+      - zsh-osx/internal/base.zsh:168
+      scopes:
+      - currentHost
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.trackpad.scaling
+      type: null
+      value: '2'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:152
+      source_lines:
+      - 152
+      sources:
+      - zsh-osx/internal/base.zsh:152
+      scopes:
+      - plain
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.trackpad.threeFingerHorizSwipeGesture
+      type: -int
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:172
+      source_lines:
+      - 172
+      sources:
+      - zsh-osx/internal/base.zsh:172
+      scopes:
+      - currentHost
+      status: single_write
+    - domain: NSGlobalDomain
+      key: com.apple.trackpad.trackpadCornerClickBehavior
+      type: -int
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:167
+      source_lines:
+      - 167
+      sources:
+      - zsh-osx/internal/base.zsh:167
+      scopes:
+      - currentHost
+      status: single_write
+    com.apple.BezelServices:
+    - domain: com.apple.BezelServices
+      key: kDimTime
+      type: -int
+      value: '300'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:156
+      source_lines:
+      - 156
+      sources:
+      - zsh-osx/internal/base.zsh:156
+      scopes:
+      - plain
+      status: dead
+    com.apple.BluetoothAudioAgent:
+    - domain: com.apple.BluetoothAudioAgent
+      key: Apple Bitpool Min (editable)
+      type: -int
+      value: '40'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:143
+      source_lines:
+      - 143
+      sources:
+      - zsh-osx/internal/base.zsh:143
+      scopes:
+      - plain
+      status: single_write
+    com.apple.Finder:
+    - domain: com.apple.Finder
+      key: AppleShowAllFiles
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:222
+      source_lines:
+      - 222
+      sources:
+      - zsh-osx/internal/base.zsh:222
+      scopes:
+      - plain
+      status: dead
+    com.apple.ImageCapture:
+    - domain: com.apple.ImageCapture
+      key: disableHotPlug
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:45
+      source_lines:
+      - 45
+      - 510
+      sources:
+      - zsh-osx/internal/base.zsh:45
+      - zsh-osx/internal/base.zsh:510
+      scopes:
+      - currentHost
+      status: redundant_duplicate
+    com.apple.QuickTimePlayerX:
+    - domain: com.apple.QuickTimePlayerX
+      key: MGPlayMovieOnOpen
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:507
+      source_lines:
+      - 507
+      sources:
+      - zsh-osx/internal/base.zsh:507
+      scopes:
+      - plain
+      status: single_write
+    com.apple.Safari:
+    - domain: com.apple.Safari
+      key: DebugSnapshotsUpdatePolicy
+      type: -int
+      value: '2'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:431
+      source_lines:
+      - 431
+      sources:
+      - zsh-osx/internal/base.zsh:431
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: FindOnPageMatchesWordStartsOnly
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:437
+      source_lines:
+      - 437
+      sources:
+      - zsh-osx/internal/base.zsh:437
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: IncludeDevelopMenu
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:443
+      source_lines:
+      - 443
+      sources:
+      - zsh-osx/internal/base.zsh:443
+      scopes:
+      - plain
+      status: mechanism_changed
+    - domain: com.apple.Safari
+      key: IncludeInternalDebugMenu
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:434
+      source_lines:
+      - 434
+      sources:
+      - zsh-osx/internal/base.zsh:434
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: ProxiesInBookmarksBar
+      type: null
+      value: ()
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:440
+      source_lines:
+      - 440
+      sources:
+      - zsh-osx/internal/base.zsh:440
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: ShowFavoritesBar
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:425
+      source_lines:
+      - 425
+      sources:
+      - zsh-osx/internal/base.zsh:425
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: ShowSidebarInTopSites
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:428
+      source_lines:
+      - 428
+      sources:
+      - zsh-osx/internal/base.zsh:428
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: SuppressSearchSuggestions
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:422
+      source_lines:
+      - 422
+      sources:
+      - zsh-osx/internal/base.zsh:422
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: UniversalSearchEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:421
+      source_lines:
+      - 421
+      sources:
+      - zsh-osx/internal/base.zsh:421
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: WebKitDeveloperExtrasEnabledPreferenceKey
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:444
+      source_lines:
+      - 444
+      sources:
+      - zsh-osx/internal/base.zsh:444
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.Safari
+      key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:445
+      source_lines:
+      - 445
+      sources:
+      - zsh-osx/internal/base.zsh:445
+      scopes:
+      - plain
+      status: single_write
+    com.apple.SoftwareUpdate:
+    - domain: com.apple.SoftwareUpdate
+      key: AutomaticCheckEnabled
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:65
+      source_lines:
+      - 65
+      sources:
+      - zsh-osx/internal/base.zsh:65
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.SoftwareUpdate
+      key: AutomaticDownload
+      type: -int
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:66
+      source_lines:
+      - 66
+      sources:
+      - zsh-osx/internal/base.zsh:66
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.SoftwareUpdate
+      key: CriticalUpdateInstall
+      type: -int
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:67
+      source_lines:
+      - 67
+      sources:
+      - zsh-osx/internal/base.zsh:67
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.SoftwareUpdate
+      key: ScheduleFrequency
+      type: -int
+      value: '1'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:35
+      source_lines:
+      - 35
+      - 70
+      sources:
+      - zsh-osx/internal/base.zsh:35
+      - zsh-osx/internal/base.zsh:70
+      scopes:
+      - plain
+      status: redundant_duplicate
+    com.apple.TimeMachine:
+    - domain: com.apple.TimeMachine
+      key: DoNotOfferNewDisksForBackup
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:504
+      source_lines:
+      - 504
+      sources:
+      - zsh-osx/internal/base.zsh:504
+      scopes:
+      - plain
+      status: single_write
+    com.apple.appstore:
+    - domain: com.apple.appstore
+      key: ShowDebugMenu
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:63
+      source_lines:
+      - 63
+      sources:
+      - zsh-osx/internal/base.zsh:63
+      scopes:
+      - plain
+      status: single_write
+    com.apple.commerce:
+    - domain: com.apple.commerce
+      key: AutoUpdate
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:64
+      source_lines:
+      - 64
+      sources:
+      - zsh-osx/internal/base.zsh:64
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.commerce
+      key: AutoUpdateRestartRequired
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:73
+      source_lines:
+      - 73
+      sources:
+      - zsh-osx/internal/base.zsh:73
+      scopes:
+      - plain
+      status: single_write
+    com.apple.dashboard:
+    - domain: com.apple.dashboard
+      key: mcx-disabled
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:336
+      source_lines:
+      - 336
+      - 379
+      sources:
+      - zsh-osx/internal/base.zsh:336
+      - zsh-osx/internal/base.zsh:379
+      scopes:
+      - plain
+      status: dead
+    com.apple.desktopservices:
+    - domain: com.apple.desktopservices
+      key: DSDontWriteNetworkStores
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:234
+      source_lines:
+      - 234
+      - 491
+      sources:
+      - zsh-osx/internal/base.zsh:234
+      - zsh-osx/internal/base.zsh:491
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.desktopservices
+      key: DSDontWriteUSBStores
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:492
+      source_lines:
+      - 492
+      sources:
+      - zsh-osx/internal/base.zsh:492
+      scopes:
+      - plain
+      status: single_write
+    com.apple.dock:
+    - domain: com.apple.dock
+      key: autohide
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:317
+      source_lines:
+      - 317
+      sources:
+      - zsh-osx/internal/base.zsh:317
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: dashboard-in-overlay
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:339
+      source_lines:
+      - 339
+      sources:
+      - zsh-osx/internal/base.zsh:339
+      scopes:
+      - plain
+      status: dead
+    - domain: com.apple.dock
+      key: expose-animation-duration
+      type: -float
+      value: '0.1'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:331
+      source_lines:
+      - 331
+      - 378
+      sources:
+      - zsh-osx/internal/base.zsh:331
+      - zsh-osx/internal/base.zsh:378
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.dock
+      key: largesize
+      type: -int
+      value: '64'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:327
+      source_lines:
+      - 327
+      sources:
+      - zsh-osx/internal/base.zsh:327
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: magnification
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:328
+      source_lines:
+      - 328
+      sources:
+      - zsh-osx/internal/base.zsh:328
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: mru-spaces
+      type: -bool
+      value: 'false'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:342
+      source_lines:
+      - 342
+      - 382
+      sources:
+      - zsh-osx/internal/base.zsh:342
+      - zsh-osx/internal/base.zsh:382
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.dock
+      key: orientation
+      type: -string
+      value: right
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:333
+      source_lines:
+      - 333
+      sources:
+      - zsh-osx/internal/base.zsh:333
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: persistent-apps
+      type: -array
+      value: ''
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:323
+      source_lines:
+      - 323
+      sources:
+      - zsh-osx/internal/base.zsh:323
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: static-only
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:320
+      source_lines:
+      - 320
+      sources:
+      - zsh-osx/internal/base.zsh:320
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: tilesize
+      type: -int
+      value: '28'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:326
+      source_lines:
+      - 326
+      sources:
+      - zsh-osx/internal/base.zsh:326
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: wvous-bl-corner
+      type: -int
+      value: '12'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:406
+      source_lines:
+      - 406
+      sources:
+      - zsh-osx/internal/base.zsh:406
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: wvous-bl-modifier
+      type: -int
+      value: '0'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:407
+      source_lines:
+      - 407
+      sources:
+      - zsh-osx/internal/base.zsh:407
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: wvous-br-corner
+      type: -int
+      value: '6'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:349
+      source_lines:
+      - 349
+      - 409
+      sources:
+      - zsh-osx/internal/base.zsh:349
+      - zsh-osx/internal/base.zsh:409
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    - domain: com.apple.dock
+      key: wvous-br-modifier
+      type: -int
+      value: '1048576'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:350
+      source_lines:
+      - 350
+      - 410
+      sources:
+      - zsh-osx/internal/base.zsh:350
+      - zsh-osx/internal/base.zsh:410
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    - domain: com.apple.dock
+      key: wvous-tl-corner
+      type: -int
+      value: '3'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:398
+      source_lines:
+      - 398
+      sources:
+      - zsh-osx/internal/base.zsh:398
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: wvous-tl-modifier
+      type: -int
+      value: '0'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:399
+      source_lines:
+      - 399
+      sources:
+      - zsh-osx/internal/base.zsh:399
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.dock
+      key: wvous-tr-corner
+      type: -int
+      value: '5'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:345
+      source_lines:
+      - 345
+      - 402
+      sources:
+      - zsh-osx/internal/base.zsh:345
+      - zsh-osx/internal/base.zsh:402
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    - domain: com.apple.dock
+      key: wvous-tr-modifier
+      type: -int
+      value: '1048576'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:346
+      source_lines:
+      - 346
+      - 403
+      sources:
+      - zsh-osx/internal/base.zsh:346
+      - zsh-osx/internal/base.zsh:403
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    com.apple.driver.AppleBluetoothMultitouch.trackpad:
+    - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: Clicking
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:160
+      source_lines:
+      - 160
+      sources:
+      - zsh-osx/internal/base.zsh:160
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: TrackpadCornerSecondaryClick
+      type: -int
+      value: '2'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:165
+      source_lines:
+      - 165
+      sources:
+      - zsh-osx/internal/base.zsh:165
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: TrackpadRightClick
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:166
+      source_lines:
+      - 166
+      sources:
+      - zsh-osx/internal/base.zsh:166
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.driver.AppleBluetoothMultitouch.trackpad
+      key: TrackpadThreeFingerHorizSwipeGesture
+      type: -int
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:173
+      source_lines:
+      - 173
+      sources:
+      - zsh-osx/internal/base.zsh:173
+      scopes:
+      - plain
+      status: single_write
+    com.apple.finder:
+    - domain: com.apple.finder
+      key: DisableAllAnimations
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:239
+      source_lines:
+      - 239
+      sources:
+      - zsh-osx/internal/base.zsh:239
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: FXDefaultSearchScope
+      type: -string
+      value: SCcf
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:213
+      source_lines:
+      - 213
+      sources:
+      - zsh-osx/internal/base.zsh:213
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: FXEnableExtensionChangeWarning
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:241
+      source_lines:
+      - 241
+      sources:
+      - zsh-osx/internal/base.zsh:241
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: FXInfoPanesExpanded
+      type: -dict
+      value: General -bool true OpenWith -bool true Privileges -bool true
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:297
+      source_lines:
+      - 297
+      sources:
+      - zsh-osx/internal/base.zsh:297
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: FXPreferredViewStyle
+      type: -string
+      value: Nlsv
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:207
+      source_lines:
+      - 207
+      - 242
+      sources:
+      - zsh-osx/internal/base.zsh:207
+      - zsh-osx/internal/base.zsh:242
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    - domain: com.apple.finder
+      key: FinderSpawnTab
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:247
+      source_lines:
+      - 247
+      sources:
+      - zsh-osx/internal/base.zsh:247
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: NSToolbar Configuration Browser
+      type: null
+      value: '{ "TB Default Item Identifiers" =     ( "com.apple.finder.BACK", NSToolbarFlexibleSpaceItem,
+        "com.apple.finder.SWCH", "com.apple.finder.ARNG", "com.apple.finder.ACTN", "com.apple.finder.SHAR",
+        "com.apple.finder.LABL", NSToolbarFlexibleSpaceItem, NSToolbarFlexibleSpaceItem, "com.apple.finder.SRCH"
+        ); "TB Display Mode" = 2; "TB Icon Size Mode" = 1; "TB Is Shown" = 1; "TB Item Identifiers" =     (
+        "com.apple.finder.BACK", NSToolbarFlexibleSpaceItem, "com.apple.finder.SWCH", "com.apple.finder.ARNG",
+        NSToolbarSpaceItem, "com.apple.finder.NFLD", NSToolbarFlexibleSpaceItem, "com.apple.finder.SRCH"
+        ); "TB Size Mode" = 1; }'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:252
+      source_lines:
+      - 252
+      sources:
+      - zsh-osx/internal/base.zsh:252
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: NewWindowTarget
+      type: -string
+      value: PfDe
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:243
+      source_lines:
+      - 243
+      sources:
+      - zsh-osx/internal/base.zsh:243
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: NewWindowTargetPath
+      type: -string
+      value: file://${HOME}/
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:244
+      source_lines:
+      - 244
+      sources:
+      - zsh-osx/internal/base.zsh:244
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: OpenWindowForNewRemovableDisk
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:293
+      source_lines:
+      - 293
+      sources:
+      - zsh-osx/internal/base.zsh:293
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: QLEnableTextSelection
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:237
+      source_lines:
+      - 237
+      sources:
+      - zsh-osx/internal/base.zsh:237
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowExternalHardDrivesOnDesktop
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:216
+      source_lines:
+      - 216
+      sources:
+      - zsh-osx/internal/base.zsh:216
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowHardDrivesOnDesktop
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:217
+      source_lines:
+      - 217
+      sources:
+      - zsh-osx/internal/base.zsh:217
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowMountedServersOnDesktop
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:218
+      source_lines:
+      - 218
+      sources:
+      - zsh-osx/internal/base.zsh:218
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowPathbar
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:245
+      source_lines:
+      - 245
+      sources:
+      - zsh-osx/internal/base.zsh:245
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowRecentTags
+      type: -bool
+      value: 'false'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:204
+      source_lines:
+      - 204
+      - 304
+      sources:
+      - zsh-osx/internal/base.zsh:204
+      - zsh-osx/internal/base.zsh:304
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.finder
+      key: ShowRemovableMediaOnDesktop
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:219
+      source_lines:
+      - 219
+      sources:
+      - zsh-osx/internal/base.zsh:219
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowSidebar
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:303
+      source_lines:
+      - 303
+      sources:
+      - zsh-osx/internal/base.zsh:303
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.finder
+      key: ShowStatusBar
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:228
+      source_lines:
+      - 228
+      - 246
+      sources:
+      - zsh-osx/internal/base.zsh:228
+      - zsh-osx/internal/base.zsh:246
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.finder
+      key: _FXShowPosixPathInTitle
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:231
+      source_lines:
+      - 231
+      - 248
+      sources:
+      - zsh-osx/internal/base.zsh:231
+      - zsh-osx/internal/base.zsh:248
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.finder
+      key: _FXSortFoldersFirst
+      type: -bool
+      value: 'true'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:210
+      source_lines:
+      - 210
+      - 249
+      sources:
+      - zsh-osx/internal/base.zsh:210
+      - zsh-osx/internal/base.zsh:249
+      scopes:
+      - plain
+      status: redundant_duplicate
+    com.apple.frameworks.diskimages:
+    - domain: com.apple.frameworks.diskimages
+      key: auto-open-ro-root
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:291
+      source_lines:
+      - 291
+      sources:
+      - zsh-osx/internal/base.zsh:291
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.frameworks.diskimages
+      key: auto-open-rw-root
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:292
+      source_lines:
+      - 292
+      sources:
+      - zsh-osx/internal/base.zsh:292
+      scopes:
+      - plain
+      status: single_write
+    com.apple.mail:
+    - domain: com.apple.mail
+      key: AddressesIncludeNameOnPasteboard
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:515
+      source_lines:
+      - 515
+      sources:
+      - zsh-osx/internal/base.zsh:515
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.mail
+      key: DisableInlineAttachmentViewing
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:522
+      source_lines:
+      - 522
+      sources:
+      - zsh-osx/internal/base.zsh:522
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.mail
+      key: DisableReplyAnimations
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:518
+      source_lines:
+      - 518
+      sources:
+      - zsh-osx/internal/base.zsh:518
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.mail
+      key: DisableSendAnimations
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:519
+      source_lines:
+      - 519
+      sources:
+      - zsh-osx/internal/base.zsh:519
+      scopes:
+      - plain
+      status: single_write
+    com.apple.menuextra.battery:
+    - domain: com.apple.menuextra.battery
+      key: ShowPercent
+      type: -string
+      value: 'YES'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:17
+      source_lines:
+      - 17
+      sources:
+      - zsh-osx/internal/base.zsh:17
+      scopes:
+      - plain
+      status: dead
+    com.apple.messageshelper.AlertsController:
+    - domain: com.apple.messageshelper.AlertsController
+      key: PlaySoundsKey
+      type: -int
+      value: '0'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:460
+      source_lines:
+      - 460
+      sources:
+      - zsh-osx/internal/base.zsh:460
+      scopes:
+      - plain
+      status: single_write
+    com.apple.messageshelper.MessageController:
+    - domain: com.apple.messageshelper.MessageController
+      key: SOInputLineSettings
+      type: -dict-add
+      value: automaticQuoteSubstitutionEnabled -bool false
+      occurrences: 4
+      source: zsh-osx/internal/base.zsh:457
+      source_lines:
+      - 457
+      - 463
+      - 464
+      - 465
+      sources:
+      - zsh-osx/internal/base.zsh:457
+      - zsh-osx/internal/base.zsh:463
+      - zsh-osx/internal/base.zsh:464
+      - zsh-osx/internal/base.zsh:465
+      scopes:
+      - plain
+      status: redundant_duplicate
+    com.apple.print.PrintingPrefs:
+    - domain: com.apple.print.PrintingPrefs
+      key: Quit When Finished
+      type: -bool
+      value: 'true'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:25
+      source_lines:
+      - 25
+      sources:
+      - zsh-osx/internal/base.zsh:25
+      scopes:
+      - plain
+      status: single_write
+    com.apple.screencapture:
+    - domain: com.apple.screencapture
+      key: location
+      type: -string
+      value: ${screenshot_location}
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:189
+      source_lines:
+      - 189
+      sources:
+      - zsh-osx/internal/base.zsh:189
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.screencapture
+      key: type
+      type: -string
+      value: png
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:192
+      source_lines:
+      - 192
+      sources:
+      - zsh-osx/internal/base.zsh:192
+      scopes:
+      - plain
+      status: single_write
+    com.apple.screensaver:
+    - domain: com.apple.screensaver
+      key: askForPassword
+      type: -int
+      value: '1'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:183
+      source_lines:
+      - 183
+      - 353
+      sources:
+      - zsh-osx/internal/base.zsh:183
+      - zsh-osx/internal/base.zsh:353
+      scopes:
+      - plain
+      status: redundant_duplicate
+    - domain: com.apple.screensaver
+      key: askForPasswordDelay
+      type: -int
+      value: '0'
+      occurrences: 2
+      source: zsh-osx/internal/base.zsh:184
+      source_lines:
+      - 184
+      - 354
+      sources:
+      - zsh-osx/internal/base.zsh:184
+      - zsh-osx/internal/base.zsh:354
+      scopes:
+      - plain
+      status: conflicting_duplicate
+    com.apple.spotlight:
+    - domain: com.apple.spotlight
+      key: orderedItems
+      type: -array
+      value: '{"enabled" = 1;"name" = "APPLICATIONS";} {"enabled" = 1;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}
+        {"enabled" = 1;"name" = "MENU_CONVERSION";} {"enabled" = 1;"name" = "MENU_EXPRESSION";} {"enabled"
+        = 1;"name" = "MENU_DEFINITION";} {"enabled" = 1;"name" = "SYSTEM_PREFS";} {"enabled" = 0;"name"
+        = "MESSAGES";} {"enabled" = 0;"name" = "DOCUMENTS";} {"enabled" = 0;"name" = "DIRECTORIES";} {"enabled"
+        = 0;"name" = "PRESENTATIONS";} {"enabled" = 0;"name" = "SPREADSHEETS";} {"enabled" = 0;"name"
+        = "PDF";} {"enabled" = 0;"name" = "MESSAGES";} {"enabled" = 0;"name" = "CONTACT";} {"enabled"
+        = 0;"name" = "EVENT_TODO";} {"enabled" = 0;"name" = "IMAGES";} {"enabled" = 0;"name" = "BOOKMARKS";}
+        {"enabled" = 0;"name" = "MUSIC";} {"enabled" = 0;"name" = "MOVIES";} {"enabled" = 0;"name" = "FONTS";}
+        {"enabled" = 0;"name" = "MENU_OTHER";}'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:532
+      source_lines:
+      - 532
+      sources:
+      - zsh-osx/internal/base.zsh:532
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.spotlight
+      key: showedFTE
+      type: null
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:528
+      source_lines:
+      - 528
+      sources:
+      - zsh-osx/internal/base.zsh:528
+      scopes:
+      - plain
+      status: single_write
+    - domain: com.apple.spotlight
+      key: showedLearnMore
+      type: null
+      value: '1'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:529
+      source_lines:
+      - 529
+      sources:
+      - zsh-osx/internal/base.zsh:529
+      scopes:
+      - plain
+      status: single_write
+    com.brave.Browser:
+    - domain: com.brave.Browser
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:129
+      source_lines:
+      - 129
+      sources:
+      - zsh-osx/internal/base.zsh:129
+      scopes:
+      - plain
+      status: single_write
+    com.google.android.studio:
+    - domain: com.google.android.studio
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:132
+      source_lines:
+      - 132
+      sources:
+      - zsh-osx/internal/base.zsh:132
+      scopes:
+      - plain
+      status: single_write
+    com.googlecode.iterm2:
+    - domain: com.googlecode.iterm2
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:123
+      source_lines:
+      - 123
+      sources:
+      - zsh-osx/internal/base.zsh:123
+      scopes:
+      - plain
+      status: single_write
+    com.insomnia.app:
+    - domain: com.insomnia.app
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:126
+      source_lines:
+      - 126
+      sources:
+      - zsh-osx/internal/base.zsh:126
+      scopes:
+      - plain
+      status: single_write
+    com.jetbrains.WebStorm:
+    - domain: com.jetbrains.WebStorm
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:116
+      source_lines:
+      - 116
+      sources:
+      - zsh-osx/internal/base.zsh:116
+      scopes:
+      - plain
+      status: single_write
+    com.jetbrains.intellij:
+    - domain: com.jetbrains.intellij
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:119
+      source_lines:
+      - 119
+      sources:
+      - zsh-osx/internal/base.zsh:119
+      scopes:
+      - plain
+      status: single_write
+    com.jetbrains.intellij.ce:
+    - domain: com.jetbrains.intellij.ce
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:120
+      source_lines:
+      - 120
+      sources:
+      - zsh-osx/internal/base.zsh:120
+      scopes:
+      - plain
+      status: single_write
+    com.microsoft.VSCode:
+    - domain: com.microsoft.VSCode
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:110
+      source_lines:
+      - 110
+      sources:
+      - zsh-osx/internal/base.zsh:110
+      scopes:
+      - plain
+      status: single_write
+    com.microsoft.VSCodeExploration:
+    - domain: com.microsoft.VSCodeExploration
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:113
+      source_lines:
+      - 113
+      sources:
+      - zsh-osx/internal/base.zsh:113
+      scopes:
+      - plain
+      status: single_write
+    com.microsoft.VSCodeInsiders:
+    - domain: com.microsoft.VSCodeInsiders
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:111
+      source_lines:
+      - 111
+      sources:
+      - zsh-osx/internal/base.zsh:111
+      scopes:
+      - plain
+      status: single_write
+    com.visualstudio.code.oss:
+    - domain: com.visualstudio.code.oss
+      key: ApplePressAndHoldEnabled
+      type: -bool
+      value: 'false'
+      occurrences: 1
+      source: zsh-osx/internal/base.zsh:112
+      source_lines:
+      - 112
+      sources:
+      - zsh-osx/internal/base.zsh:112
+      scopes:
+      - plain
+      status: single_write
+notes:
+- 'CRITICAL - the hostname block is destructive when unassigned: COMPUTER_NAME is referenced 4 times and
+  assigned 0 times, so `scutil --set ComputerName ""` erases the configured network name. Any re-expression
+  must take the machine name as an explicit required input, never as an empty string.'
+- ApplePressAndHoldEnabled is written 13 times (106-132) and then deleted at 134, so the net effect is
+  'unset'. Reproducing the writes without the delete inverts the intent.
+- 'Same-domain, same-key, different-case domains are NOT merged: com.apple.Finder (222) is treated as
+  distinct from com.apple.finder. That is why it shows up as a dead key rather than as a duplicate.'
+- SOInputLineSettings (457, 463, 464, 465) is 4 `-dict-add` writes of the same value (-bool false) into
+  the same dict key with different sub-keys, so it is redundant rather than conflicting. This is the one
+  case where value comparison must ignore the sub-key.
+- Multi-line values (toolbar config at 252, FXInfoPanesExpanded at 297, spotlight orderedItems at 532)
+  are single write calls spanning several physical lines; the anchor is the call's first line.
+- 'The dead-key and conflicting-duplicate sections overlap by design: a dead key is still a key darwin-system-config
+  must decide about - drop it, or re-express it correctly.'
+- 'Out of scope by instruction: the design.md finding that message_error returns 0.'
