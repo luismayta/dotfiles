@@ -1,10 +1,12 @@
 # tuicr configuration for CodipLabs AI workflow
 # https://github.com/agavra/tuicr
 
-theme = "tokyo-night"
+theme = "tokyo-night-storm"
 
 # Vim-style leader key (default ";")
 leader = ","
+
+editor = "nvim"               # editor for `e` / `:edit`; overrides $EDITOR
 
 # Vim modal editing in comment box
 comment_vim = true
@@ -21,3 +23,8 @@ cursor_line = true
 search_highlight = true
 mouse = true
 wrap = true
+
+[[comment_types]]
+id = "issue"
+color = "red"
+definition = "must fix before merge"

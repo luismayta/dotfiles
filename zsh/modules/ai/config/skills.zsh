@@ -44,12 +44,14 @@ ZSH_AI_SKILLS_CODIP=(
   jira-epic-generator
   jira-start-task
   jira-task-generator
+  jira-approve-task
   jira-work-report
   jpd-epic-generator
   jpd-task-generator
   markdown-to-jira
   markdown-to-gcal
   markdown-to-gdoc
+  markdown-to-gslides
   idea-capture
   idea-jpd-create
   idea-jpd-draft
