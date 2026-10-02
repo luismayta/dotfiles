@@ -1,129 +1,79 @@
 {
   "allowRuntimeOverride": true,
   "log_level": "info",
-  "providerPriority": [
-    "opencodeZen",
-    "opencodeGo",
-    "opencodeHy3",
-    "custom",
-    "google",
-    "opencodeOpenai",
-    "openai",
-    "openrouter",
-    "openrouterFree"
-  ],
+  "providerPriority": ["custom", "google", "opencodeGo", "opencodeZen"],
   "language": "es",
   "username": "Luchex",
 
   "modelSelect": {
     "orchestrator": {
       "byProvider": {
-        "opencodeZen": ["opencode/big-pickle", "opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/minimax-m2.7"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4", "opencode/big-pickle"],
-        "openai": ["openai/gpt-5.4"],
-        "openrouter": ["openrouter/minimax/minimax-m2.5"],
-        "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"]
+        "opencodeZen": ["opencode/big-pickle", "opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/space-bunny-free", "opencode-go/qwen3.8-flash"],
+        "custom": ["opencode-go/space-bunny-free"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "oracle": {
       "byProvider": {
-        "opencodeZen": ["opencode/big-pickle", "opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/minimax-m2.5"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.3-codex"],
-        "openrouter": ["openrouter/deepseek/deepseek-r1", "openrouter/minimax/minimax-m2.5"],
-        "openrouterFree": ["openrouter/nvidia/nemotron-3-super-120b-a12b:free"]
+        "opencodeZen": ["opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/mimo-v2.6-flash"],
+        "custom": ["opencode-go/mimo-v2.6-flash"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "librarian": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/qwen3.6-plus"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.4"],
-        "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
-        "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"]
+        "opencodeZen": ["opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/longcat-2.5-preview-free"],
+        "custom": ["opencode-go/longcat-2.5-preview-free"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "explorer": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/minimax-m2.7", "opencode-go/glm-5.1"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.4"],
-        "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
-        "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"]
+        "opencodeZen": ["opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/longcat-2.5-preview-free", "opencode-go/glm-5.3-flash"],
+        "custom": ["opencode-go/longcat-2.5-preview-free"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "designer": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/minimax-m2.5"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview", "opencode/big-pickle"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.3-codex"],
-        "openrouter": ["openrouter/minimax/minimax-m2.5"],
-        "openrouterFree": ["openrouter/z-ai/glm-4.5-air:free"]
+        "opencodeZen": ["opencode/space-bunny-free"],
+        "opencodeGo": ["opencode-go/mimo-v2.6-flash", "opencode-go/qwen3.8-flash"],
+        "custom": ["opencode-go/space-bunny-free", "opencode/big-pickle"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "auditor": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.3-codex"],
-        "openrouter": ["openrouter/deepseek/deepseek-v3.2", "openrouter/deepseek/deepseek-r1"],
-        "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"]
+        "opencodeZen": ["opencode/space-bunny-free"],
+        "opencodeGo": ["opencode-go/mimo-v2.6-flash", "opencode-go/qwen3.8-flash"],
+        "custom": ["opencode-go/space-bunny-free"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
     "fixer": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.7"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.3-codex"],
-        "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
-        "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"]
+        "opencodeZen": ["opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/mimo-v2.6-flash", "opencode-go/qwen3.8-flash"],
+        "custom": ["opencode-go/mimo-v2.6-flash"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     },
 
     "quick": {
       "byProvider": {
-        "opencodeZen": ["opencode/mimo-v2.5-free"],
-        "opencodeGo": ["opencode-go/qwen3.6-plus", "opencode-go/minimax-m2.5"],
-        "opencodeHy3": ["opencode/hy3-free"],
-        "custom": ["google/gemini-3-flash-preview"],
-        "google": ["google/gemini-3-flash-preview"],
-        "opencodeOpenai": ["openai/gpt-5.4"],
-        "openai": ["openai/gpt-5.3-codex"],
-        "openrouter": ["openrouter/deepseek/deepseek-v3.2"],
-        "openrouterFree": ["openrouter/nvidia/nemotron-nano-12b-v2-vl:free"]
+        "opencodeZen": ["opencode/mimo-v2.6-flash-free"],
+        "opencodeGo": ["opencode-go/longcat-2.5-preview-free", "opencode-go/mimo-v2.6-flash"],
+        "custom": ["opencode-go/space-bunny-free"],
+        "google": ["google/gemini-3-flash-preview"]
       }
     }
   },
