@@ -25,6 +25,9 @@ source "${DEVOPS_PATH}/config/caddy.zsh"
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/worktrunk.zsh"
 
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/duckdb.zsh"
+
 case "${OSTYPE}" in
 darwin*)
   # shellcheck source=/dev/null

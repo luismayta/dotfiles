@@ -54,3 +54,6 @@ source "${DEVOPS_PATH}/internal/worktrunk.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/direnv.zsh"
+
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/internal/duckdb.zsh"

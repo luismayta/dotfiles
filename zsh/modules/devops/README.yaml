@@ -11,5 +11,6 @@ features:
   - "Kubernetes tool integration (kubectl, k9s)"
   - "Infrastructure as code helpers"
   - "Cloud provider CLI wrappers"
+  - "DuckDB analytical database (curl | bash install, REPL & file mode)"
 requirements: |-
   - zsh (loaded as part of dotfiles zsh modules)
