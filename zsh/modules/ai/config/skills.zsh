@@ -38,6 +38,7 @@ ZSH_AI_SKILLS_CODIP=(
   gitlab-create-mr
   gitlab-update-mr
   gitlab-validate-mr
+  jira-approve-task
   goji-commit-smart
   jira-add-worklog
   jira-epic-generator
