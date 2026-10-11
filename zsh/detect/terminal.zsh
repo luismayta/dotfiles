@@ -2,12 +2,14 @@
 # Terminal Detection
 # =============================================================================
 # Reliable terminal detection via parent process.
-# Env vars like TERM_PROGRAM and TMUX_SOCKET leak to child processes
+# Env vars like TERM_PROGRAM leak to child processes
 # (e.g., when launching Alacritty from a WezTerm shell). The parent process
 # of zsh is always the terminal emulator that spawned it — this cannot leak.
 #
 # Sets:
-#   __ZSH_TMUX_AUTOSTART — "true" to allow tmux auto-start, "false" to block
+#   __ZSH_TMUX_AUTOSTART — always "false": tmux auto-start is permanently
+#     blocked, for every terminal. There is no opt-in path; this variable
+#     exists only so the tmux helper has an explicit value to read.
 # =============================================================================
 
 # shellcheck shell=bash
@@ -25,10 +27,10 @@ case "${__ZSH_PARENT_COMM:-}" in
     __ZSH_TMUX_AUTOSTART="false"
     ;;
   ghostty*)
-    __ZSH_TMUX_AUTOSTART="true"
+    __ZSH_TMUX_AUTOSTART="false"
     ;;
   *)
-    __ZSH_TMUX_AUTOSTART="true"
+    __ZSH_TMUX_AUTOSTART="false"
     ;;
 esac
 
