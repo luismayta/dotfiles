@@ -41,7 +41,7 @@ working-directory = inherit
 confirm-close-surface = false
 
 # Environment
-env = TMUX_SOCKET=ghostty
+env = HERDR_WORKSPACE=ghostty
 
 # Keybinds
 keybind = shift+enter=text:\n
