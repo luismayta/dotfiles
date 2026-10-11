@@ -4,7 +4,7 @@
 # Workspace helpers (hrd / hrdk)
 # ──────────────────────────────────────────────
 
-# Wrapper for herdr command, with optional TMUX-like socket support.
+# Wrapper for the herdr command: forwards all arguments to `herdr`.
 _hrd() {
   command herdr "$@"
 }
@@ -75,6 +75,26 @@ function hrdk {
 # ──────────────────────────────────────────────
 # Project launcher
 # ──────────────────────────────────────────────
+
+# hrd::start — launch herdr routed by the active terminal emulator.
+# Uses HERDR_WORKSPACE to select the per-emulator session passed to herdr
+# through the --session flag.
+function hrd::start {
+  if ! core::exists herdr; then
+    message_error "herdr is not installed."
+    return 1
+  fi
+
+  if [[ -z "${HERDR_WORKSPACE:-}" ]]; then
+    message_info "HERDR_WORKSPACE is not set; starting herdr without routing."
+    command herdr
+  elif [[ -z "${HERDR_ENV:-}" ]]; then
+    command herdr --session "${HERDR_WORKSPACE}"
+  else
+    # Already inside a herdr pane: herdr auto-attaches to the ambient session.
+    command herdr
+  fi
+}
 
 # hrd::project — create a herdr workspace with 3-pane IDE layout.
 # Port of tx::project from the tmux module.
