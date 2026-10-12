@@ -1,6 +1,7 @@
 # Versioned migration inventory for the osx module.
 #
-# Produced from zsh-osx/internal/base.zsh (588 lines) at commit 79b1243530b3.
+# Produced from zsh-osx/internal/base.zsh (589 lines) at commit 79b1243530b3.
+# 589 logical lines; wc -l reports 588 because the file has no trailing newline.
 # Consumer: darwin-system-config (the nix-darwin-support change), which owns
 # declarative macOS config. This module keeps only the residual that cannot be
 # expressed declaratively; this file is the handoff record of that analysis.
@@ -22,12 +23,39 @@ scope_exclusions:
 - the design.md finding that message_error returns 0 - unrelated to this inventory
 metadata:
   source_path: zsh-osx/internal/base.zsh
-  source_file_lines: 588
+  source_file_lines: 589
   purpose: Residual the nix-darwin-support change (darwin-system-config) cannot express declaratively,
     plus the corrections it must not reintroduce.
   consumer: darwin-system-config (Nix module - machine reader, not human)
-  schema_contract: Top-level schema_version/source/source_commit/generated_for/scope_exclusions must be
-    checked first; a consumer should fail loudly on schema_version != 1.
+  schema_contract: 'Top-level schema_version/source/source_commit/generated_for/scope_exclusions must be
+    checked first; a consumer should fail loudly on schema_version != 1. Additive-extension policy (extensión
+    aditiva): a compatible new key (e.g. source_sync_order_transitive, reconciliations below) or a rename
+    that leaves the five guarded keys untouched does NOT require a version bump; consumers should ignore
+    unknown keys and re-check the guarded five. The trigger for a bump is a STRUCTURAL redesign of the censuses - e.g.
+    records-per-occasion instead of flat per-file counts - which is when schema_version: 2 earns an
+    audience; until then the contract above stays true under version 1.'
+  reconciliations:
+  - field: metadata.source_file_lines
+    was: 588
+    now: 589
+    reason: 589 logical lines; wc -l reports 588 (no trailing newline)
+  - field: write_call_census.delete.effect
+    was: the delete undoes the 13 writes at 106-132
+    now: the delete is -g scoped and undoes only the 2 NSGlobalDomain writes at 106 and 108; the 11 app-domain
+      writes persist
+    reason: delete is -g scoped; 11 app-domain writes persist
+  - field: deferred_to_darwin_system_config.total_deferred_write_calls
+    was: total_write_calls
+    now: total_deferred_write_calls
+    reason: Hazard D - name collision with write_call_census.total_write_calls (171 vs 164)
+  - field: source_sync_order_transitive
+    was: absent
+    now: top-level list of transitive osx::sync caller records
+    reason: additive extension - transitive callers recorded as data, not re-derived prose
+  - field: duplicated_keys.value_signature_semantics
+    was: absent (only the prose value_signature_rule)
+    now: machine-readable block (kind set, sorted, deduplicated, not line-aligned)
+    reason: Hazard E - the prose rule alone cannot be checked by a machine reader
   derived_by: grep + shell-aware tokenizer over the whole file; every defaults call anchored to its physical
     start line
   domain_normalization:
@@ -52,8 +80,41 @@ write_call_census:
     key: ApplePressAndHoldEnabled
     source_line: 134
     source: zsh-osx/internal/base.zsh:134
-    effect: removes the global ApplePressAndHoldEnabled written earlier in the same function; the 13 writes
-      at 106-132 are undone
+    effect: the delete at 134 targets the global domain (-g / NSGlobalDomain), so it ONLY undoes the 2
+      NSGlobalDomain writes at 106 and 108; the remaining 11 writes at 110, 111, 112, 113, 116, 119, 120,
+      123, 126, 129, 132 target app domains (VSCode, JetBrains, iTerm2, Insomnia, Brave, Android Studio)
+      and PERSIST as -bool false. See effect_scope for the structured breakdown.
+    effect_scope:
+      undoes_source_lines:
+      - 106
+      - 108
+      undoes_count: 2
+      persists_source_lines:
+      - 110
+      - 111
+      - 112
+      - 113
+      - 116
+      - 119
+      - 120
+      - 123
+      - 126
+      - 129
+      - 132
+      persists_count: 11
+      persists_value: '-bool false'
+      persists_domains:
+      - com.brave.Browser
+      - com.google.android.studio
+      - com.googlecode.iterm2
+      - com.insomnia.app
+      - com.jetbrains.WebStorm
+      - com.jetbrains.intellij
+      - com.jetbrains.intellij.ce
+      - com.microsoft.VSCode
+      - com.microsoft.VSCodeExploration
+      - com.microsoft.VSCodeInsiders
+      - com.visualstudio.code.oss
   source_lines_by_scope:
     plain:
     - 17
@@ -387,6 +448,13 @@ duplicated_keys:
   value_signature_rule: 'value_signatures collapse add-ops to their effective value: for -dict-add/-array-add
     the middle token is the sub-key, not the value, so `-dict-add <subkey> -bool false` repeated 4x is
     ONE repeated value, not a conflict. Trust is_value_conflict rather than re-deriving from `values`.'
+  value_signature_semantics:
+    kind: set
+    sorted: true
+    deduplicated: true
+    line_aligned: false
+    zip_with_source_lines: forbidden
+    line_aligned_alternative: values
   conflicting:
   - domain: NSGlobalDomain
     key: ApplePressAndHoldEnabled
@@ -1051,17 +1119,30 @@ source_sync_order:
 - others
 source_sync_order_caller: osx::sync
 source_sync_order_source: zsh-osx/internal/base.zsh:573-589
+source_sync_order_transitive:
+- caller: osx::keyboard
+  caller_position: 3
+  callee: osx::vim::keyboard
+  member_of_source_sync_order: false
+  source_line: 97
+  source: zsh-osx/internal/base.zsh:97
+  defaults_invocations:
+    total: 14
+    writes: 13
+    deletes: 1
+  carries_block: ApplePressAndHoldEnabled (source lines 106-134)
 source_sync_order_notes:
 - 'Spellings are exact: appStore (capital S), automaticUpdates (camelCase), missioncontrol (all lowercase).'
 - osx::sync calls osx::keyboard, which calls osx::vim::keyboard - so the ApplePressAndHoldEnabled write/delete
-  block runs inside position 3.
+  block runs inside position 3. The structured record for this transitive call (caller, callee, source_line,
+  counts) lives in source_sync_order_transitive; this prose is commentary only and the data key is the authority.
 - osx::mail and osx::spotlight are defined late in the file but invoked early (positions 8 and 9); definition
   order is not invocation order.
 - 'Order decides the 7 conflicting duplicates: e.g. dock (7) runs after screen (5), so askForPasswordDelay
   ends at 5; missioncontrol (11) runs after dock (7), so the hot corners end at the missioncontrol values.'
 deferred_to_darwin_system_config:
   total_unique_keys: 130
-  total_write_calls: 164
+  total_deferred_write_calls: 164
   total_plain_calls: 158
   total_current_host_calls: 6
   definition: Every non-privileged `defaults write` call in the source, collapsed to unique (domain, key)
@@ -1152,6 +1233,8 @@ deferred_to_darwin_system_config:
       scopes:
       - plain
       status: conflicting_duplicate
+      deleted_by: zsh-osx/internal/base.zsh:134
+      final_state: unset
     - domain: NSGlobalDomain
       key: AppleShowAllExtensions
       type: -bool
@@ -2895,8 +2978,10 @@ notes:
 - 'CRITICAL - the hostname block is destructive when unassigned: COMPUTER_NAME is referenced 4 times and
   assigned 0 times, so `scutil --set ComputerName ""` erases the configured network name. Any re-expression
   must take the machine name as an explicit required input, never as an empty string.'
-- ApplePressAndHoldEnabled is written 13 times (106-132) and then deleted at 134, so the net effect is
-  'unset'. Reproducing the writes without the delete inverts the intent.
+- 'ApplePressAndHoldEnabled is written 13 times (106-132) but the delete at 134 is -g (NSGlobalDomain),
+  so it undoes ONLY the 2 NSGlobalDomain writes at 106 and 108. The other 11 writes (110-132) go to app
+  domains (VSCode, JetBrains, iTerm2, Insomnia, Brave, Android Studio) and persist as -bool false. Net
+  effect: NSGlobalDomain is unset, while the 11 app-domain writes persist.'
 - 'Same-domain, same-key, different-case domains are NOT merged: com.apple.Finder (222) is treated as
   distinct from com.apple.finder. That is why it shows up as a dead key rather than as a duplicate.'
 - SOInputLineSettings (457, 463, 464, 465) is 4 `-dict-add` writes of the same value (-bool false) into
