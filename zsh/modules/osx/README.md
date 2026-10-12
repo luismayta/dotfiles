@@ -31,9 +31,9 @@ installation correctly through `core::ensure`. The former `osx::packages`
 entry point was a dead stub with zero callers in the source, so
 reimplementing installation here would violate the Core Reuse rule.
 
-The roughly 150 declarative user-domain defaults this module does not
-configure belong to `darwin-system-config` via nix-darwin. This module's scope
-is the residual nix-darwin cannot express. 
+The 130 unique user-domain defaults (164 non-privileged write calls) this
+module does not configure belong to `darwin-system-config` via nix-darwin.
+This module's scope is the residual nix-darwin cannot express. 
 
 
 
