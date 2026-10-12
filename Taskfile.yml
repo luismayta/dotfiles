@@ -347,8 +347,6 @@ tasks:
         [ -e ".env" ] || cp -rf .env.example .env
       - task: uv:setup
       - task: git:setup
-      - task: ai:setup
-      - task: skills:setup
       - task: nix:build
 
   environment:
