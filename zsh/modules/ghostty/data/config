@@ -20,7 +20,7 @@ mouse-shift-capture = true
 scrollback-limit = 100000
 
 # Theme
-theme = tokyonight
+theme = TokyoNight
 background-opacity = 0.92
 cursor-invert-fg-bg = true
 
@@ -46,4 +46,3 @@ env = HERDR_WORKSPACE=ghostty
 # Keybinds
 keybind = shift+enter=text:\n
 keybind = ctrl+enter=text:\n
-
