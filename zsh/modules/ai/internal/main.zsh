@@ -45,6 +45,8 @@ source "${ZSH_AI_PATH}/internal/tuicr.zsh"
 source "${ZSH_AI_PATH}/internal/archify.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/internal/omniroute.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/internal/freellmapi.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in
@@ -74,3 +76,4 @@ ai::internal::jcode::load
 ai::internal::tuicr::load
 ai::internal::archify::load
 ai::internal::omniroute::load
+ai::internal::freellmapi::load

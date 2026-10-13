@@ -46,6 +46,9 @@ function ai::internal::packages::install {
             skills)
                 ai::internal::skills::install
                 ;;
+            freellmapi)
+                ai::internal::freellmapi::install
+                ;;
             *)
                 core::install "${package}"
                 ;;
