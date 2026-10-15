@@ -30,6 +30,8 @@ jobs:
       - name: Checkout
         if: ${{ !env.ACT }}
         uses: actions/checkout@v3
+      - name: zsh syntax check (herdr module)
+        run: zsh -c 'for f in zsh/modules/herdr/**/*.zsh; do zsh -n "$f" || exit 1; done'
       - uses: hadenlabs/action-pre-commit@0.2.0
         with:
           args: run --all-files

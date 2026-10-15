@@ -181,3 +181,10 @@ repos:
         entry: luac -p
         language: system
         files: \.lua$
+
+      - id: zsh-syntax-check
+        name: Check zsh syntax (herdr module)
+        entry: zsh -c 'for f in zsh/modules/herdr/**/*.zsh; do zsh -n "$f" || exit 1; done'
+        language: system
+        files: ^zsh/modules/herdr/.*\.zsh$
+        pass_filenames: false
