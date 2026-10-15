@@ -8,17 +8,44 @@ function hrd::internal::worktree::is_git_repo {
   git rev-parse --git-dir &>/dev/null
 }
 
-function hrd::internal::worktree::derive_repo_name {
-  local remote
-  remote="$(git remote get-url origin 2>/dev/null)"
-  if [[ -n "$remote" ]]; then
-    local repo
-    repo="${remote##*/}"
-    repo="${repo%.git}"
-    printf '%s\n' "$repo"
-  else
-    basename "$(git rev-parse --show-toplevel 2>/dev/null)"
+# Ensure a branch name carries a known git-flow prefix.
+# The single source for the prefix chain (feature/, fix/, bugfix/, hotfix/,
+# chore/) previously duplicated in hrdw::create and hrdw::open (design D4).
+# Arguments:
+#   $1 - branch name (with or without a known git-flow prefix)
+# Returns: writes the prefixed branch name to stdout — feature/ prepended
+#          when the branch matches none of the known prefixes.
+function hrd::internal::worktree::ensure_branch_prefix {
+  local branch="$1"
+  if [[ "$branch" != feature/* ]] \
+    && [[ "$branch" != fix/* ]] \
+    && [[ "$branch" != bugfix/* ]] \
+    && [[ "$branch" != hotfix/* ]] \
+    && [[ "$branch" != chore/* ]]; then
+    branch="feature/${branch}"
   fi
+  printf '%s\n' "$branch"
+}
+
+# Derive the worktree label "{project_context}/{branch_leaf}" for a branch.
+# The single source for the label assembly previously duplicated in
+# hrdw::create, hrdw::open and hrdw::remove (design D4), making label parity
+# a structural guarantee instead of a discipline three call sites maintain
+# by hand. The label CONTAINS A SLASH: it is assembled verbatim here and
+# never slugified; only the branch leaf (text after the branch's LAST slash)
+# is extracted, exactly what the three call sites did. The project context
+# comes from hrd::internal::derive_project_name with the 2>/dev/null +
+# ${PWD:t} fallback form two of the three call sites used — the derivation
+# always exits 0 and writes nothing to stderr, so the fallback is defensive.
+# Arguments:
+#   $1 - branch name (e.g. feature/RD-21)
+# Returns: writes "<project_context>/<branch_leaf>" to stdout.
+function hrd::internal::worktree::derive_label {
+  local branch="$1"
+  local project_context
+  project_context="$(hrd::internal::derive_project_name 2>/dev/null || printf '%s\n' "${PWD:t}")"
+  local branch_part="${branch##*/}"
+  printf '%s\n' "${project_context}/${branch_part}"
 }
 
 function hrd::internal::worktree::branch_exists {

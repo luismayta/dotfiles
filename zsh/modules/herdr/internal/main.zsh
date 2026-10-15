@@ -25,5 +25,5 @@ core::ensure curl
 
 # Auto-install herdr if missing
 if ! core::exists herdr; then
-    herdr::internal::install
+  hrd::internal::install
 fi
