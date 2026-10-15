@@ -69,11 +69,11 @@ zsh/modules/herdr/
 ├── config/
 │   └── base.zsh          ← ZSH_HERDR_INSTALL_URL, ZSH_HERDR_PACKAGE_NAME
 ├── internal/
-│   ├── install.zsh       ← herdr::internal::install
-│   ├── update.zsh        ← herdr::internal::update  (NEW)
+│   ├── install.zsh       ← hrd::internal::install
+│   ├── update.zsh        ← hrd::internal::update  (NEW)
 │   └── main.zsh          ← sources internal/*.zsh
 └── pkg/
-    └── base.zsh          ← herdr::install, herdr::update (public API)
+    └── base.zsh          ← hrd::install, hrd::update (public API)
 ```
 
 ---
@@ -107,7 +107,7 @@ Create `internal/update.zsh` in a new file per lifecycle concern (install vs upd
 # Update helpers
 # ──────────────────────────────────────────────
 
-function herdr::internal::update {
+function hrd::internal::update {
     core::ensure curl
 
     message_info "Updating ${ZSH_HERDR_PACKAGE_NAME}..."
@@ -143,12 +143,12 @@ Add a thin public wrapper in `pkg/base.zsh` next to the module's existing public
 ### Reference (herdr)
 
 ```zsh
-function herdr::install {
-  herdr::internal::install
+function hrd::install {
+  hrd::internal::install
 }
 
-function herdr::update {
-    herdr::internal::update
+function hrd::update {
+    hrd::internal::update
 }
 ```
 
@@ -182,7 +182,7 @@ Without this registration the function won't exist at runtime.
 This mirrors the proven install semantics, so callers can branch on the result:
 
 ```zsh
-if herdr::update; then
+if hrd::update; then
   # tool is at the latest version
 else
   # update failed or tool unavailable — surface to the user
