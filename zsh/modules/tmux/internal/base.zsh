@@ -26,6 +26,12 @@ function tmux::internal::tpm::install {
 #
 # Derives a tmuxinator project name from an argument or directory context.
 #
+# Thin delegator over core::workspace::derive_name (the single shared
+# derivation source, design D1) with an EMPTY prefix map, so tmux session
+# names always use the legacy {parent_dir}-{current_dir} derivation —
+# byte-identical for every input, including mapped parents, by construction
+# rather than by discipline (requirement #19).
+#
 # If $1 is given, it is used as the project name (sanitized).
 # If $1 is omitted, the name is derived from $PWD and $HOME:
 #   $PWD == $HOME          -> "core"
@@ -35,32 +41,7 @@ function tmux::internal::tpm::install {
 # Returns: writes project name to stdout; exit code always 0.
 #
 tx::internal::derive_project_name() {
-  local name
-
-  if [[ -n "$1" ]]; then
-    name="$1"
-  else
-    local current_dir="${PWD:t}"
-    local parent_dir="${PWD:h:t}"
-
-    if [[ "$PWD" == "$HOME" ]]; then
-      name="core"
-    elif [[ "${PWD:h}" == "$HOME" ]]; then
-      name="core-${current_dir}"
-    else
-      name="${parent_dir}-${current_dir}"
-    fi
-  fi
-
-  # Slug: replace any run of non-alphanumeric chars with a single hyphen,
-  # strip leading/trailing hyphens, then lowercase.
-  name="${name//[^a-zA-Z0-9]/-}"
-  while [[ "$name" == *--* ]]; do name="${name//--/-}"; done
-  name="${name#-}"
-  name="${name%-}"
-  name="${name:l}"
-
-  printf '%s\n' "$name"
+  core::workspace::derive_name "$1" ""
 }
 
 
