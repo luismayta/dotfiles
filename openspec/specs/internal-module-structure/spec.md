@@ -1,4 +1,8 @@
-## ADDED Requirements
+## Purpose
+
+Each module keeps one file per domain instead of a single monolithic file. This capability covers the `internal/` layout of domain-separated files, the sourcing order that respects their dependencies, and the relocation of functions without signature changes.
+
+## Requirements
 
 ### Requirement: Domain-separated internal module files
 
