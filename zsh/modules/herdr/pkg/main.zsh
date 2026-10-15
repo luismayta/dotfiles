@@ -2,19 +2,17 @@
 # shellcheck source=/dev/null
 source "${ZSH_HERDR_PATH}/pkg/base.zsh"
 
-case "${OSTYPE}" in
-darwin*)
-  # shellcheck source=/dev/null
-  source "${ZSH_HERDR_PATH}/pkg/osx.zsh"
-  ;;
-linux*)
-  # shellcheck source=/dev/null
-  source "${ZSH_HERDR_PATH}/pkg/linux.zsh"
-  ;;
-esac
+# shellcheck source=/dev/null
+source "${ZSH_HERDR_PATH}/pkg/lifecycle.zsh"
 
 # shellcheck source=/dev/null
-source "${ZSH_HERDR_PATH}/pkg/helper.zsh"
+source "${ZSH_HERDR_PATH}/pkg/project.zsh"
 
 # shellcheck source=/dev/null
-source "${ZSH_HERDR_PATH}/pkg/alias.zsh"
+source "${ZSH_HERDR_PATH}/pkg/config-editor.zsh"
+
+# shellcheck source=/dev/null
+source "${ZSH_HERDR_PATH}/pkg/plugin.zsh"
+
+# shellcheck source=/dev/null
+source "${ZSH_HERDR_PATH}/pkg/worktree.zsh"

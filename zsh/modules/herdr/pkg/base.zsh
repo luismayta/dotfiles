@@ -1,19 +1,19 @@
 # shellcheck shell=bash
-function herdr::install {
-  herdr::internal::install
+function hrd::install {
+  hrd::internal::install
 }
 
-function herdr::update {
-    herdr::internal::update
+function hrd::update {
+  hrd::internal::update
 }
 
-function herdr::sync {
-  herdr::internal::config::sync
+function hrd::sync {
+  hrd::internal::config::sync
 }
 
-function herdr::post_install {
+function hrd::post_install {
   message_info "Post Install ${ZSH_HERDR_PACKAGE_NAME}"
-  herdr::sync
+  hrd::sync
   message_success "Success Install ${ZSH_HERDR_PACKAGE_NAME}"
 }
 
@@ -21,34 +21,34 @@ function herdr::post_install {
 # Plugin wrappers
 # ──────────────────────────────────────────────
 
-function herdr::plugin::install {
-    herdr::internal::plugin::install "$@"
+function hrd::plugin::install {
+  hrd::internal::plugin::install "$@"
 }
 
-function herdr::plugin::list {
-    herdr::internal::plugin::list
+function hrd::plugin::list {
+  hrd::internal::plugin::list
 }
 
-function herdr::plugin::update {
-    herdr::internal::plugin::update "$@"
+function hrd::plugin::update {
+  hrd::internal::plugin::update "$@"
 }
 
-function herdr::plugin::update::all {
-    herdr::internal::plugin::update::all
+function hrd::plugin::update::all {
+  hrd::internal::plugin::update::all
 }
 
-function herdr::plugin::uninstall {
-    herdr::internal::plugin::uninstall "$@"
+function hrd::plugin::uninstall {
+  hrd::internal::plugin::uninstall "$@"
 }
 
 # ──────────────────────────────────────────────
 # Espresso wrappers (macOS-only)
 # ──────────────────────────────────────────────
 
-function herdr::espresso::install {
-    herdr::internal::deps::install::espresso
+function hrd::espresso::install {
+  hrd::internal::deps::install::espresso
 }
 
-function herdr::espresso::daemon::install {
-    herdr::internal::espresso::daemon::install
+function hrd::espresso::daemon::install {
+  hrd::internal::espresso::daemon::install
 }
