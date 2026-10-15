@@ -11,3 +11,14 @@ tasks:
         --out zsh/modules/herdr/README.md
         --datasource config=zsh/modules/herdr/README.yaml
         --datasource includes={{.README_INCLUDES}}
+
+  test:
+    desc: Run herdr module test suite (zsh -n + bats)
+    silent: true
+    # task runs commands in the ENTRY Taskfile dir; pin the repo root so the
+    # repo-root-relative paths below also work when invoked from this module dir.
+    dir: "{{.TASKFILE_DIR}}/../../.."
+    cmds:
+      - >-
+        zsh -c 'for f in zsh/modules/herdr/**/*.zsh; do zsh -n "$f" || exit 1; done'
+      - bash zsh/modules/herdr/tests/run.sh
