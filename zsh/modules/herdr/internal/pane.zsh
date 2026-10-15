@@ -8,9 +8,9 @@
 # Layout:
 #   ┌──────────────┬─────────────────┐
 #   │  pane 1      │                 │
-#   │  (editor)    │  pane 3         │
+#   │  (editor)    │  pane 2         │
 #   ├──────────────┤  (agent)        │
-#   │  pane 2      │                 │
+#   │  pane 3      │                 │
 #   │  (shell)     │                 │
 #   └──────────────┴─────────────────┘
 # Get the first pane ID assigned to a given tab.
@@ -36,9 +36,9 @@ function hrd::internal::pane::get_tab_first_pane {
 # Layout:
 #   ┌──────────────┬─────────────────┐
 #   │  pane 1      │                 │
-#   │  (editor)    │  pane 3         │
+#   │  (editor)    │  pane 2         │
 #   ├──────────────┤  (agent)        │
-#   │  pane 2      │                 │
+#   │  pane 3      │                 │
 #   │  (shell)     │                 │
 #   └──────────────┴─────────────────┘
 # Arguments:
@@ -111,6 +111,10 @@ function hrd::internal::pane::setup_3_pane_layout {
   fi
 
   local tab_index
+  # Declared here, assigned in the loop: a bare `local base_pane_id` inside the
+  # loop would PRINT `base_pane_id=<value>` to stdout on every iteration after
+  # the first (zsh's typeset echoes already-declared names).
+  local base_pane_id
   for ((tab_index=1; tab_index<=num_tabs; tab_index++)); do
     local tab_id="${ws_id}:t${tab_index}"
 
@@ -124,7 +128,6 @@ function hrd::internal::pane::setup_3_pane_layout {
 
     # Pane IDs are workspace-scoped, not tab-scoped. Resolve the first pane
     # of this tab so we split the correct base pane (not p1 from tab 1).
-    local base_pane_id
     base_pane_id="$(hrd::internal::pane::get_tab_first_pane "$ws_id" "$tab_id")"
 
     # Setup 3-pane layout for this tab
