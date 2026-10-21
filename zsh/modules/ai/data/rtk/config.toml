@@ -18,13 +18,12 @@ ignore_dirs = [
 ]
 ignore_files = ["*.lock", "*.min.js", "*.min.css"]
 
-[tee]
-enabled = true
-mode = "failures"
-max_files = 20
+[retriever]
+mode = "sqlite"
+tee_max_files = 20
 
 [telemetry]
-enabled = true
+enabled = false
 
 [hooks]
 exclude_commands = [

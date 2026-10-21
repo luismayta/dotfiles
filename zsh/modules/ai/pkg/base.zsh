@@ -24,6 +24,7 @@ function ai::sync {
   ai::pi::config::sync
   ai::tuicr::sync
   ai::omniroute::sync
+  ai::rtk::config::sync
 }
 
 function ai::setup {
@@ -32,6 +33,7 @@ function ai::setup {
   ai::codegraph::setup || (( failures++ ))
   ai::openspec::setup || (( failures++ ))
   ai::rea::setup || (( failures++ ))
+  ai::rtk::setup || (( failures++ ))
 
   if (( failures > 0 )); then
     message_error "ai setup completed with ${failures} failure(s)"
