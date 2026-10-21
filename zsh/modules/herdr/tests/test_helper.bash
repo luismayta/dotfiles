@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2016
 # Test helper for the herdr module bats suite.
 #
 # CRITICAL: herdr's zsh functions use zsh-only parameter expansions
