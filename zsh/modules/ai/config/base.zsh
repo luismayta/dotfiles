@@ -52,6 +52,8 @@ source "${ZSH_AI_PATH}/config/tuicr.zsh"
 source "${ZSH_AI_PATH}/config/omniroute.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/config/freellmapi.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/config/rea.zsh"
 
 # --- Tool registry (used by internal/tools.zsh::packages::install) ---
 export ZSH_AI_TOOLS=(
@@ -74,4 +76,5 @@ export ZSH_AI_TOOLS=(
   tuicr
   omniroute
   freellmapi
+  rea
 )

@@ -47,6 +47,8 @@ source "${ZSH_AI_PATH}/pkg/archify.zsh"
 source "${ZSH_AI_PATH}/pkg/omniroute.zsh"
 # shellcheck source=/dev/null
 source "${ZSH_AI_PATH}/pkg/freellmapi.zsh"
+# shellcheck source=/dev/null
+source "${ZSH_AI_PATH}/pkg/rea.zsh"
 
 # --- OS-specific ---
 case "${OSTYPE}" in

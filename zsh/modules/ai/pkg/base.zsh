@@ -31,6 +31,7 @@ function ai::setup {
 
   ai::codegraph::setup || (( failures++ ))
   ai::openspec::setup || (( failures++ ))
+  ai::rea::setup || (( failures++ ))
 
   if (( failures > 0 )); then
     message_error "ai setup completed with ${failures} failure(s)"

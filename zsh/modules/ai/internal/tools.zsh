@@ -49,6 +49,7 @@ function ai::internal::packages::install {
             freellmapi)
                 ai::internal::freellmapi::install
                 ;;
+            rea) ai::internal::rea::install ;;
             *)
                 core::install "${package}"
                 ;;

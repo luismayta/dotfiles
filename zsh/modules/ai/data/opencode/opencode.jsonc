@@ -198,6 +198,11 @@
       "type": "local",
       "command": ["uvx", "--from", "scrapling[ai]", "scrapling-mcp"]
     },
+    "rea": {
+      "enabled": true,
+      "type": "local",
+      "command": ["npx", "-y", "rea-agents@6.7.0", "mcp"]
+    },
     "sentry": {
       "enabled": false,
       "type": "local",
