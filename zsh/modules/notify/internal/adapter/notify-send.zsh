@@ -28,7 +28,9 @@ function notify::notify-send::internal::send {
     # $1 subtitle (command that was executed)
     # $2 message to display
     # $3 icon filename
-    notify-send --urgency=low -i "${ZSH_NOTIFY_NOTIFY_SEND_ICON_PATH}/${3}" \
+    # Bounded dispatch (design D8): timeout -k 2 5 so a hung D-Bus call
+    # cannot block the prompt. Arguments unchanged.
+    notify::internal::bounded notify-send --urgency=low -i "${ZSH_NOTIFY_NOTIFY_SEND_ICON_PATH}/${3}" \
         "Long running command: ${1}" "${2}"
 }
 

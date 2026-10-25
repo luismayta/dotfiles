@@ -11,3 +11,14 @@ tasks:
         --out zsh/modules/notify/README.md
         --datasource config=zsh/modules/notify/README.yaml
         --datasource includes={{.README_INCLUDES}}
+
+  test:
+    desc: Run notify module test suite (zsh -n + bats)
+    silent: true
+    # task runs commands in the ENTRY Taskfile dir; pin the repo root so the
+    # repo-root-relative paths below also work when invoked from this module dir.
+    dir: "{{.TASKFILE_DIR}}/../../.."
+    cmds:
+      - >-
+        zsh -c 'for f in zsh/modules/notify/**/*.zsh; do zsh -n "$f" || exit 1; done'
+      - bash zsh/modules/notify/tests/run.sh

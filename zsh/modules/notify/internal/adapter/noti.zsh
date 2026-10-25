@@ -96,9 +96,13 @@ function notify::noti::internal::send {
     fi
 
     if [[ -n "$icon" ]]; then
-        noti -t "${1}" -m "${2}" --icon "$icon" 2>/dev/null
+        # Bounded dispatch (design D8): timeout -k 2 5 wraps the call, with
+        # the same output redirection as before (noti's stderr stays muted;
+        # that also mutes the one-time no-timeout warning — see
+        # notify::internal::bounded).
+        notify::internal::bounded noti -t "${1}" -m "${2}" --icon "$icon" 2>/dev/null
     else
-        noti -t "${1}" -m "${2}" 2>/dev/null
+        notify::internal::bounded noti -t "${1}" -m "${2}" 2>/dev/null
     fi
 }
 
