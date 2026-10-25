@@ -1,410 +1,355 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": false,
-  "instructions": ["AGENTS.md"],
-
-  // === Agent ===
-  "agent": {
+  "update": "disable",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "agents": {
     "explore": {
-      "disable": true
+      "disabled": true
     },
     "general": {
-      "disable": true
+      "disabled": true
     }
   },
-
-  // === Compaction ===
   "compaction": {
     "auto": false,
-    "prune": true,
-    "reserved": 8000
+    "buffer": 8000
   },
-
-  // === MCP Servers ===
   "mcp": {
-    "git": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "@cyanheads/git-mcp-server@latest"],
-      "cwd": ".",
-      "environment": {
-        "MCP_TRANSPORT_TYPE": "stdio",
-        "MCP_LOG_LEVEL": "warn",
-        "MCP_RESPONSE_FORMAT": "json",
-        "MCP_RESPONSE_VERBOSITY": "minimal"
-      }
-    },
-    "playwright": {
-      "enabled": true,
-      "type": "local",
-      "command": ["bunx", "-y", "@playwright/mcp"]
-    },
-    "google_workspace": {
-      "enabled": true,
-      "type": "local",
-      "command": [
-        "/home/lucho/.local/bin/workspace-mcp",
-        "--single-user",
-        "--tools",
-        "drive",
-        "gmail",
-        "calendar",
-        "chat",
-        "contacts",
-        "search",
-        "sheets",
-        "docs",
-        "tasks"
-      ],
-      "environment": {
-        "GOOGLE_OAUTH_CLIENT_ID": "{env:GOOGLE_OAUTH_CLIENT_ID}",
-        "GOOGLE_OAUTH_CLIENT_SECRET": "{env:GOOGLE_OAUTH_CLIENT_SECRET}"
-      }
-    },
-    "awslabs.aws-knowledge": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://knowledge-mcp.global.api.aws"
-    },
-    "bitbucket": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "bitbucket-mcp@latest"],
-      "environment": {
-        "BITBUCKET_URL": "https://api.bitbucket.org/2.0",
-        "BITBUCKET_WORKSPACE": "{env:BITBUCKET_WORKSPACE}",
-        "BITBUCKET_USERNAME": "{env:BITBUCKET_USERNAME}",
-        "BITBUCKET_PASSWORD": "{env:BITBUCKET_PASSWORD}",
-        "BITBUCKET_TOKEN": "{env:BITBUCKET_TOKEN}"
-      }
-    },
-    "chrome-devtools": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest", "--no-usage-statistics", "--headless", "true"]
-    },
-    "memglobal": {
-      "enabled": false,
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@modelcontextprotocol/server-memory",
-        "--file-path",
-        "/home/lucho/.config/opencode/memory.json"
-      ]
-    },
-    "markitdown": {
-      "enabled": true,
-      "type": "local",
-      "command": ["uvx", "markitdown-mcp"]
-    },
-    "context7": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "@upstash/context7-mcp", "--api-key", "{env:CONTEXT7_API_KEY}"]
-    },
-    "docker": {
-      "enabled": true,
-      "type": "local",
-      "command": ["bunx", "-y", "docker-mcp"],
-      "environment": {
-        "DOCKER_MCP_LOCAL": "true",
-        "DOCKER_MCP_HOST": "{env:DOCKER_MCP_HOST}",
-        "DOCKER_MCP_USERNAME": "{env:DOCKER_MCP_USERNAME}",
-        "DOCKER_MCP_PRIVATE_KEY": "{env:DOCKER_MCP_PRIVATE_KEY}",
-        "DOCKER_MCP_PORT": "{env:DOCKER_MCP_PORT}",
-        "DOCKER_MCP_PASSPHRASE": "{env:DOCKER_MCP_PASSPHRASE}"
-      }
-    },
-    "engram": {
-      "enabled": false,
-      "type": "local",
-      "command": ["/opt/homebrew/Cellar/engram/1.15.8/bin/engram", "mcp", "--tools=agent"]
-    },
-    "filesystem": {
-      "enabled": true,
-      "type": "local",
-      "command": ["bunx", "-y", "@modelcontextprotocol/server-filesystem"],
-      "environment": {
-        "ROOT": "."
-      }
-    },
-    "github": {
-      "enabled": true,
-      "type": "local",
-      "command": ["bunx", "-y", "@modelcontextprotocol/server-github"],
-      "environment": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GH_TOKEN}"
-      }
-    },
-    "grafana": {
-      "enabled": false,
-      "type": "local",
-      "command": ["uvx", "mcp-grafana"],
-      "environment": {
-        "GRAFANA_URL": "{env:GRAFANA_URL}",
-        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "{env:GRAFANA_SERVICE_ACCOUNT_TOKEN}"
-      }
-    },
-    "grep": {
-      "type": "remote",
-      "url": "https://mcp.grep.app",
-      "enabled": true
-    },
-    "hashicorp.terraform": {
-      "enabled": true,
-      "type": "local",
-      "command": ["docker", "run", "-i", "--rm", "hashicorp/terraform-mcp-server:latest"]
-    },
-    "image-compression": {
-      "enabled": true,
-      "type": "local",
-      "command": ["bunx", "-y", "@inhiblab-core/mcp-image-compression"],
-      "environment": {
-        "IMAGE_COMPRESSION_DOWNLOAD_DIR": "assets/images"
-      }
-    },
-    "jira": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://mcp.atlassian.com/v1/mcp/authv2",
-      "oauth": {}
-    },
-    "kubernetes": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "mcp-server-kubernetes"],
-      "environment": {
-        "ALLOW_ONLY_NON_DESTRUCTIVE_TOOLS": "true"
-      }
-    },
-    "notebooklm": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "notebooklm-mcp@latest"]
-    },
-    "obsidian": {
-      "enabled": true,
-      "type": "remote",
-      "url": "http://127.0.0.1:27123/mcp",
-      "oauth": {},
-      "headers": {
-        "Authorization": "Bearer {env:OBSIDIAN_API_KEY}"
-      }
-    },
-    "scrapling": {
-      "enabled": true,
-      "type": "local",
-      "command": ["uvx", "--from", "scrapling[ai]", "scrapling-mcp"]
-    },
-    "rea": {
-      "enabled": true,
-      "type": "local",
-      "command": ["npx", "-y", "rea-agents@6.7.0", "mcp"]
-    },
-    "sentry": {
-      "enabled": false,
-      "type": "local",
-      "command": ["uvx", "mcp-server-sentry"],
-      "environment": {
-        "SENTRY_AUTH_TOKEN": "{env:SENTRY_AUTH_TOKEN}"
-      }
-    },
-    "sequential-thinking": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
-    },
-    "serena": {
-      "enabled": false,
-      "type": "local",
-      "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
-    },
-    "supabase": {
-      "enabled": false,
-      "type": "local",
-      "command": ["bunx", "-y", "supabase-mcp@latest", "supabase-mcp-claude"],
-      "environment": {
-        "SUPABASE_URL": "{env:SUPABASE_URL}",
-        "SUPABASE_ANON_KEY": "{env:SUPABASE_ANON_KEY}",
-        "SUPABASE_SERVICE_ROLE_KEY": "{env:SUPABASE_SERVICE_ROLE_KEY}",
-        "MCP_API_KEY": "{env:SUPABASE_MCP_API_KEY}"
-      }
-    },
-    "graphify": {
-      "enabled": true,
-      "type": "local",
-      "command": ["graphify-mcp", "--graph", "./graphify-out/graph.json"],
-      "cwd": "."
-    },
-    "codegraph": {
-      "enabled": true,
-      "type": "local",
-      "command": ["codegraph", "serve", "--mcp"],
-      "cwd": "."
-    },
-    "crawl4ai": {
-      "enabled": false,
-      "type": "remote",
-      "url": "http://localhost:11235/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer crawl4ai-local-dev"
-      }
-    },
-    "scopus": {
-      "enabled": true,
-      "type": "local",
-      "command": ["/home/lucho/.local/share/scopus-mcp/.venv/bin/scopus-mcp"],
-      "environment": {
-        "SCOPUS_API_KEY": "{env:SCOPUS_API_KEY}"
+    "servers": {
+      "git": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "@cyanheads/git-mcp-server@latest"
+        ],
+        "cwd": ".",
+        "environment": {
+          "MCP_TRANSPORT_TYPE": "stdio",
+          "MCP_LOG_LEVEL": "warn",
+          "MCP_RESPONSE_FORMAT": "json",
+          "MCP_RESPONSE_VERBOSITY": "minimal"
+        },
+        "disabled": true
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "@playwright/mcp"
+        ],
+        "disabled": false
+      },
+      "google_workspace": {
+        "type": "local",
+        "command": [
+          "/home/lucho/.local/bin/workspace-mcp",
+          "--single-user",
+          "--tools",
+          "drive",
+          "gmail",
+          "calendar",
+          "chat",
+          "contacts",
+          "search",
+          "sheets",
+          "docs",
+          "tasks"
+        ],
+        "environment": {
+          "GOOGLE_OAUTH_CLIENT_ID": "{env:GOOGLE_OAUTH_CLIENT_ID}",
+          "GOOGLE_OAUTH_CLIENT_SECRET": "{env:GOOGLE_OAUTH_CLIENT_SECRET}"
+        },
+        "disabled": false
+      },
+      "awslabs.aws-knowledge": {
+        "type": "remote",
+        "url": "https://knowledge-mcp.global.api.aws",
+        "disabled": true
+      },
+      "chrome-devtools": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "chrome-devtools-mcp@latest",
+          "--no-usage-statistics",
+          "--headless",
+          "true"
+        ],
+        "disabled": true
+      },
+      "memglobal": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@modelcontextprotocol/server-memory",
+          "--file-path",
+          "/home/lucho/.config/opencode/memory.json"
+        ],
+        "disabled": true
+      },
+      "markitdown": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "markitdown-mcp"
+        ],
+        "disabled": false
+      },
+      "context7": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@upstash/context7-mcp",
+          "--api-key",
+          "{env:CONTEXT7_API_KEY}"
+        ],
+        "disabled": false
+      },
+      "docker": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "docker-mcp"
+        ],
+        "environment": {
+          "DOCKER_MCP_LOCAL": "true",
+          "DOCKER_MCP_HOST": "{env:DOCKER_MCP_HOST}",
+          "DOCKER_MCP_USERNAME": "{env:DOCKER_MCP_USERNAME}",
+          "DOCKER_MCP_PRIVATE_KEY": "{env:DOCKER_MCP_PRIVATE_KEY}",
+          "DOCKER_MCP_PORT": "{env:DOCKER_MCP_PORT}",
+          "DOCKER_MCP_PASSPHRASE": "{env:DOCKER_MCP_PASSPHRASE}"
+        },
+        "disabled": false
+      },
+      "filesystem": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "@modelcontextprotocol/server-filesystem"
+        ],
+        "environment": {
+          "ROOT": "."
+        },
+        "disabled": false
+      },
+      "github": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "@modelcontextprotocol/server-github"
+        ],
+        "environment": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GH_TOKEN}"
+        },
+        "disabled": false
+      },
+      "grep": {
+        "type": "remote",
+        "url": "https://mcp.grep.app",
+        "disabled": false
+      },
+      "hashicorp_terraform": {
+        "type": "local",
+        "command": [
+          "docker",
+          "run",
+          "-i",
+          "--rm",
+          "hashicorp/terraform-mcp-server:latest"
+        ],
+        "disabled": false
+      },
+      "image-compression": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "@inhiblab-core/mcp-image-compression"
+        ],
+        "environment": {
+          "IMAGE_COMPRESSION_DOWNLOAD_DIR": "assets/images"
+        },
+        "disabled": false
+      },
+      "jira": {
+        "type": "remote",
+        "url": "https://mcp.atlassian.com/v1/mcp/authv2",
+        "oauth": {},
+        "disabled": false
+      },
+      "notebooklm": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "notebooklm-mcp@latest"
+        ],
+        "disabled": true
+      },
+      "obsidian": {
+        "type": "remote",
+        "url": "http://127.0.0.1:27123/mcp",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {env:OBSIDIAN_API_KEY}"
+        },
+        "disabled": false
+      },
+      "scrapling": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "--from",
+          "scrapling[ai]",
+          "scrapling-mcp"
+        ],
+        "disabled": false
+      },
+      "sentry": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "mcp-server-sentry"
+        ],
+        "environment": {
+          "SENTRY_AUTH_TOKEN": "{env:SENTRY_AUTH_TOKEN}"
+        },
+        "disabled": true
+      },
+      "sequential-thinking": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ],
+        "disabled": true
+      },
+      "serena": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "--from",
+          "git+https://github.com/oraios/serena",
+          "serena",
+          "start-mcp-server"
+        ],
+        "disabled": true
+      },
+      "supabase": {
+        "type": "local",
+        "command": [
+          "bunx",
+          "-y",
+          "supabase-mcp@latest",
+          "supabase-mcp-claude"
+        ],
+        "environment": {
+          "SUPABASE_URL": "{env:SUPABASE_URL}",
+          "SUPABASE_ANON_KEY": "{env:SUPABASE_ANON_KEY}",
+          "SUPABASE_SERVICE_ROLE_KEY": "{env:SUPABASE_SERVICE_ROLE_KEY}",
+          "MCP_API_KEY": "{env:SUPABASE_MCP_API_KEY}"
+        },
+        "disabled": true
+      },
+      "codegraph": {
+        "type": "local",
+        "command": [
+          "codegraph",
+          "serve",
+          "--mcp"
+        ],
+        "cwd": ".",
+        "disabled": false
+      },
+      "crawl4ai": {
+        "type": "remote",
+        "url": "http://localhost:11235/mcp/sse",
+        "headers": {
+          "Authorization": "Bearer crawl4ai-local-dev"
+        },
+        "disabled": true
+      },
+      "scopus": {
+        "type": "local",
+        "command": [
+          "/home/lucho/.local/share/scopus-mcp/.venv/bin/scopus-mcp"
+        ],
+        "environment": {
+          "SCOPUS_API_KEY": "{env:SCOPUS_API_KEY}"
+        },
+        "disabled": true
       }
     }
   },
-
-  // === Permissions ===
-  "permission": {
-    "external_directory": {
-      "*": "ask",
-      "~/.config/opencode/skills/*": "allow",
-      "~/.agents/skills/*": "allow",
-      "/var/tmp/*": "allow",
-      "~/tmp/*": "allow",
-      "/tmp/*": "allow"
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git push *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git push --force *",
+      "effect": "deny"
+    },
+    {
+      "action": "shell",
+      "resource": "git reset --hard *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rm -rf *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "sudo *",
+      "effect": "ask"
+    },
+    {
+      "action": "external_directory",
+      "resource": "*",
+      "effect": "ask"
     }
-  },
-
-  // === Plugins ===
-  "plugin": [
-    "opencode-gemini-auth@latest",
-    "@mohak34/opencode-notifier@latest",
-    "file:///home/lucho/.config/opencode/node_modules/@codiplab/codi-opencode"
   ],
-
-  // === Providers ===
-  "provider": {
+  "plugins": [
+    "@mohak34/opencode-notifier@latest",
+    {
+      "package": "file:///home/lucho/.config/opencode/node_modules/@codiplab/codi-opencode",
+      "options": {}
+    }
+  ],
+  "providers": {
     "openai": {
       "name": "OpenAI"
     },
     "openrouter": {
       "name": "OpenRouter",
-      "options": {
+      "settings": {
         "apiKey": "{env:OPENROUTER_API_KEY}"
       }
     },
-    "google": {
-      "options": {
-        "apiKey": "{env:GEMINI_API_KEY}"
-      },
-      "models": {
-        "gemini-2.5-flash": {
-          "name": "Gemini 2.5 Flash (Gemini CLI)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
-          }
-        },
-        "gemini-2.5-pro": {
-          "name": "Gemini 2.5 Pro (Gemini CLI)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
-          }
-        },
-        "gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash Preview (Gemini CLI)",
-          "limit": {
-            "context": 1048576,
-            "output": 65536
-          },
-          "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
-          }
-        },
-        "gemini-3.1-pro-preview": {
-          "name": "Gemini 3.1 Pro Preview (Gemini CLI)",
-          "limit": {
-            "context": 1048576,
-            "output": 65535
-          },
-          "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
-          }
-        }
-      }
-    },
     "opencode": {},
-    "ollama": {
-      "name": "Ollama (local)",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
-      },
-      "models": {
-        "qwen3:8b": {
-          "attachment": true,
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "temperature": 0.2,
-            "num_ctx": 40960
-          },
-          "limit": {
-            "context": 40960,
-            "output": 8192
-          },
-          "name": "qwen3:8b"
-        },
-        "qwen2.5-coder:7b": {
-          "name": "qwen2.5-coder:7b"
-        },
-        "qwen2.5-coder:14b": {
-          "attachment": true,
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "temperature": 0.2,
-            "num_ctx": 8192
-          },
-          "limit": {
-            "context": 8192,
-            "output": 4096
-          },
-          "name": "qwen2.5-coder:14b"
-        },
-        "qwen3-coder": {
-          "attachment": true,
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "temperature": 0.2,
-            "num_ctx": 81920
-          },
-          "limit": {
-            "context": 81920,
-            "output": 16384
-          },
-          "name": "qwen3-coder"
-        }
-      }
-    },
     "omniroute": {
       "name": "OmniRoute",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
         "baseURL": "http://localhost:20128/v1",
         "apiKey": "{env:OMNIROUTE_API_KEY}"
       },
