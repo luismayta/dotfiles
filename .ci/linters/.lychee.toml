@@ -30,6 +30,7 @@ exclude = [
   '^https://www.gnu.org/software/',
   '^\\.\\./data/opencode/commands/',
   '^https://www\.npmjs\.com/',
+  '^https://aws-mcp\.us-east-1\.api\.aws/mcp$',
 ]
 
 # URL replacement (pattern replacement)
