@@ -57,3 +57,7 @@ source "${DEVOPS_PATH}/internal/direnv.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/duckdb.zsh"
+
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/internal/rclone.zsh"
+

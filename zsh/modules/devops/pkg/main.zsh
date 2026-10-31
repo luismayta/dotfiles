@@ -52,6 +52,10 @@ source "${DEVOPS_PATH}/pkg/direnv.zsh"
 
 # shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/duckdb.zsh"
+
+# shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/rclone.zsh"
+
 case "${OSTYPE}" in
   darwin*)
     # shellcheck source=/dev/null

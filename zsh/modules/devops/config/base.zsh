@@ -19,6 +19,7 @@ export DEVOPS_TOOLS=(
   k9s
   kubectl
   packer
+  rclone
   sops
   telepresenceio/telepresence/telepresence-oss
   terraform-docs
