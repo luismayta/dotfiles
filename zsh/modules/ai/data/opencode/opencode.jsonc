@@ -18,6 +18,35 @@
   },
   "mcp": {
     "servers": {
+      "aws-mcp": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "mcp-proxy-for-aws@latest",
+          "https://aws-mcp.us-east-1.api.aws/mcp",
+          "--metadata",
+          "INSTALL_SOURCE=aws-cli"
+        ]
+      },
+      "rea": {
+        "disabled": false,
+        "type": "local",
+        "command": [
+          "bunx",
+          "rea-agents@6.7.0",
+          "mcp"
+        ],
+        "enabled": true
+      },
+      "postgres": {
+        "disabled": false,
+        "type": "local",
+        "command": [
+          "bunx",
+          "@microsoft/postgres-mcp",
+          "run"
+        ]
+      },
       "git": {
         "type": "local",
         "command": [
@@ -326,6 +355,26 @@
       "action": "external_directory",
       "resource": "*",
       "effect": "ask"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.agents/skills/*",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "/tmp/*",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "/var/tmp/*",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.cache/codi/build/*",
+      "effect": "allow"
     }
   ],
   "plugins": [
@@ -336,8 +385,309 @@
     }
   ],
   "providers": {
-    "openai": {
-      "name": "OpenAI"
+    "freellmapi": {
+      "package": "@opencode/ai/providers/openai-compatible",
+      "name": "FreeLLMAPI",
+      "settings": {
+        "baseURL": "http://localhost:3009/v1",
+        "apiKey": "freellmapi-0801ad72b3ee023f16205059a0ee40fa011ff3133bbc9080"
+      },
+      "models": {
+        "auto": {
+          "name": "Auto (router picks the best available model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "fusion": {
+          "name": "Fusion (panel of models answer in parallel, a judge synthesizes one answer)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "claude-opus-4-5": {
+          "name": "Opus slot (auto-routed to a free model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "claude-sonnet-4-5": {
+          "name": "Sonnet slot (auto-routed to a free model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "claude-haiku-4-5": {
+          "name": "Haiku slot (auto-routed to a free model)",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "dots3-note-preview": {
+          "name": "Dots3 Note Preview",
+          "limit": {
+            "context": 512000,
+            "output": 8192
+          }
+        },
+        "qwen-3.8-27b": {
+          "name": "Qwen 3.8 27B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "moondream-3.1-9b-a2b": {
+          "name": "Moondream 3.1 9B A2B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "poolside-laguna-s-2.1": {
+          "name": "Poolside Laguna S 2.1",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "gemma-4-31b": {
+          "name": "Gemma 4 31B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "gemma-4-26b-a4b": {
+          "name": "Gemma 4 26B-A4B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "gemma-4-26b-a4b-it": {
+          "name": "Gemma 4 26B-A4B it",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "glm-4.7-flash": {
+          "name": "GLM-4.7 Flash",
+          "limit": {
+            "context": 200000,
+            "output": 8192
+          }
+        },
+        "poolside-laguna-xs-2.1": {
+          "name": "Poolside Laguna XS 2.1",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "nemotron-3-120b": {
+          "name": "Nemotron 3 120B",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "nemotron-3-super-120b": {
+          "name": "Nemotron 3 Super 120B",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "nemotron-3.5-lightning": {
+          "name": "Nemotron 3.5 Lightning",
+          "limit": {
+            "context": 1048576,
+            "output": 8192
+          }
+        },
+        "gpt-oss-120b": {
+          "name": "GPT-OSS 120B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "north-mini-code": {
+          "name": "North Mini Code",
+          "limit": {
+            "context": 256000,
+            "output": 8192
+          }
+        },
+        "qwq-32b": {
+          "name": "QwQ 32B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "gpt-oss-20b": {
+          "name": "GPT-OSS 20B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "nemotron-3-nano-30b-reasoning": {
+          "name": "Nemotron 3 Nano 30B Reasoning",
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          }
+        },
+        "deepseek-r1-distill-qwen-32b": {
+          "name": "DeepSeek R1 Distill Qwen 32B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "lfm2.5-2.6b": {
+          "name": "LFM2.5 2.6B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "llama-3.3-70b-fp8-fast": {
+          "name": "Llama 3.3 70B fp8-fast",
+          "limit": {
+            "context": 24000,
+            "output": 8192
+          }
+        },
+        "llama-4-scout": {
+          "name": "Llama 4 Scout",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "qwen3-30b-a3b-fp8": {
+          "name": "Qwen3 30B-A3B fp8",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "llama-3.1-8b": {
+          "name": "Llama 3.1 8B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "mistral-small-3.1-24b": {
+          "name": "Mistral Small 3.1 24B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "qwen2.5-coder-32b": {
+          "name": "Qwen2.5 Coder 32B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "llama-3.2-3b": {
+          "name": "Llama 3.2 3B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "gemma-sea-lion-v4-27b": {
+          "name": "Gemma SEA-LION v4 27B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "llama-3.2-11b-vision": {
+          "name": "Llama 3.2 11B Vision",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "llama-3.2-1b-instruct": {
+          "name": "Llama 3.2 1B Instruct",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "granite-4.0-h-micro": {
+          "name": "Granite 4.0 H Micro",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "llama-2-7b-chat-lora": {
+          "name": "Llama 2 7B Chat LoRA",
+          "limit": {
+            "context": 8192,
+            "output": 8192
+          }
+        },
+        "mistral-7b-instruct-v0.2-lora": {
+          "name": "Mistral 7B Instruct v0.2 LoRA",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        },
+        "llama-guard-3-8b": {
+          "name": "Llama Guard 3 8B",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "nemotron-3.5-content-safety": {
+          "name": "Nemotron 3.5 Content Safety",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          }
+        },
+        "gemma-2b-it-lora": {
+          "name": "Gemma 2B IT LoRA",
+          "limit": {
+            "context": 8192,
+            "output": 8192
+          }
+        },
+        "gemma-7b-it-lora": {
+          "name": "Gemma 7B IT LoRA",
+          "limit": {
+            "context": 8192,
+            "output": 8192
+          }
+        },
+        "llava-1.5-7b": {
+          "name": "LLaVA 1.5 7B",
+          "limit": {
+            "context": 4096,
+            "output": 4096
+          }
+        }
+      }
     },
     "openrouter": {
       "name": "OpenRouter",
@@ -345,28 +695,6 @@
         "apiKey": "{env:OPENROUTER_API_KEY}"
       }
     },
-    "opencode": {},
-    "omniroute": {
-      "name": "OmniRoute",
-      "package": "aisdk:@ai-sdk/openai-compatible",
-      "settings": {
-        "baseURL": "http://localhost:20128/v1",
-        "apiKey": "{env:OMNIROUTE_API_KEY}"
-      },
-      "models": {
-        "auto": {
-          "name": "Auto-Combo"
-        },
-        "auto/coding": {
-          "name": "Auto Coding"
-        },
-        "auto/fast": {
-          "name": "Auto Fast"
-        },
-        "auto/cheap": {
-          "name": "Auto Cheap"
-        }
-      }
-    }
-  }
+    "opencode": {}
+  } 
 }
