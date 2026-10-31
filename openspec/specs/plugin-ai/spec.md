@@ -1,4 +1,9 @@
-## ADDED Requirements
+# plugin-ai Specification
+
+## Purpose
+Integrate graphify as a knowledge graph tool for codebase analysis into the AI module, including OpenCode skill registration.
+
+## Requirements
 
 ### Requirement: Configure graphify knowledge graph tool
 The system SHALL integrate graphify as a knowledge graph tool for codebase analysis.
