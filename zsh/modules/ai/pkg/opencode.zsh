@@ -15,3 +15,11 @@ function ai::opencode::install {
 function ai::opencode::sync {
     ai::internal::opencode::sync
 }
+
+function ai::opencode::mcp::validate {
+    ai::internal::opencode::mcp::validate "${@}"
+}
+
+function ai::opencode::mcp::reinstall {
+    ai::internal::opencode::mcp::reinstall "${@}"
+}
