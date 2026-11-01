@@ -1,0 +1,20 @@
+keys:
+  - &luchex age155sg53zj0j34dy6cjaduzdv76yujl4y82rey3yv2w508zj3nvg3qzlte5g
+
+creation_rules:
+  - path_regex: .*\.(json|env|yaml|yml|ini|toml|csv|xlsx|md|txt|pem|key|enc)$
+    key_groups:
+      - age:
+          - *luchex
+  - path_regex: Pruebas/.*
+    key_groups:
+      - age:
+          - *luchex
+  - path_regex: .*/secrets/.*\.(enc|yml|yaml)$
+    key_groups:
+      - age:
+          - *luchex
+  - path_regex: .*.sops\.(yml|yaml)$
+    key_groups:
+      - age:
+          - *luchex
