@@ -67,7 +67,7 @@ derive_expected_label() {
   while [[ "$raw" == *--* ]]; do raw="${raw//--/-}"; done
   raw="${raw#-}"
   raw="${raw%-}"
-  printf '%s\n' "${raw,,}"
+  printf '%s\n' "$(printf '%s' "$raw" | tr '[:upper:]' '[:lower:]')"
 }
 
 # Zsh snippet used by BOTH prompt-driven cases: run the launcher, snapshot
