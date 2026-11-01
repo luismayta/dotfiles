@@ -78,6 +78,21 @@ Documentation is a part of the dotfiles code base. You can find the documentatio
 
 See [Testing](./testing.md).
 
+### Shell scripting (bash 3.2 portable)
+
+Shell scripts in this repository must remain portable to the system bash
+shipped by macOS, which is bash 3.2. Avoid bash 4+ features:
+
+- Test variables with `[ -n "${VAR:-}" ]` / `[ -z "${VAR:-}" ]`.
+  Never use `[[ -v VAR ]]` (requires bash >= 4.2).
+- Lowercase/uppercase conversion: use
+  `$(printf '%s' "$var" | tr '[:upper:]' '[:lower:]')` (or `[:lower:]`/`[:upper:]`).
+  Never use `${var,,}` / `${var^^}` (requires bash >= 4.0).
+- Do not use associative arrays (`declare -A`).
+
+Rationale: macOS provides bash 3.2 as its system shell, so scripts must run
+there without requiring a newer bash.
+
 ### Code Submission
 
 1. See if a [Pull Request](https://github.com/luismayta/dotfiles/pulls/new) exists
