@@ -4,7 +4,7 @@
 # shellcheck disable=SC2034 # consumed by sourcing scripts
 # Idempotency guard: re-sourcing in a shell that already loaded these
 # readonly vars would fail with "readonly variable".
-if [[ -v C_RED ]]; then
+if [ -n "${C_RED:-}" ]; then
   # shellcheck disable=SC2317 # return is intentional (fallback for direct exec)
   return 0 2>/dev/null || true
 fi
