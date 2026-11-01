@@ -30,6 +30,7 @@ ZSH_AI_SKILLS_VERCEL=(
 # shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh
 # CodipLab — Git & PR workflows
 ZSH_AI_SKILLS_CODIP=(
+  agents-md-generator
   gcal-daily-planner
   gcal-task-suggester
   github-create-pr
