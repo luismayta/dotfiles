@@ -132,7 +132,7 @@ function setup::packages::common {
   local os_name
   os_name=$(detect::os)
 
-  if [[ ! -v PACKAGES_COMMON ]]; then
+  if [ -z "${PACKAGES_COMMON:-}" ]; then
     [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
     # shellcheck source=/dev/null
     source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
@@ -229,7 +229,7 @@ function setup::linux {
     exit 1
   fi
 
-  if [[ ! -v PACKAGES_COMMON ]]; then
+  if [ -z "${PACKAGES_COMMON:-}" ]; then
     [ -r "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh" ] || { echo "FATAL: config/packages.sh not found" >&2; exit 1; }
     # shellcheck source=/dev/null
     source "$(dirname "${BASH_SOURCE[0]}")/config/packages.sh"
