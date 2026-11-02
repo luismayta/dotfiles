@@ -32,6 +32,6 @@ El script `install.sh` de los dotfiles fallaba al ejecutarse en macOS, impidiend
 ### Sources
 
 - https://github.com/LnL7/nix-darwin
-- https://nixos.org/manual/nix/stable/command-ref/experimental-features.html
+- https://nixos.org/manual/nix/stable/command-ref/conf-file.html
 
 - https://github.com/luismayta/dotfiles.git
