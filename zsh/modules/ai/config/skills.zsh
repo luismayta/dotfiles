@@ -49,6 +49,7 @@ ZSH_AI_SKILLS_CODIP=(
   jira-work-report
   jpd-epic-generator
   jpd-task-generator
+  okf-classify
   markdown-to-jira
   markdown-to-gcal
   markdown-to-gdoc
