@@ -141,7 +141,8 @@ function setup::packages::common {
   case "$os_name" in
     "Darwin")
       brew install "${PACKAGES_COMMON[@]}"
-      brew install --cask "${PACKAGES_MAC[@]}"
+      brew install "${PACKAGES_MAC_FORMULA[@]}"
+      brew install --cask "${PACKAGES_MAC_CASK[@]}"
       ;;
     "Linux")
       if is_apt_distro; then
@@ -213,7 +214,7 @@ function setup::mac {
   # Bootstrap nix-darwin if the flake is available locally
   if [[ -f "${PATH_REPO}/nix/darwin/flake.nix" ]] && command -v nix >/dev/null; then
     msg::info "Bootstrapping nix-darwin system configuration..."
-    nix run nix-darwin -- switch --flake "${PATH_REPO}/nix/darwin"
+    nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake "${PATH_REPO}/nix/darwin"
   fi
 }
 
