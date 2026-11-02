@@ -20,7 +20,7 @@ flow = "github-flow"
 
 [issueTracking]
 provider = "jira"
-projectKey = "HAD"
+projectKey = "PE"
 
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
 # keyRegexOverride = "^AR-[0-9]+$"
@@ -70,4 +70,34 @@ closingBodyLine = "Closes #<number>"
 [commit.providers.jira]
 format = "<type> <emoji> (<scope>): <issueKey> <subject>"
 # Optional. If omitted, agents should derive as: ^<projectKey>-[0-9]+$
-# keyRegexOverride = "^HAD-[0-9]+$"
+# keyRegexOverride = "^AR-[0-9]+$"
+
+# OKF document defaults (PE-520). Required: OKF commands fail without
+# an [okf] section containing [okf.default].
+[okf.default]
+status = "draft"
+type = ""
+company = "codip"
+project = "codip-ai"
+version = "2.0.0"
+author = "CodipLabs"
+# OKF exclude paths (documentation example only — fully commented out).
+# Excludes applied by `okf sync`, `okf validate`, and `okf context` on top of .gitignore.
+# `paths` = gitignore-style glob patterns (negation `!` supported; leading `/` anchors to repo root).
+# `files` = exact repo-relative file paths (literal equality, NOT globs).
+[okf.exclude_paths]
+paths = [
+    "docs/prompts/**",
+    "vendor/**",
+    "openspec/**",
+    ".codi/**",
+    "skills/**",
+    ".opencode/**",
+    ".changeset/**",
+    ".chglog/**",
+    ".github/**",
+]
+files = [
+    "AGENTS.md",
+    "CHANGELOG.md",
+]
