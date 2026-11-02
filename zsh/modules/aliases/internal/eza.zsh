@@ -16,13 +16,13 @@ if ! type eza > /dev/null; then
 fi
 
 function eza::init {
-    alias l='eza --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
-    alias ls='eza --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
-    alias ll='eza -l --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
-    alias lll='eza -l --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale | less'
-    alias lla='eza -la --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
-    alias llt='eza -T --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
-    alias llfu='eza -bghHliS --all --grid --git --sort=ext --color=always --group-directories-first --icons --color-scale'
+    alias l='eza --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
+    alias ls='eza --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
+    alias ll='eza -l --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
+    alias lll='eza -l --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all | less'
+    alias lla='eza -la --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
+    alias llt='eza -T --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
+    alias llfu='eza -bghHliS --all --grid --git --sort=ext --color=always --group-directories-first --icons=auto --color-scale=all'
 }
 
 if type eza > /dev/null; then
