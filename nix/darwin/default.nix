@@ -1,16 +1,16 @@
 { pkgs, ... }:
 {
   # Primary user for system.defaults / home-manager under root activation (nix-darwin >= 25.05)
-  system.primaryUser = "luchomayta";
+  system.primaryUser = "luchex";
 
   # Set once at first install; never change without reading darwin-rebuild changelog
   system.stateVersion = 7;
 
   # TODO: [FIX] Migrate to a path outside the repository.
   # Existing macOS account — declared so home-manager can derive username/home
-  users.users.luchomayta = {
-    name = "luchomayta";
-    home = "/Volumes/Data/luchomayta";
+  users.users.luchex = {
+    name = "luchex";
+    home = "/Users/luchex";
   };
 
   # Nix settings (daemon and build users are managed by nix-darwin)

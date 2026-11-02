@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  home.username = "luchomayta";
-  home.homeDirectory = "/Volumes/Data/luchomayta";
+  home.username = "luchex";
+  home.homeDirectory = "/Users/luchex";
   home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;

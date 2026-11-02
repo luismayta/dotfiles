@@ -51,7 +51,7 @@ nix::darwin::internal::rebuild() {
     message_error "nix-darwin: not detected. Cannot rebuild."
     return 1
   fi
-  sudo darwin-rebuild switch --flake "${DOTFILES_PATH}/nix/darwin#$(hostname -s)"
+  sudo darwin-rebuild switch --flake "${DOTFILES_PATH}/nix/darwin#$(scutil --get LocalHostName 2>/dev/null || hostname -s)"
 }
 
 nix::darwin::internal::update() {
@@ -71,7 +71,7 @@ nix::darwin::internal::status() {
   else
     message_warning "nix-darwin: not detected"
     message_info "To bootstrap, run:"
-    message_info "  nix run nix-darwin -- switch --flake ${DOTFILES_PATH}/nix/darwin#$(hostname -s)"
+    message_info "  nix run nix-darwin -- switch --flake ${DOTFILES_PATH}/nix/darwin#$(scutil --get LocalHostName 2>/dev/null || hostname -s)"
   fi
 }
 
