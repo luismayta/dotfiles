@@ -12,6 +12,9 @@ ZSH_NVIM_ENABLED="${ZSH_NVIM_ENABLED:-true}"
 # Package name (binary)
 : "${NVIM_PACKAGE_NAME:=nvim}"
 
+# Hadolint package name (Linux/AUR name; overridden on macOS)
+: "${NVIM_HADOLINT_PACKAGE_NAME:=hadolint-bin}"
+
 # Root path for neovim configuration
 : "${NVIM_ROOT_PATH:=${HOME}/.config/nvim}"
 

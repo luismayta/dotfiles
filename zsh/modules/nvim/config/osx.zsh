@@ -3,6 +3,9 @@
 # macOS-specific configuration overrides for nvim module.
 # Overrides nvim binary path for Homebrew installations.
 
+# Homebrew formula name for hadolint
+NVIM_HADOLINT_PACKAGE_NAME="hadolint"
+
 # Prefer Homebrew nvim on Apple Silicon
 if [[ -x "/opt/homebrew/bin/nvim" ]]; then
     : "${NVIM_BIN_PATH:=/opt/homebrew/bin}"

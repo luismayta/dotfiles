@@ -28,5 +28,5 @@ source "${ZSH_NVIM_PATH}/pkg/main.zsh"
 if ! core::exists rsync; then core::install rsync; fi
 if ! core::exists nvim; then core::install nvim; fi
 if ! core::exists tree-sitter; then core::install tree-sitter-cli; fi
-if ! core::exists hadolint; then core::install hadolint-bin; fi
+if ! core::exists hadolint; then core::install "${NVIM_HADOLINT_PACKAGE_NAME}"; fi
 if [[ ! -d "${NVIM_CONFIG_PATH}" ]]; then nvim::sync; fi
