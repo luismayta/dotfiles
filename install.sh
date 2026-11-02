@@ -213,8 +213,15 @@ function setup::mac {
   # TODO: [FIX] Migrate to a path outside the repository.
   # Bootstrap nix-darwin if the flake is available locally
   if [[ -f "${PATH_REPO}/nix/darwin/flake.nix" ]] && command -v nix >/dev/null; then
-    msg::info "Bootstrapping nix-darwin system configuration..."
-    nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake "${PATH_REPO}/nix/darwin"
+    local host
+    host=$(scutil --get LocalHostName 2>/dev/null || hostname -s)
+    # darwin-rebuild's internal nix build needs experimental features enabled system-wide
+    if ! grep -qs "experimental-features" /etc/nix/nix.conf 2>/dev/null; then
+      echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf >/dev/null
+    fi
+    msg::info "Bootstrapping nix-darwin system configuration for ${host}..."
+    # system activation must run as root (sudo secure_path lacks nix, so use its absolute path)
+    sudo "$(command -v nix)" --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake "${PATH_REPO}/nix/darwin#${host}"
   fi
 }
 
@@ -264,7 +271,7 @@ function clone_repo {
     update_repo "${DOTFILES_NAME}" "Successfully updated ${DOTFILES_NAME}" || ret=$?
   fi
 
-  if [[ "$ret" -eq 0 ]]; then
+  if [[ -e "${PATH_REPO}" ]]; then
     export DOTFILES_ROOT="${PATH_REPO}"
     export DOTFILES_OS
     DOTFILES_OS=$(detect::os)
@@ -279,13 +286,18 @@ function update_repo() {
   msg::info "trying to update ${1}"
 
   if [ "${1}" = "${DOTFILES_NAME}" ]; then
-    cd "${PATH_REPO}" || { msg::error "Failed to cd to ${PATH_REPO}"; exit 1; }
-    git pull origin "${DOTFILES_GIT_BRANCH}" || ret=$?
+    ( cd "${PATH_REPO}" && git pull origin "${DOTFILES_GIT_BRANCH}" ) || ret=$?
   fi
 
-  msg::success "${2}"
+  if [[ "$ret" -eq 0 ]]; then
+    msg::success "${2}"
+  else
+    msg::warn "Could not update ${1}; using existing copy"
+  fi
   return "$ret"
 }
+
+clone_repo "Successfully cloned ${DOTFILES_NAME}"
 
 setup::factory
 
@@ -298,8 +310,6 @@ for app in {zsh,git,rsync}; do
   program_exists "${app}"
 done
 unset app
-
-clone_repo "Successfully cloned ${DOTFILES_NAME}"
 
 msg::info "\nThanks for installing ${DOTFILES_NAME}."
 msg::info "© $(date +%Y) ${DOTFILES_NAME}"
