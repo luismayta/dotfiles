@@ -1,4 +1,9 @@
-## ADDED Requirements
+# rust-module Specification
+
+## Purpose
+The rust module provides auto-installation of Rust via rustup, sets up cargo PATH and environment, manages cargo package installations, and provides shell integration for zoxide.
+
+## Requirements
 
 ### Requirement: Rust module loads on shell start
 The `zsh/modules/rust/plugin.zsh` file SHALL be sourced automatically when the shell starts via the existing modules loader in `zshrc`.
@@ -38,13 +43,6 @@ The module SHALL install cargo packages defined in `RUST_CARGO_PACKAGES` array u
 #### Scenario: Cargo package install
 - **WHEN** `rust::internal::packages::install` is called
 - **THEN** each package in `RUST_CARGO_PACKAGES` SHALL be installed via `cargo install`
-
-### Requirement: Delta git pager configuration
-The module SHALL configure `git-delta` as the git pager if delta is available.
-
-#### Scenario: Delta config applied
-- **WHEN** `delta` is present in PATH
-- **THEN** the module SHALL set git config for `core.pager`, `interactive.diffFilter`, `delta.navigate`, and `merge.conflictStyle`
 
 ### Requirement: Zoxide shell integration
 The module SHALL initialize `zoxide` for zsh if zoxide is available.
