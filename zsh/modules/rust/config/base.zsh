@@ -15,7 +15,6 @@ export RUST_CARGO_PACKAGES_SIMPLE=(
   committed
   btop
   eza
-  git-delta
   lychee
 )
 

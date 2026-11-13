@@ -4,7 +4,7 @@
 #
 # Port of luismayta/zsh-rust into the modules/ convention.
 # Provides Rust toolchain management, cargo package installation,
-# delta git pager config, zoxide init, and PATH/env setup.
+# zoxide init, and PATH/env setup.
 #
 # This is the only file the zshrc sources — it internally chains:
 #   config/main.zsh → internal/main.zsh → pkg/main.zsh
