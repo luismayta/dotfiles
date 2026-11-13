@@ -14,6 +14,7 @@ This guide explains how to add a new tool to any module following the establishe
 - [Overview](#overview)
 - [File Structure](#file-structure)
 - [Step 1: Config Layer](#step-1-config-layer)
+- [Step 2a: Choosing an Install Mechanism](#step-2a-choosing-an-install-mechanism)
 - [Step 2: Internal Layer](#step-2-internal-layer)
 - [Step 3: Public Layer](#step-3-public-layer)
 - [Step 4: Registration](#step-4-registration)
@@ -135,7 +136,7 @@ export DEVOPS_<TOOL>_PACKAGE_NAME=<tool>
 export DEVOPS_<TOOL>_CONFIG_DIR="${HOME}/.config/<tool>"
 ```
 
-> **Installation**: tools installed via the native package manager (apt/paru/brew) use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"` in `internal/` — no `INSTALL_CMD` variable needed. Only custom installers (e.g. bun, curl installers) declare `DEVOPS_<TOOL>_INSTALL_*` variables.
+> **Installation**: tools installed via the native package manager (apt/paru/brew) use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"` in `internal/` — no `INSTALL_CMD` variable needed. Only custom installers (e.g. bun, curl installers) declare `DEVOPS_<TOOL>_INSTALL_*` variables. For pure CLI tools available in nixpkgs, prefer nix (see Step 2a); native is default.
 
 ### Example: Atuin (shell hooks)
 
@@ -187,6 +188,86 @@ All variables use `DEVOPS_<TOOL>_` prefix:
 | `DEVOPS_<TOOL>_INSTALL_*` | Installation commands/URLs (custom installers only — native packages use `core::install`) |
 | `DEVOPS_<TOOL>_CONFIG_*` | Configuration paths |
 | `DEVOPS_<TOOL>_<CUSTOM>`` | Tool-specific settings |
+
+---
+
+## Step 2a: Choosing an Install Mechanism
+
+Many tools can be installed through different package managers. Choose the appropriate mechanism based on the tool's characteristics:
+
+### Decision Table
+
+| Tool Type | Recommended Install Path | Implementation |
+|-----------|-------------------------|----------------|
+| Single CLI binary in nixpkgs | nix (`core::nix::package::*`) | Set `DEVOPS_<TOOL>_NIX_PACKAGE="nixpkgs#<attr>"` |
+| cask/GUI/system-wide | `core::install`/native | Use native package manager |
+| not in nixpkgs or needs custom installer | `DEVOPS_<TOOL>_INSTALL_*` | Custom installer script |
+| nix-darwin-managed machine | declare only, never install to user profile | Use nix declaration, skip profile install |
+
+### Nix Pattern Code Block
+
+```zsh
+# config/<tool>.zsh
+export DEVOPS_<TOOL>_NIX_PACKAGE="nixpkgs#<attr>"  # nixpkgs flake ref
+export DEVOPS_<TOOL>_PACKAGE_NAME=<tool>           # native/message name
+
+# internal/<tool>.zsh
+function devops::<tool>::internal::install {
+    # Short-circuit: binary exists?
+    if core::nix::package::exists ${DEVOPS_<TOOL>_PACKAGE_NAME}; then
+        message_info "${DEVOPS_<TOOL>_PACKAGE_NAME} already installed"
+        return 0
+    fi
+
+    # nix absent? Fall back to native (nix preferred, never required)
+    if ! command -v nix >/dev/null 2>&1; then
+        message_info "nix not available; falling back to native package manager"
+        core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"
+        message_success "Installed ${DEVOPS_<TOOL>_PACKAGE_NAME}"
+        return 0
+    fi
+
+    # nix-darwin? (skip user-profile, warn)
+    if [[ "${ZSH_NIX_DARWIN_AVAILABLE:-false}" == "true" ]]; then
+        message_warn "nix-darwin is managing ${DEVOPS_<TOOL>_PACKAGE_NAME}; skipping profile install"
+        return 0
+    fi
+
+    # Install via nix helper (nix preferred, never required)
+    core::nix::package::install "${DEVOPS_<TOOL>_NIX_PACKAGE}" "${DEVOPS_<TOOL>_PACKAGE_NAME}"
+    message_success "Installed ${DEVOPS_<TOOL>_PACKAGE_NAME}"
+}
+
+function devops::<tool>::internal::upgrade {
+    core::nix::package::upgrade "${DEVOPS_<TOOL>_NIX_PACKAGE}"
+    message_success "Upgraded ${DEVOPS_<TOOL>_PACKAGE_NAME}"
+}
+```
+
+### Naming Rules
+
+- `*_NIX_PACKAGE` = flake ref (e.g., `nixpkgs#git`, `nixpkgs#delta`)
+- `*_PACKAGE_NAME` = native/message name (e.g., `git`, `delta`)
+
+### Guard Rules
+
+- Short-circuit `core::exists` first for cheap PATH check
+- Binary presence ≠ package installed (helper checks profile)
+- Respect `ZSH_NIX_DARWIN_AVAILABLE` (skip + warn)
+- Helper feature-detects `nix profile add` vs `install` — modules must NOT branch on OS
+
+### When NOT to use nix
+
+❌ casks, system packages, tools not in nixpkgs
+❌ nix absent (helper requires nix externally)
+❌ multi-binary suites (same attr may provide multiple binaries)
+❌ anything needing sudo/system paths
+
+### New Anti-patterns
+
+- ❌ No hardcoded `nix profile install`/`add` in modules — use `core::nix::package::install`
+- ❌ No OS branching for the nix profile verb (feature-detect in helper)
+- ❌ No nix inside `core::install` (nix is separate path)
 
 ---
 
@@ -357,7 +438,7 @@ function devops::<tool>::internal::main::factory {
 }
 ```
 
-`core::ensure <tool>` is shorthand for `core::exists <tool> || core::install <tool>` — it auto-installs missing tools via the native package manager. For tools with a custom installer, call `devops::<tool>::internal::install` inside the guard instead.
+`core::ensure <tool>` is shorthand for `core::exists <tool> || core::install <tool>` — it auto-installs missing tools via the native package manager (native by default; nix preferred for pure CLIs — see Step 2a). For tools with a custom installer, call `devops::<tool>::internal::install` inside the guard instead.
 
 ---
 
@@ -578,13 +659,16 @@ source zsh/system/core/main.zsh && source zsh/modules/devops/plugin.zsh
 ### Never Do This (Anti-patterns)
 
 - [ ] ❌ Don't use single underscore `devops_<tool>_` — always double colon `devops::<tool>::`
-- [ ] ❌ Don't hardcode installer commands (e.g. `brew install <tool>`) — use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"`, or `DEVOPS_<TOOL>_INSTALL_*` variables for custom installers
+- [ ] ❌ Don't hardcode installer commands (e.g. `brew install <tool>`) — use `core::install "${DEVOPS_<TOOL>_PACKAGE_NAME}"` (native by default; nix preferred for pure CLIs — see Step 2a), or `DEVOPS_<TOOL>_INSTALL_*` variables for custom installers
 - [ ] ❌ Don't skip `core::exists` guard — tools may not be installed yet
 - [ ] ❌ Don't put `eval` in config files — shell hooks go in `internal/<tool>.zsh` only
 - [ ] ❌ Don't use `echo` for output — always use `message_info` / `message_success` / `message_error`
 - [ ] ❌ Don't call internal functions from user code — use `pkg/` wrappers only
 - [ ] ❌ Don't use absolute paths — use `${HOME}` or `$DEVOPS_PATH` variables
 - [ ] ❌ Don't forget the shebang — always start files with `#!/usr/bin/env ksh`
+- [ ] ❌ Don't hardcode `nix profile install`/`add` in modules — use `core::nix::package::install`
+- [ ] ❌ Don't branch on OS for the nix profile verb — feature-detect in helper
+- [ ] ❌ Don't put nix inside `core::install` — nix is a separate path
 
 ---
 
