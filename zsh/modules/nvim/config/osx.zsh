@@ -4,7 +4,7 @@
 # Overrides nvim binary path for Homebrew installations.
 
 # Homebrew formula name for hadolint
-NVIM_HADOLINT_PACKAGE_NAME="hadolint"
+export NVIM_HADOLINT_PACKAGE_NAME="hadolint"
 
 # Prefer Homebrew nvim on Apple Silicon
 if [[ -x "/opt/homebrew/bin/nvim" ]]; then
