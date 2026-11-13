@@ -16,3 +16,4 @@ features:
 requirements: |-
   - zsh (loaded as part of dotfiles zsh modules)
   - delta (nix package `nixpkgs#delta`, installed by the git module)
+  - bat (provides the theme cache delta reads for syntax highlighting)

@@ -14,6 +14,12 @@ function git::internal::delta::install {
         message_error "Failed to install delta"
         return 1
     fi
+
+    if command -v bat &>/dev/null && [[ -f "${HOME}/.config/bat/themes/tokyonight_storm.tmTheme" ]]; then
+        message_info "Building bat theme cache"
+        bat cache --build
+        message_success "Built bat theme cache"
+    fi
 }
 
 # git::internal::delta::load — apply delta git config
@@ -25,5 +31,7 @@ function git::internal::delta::load {
     git config --global core.pager delta
     git config --global interactive.diffFilter 'delta --color-only'
     git config --global delta.navigate true
+    git config --global delta.line-numbers true
+    git config --global delta.syntax-theme "TokyoNight Storm"
     git config --global merge.conflictStyle zdiff3
 }

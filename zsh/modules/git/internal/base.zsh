@@ -20,6 +20,12 @@ function git::internal::provision::hooks::sync {
 # git::internal::sync — sync config files to home
 function git::internal::sync {
     rsync -avzh --progress "${GIT_DATA_PATH}/sync/" "${HOME}/"
+
+    if command -v bat &>/dev/null && [[ -f "${HOME}/.config/bat/themes/tokyonight_storm.tmTheme" ]]; then
+        message_info "Building bat theme cache"
+        bat cache --build
+        message_success "Built bat theme cache"
+    fi
 }
 
 # git::internal::gunwipall — un-wip all recent --wip-- commits

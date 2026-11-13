@@ -11,7 +11,6 @@
 	fscache = true
 	filemode = true
 	pager = delta
-	# pager = hunk pager
 
 [github]
 	user = luismayta
@@ -158,6 +157,8 @@
 
 [delta]
 	navigate = true
+	line-numbers = true
+	syntax-theme = TokyoNight Storm
 
 [gc]
 	auto = 256
@@ -176,5 +177,7 @@
 	helper = store
 [ghq]
 	root = /home/lucho/Projects/src
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
 [credential "https://github.com"]
-	helper = !gh auth git-credential
+	helper = !/usr/bin/gh auth git-credential
