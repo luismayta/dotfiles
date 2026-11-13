@@ -10,7 +10,8 @@
 	preloadindex = true
 	fscache = true
 	filemode = true
-	pager = hunk pager
+	pager = delta
+	# pager = hunk pager
 
 [github]
 	user = luismayta

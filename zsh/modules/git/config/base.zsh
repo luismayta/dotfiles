@@ -4,6 +4,7 @@ ZSH_GIT_ENABLED="${ZSH_GIT_ENABLED:-true}"
 
 export GIT_PACKAGE_NAME=git
 export SCMPUFF_PACKAGE_NAME=scmpuff
+export GIT_DELTA_NIX_PACKAGE="nixpkgs#delta"
 
 export HOME_CONFIG_PATH="${HOME}"/.config
 export GIT_FILE_SETTINGS="${HOME}"/.gitconfig
