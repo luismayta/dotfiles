@@ -80,7 +80,7 @@ type = ""
 company = "codip"
 project = "codip-ai"
 version = "2.0.0"
-author = "CodipLabs"
+author = "CodipLab"
 # OKF exclude paths (documentation example only — fully commented out).
 # Excludes applied by `okf sync`, `okf validate`, and `okf context` on top of .gitignore.
 # `paths` = gitignore-style glob patterns (negation `!` supported; leading `/` anchors to repo root).
