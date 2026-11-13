@@ -29,15 +29,19 @@ El módulo nix (`zsh/system/nix`) SHALL NOT instalar `nix-direnv` automáticamen
 - **THEN** el sistema SHALL NOT ejecutar la instalación de `nix-direnv` como parte de la carga
 
 ### Requirement: Detección correcta del plugin
-El guard de instalación SHALL verificar la disponibilidad del plugin `nix-direnv` (p. ej. presencia del paquete en el profile o del direnvrc que lo referencia), y SHALL NOT usar la presencia del binario `direnv` como único criterio, porque el paquete `nix-direnv` no provee ese binario.
+The guard of installation SHALL verify plugin availability through `core::nix::package::exists` (aliasing to binary presence), and SHALL NOT rely on the absence of the service script for the plugin's verification. Reference to `nix profile list` checks is moved to the helper.
 
 #### Scenario: direnv ausente pero plugin presente
-- **WHEN** el binario `direnv` no está en PATH pero el plugin `nix-direnv` está instalado
+- **WHEN** the binario `direnv` no está en PATH pero el plugin `nix-direnv` está instalado
 - **THEN** el sistema SHALL NOT re-instalar el plugin
 
 #### Scenario: direnv y plugin ausentes
 - **WHEN** ni el binario `direnv` ni el plugin `nix-direnv` están disponibles
 - **THEN** el sistema SHALL instalar el binario `direnv` y el plugin `nix-direnv` según el mecanismo de la plataforma
+
+#### Scenario: Plugin installed via helper
+- **WHEN** the helper is invoked to install the plugin with reference `NIX_DIRENV_NIX_PACKAGE`
+- **THEN** system SHALL use `core::nix::package::install` rather than inline `nix profile list` checks
 
 ### Requirement: Detección de Nix en perfiles del sistema
 El sistema SHALL detectar la instalación de Nix no solo en PATH sino también en los perfiles canónicos de nix-darwin/home-manager, para no reinstalar Nix cuando ya está gestionado externamente.
