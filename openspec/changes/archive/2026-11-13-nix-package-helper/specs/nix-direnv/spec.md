@@ -9,7 +9,7 @@ The guard of installation SHALL verify plugin availability through `core::nix::p
 #### Scenario: direnv ausente pero plugin presente
 
 - **WHEN** the binario `direnv` no está en PATH pero el plugin `nix-direnv` está instalado
-- **THEN** el sistema básicamente SHALN re-instalar el plugin
+- **THEN** el sistema SHALL NOT re-instalar el plugin
 
 #### Scenario: direnv y plugin ausentes
 
