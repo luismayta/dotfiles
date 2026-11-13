@@ -8,9 +8,6 @@ function devops::direnv::internal::load {
 }
 
 function devops::direnv::internal::is_managed {
-    if nix profile list 2>/dev/null | grep -q "nix-direnv"; then
-        return 0
-    fi
     if grep -q "nix-direnv" "${HOME}/.config/direnv/direnvrc" 2>/dev/null; then
         return 0
     fi
@@ -18,6 +15,9 @@ function devops::direnv::internal::is_managed {
         if [[ -f "/etc/profiles/per-user/${USER}/share/nix-direnv/direnvrc" ]] || [[ -f "/run/current-system/sw/share/nix-direnv/direnvrc" ]]; then
             return 0
         fi
+    fi
+    if core::nix::package::profile::exists "nix-direnv"; then
+        return 0
     fi
     return 1
 }

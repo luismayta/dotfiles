@@ -25,6 +25,10 @@ core::nix::package::exists() {
   core::exists "${1}"
 }
 
+core::nix::package::profile::exists() {
+  core::internal::nix::package::profile::exists "${@}"
+}
+
 core::nix::package::install() {
   local package_ref="${1:-}"
   local profile_name="${2:-}"

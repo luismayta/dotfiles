@@ -70,6 +70,33 @@ core::internal::nix::package::exists() {
   core::exists "${1}"
 }
 
+# core::internal::nix::package::profile::exists <profile-name> — returns 0 if present in nix profile list
+core::internal::nix::package::profile::exists() {
+  local profile_name="${1:-}"
+
+  # 1. Restore nix into PATH via fallback script paths.
+  if ! command -v nix >/dev/null 2>&1; then
+    if [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]]; then
+      # shellcheck source=/dev/null
+      source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    elif [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]]; then
+      # shellcheck source=/dev/null
+      source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    fi
+  fi
+
+  # 2. If nix still unavailable -> not present (no error).
+  if ! command -v nix >/dev/null 2>&1; then
+    return 1
+  fi
+
+  # 3. Profile detection.
+  if nix profile list 2>/dev/null | grep -q -- "${profile_name}"; then
+    return 0
+  fi
+  return 1
+}
+
 # core::internal::nix::package::install <package-ref> <profile-name>
 core::internal::nix::package::install() {
   local package_ref="${1:-}"
@@ -101,7 +128,7 @@ core::internal::nix::package::install() {
   fi
 
   # 4. Idempotent profile detection: if already in user profile, return 0.
-  if nix profile list 2>/dev/null | grep -q -- "${profile_name}"; then
+  if core::internal::nix::package::profile::exists "${profile_name}"; then
     return 0
   fi
 
