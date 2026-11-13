@@ -4,9 +4,9 @@
 # install/upgrade keep the original behavior (no extra-experimental-features)
 
 function nix::direnv::internal::install {
-    if ! nix profile list 2>/dev/null | grep -q "nix-direnv"; then
+    if ! core::nix::package::exists direnv; then
         message_info "Installing ${NIX_DIRENV_PACKAGE_NAME}"
-        nix profile install "${NIX_DIRENV_NIX_PACKAGE}"
+        core::nix::package::install "${NIX_DIRENV_NIX_PACKAGE}"
         message_success "Installed ${NIX_DIRENV_PACKAGE_NAME}"
     fi
 }

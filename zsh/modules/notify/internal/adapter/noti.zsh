@@ -10,7 +10,7 @@ function notify::noti::internal::install {
 
     if core::internal::nix::exists; then
         message_info "Installing noti via nix..."
-        if nix --extra-experimental-features 'nix-command flakes' profile add nixpkgs#noti; then
+        if core::nix::package::install "nixpkgs#noti"; then
             message_success "noti installed successfully via nix"
         else
             message_error "Failed to install noti via nix"

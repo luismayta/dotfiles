@@ -32,11 +32,9 @@ function devops::direnv::internal::install {
         message_info "Installing direnv"
         nix profile install "nixpkgs#direnv"
     fi
-    if ! nix profile list 2>/dev/null | grep -q "nix-direnv"; then
-        message_info "Installing nix-direnv plugin"
-        nix profile install "${DEVOPS_DIRENV_NIX_DIRENV_PACKAGE}"
-        message_success "Installed nix-direnv"
-    fi
+    message_info "Installing nix-direnv plugin"
+    core::nix::package::install "${DEVOPS_DIRENV_NIX_DIRENV_PACKAGE}"
+    message_success "Installed nix-direnv"
 }
 
 function devops::direnv::internal::upgrade {

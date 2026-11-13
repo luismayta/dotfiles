@@ -40,16 +40,14 @@ function devops::direnv::internal::install {
             return 1
         fi
     fi
-    if ! core::exists direnv; then
-        message_info "Installing direnv"
-        if ! nix profile add "nixpkgs#direnv" --extra-experimental-features 'nix-command flakes'; then
-            message_error "Failed to install direnv"
-            return 1
-        fi
+    message_info "Installing direnv"
+    if ! core::nix::package::install "nixpkgs#direnv"; then
+        message_error "Failed to install direnv"
+        return 1
     fi
     if ! devops::direnv::internal::is_managed; then
         message_info "Installing nix-direnv plugin"
-        if ! nix profile add "${DEVOPS_DIRENV_NIX_DIRENV_PACKAGE}" --extra-experimental-features 'nix-command flakes'; then
+        if ! core::nix::package::install "${DEVOPS_DIRENV_NIX_DIRENV_PACKAGE}"; then
             message_error "Failed to install nix-direnv"
             return 1
         fi
