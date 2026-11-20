@@ -39,6 +39,10 @@ ZSH_AI_SKILLS_CODIP=(
   gitlab-create-mr
   gitlab-update-mr
   gitlab-validate-mr
+  inbox-archive
+  discord-config-manager
+  discord-create-thread
+  discord-send-to-thread
   jira-approve-task
   goji-commit-smart
   jira-add-worklog
@@ -47,9 +51,11 @@ ZSH_AI_SKILLS_CODIP=(
   jira-task-generator
   jira-approve-task
   jira-work-report
+  jira-sync-components
   jpd-epic-generator
   jpd-task-generator
   okf-classify
+  osint-investigation
   markdown-to-jira
   markdown-to-gcal
   markdown-to-gdoc
@@ -60,6 +66,7 @@ ZSH_AI_SKILLS_CODIP=(
   idea-jpd-import
   image-compression
   simplify
+  task-validate
   diagram-design
   research-capture
 )
