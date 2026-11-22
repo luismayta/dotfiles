@@ -23,6 +23,9 @@ source "${DEVOPS_PATH}/config/cloudflared.zsh"
 source "${DEVOPS_PATH}/config/caddy.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/config/mise.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/config/worktrunk.zsh"
 
 # shellcheck source=/dev/null

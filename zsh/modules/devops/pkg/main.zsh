@@ -45,6 +45,9 @@ source "${DEVOPS_PATH}/pkg/cloudflared.zsh"
 source "${DEVOPS_PATH}/pkg/caddy.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/pkg/mise.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/pkg/worktrunk.zsh"
 
 # shellcheck source=/dev/null

@@ -18,6 +18,7 @@ export DEVOPS_TOOLS=(
   helm
   k9s
   kubectl
+  mise
   packer
   rclone
   sops

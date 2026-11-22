@@ -50,6 +50,9 @@ source "${DEVOPS_PATH}/internal/cloudflared.zsh"
 source "${DEVOPS_PATH}/internal/caddy.zsh"
 
 # shellcheck source=/dev/null
+source "${DEVOPS_PATH}/internal/mise.zsh"
+
+# shellcheck source=/dev/null
 source "${DEVOPS_PATH}/internal/worktrunk.zsh"
 
 # shellcheck source=/dev/null
