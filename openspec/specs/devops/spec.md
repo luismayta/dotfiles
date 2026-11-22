@@ -35,8 +35,6 @@ The devops module SHALL be self-contained within `zsh/modules/devops/` with `plu
 - **WHEN** the module files are enumerated
 - **THEN** `config/`, `internal/`, and `pkg/` subdirectories contain the expected platform-specific files
 
-## ADDED Requirements
-
 ### Requirement: Docker-based AWS CLI
 
 The devops module SHALL provide `awscli()` that runs the AWS CLI inside a Docker container.
