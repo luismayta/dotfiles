@@ -31,44 +31,48 @@ ZSH_AI_SKILLS_VERCEL=(
 # CodipLab — Git & PR workflows
 ZSH_AI_SKILLS_CODIP=(
   agents-md-generator
+  codi-find-skills
+  diagram-design
+  discord-config-manager
+  discord-create-thread
+  discord-send-to-thread
   gcal-daily-planner
   gcal-task-suggester
+  gdrive-to-markdown
   github-create-pr
   github-update-pr
   github-validate-pr
   gitlab-create-mr
   gitlab-update-mr
   gitlab-validate-mr
-  inbox-archive
-  discord-config-manager
-  discord-create-thread
-  discord-send-to-thread
-  jira-approve-task
   goji-commit-smart
-  jira-add-worklog
-  jira-epic-generator
-  jira-start-task
-  jira-task-generator
-  jira-approve-task
-  jira-work-report
-  jira-sync-components
-  jpd-epic-generator
-  jpd-task-generator
-  okf-classify
-  osint-investigation
-  markdown-to-jira
-  markdown-to-gcal
-  markdown-to-gdoc
-  markdown-to-gslides
   idea-capture
   idea-jpd-create
   idea-jpd-draft
   idea-jpd-import
   image-compression
+  inbox-archive
+  jira-add-worklog
+  jira-approve-task
+  jira-epic-generator
+  jira-start-task
+  jira-sync-components
+  jira-sync-filters
+  jira-task-generator
+  jira-work-report
+  jpd-epic-generator
+  jpd-task-generator
+  markdown-to-gcal
+  markdown-to-gdoc
+  markdown-to-gslides
+  markdown-to-jira
+  okf-classify
+  osint-investigation
+  research-capture
+  research-classify
   simplify
   task-validate
-  diagram-design
-  research-capture
+  technical-document-auditor
 )
 
 # shellcheck disable=SC2034 # used dynamically via ${(P)} expansion in internal/skills.zsh
