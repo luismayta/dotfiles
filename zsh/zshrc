@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
-unset ZSH_DEBUG
+: "${ZSH_DEBUG:=}"
 
-# Add some completions (we need this before compinit)
-[ -e /usr/share/zsh ] && fpath=(/usr/share/zsh/site-functions:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/VCS_Info/Backends:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle $fpath)
-#
+if [ -n "${ZSH_DEBUG}" ]; then
+    zmodload zsh/zprof
+fi
 
 export ZSH=${HOME}/.dotfiles
 export DOTFILES="${HOME}/.dotfiles"
@@ -48,7 +48,6 @@ fi
 # shellcheck source=/dev/null
 [ -s "${CUSTOMRC:-${HOME}/.customrc}" ] && source "${CUSTOMRC:-${HOME}/.customrc}"
 
-
 # Load modules from modules/ directory
 # To disable a module, set ZSH_DISABLED_MODULES in ~/.customrc:
 #   export ZSH_DISABLED_MODULES="tmux"
@@ -66,11 +65,8 @@ for __module_dir in "${DOTFILES_ZSH_PATH}"/modules/*(/N); do
 done
 unset __module_name __module_dir
 
-if [ -n "${ZSH_DEBUG}" ]; then
-    zmodload zsh/zprof
-fi
-
 # Load antidote bundles (module installs the manager on demand)
+touch "${HOME}/.custom_zsh_plugins.txt"
 [[ -n "${__ZSH_ANTIDOTE_LOADED:-}" ]] && antidote::init
 
 setopt share_history
@@ -78,38 +74,58 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-# remove duplicates path
-if (( $+functions[path::clean] )); then
-    export PATH="$(path::clean ${PATH})"
-    export FPATH="$(path::clean ${FPATH})"
+# core::path::clean only collapses adjacent duplicates (uniq); -U also
+# removes interleaved ones and keeps later prepends from re-accumulating them
+if (( $+functions[core::path::clean] )); then
+    export PATH="$(core::path::clean "${PATH}")"
+    export FPATH="$(core::path::clean "${FPATH}")"
 fi
+typeset -U path
+typeset -U fpath
 
 # Auto completion
-case "$OSTYPE" in
- darwin*)
-function {
-    local -a mt
-    local today='' dump=''
-    zmodload zsh/stat 2>/dev/null
-    zmodload zsh/datetime 2>/dev/null
-    strftime -s today '%j'
-    if (( $+builtins[zstat] )) && zstat -A mt +mtime ~/.zcompdump 2>/dev/null && (( ${#mt} )); then
-        strftime -s dump '%j' "${mt[1]}"
-    fi
-    if [[ "${today}" != "${dump}" ]]; then
-        compinit
-    else
-        compinit -d
-    fi
-}
-;;
- linux*)
+# 24h freshness check: a dump whose mtime is within the last 24 hours is
+# loaded with compinit -C (no fpath rescan); a missing or older dump gets a
+# full compinit, which rewrites it only when $fpath actually changed. This is
+# the only compinit that writes the dump.
 if [ -z "${ZSH_DEBUG}" ]; then
-    compinit
+    function {
+        local -a mt
+        zmodload zsh/stat 2>/dev/null
+        zmodload zsh/datetime 2>/dev/null
+        if (( $+builtins[zstat] && $+EPOCHSECONDS )) \
+            && zstat -A mt +mtime "${ZDOTDIR:-$HOME}/.zcompdump" 2>/dev/null \
+            && (( ${#mt} && EPOCHSECONDS - mt[1] <= 86400 )); then
+            compinit -C
+        else
+            compinit
+        fi
+    }
 fi
-;;
-esac
 
 if [ -n "${ZSH_DEBUG}" ]; then
     zprof
+fi
+
+# bun completions
+[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
+
+# Added by jcode installer
+export PATH="${HOME}/.local/bin:$PATH"
+
+eval "$(atuin init zsh)"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# mise — version manager (project pins in mise.toml)
+eval "$(mise activate zsh)"
+
+# fnm — only when mise is absent; mise-managed directories are owned by mise
+# (guard provided by the nodejs module). When mise exists, skip entirely so its
+# shims keep PATH precedence.
+if ! command -v mise >/dev/null 2>&1; then
+  if [ -d "${FNM_PATH}" ]; then
+    export PATH="${FNM_PATH}:${PATH}"
+    eval "$(fnm env --shell zsh)"
+  fi
 fi

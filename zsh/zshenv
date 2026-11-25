@@ -12,7 +12,12 @@ fi
 
 # autoload
 autoload -Uz add-zsh-hook
-autoload -Uz compinit && compinit -u
+# Interactive only: this early compinit primes compdef so registrations made
+# at module-load time (in zshrc's module loops) succeed. When a dump already
+# exists, -C avoids an fpath rescan and a dump rewrite; -D suppresses
+# autodump when the dump is missing, deferring dump creation to zshrc's
+# freshness-checked compinit — the sole dump writer.
+[[ -o interactive ]] && autoload -Uz compinit && compinit -u -C -D
 
 # Fix CR-to-NL on Enter (prevents ^M in terminal prompts)
 stty icrnl 2>/dev/null
@@ -28,12 +33,11 @@ fi
 
 export DISABLE_AUTO_TITLE="true"
 
-if ! type -p wakatime > /dev/null; then
-    [ -e "${HOME}/.wakatime" ] && export PATH_WAKATIME="${HOME}/.wakatime"
+if ! type -p wakatime > /dev/null && [ -e "${HOME}/.wakatime" ]; then
+    export PATH_WAKATIME="${HOME}/.wakatime"
 fi
 
-# Larger bash history (allow 32³ entries; default is 500)
-
+# Larger history (100k entries)
 export HISTFILE="${HOME}/.zsh_history"
 export HISTSIZE=100000
 export HISTCONTROL=ignoredups
@@ -49,3 +53,25 @@ export PIPENV_SHELL_FANCY=true
 
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
 if [ -d "$HOME/.local/bin" ]; then export PATH="$HOME/.local/bin:$PATH"; fi # uv (astral.sh installer)
+
+# libstdc++ for nix-built runtimes (bun): nix's ld.so does not search /usr/lib,
+# so native modules (sharp/libvips, parcel-watcher, node-pty) fail to dlopen in
+# shells without direnv/nix develop. Mirrors LD_LIBRARY_PATH in nix/devShell.nix
+# of the codip-ai repo; only fills the gap, never overrides an existing value.
+if [ -z "${LD_LIBRARY_PATH:-}" ]; then
+    _stdcpp=""
+    if [ -f /nix/store/j7qx4s4mr17j1wqgvqdzj33lmrnzb387-gcc-16.2.0-lib/lib/libstdc++.so.6 ]; then
+        _stdcpp="/nix/store/j7qx4s4mr17j1wqgvqdzj33lmrnzb387-gcc-16.2.0-lib/lib"
+    else
+        _stdcpp_file="$(gcc -print-file-name=libstdc++.so.6 2>/dev/null)"
+        case "$_stdcpp_file" in
+            /nix/store/*) _stdcpp="${_stdcpp_file:h}" ;;
+            *) [ -f /usr/lib/libstdc++.so.6 ] && _stdcpp="/usr/lib" ;;
+        esac
+        unset _stdcpp_file
+    fi
+    if [ -n "$_stdcpp" ]; then
+        export LD_LIBRARY_PATH="$_stdcpp"
+    fi
+    unset _stdcpp
+fi
