@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 
 function devops::kubectl::internal::load::completion {
-    # shellcheck source=/dev/null
-    source <(kubectl completion zsh)
+    devops::internal::completion::cached kubectl kubectl completion zsh
     # make completion work with kubecolor
-    command -v kubecolor >/dev/null 2>&1 && compdef kubecolor=kubectl
+    core::exists kubecolor && compdef kubecolor=kubectl
 }
 
 function devops::kubectl::internal::krew::install {

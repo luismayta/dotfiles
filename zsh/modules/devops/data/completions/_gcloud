@@ -1,0 +1,4 @@
+#compdef gcloud
+
+(( $+functions[_bash_complete] )) || return 1
+_bash_complete -o nospace -o default -F _python_argcomplete "$@"

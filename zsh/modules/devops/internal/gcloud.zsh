@@ -1,17 +1,47 @@
 #!/usr/bin/env ksh
 # -*- coding: utf-8 -*-
 
+function devops::gcloud::internal::completion::inc::path {
+    # Resolve without forking gcloud: a cache hit must stay fork-free.
+    REPLY=""
+    local bin_path="${commands[gcloud]:-}"
+    local -a candidates=()
+    if [[ -n "${bin_path}" ]]; then
+        candidates+=("${bin_path:A:h:h}/completion.zsh.inc")
+    fi
+    candidates+=(
+        /usr/share/google-cloud-sdk/completion.zsh.inc
+        /opt/google-cloud-sdk/completion.zsh.inc
+        /opt/google-cloud-cli/completion.zsh.inc
+        /usr/lib/google-cloud-sdk/completion.zsh.inc
+        "${HOME}/.local/share/google-cloud-sdk/completion.zsh.inc"
+        "${HOME}/.google-cloud-sdk/completion.zsh.inc"
+    )
+    local candidate
+    for candidate in "${candidates[@]}"; do
+        if [[ -f "${candidate}" ]]; then
+            REPLY="${candidate}"
+            return 0
+        fi
+    done
+    return 1
+}
+
 function devops::gcloud::internal::load::completion {
     if core::exists gcloud; then
-        # shellcheck source=/dev/null
-        source <(gcloud --quiet completion zsh 2>/dev/null)
+        devops::gcloud::internal::completion::inc::path
+        devops::internal::completion::cached gcloud --source "${REPLY:-}"
+        # shellcheck disable=SC2154 # zsh builtins (functions) not assigned in shellcheck
+        if (( $+functions[_bash_complete] && ! $+functions[_gcloud] )); then
+            function _gcloud { _bash_complete -o nospace -o default -F _python_argcomplete "$@"; }
+            compdef _gcloud gcloud 2>/dev/null || true
+        fi
         # make gsutil and bq completion work
-        if command -v gsutil >/dev/null 2>&1; then
-            compdef gsutil=google-cloud-sdk 2>/dev/null || true
-        fi
-        if command -v bq >/dev/null 2>&1; then
-            compdef bq=google-cloud-sdk 2>/dev/null || true
-        fi
+        local subcommand
+        for subcommand in gsutil bq; do
+            core::exists "${subcommand}" || continue
+            compdef "${subcommand}=google-cloud-sdk" 2>/dev/null || true
+        done
     fi
 }
 
