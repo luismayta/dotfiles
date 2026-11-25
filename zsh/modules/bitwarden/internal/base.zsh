@@ -58,5 +58,11 @@ function bitwarden::internal::load::env {
     [[ -n "$selected" ]] || return 0
 
     # Delegate to env-secrets
-    eval "$(env-secrets bw "${selected}")"
+    local _es_out
+    _es_out="$(env-secrets bw "${selected}")" || {
+        echo "env-secrets: failed to load ${selected}" >&2
+        return 1
+    }
+    eval "$_es_out" || { echo "env-secrets: failed to evaluate ${selected}" >&2; return 1; }
+    unset _es_out
 }
