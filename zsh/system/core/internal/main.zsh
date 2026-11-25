@@ -21,6 +21,9 @@ source "${DOTFILES_CORE_PATH}"/internal/reload.zsh
 # shellcheck source=/dev/null
 source "${DOTFILES_CORE_PATH}"/internal/gomplate.zsh
 
+# shellcheck source=/dev/null
+source "${DOTFILES_CORE_PATH}"/internal/proxy.zsh
+
 case "${OSTYPE}" in
 darwin*)
     # shellcheck source=/dev/null
