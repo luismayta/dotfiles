@@ -8,8 +8,30 @@ function github::internal::main::factory {
 }
 
 function github::internal::install_completions {
-    message_info "Installing ${ZSH_GITHUB_PACKAGE_NAME} completions"
-    gh completion -s zsh > "${ZSH_GITHUB_CONF_PATH}/completions.zsh"
+    local completions="${ZSH_GITHUB_CONF_PATH}/completions.zsh"
+    local tmpfile="${completions}.tmp.$$"
+    local script
+
+    # Generate once: skip quietly if the file exists or gh is unavailable.
+    [[ -f "${completions}" ]] && return 0
+    command -v gh >/dev/null 2>&1 || return 0
+
+    script="$(gh completion -s zsh 2>/dev/null)" || return 0
+    [[ -n "${script}" ]] || return 0
+    mkdir -p "${ZSH_GITHUB_CONF_PATH}" 2>/dev/null || return 0
+
+    # Write to a temp file in the same directory, verify it is non-empty,
+    # then atomically move it into place: a partial/interrupted write must
+    # never reach the final path, or the [[ -f ]] guard above would treat
+    # it as valid forever.
+    if ! { print -r -- "${script}" 2>/dev/null > "${tmpfile}" &&
+             [[ -s "${tmpfile}" ]] &&
+             mv "${tmpfile}" "${completions}" 2>/dev/null
+    }; then
+        rm -f "${tmpfile}"
+        return 0
+    fi
+
     message_success "Installed ${ZSH_GITHUB_PACKAGE_NAME} completions"
 }
 
