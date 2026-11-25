@@ -8,11 +8,62 @@ function nodejs::internal::fnm::install {
     message_success "Installed ${NODEJS_TOOL_NAME}"
 }
 
+# nodejs::internal::mise::manages_dir [dir] — true when a mise config file
+# exists in dir or any ancestor up to $HOME (mirrors mise's own discovery).
+function nodejs::internal::mise::manages_dir {
+  local dir="${1:-${PWD}}"
+
+  while [ -n "${dir}" ]; do
+    if [ -f "${dir}/mise.toml" ] || [ -f "${dir}/.mise.toml" ] || [ -f "${dir}/.tool-versions" ]; then
+      return 0
+    fi
+    if [ "${dir}" = "/" ] || [ "${dir}" = "${HOME}" ]; then
+      return 1
+    fi
+    dir="${dir%/*}"
+  done
+
+  return 1
+}
+
+# Yields to mise only when it manages the directory AND its binary exists;
+# otherwise fnm keeps serving node.
+function nodejs::internal::fnm::yields {
+  core::exists mise && nodejs::internal::mise::manages_dir
+}
+
+function nodejs::internal::fnm::autoload::register {
+  autoload -Uz add-zsh-hook
+  add-zsh-hook -D chpwd _fnm_autoload_hook
+  add-zsh-hook chpwd nodejs::internal::fnm::autoload
+}
+
+# chpwd replacement for fnm's _fnm_autoload_hook: re-checks on every cd and
+# enables fnm lazily when the shell started inside a mise-managed directory.
+function nodejs::internal::fnm::autoload {
+  if nodejs::internal::fnm::yields; then
+    return 0
+  fi
+
+  if ! type _fnm_autoload_hook >/dev/null 2>&1; then
+    eval "$(fnm env)"
+    eval "$(fnm env --use-on-cd --shell zsh)"
+    nodejs::internal::fnm::autoload::register
+  fi
+
+  if type _fnm_autoload_hook >/dev/null 2>&1; then
+    _fnm_autoload_hook
+  fi
+}
+
 function nodejs::internal::fnm::load {
   if [ -d "${FNM_PATH}" ]; then
     export PATH="${FNM_PATH}:${PATH}"
-    eval "$(fnm env)"
-    eval "$(fnm env --use-on-cd --shell zsh)"
+    if ! nodejs::internal::fnm::yields; then
+      eval "$(fnm env)"
+      eval "$(fnm env --use-on-cd --shell zsh)"
+    fi
+    nodejs::internal::fnm::autoload::register
   fi
 }
 
