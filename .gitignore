@@ -592,4 +592,5 @@ graphify-out/*
 .lycheecache
 !zsh/modules/git/bin
 !zsh/modules/herdr/bin
+!/bin/
 
