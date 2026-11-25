@@ -40,11 +40,11 @@ The devops module SHALL install Go-based kubectl tooling (kubectl-who-can, kconf
 - **THEN** all packages in DEVOPS_KUBECTL_GO_PACKAGES SHALL be installed via go install
 
 ### Requirement: kubectl completion loading
-The devops module SHALL load kubectl zsh completion on module init.
+The devops module SHALL load kubectl zsh completion on module init via `devops::internal::completion::cached kubectl kubectl completion zsh`, which sources the cached completion script at `$DOTFILES_CACHE_PATH/kubectl-completion.zsh` (fallback `${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/`) instead of running `source <(kubectl completion zsh)` on every startup.
 
 #### Scenario: completion loaded
 - **WHEN** the devops module loads
-- **THEN** source <(kubectl completion zsh) SHALL be executed
+- **THEN** the cached completion script SHALL be sourced, regenerating the cache when it is missing, older than 30 days, or older than the kubectl binary, and skipping silently when kubectl is absent
 
 ### Requirement: kubectl aliases
 The devops module SHALL define the following kubectl aliases: k, kg, kd, kdel, kucx, kgcx, kscn, kgp, kdp, kgd, kdd, kgs, kds, ka, kl, klf.

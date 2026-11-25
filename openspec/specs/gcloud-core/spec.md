@@ -8,11 +8,15 @@ The devops module SHALL include `google-cloud-sdk` in `DEVOPS_TOOLS` so it gets 
 - **THEN** `core::install google-cloud-sdk` SHALL be called to install it
 
 ### Requirement: Shell completions are loaded for gcloud, gsutil, and bq
-The gcloud SDK ships with completion scripts for zsh. The system SHALL source them so that tab-completion works for `gcloud`, `gsutil`, and `bq`.
+The gcloud SDK bundles its zsh completion as `completion.zsh.inc`. The system SHALL load it via `devops::internal::completion::cached gcloud --source <inc>`, which copies the inc file into the cache and sources the cached completion script at `$DOTFILES_CACHE_PATH/gcloud-completion.zsh` (fallback `${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions/`), so that tab-completion works for `gcloud`, `gsutil`, and `bq`.
 
 #### Scenario: Completion loading after install
 - **WHEN** `gcloud` is available on the PATH
-- **THEN** completions for `gcloud`, `gsutil`, and `bq` SHALL be sourced via the SDK's bundled completion scripts
+- **THEN** the cached completion script SHALL be sourced, regenerating the cache when it is missing, older than 30 days, or older than the SDK's `completion.zsh.inc`
+
+#### Scenario: SDK completion file absent
+- **WHEN** no `completion.zsh.inc` can be resolved
+- **THEN** loading SHALL skip silently without invoking `gcloud`, sourcing the existing cache if present
 
 ### Requirement: Core gcloud configuration is available
 The devops module SHALL export `DEVOPS_GCLOUD_CONFIG_ROOT` pointing to `$HOME/.config/gcloud` and optionally set `CLOUDSDK_CORE_PROJECT`, `CLOUDSDK_COMPUTE_REGION`, and `CLOUDSDK_COMPUTE_ZONE` from user-defined defaults.
