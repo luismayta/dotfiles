@@ -56,8 +56,8 @@ function docker::internal::main::factory {
     # DOCKER_HOST auto-resolution
     docker::internal::resolve::socket
 
-    # Health check
-    docker::internal::health::check
+    # Not run here: health::check forks the docker CLI per shell —
+    # call docker::internal::health::check on demand instead.
 }
 
 docker::internal::main::factory
