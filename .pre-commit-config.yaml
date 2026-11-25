@@ -189,3 +189,9 @@ repos:
         language: system
         files: ^zsh/modules/herdr/.*\.zsh$
         pass_filenames: false
+
+      - id: bin-zsh-syntax-check
+        name: Check zsh syntax (bin scripts)
+        entry: zsh -c 'for f in "$@"; do zsh -n "$f" || exit 1; done' --
+        language: system
+        files: ^bin/
