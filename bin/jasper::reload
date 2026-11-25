@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 
-# Source core framework to make core::reload available
+# Source reload implementation to make core::reload available
 DOTFILES_PATH="${DOTFILES_PATH:-${HOME}/.dotfiles}"
-DOTFILES_CORE_PATH="${DOTFILES_PATH}/zsh/system/core"
-source "${DOTFILES_CORE_PATH}/main.zsh"
+source "${DOTFILES_PATH}/zsh/system/core/internal/reload.zsh"
 
 core::reload
