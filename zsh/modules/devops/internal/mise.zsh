@@ -6,7 +6,7 @@ function devops::mise::internal::load {
         return
     fi
 
-    # Shell integration — eval mise activate zsh with configurable flags
+    # Shell integration — guarded activation with configurable flags
     eval "$(mise activate zsh ${DEVOPS_MISE_INIT_FLAGS[@]+"${DEVOPS_MISE_INIT_FLAGS[@]}"})"
 }
 

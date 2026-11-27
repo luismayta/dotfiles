@@ -113,12 +113,7 @@ fi
 # Added by jcode installer
 export PATH="${HOME}/.local/bin:$PATH"
 
-eval "$(atuin init zsh)"
-
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
-
-# mise — version manager (project pins in mise.toml)
-eval "$(mise activate zsh)"
 
 # fnm — only when mise is absent; mise-managed directories are owned by mise
 # (guard provided by the nodejs module). When mise exists, skip entirely so its
