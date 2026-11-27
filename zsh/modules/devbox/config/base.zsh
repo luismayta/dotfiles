@@ -1,5 +1,5 @@
 # shellcheck shell=bash
-ZSH_DEVBOX_ENABLED="${ZSH_DEVBOX_ENABLED:-true}"
+ZSH_DEVBOX_ENABLED="${ZSH_DEVBOX_ENABLED:-false}"
 
 export DEVBOX_PACKAGE_NAME="devbox"
 export DEVBOX_INSTALL_URL="https://get.jetify.com/devbox"
