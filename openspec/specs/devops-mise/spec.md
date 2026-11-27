@@ -34,21 +34,25 @@ The devops module SHALL install `mise` when the binary is missing, preferring th
 
 ### Requirement: mise zsh shell activation
 
-The devops module SHALL activate mise's zsh shell integration during module load, only when the `mise` binary exists.
+The shell SHALL evaluate `mise activate zsh` at most once per startup across `zsh/zshrc` and the devops module, running only when the `mise` binary exists.
 
 #### Scenario: Activation executed when binary exists
-- **WHEN** the devops module loads
+- **WHEN** a fresh shell starts with default configuration
 - **AND** the `mise` binary exists
-- **THEN** the module SHALL run `eval "$(mise activate zsh ...)"` passing any flags from `DEVOPS_MISE_INIT_FLAGS`
+- **THEN** `mise activate zsh` SHALL have been evaluated exactly once across `zsh/zshrc` and the devops module
 
 #### Scenario: No activation when binary is missing
 - **WHEN** the devops module loads
 - **AND** the `mise` binary does not exist
-- **THEN** the module SHALL NOT execute `mise activate zsh`
+- **THEN** neither the devops module nor `zsh/zshrc` SHALL execute `mise activate zsh`
 
 #### Scenario: Custom activation flags
 - **WHEN** `DEVOPS_MISE_INIT_FLAGS` is set to `("--shims")`
-- **THEN** shell activation SHALL pass those flags to `mise activate zsh`
+- **THEN** the retained activation SHALL pass those flags to `mise activate zsh`
+
+#### Scenario: Duplicate activation removed
+- **WHEN** `zsh/zshrc` is inspected after the change
+- **THEN** it SHALL contain no unconditional `mise activate` alongside the devops module's guarded activation
 
 ### Requirement: mise lifecycle API
 
