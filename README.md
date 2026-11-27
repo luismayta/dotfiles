@@ -29,6 +29,19 @@ dotfiles is installed by running one of the following commands in your terminal.
 
 
 
+## Introduction
+
+
+### Module lifecycle
+
+Every directory under `zsh/modules/` follows a lifecycle policy (ARCHIVE / DISABLE / KEEP) classified by criteria C1–C6 and recorded in the transversal ADR [docs/adr/001-zsh-module-lifecycle-classification.md](docs/adr/001-zsh-module-lifecycle-classification.md).
+
+- Modules are enabled by default through `ZSH_<MODULE>_ENABLED` in each module's `config/base.zsh`; `tmux` and `devbox` default to `false`.
+- Disable a module for one host with `export ZSH_DISABLED_MODULES="tmux starship"` in `$CUSTOMRC`, or re-enable a default-disabled module with `export ZSH_DEVBOX_ENABLED=true`.
+- Platform-scoped disables live only in `config/osx.zsh` / `config/linux.zsh`; host-scoped disables live only in `$CUSTOMRC`.
+- Disabling never suppresses diagnostics: genuine dependency failures still emit `message_warning` / `message_error`.
+- `$CUSTOMRC` sourcing order: sourced at `zsh/zshrc:43-49`, AFTER the `zsh/system/*` loop (`zsh/zshrc:27-40`) and BEFORE the `zsh/modules/*` loop (`zsh/zshrc:56-66`).
+
 
 
 

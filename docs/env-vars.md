@@ -23,6 +23,37 @@ export ZSH_DISABLED_MODULES="tmux,starship"
 Los módulos deshabilitados se omiten tanto en `zsh/system/*/plugin.zsh` como en `zsh/modules/*/plugin.zsh`.
 Si la variable no está definida, todos los módulos cargan.
 
+**Ordering limitation:** `$CUSTOMRC` is sourced at `zsh/zshrc:43-49` —
+AFTER the `zsh/system/*` loop (`zsh/zshrc:27-40`) and BEFORE the
+`zsh/modules/*` loop (`zsh/zshrc:56-66`). A `ZSH_DISABLED_MODULES` value set
+in `$CUSTOMRC` therefore skips modules in the `zsh/modules/*` loop of the same
+fresh shell, but comes too late for that shell's `zsh/system/*` loop — set the
+variable in the environment before startup to affect system modules. The tmux
+system helper (`zsh/system/core/pkg/helper/tmux.zsh`) also reads the variable
+before `$CUSTOMRC` runs.
+
+#### ZSH_DEVBOX_ENABLED
+
+Enables the devbox module. Default: `false` — devbox is disabled by default
+because nix already owns installs and project environments.
+
+Re-enable it per host in `~/.customrc` (sourced before the module loop):
+
+```zsh
+export ZSH_DEVBOX_ENABLED=true
+```
+
+Or skip it explicitly through the disabled-modules list:
+
+```zsh
+export ZSH_DISABLED_MODULES="devbox"
+```
+
+Diagnostics are preserved regardless of disabled modules: a genuine
+dependency failure in an enabled module still emits `message_warning` or
+`message_error` during startup — disabling a module never silences output to
+hide a now-missing helper.
+
 ### Tmux
 
 #### ZSH_TMUX_ENABLED
